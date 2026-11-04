@@ -47,3 +47,64 @@ h1 {
 .fallback {
   padding: 180px 24px 24px;
 }
+
+.hud {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.entry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(440px, calc(100% - 32px));
+  padding: 28px;
+  background: #171b22ed;
+  border: 1px solid #65717e;
+  border-radius: 8px;
+}
+.entry p {
+  line-height: 1.6;
+  color: #c3ccd5;
+}
+.entry .hint {
+  font-size: 12px;
+}
+button {
+  padding: 12px 24px;
+  font: inherit;
+  color: #171b22;
+  background: #e0e7ee;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+button:focus-visible {
+  outline: 3px solid #7bdfff;
+  outline-offset: 4px;
+}
+@media (max-width: 540px) {
+  .hud {
+    flex-direction: column;
+    font-size: 10px;
+  }
+}
