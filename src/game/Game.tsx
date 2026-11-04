@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PointerLockControls } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
 import { Greybox } from './world/Greybox'
 import { Player } from './player/Player'
+import { MouseLook } from './player/MouseLook'
 import { EntryMenu } from './ui/EntryMenu'
 
 const Diagnostics = import.meta.env.DEV
@@ -62,10 +62,7 @@ export function Game() {
             <Greybox />
             <Player active={active} />
           </Physics>
-          <PointerLockControls
-            selector="#enter-station"
-            minPolarAngle={0.1}
-            maxPolarAngle={Math.PI - 0.1}
+          <MouseLook
             onLock={() => {
               setActive(true)
               setError('')

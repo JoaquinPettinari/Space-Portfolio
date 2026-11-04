@@ -45,6 +45,42 @@ async function enter(page: Page) {
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
 }
 
+test('walking while turning keeps small mouse inputs bounded', async ({
+  page,
+}, info) => {
+  test.setTimeout(60_000)
+  await enter(page)
+  await page.mouse.move(640, 360)
+  const samples: GameSnapshot[] = [await snapshot(page)]
+  await page.keyboard.down('w')
+  try {
+    for (let step = 1; step <= 8; step++) {
+      await page.mouse.move(640 + step * 5, 360)
+      await page.waitForTimeout(50)
+      samples.push(await snapshot(page))
+    }
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await info.attach('walking-turning-samples', {
+    body: JSON.stringify(samples, null, 2),
+    contentType: 'application/json',
+  })
+  for (let index = 1; index < samples.length; index++) {
+    const a = samples[index - 1].cameraRotation
+    const b = samples[index].cameraRotation
+    const dot = Math.abs(a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w)
+    expect(2 * Math.acos(Math.min(1, dot))).toBeLessThan(0.2)
+    expect(samples[index].cameraPosition.y).toBeCloseTo(
+      samples[0].cameraPosition.y,
+      1,
+    )
+  }
+  const start = samples[0].cameraPosition
+  const end = samples.at(-1)!.cameraPosition
+  expect(Math.hypot(end.x - start.x, end.z - start.z)).toBeGreaterThan(0.1)
+})
+
 test('loads the scene and records a rendering baseline', async ({
   page,
 }, info) => {
