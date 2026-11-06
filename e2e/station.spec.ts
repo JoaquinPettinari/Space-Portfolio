@@ -21,16 +21,27 @@ test.beforeEach(async ({ page }) => {
     description: 'Unexpected errors fail this test',
   })
   await page.goto('/')
-  await page.getByRole('button', { name: 'Cargar experiencia 3D' }).click()
   await expect(
-    page.getByRole('button', { name: 'Entrar / continuar' }),
-  ).toBeEnabled()
+    page.getByRole('button', { name: 'Mission tablet · T' }),
+  ).toBeVisible({ timeout: 45_000 })
   await expect
     .poll(() => page.evaluate(() => !!window.__GAME_DEBUG__))
     .toBe(true)
 })
 
 const collectors = new WeakMap<Page, string[]>()
+
+test('toggles ambient sound without capturing the mouse', async ({ page }) => {
+  const sound = page.getByRole('button', { name: 'Ambient sound' })
+  await expect(sound).toHaveAttribute('aria-pressed', 'false')
+  await sound.click()
+  await expect(sound).toHaveAttribute('aria-pressed', 'true')
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await sound.click()
+  await expect(sound).toHaveAttribute('aria-pressed', 'false')
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await page.screenshot({ path: 'artifacts/station-audio.png' })
+})
 test.afterEach(async ({ page }, info) => {
   const errors = collectors.get(page) ?? []
   await info.attach('browser-errors', {
@@ -41,7 +52,12 @@ test.afterEach(async ({ page }, info) => {
 })
 
 async function enter(page: Page) {
-  await page.getByRole('button', { name: 'Entrar / continuar' }).click()
+  const canvas = page.locator('canvas')
+  const bounds = await canvas.boundingBox()
+  if (!bounds) throw new Error('Canvas not ready')
+  await canvas.click({
+    position: { x: bounds.width / 2, y: bounds.height / 2 },
+  })
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
 }
 
@@ -85,7 +101,7 @@ test('loads the scene and records a rendering baseline', async ({
   page,
 }, info) => {
   await expect(page.locator('canvas')).toBeVisible()
-  await expect(page.getByText(/WASD · Mouse · ESC/)).toBeVisible()
+  await expect(page.getByText(/Move WASD · Look Mouse/)).toBeVisible()
   await expect
     .poll(async () => (await snapshot(page)).drawCalls)
     .toBeGreaterThan(0)
@@ -128,7 +144,7 @@ test('captures real pointer lock, turns, releases and resumes without held keys'
     .poll(async () => (await snapshot(page)).pointerLocked)
     .toBe(false)
   await expect(
-    page.getByRole('button', { name: 'Entrar / continuar' }),
+    page.getByRole('button', { name: 'Click to control the mouse' }),
   ).toBeVisible()
   // Browsers enforce a short lock cooldown after Escape. Wait for user-like re-entry.
   await page.waitForTimeout(1200)
@@ -145,7 +161,7 @@ test('captures real pointer lock, turns, releases and resumes without held keys'
   )
 })
 
-test('walks forward, collides with desk, and stops when the key is released', async ({
+test('walks forward, collides with chair, and stops when the key is released', async ({
   page,
 }) => {
   await enter(page)
@@ -163,14 +179,12 @@ test('walks forward, collides with desk, and stops when the key is released', as
     2,
   )
   await page.keyboard.down('w')
-  // Desk front is z=-3.1; the player's capsule has radius 0.3.
+  // Chair front is z=-1.88, plus the player's capsule radius of 0.3.
   await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z, {
-      timeout: 10_000,
-    })
-    .toBeLessThan(-2.7)
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeLessThan(-1.5)
   await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(-2.85)
+  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(-1.65)
   await page.keyboard.up('w')
   const stopped = await snapshot(page)
   await page.waitForTimeout(300)
@@ -179,6 +193,113 @@ test('walks forward, collides with desk, and stops when the key is released', as
     2,
   )
   await page.screenshot({ path: 'artifacts/station-desk.png' })
+})
+
+test('opens the computer directly and returns to walking', async ({ page }) => {
+  test.setTimeout(120_000)
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en')
+  const verifyProjectImages = async () => {
+    const images = page.locator('.project-gallery img')
+    expect(await images.count()).toBeGreaterThan(0)
+    for (const image of await images.all()) {
+      await image.scrollIntoViewIfNeeded()
+      await expect
+        .poll(() =>
+          image.evaluate((element: HTMLImageElement) => element.naturalWidth),
+        )
+        .toBeGreaterThan(0)
+      await expect(image).not.toHaveAttribute('alt', '')
+    }
+    await page.locator('#computer-title').scrollIntoViewIfNeeded()
+  }
+  await enter(page)
+  await page.screenshot({ path: 'artifacts/observatory-room.png' })
+  await page.keyboard.press('e')
+  await expect(page.getByRole('dialog')).not.toBeVisible()
+  await page.keyboard.down('w')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeLessThan(-0.9)
+  await page.keyboard.up('w')
+  await page.waitForTimeout(200)
+  const standing = await snapshot(page)
+  await expect(
+    page.getByText('E · Use computer', { exact: true }),
+  ).toBeVisible()
+  await expect(
+    page.getByText('E · Sit down', { exact: true }),
+  ).not.toBeVisible()
+  await page.keyboard.press('e')
+  await expect(page.getByRole('dialog')).toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await expect(
+    page.getByRole('button', { name: 'Exit computer' }),
+  ).toBeFocused()
+  await page.screenshot({ path: 'artifacts/observatory-computer.png' })
+  await page
+    .getByRole('navigation')
+    .getByRole('button', { name: 'Projects', exact: true })
+    .click()
+  await page.getByRole('button', { name: /RouteWise/ }).click()
+  await verifyProjectImages()
+  await page.screenshot({ path: 'artifacts/routewise-project.png' })
+  await expect(page.getByText(/simulated prices and schedules/i)).toBeVisible()
+  await expect(
+    page.getByRole('link', { name: 'Frontend source code' }),
+  ).toHaveAttribute(
+    'href',
+    'https://github.com/JoaquinPettinariUEM/TFM-Airports-Front',
+  )
+  await page.getByRole('button', { name: 'Back to projects' }).click()
+  await page.getByRole('button', { name: /AccesiWeb/ }).click()
+  await expect(page.getByRole('heading', { name: 'AccesiWeb' })).toBeVisible()
+  await verifyProjectImages()
+  await page
+    .getByRole('navigation')
+    .getByRole('button', { name: 'Experience', exact: true })
+    .click()
+  await expect(page.getByRole('heading', { name: 'Blue Alba' })).toBeVisible()
+  const downloadPromise = page.waitForEvent('download')
+  await page.getByRole('link', { name: 'Download CV (PDF)' }).click()
+  const download = await downloadPromise
+  expect(await download.failure()).toBeNull()
+  await page
+    .getByRole('navigation')
+    .getByRole('button', { name: 'Contact', exact: true })
+    .click()
+  await expect(
+    page.getByRole('link', { name: /joaquinpettinari@hotmail.com/ }),
+  ).toHaveAttribute('href', 'mailto:joaquinpettinari@hotmail.com')
+
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).not.toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Click to control the mouse' }),
+  ).toBeEnabled()
+  await page.waitForTimeout(1200)
+  await enter(page)
+  await expect(
+    page.getByText('E · Use computer', { exact: true }),
+  ).toBeVisible()
+  await page.keyboard.press('e')
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.getByRole('button', { name: 'Exit computer' }).click()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect(page.getByRole('dialog')).not.toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Click to control the mouse' }),
+  ).not.toBeVisible()
+  await expect(
+    page.getByText('E · Use computer', { exact: true }),
+  ).toBeVisible()
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeCloseTo(standing.cameraPosition.z, 1)
+  await page.keyboard.down('s')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeGreaterThan(standing.cameraPosition.z + 0.3)
+  await page.keyboard.up('s')
 })
 
 test('side wall blocks the player and Escape clears a held movement key', async ({
@@ -222,4 +343,237 @@ test('side wall blocks the player and Escape clears a held movement key', async 
     paused.cameraPosition.x,
     2,
   )
+})
+
+test('animates the exterior, respects reduced motion, and blocks the rear door', async ({
+  page,
+}) => {
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.stars)
+    .not.toBeNull()
+  const before = (await snapshot(page)).spaceMotion
+  expect(before.orbit).not.toBeNull()
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.orbit)
+    .not.toBe(before.orbit)
+  expect(before.asteroid).not.toBeNull()
+  expect(before.shuttle).not.toBeNull()
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.asteroid)
+    .not.toBe(before.asteroid)
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.shuttle)
+    .not.toBe(before.shuttle)
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.stars)
+    .toBeGreaterThan(before.stars!)
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.planet)
+    .toBeGreaterThan(before.planet!)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.waitForTimeout(150)
+  const still = (await snapshot(page)).spaceMotion
+  await page.waitForTimeout(300)
+  expect((await snapshot(page)).spaceMotion).toEqual(still)
+  await enter(page)
+  await page.keyboard.down('s')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeGreaterThan(4.3)
+  await page.waitForTimeout(300)
+  await page.keyboard.up('s')
+  expect((await snapshot(page)).cameraPosition.z).toBeLessThan(4.5)
+  await page.mouse.move(640, 360)
+  await page.mouse.move(2211, 360, { steps: 20 })
+  await page.screenshot({ path: 'artifacts/observatory-door.png' })
+})
+
+test('chamfered hull blocks diagonal walking and wings are visible from the side', async ({
+  page,
+}) => {
+  test.setTimeout(60_000)
+  await enter(page)
+  await page.keyboard.down('d')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.x)
+    .toBeGreaterThan(4.4)
+  await page.keyboard.up('d')
+  await page.mouse.move(640, 360)
+  await page.mouse.move(1425, 470, { steps: 16 })
+  await page.screenshot({ path: 'artifacts/ship-wing.png' })
+  await page.mouse.move(640, 360, { steps: 16 })
+  await page.keyboard.down('d')
+  await page.keyboard.down('s')
+  await expect
+    .poll(async () => {
+      const { x, z } = (await snapshot(page)).cameraPosition
+      return x + z
+    })
+    .toBeGreaterThan(8.5)
+  await page.waitForTimeout(400)
+  await page.keyboard.up('d')
+  await page.keyboard.up('s')
+  const corner = (await snapshot(page)).cameraPosition
+  expect(corner.x + corner.z).toBeLessThan(9)
+  expect(corner.x).toBeLessThan(4.8)
+  expect(corner.z).toBeLessThan(4.8)
+})
+
+test('tablet pauses movement, locates independent objectives and closes safely', async ({
+  page,
+}) => {
+  await enter(page)
+  await page.keyboard.down('w')
+  await page.keyboard.press('t')
+  await page.keyboard.up('w')
+  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  await expect(tablet).toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  const stopped = (await snapshot(page)).cameraPosition
+  await page.keyboard.press('w')
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(stopped.z, 2)
+  await tablet
+    .getByRole('button', { name: /Prepare Earth transmission/ })
+    .hover()
+  await expect(tablet.locator('.map-objective')).toContainText(
+    'Open an email draft',
+  )
+  await tablet.getByRole('button', { name: /Run ship diagnostics/ }).focus()
+  await expect(tablet.locator('.map-objective')).toContainText('Experience')
+  await page.screenshot({ path: 'artifacts/mission-tablet.png' })
+  await page.keyboard.press('Escape')
+  await expect(tablet).not.toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Click to control the mouse' }),
+  ).toBeVisible()
+})
+
+test('rear crew dossier downloads with E and mouse hint only follows Escape', async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  const hint = page.getByRole('button', { name: 'Click to control the mouse' })
+  await expect(hint).not.toBeVisible()
+  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
+  await page.getByRole('button', { name: 'Close tablet' }).click()
+  await expect(hint).not.toBeVisible()
+  await enter(page)
+  await page.keyboard.down('w')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.z)
+    .toBeLessThan(2.6)
+  await page.keyboard.up('w')
+  await page.keyboard.down('a')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.x)
+    .toBeLessThan(-3.1)
+  await page.keyboard.up('a')
+  await page.mouse.move(640, 360)
+  await page.mouse.move(2211, 360, { steps: 20 })
+  const rearView = await snapshot(page)
+  const desiredYaw = Math.atan2(
+    3.25 + rearView.cameraPosition.x,
+    rearView.cameraPosition.z - 4.77,
+  )
+  const currentYaw =
+    2 * Math.atan2(rearView.cameraRotation.y, rearView.cameraRotation.w)
+  const yawDelta = Math.atan2(
+    Math.sin(desiredYaw - currentYaw),
+    Math.cos(desiredYaw - currentYaw),
+  )
+  await page.mouse.move(2211 - yawDelta / 0.002, 360, { steps: 8 })
+  await expect(
+    page.getByText('E · Download crew dossier (CV / PDF)', { exact: true }),
+  ).toBeVisible()
+  await page.screenshot({ path: 'artifacts/crew-dossier-wall.png' })
+  const downloaded = page.waitForEvent('download')
+  await page.keyboard.press('e')
+  const file = await downloaded
+  expect(await file.failure()).toBeNull()
+  await expect(
+    page.getByRole('complementary', { name: 'Recovery objectives' }),
+  ).toContainText('2 / 6 complete')
+  await page.keyboard.press('Escape')
+  await expect(hint).toBeVisible()
+})
+
+test('Space jumps once while held, lands and remains disabled in the tablet', async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  await enter(page)
+  await page.waitForTimeout(400)
+  const ground = (await snapshot(page)).cameraPosition.y
+  await page.keyboard.down('Space')
+  await expect
+    .poll(async () => (await snapshot(page)).maxEyeHeight, {
+      intervals: [30, 50, 100],
+    })
+    .toBeGreaterThan(ground + 0.2)
+  await expect
+    .poll(
+      async () => Math.abs((await snapshot(page)).cameraPosition.y - ground),
+      { intervals: [100] },
+    )
+    .toBeLessThan(0.04)
+  await page.waitForTimeout(300)
+  expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
+  await page.keyboard.up('Space')
+  await page.keyboard.press('t')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toBeVisible()
+  await page.getByRole('button', { name: /Activate crew hologram/ }).focus()
+  await page.keyboard.press('Space')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toBeVisible()
+  expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
+})
+
+test('tablet objective completes and table projects the crew record from a distance', async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  await page.keyboard.press('t')
+  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  await expect(
+    tablet.getByRole('button', { name: /Open mission tablet/ }),
+  ).toHaveAttribute('data-complete', 'true')
+  await expect(tablet).toContainText('1 / 6 objectives complete')
+  await tablet.getByRole('button', { name: /Activate crew hologram/ }).hover()
+  await expect(tablet.locator('.map-objective')).toContainText(
+    'Central projection table',
+  )
+  await page.getByRole('button', { name: 'Close tablet' }).click()
+  await expect(page.locator('.mission-checklist li').first()).toHaveAttribute(
+    'data-complete',
+    'true',
+  )
+  await enter(page)
+  await page.mouse.move(640, 360)
+  await page.mouse.move(915, 435, { steps: 12 })
+  await expect(
+    page.getByText('E · Activate crew hologram', { exact: true }),
+  ).toBeVisible()
+  const standing = await snapshot(page)
+  await page.keyboard.press('e')
+  const hologram = page.getByRole('dialog', { name: 'Joaquín Pettinari' })
+  await expect(hologram).toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(2.8, 1)
+  await page.mouse.click(640, 320)
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await page.screenshot({ path: 'artifacts/crew-hologram.png' })
+  await hologram.getByRole('button', { name: 'Training record' }).click()
+  await expect(hologram.getByRole('heading', { name: /Master/ })).toBeVisible()
+  await hologram.getByRole('button', { name: 'Leave hologram' }).click()
+  await expect(hologram).not.toBeVisible()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.x)
+    .toBeCloseTo(standing.cameraPosition.x, 1)
+  await expect(
+    page.getByRole('complementary', { name: 'Recovery objectives' }),
+  ).toContainText('2 / 6 complete')
 })

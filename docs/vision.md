@@ -19,12 +19,12 @@ La ambientación y los detalles son flexibles. Priorizamos una habitación peque
 | v0.9 Pulido        | Materiales, animación y rendimiento medido           | Pendiente                                      |
 | v1.0 Portfolio     | CV, proyectos, experiencia, contacto y publicación   | Pendiente                                      |
 
-El usuario informó saltos bruscos intermitentes al mover el mouse. La infraestructura de pruebas debe ayudar a investigarlos; una prueba automática aislada no garantiza reproducir el problema de su dispositivo.
+El usuario confirmó que la entrada sin aceleración resolvió los tirones del mouse en Opera.
 
 ## Acceso a la información
 
 La versión publicada debe ofrecer una alternativa rápida y accesible para quien no quiera o no pueda jugar, también sin WebGL. CV y contacto no deben depender de completar misiones. El usuario aplazó expresamente esta implementación durante la configuración del entorno; permanece como requisito pendiente.
 
-## Límites actuales
+## Etapa actual aprobada
 
-La tarea de preparación configura instrucciones, herramientas y pruebas de comportamiento existente. No incluye desarrollar la nave completa, misiones, terminal interactiva ni efectos avanzados. No incorporar Zustand o GSAP hasta que exista una necesidad concreta.
+Observatorio azul con ventanas y techo de vidrio, mesa central, silla y computadora. Se implementan sentarse, enfoque de pantalla y regreso a caminar; las aplicaciones internas quedan para más adelante. Estrellas en movimiento, planeta rotatorio y puerta trasera cerrada completan esta primera ambientación. La tabla de hitos describe el plan original: las bases de v0.3, v0.4 y v0.6 se adelantaron por pedido del usuario. No incorporar Zustand ni GSAP sin una necesidad concreta.

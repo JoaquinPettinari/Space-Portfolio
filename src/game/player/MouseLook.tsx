@@ -1,20 +1,32 @@
-import { useEffect, useEffectEvent } from 'react'
+import { useEffect, useEffectEvent, useRef } from 'react'
 import { useThree } from '@react-three/fiber'
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js'
 
 export function MouseLook({
   onLock,
   onUnlock,
+  enabled,
+  canCapture = true,
 }: {
   onLock: () => void
   onUnlock: () => void
+  enabled: boolean
+  canCapture?: boolean
 }) {
   const { camera, gl } = useThree()
   const locked = useEffectEvent(onLock)
   const unlocked = useEffectEvent(onUnlock)
+  const controlsRef = useRef<PointerLockControls | null>(null)
+  useEffect(() => {
+    if (controlsRef.current) controlsRef.current.enabled = enabled
+  }, [enabled])
+  const isEnabled = useEffectEvent(() => enabled)
+  const captureAllowed = useEffectEvent(() => canCapture)
 
   useEffect(() => {
     const controls = new PointerLockControls(camera)
+    controlsRef.current = controls
+    controls.enabled = isEnabled()
     controls.minPolarAngle = 0.1
     controls.maxPolarAngle = Math.PI - 0.1
     const changed = () => {
@@ -54,12 +66,21 @@ export function MouseLook({
         pending = false
       }
     }
-    const button = document.getElementById('enter-station')
-    button?.addEventListener('click', enter)
+    const click = (event: MouseEvent) => {
+      const target = event.target
+      if (
+        (target === gl.domElement && captureAllowed()) ||
+        (target instanceof Element && target.closest('[data-capture-pointer]'))
+      ) {
+        if (!document.pointerLockElement) void enter()
+      }
+    }
+    document.addEventListener('click', click)
     document.addEventListener('pointerlockchange', changed)
     return () => {
       disposed = true
-      button?.removeEventListener('click', enter)
+      controlsRef.current = null
+      document.removeEventListener('click', click)
       document.removeEventListener('pointerlockchange', changed)
       if (controls.domElement) controls.dispose()
       if (document.pointerLockElement === gl.domElement) {

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { InstancedMesh } from 'three'
 
 export type GameSnapshot = {
   cameraPosition: { x: number; y: number; z: number }
@@ -8,7 +9,15 @@ export type GameSnapshot = {
   drawCalls: number
   triangles: number
   frameMs: number
+  maxEyeHeight: number
   mouseDelta: { x: number; y: number }
+  spaceMotion: {
+    orbit: number | null
+    stars: number | null
+    planet: number | null
+    asteroid: number | null
+    shuttle: number | null
+  }
 }
 
 declare global {
@@ -18,11 +27,13 @@ declare global {
 }
 
 export function GameDiagnostics() {
-  const { camera, gl } = useThree()
+  const { camera, gl, scene } = useThree()
   const frameMs = useRef(0)
+  const maxEyeHeight = useRef(0)
   const mouse = useRef({ x: 0, y: 0 })
   useFrame((_, delta) => {
     frameMs.current = delta * 1000
+    maxEyeHeight.current = Math.max(maxEyeHeight.current, camera.position.y)
   })
   useEffect(() => {
     const onMouse = (event: MouseEvent) => {
@@ -46,7 +57,20 @@ export function GameDiagnostics() {
         drawCalls: gl.info.render.calls,
         triangles: gl.info.render.triangles,
         frameMs: frameMs.current,
+        maxEyeHeight: maxEyeHeight.current,
         mouseDelta: { ...mouse.current },
+        spaceMotion: {
+          orbit: scene.getObjectByName('orbital-drift')?.rotation.y ?? null,
+          asteroid: (() => {
+            const rocks = scene.getObjectByName('orbital-asteroids')
+            return rocks instanceof InstancedMesh
+              ? rocks.instanceMatrix.array[0]
+              : null
+          })(),
+          shuttle: scene.getObjectByName('orbital-shuttle')?.position.x ?? null,
+          stars: scene.getObjectByName('orbital-stars')?.rotation.y ?? null,
+          planet: scene.getObjectByName('orbital-planet')?.rotation.y ?? null,
+        },
       }),
     })
     window.__GAME_DEBUG__ = api
@@ -55,6 +79,6 @@ export function GameDiagnostics() {
       if (window.__GAME_DEBUG__ === api) delete window.__GAME_DEBUG__
       document.removeEventListener('mousemove', onMouse)
     }
-  }, [camera, gl])
+  }, [camera, gl, scene])
   return null
 }

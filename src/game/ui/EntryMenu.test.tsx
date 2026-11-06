@@ -6,11 +6,10 @@ it('prevents entry until physics is ready and explains controls', () => {
   const { rerender } = render(
     <EntryMenu active={false} ready={false} error="" />,
   )
-  expect(screen.getByRole('button')).toBeDisabled()
-  expect(screen.getByText(/Escape libera/)).toBeVisible()
+  expect(screen.queryByRole('button')).not.toBeInTheDocument()
   rerender(<EntryMenu active={false} ready error="" />)
   expect(
-    screen.getByRole('button', { name: 'Entrar / continuar' }),
+    screen.getByRole('button', { name: 'Click to control the mouse' }),
   ).toBeEnabled()
 })
 
@@ -18,9 +17,9 @@ it('hides the menu while playing and announces errors on return', () => {
   const { rerender } = render(<EntryMenu active ready error="" />)
   expect(screen.queryByRole('button')).not.toBeInTheDocument()
   rerender(
-    <EntryMenu active={false} ready error="No se pudo capturar el mouse." />,
+    <EntryMenu active={false} ready error="Could not capture the mouse." />,
   )
   expect(screen.getByRole('status')).toHaveTextContent(
-    'No se pudo capturar el mouse.',
+    'Could not capture the mouse.',
   )
 })
