@@ -1,5 +1,13 @@
 # Space Portfolio — Observatorio orbital
 
+## CRUZ DEL SUR — estado funcional actual
+
+El estado vigente, fases y resultados están en [docs/functional-progress.md](docs/functional-progress.md); las secciones de resultados más abajo conservan el historial del proyecto.
+
+La app inicia directamente en la esclusa. Hacé clic en la escena, usá el interruptor izquierdo con E y abrí el mamparo con E. T abre la tablet con guía opcional; Escape pausa y ofrece Quick Portfolio Access, también disponible sin WebGL. El archivo central mantiene toda la información profesional; Earth Communications es una terminal separada y la estación personal trasera ofrece CV, galería y comandos ficticios. El café y las imágenes inspeccionables son opcionales.
+
+El backend está en `api/contact.ts`, preparado para Vercel Functions. `npm run dev` sirve solamente el frontend: el envío requiere configurar los servicios del servidor. Consultá [docs/contact.md](docs/contact.md) y `.env.example`; no uses variables `VITE_` para secretos. Las pruebas simulan todos los envíos y nunca mandan correos reales. La aceptación del proveedor no garantiza entrega en bandeja. Los GLB definitivos y las fotos personales se incorporarán cuando estén disponibles.
+
 ## Ejecutar
 
 - `npm install`

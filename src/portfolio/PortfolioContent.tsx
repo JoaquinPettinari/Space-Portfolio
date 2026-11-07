@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { education, experience, profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
+import { ContactForm } from '../contact/ContactForm'
 
 type Section =
   'Profile' | 'Projects' | 'Service Record' | 'Training' | 'Contact'
@@ -34,7 +35,12 @@ export function PortfolioContent({
     if (next === 'Service Record') onActivity?.('archives')
   }
   useEffect(() => {
-    if (mounted.current) heading.current?.focus()
+    if (mounted.current && heading.current) {
+      heading.current.focus({ preventScroll: true })
+      // Scroll the content pane, never the CSS-transformed monitor/canvas parent.
+      if (heading.current.parentElement)
+        heading.current.parentElement.scrollTop = 0
+    }
     mounted.current = true
   }, [section, projectId])
   return (
@@ -208,15 +214,8 @@ export function PortfolioContent({
         )}
         {section === 'Contact' && (
           <>
-            <p className="desktop-description">
-              Contact Joaquín directly. The email link opens your email app; you
-              review and send the message there. This portfolio cannot confirm
-              delivery.
-            </p>
+            <ContactForm />
             <div className="contact-links">
-              <a href={`mailto:${profile.email}`}>
-                Prepare transmission · {profile.email}
-              </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn ↗
               </a>

@@ -13,6 +13,20 @@ import {
 import { useProtocol } from './useProtocol'
 
 describe('recovery protocol', () => {
+  it.each(['accepted', 'skipped'] as const)(
+    'completes uplink only after explicit %s outcome',
+    (outcome) => {
+      const state = protocolReducer(initialProtocol(), {
+        type: 'transmission',
+        outcome,
+      })
+      expect(state.completed).toEqual(['uplink'])
+      expect(protocolReducer(state, { type: 'transmission', outcome })).toBe(
+        state,
+      )
+      expect(parseProtocol(JSON.stringify(state))).toEqual(state)
+    },
+  )
   it('guides the first pending objective while preserving out-of-order activities', () => {
     let state = protocolReducer(initialProtocol(), {
       type: 'activity',

@@ -5,6 +5,16 @@
 **Expedition shuttle:** PAMPA-07  
 **Language:** English UI, narration and subtitles. Contact accepts Spanish, English, Italian and Norwegian.
 
+## Approved direction update — 2026-11-07
+
+The owner's latest direction supersedes the earlier layout descriptions below: industrial retrofuturistic bridge, graphite structure/off-white panels, amber practical lights and restrained cyan accents, faceted panoramic bow and a continuous forward console (Central Archive left, Earth Communications right). Preserve FPS circulation and exterior views. Detailed layout is a proposal in `../docs/bridge-layout-proposal.md`, not an approved hull rebuild.
+
+First prototype the Central Archive as a physical monitor using the existing React content aligned to its screen; retain camera return, Pointer Lock and an accessible HTML alternative. During gameplay Quick Portfolio Access focuses this same Archive; the direct HTML route remains available independently of WebGL. Communications and Personal migrate only after review of the Archive prototype.
+
+Later, move single-E crew identification/card animation to a dedicated wall terminal beside the entry; repurpose the table as optional Tactical Hologram (rotating station model, status, docking, systems and logs). Preserve existing crew progress while migrating. Reserve opposed entry-side walls for Crew Memories and technical/gravity controls. These are separate future changes, not prerequisites for professional information.
+
+For this iteration the user reviews visuals manually: do not automatically generate screenshots or videos, overriding the older capture-based review checklist below. The owner subsequently supplied the approved concept image `codex-clipboard-8f1ea07c-5dd8-40d2-bce0-680a4274b4f9.png`: centered tactical table, continuous forward console, Archive left, Communications right, coffee left and Personal Workstation on the right sidewall. Follow that visual target closely while validating actual dimensions/collisions separately. Its Spanish labels and TAB hint do not override the English UI and T tablet binding; PAMPA-07 remains the shuttle, not the station name. Full hull reconstruction still requires layout approval.
+
 ## 1. Vision
 
 A polished, accessible first-person 3D portfolio set inside an Argentine-inspired research space station. A short optional recovery protocol introduces the visitor to the developer's real work. The world must be fun to explore but never obstruct professional information.

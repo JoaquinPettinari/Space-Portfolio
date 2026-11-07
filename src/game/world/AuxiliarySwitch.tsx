@@ -4,16 +4,20 @@ import type { StationTarget } from '../interaction/station'
 export function AuxiliarySwitch({
   restored,
   target,
+  position = [1.65, 1.65, 4.65],
+  rotation = Math.PI,
 }: {
   restored: boolean
   target?: StationTarget
+  position?: [number, number, number]
+  rotation?: number
 }) {
   const accent = restored ? '#8af0d0' : '#ffc77a'
   return (
     <group
       name="auxiliary-light-switch"
-      position={[1.65, 1.65, 4.65]}
-      rotation={[0, Math.PI, 0]}
+      position={position}
+      rotation={[0, rotation, 0]}
       userData={{ interaction: 'lighting' }}
     >
       <mesh>

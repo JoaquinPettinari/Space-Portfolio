@@ -30,13 +30,13 @@ export const missions: { id: ObjectiveId; title: string; action: string }[] = [
     id: 'uplink',
     title: 'Contact Mission Control',
     action:
-      'The transmission terminal is not connected yet. Contact links remain available at the main computer; opening an email draft does not confirm a transmission.',
+      'Port-side Earth Communications → Send a real message or choose Skip to log a fictional status report without sending email.',
   },
   {
     id: 'dossier',
     title: 'Download crew dossier',
     action:
-      'Rear airlock → Crew dossier panel · Aim and press E to download the CV / PDF. A copy is also available at the terminal.',
+      'Rear starboard → Personal Workstation · Press E, then open Crew Dossier.pdf or choose Skip dossier. The wall panel and Central Archive also offer the real CV.',
   },
 ]
 

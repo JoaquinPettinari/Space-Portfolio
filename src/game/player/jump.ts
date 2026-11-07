@@ -28,4 +28,5 @@ export const PLAYER_CAPSULE_HALF_HEIGHT = 0.65
 export const PLAYER_CAPSULE_RADIUS = 0.3
 export const PLAYER_EYE_OFFSET = 0.75
 export const PLAYER_SPAWN_Y = 1
+export const PLAYER_SPAWN_POSITION = [0, PLAYER_SPAWN_Y, 7] as const
 export const JUMP_SPEED = 4

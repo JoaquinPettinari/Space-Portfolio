@@ -112,7 +112,9 @@ test('reads the complete mobile portfolio through the unavailable-WebGL fallback
   await expect(
     page.getByRole('link', { name: /joaquinpettinari@hotmail.com/ }),
   ).toHaveAttribute('href', 'mailto:joaquinpettinari@hotmail.com')
-  await expect(page.getByText(/cannot confirm delivery/)).toBeVisible()
+  await expect(
+    page.getByRole('form', { name: 'Earth Communications' }),
+  ).toBeVisible()
   await nav.getByRole('button', { name: 'Profile', exact: true }).click()
   expect(
     await page.evaluate(
@@ -186,7 +188,7 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
   })
 }
 
-test('opens quick access from pause and returns without losing position, progress or control safety', async ({
+test('opens the accessible HTML alternative from pause and returns without losing position, progress or control safety', async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -211,7 +213,7 @@ test('opens quick access from pause and returns without losing position, progres
     .poll(async () => (await snapshot(page)).cameraPosition.z, {
       intervals: [30, 50],
     })
-    .toBeLessThan(3)
+    .toBeLessThan(6)
   await page.keyboard.up('w')
   await page.keyboard.press('t')
   await expect(
@@ -223,7 +225,7 @@ test('opens quick access from pause and returns without losing position, progres
   ).toBeVisible()
   const before = await snapshot(page)
   await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
+    .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
     .click()
   await expect(
     page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
@@ -321,7 +323,9 @@ test.describe('mobile touch pause route', () => {
     await page.screenshot({ path: 'artifacts/station-mobile-start.png' })
     await pause.tap()
     await expect(quick).toBeVisible()
-    await quick.tap()
+    await page
+      .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
+      .tap()
     await expect(
       page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
     ).toBeVisible()

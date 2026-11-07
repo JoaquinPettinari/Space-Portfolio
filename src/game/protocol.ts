@@ -16,6 +16,7 @@ export type ProtocolEvent =
   | { type: 'continue' }
   | { type: 'skip' }
   | { type: 'replay' }
+  | { type: 'transmission'; outcome: 'accepted' | 'skipped' }
 
 export function initialProtocol(): ProtocolState {
   return { version: 1, completed: [], guidance: 'pending' }
@@ -25,6 +26,10 @@ export function protocolReducer(
   event: ProtocolEvent,
 ): ProtocolState {
   switch (event.type) {
+    case 'transmission':
+      return state.completed.includes('uplink')
+        ? state
+        : { ...state, completed: [...state.completed, 'uplink'] }
     case 'activity': {
       const completed = completeMission(state.completed, event.id)
       return completed === state.completed ? state : { ...state, completed }

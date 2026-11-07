@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { enter as capture, enterObservationRoom } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 async function snapshot(page: Page): Promise<GameSnapshot> {
@@ -29,6 +30,8 @@ test.beforeEach(async ({ page }) => {
     .toBe(true)
 })
 
+test.setTimeout(90_000)
+
 const collectors = new WeakMap<Page, string[]>()
 
 test('toggles ambient sound without capturing the mouse', async ({ page }) => {
@@ -52,14 +55,7 @@ test.afterEach(async ({ page }, info) => {
 })
 
 async function enter(page: Page) {
-  if ((await snapshot(page)).pointerLocked) return
-  const canvas = page.locator('canvas')
-  const bounds = await canvas.boundingBox()
-  if (!bounds) throw new Error('Canvas not ready')
-  await canvas.click({
-    position: { x: bounds.width / 2, y: bounds.height / 2 },
-  })
-  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await enterObservationRoom(page)
 }
 
 /** Steer using real mouse input; diagnostics only tell us where we are looking. */
@@ -93,7 +89,7 @@ async function lookAt(page: Page, target: { x: number; y: number; z: number }) {
 test('walking while turning keeps small mouse inputs bounded', async ({
   page,
 }, info) => {
-  test.setTimeout(60_000)
+  test.setTimeout(120_000)
   await enter(page)
   await page.mouse.move(640, 360)
   const samples: GameSnapshot[] = [await snapshot(page)]
@@ -150,6 +146,7 @@ test('loads the scene and records a rendering baseline', async ({
 test('captures real pointer lock, turns, releases and resumes without held keys', async ({
   page,
 }) => {
+  test.setTimeout(120_000)
   await enter(page)
   const before = await snapshot(page)
   await page.mouse.move(640, 360)
@@ -380,7 +377,7 @@ test('side wall blocks the player and Escape clears a held movement key', async 
   )
 })
 
-test('animates the exterior, respects reduced motion, and blocks the rear door', async ({
+test('animates the exterior, respects reduced motion, and blocks the rear airlock wall', async ({
   page,
 }) => {
   await expect
@@ -414,10 +411,10 @@ test('animates the exterior, respects reduced motion, and blocks the rear door',
   await page.keyboard.down('s')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeGreaterThan(4.3)
+    .toBeGreaterThan(7.6)
   await page.waitForTimeout(300)
   await page.keyboard.up('s')
-  expect((await snapshot(page)).cameraPosition.z).toBeLessThan(4.5)
+  expect((await snapshot(page)).cameraPosition.z).toBeLessThan(7.95)
   await page.mouse.move(640, 360)
   await page.mouse.move(2211, 360, { steps: 20 })
   await page.screenshot({ path: 'artifacts/observatory-door.png' })
@@ -544,7 +541,7 @@ test('rear crew dossier downloads with E and mouse hint only follows Escape', as
   expect(await file.failure()).toBeNull()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('2 / 6 complete')
+  ).toContainText('3 / 6 complete')
   await page.keyboard.press('Escape')
   await expect(hint).toBeVisible()
 })
@@ -592,8 +589,8 @@ test('restores lighting with E and persists optional guidance through skip, resu
   const dimAmbient = (await snapshot(page)).cabinLighting.ambientIntensity
   expect(dimAmbient).not.toBeNull()
   await page.screenshot({ path: 'artifacts/protocol-low-light.png' })
-  await enter(page)
-  await lookAt(page, { x: 1.65, y: 1.65, z: 4.65 })
+  await capture(page)
+  await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
   await expect(
     page.getByText('E · Restore lighting', { exact: true }),
   ).toBeVisible()
@@ -669,8 +666,7 @@ test('cancels identification before completion and retries with reduced motion',
 }) => {
   test.setTimeout(120_000)
   await enter(page)
-  await page.mouse.move(640, 360)
-  await page.mouse.move(915, 435, { steps: 12 })
+  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
   await expect(
     page.getByText('E · Activate crew hologram', { exact: true }),
   ).toBeVisible()
@@ -690,7 +686,7 @@ test('cancels identification before completion and retries with reduced motion',
   ).not.toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('0 / 6 complete')
+  ).toContainText('1 / 6 complete')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
@@ -726,6 +722,6 @@ test('cancels identification before completion and retries with reduced motion',
   await page.keyboard.press('Escape')
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('2 / 6 complete')
+  ).toContainText('3 / 6 complete')
   expect((await snapshot(page)).pointerLocked).toBe(false)
 })

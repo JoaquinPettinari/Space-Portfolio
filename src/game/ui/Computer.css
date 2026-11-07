@@ -1,0 +1,82 @@
+/* Fixed CSS canvas mapped onto the 1.5 × .83 m physical screen by Drei Html.
+   This is screen content, not a second full-screen bezel or modal backdrop. */
+.computer.physical-archive {
+  position: relative;
+  inset: auto;
+  width: 900px;
+  height: 498px;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  background: #10191f;
+  color: #e4e8e9;
+  z-index: auto;
+}
+.physical-archive .monitor-bezel {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+.physical-archive .desktop {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: #10191f;
+}
+.physical-archive .desktop-bar,
+.physical-archive .desktop-footer {
+  padding: 10px 18px;
+  gap: 12px;
+  color: #d6bc8d;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.physical-archive .desktop .desktop-bar h1 {
+  font-size: 20px;
+}
+.physical-archive .desktop-nav {
+  padding: 8px 18px;
+  flex-wrap: nowrap;
+}
+.physical-archive .desktop-nav button,
+.physical-archive .desktop-footer button {
+  font-size: 15px;
+  padding: 8px 12px;
+}
+.physical-archive .desktop-footer > span,
+.physical-archive .desktop-bar > span {
+  display: block;
+}
+.physical-archive .desktop-content {
+  padding: 20px 24px;
+}
+.physical-archive .portfolio-content > h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.physical-archive .portfolio-content p,
+.physical-archive .portfolio-content a,
+.physical-archive .desktop-app strong {
+  font-size: 16px;
+}
+.physical-archive .portfolio-content h3 {
+  font-size: 18px;
+}
+.physical-archive .portfolio-content .eyebrow,
+.physical-archive .skill-tags span,
+.physical-archive .desktop-app small {
+  font-size: 13px;
+}
+.physical-archive .desktop-apps {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.physical-archive :focus-visible {
+  outline: 2px solid #ffd58f;
+  outline-offset: 2px;
+}

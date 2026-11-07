@@ -80,7 +80,9 @@ it('locates objectives by pointer and keyboard without completing them', () => {
   })
   fireEvent.mouseEnter(dossier)
   expect(dossier).toHaveAttribute('aria-pressed', 'true')
-  expect(screen.getByText(/Rear airlock → Crew dossier panel/)).toBeVisible()
+  expect(
+    screen.getByText(/Rear starboard → Personal Workstation/),
+  ).toBeVisible()
   const archives = objectives.getByRole('button', {
     name: /Review expedition archives/,
   })

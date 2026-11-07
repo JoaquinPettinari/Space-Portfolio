@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { enterObservationRoom, lookAt } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 const errors = new WeakMap<Page, string[]>()
@@ -14,11 +15,7 @@ async function expectLocked(page: Page, locked: boolean) {
     .toBe(locked)
 }
 async function enter(page: Page) {
-  const canvas = page.locator('canvas')
-  const box = await canvas.boundingBox()
-  if (!box) throw new Error('Canvas not ready')
-  await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
-  await expectLocked(page, true)
+  await enterObservationRoom(page)
 }
 
 test.beforeEach(async ({ page }) => {
@@ -59,7 +56,11 @@ test('tablet T and exit actions resume real mouse capture without another click 
   await expect(tablet).not.toBeVisible()
   await expectLocked(page, true)
   await page.waitForTimeout(200)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(stopped.z, 2)
+  // Rapier finishes interpolating the last pre-pause step on resume.
+  const settled = (await snapshot(page)).cameraPosition.z
+  expect(Math.abs(settled - stopped.z)).toBeLessThan(0.08)
+  await page.waitForTimeout(350)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(settled, 3)
   await page.keyboard.up('w')
 
   for (const action of [
@@ -132,8 +133,7 @@ test('hologram E closes the interaction and recaptures the real mouse', async ({
 }) => {
   test.setTimeout(120_000)
   await enter(page)
-  await page.mouse.move(640, 360)
-  await page.mouse.move(915, 435, { steps: 12 })
+  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
   await expect(
     page.getByText('E · Activate crew hologram', { exact: true }),
   ).toBeVisible()

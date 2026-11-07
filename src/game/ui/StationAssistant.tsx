@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react'
 
 const stationMessages = {
   arrival:
-    'Welcome aboard CRUZ DEL SUR. Interior lighting is offline. Activate the auxiliary switch beside the airlock.',
+    'Welcome aboard CRUZ DEL SUR. Interior lighting is offline. Activate the auxiliary switch on your left inside the airlock.',
   restored:
-    'Interior lighting online. Explore freely. If you would rather skip the tutorial, visit the main computer for all professional records.',
+    'Interior lighting online. Press E at the bulkhead to enter the observation room. Explore freely. To skip the tutorial, visit the main computer for all professional records.',
   identity:
     'Identity verified. Welcome aboard, Engineer. Your personnel record is available.',
   archives:

@@ -13,7 +13,9 @@ it('opens the Central Archive and completes archives from the service record', (
   expect(screen.getByRole('heading', { name: 'Service Record' })).toHaveFocus()
   expect(complete).toHaveBeenCalledExactlyOnceWith('archives')
   fireEvent.click(nav.getByRole('button', { name: 'Contact' }))
-  const email = screen.getByRole('link', { name: /Prepare transmission/ })
+  const email = screen.getByRole('link', {
+    name: 'joaquinpettinari@hotmail.com',
+  })
   email.addEventListener('click', (event) => event.preventDefault())
   fireEvent.click(email)
   expect(complete).not.toHaveBeenCalledWith('uplink')
@@ -31,4 +33,21 @@ it('keeps keyboard focus inside the archive and provides an explicit exit', () =
   expect(close).toHaveAttribute('data-capture-pointer')
   fireEvent.click(close)
   expect(exit).toHaveBeenCalledOnce()
+})
+
+it('offers the shared accessible portfolio without completing an activity', () => {
+  const accessible = vi.fn()
+  const complete = vi.fn()
+  render(
+    <Computer
+      onClose={() => {}}
+      onAccessiblePortfolio={accessible}
+      onMissionComplete={complete}
+    />,
+  )
+  fireEvent.click(
+    screen.getByRole('button', { name: 'Accessible HTML portfolio' }),
+  )
+  expect(accessible).toHaveBeenCalledOnce()
+  expect(complete).not.toHaveBeenCalled()
 })

@@ -1,0 +1,54 @@
+.contact-form {
+  max-width: 640px;
+  line-height: 1.55;
+}
+.contact-form fieldset {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #60899a;
+  margin: 16px 0;
+  padding: 16px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  background: #081b29;
+  border: 1px solid #7098aa;
+  border-radius: 4px;
+  color: #e8f7ff;
+  font: inherit;
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-form button {
+  padding: 10px 16px;
+  border: 1px solid #73c9e4;
+  border-radius: 4px;
+  background: #16394c;
+  color: #ecfaff;
+  cursor: pointer;
+}
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.contact-form :focus-visible {
+  outline: 2px solid #a8f1ff;
+  outline-offset: 3px;
+}
+.contact-form [role='alert'] {
+  color: #ffcfb8;
+}
+.contact-privacy {
+  font-size: 0.85rem;
+  color: #bbd2de;
+}
+.contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

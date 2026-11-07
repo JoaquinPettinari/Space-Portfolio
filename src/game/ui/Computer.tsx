@@ -1,23 +1,29 @@
 import { useEffect, useRef, type KeyboardEvent } from 'react'
 import { PortfolioContent } from '../../portfolio/PortfolioContent'
 import type { MissionId } from '../missions'
+import './Computer.css'
 
 export function Computer({
   onClose,
   onMissionComplete,
+  onAccessiblePortfolio,
+  onDisplayReady,
 }: {
   onClose: () => void
   onMissionComplete?: (id: MissionId) => void
+  onAccessiblePortfolio?: () => void
+  onDisplayReady?: () => void
 }) {
   const close = useRef<HTMLButtonElement>(null)
   const dialog = useRef<HTMLElement>(null)
   useEffect(() => {
-    close.current?.focus()
-  }, [])
+    close.current?.focus({ preventScroll: true })
+    onDisplayReady?.()
+  }, [onDisplayReady])
   const trapFocus = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key !== 'Tab') return
     const items = dialog.current?.querySelectorAll<HTMLElement>(
-      ':is(button:not(:disabled), a[href])',
+      ':is(button:not(:disabled), a[href], input:not(:disabled):not([type="hidden"]):not([tabindex="-1"]), textarea:not(:disabled))',
     )
     if (!items?.length) return
     const first = items[0],
@@ -37,7 +43,7 @@ export function Computer({
   return (
     <section
       ref={dialog}
-      className="computer"
+      className="computer physical-archive"
       role="dialog"
       aria-modal="true"
       aria-labelledby="computer-title"
@@ -51,19 +57,18 @@ export function Computer({
           </header>
           <PortfolioContent onActivity={onMissionComplete} />
           <footer className="desktop-footer">
-            <span>PROFESSIONAL RECORDS · ACCESS UNRESTRICTED</span>
+            <span>E · Return / ESC · Pause</span>
+            {onAccessiblePortfolio && (
+              <button onClick={onAccessiblePortfolio}>
+                Accessible HTML portfolio
+              </button>
+            )}
             <button ref={close} data-capture-pointer onClick={onClose}>
               Exit computer
             </button>
           </footer>
         </div>
-        <div className="monitor-brand">
-          C R U Z D E L S U R <span>●</span>
-        </div>
       </div>
-      <p className="computer-help">
-        E / Exit computer to resume · ESC to pause and release the mouse.
-      </p>
     </section>
   )
 }

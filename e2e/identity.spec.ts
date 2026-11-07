@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { enterObservationRoom, lookAt } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ video: 'on' })
@@ -32,16 +33,6 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
     return window.__GAME_DEBUG__.snapshot()
   })
 }
-async function enter(page: Page) {
-  const canvas = page.locator('canvas')
-  const bounds = await canvas.boundingBox()
-  if (!bounds) throw new Error('Canvas not ready')
-  await canvas.click({
-    position: { x: bounds.width / 2, y: bounds.height / 2 },
-  })
-  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-}
-
 test('tablet objective completes and table projects the crew record from a distance', async ({
   page,
 }) => {
@@ -63,9 +54,8 @@ test('tablet objective completes and table projects the crew record from a dista
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toContainText('1 / 6 complete')
-  await enter(page)
-  await page.mouse.move(640, 360)
-  await page.mouse.move(915, 435, { steps: 12 })
+  await enterObservationRoom(page)
+  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
   await expect(
     page.getByText('E · Activate crew hologram', { exact: true }),
   ).toBeVisible()
@@ -81,7 +71,6 @@ test('tablet objective completes and table projects the crew record from a dista
   ).toContainText(
     'Identity verified. Welcome aboard, Engineer. Your personnel record is available.',
   )
-  await page.keyboard.press('e')
   expect((await snapshot(page)).pointerLocked).toBe(false)
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(2.8, 1)
   await page.mouse.click(640, 320)
@@ -97,5 +86,5 @@ test('tablet objective completes and table projects the crew record from a dista
     .toBeCloseTo(standing.cameraPosition.x, 1)
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('2 / 6 complete')
+  ).toContainText('3 / 6 complete')
 })

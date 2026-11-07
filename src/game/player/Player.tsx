@@ -15,13 +15,11 @@ import {
   PLAYER_CAPSULE_HALF_HEIGHT,
   PLAYER_CAPSULE_RADIUS,
   PLAYER_EYE_OFFSET,
-  PLAYER_SPAWN_Y,
+  PLAYER_SPAWN_POSITION,
 } from './jump'
 import {
-  FOCUS_POSITION,
-  SCREEN_POSITION,
-  HOLOGRAM_FOCUS_POSITION,
-  HOLOGRAM_LOOK_AT,
+  archiveFocusZ,
+  stationView,
   type StationMode,
 } from '../interaction/station'
 
@@ -39,6 +37,7 @@ export function Player({
   const body = useRef<RapierRigidBody>(null)
   const anchor = useRef<Group>(null)
   const camera = useThree((state) => state.camera)
+  const size = useThree((state) => state.size)
   const keys = useRef(new Set<string>())
   const jump = useRef(new JumpInput())
   const { world, rapier } = useRapier()
@@ -156,10 +155,9 @@ export function Player({
       if (mode === 'walking') {
         state.endRotation.copy(state.returnRotation)
       } else {
-        camera.position.fromArray(
-          mode === 'hologram' ? HOLOGRAM_FOCUS_POSITION : FOCUS_POSITION,
-        )
-        const lookAt = mode === 'hologram' ? HOLOGRAM_LOOK_AT : SCREEN_POSITION
+        const view = stationView(mode)
+        camera.position.fromArray(view.position)
+        const lookAt = view.lookAt
         camera.lookAt(lookAt[0], lookAt[1], lookAt[2])
         state.endRotation.copy(camera.quaternion)
         camera.position.copy(state.startPosition)
@@ -169,10 +167,9 @@ export function Player({
       state.previousMode = mode
     }
     if (mode === 'walking') anchor.current.getWorldPosition(state.destination)
-    else
-      state.destination.fromArray(
-        mode === 'hologram' ? HOLOGRAM_FOCUS_POSITION : FOCUS_POSITION,
-      )
+    else state.destination.fromArray(stationView(mode).position)
+    if (mode === 'computer')
+      state.destination.z = archiveFocusZ(size.width / size.height)
     if (transitioning) {
       state.elapsed += delta
       const t = reducedMotion.current ? 1 : Math.min(state.elapsed / 0.65, 1)
@@ -194,7 +191,7 @@ export function Player({
   return (
     <RigidBody
       ref={body}
-      position={[0, PLAYER_SPAWN_Y, 3.5]}
+      position={[...PLAYER_SPAWN_POSITION]}
       colliders={false}
       lockRotations
       ccd

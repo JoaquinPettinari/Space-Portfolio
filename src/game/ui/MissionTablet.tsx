@@ -98,11 +98,7 @@ export function MissionTablet({
                 <span>
                   {item.title}
                   <small>
-                    {completed.includes(item.id)
-                      ? 'Complete'
-                      : item.id === 'uplink'
-                        ? 'Not connected yet'
-                        : 'Available'}
+                    {completed.includes(item.id) ? 'Complete' : 'Available'}
                   </small>
                 </span>
               </button>
@@ -110,9 +106,9 @@ export function MissionTablet({
           </div>
           <div className="tablet-map">
             <svg
-              viewBox="0 0 400 380"
+              viewBox="0 0 400 410"
               role="img"
-              aria-label="CRUZ DEL SUR deck map. Auxiliary power beside the rear airlock. Hologram at the central table, crew dossier by the rear airlock, archives at the forward terminal."
+              aria-label="CRUZ DEL SUR deck map. Auxiliary power beside the rear airlock. Hologram at the central table, crew dossier by the rear airlock, archives at the forward terminal, Earth Communications on the port wall."
             >
               <path
                 d="M80 25 H320 L375 90 V290 L320 345 H80 L25 290 V90 Z"
@@ -120,6 +116,24 @@ export function MissionTablet({
                 stroke="#6dabbf"
                 strokeWidth="3"
               />
+              <rect
+                x="160"
+                y="345"
+                width="80"
+                height="55"
+                fill="#102c3b"
+                stroke="#6dabbf"
+              />
+              <rect x="168" y="362" width="12" height="12" fill="#ffd384" />
+              <text
+                x="200"
+                y="392"
+                textAnchor="middle"
+                fill="#ceeff8"
+                fontSize="10"
+              >
+                ENTRY AIRLOCK
+              </text>
               <path
                 d="M110 25 H290 M25 110 V180 M25 210 V280 M375 110 V180 M375 210 V280"
                 stroke="#9ce8ff"
@@ -135,26 +149,49 @@ export function MissionTablet({
                 stroke="#c3f5ff"
                 strokeWidth="3"
               />
+              <rect
+                x="40"
+                y="190"
+                width="50"
+                height="40"
+                rx="4"
+                fill="#3eacc4"
+              />
+              <text
+                x="65"
+                y="180"
+                textAnchor="middle"
+                fill="#ceeff8"
+                fontSize="10"
+              >
+                EARTH COMMS
+              </text>
               <circle
                 cx={
-                  selected === 'lighting'
-                    ? 255
-                    : selected === 'dossier'
-                      ? 110
-                      : selected === 'crew'
-                        ? 287
-                        : 200
+                  selected === 'uplink'
+                    ? 65
+                    : selected === 'lighting'
+                      ? 175
+                      : selected === 'dossier'
+                        ? 320
+                        : selected === 'crew'
+                          ? 287
+                          : 200
                 }
                 cy={
-                  selected === 'dossier' || selected === 'lighting'
-                    ? 295
-                    : selected === 'crew'
-                      ? 225
-                      : selected === 'tablet'
-                        ? 210
-                        : 75
+                  selected === 'uplink'
+                    ? 210
+                    : selected === 'lighting'
+                      ? 368
+                      : selected === 'dossier'
+                        ? 295
+                        : selected === 'crew'
+                          ? 225
+                          : selected === 'tablet'
+                            ? 210
+                            : 75
                 }
-                r="39"
+                r={selected === 'lighting' ? 20 : 39}
                 fill="none"
                 stroke="#8ff4ff"
                 strokeWidth="2"
@@ -196,6 +233,23 @@ export function MissionTablet({
                 CREW DOSSIER
               </text>
               <rect
+                x="300"
+                y="280"
+                width="40"
+                height="30"
+                rx="4"
+                fill="#3eacc4"
+              />
+              <text
+                x="320"
+                y="335"
+                textAnchor="middle"
+                fill="#ceeff8"
+                fontSize="9"
+              >
+                PERSONAL OS
+              </text>
+              <rect
                 x="242"
                 y="282"
                 width="26"
@@ -229,7 +283,8 @@ export function MissionTablet({
             </div>
             <small>
               Hover, focus or tap an objective to locate its station. The crew
-              dossier is beside the rear airlock.
+              workstation is on the rear starboard wall; a second CV copy is
+              beside the airlock.
             </small>
           </div>
         </div>

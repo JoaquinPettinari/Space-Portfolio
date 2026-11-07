@@ -42,13 +42,16 @@ export function AmbientAudio({
   suspended = false,
   scanSignal = 0,
   scanning = false,
+  coffeeSignal = 0,
 }: {
   hidden?: boolean
   suspended?: boolean
   scanSignal?: number
   scanning?: boolean
+  coffeeSignal?: number
 }) {
   const contextRef = useRef<AudioContext | null>(null)
+  const heardCoffee = useRef(0)
   const enabledRef = useRef(false)
   const mountedRef = useRef(false)
   const [enabled, setEnabled] = useState(false)
@@ -100,6 +103,22 @@ export function AmbientAudio({
       return
     return playScanner(context)
   }, [scanSignal, scanning, enabled, suspended])
+
+  useEffect(() => {
+    if (heardCoffee.current === coffeeSignal) return
+    heardCoffee.current = coffeeSignal
+    const context = contextRef.current
+    if (
+      !coffeeSignal ||
+      !enabled ||
+      suspended ||
+      document.hidden ||
+      !context ||
+      context.state !== 'running'
+    )
+      return
+    return playScanner(context)
+  }, [coffeeSignal, enabled, suspended])
 
   const toggle = async () => {
     setPending(true)

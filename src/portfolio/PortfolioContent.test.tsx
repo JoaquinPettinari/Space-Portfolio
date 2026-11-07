@@ -61,10 +61,14 @@ it('reports service record and CV activities, never an email transmission', () =
   expect(activity).toHaveBeenLastCalledWith('dossier')
   activity.mockClear()
   select('Contact')
-  const email = screen.getByRole('link', { name: /Prepare transmission/ })
+  const email = screen.getByRole('link', {
+    name: 'joaquinpettinari@hotmail.com',
+  })
   email.addEventListener('click', (event) => event.preventDefault())
   fireEvent.click(email)
   expect(email).toHaveAttribute('href', 'mailto:joaquinpettinari@hotmail.com')
   expect(activity).not.toHaveBeenCalled()
-  expect(screen.getByText(/cannot confirm delivery/)).toBeVisible()
+  expect(
+    screen.getByRole('form', { name: 'Earth Communications' }),
+  ).toBeVisible()
 })

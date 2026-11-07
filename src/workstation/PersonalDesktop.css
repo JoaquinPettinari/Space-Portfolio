@@ -1,0 +1,125 @@
+.personal-desktop {
+  min-height: 320px;
+  padding: 8px;
+  background: linear-gradient(135deg, #112e44, #0a1827);
+  line-height: 1.55;
+}
+.personal-desktop-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+.personal-desktop button,
+.personal-desktop a {
+  color: #d5f6ff;
+}
+.personal-desktop button {
+  border: 1px solid #7597af;
+  background: #18384b;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+.personal-desktop button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.personal-desktop :focus-visible {
+  outline: 2px solid #adf2ff;
+  outline-offset: 3px;
+}
+.personal-desktop-icons button {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  width: 150px;
+  min-height: 110px;
+}
+.personal-desktop-icons button[aria-pressed='true'] {
+  border-color: #bef6ff;
+  background: #285267;
+}
+.personal-desktop-icons span {
+  font-family: monospace;
+  border: 2px solid #8dc5de;
+  padding: 8px;
+  letter-spacing: 0.1em;
+}
+.personal-desktop-help {
+  color: #b3d0dd;
+  font-size: 0.85rem;
+}
+.personal-desktop-window {
+  border: 1px solid #8fb3c9;
+  background: #091c2b;
+  padding: 16px;
+}
+.personal-desktop-window header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #506f80;
+}
+.personal-desktop-window h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.personal-desktop-document {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+.personal-desktop-gallery figure {
+  margin: 16px 0;
+}
+.personal-desktop-gallery img {
+  height: auto;
+  object-fit: contain;
+}
+.personal-image-inspection {
+  max-height: 45vh;
+  overflow: auto;
+  border: 1px solid #506f80;
+}
+.command-terminal {
+  font-family: monospace;
+}
+.command-output {
+  max-height: 35vh;
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.command-output p {
+  margin: 6px 0;
+}
+.command-output > div {
+  padding: 8px 0;
+  border-bottom: 1px solid #305164;
+}
+.command-terminal form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.command-terminal input {
+  min-width: 0;
+  flex: 1 1 180px;
+  border: 1px solid #86bad1;
+  background: #05131f;
+  color: #c4f3ff;
+  padding: 12px;
+  font: inherit;
+}
+.personal-desktop-gallery-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}

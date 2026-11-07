@@ -265,8 +265,16 @@ export function ShipHull() {
         )),
       )}
 
-      {/* A solid rear bulkhead implies the rest of the ship beyond the door. */}
-      <Plate at={[0, 2.25, 5.1]} size={[10.4, 4.5, 0.3]} color="#24394c" />
+      {/* Keep the existing rear wall, leaving a 2.5 × 3.3 m airlock opening. */}
+      {[-3.225, 3.225].map((x) => (
+        <Plate
+          key={x}
+          at={[x, 2.25, 5.1]}
+          size={[3.95, 4.5, 0.3]}
+          color="#24394c"
+        />
+      ))}
+      <Plate at={[0, 3.9, 5.1]} size={[2.5, 1.2, 0.3]} color="#24394c" />
       {/* The port-side panel is owned by CrewDossier, including its frame. */}
       <group>
         <Plate

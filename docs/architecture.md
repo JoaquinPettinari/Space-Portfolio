@@ -1,5 +1,13 @@
 # Arquitectura
 
+## Estado vigente — noviembre de 2026
+
+El prototipo de monitor físico del Archive se describe en `physical-monitor-prototype.md`. `ArchiveScreen` monta el mismo `Computer`/`PortfolioContent` mediante Drei Html transform sobre la pantalla existente, sin overlay opaco a pantalla completa. Un invalidate al montar el DOM asegura su primera transformación en renderizado bajo demanda. Quick Portfolio Access dentro del juego enfoca ese mismo monitor; Accessible HTML portfolio conserva la ruta DOM y el fallback sin WebGL. El plano futuro en `bridge-layout-proposal.md` sigue pendiente de aprobación; Communications, Personal, identificación y mesa aún conservan sus implementaciones anteriores.
+
+El nuevo orden de fases y la auditoría están en `functional-progress.md`. La autorización más reciente levanta el aplazamiento histórico del backend: `api/contact.ts` implementa una Vercel Function con Resend y límites compartidos en Redis; configuración en `contact.md`. Las referencias posteriores a contacto pendiente describen fases anteriores. El formulario DOM se comparte con Earth Communications, una terminal separada en la pared de babor. El evento explícito `transmission` completa uplink por aceptación confirmada o Skip sin envío; el clic mailto continúa sin completarlo.
+
+Los modos actuales son walking, computer, hologram, communications, personal y photo. `stationView` centraliza las poses de cámara sin crear objetos por cuadro. Café y mamparo son acciones del raycaster y no abren modos adicionales. `TerminalPanel` comparte el límite de foco DOM; las ventanas del escritorio consumen Escape antes de que llegue a la pausa del juego. El estado de café es independiente del protocolo, con un único descubrimiento local persistido. `EntryAirlock` extiende la sala hacia atrás; abrir desmonta hoja y collider juntos y nunca vuelve a cerrar sobre el jugador. La persistencia de energía deja el paso abierto al recargar.
+
 ## Base existente
 
 Aplicación de navegador con Vite, React, TypeScript, Three.js, React Three Fiber, Drei y Rapier. npm gestiona dependencias y scripts. No se necesita un framework de servidor ni un motor adicional.
