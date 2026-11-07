@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test'
 import { enterObservationRoom, lookAt } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
-test.use({ video: 'on' })
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 const errors = new WeakMap<Page, string[]>()
 test.beforeEach(async ({ page }) => {
   const collected: string[] = []
@@ -33,57 +33,50 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
     return window.__GAME_DEBUG__.snapshot()
   })
 }
-test('tablet objective completes and table projects the crew record from a distance', async ({
+test('tablet locates Crew Access and one scan reveals the compact identity record', async ({
   page,
 }) => {
   test.setTimeout(120_000)
-  await expect(
-    page.getByRole('button', { name: 'Ambient sound' }),
-  ).toHaveAttribute('aria-pressed', 'false')
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
+  await page.keyboard.press('r')
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(
     tablet.getByRole('button', { name: /Open mission tablet/ }),
   ).toHaveAttribute('data-complete', 'true')
   await expect(tablet).toContainText('1 / 6 objectives complete')
-  await tablet.getByRole('button', { name: /Activate crew hologram/ }).hover()
-  await expect(tablet.locator('.map-objective')).toContainText(
-    'Central projection table',
-  )
-  await page.getByRole('button', { name: 'Close tablet' }).click()
-  await expect(
-    page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('1 / 6 complete')
-  await enterObservationRoom(page)
-  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
-  await expect(
-    page.getByText('E · Activate crew hologram', { exact: true }),
-  ).toBeVisible()
+  await tablet.getByRole('button', { name: /Verify crew identity/ }).hover()
+  await expect(tablet.locator('.map-objective')).toContainText('Entry airlock')
+  await tablet.getByRole('button', { name: 'Close tablet' }).click()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   const standing = await snapshot(page)
   await page.keyboard.press('e')
+  const identity = page.getByRole('dialog', {
+    name: 'Crew Access',
+    exact: true,
+  })
+  await expect(identity).toBeVisible()
+  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
   await expect(
-    page.getByRole('dialog', { name: 'Crew identification', exact: true }),
+    identity.getByRole('heading', { name: 'Joaquín Pettinari' }),
   ).toBeVisible()
-  const hologram = page.getByRole('dialog', { name: 'Joaquín Pettinari' })
-  await expect(hologram).toBeVisible()
+  await expect(identity.getByRole('heading', { name: /Master/ })).toBeVisible()
+  await expect(identity.locator('img')).toHaveCount(0)
   await expect(
-    page.getByRole('status', { name: 'Station assistant' }),
-  ).toContainText(
-    'Identity verified. Welcome aboard, Engineer. Your personnel record is available.',
-  )
+    identity.getByRole('button', { name: 'Training record' }),
+  ).toHaveCount(0)
   expect((await snapshot(page)).pointerLocked).toBe(false)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(2.8, 1)
-  await page.mouse.click(640, 320)
-  expect((await snapshot(page)).pointerLocked).toBe(false)
-  await page.screenshot({ path: 'artifacts/crew-hologram.png' })
-  await hologram.getByRole('button', { name: 'Training record' }).click()
-  await expect(hologram.getByRole('heading', { name: /Master/ })).toBeVisible()
-  await hologram.getByRole('button', { name: 'Leave hologram' }).click()
-  await expect(hologram).not.toBeVisible()
+  await identity.getByRole('button', { name: 'Leave terminal' }).click()
+  await expect(identity).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
+  await enterObservationRoom(page)
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toContainText('3 / 6 complete')

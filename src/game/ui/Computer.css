@@ -1,10 +1,10 @@
-/* Fixed CSS canvas mapped onto the 1.5 × .83 m physical screen by Drei Html.
+/* Fixed CSS canvas mapped onto the 1.6 × .9 m physical screen by Drei Html.
    This is screen content, not a second full-screen bezel or modal backdrop. */
 .computer.physical-archive {
   position: relative;
   inset: auto;
-  width: 900px;
-  height: 498px;
+  width: 960px;
+  height: 540px;
   padding: 0;
   display: block;
   overflow: hidden;
@@ -79,4 +79,35 @@
 .physical-archive :focus-visible {
   outline: 2px solid #ffd58f;
   outline-offset: 2px;
+}
+
+/* 770 × 560 CSS pixels at distanceFactor 4/7 = 1.1 × .8 world units. */
+.computer.physical-terminal {
+  width: 770px;
+  height: 560px;
+}
+.physical-terminal .desktop-bar {
+  flex-wrap: wrap;
+}
+.physical-terminal .desktop-footer {
+  letter-spacing: 0;
+  gap: 8px;
+}
+.physical-terminal .desktop-footer button {
+  font-size: 14px;
+}
+.physical-terminal .personal-desktop {
+  font-size: 16px;
+}
+.physical-terminal .personal-desktop-icons {
+  gap: 8px;
+}
+.physical-terminal .personal-desktop-icons button {
+  width: 145px;
+  min-height: 90px;
+}
+
+.forward-terminal .computer.physical-terminal {
+  width: 960px;
+  height: 540px;
 }

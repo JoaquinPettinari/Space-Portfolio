@@ -1,10 +1,13 @@
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
+  walkTo,
   enterObservationRoom,
   protocol,
   snapshot,
 } from './helpers/game'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 const errors = new WeakMap<Page, string[]>()
 // Include the real power/airlock walkthrough in the hook's time budget.
@@ -22,9 +25,11 @@ test.beforeEach(async ({ page }) => {
   ).toBeVisible({ timeout: 45_000 })
   await enterObservationRoom(page)
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await page.getByRole('button', { name: 'Skip Tutorial', exact: true }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   expect((await protocol(page)).guidance).toBe('skipped')
+  await page.keyboard.press('t')
 })
 test.afterEach(async ({ page }, info) => {
   await info.attach('browser-errors', {
@@ -39,13 +44,13 @@ test('coffee and image inspection remain available with guidance skipped', async
 }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
-  await approach(page, { x: -4.3, y: 1.2, z: 3.1 }, 'E · Brew coffee')
+  await walkTo(page, -2.4, 3.1)
+  await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Brew coffee')
   await page.keyboard.press('e')
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect(
     page.getByText('E · Drink coffee', { exact: true }),
   ).toBeVisible()
-  await page.screenshot({ path: 'artifacts/coffee-ready.png' })
   await page.keyboard.press('e')
   await expect
     .poll(() =>
@@ -56,7 +61,7 @@ test('coffee and image inspection remain available with guidance skipped', async
   expect(await protocol(page)).toEqual(before)
   await approach(
     page,
-    { x: -4.7, y: 1.7, z: -1.7 },
+    { x: -4.78, y: 1.75, z: 2.2 },
     'E · Inspect project photo',
   )
   await page.keyboard.press('e')
@@ -71,7 +76,6 @@ test('coffee and image inspection remain available with guidance skipped', async
   await expect(photo.getByRole('status')).toHaveText('Magnification: 2×')
   await photo.getByRole('button', { name: 'Fit image' }).click()
   await expect(photo.getByRole('status')).toHaveText('Magnification: 1×')
-  await page.screenshot({ path: 'artifacts/project-image-inspection.png' })
   await page.keyboard.press('Escape')
   await expect(photo).not.toBeVisible()
   await expect
@@ -85,11 +89,8 @@ test('fictional command input preserves E and T and brews through the shared dis
 }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
-  await approach(
-    page,
-    { x: 3.25, y: 1.65, z: 4.65 },
-    'E · Personal Workstation',
-  )
+  await walkTo(page, 3.2, 3.1)
+  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',
@@ -114,7 +115,6 @@ test('fictional command input preserves E and T and brews through the shared dis
     desktop.getByRole('log', { name: 'Command output' }),
   ).toContainText('No software was installed')
   await expect(command).toBeInViewport()
-  await page.screenshot({ path: 'artifacts/command-terminal.png' })
   expect(await protocol(page)).toEqual(before)
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()
@@ -125,7 +125,7 @@ test('fictional command input preserves E and T and brews through the shared dis
   await expect(
     page.getByText('E · Personal Workstation', { exact: true }),
   ).toBeVisible()
-  await approach(page, { x: -4.3, y: 1.2, z: 3.1 }, 'E · Drink coffee')
+  await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Drink coffee')
   await page.keyboard.press('e')
   await expect
     .poll(() =>

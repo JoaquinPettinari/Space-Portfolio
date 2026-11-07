@@ -3,6 +3,7 @@ import { SpaceExterior } from './SpaceExterior'
 import { ShipHull } from './ShipHull'
 import { CabinLighting } from './CabinLighting'
 import { EntryAirlock } from './EntryAirlock'
+import { TABLE_POSITION } from '../interaction/station'
 
 type PanelProps = {
   position: [number, number, number]
@@ -33,23 +34,23 @@ function Panel({
 
 function CentralTable() {
   return (
-    <group userData={{ interaction: 'hologram' }}>
+    <group name="future-tactical-table">
       <RigidBody
         type="fixed"
         colliders={false}
-        position={[2.15, 0, 0]}
+        position={[...TABLE_POSITION]}
         friction={0}
       >
         <CuboidCollider args={[1.05, 0.52, 1.35]} position={[0, 0.52, 0]} />
         <Panel
           position={[0, 0.45, 0]}
           size={[1.25, 0.9, 1.7]}
-          color="#15283a"
+          color="#252a2e"
         />
         <Panel
           position={[0, 0.96, 0]}
           size={[2.1, 0.16, 2.7]}
-          color="#273f53"
+          color="#42484b"
         />
         <Panel
           position={[0, 1.045, 0]}
@@ -108,7 +109,7 @@ export function Greybox({
         <mesh position={[0, -0.1, 0]} name="continuous-cabin-floor">
           <boxGeometry args={[10.4, 0.2, 10.4]} />
           <meshStandardMaterial
-            color="#273a4a"
+            color="#303538"
             metalness={0.35}
             roughness={0.32}
           />

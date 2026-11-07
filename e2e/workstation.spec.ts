@@ -1,7 +1,9 @@
 import { readFile } from 'node:fs/promises'
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom } from './helpers/game'
+import { enterObservationRoom, approach, walkTo } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 const errors = new WeakMap<Page, string[]>()
 async function snapshot(page: Page): Promise<GameSnapshot> {
@@ -27,34 +29,8 @@ async function openWorkstation(page: Page) {
     body: JSON.stringify(samples),
     contentType: 'application/json',
   })
-  await page.mouse.move(640, 360)
-  const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
-  const yaw = Math.atan2(
-    2 * (q.x * q.z + q.y * q.w),
-    1 - 2 * (q.x * q.x + q.y * q.y),
-  )
-  const pitch = Math.asin(
-    Math.max(-1, Math.min(1, 2 * (q.w * q.x - q.y * q.z))),
-  )
-  const desiredYaw = Math.atan2(p.x - 3.25, p.z - 4.65)
-  const desiredPitch = Math.atan2(
-    1.65 - p.y,
-    Math.hypot(3.25 - p.x, 4.65 - p.z),
-  )
-  const yawDelta = Math.atan2(
-    Math.sin(desiredYaw - yaw),
-    Math.cos(desiredYaw - yaw),
-  )
-  await page.mouse.move(
-    640 - yawDelta / 0.002,
-    360 - (desiredPitch - pitch) / 0.002,
-    { steps: 16 },
-  )
-  await page.keyboard.down('w')
-  await expect(
-    page.getByText('E · Personal Workstation', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.up('w')
+  await walkTo(page, 3.2, 3.1)
+  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',
@@ -115,11 +91,9 @@ test('keyboard desktop opens optional apps and downloads the real dossier withou
   await expect(
     desktop.getByRole('heading', { name: 'Project Gallery', exact: true }),
   ).toBeVisible()
-  await page.screenshot({ path: 'artifacts/personal-workstation-desktop.png' })
   const galleryImage = desktop.locator('.personal-desktop-gallery img')
   await galleryImage.scrollIntoViewIfNeeded()
   await expect(galleryImage).toBeInViewport()
-  await page.screenshot({ path: 'artifacts/personal-workstation-gallery.png' })
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()
   await expect(

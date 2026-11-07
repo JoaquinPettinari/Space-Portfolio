@@ -40,7 +40,7 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   )
   expect(screen.getByText(/Mission guidance is optional/)).toBeVisible()
   expect(
-    screen.getByText('Current objective: Activate crew hologram'),
+    screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
   const lighting = screen.getByRole('button', {
     name: /Restore interior lighting/,
@@ -54,7 +54,7 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   expect(screen.getByText('2 / 6 objectives complete')).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Resume Protocol' }))
   expect(
-    screen.getByText('Current objective: Activate crew hologram'),
+    screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Replay Protocol' }))
   expect(
@@ -89,7 +89,9 @@ it('locates objectives by pointer and keyboard without completing them', () => {
   fireEvent.focus(archives)
   expect(archives).toHaveAttribute('aria-pressed', 'true')
   expect(
-    screen.getByText(/Main computer → Open a project or review Service Record/),
+    screen.getByText(
+      /Forward port Central Archive → Open a project or review Service Record/,
+    ),
   ).toBeVisible()
   expect(archives).toHaveAttribute('data-complete', 'false')
   expect(screen.getByText('1 / 6 objectives complete')).toBeVisible()

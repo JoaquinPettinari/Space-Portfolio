@@ -56,7 +56,8 @@ export function Interaction({
           kind === 'personal' ||
           kind === 'photo' ||
           kind === 'coffee' ||
-          kind === 'bulkhead')
+          kind === 'bulkhead' ||
+          kind === 'crew')
       ) {
         next = kind
       }

@@ -7,6 +7,8 @@
 
 ## Approved direction update — 2026-11-07
 
+The owner has now approved the detailed bridge plan and authorized phase4 geometry. Its earlier approval-pending statements are historical. Implement the faceted bow, continuous two-station console, central table, rear service stations and industrial ceiling while preserving all existing interactions. Crew Access remains in the airlock. Tactical-table behavior is still a separate phase5 feature. See `../docs/phase-4-bridge.md` for implementation and validation evidence.
+
 The owner's latest direction supersedes the earlier layout descriptions below: industrial retrofuturistic bridge, graphite structure/off-white panels, amber practical lights and restrained cyan accents, faceted panoramic bow and a continuous forward console (Central Archive left, Earth Communications right). Preserve FPS circulation and exterior views. Detailed layout is a proposal in `../docs/bridge-layout-proposal.md`, not an approved hull rebuild.
 
 First prototype the Central Archive as a physical monitor using the existing React content aligned to its screen; retain camera return, Pointer Lock and an accessible HTML alternative. During gameplay Quick Portfolio Access focuses this same Archive; the direct HTML route remains available independently of WebGL. Communications and Personal migrate only after review of the Archive prototype.
@@ -16,6 +18,12 @@ Later, move single-E crew identification/card animation to a dedicated wall term
 For this iteration the user reviews visuals manually: do not automatically generate screenshots or videos, overriding the older capture-based review checklist below. The owner subsequently supplied the approved concept image `codex-clipboard-8f1ea07c-5dd8-40d2-bce0-680a4274b4f9.png`: centered tactical table, continuous forward console, Archive left, Communications right, coffee left and Personal Workstation on the right sidewall. Follow that visual target closely while validating actual dimensions/collisions separately. Its Spanish labels and TAB hint do not override the English UI and T tablet binding; PAMPA-07 remains the shuttle, not the station name. Full hull reconstruction still requires layout approval.
 
 ## 1. Vision
+
+### Functional phase update
+
+The owner has authorized the subsequent physical-computer, handheld-tablet and Crew Access phases. Communications and Personal reuse the physical screen architecture. T now raises/lowers a handheld tablet while walking; R explicitly focuses its native HTML controls, pausing movement and releasing the cursor. R/Walk with tablet returns to held mode; Escape pauses. This replaces the old T-only modal behavior without introducing a virtual cursor.
+
+Crew identification moves from the table to a dedicated entry-airlock wall terminal. One E starts a short terminal-aligned card gesture and shows the existing factual identity and Master's degree on one physical screen. Preserve the persisted `crew` objective. The table no longer authenticates; tactical content is a later optional feature. The latest placement request puts both coffee and Personal near the rear in the proposed new bridge. Stop before rebuilding geometry until the coordinate/collider plan is reviewed. References to earlier table identification below describe the superseded baseline.
 
 A polished, accessible first-person 3D portfolio set inside an Argentine-inspired research space station. A short optional recovery protocol introduces the visitor to the developer's real work. The world must be fun to explore but never obstruct professional information.
 

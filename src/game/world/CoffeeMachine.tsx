@@ -1,3 +1,4 @@
+import { COFFEE_POSITION } from '../interaction/station'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import type { CoffeeState } from '../coffee'
 import type { StationTarget } from '../interaction/station'
@@ -10,7 +11,12 @@ export function CoffeeMachine({
   target: StationTarget
 }) {
   return (
-    <RigidBody type="fixed" colliders={false} position={[-4.3, 0, 3.1]}>
+    <RigidBody
+      type="fixed"
+      colliders={false}
+      position={[...COFFEE_POSITION]}
+      rotation={[0, Math.PI / 2, 0]}
+    >
       <CuboidCollider args={[0.4, 0.75, 0.36]} position={[0, 0.75, 0]} />
       <group userData={{ interaction: 'coffee' }}>
         <mesh position={[0, 0.45, 0]}>

@@ -16,21 +16,21 @@ export const missions: { id: ObjectiveId; title: string; action: string }[] = [
   },
   {
     id: 'crew',
-    title: 'Activate crew hologram',
+    title: 'Verify crew identity',
     action:
-      'Central projection table → Aim at the table and press E. View the crew profile from a comfortable distance.',
+      'Entry airlock → Aim at the Crew Access terminal beside the entrance and press E once. Your full record remains available in the Central Archive.',
   },
   {
     id: 'archives',
     title: 'Review expedition archives',
     action:
-      'Main computer → Open a project or review Service Record. Professional information is always available.',
+      'Forward port Central Archive → Open a project or review Service Record. Professional information is always available.',
   },
   {
     id: 'uplink',
     title: 'Contact Mission Control',
     action:
-      'Port-side Earth Communications → Send a real message or choose Skip to log a fictional status report without sending email.',
+      'Forward starboard Earth Communications → Send a real message or choose Skip to log a fictional status report without sending email.',
   },
   {
     id: 'dossier',

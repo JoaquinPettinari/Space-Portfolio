@@ -1,10 +1,16 @@
 import { expect, test } from '@playwright/test'
 import {
   approach,
+  forwardStation,
+  walkTo,
+  snapshot,
+  enter as capture,
   enterObservationRoom,
   lookAt,
   protocol,
 } from './helpers/game'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 test('completes the recovery journey with contact skipped and the real CV, then restores progress', async ({
   page,
@@ -27,26 +33,33 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   await expect(
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 45_000 })
+  await capture(page)
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.y)
+    .toBeLessThan(1.73)
+  await walkTo(page, 0, 7.7)
+  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await page.keyboard.press('e')
+  const identity = page.getByRole('dialog', {
+    name: 'Crew Access',
+    exact: true,
+  })
+  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
+  await page.keyboard.press('e')
+  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await enterObservationRoom(page)
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await page
     .getByRole('button', { name: 'Continue Protocol', exact: true })
     .click()
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
+  await page.keyboard.press('t')
 
-  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
-  await expect(
-    page.getByText('E · Activate crew hologram', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
-  await expect(
-    page.getByRole('dialog', { name: 'Joaquín Pettinari', exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
-  await expect(
-    page.getByText('E · Activate crew hologram', { exact: true }),
-  ).toBeVisible()
-
-  await approach(page, { x: 0, y: 1.55, z: -3.57 }, 'E · Use computer')
+  await forwardStation(page, -1)
   await page.keyboard.press('e')
   const archive = page.getByRole('dialog', {
     name: 'Central Archive',
@@ -63,7 +76,13 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     page.getByText('E · Use computer', { exact: true }),
   ).toBeVisible()
 
-  await approach(page, { x: -4.7, y: 1.65, z: 1 }, 'E · Earth Communications')
+  await walkTo(page, -2.4, -1.3)
+  await walkTo(page, 2.4, -1.3)
+  await approach(
+    page,
+    { x: 2.4, y: 1.65, z: -3.715 },
+    'E · Earth Communications',
+  )
   await page.keyboard.press('e')
   const communications = page.getByRole('dialog', {
     name: 'Earth Communications',
@@ -80,11 +99,8 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     page.getByText('E · Earth Communications', { exact: true }),
   ).toBeVisible()
 
-  await approach(
-    page,
-    { x: 3.25, y: 1.65, z: 4.65 },
-    'E · Personal Workstation',
-  )
+  await walkTo(page, 2.4, 3.1)
+  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',
@@ -120,6 +136,7 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     ]),
   )
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await expect(
     page.getByRole('dialog', { name: 'Mission tablet' }),
   ).toContainText('Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.')

@@ -8,7 +8,7 @@ function Plate({
   at,
   size,
   rotation,
-  color = '#294055',
+  color = '#252b31',
   glow = false,
 }: {
   at: XYZ
@@ -92,208 +92,160 @@ function Wing({ side }: { side: number }) {
   )
 }
 
-/** An elliptical barrel vault: the glass follows the same curve as the hull. */
-function RoofStrip({
-  start,
-  arc,
-  z,
-  length,
-  glass = false,
-  glow = false,
-}: {
-  start: number
-  arc: number
-  z: number
-  length: number
-  glass?: boolean
-  glow?: boolean
-}) {
-  return (
-    <group position={[0, 3.65, z]} scale={[5.1, 1.45, 1]}>
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[1, 1, length, 40, 1, true, start, arc]} />
-        {glass ? (
-          <meshBasicMaterial
-            color="#6596b8"
-            transparent
-            opacity={0.055}
-            side={DoubleSide}
-            depthWrite={false}
-          />
-        ) : (
-          <meshStandardMaterial
-            color={glow ? '#9bdff4' : '#294055'}
-            side={DoubleSide}
-            metalness={0.25}
-            roughness={0.55}
-            emissive={glow ? '#9bdff4' : '#000000'}
-            emissiveIntensity={glow ? 1 : 0}
-          />
-        )}
-      </mesh>
-    </group>
-  )
-}
-
-function CurvedRoof() {
-  const endCap = useMemo(() => {
-    const shape = new Shape()
-    shape.moveTo(-5.1, 3.65)
-    for (let i = 0; i <= 40; i++) {
-      const angle = -Math.PI / 2 + (i / 40) * Math.PI
-      shape.lineTo(5.1 * Math.sin(angle), 3.65 + 1.45 * Math.cos(angle))
-    }
-    shape.closePath()
-    return shape
-  }, [])
-  return (
-    <group>
-      {[-5.1, 5.1].map((z) => (
-        <mesh key={z} position={[0, 0, z]}>
-          <shapeGeometry args={[endCap]} />
-          <meshStandardMaterial
-            color="#294055"
-            side={DoubleSide}
-            metalness={0.25}
-            roughness={0.55}
-          />
-        </mesh>
-      ))}
-      <RoofStrip start={-Math.PI / 2} arc={Math.PI} z={-4.35} length={1.7} />
-      <RoofStrip start={-Math.PI / 2} arc={Math.PI} z={3.35} length={3.7} />
-      <RoofStrip start={-0.18} arc={0.36} z={-1} length={5} />
-      {[-1, 1].map((side) => (
-        <group key={side}>
-          <RoofStrip
-            start={side < 0 ? -Math.PI / 2 : 0.85}
-            arc={Math.PI / 2 - 0.85}
-            z={-1}
-            length={5}
-          />
-          <RoofStrip
-            start={side < 0 ? -0.85 : 0.18}
-            arc={0.67}
-            z={-1}
-            length={5}
-            glass
-          />
-          <RoofStrip
-            start={side * 0.85 - 0.006}
-            arc={0.012}
-            z={-1}
-            length={5}
-            glow
-          />
-        </group>
-      ))}
-    </group>
-  )
-}
-
-/** Structural skin only; the main room's boundary colliders remain in Greybox. */
+/** Structural skin and local colliders; broad room bounds remain in Greybox. */
 export function ShipHull() {
   return (
-    <group>
-      {/* One unbroken forward viewport, framed by opaque hull. */}
-      <Plate at={[0, 0.62, -5.1]} size={[10.4, 1.24, 0.24]} />
-      <Plate at={[0, 3.95, -5.1]} size={[10.4, 1.2, 0.3]} />
-      {[-4.62, 4.62].map((x) => (
-        <Plate key={x} at={[x, 2.3, -5.1]} size={[1.24, 2.2, 0.3]} />
-      ))}
+    <group name="panoramic-industrial-bridge">
+      <Plate at={[0, 0.6, -5.1]} size={[8, 1.2, 0.24]} />
+      <Plate at={[0, 3.95, -5.1]} size={[8, 1.2, 0.3]} />
       <Glass at={[0, 2.3, -5.08]} size={[8, 2.1]} />
       <Plate
-        at={[0, 1.25, -4.91]}
-        size={[8, 0.035, 0.05]}
-        color="#78d4eb"
+        at={[0, 1.24, -4.92]}
+        size={[8, 0.055, 0.08]}
+        color="#e8ad70"
         glow
       />
-      <Plate
-        at={[0, 3.36, -4.91]}
-        size={[8, 0.035, 0.05]}
-        color="#78d4eb"
-        glow
-      />
-
-      {/* Two continuous windows per side, with substantial solid sections. */}
+      <Plate at={[0, 3.38, -4.92]} size={[8, 0.1, 0.12]} />
       {[-1, 1].map((side) => (
         <group key={side}>
-          <Plate at={[side * 5.1, 0.65, 0]} size={[0.24, 1.3, 10.4]} />
-          <Plate at={[side * 5.1, 3.6, 0]} size={[0.3, 0.6, 10.4]} />
-          {[-4.7, 0, 4.7].map((z) => (
-            <Plate
-              key={z}
-              at={[side * 5.1, 2.3, z]}
-              size={[0.3, 2, z === 0 ? 0.8 : 1]}
-            />
-          ))}
-          {[-2.35, 2.35].map((z) => (
-            <group key={z}>
-              <Glass
-                at={[side * 5.08, 2.3, z]}
-                size={[3.9, 2]}
-                rotation={[0, Math.PI / 2, 0]}
-              />
+          {/* Diagonal glazing replaces the old opaque forward chamfer. */}
+          <group
+            position={[side * 4.5, 2.25, -4.5]}
+            rotation={[0, (side * Math.PI) / 4, 0]}
+          >
+            <CuboidCollider args={[0.1, 2.25, Math.SQRT2 / 2]} />
+            <Plate at={[0, -1.65, 0]} size={[0.2, 1.2, Math.SQRT2]} />
+            <Plate at={[0, 1.7, 0]} size={[0.2, 1.1, Math.SQRT2]} />
+            {[-1, 1].map((end) => (
               <Plate
-                at={[side * 4.92, 1.31, z]}
-                size={[0.05, 0.035, 3.9]}
-                color="#78d4eb"
-                glow
+                key={end}
+                at={[0, 0, end * (Math.SQRT2 / 2 - 0.07)]}
+                size={[0.22, 2.3, 0.14]}
               />
-            </group>
-          ))}
-          {/* Conservative shoulder colliders remain above the walking volume. */}
-          <CuboidCollider
-            args={[0.75, 0.1, 5.2]}
-            position={[side * 4.56, 4.03, 0]}
-            rotation={[0, 0, side * -0.65]}
+            ))}
+            <Glass
+              at={[0, 0.05, 0]}
+              size={[Math.SQRT2 - 0.28, 2.1]}
+              rotation={[0, Math.PI / 2, 0]}
+            />
+            <Plate
+              at={[-side * 0.12, -1.02, 0]}
+              size={[0.025, 0.035, Math.SQRT2 - 0.28]}
+              color="#e8ad70"
+              glow
+            />
+          </group>
+          <Plate at={[side * 5.1, 0.6, 0.5]} size={[0.24, 1.2, 9]} />
+          <Plate at={[side * 5.1, 3.95, 0.5]} size={[0.3, 1.2, 9]} />
+          <Glass
+            at={[side * 5.08, 2.3, -2]}
+            size={[4, 2.1]}
+            rotation={[0, Math.PI / 2, 0]}
           />
+          <Plate
+            at={[side * 4.94, 1.24, -2]}
+            size={[0.055, 0.055, 4]}
+            color="#e8ad70"
+            glow
+          />
+          {/* Opaque rear service zones support memories, desk and technical panel. */}
+          <Plate at={[side * 5.02, 2.25, 0.1]} size={[0.28, 2.3, 0.22]} />
+          <Plate
+            at={[side * 5.02, 2.25, 2.55]}
+            size={[0.28, 2.3, 4.7]}
+            color="#b1b0a6"
+          />
+          <CuboidCollider
+            args={[0.14, 1.15, 2.35]}
+            position={[side * 5.02, 2.25, 2.55]}
+          />
+          {[1.05, 4.45].map((z) => (
+            <Plate key={z} at={[side * 4.85, 2.2, z]} size={[0.08, 2.3, 0.1]} />
+          ))}
+          <Plate
+            at={[side * 4.84, 3.28, 2.65]}
+            size={[0.07, 0.045, 4.1]}
+            color="#ffd09a"
+            glow
+          />
+          <group
+            position={[side * 4.7, 2.25, 4.7]}
+            rotation={[0, (-side * Math.PI) / 4, 0]}
+          >
+            <Plate at={[0, 0, 0]} size={[0.22, 4.5, 1.65]} />
+            <CuboidCollider args={[0.11, 2.25, 0.825]} />
+          </group>
           <Wing side={side} />
         </group>
       ))}
-
-      {/* Chamfered corners with matching colliders make an octagonal cabin. */}
-      {[-1, 1].flatMap((x) =>
-        [-1, 1].map((z) => (
-          <group
-            key={`${x}:${z}`}
-            position={[x * 4.7, 2.25, z * 4.7]}
-            rotation={[0, (-x * z * Math.PI) / 4, 0]}
-          >
-            <Plate at={[0, 0, 0]} size={[0.22, 4.5, 1.65]} color="#354c60" />
-            <CuboidCollider args={[0.11, 2.25, 0.825]} />
-          </group>
-        )),
-      )}
-
-      {/* Keep the existing rear wall, leaving a 2.5 × 3.3 m airlock opening. */}
+      {/* Keep the clear airlock doorway, width 2.5 and height 3.3. */}
       {[-3.225, 3.225].map((x) => (
         <Plate
           key={x}
           at={[x, 2.25, 5.1]}
           size={[3.95, 4.5, 0.3]}
-          color="#24394c"
+          color="#41494e"
         />
       ))}
-      <Plate at={[0, 3.9, 5.1]} size={[2.5, 1.2, 0.3]} color="#24394c" />
-      {/* The port-side panel is owned by CrewDossier, including its frame. */}
-      <group>
+      {/* Reserved technical service panel; no interaction until separately implemented. */}
+      <group position={[4.78, 1.55, 3.65]} rotation={[0, -Math.PI / 2, 0]}>
+        <Plate at={[0, 0, 0]} size={[0.9, 1.2, 0.16]} />
+        <CuboidCollider args={[0.45, 0.6, 0.08]} />
         <Plate
-          at={[3.25, 1.65, 4.89]}
-          size={[2.1, 2.9, 0.12]}
-          color="#182c40"
+          at={[0, 0.18, 0.085]}
+          size={[0.64, 0.43, 0.02]}
+          color="#102b33"
         />
-        <Plate
-          at={[3.25, 2.85, 4.81]}
-          size={[1.4, 0.04, 0.035]}
-          color="#7297b0"
-        />
-        <Plate
-          at={[3.25, 0.65, 4.81]}
-          size={[1.4, 0.04, 0.035]}
-          color="#7297b0"
-        />
+        {[-0.2, 0, 0.2].map((x) => (
+          <Plate
+            key={x}
+            at={[x, -0.25, 0.09]}
+            size={[0.08, 0.06, 0.025]}
+            color="#77c7d4"
+            glow
+          />
+        ))}
       </group>
-      <CurvedRoof />
+      <Plate at={[0, 3.9, 5.1]} size={[2.5, 1.2, 0.3]} />
+      <group name="industrial-bridge-ceiling">
+        <Plate at={[0, 4.4, 0]} size={[10, 0.2, 10]} color="#171c22" />
+        <CuboidCollider args={[5, 0.1, 5]} position={[0, 4.4, 0]} />
+        {[-3.6, -1.2, 1.2, 3.6].map((z) => (
+          <group key={z}>
+            <Plate at={[0, 3.48, z]} size={[9.8, 0.36, 0.22]} />
+            <CuboidCollider args={[4.9, 0.18, 0.11]} position={[0, 3.48, z]} />
+            {[-3, 0, 3].map((x) => (
+              <Plate
+                key={x}
+                at={[x, 3.292, z]}
+                size={[1.05, 0.025, 0.12]}
+                color="#ffd09a"
+                glow
+              />
+            ))}
+          </group>
+        ))}
+        {[-2.6, 0, 2.6].map((x) => (
+          <group key={x}>
+            <Plate
+              at={[x, 3.92, 0]}
+              size={[2.3, 0.1, 8.7]}
+              color={x === 0 ? '#41474a' : '#333a3f'}
+            />
+            <CuboidCollider args={[1.15, 0.05, 4.35]} position={[x, 3.92, 0]} />
+            <Plate
+              at={[x - 1.1, 3.83, 0]}
+              size={[0.07, 0.12, 8.7]}
+              color="#171c22"
+            />
+            <Plate
+              at={[x + 1.1, 3.83, 0]}
+              size={[0.07, 0.12, 8.7]}
+              color="#171c22"
+            />
+          </group>
+        ))}
+      </group>
     </group>
   )
 }

@@ -19,6 +19,9 @@ import {
 } from './jump'
 import {
   archiveFocusZ,
+  monitorDistance,
+  wallMonitorDistance,
+  WALL_SCREEN_POSES,
   stationView,
   type StationMode,
 } from '../interaction/station'
@@ -170,6 +173,18 @@ export function Player({
     else state.destination.fromArray(stationView(mode).position)
     if (mode === 'computer')
       state.destination.z = archiveFocusZ(size.width / size.height)
+    if (mode === 'communications')
+      state.destination.z =
+        WALL_SCREEN_POSES.communications.position[2] +
+        monitorDistance(size.width / size.height)
+    if (mode === 'personal')
+      state.destination.x =
+        WALL_SCREEN_POSES.personal.position[0] -
+        wallMonitorDistance(size.width / size.height)
+    if (mode === 'crew')
+      state.destination.x =
+        WALL_SCREEN_POSES.crew.position[0] +
+        wallMonitorDistance(size.width / size.height)
     if (transitioning) {
       state.elapsed += delta
       const t = reducedMotion.current ? 1 : Math.min(state.elapsed / 0.65, 1)

@@ -18,18 +18,19 @@ import { Workstation } from './world/Workstation'
 import { Interaction } from './interaction/Interaction'
 import type { StationMode, StationTarget } from './interaction/station'
 import { ArchiveScreen } from './world/ArchiveScreen'
+import { PhysicalTerminal } from './world/PhysicalTerminal'
 import { Loading } from './ui/Loading'
 import { AmbientAudio } from './ui/AmbientAudio'
-import { MissionTablet } from './ui/MissionTablet'
+import { HandheldTablet } from './world/HandheldTablet'
+import { tabletTransition, type TabletMode } from './tablet'
 import { missions, type MissionId } from './missions'
 import { useProtocol } from './useProtocol'
 import { AuxiliarySwitch } from './world/AuxiliarySwitch'
 import { CrewDossier } from './world/CrewDossier'
 import { PLAYER_SPAWN_POSITION, PLAYER_EYE_OFFSET } from './player/jump'
-import { CrewHologram } from './world/CrewHologram'
-import { HologramPanel } from './ui/HologramPanel'
-import { CrewIdentification } from './world/CrewIdentification'
-import { WallTerminal } from './world/WallTerminal'
+import { CrewAccess } from './world/CrewAccess'
+import { CrewIdentity } from './ui/CrewIdentity'
+import { RearWorkstation } from './world/RearWorkstation'
 import { TerminalPanel } from './ui/TerminalPanel'
 import { ContactForm } from '../contact/ContactForm'
 import { PersonalDesktop } from '../workstation/PersonalDesktop'
@@ -37,11 +38,7 @@ import { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
 import { ProjectPhoto } from './world/ProjectPhoto'
 import { PhotoInspection } from './ui/PhotoInspection'
-import {
-  IdentificationPanel,
-  StationAssistant,
-  type AssistantEvent,
-} from './ui/StationAssistant'
+import { StationAssistant, type AssistantEvent } from './ui/StationAssistant'
 
 const Diagnostics = import.meta.env.DEV
   ? lazy(() =>
@@ -72,7 +69,9 @@ export function Game({
 }) {
   const [showMouseHint, setShowMouseHint] = useState(false)
   const coffee = useCoffee(suspended)
-  const [tabletOpen, setTabletOpen] = useState(false)
+  const [tabletMode, setTabletMode] = useState<TabletMode>('lowered')
+  const tabletOpen = tabletMode === 'focused'
+  const tabletRaised = tabletMode !== 'lowered'
   const { state: protocol, dispatch, currentObjective } = useProtocol()
   const { completed } = protocol
   const lightsOn = completed.includes('lighting')
@@ -112,6 +111,7 @@ export function Game({
     if (suspended && document.pointerLockElement) document.exitPointerLock()
   }, [suspended])
   const changeMode = (next: StationMode) => {
+    setTabletMode('lowered')
     setShowMouseHint(false)
     if (next === mode) return
     setIdentity('idle')
@@ -126,29 +126,35 @@ export function Game({
   const openTablet = () => {
     finishMission('tablet')
     setShowMouseHint(false)
-    setTabletOpen(true)
+    setTabletMode('focused')
     setActive(false)
     document.exitPointerLock()
   }
   const resumeWalking = () => {
-    setTabletOpen(false)
+    setTabletMode('lowered')
     setShowMouseHint(false)
     if (mode !== 'walking') changeMode('walking')
     captureRef.current?.()
   }
   useImperativeHandle(archiveRef, () => ({
     openArchive: () => {
-      setTabletOpen(false)
+      setTabletMode('lowered')
       changeMode('computer')
     },
   }))
   const toggleTablet = useEffectEvent(() => {
     if (suspended || !ready || transitioning || mode !== 'walking') return
-    if (tabletOpen) resumeWalking()
-    else openTablet()
+    if (tabletMode === 'lowered') finishMission('tablet')
+    setTabletMode(tabletTransition(tabletMode, 'toggle'))
+    if (tabletOpen) captureRef.current?.()
   })
+  const walkWithTablet = () => {
+    setTabletMode(tabletTransition(tabletMode, 'resume'))
+    setShowMouseHint(false)
+    captureRef.current?.()
+  }
   const pauseStation = () => {
-    setTabletOpen(false)
+    setTabletMode('lowered')
     if (mode !== 'walking') changeMode('walking')
     setShowMouseHint(true)
     if (document.pointerLockElement) document.exitPointerLock()
@@ -171,6 +177,18 @@ export function Game({
       element.closest('input, textarea, select, [contenteditable="true"]')
     )
       return
+    if (
+      event.code === 'KeyR' &&
+      !event.repeat &&
+      ready &&
+      !transitioning &&
+      mode === 'walking' &&
+      tabletRaised
+    ) {
+      event.preventDefault()
+      if (tabletOpen) walkWithTablet()
+      else openTablet()
+    }
     if (
       event.code === 'KeyT' &&
       !event.repeat &&
@@ -216,7 +234,7 @@ export function Game({
           suspended
             ? 'never'
             : tabletOpen ||
-                (mode !== 'walking' && mode !== 'hologram' && !transitioning)
+                (mode !== 'walking' && mode !== 'crew' && !transitioning)
               ? 'demand'
               : 'always'
         }
@@ -269,34 +287,79 @@ export function Game({
             <CrewDossier target={target} />
             <CoffeeMachine state={coffee.state} target={target} />
             <ProjectPhoto />
-            <WallTerminal
-              kind="personal"
-              position={[3.25, 1.65, 4.65]}
-              rotation={Math.PI}
-              target={target}
+            <CrewAccess
+              scanning={mode === 'crew' && identity === 'scanning'}
+              paused={suspended}
+              verified={completed.includes('crew')}
+              onComplete={() => {
+                setIdentity('verified')
+                finishMission('crew')
+              }}
             />
-            <WallTerminal
-              kind="communications"
-              position={[-4.7, 1.65, 1]}
-              rotation={Math.PI / 2}
-              target={target}
-            />
+            <RearWorkstation target={target} />
             <Player
               active={playing}
               mode={mode}
               transitioning={transitioning}
               onRest={() => {
                 setTransitioning(false)
-                if (mode === 'hologram') {
+                if (mode === 'crew') {
                   setIdentity('scanning')
                   setScanSignal((value) => value + 1)
                 }
               }}
             />
           </Physics>
-          <CrewHologram
-            active={mode === 'hologram' && identity === 'verified'}
+          {mode === 'crew' && !transitioning && (
+            <PhysicalTerminal kind="crew" onClose={resumeWalking}>
+              <CrewIdentity verified={identity === 'verified'} />
+            </PhysicalTerminal>
+          )}
+          <HandheldTablet
+            mode={mode === 'walking' ? tabletMode : 'lowered'}
+            state={protocol}
+            currentObjective={currentObjective}
+            onContinue={() => {
+              dispatch({ type: 'continue' })
+              walkWithTablet()
+            }}
+            onSkip={() => {
+              dispatch({ type: 'skip' })
+              setMessage(null)
+              walkWithTablet()
+            }}
+            onReplay={() => {
+              dispatch({ type: 'replay' })
+              walkWithTablet()
+            }}
+            onClose={resumeWalking}
+            onResume={walkWithTablet}
           />
+          {mode === 'communications' && !transitioning && (
+            <PhysicalTerminal
+              kind="communications"
+              onClose={resumeWalking}
+              onAccessiblePortfolio={onAccessiblePortfolio}
+            >
+              <ContactForm
+                onComplete={(outcome) =>
+                  dispatch({ type: 'transmission', outcome })
+                }
+              />
+            </PhysicalTerminal>
+          )}
+          {mode === 'personal' && !transitioning && (
+            <PhysicalTerminal
+              kind="personal"
+              onClose={resumeWalking}
+              onAccessiblePortfolio={onAccessiblePortfolio}
+            >
+              <PersonalDesktop
+                onDossier={() => finishMission('dossier')}
+                onBrewCoffee={() => coffee.dispatch('brew')}
+              />
+            </PhysicalTerminal>
+          )}
           {mode === 'computer' && !transitioning && (
             <ArchiveScreen
               onClose={resumeWalking}
@@ -304,23 +367,12 @@ export function Game({
               onAccessiblePortfolio={onAccessiblePortfolio}
             />
           )}
-          {mode === 'hologram' && identity === 'scanning' && (
-            <CrewIdentification
-              active
-              paused={suspended}
-              onComplete={() => {
-                setIdentity('verified')
-                finishMission('crew')
-                setMessage('identity')
-              }}
-            />
-          )}
           <Interaction
             onBulkhead={() => {
               if (lightsOn) setBulkheadOpen(true)
             }}
             onCoffee={() => coffee.dispatch('interact')}
-            active={playing && !transitioning}
+            active={playing && !transitioning && !tabletRaised}
             mode={mode}
             onTarget={setTarget}
             onMode={changeMode}
@@ -372,33 +424,35 @@ export function Game({
           +
         </div>
       )}
-      {active && !transitioning && target && (
+      {active && !transitioning && !tabletRaised && target && (
         <div className="interaction-hint" role="status">
-          {target === 'bulkhead'
-            ? lightsOn
-              ? 'E · Open bulkhead'
-              : 'Restore auxiliary power first'
-            : target === 'coffee'
-              ? coffee.state.phase === 'brewing'
-                ? 'Coffee brewing…'
-                : coffee.state.phase === 'ready'
-                  ? 'E · Drink coffee'
-                  : 'E · Brew coffee'
-              : target === 'photo'
-                ? 'E · Inspect project photo'
-                : target === 'lighting'
-                  ? lightsOn
-                    ? 'Auxiliary power online'
-                    : 'E · Restore lighting'
-                  : target === 'personal'
-                    ? 'E · Personal Workstation'
-                    : target === 'communications'
-                      ? 'E · Earth Communications'
-                      : target === 'computer'
-                        ? 'E · Use computer'
-                        : target === 'hologram'
-                          ? 'E · Activate crew hologram'
-                          : 'E · Download crew dossier (CV / PDF)'}
+          {target === 'crew'
+            ? 'E · Crew Access'
+            : target === 'bulkhead'
+              ? lightsOn
+                ? 'E · Open bulkhead'
+                : 'Restore auxiliary power first'
+              : target === 'coffee'
+                ? coffee.state.phase === 'brewing'
+                  ? 'Coffee brewing…'
+                  : coffee.state.phase === 'ready'
+                    ? 'E · Drink coffee'
+                    : 'E · Brew coffee'
+                : target === 'photo'
+                  ? 'E · Inspect project photo'
+                  : target === 'lighting'
+                    ? lightsOn
+                      ? 'Auxiliary power online'
+                      : 'E · Restore lighting'
+                    : target === 'personal'
+                      ? 'E · Personal Workstation'
+                      : target === 'communications'
+                        ? 'E · Earth Communications'
+                        : target === 'computer'
+                          ? 'E · Use computer'
+                          : target === 'hologram'
+                            ? 'E · Activate crew hologram'
+                            : 'E · Download crew dossier (CV / PDF)'}
         </div>
       )}
       <EntryMenu
@@ -411,7 +465,7 @@ export function Game({
         ready={ready && !transitioning}
         error={error}
       />
-      {ready && mode === 'walking' && !tabletOpen && !showMouseHint && (
+      {ready && mode === 'walking' && !tabletRaised && !showMouseHint && (
         <button
           className="quick-access-button"
           onClick={pauseStation}
@@ -424,10 +478,10 @@ export function Game({
         coffeeSignal={coffee.state.cups}
         suspended={suspended}
         scanSignal={scanSignal}
-        scanning={identity === 'scanning' && mode === 'hologram'}
+        scanning={identity === 'scanning' && mode === 'crew'}
         hidden={mode !== 'walking' || active || !ready || tabletOpen}
       />
-      {ready && mode === 'walking' && !tabletOpen && (
+      {ready && mode === 'walking' && !tabletRaised && (
         <aside className="mission-hud" aria-label="Recovery objectives">
           <p className="eyebrow">RECOVERY PROTOCOL</p>
           <strong>
@@ -457,67 +511,19 @@ export function Game({
           )}
         </aside>
       )}
-      {tabletOpen && (
-        <MissionTablet
-          state={protocol}
-          currentObjective={currentObjective}
-          onContinue={() => {
-            dispatch({ type: 'continue' })
-            resumeWalking()
-          }}
-          onSkip={() => {
-            dispatch({ type: 'skip' })
-            setMessage(null)
-            resumeWalking()
-          }}
-          onReplay={() => {
-            dispatch({ type: 'replay' })
-            resumeWalking()
-          }}
-          onClose={resumeWalking}
-        />
+      {tabletMode === 'held' && !active && mode === 'walking' && (
+        <button className="quick-access-button" onClick={openTablet}>
+          Interact with tablet · R
+        </button>
       )}
       {!ready && <Loading />}
-      {mode === 'hologram' && !transitioning && (
-        <>
-          <div className="hologram-input-shield" aria-hidden="true" />
-          {identity === 'verified' ? (
-            <HologramPanel
-              onClose={resumeWalking}
-              assistant={
-                message && (
-                  <StationAssistant
-                    event={message}
-                    onDismiss={dismissMessage}
-                  />
-                )
-              }
-            />
-          ) : (
-            <IdentificationPanel onClose={resumeWalking} />
-          )}
-        </>
-      )}
-      {message && ready && !tabletOpen && !suspended && mode === 'walking' && (
-        <StationAssistant event={message} onDismiss={dismissMessage} />
-      )}
-      {mode === 'communications' && !transitioning && (
-        <TerminalPanel title="Earth Communications" onClose={resumeWalking}>
-          <ContactForm
-            onComplete={(outcome) =>
-              dispatch({ type: 'transmission', outcome })
-            }
-          />
-        </TerminalPanel>
-      )}
-      {mode === 'personal' && !transitioning && (
-        <TerminalPanel title="Personal Workstation" onClose={resumeWalking}>
-          <PersonalDesktop
-            onDossier={() => finishMission('dossier')}
-            onBrewCoffee={() => coffee.dispatch('brew')}
-          />
-        </TerminalPanel>
-      )}
+      {message &&
+        ready &&
+        !tabletRaised &&
+        !suspended &&
+        mode === 'walking' && (
+          <StationAssistant event={message} onDismiss={dismissMessage} />
+        )}
       {mode === 'photo' && !transitioning && (
         <TerminalPanel title="Project photo" onClose={resumeWalking}>
           <PhotoInspection />

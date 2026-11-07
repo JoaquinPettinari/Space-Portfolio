@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom, lookAt } from './helpers/game'
+import { enter as capture, enterObservationRoom, lookAt } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 const errors = new WeakMap<Page, string[]>()
 async function snapshot(page: Page): Promise<GameSnapshot> {
@@ -41,13 +43,18 @@ test.afterEach(async ({ page }, info) => {
   expect(errors.get(page)).toEqual([])
 })
 
-test('tablet T and exit actions resume real mouse capture without another click or held-key drift', async ({
+test('tablet focus and exit actions resume real mouse capture without another click or held-key drift', async ({
   page,
 }) => {
   test.setTimeout(120_000)
   await enter(page)
   await page.keyboard.down('w')
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
+  await expectLocked(page, true)
+  await page.keyboard.press('r')
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toBeVisible()
   await expectLocked(page, false)
@@ -71,6 +78,7 @@ test('tablet T and exit actions resume real mouse capture without another click 
     'Replay Protocol',
   ]) {
     await page.keyboard.press('t')
+    await page.keyboard.press('r')
     await expect(tablet).toBeVisible()
     await expectLocked(page, false)
     await tablet.getByRole('button', { name: action, exact: true }).click()
@@ -79,6 +87,12 @@ test('tablet T and exit actions resume real mouse capture without another click 
     await expect(
       page.getByRole('button', { name: 'Click to control the mouse' }),
     ).not.toBeVisible()
+    if (action !== 'Close tablet') {
+      await expect(
+        page.getByRole('region', { name: 'Held mission tablet' }),
+      ).toBeVisible()
+      await page.keyboard.press('t')
+    }
   }
   await page.keyboard.press('Escape')
   await expectLocked(page, false)
@@ -128,26 +142,25 @@ test('computer E and exit button return directly to walking while Escape leaves 
   ).toBeVisible()
 })
 
-test('hologram E closes the interaction and recaptures the real mouse', async ({
+test('Crew Access E closes the interaction and recaptures the real mouse', async ({
   page,
 }) => {
   test.setTimeout(120_000)
-  await enter(page)
-  await lookAt(page, { x: 2.15, y: 1.05, z: 0 })
-  await expect(
-    page.getByText('E · Activate crew hologram', { exact: true }),
-  ).toBeVisible()
+  await capture(page)
+  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   const standing = (await snapshot(page)).cameraPosition
   await page.keyboard.press('e')
-  const hologram = page.getByRole('dialog', { name: 'Joaquín Pettinari' })
-  await expect(hologram).toBeVisible()
+  const identity = page.getByRole('dialog', {
+    name: 'Crew Access',
+    exact: true,
+  })
+  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
   await expectLocked(page, false)
   await page.keyboard.press('e')
-  await expect(hologram).not.toBeVisible()
+  await expect(identity).not.toBeVisible()
   await expectLocked(page, true)
-  await expect(
-    page.getByText('E · Activate crew hologram', { exact: true }),
-  ).toBeVisible()
+  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   expect((await snapshot(page)).cameraPosition.x).toBeCloseTo(standing.x, 1)
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(standing.z, 1)
 })

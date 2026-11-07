@@ -1,3 +1,4 @@
+import { PHOTO_POSITION } from '../interaction/station'
 import { useTexture } from '@react-three/drei'
 import { SRGBColorSpace } from 'three'
 import { projectImages } from '../../data/projectImages'
@@ -9,7 +10,7 @@ export function ProjectPhoto() {
   })
   return (
     <group
-      position={[-4.7, 1.7, -1.7]}
+      position={[...PHOTO_POSITION]}
       rotation={[0, Math.PI / 2, 0]}
       userData={{ interaction: 'photo' }}
     >

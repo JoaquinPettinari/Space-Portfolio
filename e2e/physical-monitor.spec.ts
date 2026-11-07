@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { approach, enterObservationRoom, snapshot } from './helpers/game'
+import { forwardStation, enterObservationRoom, snapshot } from './helpers/game'
 
 const errors = new WeakMap<Page, string[]>()
 
@@ -105,10 +105,10 @@ async function expectPhysicalScreen(page: Page) {
   if (!box) throw new Error('Physical screen has no layout')
   const camera = (await snapshot(page)).cameraPosition
   const projectedWidth =
-    (1.5 / (2 * Math.tan((65 * Math.PI) / 360) * (camera.z + 3.535))) *
+    (1.6 / (2 * Math.tan((65 * Math.PI) / 360) * (camera.z + 3.715))) *
     viewport.height
   expect(Math.abs(box.width - projectedWidth)).toBeLessThan(2)
-  expect(Math.abs(box.height - (box.width * 0.83) / 1.5)).toBeLessThan(2)
+  expect(Math.abs(box.height - (box.width * 0.9) / 1.6)).toBeLessThan(2)
   return dialog
 }
 
@@ -117,7 +117,7 @@ test('approaches the physical Archive with E, reads records, downloads CV and ex
 }) => {
   await ready(page)
   await enterObservationRoom(page)
-  await approach(page, { x: 0, y: 1.55, z: -3.57 }, 'E · Use computer')
+  await forwardStation(page, -1)
   await page.waitForTimeout(200)
   const before = await snapshot(page)
   await page.keyboard.press('e')

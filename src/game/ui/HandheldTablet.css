@@ -1,0 +1,66 @@
+.held-tablet-display,
+.handheld-tablet-interface {
+  width: 800px;
+  height: 500px;
+  background: #081c29;
+  color: #deedf1;
+  overflow: hidden;
+}
+.held-tablet-display {
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.held-tablet-display header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #80ddea;
+  font-size: 19px;
+}
+.held-tablet-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 330px;
+}
+.held-tablet-layout svg {
+  height: 100%;
+  max-width: 100%;
+}
+.held-tablet-display ul {
+  padding: 0;
+  list-style: none;
+  line-height: 1.4;
+}
+.held-tablet-display li {
+  margin-bottom: 13px;
+}
+.held-tablet-display li[data-complete='true'] {
+  color: #839ba8;
+}
+.held-tablet-display footer {
+  font-size: 16px;
+  color: #dfc393;
+}
+.handheld-tablet-interface .mission-tablet {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  padding: 18px;
+  box-shadow: none;
+}
+.handheld-tablet-interface .mission-tablet h1 {
+  font-size: 24px;
+}
+.handheld-tablet-interface .tablet-layout {
+  grid-template-columns: 1fr 1fr;
+}
+.handheld-tablet-interface .mission-tablet button {
+  font-size: 16px;
+}
+.handheld-tablet-interface .mission-tablet > p {
+  font-size: 16px;
+}

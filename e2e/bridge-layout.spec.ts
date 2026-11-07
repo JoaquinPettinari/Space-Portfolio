@@ -1,0 +1,97 @@
+import { expect, test } from '@playwright/test'
+import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
+
+test('bridge circulation, table, faceted hull and jump retain real collision', async ({
+  page,
+}, info) => {
+  const errors: string[] = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text())
+  })
+  await page.goto('/')
+  await expect(
+    page.getByRole('button', { name: 'Mission tablet · T' }),
+  ).toBeVisible({ timeout: 60000 })
+  await enterObservationRoom(page)
+
+  // Centered table stops the capsule; its two side corridors stay connected.
+  await lookAt(page, { x: 0, y: 1.7, z: -4 })
+  await page.keyboard.down('w')
+  await page.waitForTimeout(1300)
+  await page.keyboard.up('w')
+  const blocked = (await snapshot(page)).cameraPosition
+  expect(blocked.z).toBeGreaterThan(2.1)
+  expect(blocked.z).toBeLessThan(2.3)
+  await walkTo(page, 2.4, 3.1)
+  await walkTo(page, 2.4, -1.2)
+  await walkTo(page, -2.4, -1.2)
+  await walkTo(page, -2.4, 2.7)
+  await page.keyboard.press('Space')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.y)
+    .toBeGreaterThan(2)
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.y)
+    .toBeLessThan(1.75)
+
+  await walkTo(page, -2.4, -1.2)
+  await walkTo(page, -4.35, -1.2)
+  await lookAt(page, { x: -6, y: 1.7, z: -1.2 })
+  await page.keyboard.down('w')
+  await page.waitForTimeout(1000)
+  await page.keyboard.up('w')
+  expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-4.75)
+  await walkTo(page, -4.4, -2.2)
+  await lookAt(page, { x: -5.5, y: 1.7, z: -5.5 })
+  await page.keyboard.down('w')
+  await page.waitForTimeout(1800)
+  await page.keyboard.up('w')
+  const bow = (await snapshot(page)).cameraPosition
+  expect(bow.z).toBeLessThan(-3.2)
+  expect(bow.x + bow.z).toBeGreaterThan(-8.65)
+
+  await walkTo(page, -4.3, -1.2)
+  await walkTo(page, -2.4, 3.1)
+  await walkTo(page, 0, 3.8)
+  await walkTo(page, 0, 6.8)
+  expect((await snapshot(page)).pointerLocked).toBe(true)
+  await walkTo(page, 0, 3.5)
+  await lookAt(page, { x: 0, y: 1.7, z: -4 })
+  const samples = await page.evaluate(async () => {
+    const values = []
+    for (let i = 0; i < 90; i++) {
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => resolve()),
+      )
+      const s = window.__GAME_DEBUG__!.snapshot()
+      values.push({
+        frameMs: s.frameMs,
+        drawCalls: s.drawCalls,
+        triangles: s.triangles,
+      })
+    }
+    return values
+  })
+  const sorted = samples.map((s) => s.frameMs).sort((a, b) => a - b)
+  const renderer = await page.locator('canvas').evaluate((canvas) => {
+    const gl = canvas.getContext('webgl2')
+    const debug = gl?.getExtension('WEBGL_debug_renderer_info')
+    return gl && debug ? String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)) : 'unavailable'
+  })
+  const measurement = {
+    viewport: '1280x720',
+    renderer,
+    samples: samples.length,
+    medianFrameMs: sorted[45],
+    p95FrameMs: sorted[85],
+    drawCalls: samples.at(-1)?.drawCalls,
+    triangles: samples.at(-1)?.triangles,
+  }
+  console.log('BRIDGE_MEASUREMENT', JSON.stringify(measurement))
+  await info.attach('bridge-render-measurement', {
+    body: JSON.stringify(measurement),
+    contentType: 'application/json',
+  })
+  expect(errors).toEqual([])
+})

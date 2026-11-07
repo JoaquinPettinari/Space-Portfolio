@@ -58,8 +58,8 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
       />
       <pointLight
         ref={sideSpill}
-        position={[-4.5, 2.2, -1.5]}
-        color="#6b9ce3"
+        position={[-3.8, 3.2, 1.2]}
+        color="#ffd2a0"
         intensity={emergency ? 2.8 : 10}
         distance={9}
         decay={2}

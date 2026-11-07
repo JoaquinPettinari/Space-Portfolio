@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
+
 const errors = new WeakMap<Page, string[]>()
 
 test.beforeEach(({ page }) => {
@@ -121,10 +123,6 @@ test('reads the complete mobile portfolio through the unavailable-WebGL fallback
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true)
-  await page.screenshot({
-    path: 'artifacts/quick-portfolio-mobile.png',
-    fullPage: true,
-  })
   await page.keyboard.press('Escape')
   await expect(page.getByText(/3D mode is unavailable/)).toBeVisible()
   await expect(
@@ -216,6 +214,7 @@ test('opens the accessible HTML alternative from pause and returns without losin
     .toBeLessThan(6)
   await page.keyboard.up('w')
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await expect(
     page.getByRole('dialog', { name: 'Mission tablet' }),
   ).toBeVisible()
@@ -277,6 +276,7 @@ test('offers quick access only as a secondary pause route, not an entry choice',
   await page.keyboard.press('Escape')
   await expect(quick).toBeVisible()
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toBeVisible()
   await expect(quick).not.toBeVisible()
@@ -320,7 +320,6 @@ test.describe('mobile touch pause route', () => {
     expect(subtitleBounds!.y).toBeGreaterThanOrEqual(
       missionBounds!.y + missionBounds!.height,
     )
-    await page.screenshot({ path: 'artifacts/station-mobile-start.png' })
     await pause.tap()
     await expect(quick).toBeVisible()
     await page
@@ -338,10 +337,6 @@ test.describe('mobile touch pause route', () => {
       ),
     ).toBe(true)
     expect(await page.evaluate(() => !!document.pointerLockElement)).toBe(false)
-    await page.screenshot({
-      path: 'artifacts/quick-portfolio-touch.png',
-      fullPage: true,
-    })
     await page
       .getByRole('button', { name: 'Back to station', exact: true })
       .tap()

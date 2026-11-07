@@ -14,6 +14,11 @@ export async function lookAt(
   target: { x: number; y: number; z: number },
 ) {
   await page.mouse.move(640, 360)
+  // Read the camera only after Chromium has delivered the raw mouse event.
+  // Software-rendered CI may be slower than Playwright's input dispatch.
+  await page.evaluate(() => new Promise<void>(resolve => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+  }))
   const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
   const yaw = Math.atan2(
     2 * (q.x * q.z + q.y * q.w),
@@ -36,6 +41,9 @@ export async function lookAt(
     360 - (desiredPitch - pitch) / 0.002,
     { steps: 4 },
   )
+  await page.evaluate(() => new Promise<void>(resolve => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+  }))
 }
 
 export async function enter(page: Page) {
@@ -45,6 +53,15 @@ export async function enter(page: Page) {
   if (!box) throw new Error('Canvas not ready')
   await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  // Browser capture precedes React's active-control commit. Do not send held
+  // movement keys until the gameplay controls are visibly active.
+  await expect(page.locator('.crosshair')).toBeVisible()
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+      }),
+  )
 }
 
 /** Complete the real airlock entry, then stop on the observation-room floor. */
@@ -65,7 +82,8 @@ export async function enterObservationRoom(page: Page) {
   }
   await lookAt(page, { x: 0, y: 1.65, z: 4.86 })
   const bulkhead = page.getByText('E · Open bulkhead', { exact: true })
-  if (!hadPower) await expect(bulkhead).toBeVisible()
+  if (!hadPower)
+    await approach(page, { x: 0, y: 1.65, z: 4.86 }, 'E · Open bulkhead')
   if (await bulkhead.isVisible()) {
     await page.keyboard.press('e')
     await expect(bulkhead).not.toBeVisible()
@@ -104,6 +122,37 @@ export async function approach(
   // Re-aim from the approach position, not the initial distant viewing angle.
   await lookAt(page, target)
   await expect(page.getByText(hint, { exact: true })).toBeVisible()
+}
+
+/** Walk to a free floor waypoint with actual WASD; never teleport the capsule. */
+export async function walkTo(page: Page, x: number, z: number) {
+  const pose = (await snapshot(page)).cameraPosition
+  await lookAt(page, { x, y: pose.y, z })
+  await page.keyboard.down('w')
+  try {
+    await expect
+      .poll(
+        async () => {
+          const p = (await snapshot(page)).cameraPosition
+          return Math.hypot(p.x - x, p.z - z)
+        },
+        { intervals: [25], timeout: 15000 },
+      )
+      .toBeLessThan(0.3)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await page.waitForTimeout(100)
+}
+
+export async function forwardStation(page: Page, side: -1 | 1) {
+  await walkTo(page, side * 2.4, 3.1)
+  await walkTo(page, side * 2.4, -1.2)
+  await approach(
+    page,
+    { x: side * 2.4, y: 1.65, z: -3.715 },
+    side === -1 ? 'E · Use computer' : 'E · Earth Communications',
+  )
 }
 
 export async function protocol(

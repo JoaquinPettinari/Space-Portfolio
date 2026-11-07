@@ -3,7 +3,12 @@ import { defineConfig, devices } from '@playwright/test'
 /** Manual visual review only: this suite never records screenshots or videos. */
 export default defineConfig({
   testDir: './e2e',
-  testMatch: 'physical-monitor.spec.ts',
+  testMatch: [
+    'physical-monitor.spec.ts',
+    'next-phase.spec.ts',
+    'bridge-layout.spec.ts',
+    'extras.spec.ts',
+  ],
   fullyParallel: false,
   workers: 1,
   retries: 0,

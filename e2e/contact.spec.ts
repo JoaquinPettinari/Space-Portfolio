@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom } from './helpers/game'
+import { enterObservationRoom, forwardStation } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 const errors = new WeakMap<Page, string[]>()
 async function snapshot(page: Page): Promise<GameSnapshot> {
@@ -8,31 +10,6 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
     if (!window.__GAME_DEBUG__) throw new Error('Diagnostics not ready')
     return window.__GAME_DEBUG__.snapshot()
   })
-}
-async function lookAt(page: Page, target: { x: number; y: number; z: number }) {
-  await page.mouse.move(640, 360)
-  const { cameraPosition: position, cameraRotation: q } = await snapshot(page)
-  const yaw = Math.atan2(
-    2 * (q.x * q.z + q.y * q.w),
-    1 - 2 * (q.x * q.x + q.y * q.y),
-  )
-  const pitch = Math.asin(
-    Math.max(-1, Math.min(1, 2 * (q.w * q.x - q.y * q.z))),
-  )
-  const desiredYaw = Math.atan2(position.x - target.x, position.z - target.z)
-  const desiredPitch = Math.atan2(
-    target.y - position.y,
-    Math.hypot(target.x - position.x, target.z - position.z),
-  )
-  const yawDelta = Math.atan2(
-    Math.sin(desiredYaw - yaw),
-    Math.cos(desiredYaw - yaw),
-  )
-  await page.mouse.move(
-    640 - yawDelta / 0.002,
-    360 - (desiredPitch - pitch) / 0.002,
-    { steps: 16 },
-  )
 }
 test.beforeEach(({ page }) => {
   const collected: string[] = []
@@ -81,12 +58,7 @@ test('walks to independent communications, skips without sending and resumes con
     body: JSON.stringify(samples),
     contentType: 'application/json',
   })
-  await lookAt(page, { x: -4.7, y: 1.65, z: 1 })
-  await page.keyboard.down('w')
-  await expect(
-    page.getByText('E · Earth Communications', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.up('w')
+  await forwardStation(page, 1)
   await page.keyboard.press('e')
   const terminal = page.getByRole('dialog', {
     name: 'Earth Communications',
@@ -107,7 +79,6 @@ test('walks to independent communications, skips without sending and resumes con
       /Messages welcome in Spanish, English, Italian and Norwegian/,
     ),
   ).toBeInViewport()
-  await page.screenshot({ path: 'artifacts/earth-communications.png' })
   await terminal.getByRole('button', { name: 'Skip', exact: true }).click()
   await expect(terminal.getByRole('status')).toContainText(
     'No message was sent',

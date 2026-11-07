@@ -1,5 +1,5 @@
-import { Html } from '@react-three/drei'
-import { useThree } from '@react-three/fiber'
+import { SCREEN_POSITION } from '../interaction/station'
+import { PhysicalScreen } from './PhysicalScreen'
 import { Computer } from '../ui/Computer'
 import type { MissionId } from '../missions'
 
@@ -14,20 +14,13 @@ export function ArchiveScreen({
   onMissionComplete: (id: MissionId) => void
   onAccessiblePortfolio?: () => void
 }) {
-  const invalidate = useThree((state) => state.invalidate)
   return (
-    <Html
-      transform
-      position={[0, 1.55, -3.535]}
-      distanceFactor={2 / 3}
-      zIndexRange={[4, 3]}
-    >
+    <PhysicalScreen position={SCREEN_POSITION} distanceFactor={2 / 3}>
       <Computer
         onClose={onClose}
         onMissionComplete={onMissionComplete}
         onAccessiblePortfolio={onAccessiblePortfolio}
-        onDisplayReady={invalidate}
       />
-    </Html>
+    </PhysicalScreen>
   )
 }

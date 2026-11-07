@@ -1,14 +1,19 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
+import './Computer.css'
 
 /** Shared DOM shell for station terminals; game owns Escape and capture. */
 export function TerminalPanel({
   title,
   onClose,
   children,
+  physical = false,
+  onAccessiblePortfolio,
 }: {
   title: string
   onClose: () => void
   children: ReactNode
+  physical?: boolean
+  onAccessiblePortfolio?: () => void
 }) {
   const id = useId()
   const root = useRef<HTMLElement>(null)
@@ -19,14 +24,16 @@ export function TerminalPanel({
   return (
     <section
       ref={root}
-      className="computer"
+      className={
+        physical ? 'computer physical-archive physical-terminal' : 'computer'
+      }
       role="dialog"
       aria-modal="true"
       aria-labelledby={id}
       onKeyDown={(event) => {
         if (event.key !== 'Tab') return
         const items = root.current?.querySelectorAll<HTMLElement>(
-          'button:not(:disabled), a[href], input:not(:disabled):not([type="hidden"]), textarea:not(:disabled), select:not(:disabled), [tabindex="0"]',
+          ':is(button:not(:disabled), a[href], input:not(:disabled):not([type="hidden"]), textarea:not(:disabled), select:not(:disabled), [tabindex="0"])',
         )
         const available = Array.from(items ?? []).filter(
           (item) =>
@@ -53,6 +60,11 @@ export function TerminalPanel({
           <div className="desktop-content portfolio-content">{children}</div>
           <footer className="desktop-footer">
             <span>E to resume · ESC to pause</span>
+            {onAccessiblePortfolio && (
+              <button onClick={onAccessiblePortfolio}>
+                Accessible HTML portfolio
+              </button>
+            )}
             <button ref={close} data-capture-pointer onClick={onClose}>
               Leave terminal
             </button>
