@@ -18,7 +18,7 @@ export const missions: { id: ObjectiveId; title: string; action: string }[] = [
     id: 'crew',
     title: 'Verify crew identity',
     action:
-      'Entry airlock → Aim at the Crew Access terminal beside the entrance and press E once. Your full record remains available in the Central Archive.',
+      'Inside the bridge → Aim at the Crew Access terminal beside the entrance and press E once. Your full record remains available in the Central Archive.',
   },
   {
     id: 'archives',

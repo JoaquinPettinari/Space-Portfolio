@@ -1,9 +1,8 @@
 import { useEffect, useEffectEvent, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Raycaster, Vector2 } from 'three'
+import { Raycaster, Vector2, type Intersection } from 'three'
 import {
   INTERACTION_DISTANCE,
-  HOLOGRAM_DISTANCE,
   interactionMode,
   type StationMode,
   type StationTarget,
@@ -32,21 +31,23 @@ export function Interaction({
   const target = useRef<StationTarget>(null)
   const ray = useRef(new Raycaster())
   const center = useRef(new Vector2())
+  const intersections = useRef<Intersection[]>([])
 
   useFrame(() => {
     let next: StationTarget = null
     if (active && mode === 'walking') {
-      ray.current.far = HOLOGRAM_DISTANCE
+      ray.current.far = INTERACTION_DISTANCE
       camera.updateMatrixWorld()
       ray.current.setFromCamera(center.current, camera)
       // The nearest surface wins, so furniture blocks interaction through it.
-      const hit = ray.current.intersectObjects(scene.children, true)[0]
+      intersections.current.length = 0
+      ray.current.intersectObjects(scene.children, true, intersections.current)
+      const hit = intersections.current[0]
       let object = hit?.object
       while (object && !object.userData.interaction && object.parent)
         object = object.parent
       const kind: unknown = object?.userData.interaction
-      if (kind === 'hologram') next = kind
-      else if (
+      if (
         hit &&
         hit.distance <= INTERACTION_DISTANCE &&
         (kind === 'computer' ||

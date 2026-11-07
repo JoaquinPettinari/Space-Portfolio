@@ -3,6 +3,7 @@ import {
   enter as capture,
   enterObservationRoom,
   forwardStation,
+  approachCrew,
   walkTo,
 } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
@@ -596,7 +597,7 @@ test('Space jumps once while held, lands and remains disabled in the focused tab
   expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
 })
 
-test('restores lighting with E and persists optional guidance through skip, resume and replay', async ({
+test('restores lighting with E and keeps optional guidance within a session and resets it on refresh', async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -635,10 +636,6 @@ test('restores lighting with E and persists optional guidance through skip, resu
   await tablet
     .getByRole('button', { name: 'Skip Tutorial', exact: true })
     .click()
-  await page.reload()
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
   await focusTablet(page)
   await expect(tablet).toContainText('2 / 6 objectives complete')
   await expect(
@@ -674,19 +671,20 @@ test('restores lighting with E and persists optional guidance through skip, resu
   const bounds = await tablet.boundingBox()
   expect(bounds).not.toBeNull()
   expect(bounds!.width).toBeLessThanOrEqual(600)
+  await page.reload()
+  await expect(
+    page.getByRole('button', { name: 'Mission tablet · T' }),
+  ).toBeVisible({ timeout: 45000 })
+  await expect(hud).toContainText('0 / 6 complete')
+  await expect(hud).toContainText('Restore interior lighting')
+  expect((await snapshot(page)).session.protocol.guidance).toBe('pending')
 })
 
 test('cancels Crew Access before completion and retries with reduced motion', async ({
   page,
 }) => {
   test.setTimeout(120_000)
-  await capture(page)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
-  await expect(
-    page.getByText('E · Restore lighting', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   const standing = await snapshot(page)
   await page.keyboard.press('e')
@@ -711,10 +709,12 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await tablet.getByRole('button', { name: 'Close tablet' }).click()
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await capture(page)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await lookAt(page, { x: 2.05, y: 1.65, z: 4.65 })
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await page.keyboard.press('e')
-  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
+  await expect(
+    identity.locator('.crew-identity').getByRole('status'),
+  ).toContainText('ACCESS GRANTED')
   await expect(identity.getByRole('heading', { name: /Master/ })).toBeVisible()
   const leave = identity.getByRole('button', { name: 'Leave terminal' })
   await expect(leave).toBeFocused()

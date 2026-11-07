@@ -4,6 +4,7 @@ export type CoffeeState = {
   achievement: boolean
 }
 export type CoffeeEvent = 'interact' | 'brew' | 'finish'
+/** Legacy key used only to discard progress saved by older versions. */
 export const COFFEE_STORAGE_KEY = 'cruz-del-sur.coffee'
 export function coffeeReducer(
   state: CoffeeState,

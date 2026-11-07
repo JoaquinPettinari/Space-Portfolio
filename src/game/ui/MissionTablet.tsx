@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from 'react'
 import { missions, type ObjectiveId } from '../missions'
 import type { ProtocolState } from '../protocol'
 import { DeckMap } from './DeckMap'
@@ -13,6 +19,9 @@ export function MissionTablet({
   handheld = false,
   onResume,
   onDisplayReady,
+  onOpenArchive,
+  onAccessiblePortfolio,
+  subtitle,
 }: {
   state: ProtocolState
   currentObjective: (typeof missions)[number] | null
@@ -23,6 +32,9 @@ export function MissionTablet({
   handheld?: boolean
   onResume?: () => void
   onDisplayReady?: () => void
+  onOpenArchive?: () => void
+  onAccessiblePortfolio?: () => void
+  subtitle?: ReactNode
 }) {
   const { completed, guidance } = state
   const [selected, setSelected] = useState<ObjectiveId>(
@@ -73,6 +85,12 @@ export function MissionTablet({
           professional information, visit the Central Archive at any time.
         </p>
         <div className="protocol-actions" aria-label="Protocol settings">
+          {onOpenArchive && (
+            <button onClick={onOpenArchive}>Quick Portfolio Access</button>
+          )}
+          {onAccessiblePortfolio && (
+            <button onClick={onAccessiblePortfolio}>Read without 3D</button>
+          )}
           {onResume && <button onClick={onResume}>Walk with tablet · R</button>}
           <button onClick={onContinue}>
             {guidance === 'skipped' ? 'Resume Protocol' : 'Continue Protocol'}
@@ -126,6 +144,7 @@ export function MissionTablet({
             </small>
           </div>
         </div>
+        {subtitle}
         <footer>
           {completed.length === missions.length
             ? 'Recovery protocol complete. Enjoy your stay.'

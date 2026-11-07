@@ -1,16 +1,19 @@
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import {
   getCurrentObjective,
   initialProtocol,
-  loadProtocol,
-  parseProtocol,
   PROTOCOL_STORAGE_KEY,
   protocolReducer,
-  saveProtocol,
   type ProtocolState,
 } from './protocol'
 import { useProtocol } from './useProtocol'
+
+afterEach(() => {
+  vi.restoreAllMocks()
+  localStorage.removeItem(PROTOCOL_STORAGE_KEY)
+  localStorage.removeItem('cruz-del-sur.test-preference')
+})
 
 describe('recovery protocol', () => {
   it.each(['accepted', 'skipped'] as const)(
@@ -24,7 +27,6 @@ describe('recovery protocol', () => {
       expect(protocolReducer(state, { type: 'transmission', outcome })).toBe(
         state,
       )
-      expect(parseProtocol(JSON.stringify(state))).toEqual(state)
     },
   )
   it('guides the first pending objective while preserving out-of-order activities', () => {
@@ -92,71 +94,67 @@ describe('recovery protocol', () => {
   })
 })
 
-describe('versioned persistence', () => {
-  it.each([
-    null,
-    '',
-    '{',
-    'null',
-    '[]',
-    '42',
-    '{"version":0,"completed":["uplink"],"guidance":"active"}',
-    '{"version":2,"completed":[],"guidance":"active"}',
-    '{"version":1,"completed":["unknown"],"guidance":"active"}',
-    '{"version":1,"completed":[],"guidance":"invalid"}',
-  ])('safely resets missing, malformed or unsupported data: %s', (raw) => {
-    expect(parseProtocol(raw)).toEqual(initialProtocol())
-  })
-  it('restores preferences and deduplicates known objectives', () => {
-    expect(
-      parseProtocol(
-        JSON.stringify({
-          version: 1,
-          guidance: 'skipped',
-          completed: ['crew', 'crew', 'lighting'],
-        }),
-      ),
-    ).toEqual({
-      version: 1,
-      guidance: 'skipped',
-      completed: ['crew', 'lighting'],
-    })
-  })
-  it('roundtrips state and tolerates storage access or quota errors', () => {
-    const state = protocolReducer(initialProtocol(), { type: 'skip' })
-    const storage = {
-      getItem: vi.fn(() => JSON.stringify(state)),
-      setItem: vi.fn(),
-    }
-    expect(loadProtocol(storage)).toEqual(state)
-    expect(saveProtocol(state, storage)).toBe(true)
-    expect(storage.setItem).toHaveBeenCalledWith(
+describe('session-only progress', () => {
+  it('ignores and removes legacy progress without deleting unrelated preferences', () => {
+    localStorage.setItem(
       PROTOCOL_STORAGE_KEY,
-      JSON.stringify(state),
+      JSON.stringify({
+        version: 1,
+        completed: [
+          'lighting',
+          'tablet',
+          'crew',
+          'archives',
+          'uplink',
+          'dossier',
+        ],
+        guidance: 'skipped',
+      }),
     )
-    const unavailable = {
-      getItem: () => {
-        throw new Error('blocked')
-      },
-      setItem: () => {
-        throw new Error('quota')
-      },
-    }
-    expect(loadProtocol(unavailable)).toEqual(initialProtocol())
-    expect(saveProtocol(state, unavailable)).toBe(false)
+    localStorage.setItem('cruz-del-sur.test-preference', 'keep')
+    const writes = vi.spyOn(Storage.prototype, 'setItem')
+    const { result } = renderHook(() => useProtocol())
+    expect(result.current.state).toEqual(initialProtocol())
+    expect(localStorage.getItem(PROTOCOL_STORAGE_KEY)).toBeNull()
+    expect(localStorage.getItem('cruz-del-sur.test-preference')).toBe('keep')
+    act(() => result.current.dispatch({ type: 'activity', id: 'lighting' }))
+    expect(writes).not.toHaveBeenCalled()
   })
-  it('persists hook actions and restores them on remount', () => {
-    localStorage.removeItem(PROTOCOL_STORAGE_KEY)
+  it('resets every completed objective and tutorial choice on a fresh mount', () => {
     const first = renderHook(() => useProtocol())
     act(() => {
-      first.result.current.dispatch({ type: 'activity', id: 'lighting' })
+      for (const id of [
+        'lighting',
+        'tablet',
+        'crew',
+        'archives',
+        'dossier',
+      ] as const) {
+        first.result.current.dispatch({ type: 'activity', id })
+      }
+      first.result.current.dispatch({
+        type: 'transmission',
+        outcome: 'accepted',
+      })
       first.result.current.dispatch({ type: 'skip' })
     })
+    expect(first.result.current.state.completed).toHaveLength(6)
+    expect(first.result.current.state.guidance).toBe('skipped')
     first.unmount()
     const second = renderHook(() => useProtocol())
-    expect(second.result.current.state.completed).toEqual(['lighting'])
-    expect(second.result.current.state.guidance).toBe('skipped')
-    second.unmount()
-    localStorage.removeItem(PROTOCOL_STORAGE_KEY)
+    expect(second.result.current.state).toEqual(initialProtocol())
+    expect(second.result.current.currentObjective?.id).toBe('lighting')
+    expect(localStorage.getItem(PROTOCOL_STORAGE_KEY)).toBeNull()
+  })
+  it('works when removal of legacy browser storage is denied', () => {
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    const { result } = renderHook(() => useProtocol())
+    expect(result.current.state).toEqual(initialProtocol())
+    act(() =>
+      result.current.dispatch({ type: 'transmission', outcome: 'skipped' }),
+    )
+    expect(result.current.state.completed).toEqual(['uplink'])
   })
 })

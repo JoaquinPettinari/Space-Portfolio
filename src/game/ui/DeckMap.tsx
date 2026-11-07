@@ -3,13 +3,14 @@ import {
   COMMUNICATIONS_POSITION,
   PERSONAL_POSITION,
   CREW_ACCESS_POSITION,
+  POWER_POSITION,
 } from '../interaction/station'
 import type { ObjectiveId } from '../missions'
 
 /** Current room coordinates, not the proposed bridge or the reference game's map.
  * 30 SVG units per metre; proa is up (-Z). Update locations when geometry moves. */
 const locations: Record<ObjectiveId, readonly [number, number]> = {
-  lighting: [-1.4, 6.1],
+  lighting: [POWER_POSITION[0], POWER_POSITION[2]],
   tablet: [0, 7],
   crew: [CREW_ACCESS_POSITION[0], CREW_ACCESS_POSITION[2]],
   archives: [SCREEN_POSITION[0], SCREEN_POSITION[2]],
@@ -25,7 +26,7 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
     <svg
       viewBox="0 0 400 450"
       role="img"
-      aria-label="CRUZ DEL SUR current deck map: forward port Archive, forward starboard Communications, central table, rear Personal Workstation and Crew Access in the entry airlock."
+      aria-label="CRUZ DEL SUR current deck map: forward port Archive, forward starboard Communications, central table, rear Personal Workstation, Crew Access beside the bridge entrance and auxiliary power in the airlock."
     >
       <path
         d="M80 35 H320 L350 65 V320 L335 335 H65 L50 320 V65 Z"
@@ -61,7 +62,13 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
       <rect x={x(4)} y={z(1.2)} width={24} height={54} fill="#3eacc4" />
       <rect x={x(-4.15)} y={z(4.77)} width={54} height={4} fill="#3eacc4" />
       <rect x={x(-1.4)} y={z(5.79)} width={7} height={18.6} fill="#ffd384" />
-      <rect x={x(-1.52)} y={z(6.65)} width={8} height={39} fill="#73d5ac" />
+      <rect
+        x={x(CREW_ACCESS_POSITION[0] - 0.65)}
+        y={z(CREW_ACCESS_POSITION[2] - 0.12)}
+        width={39}
+        height={7.2}
+        fill="#73d5ac"
+      />
       <circle
         cx={x(point[0])}
         cy={z(point[1])}
@@ -86,6 +93,9 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         </text>
         <text x="290" y="286">
           PERSONAL
+        </text>
+        <text x={x(CREW_ACCESS_POSITION[0])} y="315">
+          CREW
         </text>
         <text x="200" y="421">
           AIRLOCK

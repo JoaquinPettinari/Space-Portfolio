@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useEffectEvent, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
   CapsuleCollider,
@@ -40,6 +40,7 @@ export function Player({
   const body = useRef<RapierRigidBody>(null)
   const anchor = useRef<Group>(null)
   const camera = useThree((state) => state.camera)
+  const canvas = useThree((state) => state.gl.domElement)
   const size = useThree((state) => state.size)
   const keys = useRef(new Set<string>())
   const jump = useRef(new JumpInput())
@@ -71,20 +72,41 @@ export function Player({
     move: new Vector3(),
   })
 
+  const down = useEffectEvent((event: KeyboardEvent) => {
+    // Native capture can precede React's active commit. Preserve that first
+    // key press; physics still waits for active before applying its velocity.
+    if (
+      document.pointerLockElement !== canvas ||
+      mode !== 'walking' ||
+      transitioning
+    )
+      return
+    if (event.code === 'Space') {
+      event.preventDefault()
+      jump.current.press(event.repeat)
+    } else if (MOVEMENT_KEYS.has(event.code)) {
+      event.preventDefault()
+      keys.current.add(event.code)
+    }
+  })
+
+  useEffect(() => {
+    if (mode !== 'walking' || transitioning) {
+      keys.current.clear()
+      jump.current.clear()
+    }
+  }, [mode, transitioning])
+
   useEffect(() => {
     const clear = () => {
       keys.current.clear()
       jump.current.clear()
     }
-    const down = (event: KeyboardEvent) => {
-      if (!active || mode !== 'walking' || transitioning) return
-      if (event.code === 'Space') {
-        event.preventDefault()
-        jump.current.press(event.repeat)
-      } else if (MOVEMENT_KEYS.has(event.code)) {
-        event.preventDefault()
-        keys.current.add(event.code)
-      }
+    const changedLock = () => {
+      if (document.pointerLockElement !== canvas) clear()
+    }
+    const changedVisibility = () => {
+      if (document.hidden) clear()
     }
     const up = (event: KeyboardEvent) => {
       keys.current.delete(event.code)
@@ -93,17 +115,17 @@ export function Player({
     window.addEventListener('keydown', down)
     window.addEventListener('keyup', up)
     window.addEventListener('blur', clear)
-    document.addEventListener('visibilitychange', clear)
-    document.addEventListener('pointerlockchange', clear)
+    document.addEventListener('visibilitychange', changedVisibility)
+    document.addEventListener('pointerlockchange', changedLock)
     return () => {
       clear()
       window.removeEventListener('keydown', down)
       window.removeEventListener('keyup', up)
       window.removeEventListener('blur', clear)
-      document.removeEventListener('visibilitychange', clear)
-      document.removeEventListener('pointerlockchange', clear)
+      document.removeEventListener('visibilitychange', changedVisibility)
+      document.removeEventListener('pointerlockchange', changedLock)
     }
-  }, [active, mode, transitioning])
+  }, [canvas])
 
   useBeforePhysicsStep(() => {
     if (!body.current) return
@@ -182,8 +204,8 @@ export function Player({
         WALL_SCREEN_POSES.personal.position[0] -
         wallMonitorDistance(size.width / size.height)
     if (mode === 'crew')
-      state.destination.x =
-        WALL_SCREEN_POSES.crew.position[0] +
+      state.destination.z =
+        WALL_SCREEN_POSES.crew.position[2] -
         wallMonitorDistance(size.width / size.height)
     if (transitioning) {
       state.elapsed += delta

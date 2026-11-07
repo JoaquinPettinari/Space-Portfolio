@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import { Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { Group } from 'three'
@@ -22,6 +22,9 @@ export function HandheldTablet({
   onReplay,
   onClose,
   onResume,
+  onOpenArchive,
+  onAccessiblePortfolio,
+  subtitle,
 }: {
   mode: TabletMode
   state: ProtocolState
@@ -31,6 +34,9 @@ export function HandheldTablet({
   onReplay: () => void
   onClose: () => void
   onResume: () => void
+  onOpenArchive: () => void
+  onAccessiblePortfolio?: () => void
+  subtitle?: ReactNode
 }) {
   const root = useRef<Group>(null)
   const prop = useRef<Group>(null)
@@ -138,6 +144,9 @@ export function HandheldTablet({
               onReplay={onReplay}
               onClose={onClose}
               onResume={onResume}
+              onOpenArchive={onOpenArchive}
+              onAccessiblePortfolio={onAccessiblePortfolio}
+              subtitle={subtitle}
               handheld
               onDisplayReady={invalidate}
             />

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enter as capture, enterObservationRoom, lookAt } from './helpers/game'
+import { enterObservationRoom, approachCrew } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -146,8 +146,7 @@ test('Crew Access E closes the interaction and recaptures the real mouse', async
   page,
 }) => {
   test.setTimeout(120_000)
-  await capture(page)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   const standing = (await snapshot(page)).cameraPosition
   await page.keyboard.press('e')
@@ -155,7 +154,9 @@ test('Crew Access E closes the interaction and recaptures the real mouse', async
     name: 'Crew Access',
     exact: true,
   })
-  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
+  await expect(
+    identity.locator('.crew-identity').getByRole('status'),
+  ).toContainText('ACCESS GRANTED')
   await expectLocked(page, false)
   await page.keyboard.press('e')
   await expect(identity).not.toBeVisible()

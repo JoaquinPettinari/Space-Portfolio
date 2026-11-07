@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
 import { enter, lookAt, protocol, snapshot } from './helpers/game'
 
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
+
 const errors = new WeakMap<Page, string[]>()
 test.beforeEach(async ({ page }) => {
   const collected: string[] = []
@@ -30,9 +32,8 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
   expect(start.cameraPosition.z).toBeCloseTo(7, 1)
   expect(start.pointerLocked).toBe(false)
   expect((await protocol(page)).completed).toEqual([])
-  await page.screenshot({ path: 'artifacts/airlock-arrival.png' })
   await enter(page)
-  await lookAt(page, { x: 0, y: 1.65, z: 4.86 })
+  await lookAt(page, { x: 0, y: 1.65, z: 5.12 })
   await expect(
     page.getByText('Restore auxiliary power first', { exact: true }),
   ).toBeVisible()
@@ -43,7 +44,7 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
     .toBeLessThan(5.6)
   await page.waitForTimeout(300)
   await page.keyboard.up('w')
-  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(5.25)
+  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(5.44)
   expect((await protocol(page)).completed).toEqual([])
   await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
   await expect(
@@ -53,7 +54,7 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
   await expect
     .poll(async () => (await protocol(page)).completed)
     .toEqual(['lighting'])
-  await lookAt(page, { x: 0, y: 1.65, z: 4.86 })
+  await lookAt(page, { x: 0, y: 1.65, z: 5.12 })
   await expect(
     page.getByText('E · Open bulkhead', { exact: true }),
   ).toBeVisible()
@@ -61,6 +62,9 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
   await expect(
     page.getByText('E · Open bulkhead', { exact: true }),
   ).not.toBeVisible()
+  await expect
+    .poll(async () => (await snapshot(page)).session.bulkheadPhase)
+    .toBe('open')
   const heights: number[] = []
   const cross = async (z: number, direction: 'forward' | 'back') => {
     await lookAt(page, { x: 0, y: (await snapshot(page)).cameraPosition.y, z })
@@ -81,15 +85,16 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
     }
   }
   await cross(0, 'forward')
-  await page.screenshot({ path: 'artifacts/airlock-room-reveal.png' })
   await cross(8, 'back')
   await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await page
     .getByRole('button', { name: 'Replay Protocol', exact: true })
     .click()
   await expect
     .poll(async () => (await protocol(page)).completed)
     .toEqual(['lighting'])
+  await page.keyboard.press('t')
   await cross(0, 'forward')
   expect(Math.min(...heights)).toBeGreaterThan(1.55)
   expect(Math.max(...heights)).toBeLessThan(1.85)
@@ -101,8 +106,7 @@ test('fresh arrival restores power, opens bulkhead and crosses the seam both way
   await expect(
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 45_000 })
-  await enter(page)
-  // Persisted power restores an open route; no second interaction is necessary.
-  await cross(0, 'forward')
-  expect((await protocol(page)).completed).toEqual(['lighting'])
+  expect((await protocol(page)).completed).toEqual([])
+  expect((await snapshot(page)).session.bulkheadOpen).toBe(false)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(7, 1)
 })

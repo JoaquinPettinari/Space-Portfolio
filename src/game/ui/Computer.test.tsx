@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { expect, it, vi } from 'vitest'
 import { Computer } from './Computer'
+import { StationAssistant } from './StationAssistant'
 
 it('opens the Central Archive and completes archives from the service record', () => {
   const complete = vi.fn()
@@ -35,19 +36,18 @@ it('keeps keyboard focus inside the archive and provides an explicit exit', () =
   expect(exit).toHaveBeenCalledOnce()
 })
 
-it('offers the shared accessible portfolio without completing an activity', () => {
-  const accessible = vi.fn()
-  const complete = vi.fn()
-  render(
+it('keeps subtitles and their dismissal inside the modal and restores focus on expiry', () => {
+  const { rerender } = render(
     <Computer
       onClose={() => {}}
-      onAccessiblePortfolio={accessible}
-      onMissionComplete={complete}
+      subtitle={<StationAssistant event="archives" onDismiss={() => {}} />}
     />,
   )
-  fireEvent.click(
-    screen.getByRole('button', { name: 'Accessible HTML portfolio' }),
-  )
-  expect(accessible).toHaveBeenCalledOnce()
-  expect(complete).not.toHaveBeenCalled()
+  const dialog = within(screen.getByRole('dialog', { name: 'Central Archive' }))
+  expect(
+    dialog.getByRole('status', { name: 'Station assistant' }),
+  ).toBeVisible()
+  dialog.getByRole('button', { name: 'Dismiss message' }).focus()
+  rerender(<Computer onClose={() => {}} />)
+  expect(dialog.getByRole('button', { name: 'Exit computer' })).toHaveFocus()
 })

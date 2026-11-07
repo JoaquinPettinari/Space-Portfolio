@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { enter as enterGame } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -186,7 +187,7 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
   })
 }
 
-test('opens the accessible HTML alternative from pause and returns without losing position, progress or control safety', async ({
+test('opens the accessible HTML alternative from the tablet and returns without losing position, progress or control safety', async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -195,36 +196,31 @@ test('opens the accessible HTML alternative from pause and returns without losin
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 45_000 })
   const canvas = page.locator('canvas')
-  const bounds = await canvas.boundingBox()
-  if (!bounds) throw new Error('Canvas not ready')
-  const enter = async () => {
-    await canvas.click({
-      position: { x: bounds.width / 2, y: bounds.height / 2 },
-    })
-    await expect
-      .poll(async () => (await snapshot(page)).pointerLocked)
-      .toBe(true)
-  }
-  await enter()
+  await enterGame(page)
+  const beforeMovement = await snapshot(page)
   await page.keyboard.down('w')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z, {
-      intervals: [30, 50],
-    })
-    .toBeLessThan(6)
-  await page.keyboard.up('w')
+  try {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.z, {
+        intervals: [30, 50],
+      })
+      .toBeLessThan(6)
+  } finally {
+    await page.keyboard.up('w')
+    const afterMovement = await snapshot(page)
+    console.log(
+      'portfolio-native-movement',
+      JSON.stringify({ before: beforeMovement, after: afterMovement }),
+    )
+  }
   await page.keyboard.press('t')
   await page.keyboard.press('r')
   await expect(
     page.getByRole('dialog', { name: 'Mission tablet' }),
   ).toBeVisible()
-  await page.keyboard.press('Escape')
-  await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
-  ).toBeVisible()
   const before = await snapshot(page)
   await page
-    .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
+    .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
   await expect(
     page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
@@ -242,13 +238,16 @@ test('opens the accessible HTML alternative from pause and returns without losin
     .getByRole('button', { name: 'Back to station', exact: true })
     .click()
   await expect(canvas).toBeVisible()
+  const restoredTablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  await expect(restoredTablet).toContainText('1 / 6 objectives complete')
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  expect((await snapshot(page)).cameraPosition).toEqual(before.cameraPosition)
+  await restoredTablet.getByRole('button', { name: 'Close tablet' }).click()
+  await expect(restoredTablet).not.toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toContainText('1 / 6 complete')
-  expect((await snapshot(page)).pointerLocked).toBe(false)
-  expect((await snapshot(page)).cameraPosition).toEqual(before.cameraPosition)
-  await page.waitForTimeout(1200)
-  await enter()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.waitForTimeout(200)
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(
     before.cameraPosition.z,
@@ -257,7 +256,7 @@ test('opens the accessible HTML alternative from pause and returns without losin
   await page.keyboard.up('w')
 })
 
-test('offers quick access only as a secondary pause route, not an entry choice', async ({
+test('offers quick access only inside the focused tablet, not as an entry or pause choice', async ({
   page,
 }) => {
   await page.goto('/')
@@ -274,19 +273,21 @@ test('offers quick access only as a secondary pause route, not an entry choice',
   })
   await expect(quick).not.toBeVisible()
   await page.keyboard.press('Escape')
-  await expect(quick).toBeVisible()
+  await expect(quick).not.toBeVisible()
   await page.keyboard.press('t')
   await page.keyboard.press('r')
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toBeVisible()
-  await expect(quick).not.toBeVisible()
+  await expect(
+    tablet.getByRole('button', { name: 'Quick Portfolio Access', exact: true }),
+  ).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(tablet).not.toBeVisible()
-  await expect(quick).toBeVisible()
+  await expect(quick).not.toBeVisible()
   expect((await snapshot(page)).pointerLocked).toBe(false)
 })
 
-test.describe('mobile touch pause route', () => {
+test.describe('mobile touch tablet route', () => {
   test.use({
     viewport: { width: 390, height: 844 },
     hasTouch: true,
@@ -298,11 +299,11 @@ test.describe('mobile touch pause route', () => {
     test.setTimeout(120_000)
     await page.goto('/')
     await expect(page.locator('canvas')).toBeVisible()
-    const pause = page.getByRole('button', {
-      name: 'Pause station',
+    const tabletButton = page.getByRole('button', {
+      name: 'Mission tablet · T',
       exact: true,
     })
-    await expect(pause).toBeVisible({ timeout: 45_000 })
+    await expect(tabletButton).toBeVisible({ timeout: 45_000 })
     const quick = page.getByRole('button', {
       name: 'Quick Portfolio Access',
       exact: true,
@@ -320,10 +321,10 @@ test.describe('mobile touch pause route', () => {
     expect(subtitleBounds!.y).toBeGreaterThanOrEqual(
       missionBounds!.y + missionBounds!.height,
     )
-    await pause.tap()
+    await tabletButton.tap()
     await expect(quick).toBeVisible()
     await page
-      .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
+      .getByRole('button', { name: 'Read without 3D', exact: true })
       .tap()
     await expect(
       page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom, lookAt } from './helpers/game'
+import { enterObservationRoom, approachCrew } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -48,10 +48,10 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   ).toHaveAttribute('data-complete', 'true')
   await expect(tablet).toContainText('1 / 6 objectives complete')
   await tablet.getByRole('button', { name: /Verify crew identity/ }).hover()
-  await expect(tablet.locator('.map-objective')).toContainText('Entry airlock')
+  await expect(tablet.locator('.map-objective')).toContainText('Crew Access')
   await tablet.getByRole('button', { name: 'Close tablet' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   const standing = await snapshot(page)
   await page.keyboard.press('e')
@@ -60,7 +60,9 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
     exact: true,
   })
   await expect(identity).toBeVisible()
-  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
+  await expect(
+    identity.locator('.crew-identity').getByRole('status'),
+  ).toContainText('ACCESS GRANTED')
   await expect(
     identity.getByRole('heading', { name: 'Joaquín Pettinari' }),
   ).toBeVisible()

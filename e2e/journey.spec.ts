@@ -3,16 +3,14 @@ import {
   approach,
   forwardStation,
   walkTo,
-  snapshot,
-  enter as capture,
+  approachCrew,
   enterObservationRoom,
-  lookAt,
   protocol,
 } from './helpers/game'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
-test('completes the recovery journey with contact skipped and the real CV, then restores progress', async ({
+test('completes the recovery journey with contact skipped and the real CV, then starts a new session on refresh', async ({
   page,
 }) => {
   test.setTimeout(240_000)
@@ -33,19 +31,16 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   await expect(
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 45_000 })
-  await capture(page)
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.y)
-    .toBeLessThan(1.73)
-  await walkTo(page, 0, 7.7)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await page.keyboard.press('e')
   const identity = page.getByRole('dialog', {
     name: 'Crew Access',
     exact: true,
   })
-  await expect(identity.getByRole('status')).toContainText('ACCESS GRANTED')
+  await expect(
+    identity.locator('.crew-identity').getByRole('status'),
+  ).toContainText('ACCESS GRANTED')
   await page.keyboard.press('e')
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await enterObservationRoom(page)
@@ -91,9 +86,9 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   await communications
     .getByRole('button', { name: 'Skip', exact: true })
     .click()
-  await expect(communications.getByRole('status')).toContainText(
-    'No message was sent',
-  )
+  await expect(
+    communications.getByRole('form').getByRole('status'),
+  ).toContainText('No message was sent')
   await page.keyboard.press('e')
   await expect(
     page.getByText('E · Earth Communications', { exact: true }),
@@ -135,16 +130,23 @@ test('completes the recovery journey with contact skipped and the real CV, then 
       'dossier',
     ]),
   )
+  const subtitle = page.getByRole('status', { name: 'Station assistant' })
+  await expect(subtitle).toHaveAttribute('data-dialogue-event', 'complete', {
+    timeout: 30000,
+  })
+  await expect(subtitle).not.toBeVisible({ timeout: 15000 })
   await page.keyboard.press('t')
   await page.keyboard.press('r')
   await expect(
     page.getByRole('dialog', { name: 'Mission tablet' }),
   ).toContainText('Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.')
+  await page.waitForTimeout(500)
+  await expect(subtitle).not.toBeVisible()
   await page.reload()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('6 / 6 complete', { timeout: 45_000 })
-  expect((await protocol(page)).completed).toEqual(completed)
+  ).toContainText('0 / 6 complete', { timeout: 45_000 })
+  expect((await protocol(page)).completed).toEqual([])
   expect(transmissions).toBe(0)
   expect(errors).toEqual([])
 })

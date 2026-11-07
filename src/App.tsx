@@ -23,9 +23,7 @@ function supportsWebGL() {
 export default function App() {
   const [view, setView] = useState<View>('station')
   const [available] = useState(supportsWebGL)
-  const [paused, setPaused] = useState(false)
   const [stationFailed, setStationFailed] = useState(false)
-  const archiveRef = useRef<{ openArchive: () => void }>(null)
   const quickButton = useRef<HTMLButtonElement>(null)
   const portfolioTitle = useRef<HTMLHeadingElement>(null)
   const restoreFocus = useRef(false)
@@ -66,21 +64,18 @@ export default function App() {
           <StationBoundary
             onUnavailable={() => {
               setStationFailed(true)
-              setPaused(true)
             }}
           >
             <Suspense fallback={<Loading />}>
               <Game
                 suspended={view !== 'station'}
-                onPauseChange={setPaused}
-                archiveRef={archiveRef}
                 onAccessiblePortfolio={openPortfolio}
               />
             </Suspense>
           </StationBoundary>
         </div>
       )}
-      {view === 'station' && (!available || paused) && (
+      {view === 'station' && (!available || stationFailed) && (
         <>
           {!available && (
             <p className="fallback" role="status">
@@ -91,21 +86,10 @@ export default function App() {
           <button
             className="quick-access-button"
             ref={quickButton}
-            onClick={() => {
-              if (!available || stationFailed) openPortfolio()
-              else archiveRef.current?.openArchive()
-            }}
+            onClick={openPortfolio}
           >
             Quick Portfolio Access
           </button>
-          {available && !stationFailed && (
-            <button
-              className="accessible-portfolio-button"
-              onClick={openPortfolio}
-            >
-              Accessible HTML portfolio
-            </button>
-          )}
         </>
       )}
       {view === 'portfolio' && (

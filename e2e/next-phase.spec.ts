@@ -1,12 +1,14 @@
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
+  approachCrew,
   forwardStation,
   enter,
   enterObservationRoom,
   lookAt,
   protocol,
   snapshot,
+  walkTo,
 } from './helpers/game'
 
 const browserErrors = new WeakMap<Page, string[]>()
@@ -31,34 +33,46 @@ test.beforeEach(async ({ page }) => {
   await expect(
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 60000 })
+  expect((await snapshot(page)).powerSwitchCount).toBe(1)
 })
 test.afterEach(({ page }) => {
   expect(browserErrors.get(page)).toEqual([])
 })
 
-test('Crew Access scans once into a compact physical identity and persists real crew progress', async ({
+test('the single auxiliary switch restores power once without toggling it off', async ({
   page,
 }) => {
   await enter(page)
+  await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
+  await expect(
+    page.getByText('E · Restore lighting', { exact: true }),
+  ).toBeVisible()
+  await page.keyboard.press('e')
   await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.y)
-    .toBeLessThan(1.73)
-  await page.keyboard.down('s')
-  try {
-    await expect
-      .poll(async () => (await snapshot(page)).cameraPosition.z)
-      .toBeGreaterThan(7.55)
-  } finally {
-    await page.keyboard.up('s')
-  }
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+    .poll(async () => (await protocol(page)).completed)
+    .toEqual(['lighting'])
+  await expect(
+    page.getByText('Auxiliary power online', { exact: true }),
+  ).toBeVisible()
+  await page.keyboard.press('e')
+  expect((await protocol(page)).completed).toEqual(['lighting'])
+  expect((await snapshot(page)).powerSwitchCount).toBe(1)
+  expect((await snapshot(page)).cabinLighting.ambientIntensity).toBe(0.65)
+})
+
+test('Crew Access scans once into a compact physical identity and resets crew progress on refresh', async ({
+  page,
+}) => {
+  await approachCrew(page)
   await expect(
     page.getByText('E · Crew Access', { exact: true }),
     JSON.stringify(await snapshot(page)),
   ).toBeVisible()
   await page.keyboard.press('e')
   const dialog = page.getByRole('dialog', { name: 'Crew Access' })
-  await expect(dialog.getByRole('status')).toContainText('ACCESS GRANTED')
+  await expect(
+    dialog.locator('.crew-identity').getByRole('status'),
+  ).toContainText('ACCESS GRANTED')
   await expect(
     dialog.getByRole('heading', { name: 'Joaquín Pettinari' }),
   ).toBeVisible()
@@ -71,31 +85,22 @@ test('Crew Access scans once into a compact physical identity and persists real 
     await pane.evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
   ).toBe(true)
   expect((await protocol(page)).completed).toContain('crew')
+  await expect(
+    page.getByRole('status', { name: 'Station assistant' }),
+  ).toHaveAttribute('data-dialogue-event', 'identity', { timeout: 30000 })
   await dialog.getByRole('button', { name: 'Leave terminal' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 60000 })
-  expect((await protocol(page)).completed).toContain('crew')
+  expect((await protocol(page)).completed).toEqual([])
 })
 
 test('cancelled Crew Access does not authenticate and the table no longer authenticates', async ({
   page,
 }) => {
-  await enter(page)
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.y)
-    .toBeLessThan(1.73)
-  await page.keyboard.down('s')
-  try {
-    await expect
-      .poll(async () => (await snapshot(page)).cameraPosition.z)
-      .toBeGreaterThan(7.55)
-  } finally {
-    await page.keyboard.up('s')
-  }
-  await lookAt(page, { x: -1.4, y: 1.65, z: 7.3 })
+  await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await page.keyboard.press('e')
   await expect(page.getByText('Reading crew card…')).toBeVisible()
@@ -133,8 +138,16 @@ test('physical Communications preserves Skip, validation and accepted retry', as
   await expect(dialog).toHaveClass(/physical/)
   const form = dialog.getByRole('form')
   await expect(form).toContainText('Norwegian')
+  await expect(
+    page.getByRole('status', { name: 'Station assistant' }),
+  ).toHaveAttribute('data-dialogue-event', 'communications', { timeout: 30000 })
   await form.getByRole('button', { name: 'Skip', exact: true }).click()
   expect(sends).toBe(0)
+  await expect(
+    page.getByRole('status', { name: 'Station assistant' }),
+  ).toHaveAttribute('data-dialogue-event', 'transmissionSkipped', {
+    timeout: 30000,
+  })
   await form
     .getByRole('textbox', { name: 'Name', exact: true })
     .fill('Test Visitor')
@@ -152,6 +165,11 @@ test('physical Communications preserves Skip, validation and accepted retry', as
   await form.getByRole('button', { name: 'Send Transmission' }).click()
   await expect(form.getByRole('status')).toContainText('accepted')
   expect(sends).toBe(2)
+  await expect(
+    page.getByRole('status', { name: 'Station assistant' }),
+  ).toHaveAttribute('data-dialogue-event', 'transmissionAccepted', {
+    timeout: 30000,
+  })
   await dialog.getByRole('button', { name: 'Leave terminal' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
 })
@@ -172,6 +190,9 @@ test('physical Personal Workstation supports keyboard apps and the real CV', asy
   const download = page.waitForEvent('download')
   await dialog.getByRole('link', { name: /Download CV/ }).click()
   expect(await (await download).failure()).toBeNull()
+  await expect(
+    page.getByRole('status', { name: 'Station assistant' }),
+  ).toHaveAttribute('data-dialogue-event', 'dossier', { timeout: 30000 })
   await page.keyboard.press('Escape')
   await dialog
     .getByRole('button', { name: 'Command Terminal', exact: true })
@@ -186,6 +207,12 @@ test('held tablet keeps movement and real mouse capture, focus pauses and Skip r
   page,
 }) => {
   await enterObservationRoom(page)
+  await walkTo(page, -2.4, 3.1)
+  await lookAt(page, {
+    x: -2.4,
+    y: (await snapshot(page)).cameraPosition.y,
+    z: -4,
+  })
   await page.keyboard.press('t')
   const held = page.getByRole('region', { name: 'Held mission tablet' })
   await expect(held).toBeVisible()

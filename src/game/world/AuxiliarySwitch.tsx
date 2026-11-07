@@ -1,11 +1,11 @@
-import type { StationTarget } from '../interaction/station'
+import { POWER_POSITION, type StationTarget } from '../interaction/station'
 
 /** Wall-mounted power control; the existing raycaster handles its interaction. */
 export function AuxiliarySwitch({
   restored,
   target,
-  position = [1.65, 1.65, 4.65],
-  rotation = Math.PI,
+  position = [...POWER_POSITION],
+  rotation = Math.PI / 2,
 }: {
   restored: boolean
   target?: StationTarget

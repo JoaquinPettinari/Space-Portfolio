@@ -7,13 +7,13 @@ import { WALL_SCREEN_POSES } from '../interaction/station'
 export function PhysicalTerminal({
   kind,
   onClose,
-  onAccessiblePortfolio,
   children,
+  subtitle,
 }: {
   kind: 'communications' | 'personal' | 'crew'
   onClose: () => void
-  onAccessiblePortfolio?: () => void
   children: ReactNode
+  subtitle?: ReactNode
 }) {
   const pose = WALL_SCREEN_POSES[kind]
   return (
@@ -35,7 +35,7 @@ export function PhysicalTerminal({
                 : 'Crew Access'
           }
           onClose={onClose}
-          onAccessiblePortfolio={onAccessiblePortfolio}
+          subtitle={subtitle}
         >
           {children}
         </TerminalPanel>

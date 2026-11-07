@@ -7,13 +7,13 @@ export function TerminalPanel({
   onClose,
   children,
   physical = false,
-  onAccessiblePortfolio,
+  subtitle,
 }: {
   title: string
   onClose: () => void
   children: ReactNode
   physical?: boolean
-  onAccessiblePortfolio?: () => void
+  subtitle?: ReactNode
 }) {
   const id = useId()
   const root = useRef<HTMLElement>(null)
@@ -58,13 +58,9 @@ export function TerminalPanel({
             <h1 id={id}>{title}</h1>
           </header>
           <div className="desktop-content portfolio-content">{children}</div>
+          {subtitle}
           <footer className="desktop-footer">
             <span>E to resume · ESC to pause</span>
-            {onAccessiblePortfolio && (
-              <button onClick={onAccessiblePortfolio}>
-                Accessible HTML portfolio
-              </button>
-            )}
             <button ref={close} data-capture-pointer onClick={onClose}>
               Leave terminal
             </button>

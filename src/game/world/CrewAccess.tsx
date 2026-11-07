@@ -8,7 +8,10 @@ import {
   IDENTIFICATION_DURATION,
 } from './identification'
 
-import { CREW_ACCESS_POSITION } from '../interaction/station'
+import {
+  CREW_ACCESS_POSITION,
+  CREW_ACCESS_ROTATION,
+} from '../interaction/station'
 const ignoreRaycast = () => {}
 
 /** Reader and animation share this terminal's local coordinate system. */
@@ -24,9 +27,17 @@ export function CrewAccess({
   onComplete: () => void
 }) {
   return (
-    <group position={[...CREW_ACCESS_POSITION]} rotation={[0, Math.PI / 2, 0]}>
+    <group
+      position={[...CREW_ACCESS_POSITION]}
+      rotation={[0, CREW_ACCESS_ROTATION, 0]}
+    >
       <RigidBody type="fixed" colliders={false}>
         <CuboidCollider args={[0.65, 0.55, 0.12]} />
+        <CuboidCollider args={[0.25, 0.25, 0.09]} position={[0, 0, -0.21]} />
+        <mesh position={[0, 0, -0.21]}>
+          <boxGeometry args={[0.5, 0.5, 0.18]} />
+          <meshStandardMaterial color="#293239" />
+        </mesh>
         <group userData={{ interaction: 'crew' }}>
           <mesh>
             <boxGeometry args={[1.3, 1.1, 0.24]} />
@@ -75,7 +86,7 @@ function ReaderGesture({
     if (!hand.current || complete.current || paused || document.hidden) return
     elapsed.current = advanceIdentification(
       elapsed.current,
-      Math.min(delta, 0.05),
+      delta,
       false,
       reduced.current,
     )

@@ -115,3 +115,34 @@ it('focuses the close button, wraps Tab at dialog boundaries and supports closin
   fireEvent.click(close)
   expect(onClose).toHaveBeenCalledOnce()
 })
+
+it('offers physical and HTML portfolio access without requiring any mission', () => {
+  const archive = vi.fn()
+  const accessible = vi.fn()
+  const complete = vi.fn()
+  const state: ProtocolState = {
+    version: 1,
+    completed: [],
+    guidance: 'pending',
+  }
+  render(
+    <MissionTablet
+      state={state}
+      currentObjective={getCurrentObjective(state)}
+      onContinue={complete}
+      onSkip={complete}
+      onReplay={complete}
+      onClose={() => {}}
+      onOpenArchive={archive}
+      onAccessiblePortfolio={accessible}
+    />,
+  )
+  fireEvent.click(
+    screen.getByRole('button', { name: 'Quick Portfolio Access' }),
+  )
+  expect(archive).toHaveBeenCalledOnce()
+  fireEvent.click(screen.getByRole('button', { name: 'Read without 3D' }))
+  expect(accessible).toHaveBeenCalledOnce()
+  expect(complete).not.toHaveBeenCalled()
+  expect(screen.getByText('0 / 6 objectives complete')).toBeVisible()
+})

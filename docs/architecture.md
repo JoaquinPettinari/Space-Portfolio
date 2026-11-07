@@ -1,6 +1,12 @@
 # Arquitectura
 
-## Estado vigente — noviembre de 2026
+## Revisión vigente de responsabilidades
+
+La revisión actual se registra en `core-interaction-progress.md` y sustituye las descripciones históricas inferiores conforme se valida cada fase. El usuario se ocupa del estilo de las interfaces; este trabajo se limita a arquitectura y comportamiento. `Game` compone `GameWorld` y `GameHud`; `useStationControls` concentra modos, T/R/E/Escape y ciclo de Pointer Lock. El reducer del protocolo conserva las reglas de objetivos. El modo antiguo `hologram` ya no participa en los controles. El puente de fase4 anterior está implementado; su plano ya fue aprobado. No se deben interpretar los párrafos históricos como nuevas instrucciones de producto.
+
+La sesión de gameplay ahora se reinicia al cargar: protocolo, café, puerta y verificación no se persisten. `SlidingBulkhead` comparte cuerpos cinemáticos entre hojas y colisiones. `dialogue`/`useDialogue` separan texto, cola por eventos y temporización. Quick Portfolio Access y la alternativa HTML se encuentran en la tablet; el fallback sin WebGL/error permanece independiente en `App`. Detalles y verificaciones en `core-interaction-progress.md`.
+
+## Registro histórico — versiones previas de noviembre de 2026
 
 El prototipo de monitor físico del Archive se describe en `physical-monitor-prototype.md`. `ArchiveScreen` monta el mismo `Computer`/`PortfolioContent` mediante Drei Html transform sobre la pantalla existente, sin overlay opaco a pantalla completa. Un invalidate al montar el DOM asegura su primera transformación en renderizado bajo demanda. Quick Portfolio Access dentro del juego enfoca ese mismo monitor; Accessible HTML portfolio conserva la ruta DOM y el fallback sin WebGL. El plano futuro en `bridge-layout-proposal.md` sigue pendiente de aprobación; Communications, Personal, identificación y mesa aún conservan sus implementaciones anteriores.
 

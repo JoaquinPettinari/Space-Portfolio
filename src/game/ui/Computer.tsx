@@ -1,4 +1,4 @@
-import { useEffect, useRef, type KeyboardEvent } from 'react'
+import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react'
 import { PortfolioContent } from '../../portfolio/PortfolioContent'
 import type { MissionId } from '../missions'
 import './Computer.css'
@@ -6,13 +6,13 @@ import './Computer.css'
 export function Computer({
   onClose,
   onMissionComplete,
-  onAccessiblePortfolio,
   onDisplayReady,
+  subtitle,
 }: {
   onClose: () => void
   onMissionComplete?: (id: MissionId) => void
-  onAccessiblePortfolio?: () => void
   onDisplayReady?: () => void
+  subtitle?: ReactNode
 }) {
   const close = useRef<HTMLButtonElement>(null)
   const dialog = useRef<HTMLElement>(null)
@@ -56,13 +56,9 @@ export function Computer({
             <h1 id="computer-title">Central Archive</h1>
           </header>
           <PortfolioContent onActivity={onMissionComplete} />
+          {subtitle}
           <footer className="desktop-footer">
             <span>E · Return / ESC · Pause</span>
-            {onAccessiblePortfolio && (
-              <button onClick={onAccessiblePortfolio}>
-                Accessible HTML portfolio
-              </button>
-            )}
             <button ref={close} data-capture-pointer onClick={onClose}>
               Exit computer
             </button>

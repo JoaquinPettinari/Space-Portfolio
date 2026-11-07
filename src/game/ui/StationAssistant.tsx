@@ -1,16 +1,6 @@
-import { useEffect, useRef } from 'react'
-
-const stationMessages = {
-  arrival:
-    'Welcome aboard CRUZ DEL SUR. Interior lighting is offline. Activate the auxiliary switch on your left inside the airlock.',
-  restored:
-    'Interior lighting online. Press E at the bulkhead to enter the observation room. Explore freely. To skip the tutorial, visit the main computer for all professional records.',
-  identity:
-    'Identity verified. Welcome aboard, Engineer. Your personnel record is available.',
-  archives:
-    'Expedition archive reviewed. All records remain available at the main computer.',
-} as const
-export type AssistantEvent = keyof typeof stationMessages
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import { dialogueMessages, type AssistantEvent } from '../dialogue'
+export type { AssistantEvent } from '../dialogue'
 
 export function StationAssistant({
   event,
@@ -19,15 +9,30 @@ export function StationAssistant({
   event: AssistantEvent
   onDismiss: () => void
 }) {
+  const dismiss = useRef<HTMLButtonElement>(null)
+  useLayoutEffect(() => {
+    const button = dismiss.current
+    return () => {
+      // Expiry must not strand keyboard focus when its button disappears.
+      if (button && document.activeElement === button) {
+        const dialog = button.closest('[role="dialog"]')
+        const destination = dialog?.querySelector<HTMLElement>(
+          '[data-capture-pointer], header button',
+        )
+        destination?.focus({ preventScroll: true })
+      }
+    }
+  }, [])
   return (
     <aside
       className="station-assistant"
       aria-label="Station assistant"
       role="status"
+      data-dialogue-event={event}
     >
       <p className="eyebrow">CDS-01 / STATION ASSISTANT</p>
-      <p>{stationMessages[event]}</p>
-      <button onClick={onDismiss} aria-label="Dismiss message">
+      <p>{dialogueMessages[event]}</p>
+      <button ref={dismiss} onClick={onDismiss} aria-label="Dismiss message">
         Dismiss
       </button>
     </aside>

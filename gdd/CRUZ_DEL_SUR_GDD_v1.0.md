@@ -7,6 +7,10 @@
 
 ## Approved direction update — 2026-11-07
 
+### Latest architecture and interaction brief
+
+The owner now handles React presentation, spacing, typography, HUD/tablet/computer styling. Engineering work preserves those interfaces and focuses on architecture and 3D behavior. The approved sequence is behavior-preserving refactor, fresh session state (no gameplay persistence), one auxiliary switch inside the airlock, Crew Access on the former interior-switch side of the entry, two-leaf sliding bulkhead, and timed event-driven subtitles. Keep T/R tablet modes. Consolidate normal Quick Portfolio Access in the tablet while preserving a no-WebGL/error HTML fallback. No new tactical features, minigames, assets or general visual redesign. Older persistence/instant-door descriptions below are historical and superseded. Implementation gates are recorded in `../docs/core-interaction-progress.md`.
+
 The owner has now approved the detailed bridge plan and authorized phase4 geometry. Its earlier approval-pending statements are historical. Implement the faceted bow, continuous two-station console, central table, rear service stations and industrial ceiling while preserving all existing interactions. Crew Access remains in the airlock. Tactical-table behavior is still a separate phase5 feature. See `../docs/phase-4-bridge.md` for implementation and validation evidence.
 
 The owner's latest direction supersedes the earlier layout descriptions below: industrial retrofuturistic bridge, graphite structure/off-white panels, amber practical lights and restrained cyan accents, faceted panoramic bow and a continuous forward console (Central Archive left, Earth Communications right). Preserve FPS circulation and exterior views. Detailed layout is a proposal in `../docs/bridge-layout-proposal.md`, not an approved hull rebuild.

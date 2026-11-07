@@ -247,8 +247,8 @@ export function PersonalDesktop({
               </p>
               <p>
                 Escape releases the mouse. Quick Portfolio Access is available
-                from the pause menu, with all professional information and no
-                gameplay requirements.
+                inside the mission tablet (T, then R), with all professional
+                information and no gameplay requirements.
               </p>
               <p>
                 Sound is optional. Use the station sound control while the

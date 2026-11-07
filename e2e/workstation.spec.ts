@@ -117,13 +117,7 @@ test('keyboard desktop opens optional apps and downloads the real dossier withou
   expect(pdf.subarray(0, 5).toString()).toBe('%PDF-')
   expect(pdf.length).toBeGreaterThan(1000)
   await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          JSON.parse(localStorage.getItem('cruz-del-sur.protocol') ?? '{}')
-            .completed,
-      ),
-    )
+    .poll(async () => (await snapshot(page)).session.protocol.completed)
     .toEqual(['lighting', 'dossier'])
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()
@@ -151,21 +145,15 @@ test('single-click desktop allows explicitly skipping the dossier without downlo
     .getByRole('button', { name: 'Crew Dossier.pdf', exact: true })
     .click()
   await desktop.getByRole('button', { name: 'Skip dossier objective' }).click()
-  await expect(desktop.getByRole('status')).toContainText(
-    'Dossier objective skipped',
-  )
+  await expect(
+    desktop.getByRole('status', { name: '', exact: true }),
+  ).toContainText('Dossier objective skipped')
   await expect(
     desktop.getByRole('link', { name: 'Download CV (PDF)' }),
   ).toBeVisible()
   expect(downloads).toBe(0)
   await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          JSON.parse(localStorage.getItem('cruz-del-sur.protocol') ?? '{}')
-            .completed,
-      ),
-    )
+    .poll(async () => (await snapshot(page)).session.protocol.completed)
     .toEqual(['lighting', 'dossier'])
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()

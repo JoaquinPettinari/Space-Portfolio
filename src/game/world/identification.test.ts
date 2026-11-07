@@ -6,7 +6,7 @@ import {
 } from './identification'
 
 it('advances by elapsed seconds independent of frame rate and clamps completion', () => {
-  for (const fps of [30, 60, 144]) {
+  for (const fps of [5, 30, 60, 144]) {
     let elapsed = 0
     for (let frame = 0; frame < fps * 2; frame++)
       elapsed = advanceIdentification(elapsed, 1 / fps, false, false)

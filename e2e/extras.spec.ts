@@ -53,10 +53,8 @@ test('coffee and image inspection remain available with guidance skipped', async
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect
-    .poll(() =>
-      page.evaluate(() => localStorage.getItem('cruz-del-sur.coffee')),
-    )
-    .toBe('1')
+    .poll(async () => (await snapshot(page)).session.coffee.achievement)
+    .toBe(true)
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   expect(await protocol(page)).toEqual(before)
   await approach(
@@ -73,9 +71,13 @@ test('coffee and image inspection remain available with guidance skipped', async
     }),
   ).toBeVisible()
   await photo.getByRole('button', { name: 'Zoom in' }).click()
-  await expect(photo.getByRole('status')).toHaveText('Magnification: 2×')
+  await expect(photo.getByRole('status', { name: '', exact: true })).toHaveText(
+    'Magnification: 2×',
+  )
   await photo.getByRole('button', { name: 'Fit image' }).click()
-  await expect(photo.getByRole('status')).toHaveText('Magnification: 1×')
+  await expect(photo.getByRole('status', { name: '', exact: true })).toHaveText(
+    'Magnification: 1×',
+  )
   await page.keyboard.press('Escape')
   await expect(photo).not.toBeVisible()
   await expect
@@ -129,9 +131,7 @@ test('fictional command input preserves E and T and brews through the shared dis
   await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Drink coffee')
   await page.keyboard.press('e')
   await expect
-    .poll(() =>
-      page.evaluate(() => localStorage.getItem('cruz-del-sur.coffee')),
-    )
-    .toBe('1')
+    .poll(async () => (await snapshot(page)).session.coffee.achievement)
+    .toBe(true)
   expect(await protocol(page)).toEqual(before)
 })

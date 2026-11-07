@@ -2,6 +2,12 @@ import { expect, test } from '@playwright/test'
 import type {} from '../src/game/debug/GameDiagnostics'
 import { readSecurityHeaders } from '../server/securityHeaders'
 
+// Full software-rendered entry, two monitor/tablet transitions and CSP checks.
+// Individual assertions retain their own bounded timeouts.
+test.setTimeout(90_000)
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
+
 test('starts directly in the production station and keeps portfolio access secondary', async ({
   page,
 }) => {
@@ -49,6 +55,9 @@ test('starts directly in the production station and keeps portfolio access secon
   await expect
     .poll(() => page.evaluate(() => !!document.pointerLockElement))
     .toBe(false)
+  await expect(quick).not.toBeVisible()
+  await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await expect(quick).toBeVisible()
   await quick.click()
   await expect(
@@ -59,8 +68,14 @@ test('starts directly in the production station and keeps portfolio access secon
   ).toBeVisible()
   await expect(page.locator('.physical-archive')).toBeVisible()
   await expect(page.locator('canvas')).toBeVisible()
+  await page.getByRole('button', { name: 'Exit computer' }).click()
+  await expect(
+    page.getByRole('button', { name: 'Mission tablet · T' }),
+  ).toBeEnabled()
+  await page.keyboard.press('t')
+  await page.keyboard.press('r')
   await page
-    .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
+    .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
   await expect(page.locator('canvas')).not.toBeVisible()
   await page

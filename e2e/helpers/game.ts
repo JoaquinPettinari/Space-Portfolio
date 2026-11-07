@@ -87,14 +87,13 @@ export async function enterObservationRoom(page: Page) {
       .poll(async () => (await protocol(page)).completed)
       .toContain('lighting')
   }
-  await lookAt(page, { x: 0, y: 1.65, z: 4.86 })
-  const bulkhead = page.getByText('E · Open bulkhead', { exact: true })
-  if (!hadPower)
-    await approach(page, { x: 0, y: 1.65, z: 4.86 }, 'E · Open bulkhead')
-  if (await bulkhead.isVisible()) {
+  if ((await snapshot(page)).session.bulkheadPhase === 'closed') {
+    await approach(page, { x: 0, y: 1.65, z: 5.12 }, 'E · Open bulkhead')
     await page.keyboard.press('e')
-    await expect(bulkhead).not.toBeVisible()
   }
+  await expect
+    .poll(async () => (await snapshot(page)).session.bulkheadPhase)
+    .toBe('open')
   await lookAt(page, { x: 0, y: (await snapshot(page)).cameraPosition.y, z: 0 })
   await page.keyboard.down('w')
   try {
@@ -162,10 +161,14 @@ export async function forwardStation(page: Page, side: -1 | 1) {
   )
 }
 
+export async function approachCrew(page: Page) {
+  await enterObservationRoom(page)
+  await walkTo(page, 2.05, 3.2)
+  await approach(page, { x: 2.05, y: 1.65, z: 4.65 }, 'E · Crew Access')
+}
+
 export async function protocol(
   page: Page,
 ): Promise<{ completed: string[]; guidance: string }> {
-  return page.evaluate(() =>
-    JSON.parse(localStorage.getItem('cruz-del-sur.protocol') ?? '{}'),
-  )
+  return (await snapshot(page)).session.protocol
 }

@@ -1,5 +1,13 @@
-import { expect, test, type Page } from '@playwright/test'
+import {
+  expect,
+  test,
+  type Page,
+  type Locator,
+  type TestInfo,
+} from '@playwright/test'
 import { forwardStation, enterObservationRoom, snapshot } from './helpers/game'
+
+test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 const errors = new WeakMap<Page, string[]>()
 
@@ -112,9 +120,103 @@ async function expectPhysicalScreen(page: Page) {
   return dialog
 }
 
+async function expectNativeArchiveScroll(
+  page: Page,
+  dialog: Locator,
+  info: TestInfo,
+) {
+  const content = dialog.locator('.portfolio-content')
+  await content.hover()
+  const observeScroll = () =>
+    content.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      const target = document.elementFromPoint(
+        rect.x + rect.width / 2,
+        rect.y + rect.height / 2,
+      )
+      return {
+        scrollTop: element.scrollTop,
+        scrollHeight: element.scrollHeight,
+        clientHeight: element.clientHeight,
+        rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height },
+        overflow: getComputedStyle(element).overflow,
+        overflowY: getComputedStyle(element).overflowY,
+        centerTarget: target
+          ? {
+              tag: target.tagName,
+              className: target.getAttribute('class'),
+              nearestClass: target.closest('[class]')?.getAttribute('class'),
+            }
+          : null,
+      }
+    })
+  const beforeWheel = await observeScroll()
+  // Observe the native event without cancelling it or changing scroll state.
+  const wheelObservation = page.evaluate(
+    () =>
+      new Promise<unknown>((resolve) => {
+        const finish = (value: unknown) => {
+          window.clearTimeout(timeout)
+          document.removeEventListener('wheel', listener, true)
+          resolve(value)
+        }
+        const listener = (event: WheelEvent) =>
+          finish({
+            deltaX: event.deltaX,
+            deltaY: event.deltaY,
+            cancelable: event.cancelable,
+            bubbles: event.bubbles,
+            defaultPrevented: event.defaultPrevented,
+            target:
+              event.target instanceof Element
+                ? {
+                    tag: event.target.tagName,
+                    className: event.target.getAttribute('class'),
+                  }
+                : null,
+            path: event
+              .composedPath()
+              .map((item) =>
+                item instanceof Element
+                  ? { tag: item.tagName, className: item.getAttribute('class') }
+                  : { node: String(item) },
+              ),
+          })
+        const timeout = window.setTimeout(
+          () => finish({ missingWheel: true }),
+          10000,
+        )
+        document.addEventListener('wheel', listener, {
+          capture: true,
+          passive: true,
+        })
+      }),
+  )
+  await page.mouse.wheel(0, 700)
+  try {
+    await expect
+      .poll(() => content.evaluate((element) => element.scrollTop))
+      .toBeGreaterThan(0)
+  } finally {
+    const wheelDiagnostics = {
+      before: beforeWheel,
+      after: await observeScroll(),
+      event: await wheelObservation,
+    }
+    console.log(
+      'physical-monitor-native-wheel',
+      JSON.stringify(wheelDiagnostics),
+    )
+    await info.attach('physical-monitor-native-wheel', {
+      body: JSON.stringify(wheelDiagnostics),
+      contentType: 'application/json',
+    })
+  }
+}
+
 test('approaches the physical Archive with E, reads records, downloads CV and exits with real Pointer Lock', async ({
   page,
-}) => {
+}, info) => {
   await ready(page)
   await enterObservationRoom(page)
   await forwardStation(page, -1)
@@ -137,12 +239,7 @@ test('approaches the physical Archive with E, reads records, downloads CV and ex
     dialog.getByRole('heading', { name: 'Service Record', exact: true }),
   ).toBeFocused()
   await expect(dialog.getByRole('heading', { name: 'Blue Alba' })).toBeVisible()
-  const content = dialog.locator('.portfolio-content')
-  await content.hover()
-  await page.mouse.wheel(0, 700)
-  await expect
-    .poll(() => content.evaluate((element) => element.scrollTop))
-    .toBeGreaterThan(0)
+  await expectNativeArchiveScroll(page, dialog, info)
   const downloadEvent = page.waitForEvent('download')
   await dialog
     .getByRole('link', { name: 'Download CV (PDF)', exact: true })
@@ -173,11 +270,13 @@ test('quick access focuses the same physical Archive from the airlock without co
   page,
 }) => {
   await ready(page)
-  await page.keyboard.press('Escape')
+  await page.keyboard.press('t')
+  await page.keyboard.press('r')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toBeVisible()
   const before = await snapshot(page)
-  const progress = await page.evaluate(() =>
-    localStorage.getItem('cruz-del-sur.protocol'),
-  )
+  const progress = (await snapshot(page)).session.protocol
   await page
     .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
     .click()
@@ -185,9 +284,7 @@ test('quick access focuses the same physical Archive from the airlock without co
   await expect(
     dialog.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
   ).toBeVisible()
-  expect(
-    await page.evaluate(() => localStorage.getItem('cruz-del-sur.protocol')),
-  ).toBe(progress)
+  expect((await snapshot(page)).session.protocol).toEqual(progress)
   await page.setViewportSize({ width: 960, height: 640 })
   await expectPhysicalScreen(page)
   await dialog.getByRole('button', { name: 'Projects', exact: true }).click()
@@ -218,8 +315,9 @@ test('quick access focuses the same physical Archive from the airlock without co
     )
     .toBeLessThan(0.08)
   expect((await snapshot(page)).pointerLocked).toBe(false)
+  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
   await page
-    .getByRole('button', { name: 'Accessible HTML portfolio', exact: true })
+    .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
   await expect(page.locator('.quick-portfolio')).toBeVisible()
   await expect(
@@ -285,7 +383,7 @@ test('physical Archive contact preserves the failed draft and confirms only a mo
     )
   })
   await ready(page)
-  await page.keyboard.press('Escape')
+  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
   await page
     .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
     .click()
@@ -319,4 +417,24 @@ test('physical Archive contact preserves the failed draft and confirms only a mo
   ).toBeDisabled()
   expect(attempts).toBe(2)
   expect((await snapshot(page)).pointerLocked).toBe(false)
+})
+
+test('quick physical Archive scrolls Service Record with the native mouse wheel', async ({
+  page,
+}, info) => {
+  page.on('console', (message) => {
+    if (message.text().startsWith('physical-wheel-route'))
+      console.log(message.text())
+  })
+  await ready(page)
+  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
+  await page
+    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
+    .click()
+  const dialog = await expectPhysicalScreen(page)
+  await dialog
+    .getByRole('button', { name: 'Service Record', exact: true })
+    .click()
+  await expect(dialog.getByRole('heading', { name: 'Blue Alba' })).toBeVisible()
+  await expectNativeArchiveScroll(page, dialog, info)
 })

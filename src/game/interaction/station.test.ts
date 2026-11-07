@@ -8,6 +8,8 @@ import {
   WALL_SCREEN_POSES,
   SCREEN_POSITION,
   monitorDistance,
+  CREW_ACCESS_POSITION,
+  POWER_POSITION,
 } from './station'
 
 it('fits the physical monitor on narrow viewports without changing the desktop pose', () => {
@@ -18,10 +20,22 @@ it('fits the physical monitor on narrow viewports without changing the desktop p
   expect(1.8 / visibleWidth).toBeCloseTo(0.85)
 })
 
+it('keeps the relocated crew terminal outside the doorway and frames it from the bridge', () => {
+  // Doorway spans X=-1.25…1.25; retained terminal frame is 1.3 m wide.
+  expect(CREW_ACCESS_POSITION[0] - 1.3 / 2 - 1.25).toBeCloseTo(0.15)
+  expect(POWER_POSITION[2]).toBeGreaterThan(5)
+  expect(CREW_ACCESS_POSITION[2]).toBeLessThan(5)
+  const crew = stationView('crew')
+  expect(crew.position[0]).toBe(crew.lookAt[0])
+  expect(crew.position[1]).toBe(crew.lookAt[1])
+  expect(crew.position[2]).toBeLessThan(crew.lookAt[2])
+  expect(crew.lookAt[2]).toBeLessThan(CREW_ACCESS_POSITION[2])
+  expect(WALL_SCREEN_POSES.crew.rotation).toBe(Math.PI)
+})
+
 it('requires a computer target to open the screen', () => {
   expect(interactionMode('walking', null)).toBe('walking')
   expect(interactionMode('walking', 'computer')).toBe('computer')
-  expect(interactionMode('walking', 'hologram')).toBe('hologram')
   expect(interactionMode('walking', 'communications')).toBe('communications')
   expect(interactionMode('walking', 'personal')).toBe('personal')
   expect(interactionMode('walking', 'photo')).toBe('photo')

@@ -80,19 +80,13 @@ test('walks to independent communications, skips without sending and resumes con
     ),
   ).toBeInViewport()
   await terminal.getByRole('button', { name: 'Skip', exact: true }).click()
-  await expect(terminal.getByRole('status')).toContainText(
+  await expect(terminal.getByRole('form').getByRole('status')).toContainText(
     'No message was sent',
   )
-  await expect(terminal.getByRole('status')).toBeFocused()
+  await expect(terminal.getByRole('form').getByRole('status')).toBeFocused()
   expect(requests).toBe(0)
   await expect
-    .poll(() =>
-      page.evaluate(
-        () =>
-          JSON.parse(localStorage.getItem('cruz-del-sur.protocol') ?? '{}')
-            .completed,
-      ),
-    )
+    .poll(async () => (await snapshot(page)).session.protocol.completed)
     .toContain('uplink')
   await page.keyboard.press('e')
   await expect(terminal).not.toBeVisible()
@@ -135,7 +129,7 @@ test('quick portfolio contact preserves failed draft and confirms only accepted 
   })
   await page.goto('/')
   await page
-    .getByRole('button', { name: 'Pause station' })
+    .getByRole('button', { name: 'Mission tablet · T' })
     .click({ timeout: 45_000 })
   await page
     .getByRole('button', { name: 'Quick Portfolio Access', exact: true })

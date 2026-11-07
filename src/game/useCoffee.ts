@@ -5,15 +5,7 @@ export function useCoffee(paused: boolean) {
   const [state, dispatch] = useReducer(
     coffeeReducer,
     undefined,
-    (): CoffeeState => {
-      let achievement = false
-      try {
-        achievement = localStorage.getItem(COFFEE_STORAGE_KEY) === '1'
-      } catch {
-        /* Optional storage. */
-      }
-      return { phase: 'idle', cups: 0, achievement }
-    },
+    (): CoffeeState => ({ phase: 'idle', cups: 0, achievement: false }),
   )
   useEffect(() => {
     if (state.phase !== 'brewing' || paused) return
@@ -21,12 +13,11 @@ export function useCoffee(paused: boolean) {
     return () => window.clearTimeout(timer)
   }, [state.phase, paused])
   useEffect(() => {
-    if (!state.achievement) return
     try {
-      localStorage.setItem(COFFEE_STORAGE_KEY, '1')
+      localStorage.removeItem(COFFEE_STORAGE_KEY)
     } catch {
       /* Exploration does not require storage. */
     }
-  }, [state.achievement])
+  }, [])
   return { state, dispatch }
 }

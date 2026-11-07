@@ -7,7 +7,13 @@ it('shows one event message without audio and supports dismissal', () => {
   const { rerender } = render(
     <StationAssistant event="restored" onDismiss={dismiss} />,
   )
-  expect(screen.getByRole('status')).toHaveTextContent('skip the tutorial')
+  expect(screen.getByRole('status')).toHaveTextContent(
+    'Interior lighting online',
+  )
+  expect(screen.getByRole('status')).toHaveAttribute(
+    'data-dialogue-event',
+    'restored',
+  )
   rerender(<StationAssistant event="identity" onDismiss={dismiss} />)
   expect(screen.getAllByRole('status')).toHaveLength(1)
   expect(screen.getByRole('status')).toHaveTextContent('Identity verified')

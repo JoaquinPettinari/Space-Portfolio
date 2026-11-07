@@ -1,15 +1,8 @@
 export type StationMode =
-  | 'walking'
-  | 'computer'
-  | 'hologram'
-  | 'communications'
-  | 'personal'
-  | 'photo'
-  | 'crew'
+  'walking' | 'computer' | 'communications' | 'personal' | 'photo' | 'crew'
 export type StationTarget =
   | 'computer'
   | 'dossier'
-  | 'hologram'
   | 'lighting'
   | 'communications'
   | 'personal'
@@ -24,7 +17,9 @@ export const COMMUNICATIONS_POSITION = [2.4, 1.65, -3.82] as const
 export const PERSONAL_POSITION = [4.55, 1.65, 2.1] as const
 export const COFFEE_POSITION = [-4.25, 0, 3.65] as const
 export const PHOTO_POSITION = [-4.78, 1.75, 2.2] as const
-export const CREW_ACCESS_POSITION = [-1.4, 1.65, 7.3] as const
+export const POWER_POSITION = [-1.4, 1.65, 6.1] as const
+export const CREW_ACCESS_POSITION = [2.05, 1.65, 4.65] as const
+export const CREW_ACCESS_ROTATION = Math.PI
 export const TABLE_POSITION = [0, 0, 0.5] as const
 /** Fit the whole physical bezel while leaving readable margins. */
 export function monitorDistance(aspect: number, width = 1.8, height = 1.1) {
@@ -40,13 +35,10 @@ export function archiveFocusZ(aspect: number) {
   return SCREEN_POSITION[2] + monitorDistance(aspect)
 }
 export const INTERACTION_DISTANCE = 2.8
-export const HOLOGRAM_DISTANCE = 4.5
-export const HOLOGRAM_FOCUS_POSITION = [0, 1.8, 3.1] as const
-export const HOLOGRAM_LOOK_AT = [0, 1.6, 0.5] as const
 export const WALL_SCREEN_POSES = {
   communications: { position: [2.4, 1.65, -3.715], rotation: 0 },
   personal: { position: [4.405, 1.68, 2.1], rotation: -Math.PI / 2 },
-  crew: { position: [-1.255, 1.68, 7.3], rotation: Math.PI / 2 },
+  crew: { position: [2.05, 1.68, 4.505], rotation: CREW_ACCESS_ROTATION },
 } as const
 export const COMMUNICATIONS_FOCUS = [
   2.4,
@@ -58,11 +50,10 @@ export function wallMonitorDistance(aspect: number) {
 }
 const views = {
   crew: {
-    position: [-1.255 + wallMonitorDistance(16 / 9), 1.68, 7.3] as const,
+    position: [2.05, 1.68, 4.505 - wallMonitorDistance(16 / 9)] as const,
     lookAt: WALL_SCREEN_POSES.crew.position,
   },
   computer: { position: FOCUS_POSITION, lookAt: SCREEN_POSITION },
-  hologram: { position: HOLOGRAM_FOCUS_POSITION, lookAt: HOLOGRAM_LOOK_AT },
   communications: {
     position: COMMUNICATIONS_FOCUS,
     lookAt: WALL_SCREEN_POSES.communications.position,
@@ -82,7 +73,6 @@ export function interactionMode(
   target: StationTarget,
 ): StationMode {
   if (target === 'computer') return 'computer'
-  if (target === 'hologram') return 'hologram'
   if (target === 'communications') return 'communications'
   if (target === 'personal') return 'personal'
   if (target === 'photo') return 'photo'

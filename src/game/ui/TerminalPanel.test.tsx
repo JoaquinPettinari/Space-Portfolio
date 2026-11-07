@@ -21,14 +21,8 @@ it('wraps focus around tabbable controls, excluding inactive desktop icons and h
 
 it('keeps the physical terminal accessible, scrollable and explicitly escapable', () => {
   const close = vi.fn()
-  const accessible = vi.fn()
   render(
-    <TerminalPanel
-      physical
-      title="Earth Communications"
-      onClose={close}
-      onAccessiblePortfolio={accessible}
-    >
+    <TerminalPanel physical title="Earth Communications" onClose={close}>
       <label>
         Name
         <input />
@@ -41,10 +35,6 @@ it('keeps the physical terminal accessible, scrollable and explicitly escapable'
   expect(dialog.querySelector('.portfolio-content')).toContainElement(
     screen.getByRole('textbox', { name: 'Name' }),
   )
-  fireEvent.click(
-    screen.getByRole('button', { name: 'Accessible HTML portfolio' }),
-  )
-  expect(accessible).toHaveBeenCalledOnce()
   const exit = screen.getByRole('button', { name: 'Leave terminal' })
   exit.focus()
   fireEvent.keyDown(exit, { key: 'Tab' })
