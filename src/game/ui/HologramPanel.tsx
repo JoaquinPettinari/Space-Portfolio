@@ -1,11 +1,24 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from 'react'
 import { education, profile } from '../../data/portfolio'
 import './HologramPanel.css'
 
-export function HologramPanel({ onClose }: { onClose: () => void }) {
+export function HologramPanel({
+  onClose,
+  assistant,
+}: {
+  onClose: () => void
+  assistant?: ReactNode
+}) {
   const [section, setSection] = useState<'profile' | 'training'>('profile')
   const panel = useRef<HTMLElement>(null)
   const close = useRef<HTMLButtonElement>(null)
+  const master = education.find((item) => item.title.includes('Master'))
   useEffect(() => {
     close.current?.focus()
   }, [])
@@ -32,9 +45,10 @@ export function HologramPanel({ onClose }: { onClose: () => void }) {
       aria-labelledby="hologram-title"
       onKeyDown={trapFocus}
     >
-      <p className="eyebrow">ORBIT / ARCHIVED CREW RECORD</p>
+      <p className="eyebrow">CRUZ DEL SUR / IDENTITY VERIFIED</p>
       <h1 id="hologram-title">{profile.name}</h1>
       <p className="hologram-rank">CREW ENGINEER · {profile.role}</p>
+      {assistant}
       <nav aria-label="Crew record sections">
         <button
           aria-pressed={section === 'profile'}
@@ -54,12 +68,16 @@ export function HologramPanel({ onClose }: { onClose: () => void }) {
           <>
             <p>{profile.intro}</p>
             <p>{profile.location}</p>
-            <h2>Engineering toolkit</h2>
-            <div className="hologram-skills">
-              {profile.skills.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </div>
+            {master && (
+              <article>
+                <h2>{master.title}</h2>
+                <p>{master.institution}</p>
+              </article>
+            )}
+            <p>
+              Your complete service record and project archives are available at
+              the main computer.
+            </p>
           </>
         ) : (
           <>
@@ -76,7 +94,7 @@ export function HologramPanel({ onClose }: { onClose: () => void }) {
         )}
       </div>
       <footer>
-        <span>Portrait archive · ESC to return</span>
+        <span>E to resume · ESC to pause</span>
         <button ref={close} data-capture-pointer onClick={onClose}>
           Leave hologram
         </button>

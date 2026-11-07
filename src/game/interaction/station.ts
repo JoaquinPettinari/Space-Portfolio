@@ -1,5 +1,6 @@
 export type StationMode = 'walking' | 'computer' | 'hologram'
-export type StationTarget = 'computer' | 'dossier' | 'hologram' | null
+export type StationTarget =
+  'computer' | 'dossier' | 'hologram' | 'lighting' | null
 
 export const SCREEN_POSITION = [0, 1.55, -3.57] as const
 export const FOCUS_POSITION = [0, 1.55, -2.55] as const

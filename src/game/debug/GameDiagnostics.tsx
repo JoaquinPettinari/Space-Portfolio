@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { InstancedMesh } from 'three'
+import { InstancedMesh, Light } from 'three'
 
 export type GameSnapshot = {
   cameraPosition: { x: number; y: number; z: number }
@@ -11,6 +11,11 @@ export type GameSnapshot = {
   frameMs: number
   maxEyeHeight: number
   mouseDelta: { x: number; y: number }
+  cabinLighting: {
+    ambientIntensity: number | null
+    auxiliaryIntensity: number | null
+    alarmIntensity: number | null
+  }
   spaceMotion: {
     orbit: number | null
     stars: number | null
@@ -36,6 +41,10 @@ export function GameDiagnostics() {
     maxEyeHeight.current = Math.max(maxEyeHeight.current, camera.position.y)
   })
   useEffect(() => {
+    const intensity = (name: string) => {
+      const object = scene.getObjectByName(name)
+      return object instanceof Light ? object.intensity : null
+    }
     const onMouse = (event: MouseEvent) => {
       if (document.pointerLockElement)
         mouse.current = { x: event.movementX, y: event.movementY }
@@ -59,6 +68,11 @@ export function GameDiagnostics() {
         frameMs: frameMs.current,
         maxEyeHeight: maxEyeHeight.current,
         mouseDelta: { ...mouse.current },
+        cabinLighting: {
+          ambientIntensity: intensity('cabin-ambient'),
+          auxiliaryIntensity: intensity('cabin-window-spill'),
+          alarmIntensity: intensity('cabin-alarm'),
+        },
         spaceMotion: {
           orbit: scene.getObjectByName('orbital-drift')?.rotation.y ?? null,
           asteroid: (() => {

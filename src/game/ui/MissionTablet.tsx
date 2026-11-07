@@ -1,14 +1,26 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
-import { missions, type MissionId } from '../missions'
+import { missions, type ObjectiveId } from '../missions'
+import type { ProtocolState } from '../protocol'
 
 export function MissionTablet({
-  completed,
+  state,
+  currentObjective,
+  onContinue,
+  onSkip,
+  onReplay,
   onClose,
 }: {
-  completed: MissionId[]
+  state: ProtocolState
+  currentObjective: (typeof missions)[number] | null
+  onContinue: () => void
+  onSkip: () => void
+  onReplay: () => void
   onClose: () => void
 }) {
-  const [selected, setSelected] = useState<MissionId>('tablet')
+  const { completed, guidance } = state
+  const [selected, setSelected] = useState<ObjectiveId>(
+    currentObjective?.id ?? 'tablet',
+  )
   const dialog = useRef<HTMLElement>(null)
   const close = useRef<HTMLButtonElement>(null)
   const mission = missions.find((item) => item.id === selected)!
@@ -41,7 +53,7 @@ export function MissionTablet({
       >
         <header>
           <div>
-            <p className="eyebrow">ORBIT / RECOVERY OPERATIONS</p>
+            <p className="eyebrow">CRUZ DEL SUR / RECOVERY PROTOCOL</p>
             <h1 id="tablet-title">Mission tablet</h1>
           </div>
           <button ref={close} onClick={onClose}>
@@ -49,8 +61,24 @@ export function MissionTablet({
           </button>
         </header>
         <p>
-          A particle storm disrupted our Earth link. Recover the crew records
-          and prepare a transmission. Complete objectives in any order.
+          Mission guidance is optional. Explore at your own pace. For
+          professional information, visit the Central Archive at any time.
+        </p>
+        <div className="protocol-actions" aria-label="Protocol settings">
+          <button onClick={onContinue}>
+            {guidance === 'skipped' ? 'Resume Protocol' : 'Continue Protocol'}
+          </button>
+          {guidance !== 'skipped' && (
+            <button onClick={onSkip}>Skip Tutorial</button>
+          )}
+          <button onClick={onReplay}>Replay Protocol</button>
+        </div>
+        <p role="status">
+          {guidance === 'skipped'
+            ? 'Guidance paused. All facilities remain available.'
+            : currentObjective
+              ? `Current objective: ${currentObjective.title}`
+              : 'Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.'}
         </p>
         <p className="mission-progress" role="status">
           {completed.length} / {missions.length} objectives complete
@@ -70,7 +98,11 @@ export function MissionTablet({
                 <span>
                   {item.title}
                   <small>
-                    {completed.includes(item.id) ? 'Complete' : 'Available'}
+                    {completed.includes(item.id)
+                      ? 'Complete'
+                      : item.id === 'uplink'
+                        ? 'Not connected yet'
+                        : 'Available'}
                   </small>
                 </span>
               </button>
@@ -80,7 +112,7 @@ export function MissionTablet({
             <svg
               viewBox="0 0 400 380"
               role="img"
-              aria-label="Observatory deck map. Hologram at the central table, crew dossier by the rear airlock, archives at the forward terminal."
+              aria-label="CRUZ DEL SUR deck map. Auxiliary power beside the rear airlock. Hologram at the central table, crew dossier by the rear airlock, archives at the forward terminal."
             >
               <path
                 d="M80 25 H320 L375 90 V290 L320 345 H80 L25 290 V90 Z"
@@ -105,10 +137,16 @@ export function MissionTablet({
               />
               <circle
                 cx={
-                  selected === 'dossier' ? 110 : selected === 'crew' ? 287 : 200
+                  selected === 'lighting'
+                    ? 255
+                    : selected === 'dossier'
+                      ? 110
+                      : selected === 'crew'
+                        ? 287
+                        : 200
                 }
                 cy={
-                  selected === 'dossier'
+                  selected === 'dossier' || selected === 'lighting'
                     ? 295
                     : selected === 'crew'
                       ? 225
@@ -157,6 +195,23 @@ export function MissionTablet({
               >
                 CREW DOSSIER
               </text>
+              <rect
+                x="242"
+                y="282"
+                width="26"
+                height="26"
+                rx="4"
+                fill="#ffd384"
+              />
+              <text
+                x="270"
+                y="275"
+                textAnchor="middle"
+                fill="#ffd384"
+                fontSize="11"
+              >
+                AUX POWER
+              </text>
               <text
                 x="200"
                 y="320"
@@ -180,9 +235,9 @@ export function MissionTablet({
         </div>
         <footer>
           {completed.length === missions.length
-            ? 'Recovery checklist complete. Earth transmission remains yours to send.'
-            : 'No required order. All portfolio sections remain accessible.'}
-          <span>T / ESC · Close</span>
+            ? 'Recovery protocol complete. Enjoy your stay.'
+            : 'Suggested route only. All portfolio sections remain accessible.'}
+          <span>T · Resume / ESC · Pause</span>
         </footer>
       </section>
     </div>

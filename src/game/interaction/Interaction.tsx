@@ -15,12 +15,14 @@ export function Interaction({
   onTarget,
   onMode,
   onDossier,
+  onLighting,
 }: {
   active: boolean
   mode: StationMode
   onTarget: (target: StationTarget) => void
   onMode: (mode: StationMode) => void
   onDossier: () => void
+  onLighting: () => void
 }) {
   const { camera, scene } = useThree()
   const target = useRef<StationTarget>(null)
@@ -43,7 +45,7 @@ export function Interaction({
       else if (
         hit &&
         hit.distance <= INTERACTION_DISTANCE &&
-        (kind === 'computer' || kind === 'dossier')
+        (kind === 'computer' || kind === 'dossier' || kind === 'lighting')
       ) {
         next = kind
       }
@@ -57,6 +59,11 @@ export function Interaction({
   const key = useEffectEvent((event: KeyboardEvent) => {
     if (!active || event.repeat) return
     if (event.code === 'KeyE') {
+      if (target.current === 'lighting') {
+        event.preventDefault()
+        onLighting()
+        return
+      }
       if (target.current === 'dossier') {
         event.preventDefault()
         onDossier()

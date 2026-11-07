@@ -23,8 +23,16 @@ El usuario confirmó que la entrada sin aceleración resolvió los tirones del m
 
 ## Acceso a la información
 
-La versión publicada debe ofrecer una alternativa rápida y accesible para quien no quiera o no pueda jugar, también sin WebGL. CV y contacto no deben depender de completar misiones. El usuario aplazó expresamente esta implementación durante la configuración del entorno; permanece como requisito pendiente.
+La versión publicada debe ofrecer una alternativa rápida y accesible para quien no quiera o no pueda jugar, también sin WebGL. CV y contacto no deben depender de completar misiones. El aplazamiento inicial terminó con el GDD de CRUZ DEL SUR: Quick Portfolio Access ya permite consultar la información sin WebGL ni misiones.
 
 ## Etapa actual aprobada
 
 Observatorio azul con ventanas y techo de vidrio, mesa central, silla y computadora. Se implementan sentarse, enfoque de pantalla y regreso a caminar; las aplicaciones internas quedan para más adelante. Estrellas en movimiento, planeta rotatorio y puerta trasera cerrada completan esta primera ambientación. La tabla de hitos describe el plan original: las bases de v0.3, v0.4 y v0.6 se adelantaron por pedido del usuario. No incorporar Zustand ni GSAP sin una necesidad concreta.
+
+## CRUZ DEL SUR v1.0
+
+El GDD en `gdd/CRUZ_DEL_SUR_GDD_v1.0.md` sustituye la secuencia histórica de hitos como fuente de verdad de producto. La fase actual implementa iluminación auxiliar, protocolo opcional persistente y tablet. Se preservan controles, colisiones y acceso libre a las estaciones. La fase 2 incorpora Quick Portfolio Access sin WebGL y Central Archive con contenido DOM compartido; la siguiente fase desarrolla la identificación de tripulación y el asistente. El backend de contacto queda para después por decisión del usuario; se prepararán los formularios sin simular envíos exitosos. Los assets complejos y la cinemática exterior quedan fuera de esta primera implementación funcional.
+
+## Corrección de entrada y fase 3
+
+La app arranca dentro de la estación sin pantalla para elegir recorrido. Tras encender luces, el HUD explica cómo omitir el tutorial visitando la computadora principal. El usuario requiere una animación inicial futura; queda pendiente y no se reemplaza por un menú. El acceso rápido es secundario en pausa/fallback. Fase 3 incorpora identificación provisional con tarjeta, retrato real, escaneo opcional con sonido y asistente textual descartable.

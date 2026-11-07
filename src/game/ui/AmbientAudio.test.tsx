@@ -16,8 +16,18 @@ it('starts only on request, pauses in background, mutes and closes on unmount', 
     const result = {
       connect: vi.fn(),
       start: vi.fn(),
-      gain: { value: 0 },
-      frequency: { value: 0 },
+      stop: vi.fn(),
+      disconnect: vi.fn(),
+      gain: {
+        value: 0,
+        setValueAtTime: vi.fn(),
+        linearRampToValueAtTime: vi.fn(),
+      },
+      frequency: {
+        value: 0,
+        setValueAtTime: vi.fn(),
+        linearRampToValueAtTime: vi.fn(),
+      },
       Q: { value: 0 },
     }
     result.connect.mockReturnValue(result)
@@ -25,6 +35,7 @@ it('starts only on request, pauses in background, mutes and closes on unmount', 
   }
   const context = {
     state: 'running',
+    currentTime: 0,
     sampleRate: 100,
     destination: {},
     createGain: node,
@@ -40,7 +51,7 @@ it('starts only on request, pauses in background, mutes and closes on unmount', 
     return context
   })
   vi.stubGlobal('AudioContext', constructor)
-  const { unmount } = render(<AmbientAudio />)
+  const { unmount, rerender } = render(<AmbientAudio />)
   const button = screen.getByRole('button', { name: 'Ambient sound' })
   expect(constructor).not.toHaveBeenCalled()
   fireEvent.click(button)
@@ -52,9 +63,26 @@ it('starts only on request, pauses in background, mutes and closes on unmount', 
   hidden.mockReturnValue(false)
   fireEvent(document, new Event('visibilitychange'))
   expect(context.resume).toHaveBeenCalledTimes(2)
+  rerender(<AmbientAudio suspended />)
+  expect(context.suspend).toHaveBeenCalledTimes(2)
+  fireEvent(document, new Event('visibilitychange'))
+  expect(context.resume).toHaveBeenCalledTimes(2)
+  expect(button).toHaveAttribute('aria-pressed', 'true')
+  rerender(<AmbientAudio />)
+  expect(context.resume).toHaveBeenCalledTimes(3)
+  expect(constructor).toHaveBeenCalledOnce()
+  const scanner = vi.spyOn(context, 'createOscillator')
+  rerender(<AmbientAudio scanning scanSignal={1} />)
+  expect(scanner).toHaveBeenCalledOnce()
+  const tone = scanner.mock.results[0].value
+  expect(tone.stop).toHaveBeenCalledWith(0.55)
+  rerender(<AmbientAudio scanning={false} scanSignal={1} />)
+  expect(tone.disconnect).toHaveBeenCalledOnce()
   fireEvent.click(button)
   await waitFor(() => expect(button).toHaveAttribute('aria-pressed', 'false'))
-  expect(context.suspend).toHaveBeenCalledTimes(2)
+  expect(context.suspend).toHaveBeenCalledTimes(4)
+  rerender(<AmbientAudio scanning scanSignal={2} />)
+  expect(scanner).toHaveBeenCalledOnce()
   unmount()
   expect(context.close).toHaveBeenCalledOnce()
   hidden.mockRestore()

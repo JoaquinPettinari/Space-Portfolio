@@ -1,12 +1,21 @@
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import type { MeshStandardMaterial, PointLight } from 'three'
+import type { MeshStandardMaterial, PointLight, SpotLight } from 'three'
+import { restorationIntensity } from './lighting'
 
 export function CabinLighting({ emergency }: { emergency: boolean }) {
   const light = useRef<PointLight>(null)
   const lens = useRef<MeshStandardMaterial>(null)
+  const windowSpill = useRef<SpotLight>(null)
+  const sideSpill = useRef<PointLight>(null)
   const reducedMotion = useRef(false)
   const elapsed = useRef(0)
+  const restorationElapsed = useRef(1)
+  const wasEmergency = useRef(emergency)
+  useEffect(() => {
+    if (wasEmergency.current && !emergency) restorationElapsed.current = 0
+    wasEmergency.current = emergency
+  }, [emergency])
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)')
     const update = () => {
@@ -19,6 +28,12 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
   useFrame((_, delta) => {
     if (document.hidden) return
     elapsed.current += Math.min(delta, 0.05)
+    restorationElapsed.current = Math.min(1, restorationElapsed.current + delta)
+    const power = emergency
+      ? 0.28
+      : restorationIntensity(restorationElapsed.current, reducedMotion.current)
+    if (windowSpill.current) windowSpill.current.intensity = 65 * power
+    if (sideSpill.current) sideSpill.current.intensity = 10 * power
     // A soft four-second pulse, never a rapid strobe.
     const pulse = reducedMotion.current
       ? 0.5
@@ -31,18 +46,21 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
     <group>
       {/* Broad spill from the front glazing; no shadow maps or extra render passes. */}
       <spotLight
+        name="cabin-window-spill"
+        ref={windowSpill}
         position={[1.8, 4.2, -4.6]}
         color="#91ceff"
-        intensity={65}
+        intensity={emergency ? 65 * 0.28 : 65}
         angle={0.85}
         penumbra={0.7}
         distance={14}
         decay={2}
       />
       <pointLight
+        ref={sideSpill}
         position={[-4.5, 2.2, -1.5]}
         color="#6b9ce3"
-        intensity={10}
+        intensity={emergency ? 2.8 : 10}
         distance={9}
         decay={2}
       />
@@ -65,6 +83,7 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
           />
         </mesh>
         <pointLight
+          name="cabin-alarm"
           ref={light}
           position={[0, -0.2, -0.35]}
           color="#ff3525"
