@@ -151,15 +151,20 @@ export function ShipHull() {
           {/* Opaque rear service zones support memories, desk and technical panel. */}
           <Plate at={[side * 5.02, 2.25, 0.1]} size={[0.28, 2.3, 0.22]} />
           <Plate
-            at={[side * 5.02, 2.25, 2.55]}
-            size={[0.28, 2.3, 4.7]}
+            at={[side * 5.02, 2.25, 3.05]}
+            size={[0.28, 2.3, 3.7]}
             color="#b1b0a6"
           />
           <CuboidCollider
-            args={[0.14, 1.15, 2.35]}
-            position={[side * 5.02, 2.25, 2.55]}
+            args={[0.14, 1.15, 1.85]}
+            position={[side * 5.02, 2.25, 3.05]}
           />
-          {[1.05, 4.45].map((z) => (
+          <Glass
+            at={[side * 5.08, 2.3, 0.65]}
+            size={[1.1, 2.1]}
+            rotation={[0, Math.PI / 2, 0]}
+          />
+          {[1.2, 4.45].map((z) => (
             <Plate key={z} at={[side * 4.85, 2.2, z]} size={[0.08, 2.3, 0.1]} />
           ))}
           <Plate

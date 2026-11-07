@@ -19,6 +19,14 @@ export function RearWorkstation({ target }: { target: StationTarget }) {
           <boxGeometry args={[0.015, 0.025, 1.65]} />
           <meshBasicMaterial color="#e9ad70" />
         </mesh>
+        <mesh position={[0.15, 0.55, 0]}>
+          <boxGeometry args={[0.12, 0.3, 0.18]} />
+          <meshStandardMaterial
+            color="#45494b"
+            metalness={0.4}
+            roughness={0.5}
+          />
+        </mesh>
       </RigidBody>
       <WallTerminal
         kind="personal"

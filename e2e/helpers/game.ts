@@ -13,37 +13,44 @@ export async function lookAt(
   page: Page,
   target: { x: number; y: number; z: number },
 ) {
-  await page.mouse.move(640, 360)
-  // Read the camera only after Chromium has delivered the raw mouse event.
-  // Software-rendered CI may be slower than Playwright's input dispatch.
-  await page.evaluate(() => new Promise<void>(resolve => {
-    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-  }))
-  const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
-  const yaw = Math.atan2(
-    2 * (q.x * q.z + q.y * q.w),
-    1 - 2 * (q.x * q.x + q.y * q.y),
-  )
-  const pitch = Math.asin(
-    Math.max(-1, Math.min(1, 2 * (q.w * q.x - q.y * q.z))),
-  )
-  const desiredYaw = Math.atan2(p.x - target.x, p.z - target.z)
-  const desiredPitch = Math.atan2(
-    target.y - p.y,
-    Math.hypot(target.x - p.x, target.z - p.z),
-  )
-  const yawDelta = Math.atan2(
-    Math.sin(desiredYaw - yaw),
-    Math.cos(desiredYaw - yaw),
-  )
-  await page.mouse.move(
-    640 - yawDelta / 0.002,
-    360 - (desiredPitch - pitch) / 0.002,
-    { steps: 4 },
-  )
-  await page.evaluate(() => new Promise<void>(resolve => {
-    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-  }))
+  let mouseX = 640
+  let mouseY = 360
+  await page.mouse.move(mouseX, mouseY)
+  for (let attempt = 0; attempt < 5; attempt++) {
+    // Observe delivered raw input before calculating the next native mouse move.
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+        }),
+    )
+    const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
+    const yaw = Math.atan2(
+      2 * (q.x * q.z + q.y * q.w),
+      1 - 2 * (q.x * q.x + q.y * q.y),
+    )
+    const pitch = Math.asin(
+      Math.max(-1, Math.min(1, 2 * (q.w * q.x - q.y * q.z))),
+    )
+    const desiredYaw = Math.atan2(p.x - target.x, p.z - target.z)
+    const desiredPitch = Math.atan2(
+      target.y - p.y,
+      Math.hypot(target.x - p.x, target.z - p.z),
+    )
+    const yawDelta = Math.atan2(
+      Math.sin(desiredYaw - yaw),
+      Math.cos(desiredYaw - yaw),
+    )
+    const pitchDelta = desiredPitch - pitch
+    if (Math.abs(yawDelta) < 0.008 && Math.abs(pitchDelta) < 0.008) return
+    if (attempt === 4)
+      throw new Error(
+        `Native mouse did not settle: ${JSON.stringify({ target, p, yawDelta, pitchDelta })}`,
+      )
+    mouseX -= yawDelta / 0.002
+    mouseY -= pitchDelta / 0.002
+    await page.mouse.move(mouseX, mouseY, { steps: 4 })
+  }
 }
 
 export async function enter(page: Page) {

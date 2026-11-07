@@ -125,6 +125,7 @@ test('fictional command input preserves E and T and brews through the shared dis
   await expect(
     page.getByText('E · Personal Workstation', { exact: true }),
   ).toBeVisible()
+  await walkTo(page, -2.4, 3.1)
   await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Drink coffee')
   await page.keyboard.press('e')
   await expect

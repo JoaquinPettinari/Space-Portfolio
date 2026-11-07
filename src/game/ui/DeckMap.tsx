@@ -42,7 +42,7 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         stroke="#6dabbf"
       />
       <path
-        d="M80 35 H320 M50 56 V173 M50 197 V314 M350 56 V173 M350 197 V314"
+        d="M50 65 L80 35 H320 L350 65 M50 65 V185 M350 65 V185 M50 188 V221 M350 188 V221"
         stroke="#9ce8ff"
         strokeWidth="5"
       />

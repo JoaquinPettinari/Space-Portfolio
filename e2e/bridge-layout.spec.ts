@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test'
 import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
 
+// Full walking circuit plus 90 rendered samples can exceed 150 s on SwiftShader.
+// Individual movement/collision expectations retain their bounded timeouts.
+test.setTimeout(240_000)
+
 test('bridge circulation, table, faceted hull and jump retain real collision', async ({
   page,
 }, info) => {
@@ -75,9 +79,13 @@ test('bridge circulation, table, faceted hull and jump retain real collision', a
   })
   const sorted = samples.map((s) => s.frameMs).sort((a, b) => a - b)
   const renderer = await page.locator('canvas').evaluate((canvas) => {
+    if (!(canvas instanceof HTMLCanvasElement))
+      throw new Error('Canvas unavailable')
     const gl = canvas.getContext('webgl2')
     const debug = gl?.getExtension('WEBGL_debug_renderer_info')
-    return gl && debug ? String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)) : 'unavailable'
+    return gl && debug
+      ? String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL))
+      : 'unavailable'
   })
   const measurement = {
     viewport: '1280x720',
