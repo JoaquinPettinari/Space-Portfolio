@@ -2,6 +2,11 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Loading } from './game/ui/Loading'
 import { PortfolioContent } from './portfolio/PortfolioContent'
 import { StationBoundary } from './StationBoundary'
+import '@fontsource/rajdhani/600.css'
+import '@fontsource/rajdhani/700.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/share-tech-mono/400.css'
 
 const Game = lazy(() =>
   import('./game/Game').then(({ Game }) => ({ default: Game })),

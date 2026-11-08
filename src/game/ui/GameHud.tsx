@@ -10,6 +10,10 @@ import { TerminalPanel } from './TerminalPanel'
 import { PhotoInspection } from './PhotoInspection'
 import type { ReactNode } from 'react'
 import type { BulkheadPhase } from '../world/bulkhead'
+import './GameHud.css'
+import { HudControls } from './HudControls'
+import { Compass } from 'lucide-react'
+
 type Props = {
   controls: StationControls
   protocolModel: ReturnType<typeof useProtocol>
@@ -45,7 +49,6 @@ export function GameHud({
     tabletOpen,
     tabletRaised,
     showMouseHint,
-    pauseStation,
     openTablet,
     resumeWalking,
   } = controls
@@ -63,14 +66,19 @@ export function GameHud({
     )
   return (
     <>
-      <div className="hud">
-        <span>
-          CRUZ DEL SUR <span className="hud-divider">/</span> CDS-01
-        </span>
-        <span>
-          Move WASD · Look Mouse · Space Jump · T Tablet · To leave press ESC
-        </span>
+      <div className="hud-brand">
+        <div className="hud-brand__icon">
+          <Compass size={44} strokeWidth={1.5} />
+        </div>
+
+        <div className="hud-brand__divider" />
+
+        <div className="hud-brand__text">
+          <span className="hud-brand__title">CRUZ DEL SUR</span>
+          <span className="hud-brand__subtitle">PAMPA-07</span>
+        </div>
       </div>
+      {ready && mode === 'walking' && !tabletRaised && <HudControls />}
       {active && (
         <div className="crosshair" aria-hidden="true">
           +
@@ -91,15 +99,6 @@ export function GameHud({
         ready={ready && !transitioning}
         error={error}
       />
-      {ready && mode === 'walking' && !tabletRaised && !showMouseHint && (
-        <button
-          className="quick-access-button"
-          onClick={pauseStation}
-          aria-label="Pause station"
-        >
-          Pause · Menu
-        </button>
-      )}
       <AmbientAudio
         coffeeSignal={coffee.state.cups}
         suspended={suspended}
@@ -109,23 +108,17 @@ export function GameHud({
       />
       {ready && mode === 'walking' && !tabletRaised && (
         <aside className="mission-hud" aria-label="Recovery objectives">
-          <p className="eyebrow">RECOVERY PROTOCOL</p>
+          <p className="eyebrow">CURRENT OBJECTIVE</p>
+
           <strong>
             {completed.length} / {missions.length} complete
           </strong>
-          {objective}
+
+          <div className="mission-hud-content">{objective}</div>
+
           <button onClick={openTablet} disabled={transitioning}>
             Mission tablet · T
           </button>
-          {coffee.state.achievement && (
-            <p>Optional discovery: Zero-gravity coffee club ✓</p>
-          )}
-          {lightsOn && (
-            <p>
-              If you would rather skip the tutorial, go to the main computer.
-              All professional records are available there.
-            </p>
-          )}
         </aside>
       )}
       {tabletMode === 'held' && !active && mode === 'walking' && (

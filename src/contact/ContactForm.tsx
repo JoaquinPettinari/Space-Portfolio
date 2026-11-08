@@ -94,13 +94,7 @@ export function ContactForm({
       aria-describedby={`${id}-notice`}
     >
       <p id={`${id}-notice`}>
-        This sends a real message to Joaquín Pettinari. Messages welcome in
-        Spanish, English, Italian and Norwegian.
-      </p>
-      <p className="contact-privacy">
-        Your name, email and message are used to receive and reply to your
-        inquiry through an email provider. Do not include sensitive information.
-        Form contents are not saved in this browser.
+        Messages welcome in Spanish, English, Italian and Norwegian.
       </p>
       <p>
         Prefer your email app?{' '}

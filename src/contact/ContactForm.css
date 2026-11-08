@@ -1,7 +1,9 @@
 .contact-form {
-  max-width: 640px;
+  max-width: 1024px;
+  width: 100%;
   line-height: 1.55;
 }
+
 .contact-form fieldset {
   display: grid;
   gap: 8px;
@@ -9,6 +11,7 @@
   margin: 16px 0;
   padding: 16px;
 }
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -19,9 +22,11 @@
   color: #e8f7ff;
   font: inherit;
 }
+
 .contact-form textarea {
   resize: vertical;
 }
+
 .contact-form button {
   padding: 10px 16px;
   border: 1px solid #73c9e4;
@@ -30,21 +35,21 @@
   color: #ecfaff;
   cursor: pointer;
 }
+
 .contact-form button:disabled {
   opacity: 0.6;
   cursor: default;
 }
+
 .contact-form :focus-visible {
   outline: 2px solid #a8f1ff;
   outline-offset: 3px;
 }
+
 .contact-form [role='alert'] {
   color: #ffcfb8;
 }
-.contact-privacy {
-  font-size: 0.85rem;
-  color: #bbd2de;
-}
+
 .contact-honeypot {
   position: absolute;
   width: 1px;

@@ -5,23 +5,32 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  --hud-cyan: #42e8f5;
+  --hud-cyan-light: #83f6ff;
+  --hud-border: rgba(66, 232, 245, 0.35);
+  --hud-bg: rgba(5, 19, 29, 0.86);
+  --hud-text: #e9f5fa;
 }
 
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
 }
+
 .app {
   position: relative;
   height: 100svh;
   min-height: 320px;
 }
+
 .game {
   width: 100%;
   height: 100%;
 }
+
 .scene-label {
   position: absolute;
   top: 0;
@@ -30,20 +39,24 @@ body {
   padding: clamp(20px, 4vw, 48px);
   pointer-events: none;
 }
+
 .scene-label p {
   color: #b2bac5;
   font-size: 14px;
   line-height: 1.6;
 }
+
 .scene-label p:first-child {
   font-size: 11px;
   letter-spacing: 0.16em;
 }
+
 h1 {
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 500;
   margin: 12px 0;
 }
+
 .fallback {
   padding: 180px 24px 24px;
 }
@@ -60,6 +73,7 @@ h1 {
   letter-spacing: 0.08em;
   pointer-events: none;
 }
+
 .crosshair {
   position: absolute;
   top: 50%;
@@ -67,6 +81,7 @@ h1 {
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
+
 .entry {
   position: absolute;
   top: 50%;
@@ -78,13 +93,16 @@ h1 {
   border: 1px solid #65717e;
   border-radius: 8px;
 }
+
 .entry p {
   line-height: 1.6;
   color: #c3ccd5;
 }
+
 .entry .hint {
   font-size: 12px;
 }
+
 button {
   padding: 12px 24px;
   font: inherit;
@@ -94,14 +112,17 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 button:disabled {
   opacity: 0.5;
   cursor: wait;
 }
+
 button:focus-visible {
   outline: 3px solid #7bdfff;
   outline-offset: 4px;
 }
+
 @media (max-width: 540px) {
   .hud {
     flex-direction: column;
@@ -115,29 +136,35 @@ button:focus-visible {
   font-size: 10px;
   letter-spacing: 0.16em;
 }
+
 .hud-divider {
   color: #4e9db6;
   margin: 0 10px;
 }
+
 .entry {
   background: linear-gradient(145deg, #0a1929f5, #0a1320eb);
   border-color: #365a70;
   border-radius: 12px;
   box-shadow: 0 24px 100px #0006;
 }
-.entry > p:first-child {
+
+.entry>p:first-child {
   font-size: 10px;
   letter-spacing: 0.2em;
   color: #73d8f3;
 }
+
 .entry button {
   background: #a4e7f5;
   width: 100%;
 }
+
 .crosshair {
   color: #a4e7f5;
   text-shadow: 0 0 6px #000;
 }
+
 .interaction-hint {
   position: absolute;
   bottom: 36px;
@@ -152,6 +179,7 @@ button:focus-visible {
   text-align: center;
   pointer-events: none;
 }
+
 .seat-pause {
   position: absolute;
   bottom: 25px;
@@ -161,12 +189,14 @@ button:focus-visible {
   font-size: 12px;
   color: #c5e4f6;
 }
+
 .accessible-portfolio-button {
   position: absolute;
   bottom: 68px;
   right: 24px;
   z-index: 10;
 }
+
 .computer {
   position: absolute;
   inset: 0;
@@ -179,6 +209,7 @@ button:focus-visible {
   z-index: 5;
   overflow: auto;
 }
+
 .monitor-bezel {
   width: min(1100px, 100%);
   background: linear-gradient(145deg, #31475c, #102034);
@@ -189,20 +220,20 @@ button:focus-visible {
     0 0 100px #287fac20,
     0 20px 80px #000;
 }
+
 .desktop {
   min-height: min(560px, 65vh);
-  background: radial-gradient(
-    ellipse at 90% 20%,
-    #163e5b 0,
-    #0b2034 38%,
-    #071422 76%
-  );
+  background: radial-gradient(ellipse at 90% 20%,
+      #163e5b 0,
+      #0b2034 38%,
+      #071422 76%);
   border: 1px solid #0a1018;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
+
 .desktop-bar,
 .desktop-footer {
   display: flex;
@@ -214,9 +245,11 @@ button:focus-visible {
   letter-spacing: 0.12em;
   color: #83aec8;
 }
+
 .desktop-bar {
   border-bottom: 1px solid #284057;
 }
+
 .desktop-bar i {
   display: inline-block;
   width: 5px;
@@ -225,33 +258,39 @@ button:focus-visible {
   border-radius: 50%;
   background: #85e1c8;
 }
+
 .desktop-content {
   padding: clamp(20px, 4vw, 48px);
   flex: 1;
 }
+
 .eyebrow {
   color: #69c5de;
   font-size: 10px;
   letter-spacing: 0.17em;
 }
+
 .desktop h1 {
   font-size: clamp(28px, 4vw, 48px);
   line-height: 1.1;
   letter-spacing: -0.035em;
   margin: 22px 0;
 }
+
 .desktop-description {
   max-width: 480px;
   color: #8facbf;
   font-size: 13px;
   line-height: 1.7;
 }
+
 .desktop-apps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-top: 32px;
 }
+
 .desktop-app {
   background: #14304880;
   border: 1px solid #2e4e64;
@@ -261,26 +300,32 @@ button:focus-visible {
   flex-direction: column;
   gap: 12px;
 }
-.desktop-app > span {
+
+.desktop-app>span {
   color: #55bddb;
   font-size: 10px;
 }
+
 .desktop-app strong {
   font-weight: 500;
   font-size: 14px;
 }
+
 .desktop-app small {
   color: #8facbf;
   font-size: 10px;
 }
+
 .desktop-footer {
   border-top: 1px solid #284057;
 }
+
 .desktop-footer button {
   font-size: 12px;
   background: #9edbeb;
   padding: 10px 16px;
 }
+
 .monitor-brand {
   position: relative;
   padding: 12px;
@@ -288,29 +333,35 @@ button:focus-visible {
   font-size: 9px;
   color: #99aebf;
 }
+
 .monitor-brand span {
   position: absolute;
   right: 16px;
   color: #73d8f3;
   font-size: 7px;
 }
+
 .computer-help {
   color: #8facbf;
   font-size: 11px;
   text-align: center;
 }
+
 @media (max-width: 600px) {
   .desktop-apps {
     grid-template-columns: 1fr;
   }
+
   .desktop-app {
     padding: 12px;
     gap: 6px;
   }
-  .desktop-footer > span,
-  .desktop-bar > span:last-child {
+
+  .desktop-footer>span,
+  .desktop-bar>span:last-child {
     display: none;
   }
+
   .computer {
     justify-content: flex-start;
   }
@@ -330,6 +381,7 @@ button:focus-visible {
   font-size: 13px;
   letter-spacing: 0.12em;
 }
+
 .loading-ring {
   width: 48px;
   height: 48px;
@@ -338,17 +390,20 @@ button:focus-visible {
   border-radius: 50%;
   animation: loading-spin 1s linear infinite;
 }
+
 @keyframes loading-spin {
   to {
     transform: rotate(360deg);
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .loading-ring {
     animation: none;
     border-color: #77def9;
   }
 }
+
 .capture-hint {
   position: absolute;
   bottom: 30px;
@@ -358,24 +413,29 @@ button:focus-visible {
   width: max-content;
   max-width: calc(100% - 32px);
 }
+
 .capture-hint button {
   font-size: 12px;
   background: #091b2be8;
   color: #bcecff;
   border: 1px solid #39728e;
 }
+
 .capture-hint p {
   font-size: 11px;
   color: #a5bfd0;
   margin: 10px 0 0;
 }
+
 .capture-hint[hidden] {
   display: none;
 }
+
 .desktop {
   height: min(760px, 80svh);
   min-height: 0;
 }
+
 .desktop-nav {
   display: flex;
   gap: 6px;
@@ -383,60 +443,72 @@ button:focus-visible {
   border-bottom: 1px solid #284057;
   flex-wrap: wrap;
 }
+
 .desktop-nav button {
   background: transparent;
   color: #9ab9cc;
   padding: 8px 12px;
   font-size: 12px;
 }
+
 .desktop-nav button[aria-pressed='true'] {
   background: #24475e;
   color: #def8ff;
 }
+
 .portfolio-content {
   overflow-y: auto;
   overscroll-behavior: contain;
   min-height: 0;
   scrollbar-color: #355f77 #091b2c;
 }
+
 .portfolio-content h1 {
   font-size: clamp(26px, 3vw, 40px);
 }
+
 .portfolio-content h2 {
   font-size: 18px;
   font-weight: 500;
   margin-top: 26px;
 }
+
 .portfolio-content h3 {
   font-size: 14px;
   font-weight: 500;
   color: #94d2e7;
 }
+
 .portfolio-content p {
   font-size: 13px;
   line-height: 1.7;
   color: #abc2d3;
   max-width: 760px;
 }
+
 .portfolio-content .eyebrow {
   font-size: 10px;
   color: #69c5de;
 }
+
 .desktop-bar,
 .desktop-footer,
 .desktop-nav {
   flex-shrink: 0;
 }
+
 .desktop-app {
   color: #e0edf5;
   text-align: left;
 }
+
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin: 18px 0;
 }
+
 .skill-tags span {
   font-size: 11px;
   padding: 7px 10px;
@@ -444,19 +516,23 @@ button:focus-visible {
   border-radius: 20px;
   color: #a5d7eb;
 }
+
 .portfolio-list article {
   padding-bottom: 20px;
   border-bottom: 1px solid #244052;
   margin-bottom: 24px;
 }
+
 .portfolio-list h2 {
   margin-top: 8px;
 }
+
 .project-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -467,24 +543,29 @@ button:focus-visible {
   padding: 26px;
   text-align: left;
 }
+
 .project-card strong {
   font-size: 24px;
   font-weight: 500;
 }
+
 .project-card small,
 .project-open {
   color: #80cde5;
   font-size: 11px;
 }
-.project-card > span {
+
+.project-card>span {
   font-size: 13px;
   line-height: 1.65;
 }
+
 .project-card:hover,
 .desktop-app:hover {
   border-color: #8bdcf4;
   background: #17394f;
 }
+
 .project-links,
 .contact-links {
   display: flex;
@@ -492,36 +573,44 @@ button:focus-visible {
   flex-wrap: wrap;
   margin: 24px 0;
 }
+
 .contact-links {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .portfolio-content a {
   color: #8bdcf4;
   text-underline-offset: 4px;
   overflow-wrap: anywhere;
 }
+
 .portfolio-content a:focus-visible {
   outline: 2px solid #8bdcf4;
   outline-offset: 5px;
 }
+
 .back-button {
   margin-top: 16px;
   font-size: 12px;
   background: #27465a;
   color: #deedf5;
 }
+
 @media (max-width: 600px) {
   .project-list {
     grid-template-columns: 1fr;
   }
+
   .desktop {
     height: 82svh;
   }
+
   .desktop-nav {
     padding: 8px;
     gap: 0;
   }
+
   .desktop-nav button {
     padding: 8px;
   }
@@ -534,6 +623,7 @@ button:focus-visible {
   z-index: 3;
   max-width: min(260px, 70vw);
 }
+
 .ambient-audio button {
   border: 1px solid #46788e;
   background: #081b29e6;
@@ -541,18 +631,22 @@ button:focus-visible {
   padding: 10px 14px;
   font-size: 12px;
 }
+
 .ambient-audio button:focus-visible {
   outline: 2px solid #8bdcf4;
   outline-offset: 4px;
 }
+
 .ambient-audio button:disabled {
   opacity: 0.6;
 }
+
 .ambient-audio p {
   color: #bcecff;
   font-size: 12px;
   line-height: 1.5;
 }
+
 .ambient-audio p:empty {
   display: none;
 }
@@ -592,26 +686,6 @@ button:focus-visible {
   margin-top: 8px;
 }
 
-.mission-hud {
-  position: absolute;
-  left: 24px;
-  top: 80px;
-  padding: 16px;
-  border-left: 2px solid #78cfe6;
-  background: #071724bd;
-  color: #b9d6e4;
-  font-size: 12px;
-  max-width: 210px;
-}
-.mission-hud p {
-  margin: 6px 0 12px;
-}
-.mission-hud button {
-  font-size: 12px;
-  padding: 9px;
-  background: #24495b;
-  color: #d8f6ff;
-}
 .tablet-backdrop {
   position: absolute;
   inset: 0;
@@ -622,6 +696,7 @@ button:focus-visible {
   background: #020810b8;
   padding: 24px;
 }
+
 .mission-tablet {
   width: min(960px, 100%);
   max-height: 92svh;
@@ -635,44 +710,52 @@ button:focus-visible {
     0 25px 80px #0009,
     inset 0 0 0 1px #578191;
 }
+
 .mission-tablet header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
 }
+
 .mission-tablet h1 {
   margin: 0;
   font-size: 28px;
 }
-.mission-tablet > p {
+
+.mission-tablet>p {
   max-width: 700px;
   line-height: 1.6;
   font-size: 14px;
   color: #a8c9d7;
 }
+
 .mission-tablet button {
   background: #203e4e;
   color: #d4effa;
   padding: 12px;
   font-size: 13px;
 }
+
 .tablet-layout {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 24px;
 }
+
 .protocol-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-block: 16px;
 }
+
 .tablet-objectives {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .tablet-objectives button {
   display: flex;
   gap: 12px;
@@ -680,23 +763,28 @@ button:focus-visible {
   border: 1px solid #365261;
   border-radius: 7px;
 }
+
 .tablet-objectives button[aria-pressed='true'] {
   background: #28586c;
   border-color: #8ddff2;
 }
+
 .tablet-objectives small {
   display: block;
   margin-top: 7px;
   color: #9abac6;
 }
+
 .tablet-map svg {
   width: 100%;
   max-height: 280px;
 }
+
 .tablet-map small {
   color: #85a7b5;
   font-size: 11px;
 }
+
 .map-objective {
   padding: 14px;
   background: #06121b;
@@ -704,10 +792,12 @@ button:focus-visible {
   margin-bottom: 12px;
   font-size: 13px;
 }
+
 .map-objective p {
   line-height: 1.6;
   margin-bottom: 0;
 }
+
 .mission-tablet footer {
   display: flex;
   justify-content: space-between;
@@ -716,28 +806,28 @@ button:focus-visible {
   color: #8fb3c3;
   font-size: 11px;
 }
+
 .mission-tablet button:focus-visible {
   outline: 2px solid #a2eaff;
   outline-offset: 3px;
 }
+
 @media (max-width: 600px) {
   .tablet-backdrop {
     padding: 8px;
   }
+
   .mission-tablet {
     padding: 16px;
     border-width: 7px;
   }
+
   .tablet-layout {
     grid-template-columns: 1fr;
   }
+
   .mission-tablet header {
     align-items: flex-start;
-  }
-  .mission-hud {
-    top: 96px;
-    left: 12px;
-    padding: 10px;
   }
 }
 
@@ -748,21 +838,26 @@ button:focus-visible {
   font-size: 11px;
   line-height: 1.5;
 }
+
 .mission-checklist li {
   margin-block: 8px;
   display: flex;
   gap: 7px;
 }
+
 .mission-checklist li[data-complete='true'],
 .tablet-objectives button[data-complete='true'] {
   color: #8398a1;
 }
+
 .tablet-objectives button[data-complete='true'] small {
   color: #8398a1;
 }
+
 .mission-checklist li[data-complete='true'] {
   text-decoration: line-through;
 }
+
 .hologram-input-shield {
   position: absolute;
   inset: 0;
@@ -773,69 +868,70 @@ button:focus-visible {
 [hidden] {
   display: none !important;
 }
+
 .station-shell {
   width: 100%;
   height: 100%;
 }
+
 .app--portfolio {
   height: auto;
   min-height: 100svh;
   background: #061320;
 }
-.quick-access-button {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 11;
-  border: 1px solid #6db9cf;
-  background: #0c2638f5;
-  color: #dcf4fc;
-  font-size: 12px;
-  padding: 12px 16px;
-}
+
 .quick-portfolio {
   max-width: 1100px;
   margin: auto;
   padding: clamp(16px, 4vw, 48px);
 }
+
 .quick-portfolio-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
 }
+
 .quick-portfolio-header button {
   flex-shrink: 0;
   background: #24495b;
   color: #d8f6ff;
 }
+
 .quick-intro {
   color: #b1c9d9;
   line-height: 1.6;
 }
+
 .portfolio-browser {
   display: flex;
   flex-direction: column;
   min-height: 0;
   flex: 1;
 }
+
 .portfolio-browser .desktop-nav {
   flex-wrap: wrap;
 }
-.portfolio-browser .portfolio-content > h2 {
+
+.portfolio-browser .portfolio-content>h2 {
   margin: 0 0 24px;
   font-size: clamp(26px, 4vw, 40px);
   line-height: 1.2;
   letter-spacing: -0.025em;
 }
+
 .portfolio-browser .portfolio-content h3 {
   margin-top: 28px;
 }
+
 .portfolio-content:focus-visible,
 .portfolio-content h2:focus-visible {
   outline: 2px solid #80d7ed;
   outline-offset: 6px;
 }
+
 .quick-portfolio .portfolio-browser {
   margin-top: 28px;
   border: 1px solid #2d5063;
@@ -843,33 +939,34 @@ button:focus-visible {
   background: #0b2030;
   overflow: hidden;
 }
+
 .quick-portfolio .portfolio-content {
   overflow: visible;
 }
+
 .quick-portfolio .desktop-description {
   max-width: 760px;
   font-size: 16px;
 }
+
 .desktop .desktop-bar h1 {
   margin: 0;
   font-size: 20px;
   letter-spacing: 0.01em;
 }
+
 @media (max-width: 600px) {
   .quick-portfolio-header {
     align-items: flex-start;
     flex-direction: column;
     gap: 10px;
   }
-  .quick-access-button {
-    right: 12px;
-    bottom: 12px;
-    max-width: 145px;
-  }
+
   .desktop .desktop-bar {
     padding: 12px;
     gap: 8px;
   }
+
   .desktop .desktop-bar h1 {
     font-size: 17px;
   }
@@ -888,14 +985,17 @@ button:focus-visible {
   color: #d6eaf4;
   pointer-events: none;
 }
+
 .station-assistant p {
   font-size: 13px;
   line-height: 1.6;
   margin: 5px 0;
 }
+
 .station-assistant .eyebrow {
   font-size: 10px;
 }
+
 .station-assistant button {
   pointer-events: auto;
   font-size: 11px;
@@ -903,6 +1003,7 @@ button:focus-visible {
   background: #25465b;
   color: #ceecff;
 }
+
 @media (max-width: 700px) {
   .station-assistant {
     bottom: 90px;
@@ -919,6 +1020,7 @@ button:focus-visible {
   margin-block: 8px;
   padding: 10px;
 }
+
 .hologram-panel .station-assistant p {
   font-size: 12px;
 }
