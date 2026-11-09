@@ -26,9 +26,7 @@ test.afterEach(({ page }) => {
 
 async function ready(page: Page) {
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
 }
 
 test('powered bulkhead visibly slides with collision and stays open for a return crossing', async ({

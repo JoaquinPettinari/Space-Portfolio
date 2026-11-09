@@ -142,7 +142,7 @@ async function expectNativeArchiveScroll(
   dialog: Locator,
   info: TestInfo,
 ) {
-  const content = dialog.locator('.portfolio-content')
+  const content = dialog.locator('.archive-record-copy')
   await content.hover()
   const observeScroll = () =>
     content.evaluate((element) => {
@@ -233,7 +233,7 @@ async function expectNativeArchiveScroll(
 
 test('approaches the physical Archive with E, reads records, downloads CV and exits with real Pointer Lock', async ({
   page,
-}, info) => {
+}) => {
   await ready(page)
   await enterObservationRoom(page)
   await forwardStation(page, -1)
@@ -256,7 +256,6 @@ test('approaches the physical Archive with E, reads records, downloads CV and ex
     dialog.getByRole('heading', { name: 'Service Record', exact: true }),
   ).toBeFocused()
   await expect(dialog.getByRole('heading', { name: 'Blue Alba' })).toBeVisible()
-  await expectNativeArchiveScroll(page, dialog, info)
   const downloadEvent = page.waitForEvent('download')
   await dialog
     .getByRole('link', { name: 'Download CV (PDF)', exact: true })
@@ -305,10 +304,75 @@ test('quick access focuses the same physical Archive from the airlock without co
   await page.setViewportSize({ width: 960, height: 640 })
   await expectPhysicalScreen(page)
   await dialog.getByRole('button', { name: 'Projects', exact: true }).click()
+  const projectPane = dialog.locator('.portfolio-content')
+  expect(
+    await projectPane.evaluate(
+      (el) =>
+        el.scrollWidth <= el.clientWidth && el.scrollHeight <= el.clientHeight,
+    ),
+  ).toBe(true)
+  await expect(
+    dialog.getByRole('button', { name: /RouteWise.*Open record/ }),
+  ).toBeVisible()
+  await expect(
+    dialog.getByRole('button', { name: /AccesiWeb.*Open record/ }),
+  ).toBeVisible()
   await dialog.getByRole('button', { name: /RouteWise/ }).click()
   await expect(
     dialog.getByRole('heading', { name: 'RouteWise', exact: true }),
   ).toBeFocused()
+  const details = dialog.getByRole('region', {
+    name: 'RouteWise record details',
+  })
+  await details.focus()
+  await page.keyboard.press('End')
+  await expect
+    .poll(() => details.evaluate((el) => el.scrollTop))
+    .toBeGreaterThan(0)
+  await expect(
+    dialog.getByRole('button', { name: 'Back to projects' }),
+  ).toBeInViewport()
+  await dialog.getByRole('button', { name: /Image 2:/ }).click()
+  await expect(
+    dialog.getByRole('img', { name: /RouteWise itinerary/ }),
+  ).toBeVisible()
+  await dialog.getByRole('button', { name: 'Next project' }).click()
+  await expect(
+    dialog.getByRole('heading', { name: 'AccesiWeb', exact: true }),
+  ).toBeFocused()
+  await expect(
+    dialog.getByRole('button', { name: 'Next project' }),
+  ).toBeDisabled()
+  expect(
+    await dialog
+      .locator('.archive-detail-pane')
+      .evaluate(
+        (el) =>
+          el.scrollWidth <= el.clientWidth &&
+          el.scrollHeight <= el.clientHeight,
+      ),
+  ).toBe(true)
+  await dialog.getByRole('button', { name: 'Education', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  await expect(
+    dialog.getByRole('heading', { name: 'Education', exact: true }),
+  ).toBeFocused()
+  await expect(
+    dialog.getByRole('heading', { name: /Master’s Degree/ }),
+  ).toBeVisible()
+  await expect(
+    dialog.getByRole('heading', { name: 'Advanced React' }),
+  ).toBeVisible()
+  await expect(dialog.getByText(/Certified B1 Italian/)).toBeVisible()
+  expect(
+    await dialog
+      .locator('.portfolio-content')
+      .evaluate(
+        (el) =>
+          el.scrollHeight <= el.clientHeight &&
+          el.scrollWidth <= el.clientWidth,
+      ),
+  ).toBe(true)
   await page.setViewportSize({ width: 390, height: 844 })
   await expectPhysicalScreen(page)
   // E closes the same focused monitor and recaptures from a real key gesture.
@@ -377,6 +441,16 @@ test('unavailable WebGL retains the direct HTML portfolio on a small viewport', 
   await expect(
     page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
   ).toBeVisible()
+  await page.getByRole('button', { name: 'Projects', exact: true }).click()
+  await page.getByRole('button', { name: /RouteWise/ }).click()
+  await expect(
+    page.getByRole('img', { name: /RouteWise landing/ }),
+  ).toBeVisible()
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true)
   await page.getByRole('button', { name: 'Contact', exact: true }).click()
   await expect(
     page.getByRole('form', { name: 'Earth Communications' }),
@@ -451,7 +525,7 @@ test('accessible HTML contact preserves the failed draft and confirms only a moc
     .toBe(false)
 })
 
-test('quick physical Archive scrolls Service Record with the native mouse wheel', async ({
+test('physical service records remain readable and project details preserve native scrolling', async ({
   page,
 }, info) => {
   page.on('console', (message) => {
@@ -472,5 +546,38 @@ test('quick physical Archive scrolls Service Record with the native mouse wheel'
     .getByRole('button', { name: 'Service Record', exact: true })
     .click()
   await expect(dialog.getByRole('heading', { name: 'Blue Alba' })).toBeVisible()
+  const employers = [
+    'Blue Alba',
+    'Bright Mediums',
+    'Swiss Medical Group',
+    'Hurlingham National University',
+  ]
+  for (const employer of employers) {
+    const button = dialog
+      .getByRole('group', { name: 'Employment records' })
+      .getByRole('button', { name: new RegExp(employer) })
+    await button.focus()
+    await page.keyboard.press('Enter')
+    await expect(
+      dialog.getByRole('heading', { name: employer, exact: true }),
+    ).toBeVisible()
+    await expect(button).toHaveAttribute('aria-pressed', 'true')
+    expect(
+      await dialog
+        .locator('.portfolio-content')
+        .evaluate(
+          (el) =>
+            el.scrollHeight <= el.clientHeight &&
+            el.scrollWidth <= el.clientWidth,
+        ),
+    ).toBe(true)
+  }
+  const downloadEvent = page.waitForEvent('download')
+  await dialog.getByRole('link', { name: 'Download CV (PDF)' }).click()
+  expect((await downloadEvent).suggestedFilename()).toBe(
+    'joaquin-pettinari-cv.pdf',
+  )
+  await dialog.getByRole('button', { name: 'Projects', exact: true }).click()
+  await dialog.getByRole('button', { name: /RouteWise/ }).click()
   await expectNativeArchiveScroll(page, dialog, info)
 })

@@ -36,7 +36,7 @@ function Panel({
 
 function CentralTable() {
   return (
-    <group name="future-tactical-table">
+    <group name="tactical-table" userData={{ interaction: 'tactical' }}>
       <RigidBody
         type="fixed"
         colliders={false}

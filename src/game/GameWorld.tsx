@@ -1,4 +1,4 @@
-import { Suspense, useEffect, type ReactNode } from 'react'
+import { Suspense, useEffect, useRef, type ReactNode } from 'react'
 import { Physics } from '@react-three/rapier'
 import { Greybox } from './world/Greybox'
 import { Player } from './player/Player'
@@ -6,10 +6,14 @@ import { MouseLook } from './player/MouseLook'
 import { Workstation } from './world/Workstation'
 import { Interaction } from './interaction/Interaction'
 import { ArchiveScreen } from './world/ArchiveScreen'
+import { TacticalStation } from './world/TacticalStation'
 import { PhysicalTerminal } from './world/PhysicalTerminal'
 import { HandheldTablet } from './world/HandheldTablet'
 import type { useProtocol } from './useProtocol'
-import { AuxiliarySwitch } from './world/AuxiliarySwitch'
+import {
+  AuxiliarySwitch,
+  type PowerSwitchHandle,
+} from './world/AuxiliarySwitch'
 import { CrewDossier } from './world/CrewDossier'
 import { CrewAccess } from './world/CrewAccess'
 import { CrewIdentity } from './ui/CrewIdentity'
@@ -70,6 +74,7 @@ export function GameWorld({
   onTransmission,
   onAccessiblePortfolio,
 }: Props) {
+  const powerSwitch = useRef<PowerSwitchHandle>(null)
   const { state: protocol, dispatch, currentObjective } = protocolModel
   const { completed } = protocol
   const {
@@ -99,7 +104,12 @@ export function GameWorld({
           bulkheadPhase={bulkheadPhase}
           onBulkheadPhaseChange={onBulkheadPhaseChange}
         />
-        <AuxiliarySwitch restored={lightsOn} target={target} />
+        <AuxiliarySwitch
+          ref={powerSwitch}
+          restored={lightsOn}
+          paused={!playing || suspended}
+          onComplete={onLighting}
+        />
         <Workstation target={target} />
         <CrewDossier target={target} />
         <CoffeeMachine state={coffee.state} target={target} />
@@ -127,6 +137,14 @@ export function GameWorld({
           <CrewIdentity verified={identity === 'verified'} />
         </PhysicalTerminal>
       )}
+      <TacticalStation
+        active={mode === 'tactical' && !transitioning}
+        paused={suspended || (mode !== 'walking' && mode !== 'tactical')}
+        protocol={protocol}
+        bulkhead={bulkheadPhase}
+        lightsOn={lightsOn}
+        onClose={resumeWalking}
+      />
       <HandheldTablet
         mode={mode === 'walking' ? tabletMode : 'lowered'}
         state={protocol}
@@ -185,7 +203,7 @@ export function GameWorld({
         mode={mode}
         onTarget={setTarget}
         onMode={changeMode}
-        onLighting={onLighting}
+        onLighting={() => powerSwitch.current?.activate()}
         onDossier={onDossier}
       />
       <MouseLook

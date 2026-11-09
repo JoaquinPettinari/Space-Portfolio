@@ -60,9 +60,9 @@ export async function enter(page: Page) {
   if (!box) throw new Error('Canvas not ready')
   await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  // Browser capture precedes React's active-control commit. Do not send held
-  // movement keys until the gameplay controls are visibly active.
-  await expect(page.locator('.crosshair')).toBeVisible()
+  // The crosshair is intentionally absent. After real browser capture, allow
+  // React's active-control commit before sending held movement keys.
+  await expect(page.locator('.crosshair')).toHaveCount(0)
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
@@ -157,7 +157,7 @@ export async function forwardStation(page: Page, side: -1 | 1) {
   await approach(
     page,
     { x: side * 2.4, y: 1.65, z: -3.715 },
-    side === -1 ? 'E · Use computer' : 'E · Earth Communications',
+    side === -1 ? 'E Use computer' : 'E · Earth Communications',
   )
 }
 

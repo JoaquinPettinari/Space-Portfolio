@@ -1,4 +1,12 @@
 :root {
+  --terminal-bg: #071923;
+  --terminal-surface: #102d3a;
+  --terminal-accent: #42e8f5;
+  --terminal-text: #e9f5fa;
+  --terminal-muted: #9ab6c4;
+  --terminal-warm: #e6b778;
+  --terminal-border: #28606c;
+
   font-family: system-ui, sans-serif;
   color: #e7ebf0;
   background: #171b22;
@@ -178,6 +186,10 @@ button:focus-visible {
   font-size: 12px;
   text-align: center;
   pointer-events: none;
+}
+
+.interaction-hint-text {
+  margin-left: 8px;
 }
 
 .seat-pause {

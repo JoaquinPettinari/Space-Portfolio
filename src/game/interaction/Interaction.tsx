@@ -50,7 +50,8 @@ export function Interaction({
       if (
         hit &&
         hit.distance <= INTERACTION_DISTANCE &&
-        (kind === 'computer' ||
+        (kind === 'tactical' ||
+          kind === 'computer' ||
           kind === 'dossier' ||
           kind === 'lighting' ||
           kind === 'communications' ||

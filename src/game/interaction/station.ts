@@ -1,6 +1,13 @@
 export type StationMode =
-  'walking' | 'computer' | 'communications' | 'personal' | 'photo' | 'crew'
+  | 'tactical'
+  | 'walking'
+  | 'computer'
+  | 'communications'
+  | 'personal'
+  | 'photo'
+  | 'crew'
 export type StationTarget =
+  | 'tactical'
   | 'computer'
   | 'dossier'
   | 'lighting'
@@ -53,12 +60,20 @@ export const COMMUNICATIONS_FOCUS = [
 export function wallMonitorDistance(aspect: number) {
   return monitorDistance(aspect, 1.3, 1.1)
 }
-export type TerminalKind = 'computer' | 'communications' | 'personal' | 'crew'
+export type TerminalKind =
+  'computer' | 'communications' | 'personal' | 'crew' | 'tactical'
 
 /** Physical display contract, matching current geometry and CSS pixel surfaces.
  * Keep the user's UI layout independent from camera fitting and Html scale.
  */
 export const TERMINAL_SCREENS = {
+  tactical: {
+    position: [-0.55, 1.85, 0.5],
+    rotation: -Math.PI / 2,
+    frame: [2.6, 1.6],
+    display: [2.4, 1.35],
+    pixels: [960, 540],
+  },
   computer: {
     position: SCREEN_POSITION,
     rotation: 0,
@@ -107,6 +122,7 @@ function terminalView(kind: TerminalKind) {
   }
 }
 const views = {
+  tactical: terminalView('tactical'),
   computer: terminalView('computer'),
   communications: terminalView('communications'),
   personal: terminalView('personal'),
@@ -147,6 +163,7 @@ export function interactionMode(
   mode: StationMode,
   target: StationTarget,
 ): StationMode {
+  if (target === 'tactical') return 'tactical'
   if (target === 'computer') return 'computer'
   if (target === 'communications') return 'communications'
   if (target === 'personal') return 'personal'

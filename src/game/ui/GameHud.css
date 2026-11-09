@@ -304,6 +304,10 @@
   pointer-events: none;
 }
 
+.interaction-hint-text {
+  margin-left: 8px;
+}
+
 /* Crosshair */
 .crosshair {
   position: fixed;

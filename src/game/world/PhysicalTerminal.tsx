@@ -23,10 +23,17 @@ export function PhysicalTerminal({
       distanceFactor={terminalHtmlScale(kind)}
     >
       <div
-        className={kind === 'communications' ? 'forward-terminal' : undefined}
+        className={
+          kind === 'communications'
+            ? 'forward-terminal'
+            : kind === 'personal'
+              ? 'personal-terminal'
+              : 'crew-terminal'
+        }
       >
         <TerminalPanel
           physical
+          communications={kind === 'communications'}
           title={
             kind === 'communications'
               ? 'Earth Communications'

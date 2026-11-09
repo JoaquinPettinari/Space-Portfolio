@@ -57,3 +57,177 @@
   overflow: hidden;
   clip-path: inset(50%);
 }
+
+.contact-field {
+  display: grid;
+  gap: 5px;
+}
+.contact-compose {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.contact-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* The forward monitor remains the existing 960 × 540 CSS canvas. */
+.forward-terminal .desktop {
+  background:
+    radial-gradient(
+      ellipse at top right,
+      var(--terminal-surface),
+      transparent 70%
+    ),
+    var(--terminal-bg);
+  color: var(--terminal-text);
+}
+.forward-terminal .desktop .desktop-bar {
+  padding: 14px 22px;
+  height: 70px;
+  justify-content: flex-start;
+  gap: 26px;
+  border-bottom: 1px solid var(--terminal-border);
+}
+.forward-terminal .communications-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--terminal-text);
+}
+.communications-brand > span {
+  display: grid;
+  gap: 3px;
+}
+.communications-brand strong {
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+.communications-brand small {
+  font-size: 12px;
+  color: var(--terminal-muted);
+}
+.forward-terminal .desktop .desktop-bar h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 22px;
+  border-left: 1px solid var(--terminal-accent);
+  color: var(--terminal-accent);
+  text-transform: uppercase;
+  font-size: 23px;
+}
+.forward-terminal .desktop-content {
+  padding: 14px 24px;
+}
+.forward-terminal .contact-form {
+  border: 1px solid var(--terminal-border);
+  border-radius: 12px 3px;
+  padding: 14px 18px;
+}
+.forward-terminal .contact-compose {
+  margin: 0 0 7px;
+  font-size: 19px;
+  color: var(--terminal-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.forward-terminal .contact-compose svg {
+  color: var(--terminal-accent);
+}
+.forward-terminal .contact-form .contact-notice {
+  margin: 0;
+  font-size: 12px;
+  color: var(--terminal-muted);
+}
+.forward-terminal .contact-form .contact-alternative {
+  margin: 3px 0 0;
+  font-size: 11px;
+  color: var(--terminal-muted);
+}
+.forward-terminal .contact-alternative a {
+  font-size: inherit;
+  color: var(--terminal-accent);
+}
+.forward-terminal .contact-form fieldset {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  border: 0;
+  padding: 0;
+  margin: 10px 0;
+  min-width: 0;
+}
+.forward-terminal .contact-form legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.forward-terminal .contact-message {
+  grid-column: 1 / -1;
+}
+.forward-terminal .contact-field label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.forward-terminal .contact-form input,
+.forward-terminal .contact-form textarea {
+  border-color: var(--terminal-border);
+  color: var(--terminal-text);
+  background: #04131c;
+  font-size: 14px;
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+.forward-terminal .contact-form textarea {
+  height: 88px;
+  resize: none;
+}
+.forward-terminal .contact-actions button {
+  font-size: 14px;
+  padding: 8px 16px;
+  background: var(--terminal-bg);
+  border-color: var(--terminal-border);
+  color: var(--terminal-muted);
+}
+.forward-terminal .contact-actions .contact-send {
+  border-color: var(--terminal-accent);
+  background: linear-gradient(110deg, #07576a, #0b3442);
+  color: var(--terminal-text);
+  box-shadow: inset 0 0 12px #42e8f51a;
+}
+.forward-terminal .contact-form [role='status'],
+.forward-terminal .contact-form [role='alert'] {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 8px 0 0;
+}
+.forward-terminal .contact-form [role='status']:empty {
+  margin: 0;
+}
+.forward-terminal .contact-form :focus-visible {
+  outline-color: var(--terminal-warm);
+}
+.forward-terminal .desktop-footer {
+  height: 42px;
+  padding: 5px 20px;
+  border-color: var(--terminal-border);
+  color: var(--terminal-muted);
+}
+.forward-terminal .desktop-footer button {
+  padding: 5px 12px;
+  font-size: 13px;
+  border: 1px solid var(--terminal-accent);
+  color: var(--terminal-text);
+  background: var(--terminal-surface);
+}

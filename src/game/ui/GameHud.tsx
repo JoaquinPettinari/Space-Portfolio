@@ -12,7 +12,7 @@ import { PhotoInspection } from './PhotoInspection'
 import type { ReactNode } from 'react'
 import type { BulkheadPhase } from '../world/bulkhead'
 import './GameHud.css'
-import { HudControls } from './HudControls'
+import { ControlKey, HudControls } from './HudControls'
 import { Compass } from 'lucide-react'
 
 type Props = {
@@ -57,6 +57,12 @@ export function GameHud({
     openTablet,
     resumeWalking,
   } = controls
+  const hint = interactionHint(
+    target,
+    lightsOn,
+    coffee.state.phase,
+    bulkheadPhase,
+  )
   return (
     <>
       {ready && mode === 'walking' && !tabletRaised && (
@@ -74,14 +80,16 @@ export function GameHud({
         </div>
       )}
       {ready && mode === 'walking' && !tabletRaised && <HudControls />}
-      {active && (
-        <div className="crosshair" aria-hidden="true">
-          +
-        </div>
-      )}
       {active && !transitioning && !tabletRaised && target && (
         <div className="interaction-hint" role="status">
-          {interactionHint(target, lightsOn, coffee.state.phase, bulkheadPhase)}
+          {hint.startsWith('E') ? (
+            <>
+              <ControlKey>E</ControlKey>
+              <span className="interaction-hint-text">{hint.slice(1)}</span>
+            </>
+          ) : (
+            hint
+          )}
         </div>
       )}
       <PauseMenu

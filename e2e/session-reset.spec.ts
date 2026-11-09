@@ -11,9 +11,7 @@ test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 test.setTimeout(180_000)
 
 async function ready(page: Page) {
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
 }
 
 async function expectFreshSession(page: Page) {

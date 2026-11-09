@@ -1,0 +1,26 @@
+/* DOM fallback also loads this component without the 3D screen styles. */
+.archive-record-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 580px;
+  object-fit: contain;
+}
+.archive-record-media figure {
+  margin: 0;
+}
+.archive-record-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.archive-image-controls {
+  display: flex;
+  gap: 6px;
+  margin: 9px 0;
+}
+.central-archive .archive-record-toolbar {
+  flex-wrap: nowrap;
+}

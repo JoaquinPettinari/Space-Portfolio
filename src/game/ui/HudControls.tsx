@@ -6,7 +6,7 @@ type ControlKeyProps = {
   wide?: boolean
 }
 
-function ControlKey({ children, wide = false }: ControlKeyProps) {
+export function ControlKey({ children, wide = false }: ControlKeyProps) {
   return (
     <kbd className={`hud-key ${wide ? 'hud-key--wide' : ''}`}>{children}</kbd>
   )

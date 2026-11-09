@@ -3,12 +3,18 @@ import { profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
 import { CommandTerminal } from './CommandTerminal'
 import './PersonalDesktop.css'
+import {
+  FileUser,
+  Images,
+  SlidersHorizontal,
+  SquareTerminal,
+} from 'lucide-react'
 
 const applications = [
-  { id: 'dossier', title: 'Crew Dossier.pdf', symbol: 'PDF' },
-  { id: 'gallery', title: 'Project Gallery', symbol: 'IMG' },
-  { id: 'settings', title: 'Station Settings', symbol: 'SYS' },
-  { id: 'command', title: 'Command Terminal', symbol: '>_' },
+  { id: 'dossier', title: 'Crew Dossier.pdf', icon: FileUser },
+  { id: 'gallery', title: 'Project Gallery', icon: Images },
+  { id: 'settings', title: 'Station Settings', icon: SlidersHorizontal },
+  { id: 'command', title: 'Command Terminal', icon: SquareTerminal },
 ] as const
 type Application = (typeof applications)[number]['id']
 const gallery = projects.flatMap((project) =>
@@ -59,7 +65,7 @@ export function PersonalDesktop({
 
   return (
     <div
-      className="personal-desktop"
+      className={`personal-desktop${active ? ' personal-desktop--active' : ''}`}
       onKeyDown={(event) => {
         if (event.key === 'Escape' && application) {
           event.preventDefault()
@@ -68,10 +74,13 @@ export function PersonalDesktop({
         }
       }}
     >
-      <p className="eyebrow">SOUTHERN CROSS OS · PERSONAL WORKSTATION</p>
-      <p>
-        Welcome, {profile.name}. All applications are available at any time.
-      </p>
+      <div className="personal-home-profile" hidden={!!active}>
+        <p className="eyebrow">CREW DESKTOP · CDS-01</p>
+        <img src="/images/crew-portrait.webp" alt={profile.name} />
+        <h2>{profile.name}</h2>
+        <p>{profile.role}</p>
+        <small>{profile.location}</small>
+      </div>
       <div
         className="personal-desktop-icons"
         role="toolbar"
@@ -93,14 +102,14 @@ export function PersonalDesktop({
               setApplication(item.id)
             }}
           >
-            <span aria-hidden="true">{item.symbol}</span>
+            <item.icon size={36} aria-hidden="true" />
             {item.title}
           </button>
         ))}
       </div>
       <p className="personal-desktop-help">
         Click once or press Enter to open. Arrow keys select applications.
-        Escape closes the current window; Escape again pauses the station.
+        Escape closes the current window; Escape again returns to the station.
       </p>
       {active && (
         <section className="personal-desktop-window" aria-labelledby={titleId}>

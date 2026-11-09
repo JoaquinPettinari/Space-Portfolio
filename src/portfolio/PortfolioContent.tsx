@@ -8,6 +8,9 @@ import {
   GraduationCap,
   Mail,
 } from 'lucide-react'
+import { EducationRecords } from './EducationRecords'
+import { ServiceRecord } from './ServiceRecord'
+import { ProjectDetail } from './ProjectDetail'
 import { ArchiveOverview } from './ArchiveOverview'
 import { ContactForm } from '../contact/ContactForm'
 
@@ -93,7 +96,7 @@ export function PortfolioContent({
         )}
       </nav>
       <section
-        className={`desktop-content portfolio-content${physical && section === 'Profile' ? ' archive-overview-pane' : ''}`}
+        className={`desktop-content portfolio-content${physical && section === 'Profile' ? ' archive-overview-pane' : ''}${physical && project ? ' archive-detail-pane' : ''}`}
         aria-labelledby={titleId}
       >
         <h2
@@ -104,7 +107,12 @@ export function PortfolioContent({
             physical && section === 'Profile' ? 'archive-sr-only' : undefined
           }
         >
-          {project?.title ?? (section === 'Profile' ? profile.name : section)}
+          {project?.title ??
+            (section === 'Profile'
+              ? profile.name
+              : physical
+                ? screenLabels[section]
+                : section)}
         </h2>
         {section === 'Profile' && physical && (
           <ArchiveOverview
@@ -144,7 +152,10 @@ export function PortfolioContent({
             <p>{profile.languages}</p>
           </>
         )}
-        {section === 'Service Record' && (
+        {section === 'Service Record' && physical && (
+          <ServiceRecord onDownload={() => onActivity?.('dossier')} />
+        )}
+        {section === 'Service Record' && !physical && (
           <>
             <p className="desktop-description">
               Employment history and professional responsibilities, preserved
@@ -172,7 +183,8 @@ export function PortfolioContent({
             </a>
           </>
         )}
-        {section === 'Training' && (
+        {section === 'Training' && physical && <EducationRecords />}
+        {section === 'Training' && !physical && (
           <>
             <p className="desktop-description">
               Degrees, certification and language records from the supplied
@@ -192,7 +204,9 @@ export function PortfolioContent({
           </>
         )}
         {section === 'Projects' && !project && (
-          <div className="project-list">
+          <div
+            className={`project-list${physical ? ' archive-project-list' : ''}`}
+          >
             {projects.map((item) => (
               <button
                 className="project-card"
@@ -213,57 +227,30 @@ export function PortfolioContent({
                 <small>{item.category}</small>
                 <strong>{item.title}</strong>
                 <span>{item.summary}</span>
-                <span className="project-open">View project →</span>
+                {physical && (
+                  <div className="archive-project-stack">
+                    {item.stack.slice(0, 4).map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                )}
+                <span className="project-open">
+                  {physical ? 'Open record →' : 'View project →'}
+                </span>
               </button>
             ))}
           </div>
         )}
         {section === 'Projects' && project && (
-          <article className="project-detail">
-            <p className="eyebrow">{project.category}</p>
-            <p>{project.summary}</p>
-            <div className="project-gallery">
-              {projectImages[project.id].map((image) => (
-                <figure key={image.src}>
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    loading="lazy"
-                  />
-                  <figcaption>{image.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-            <div className="skill-tags">
-              {project.stack.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </div>
-            <h3>The problem</h3>
-            <p>{project.problem}</p>
-            <h3>My contribution</h3>
-            <p>{project.contribution}</p>
-            <h3>Results and scope</h3>
-            <p>{project.result}</p>
-            <p className="project-scope">{project.scope}</p>
-            <div className="project-links">
-              {project.links.map((link) => (
-                <a
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.label} ↗
-                </a>
-              ))}
-            </div>
-            <button className="back-button" onClick={() => setProjectId(null)}>
-              Back to projects
-            </button>
-          </article>
+          <ProjectDetail
+            key={project.id}
+            project={project}
+            onBack={() => setProjectId(null)}
+            onProject={(id) => {
+              setProjectId(id)
+              onActivity?.('archives')
+            }}
+          />
         )}
         {section === 'Contact' && (
           <>

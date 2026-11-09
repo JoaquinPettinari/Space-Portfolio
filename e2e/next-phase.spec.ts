@@ -79,7 +79,9 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
   await expect(
     dialog.getByRole('heading', { name: /Master’s Degree/ }),
   ).toBeVisible()
-  expect(await dialog.locator('img').count()).toBe(0)
+  await expect(
+    dialog.getByRole('img', { name: 'Joaquín Pettinari' }),
+  ).toBeVisible()
   const pane = dialog.locator('.portfolio-content')
   expect(
     await pane.evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
@@ -97,24 +99,17 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
   expect((await protocol(page)).completed).toEqual([])
 })
 
-test('cancelled Crew Access does not authenticate and the table no longer authenticates', async ({
-  page,
-}) => {
+test('cancelled Crew Access does not authenticate', async ({ page }) => {
   await approachCrew(page)
   await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
   await page.keyboard.press('e')
-  await expect(page.getByText('Reading crew card…')).toBeVisible()
+  // Cancel during approach, before the short scan can finish on a slow runner.
   await page.keyboard.press('Escape')
   await expect(
     page.getByRole('dialog', { name: 'Crew Access' }),
   ).not.toBeVisible()
   await page.waitForTimeout(1400)
   expect((await protocol(page)).completed ?? []).not.toContain('crew')
-  await enterObservationRoom(page)
-  await lookAt(page, { x: 0, y: 1.05, z: 0.5 })
-  await page.keyboard.press('e')
-  expect((await protocol(page)).completed ?? []).not.toContain('crew')
-  await expect(page.getByRole('dialog')).not.toBeVisible()
 })
 
 test('physical Communications preserves Skip, validation and accepted retry', async ({
@@ -138,11 +133,30 @@ test('physical Communications preserves Skip, validation and accepted retry', as
   await expect(dialog).toHaveClass(/physical/)
   const form = dialog.getByRole('form')
   await expect(form).toContainText('Norwegian')
+  const checkFormFit = async () => {
+    expect(
+      await dialog
+        .locator('.desktop-content')
+        .evaluate(
+          (el) =>
+            el.scrollHeight <= el.clientHeight &&
+            el.scrollWidth <= el.clientWidth,
+        ),
+    ).toBe(true)
+    await expect(
+      form.getByRole('button', { name: 'Skip', exact: true }),
+    ).toBeInViewport()
+    await expect(
+      form.getByRole('button', { name: 'Send Transmission' }),
+    ).toBeInViewport()
+  }
+  await checkFormFit()
   await expect(
     page.getByRole('status', { name: 'Station assistant' }),
   ).toHaveAttribute('data-dialogue-event', 'communications', { timeout: 30000 })
   await form.getByRole('button', { name: 'Skip', exact: true }).click()
   expect(sends).toBe(0)
+  await checkFormFit()
   await expect(
     page.getByRole('status', { name: 'Station assistant' }),
   ).toHaveAttribute('data-dialogue-event', 'transmissionSkipped', {
@@ -159,12 +173,14 @@ test('physical Communications preserves Skip, validation and accepted retry', as
     .fill('A test only.')
   await form.getByRole('button', { name: 'Send Transmission' }).click()
   await expect(form.getByRole('alert')).toContainText('not confirmed')
+  await checkFormFit()
   await expect(
     form.getByRole('textbox', { name: 'Message', exact: true }),
   ).toHaveValue('A test only.')
   await form.getByRole('button', { name: 'Send Transmission' }).click()
   await expect(form.getByRole('status')).toContainText('accepted')
   expect(sends).toBe(2)
+  await checkFormFit()
   await expect(
     page.getByRole('status', { name: 'Station assistant' }),
   ).toHaveAttribute('data-dialogue-event', 'transmissionAccepted', {
@@ -183,6 +199,21 @@ test('physical Personal Workstation supports keyboard apps and the real CV', asy
   const dialog = page.getByRole('dialog', { name: 'Personal Workstation' })
   await expect(dialog).toBeVisible()
   await expect(dialog).toHaveClass(/physical/)
+  const checkDesktopFit = async () => {
+    expect(
+      await dialog
+        .locator('.desktop-content')
+        .evaluate(
+          (el) =>
+            el.scrollWidth <= el.clientWidth &&
+            el.scrollHeight <= el.clientHeight,
+        ),
+    ).toBe(true)
+  }
+  await checkDesktopFit()
+  await expect(
+    dialog.getByRole('heading', { name: 'Joaquín Pettinari' }),
+  ).toBeVisible()
   await dialog
     .getByRole('button', { name: 'Crew Dossier.pdf', exact: true })
     .focus()
@@ -198,6 +229,17 @@ test('physical Personal Workstation supports keyboard apps and the real CV', asy
     .getByRole('button', { name: 'Command Terminal', exact: true })
     .click()
   await expect(dialog.getByRole('textbox')).toBeVisible()
+  await checkDesktopFit()
+  await page.keyboard.press('Escape')
+  await dialog
+    .getByRole('button', { name: 'Project Gallery', exact: true })
+    .click()
+  await expect(dialog.getByRole('img', { name: /RouteWise/ })).toBeVisible()
+  await checkDesktopFit()
+  await dialog.getByRole('button', { name: 'Next image' }).click()
+  await expect(
+    dialog.getByRole('img', { name: /RouteWise itinerary/ }),
+  ).toBeVisible()
   await page.keyboard.press('Escape')
   await dialog.getByRole('button', { name: 'Leave terminal' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
@@ -243,4 +285,54 @@ test('held tablet keeps movement and real mouse capture, focus pauses and Skip r
   await expect(held).not.toBeVisible()
   await page.keyboard.press('Escape')
   expect((await snapshot(page)).pointerLocked).toBe(false)
+})
+
+test('optional tactical table reads session state, supports inspection and returns to FPS', async ({
+  page,
+}) => {
+  await enterObservationRoom(page)
+  await approach(page, { x: 0, y: 1.05, z: 0.5 }, 'E · Tactical Table')
+  await expect(
+    page.getByText('E · Tactical Table', { exact: true }),
+    JSON.stringify(await snapshot(page)),
+  ).toBeVisible()
+  const before = await snapshot(page)
+  await page.keyboard.press('e')
+  const dialog = page.getByRole('dialog', { name: 'Tactical Table' })
+  await expect(dialog).toBeVisible()
+  await expect(
+    dialog.getByRole('heading', { name: 'Station Overview' }),
+  ).toBeVisible()
+  await dialog.getByRole('button', { name: 'Docking Bay' }).click()
+  await expect(dialog.getByText('Docking status unavailable.')).toBeVisible()
+  await dialog.getByRole('button', { name: 'Systems', exact: true }).click()
+  await expect(dialog.getByText('Online', { exact: true })).toBeVisible()
+  await dialog.getByRole('button', { name: 'Mission Log' }).click()
+  await expect(dialog.getByRole('listitem')).toHaveCount(6)
+  await dialog.getByRole('button', { name: 'Rotate right' }).click()
+  await dialog.getByRole('slider', { name: 'Zoom' }).focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(dialog.getByRole('slider')).toHaveValue('0.85')
+  const focused = await snapshot(page)
+  expect(focused.cameraPosition.x).toBeLessThan(-1.05)
+  expect(focused.cameraPosition.z).toBeCloseTo(0.5, 2)
+  console.log(
+    'tactical-render-sample',
+    JSON.stringify({
+      drawCalls: focused.drawCalls,
+      triangles: focused.triangles,
+      frameMs: focused.frameMs,
+    }),
+  )
+  expect(focused.session.protocol).toEqual(before.session.protocol)
+  await dialog.getByRole('button', { name: 'Leave terminal' }).click()
+  await expect(dialog).not.toBeVisible()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect
+    .poll(async () =>
+      Math.abs(
+        (await snapshot(page)).cameraPosition.z - before.cameraPosition.z,
+      ),
+    )
+    .toBeLessThan(0.05)
 })

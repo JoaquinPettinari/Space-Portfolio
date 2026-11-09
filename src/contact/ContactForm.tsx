@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { CONTACT_LIMITS, validateContact } from '../../shared/contact'
 import { profile } from '../data/portfolio'
 import './ContactForm.css'
+import { Mail, Send, ChevronsRight } from 'lucide-react'
 
 export type ContactOutcome = 'accepted' | 'skipped'
 
@@ -93,42 +94,52 @@ export function ContactForm({
       aria-label="Earth Communications"
       aria-describedby={`${id}-notice`}
     >
-      <p id={`${id}-notice`}>
+      <h2 className="contact-compose">
+        <Mail size={22} aria-hidden="true" />
+        Compose message
+      </h2>
+      <p className="contact-notice" id={`${id}-notice`}>
         This sends a real message to Joaquín Pettinari. Messages welcome in
         Spanish, English, Italian and Norwegian.
       </p>
-      <p>
+      <p className="contact-alternative">
         Prefer your email app?{' '}
         <a href={`mailto:${profile.email}`}>{profile.email}</a>
       </p>
       <fieldset disabled={status === 'sending' || status === 'accepted'}>
         <legend>Your transmission</legend>
-        <label htmlFor={`${id}-name`}>Name</label>
-        <input
-          id={`${id}-name`}
-          name="name"
-          autoComplete="name"
-          required
-          maxLength={CONTACT_LIMITS.name}
-        />
-        <label htmlFor={`${id}-email`}>Email</label>
-        <input
-          id={`${id}-email`}
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          maxLength={CONTACT_LIMITS.email}
-        />
-        <label htmlFor={`${id}-message`}>Message</label>
-        <textarea
-          id={`${id}-message`}
-          name="message"
-          required
-          minLength={1}
-          maxLength={CONTACT_LIMITS.message}
-          rows={5}
-        />
+        <div className="contact-field">
+          <label htmlFor={`${id}-name`}>Name</label>
+          <input
+            id={`${id}-name`}
+            name="name"
+            autoComplete="name"
+            required
+            maxLength={CONTACT_LIMITS.name}
+          />
+        </div>
+        <div className="contact-field">
+          <label htmlFor={`${id}-email`}>Email</label>
+          <input
+            id={`${id}-email`}
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            maxLength={CONTACT_LIMITS.email}
+          />
+        </div>
+        <div className="contact-field contact-message">
+          <label htmlFor={`${id}-message`}>Message</label>
+          <textarea
+            id={`${id}-message`}
+            name="message"
+            required
+            minLength={1}
+            maxLength={CONTACT_LIMITS.message}
+            rows={5}
+          />
+        </div>
         <div className="contact-honeypot" aria-hidden="true">
           <label htmlFor={`${id}-website`}>Leave this field empty</label>
           <input
@@ -138,25 +149,35 @@ export function ContactForm({
             autoComplete="off"
           />
         </div>
-        <button type="submit">
+      </fieldset>
+      <div className="contact-actions">
+        <button
+          type="button"
+          disabled={
+            status === 'sending' ||
+            status === 'accepted' ||
+            status === 'skipped'
+          }
+          onClick={() => {
+            if (request.current) return
+            statusMessage.current?.focus()
+            setError('')
+            setStatus('skipped')
+            onComplete?.('skipped')
+          }}
+        >
+          <ChevronsRight size={19} aria-hidden="true" />
+          Skip
+        </button>
+        <button
+          className="contact-send"
+          type="submit"
+          disabled={status === 'sending' || status === 'accepted'}
+        >
+          <Send size={18} aria-hidden="true" />
           {status === 'sending' ? 'Transmitting…' : 'Send Transmission'}
         </button>
-      </fieldset>
-      <button
-        type="button"
-        disabled={
-          status === 'sending' || status === 'accepted' || status === 'skipped'
-        }
-        onClick={() => {
-          if (request.current) return
-          statusMessage.current?.focus()
-          setError('')
-          setStatus('skipped')
-          onComplete?.('skipped')
-        }}
-      >
-        Skip
-      </button>
+      </div>
       {status === 'error' && <p role="alert">{error}</p>}
       <p ref={statusMessage} tabIndex={-1} role="status" aria-live="polite">
         {status === 'sending' &&

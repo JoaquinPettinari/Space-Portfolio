@@ -123,3 +123,204 @@
   align-items: center;
   gap: 16px;
 }
+
+/* Personal monitor: crew card and applications, then a single active window. */
+.personal-terminal .desktop {
+  background: var(--terminal-bg);
+  color: var(--terminal-text);
+}
+.personal-terminal .desktop .desktop-bar {
+  height: 58px;
+  border-color: var(--terminal-border);
+  color: var(--terminal-muted);
+}
+.personal-terminal .desktop .desktop-bar h1 {
+  color: var(--terminal-accent);
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.personal-terminal .desktop-content {
+  padding: 14px 18px;
+}
+.personal-terminal .personal-desktop {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 14px;
+  padding: 0;
+  min-height: 0;
+  background: none;
+}
+.personal-home-profile {
+  padding: 20px 15px;
+  border: 1px solid var(--terminal-border);
+  border-radius: 12px 3px;
+  background: linear-gradient(
+    140deg,
+    var(--terminal-surface),
+    var(--terminal-bg)
+  );
+  text-align: center;
+}
+.personal-home-profile[hidden] {
+  display: none;
+}
+.personal-terminal .personal-home-profile .eyebrow {
+  font-size: 11px;
+  margin: 0 0 18px;
+}
+.personal-home-profile img {
+  width: 124px;
+  height: 124px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--terminal-accent);
+  padding: 4px;
+}
+.personal-home-profile h2 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 16px 0 8px;
+}
+.personal-terminal .personal-home-profile p {
+  color: var(--terminal-muted);
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+.personal-home-profile small {
+  font-size: 12px;
+  color: var(--terminal-muted);
+}
+.personal-terminal .personal-desktop-icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+}
+.personal-terminal .personal-desktop-icons button {
+  width: auto;
+  min-height: 140px;
+  padding: 18px 10px;
+  border: 1px solid var(--terminal-border);
+  border-radius: 12px 3px;
+  background: linear-gradient(
+    140deg,
+    var(--terminal-surface),
+    var(--terminal-bg)
+  );
+  font-size: 14px;
+}
+.personal-terminal .personal-desktop-icons svg {
+  color: var(--terminal-accent);
+}
+.personal-terminal .personal-desktop-icons button:hover,
+.personal-terminal .personal-desktop-icons button[aria-pressed='true'] {
+  border-color: var(--terminal-accent);
+  background: var(--terminal-surface);
+}
+.personal-terminal .personal-desktop-help {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11px;
+  color: var(--terminal-muted);
+}
+.personal-terminal .personal-desktop--active {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.personal-terminal .personal-desktop--active .personal-desktop-icons {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.personal-terminal .personal-desktop--active .personal-desktop-icons button {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  min-height: 42px;
+  padding: 6px;
+  font-size: 11px;
+}
+.personal-terminal .personal-desktop--active .personal-desktop-icons svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.personal-terminal .personal-desktop--active .personal-desktop-help {
+  display: none;
+}
+.personal-terminal .personal-desktop-window {
+  border-color: var(--terminal-border);
+  border-radius: 10px 3px;
+  padding: 12px;
+  background: var(--terminal-bg);
+}
+.personal-terminal .personal-desktop-window header {
+  position: sticky;
+  top: -14px;
+  background: var(--terminal-bg);
+  z-index: 1;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-color: var(--terminal-border);
+}
+.personal-terminal .personal-desktop-window h2 {
+  color: var(--terminal-accent);
+  font-size: 18px;
+}
+.personal-terminal .personal-desktop-window p {
+  font-size: 14px;
+}
+.personal-terminal .personal-desktop-window button {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-color: var(--terminal-border);
+  background: var(--terminal-surface);
+}
+.personal-terminal .personal-desktop-document {
+  gap: 14px;
+}
+.personal-terminal .personal-desktop-document a {
+  color: var(--terminal-accent);
+  font-size: 15px;
+}
+.personal-terminal .personal-image-inspection {
+  max-height: 110px;
+}
+.personal-terminal .personal-desktop-gallery figure {
+  margin: 6px 0;
+}
+.personal-terminal .personal-desktop-gallery figcaption {
+  font-size: 11px;
+  color: var(--terminal-muted);
+}
+.personal-terminal .personal-desktop-gallery-controls {
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+.personal-terminal .command-output {
+  max-height: 170px;
+}
+.personal-terminal .personal-desktop :focus-visible {
+  outline-color: var(--terminal-warm);
+}
+.personal-terminal .desktop-footer {
+  height: 44px;
+  padding: 6px 18px;
+  border-color: var(--terminal-border);
+  color: var(--terminal-muted);
+}
+.personal-terminal .desktop-footer button {
+  padding: 6px 12px;
+  color: var(--terminal-text);
+  border: 1px solid var(--terminal-accent);
+  background: var(--terminal-surface);
+}
+.personal-terminal .personal-desktop-gallery > p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+.personal-terminal .personal-desktop-gallery-controls button {
+  padding: 4px 8px;
+}
