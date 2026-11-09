@@ -311,13 +311,9 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   await page.getByRole('link', { name: 'Download CV (PDF)' }).click()
   const download = await downloadPromise
   expect(await download.failure()).toBeNull()
-  await page
-    .getByRole('navigation')
-    .getByRole('button', { name: 'Contact', exact: true })
-    .click()
   await expect(
-    page.getByRole('link', { name: /joaquinpettinari@hotmail.com/ }),
-  ).toHaveAttribute('href', 'mailto:joaquinpettinari@hotmail.com')
+    page.getByRole('button', { name: 'Contact', exact: true }),
+  ).toHaveCount(0)
 
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).not.toBeVisible()

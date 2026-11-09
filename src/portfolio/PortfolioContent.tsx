@@ -1,6 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { education, experience, profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
+import {
+  House,
+  Layers,
+  BriefcaseBusiness,
+  GraduationCap,
+  Mail,
+} from 'lucide-react'
+import { ArchiveOverview } from './ArchiveOverview'
 import { ContactForm } from '../contact/ContactForm'
 
 type Section =
@@ -12,14 +20,30 @@ const sections: Section[] = [
   'Training',
   'Contact',
 ]
+const sectionIcons = {
+  Profile: House,
+  Projects: Layers,
+  'Service Record': BriefcaseBusiness,
+  Training: GraduationCap,
+  Contact: Mail,
+}
+const screenLabels: Record<Section, string> = {
+  Profile: 'Overview',
+  Projects: 'Projects',
+  'Service Record': 'Service Record',
+  Training: 'Education',
+  Contact: 'Contact',
+}
 export type PortfolioActivity = 'archives' | 'dossier'
 
 /** Shared DOM-only content: usable without the station, WebGL or mission progress. */
 export function PortfolioContent({
   onActivity,
   headingId,
+  physical = false,
 }: {
   onActivity?: (id: PortfolioActivity) => void
+  physical?: boolean
   headingId?: string
 }) {
   const generatedId = useId()
@@ -46,24 +70,53 @@ export function PortfolioContent({
   return (
     <div className="portfolio-browser">
       <nav className="desktop-nav" aria-label="Portfolio sections">
-        {sections.map((item) => (
-          <button
-            key={item}
-            aria-pressed={section === item}
-            onClick={() => openSection(item)}
-          >
-            {item}
-          </button>
-        ))}
+        {sections
+          .filter((item) => !physical || item !== 'Contact')
+          .map((item) => {
+            const Icon = sectionIcons[item]
+            return (
+              <button
+                key={item}
+                aria-pressed={section === item}
+                onClick={() => openSection(item)}
+              >
+                {physical && <Icon size={21} aria-hidden="true" />}
+                {physical ? screenLabels[item] : item}
+              </button>
+            )
+          })}
+        {physical && (
+          <span className="archive-online">
+            <i />
+            Archive online
+          </span>
+        )}
       </nav>
       <section
-        className="desktop-content portfolio-content"
+        className={`desktop-content portfolio-content${physical && section === 'Profile' ? ' archive-overview-pane' : ''}`}
         aria-labelledby={titleId}
       >
-        <h2 id={titleId} ref={heading} tabIndex={-1}>
+        <h2
+          id={titleId}
+          ref={heading}
+          tabIndex={-1}
+          className={
+            physical && section === 'Profile' ? 'archive-sr-only' : undefined
+          }
+        >
           {project?.title ?? (section === 'Profile' ? profile.name : section)}
         </h2>
-        {section === 'Profile' && (
+        {section === 'Profile' && physical && (
+          <ArchiveOverview
+            onDownload={() => onActivity?.('dossier')}
+            onProject={(id) => {
+              setSection('Projects')
+              setProjectId(id)
+              onActivity?.('archives')
+            }}
+          />
+        )}
+        {section === 'Profile' && !physical && (
           <>
             <p className="eyebrow">
               {profile.role} · {profile.location}

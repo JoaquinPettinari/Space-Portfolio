@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TerminalPanel } from '../ui/TerminalPanel'
-import { WALL_SCREEN_POSES } from '../interaction/station'
+import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 
 /** Current 1.1 × .8 m wall displays; future console assets can replace the shell. */
 export function PhysicalTerminal({
@@ -15,12 +15,12 @@ export function PhysicalTerminal({
   children: ReactNode
   subtitle?: ReactNode
 }) {
-  const pose = WALL_SCREEN_POSES[kind]
+  const pose = TERMINAL_SCREENS[kind]
   return (
     <PhysicalScreen
       position={pose.position}
       rotation={pose.rotation}
-      distanceFactor={kind === 'communications' ? 2 / 3 : 4 / 7}
+      distanceFactor={terminalHtmlScale(kind)}
     >
       <div
         className={kind === 'communications' ? 'forward-terminal' : undefined}

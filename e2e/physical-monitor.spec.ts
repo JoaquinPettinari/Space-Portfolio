@@ -35,7 +35,7 @@ test.afterEach(({ page }) => {
 async function ready(page: Page) {
   await page.goto('/')
   await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
+    page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toBeVisible({ timeout: 60_000 })
 }
 
@@ -47,6 +47,21 @@ async function expectPhysicalScreen(page: Page) {
   await expect(
     screen.getByRole('heading', { name: 'Central Archive' }),
   ).toBeVisible()
+  const overview = screen.locator('.archive-overview-pane')
+  if (await overview.count()) {
+    expect(
+      await overview.evaluate((el) => ({
+        horizontal: el.scrollWidth > el.clientWidth,
+        vertical: el.scrollHeight > el.clientHeight,
+      })),
+    ).toEqual({ horizontal: false, vertical: false })
+    await expect(
+      screen.getByRole('button', { name: /RouteWise/ }),
+    ).toBeVisible()
+    await expect(
+      screen.getByRole('link', { name: 'Download CV (PDF)' }),
+    ).toBeVisible()
+  }
   const viewport = page.viewportSize()
   if (!viewport) throw new Error('Viewport unavailable')
   // The DOM display is inset within the viewport, leaving room for the real frame.
@@ -108,7 +123,9 @@ async function expectPhysicalScreen(page: Page) {
       return false
     }),
   ).toBe(true)
-  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await expect
+    .poll(async () => (await snapshot(page)).pointerLocked)
+    .toBe(false)
   const box = await screen.boundingBox()
   if (!box) throw new Error('Physical screen has no layout')
   const camera = (await snapshot(page)).cameraPosition
@@ -228,7 +245,7 @@ test('approaches the physical Archive with E, reads records, downloads CV and ex
   await expect(close).toBeFocused()
   await page.keyboard.press('Tab')
   await expect(
-    dialog.getByRole('button', { name: 'Profile', exact: true }),
+    dialog.getByRole('button', { name: 'Overview', exact: true }),
   ).toBeFocused()
   await page.keyboard.press('Shift+Tab')
   await expect(close).toBeFocused()
@@ -305,6 +322,13 @@ test('quick access focuses the same physical Archive from the airlock without co
       ),
     )
     .toBeLessThan(0.08)
+  // Let the completed return transition commit before the next shortcut.
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      ),
+  )
   await page.keyboard.press('Escape')
   await expect(dialog).not.toBeVisible()
   await expect
@@ -314,8 +338,10 @@ test('quick access focuses the same physical Archive from the airlock without co
       ),
     )
     .toBeLessThan(0.08)
-  expect((await snapshot(page)).pointerLocked).toBe(false)
-  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
+  await expect
+    .poll(async () => (await snapshot(page)).pointerLocked)
+    .toBe(false)
+  await page.keyboard.press('t')
   await page
     .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
@@ -364,7 +390,7 @@ test('unavailable WebGL retains the direct HTML portfolio on a small viewport', 
   ).toBe(true)
 })
 
-test('physical Archive contact preserves the failed draft and confirms only a mocked accepted retry', async ({
+test('accessible HTML contact preserves the failed draft and confirms only a mocked accepted retry', async ({
   page,
 }) => {
   let attempts = 0
@@ -383,11 +409,15 @@ test('physical Archive contact preserves the failed draft and confirms only a mo
     )
   })
   await ready(page)
-  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
+  await page.keyboard.press('t')
+  await page.keyboard.press('r')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
+  ).toBeVisible()
   await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
+    .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
-  const dialog = await expectPhysicalScreen(page)
+  const dialog = page.locator('.quick-portfolio')
   await dialog.getByRole('button', { name: 'Contact', exact: true }).click()
   const form = dialog.getByRole('form', { name: 'Earth Communications' })
   await form
@@ -416,7 +446,9 @@ test('physical Archive contact preserves the failed draft and confirms only a mo
     form.getByRole('button', { name: 'Send Transmission' }),
   ).toBeDisabled()
   expect(attempts).toBe(2)
-  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await expect
+    .poll(async () => (await snapshot(page)).pointerLocked)
+    .toBe(false)
 })
 
 test('quick physical Archive scrolls Service Record with the native mouse wheel', async ({
@@ -427,7 +459,11 @@ test('quick physical Archive scrolls Service Record with the native mouse wheel'
       console.log(message.text())
   })
   await ready(page)
-  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
+  await page.keyboard.press('t')
+  await page.keyboard.press('r')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
+  ).toBeVisible()
   await page
     .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
     .click()

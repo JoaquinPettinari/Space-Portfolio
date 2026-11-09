@@ -22,8 +22,13 @@ export const CREW_ACCESS_POSITION = [2.05, 1.65, 4.65] as const
 export const CREW_ACCESS_ROTATION = Math.PI
 export const TABLE_POSITION = [0, 0, 0.5] as const
 /** Fit the whole physical bezel while leaving readable margins. */
-export function monitorDistance(aspect: number, width = 1.8, height = 1.1) {
-  const field = 2 * Math.tan((65 * Math.PI) / 360)
+export function monitorDistance(
+  aspect: number,
+  width = 1.8,
+  height = 1.1,
+  verticalFov = 65,
+) {
+  const field = 2 * Math.tan((verticalFov * Math.PI) / 360)
   return Math.max(height / (field * 0.82), width / (field * aspect * 0.85))
 }
 export const FOCUS_POSITION = [
@@ -48,22 +53,92 @@ export const COMMUNICATIONS_FOCUS = [
 export function wallMonitorDistance(aspect: number) {
   return monitorDistance(aspect, 1.3, 1.1)
 }
-const views = {
-  crew: {
-    position: [2.05, 1.68, 4.505 - wallMonitorDistance(16 / 9)] as const,
-    lookAt: WALL_SCREEN_POSES.crew.position,
+export type TerminalKind = 'computer' | 'communications' | 'personal' | 'crew'
+
+/** Physical display contract, matching current geometry and CSS pixel surfaces.
+ * Keep the user's UI layout independent from camera fitting and Html scale.
+ */
+export const TERMINAL_SCREENS = {
+  computer: {
+    position: SCREEN_POSITION,
+    rotation: 0,
+    frame: [1.8, 1.1],
+    display: [1.6, 0.9],
+    pixels: [960, 540],
   },
-  computer: { position: FOCUS_POSITION, lookAt: SCREEN_POSITION },
   communications: {
-    position: COMMUNICATIONS_FOCUS,
-    lookAt: WALL_SCREEN_POSES.communications.position,
+    ...WALL_SCREEN_POSES.communications,
+    frame: [1.8, 1.1],
+    display: [1.6, 0.9],
+    pixels: [960, 540],
   },
   personal: {
-    position: [4.405 - wallMonitorDistance(16 / 9), 1.68, 2.1] as const,
-    lookAt: WALL_SCREEN_POSES.personal.position,
+    ...WALL_SCREEN_POSES.personal,
+    frame: [1.3, 1.1],
+    display: [1.1, 0.8],
+    pixels: [770, 560],
   },
+  crew: {
+    ...WALL_SCREEN_POSES.crew,
+    frame: [1.3, 1.1],
+    display: [1.1, 0.8],
+    pixels: [770, 560],
+  },
+} as const
+
+/** Drei Html transform maps one CSS pixel to distanceFactor / 400 world units.
+ * Uniform fit preserves proportions and leaves a margin if aspect ratios differ.
+ */
+export function terminalHtmlScale(kind: TerminalKind) {
+  const { display, pixels } = TERMINAL_SCREENS[kind]
+  return 400 * Math.min(display[0] / pixels[0], display[1] / pixels[1])
+}
+
+function terminalView(kind: TerminalKind) {
+  const screen = TERMINAL_SCREENS[kind]
+  const distance = monitorDistance(16 / 9, ...screen.frame)
+  return {
+    position: [
+      screen.position[0] + Math.sin(screen.rotation) * distance,
+      screen.position[1],
+      screen.position[2] + Math.cos(screen.rotation) * distance,
+    ] as const,
+    lookAt: screen.position,
+  }
+}
+const views = {
+  computer: terminalView('computer'),
+  communications: terminalView('communications'),
+  personal: terminalView('personal'),
+  crew: terminalView('crew'),
   photo: { position: [-2.98, 1.75, 2.2] as const, lookAt: PHOTO_POSITION },
 } as const
+
+/** Writes into the caller-owned vector: no allocations during frame updates. */
+export function setStationFocus(
+  target: { x: number; y: number; z: number },
+  mode: Exclude<StationMode, 'walking'>,
+  aspect: number,
+  verticalFov = 65,
+) {
+  if (mode === 'photo') {
+    const [x, y, z] = views.photo.position
+    target.x = x
+    target.y = y
+    target.z = z
+    return
+  }
+  const screen = TERMINAL_SCREENS[mode]
+  const distance = monitorDistance(
+    aspect > 0 && Number.isFinite(aspect) ? aspect : 1,
+    ...screen.frame,
+    verticalFov,
+  )
+  target.x = screen.position[0] + Math.sin(screen.rotation) * distance
+  target.y = screen.position[1]
+  target.z = screen.position[2] + Math.cos(screen.rotation) * distance
+}
+
 export function stationView(mode: Exclude<StationMode, 'walking'>) {
   return views[mode]
 }

@@ -1,6 +1,9 @@
 import { expect, it } from 'vitest'
 import {
   archiveFocusZ,
+  TERMINAL_SCREENS,
+  terminalHtmlScale,
+  setStationFocus,
   FOCUS_POSITION,
   interactionMode,
   stationView,
@@ -74,4 +77,54 @@ it('keeps both forward bezels within vertical and horizontal viewport margins', 
   }
   expect(stationView('computer').lookAt[0]).toBeLessThan(0)
   expect(stationView('communications').lookAt[0]).toBeGreaterThan(0)
+})
+
+it('fits every terminal frame using actual FOV and viewport aspect without tilting the view', () => {
+  const target = { x: 0, y: 0, z: 0 }
+  for (const kind of [
+    'computer',
+    'communications',
+    'personal',
+    'crew',
+  ] as const) {
+    const screen = TERMINAL_SCREENS[kind]
+    for (const aspect of [390 / 844, 16 / 9, 32 / 9]) {
+      for (const fov of [40, 65, 90]) {
+        setStationFocus(target, kind, aspect, fov)
+        const dx = target.x - screen.position[0]
+        const dz = target.z - screen.position[2]
+        const distance = Math.hypot(dx, dz)
+        expect(target.y).toBe(screen.position[1])
+        expect(dx / distance).toBeCloseTo(Math.sin(screen.rotation))
+        expect(dz / distance).toBeCloseTo(Math.cos(screen.rotation))
+        const height = 2 * distance * Math.tan((fov * Math.PI) / 360)
+        expect(screen.frame[0] / (height * aspect)).toBeLessThanOrEqual(
+          0.850001,
+        )
+        expect(screen.frame[1] / height).toBeLessThanOrEqual(0.820001)
+      }
+    }
+  }
+})
+
+it('maps each unchanged CSS screen onto its physical surface without stretching', () => {
+  for (const kind of [
+    'computer',
+    'communications',
+    'personal',
+    'crew',
+  ] as const) {
+    const { display, pixels } = TERMINAL_SCREENS[kind]
+    const scale = terminalHtmlScale(kind) / 400
+    expect(pixels[0] * scale).toBeCloseTo(display[0])
+    expect(pixels[1] * scale).toBeCloseTo(display[1])
+  }
+})
+
+it('keeps focus finite during zero-size resize events and preserves photo focus', () => {
+  const target = { x: 0, y: 0, z: 0 }
+  setStationFocus(target, 'computer', 0)
+  expect(Number.isFinite(target.z)).toBe(true)
+  setStationFocus(target, 'photo', 1)
+  expect([target.x, target.y, target.z]).toEqual(stationView('photo').position)
 })

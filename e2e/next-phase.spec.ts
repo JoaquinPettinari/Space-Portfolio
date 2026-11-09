@@ -31,7 +31,7 @@ test.beforeEach(async ({ page }) => {
   })
   await page.goto('/')
   await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
+    page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toBeVisible({ timeout: 60000 })
   expect((await snapshot(page)).powerSwitchCount).toBe(1)
 })
@@ -92,7 +92,7 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
+    page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toBeVisible({ timeout: 60000 })
   expect((await protocol(page)).completed).toEqual([])
 })

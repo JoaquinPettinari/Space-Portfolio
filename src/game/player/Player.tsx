@@ -7,7 +7,7 @@ import {
   useRapier,
   type RapierRigidBody,
 } from '@react-three/rapier'
-import { Group, Quaternion, Vector3 } from 'three'
+import { Group, PerspectiveCamera, Quaternion, Vector3 } from 'three'
 import { calculateMovement, MOVEMENT_KEYS } from './movement'
 import {
   JumpInput,
@@ -18,10 +18,7 @@ import {
   PLAYER_SPAWN_POSITION,
 } from './jump'
 import {
-  archiveFocusZ,
-  monitorDistance,
-  wallMonitorDistance,
-  WALL_SCREEN_POSES,
+  setStationFocus,
   stationView,
   type StationMode,
 } from '../interaction/station'
@@ -172,6 +169,9 @@ export function Player({
   useFrame((_, delta) => {
     if (!anchor.current) return
     const state = pose.current
+    const aspect = size.width / Math.max(1, size.height)
+    const fov =
+      camera instanceof PerspectiveCamera ? camera.getEffectiveFOV() : 65
     if (mode !== state.previousMode) {
       if (state.previousMode === 'walking')
         state.returnRotation.copy(camera.quaternion)
@@ -181,7 +181,7 @@ export function Player({
         state.endRotation.copy(state.returnRotation)
       } else {
         const view = stationView(mode)
-        camera.position.fromArray(view.position)
+        setStationFocus(camera.position, mode, aspect, fov)
         const lookAt = view.lookAt
         camera.lookAt(lookAt[0], lookAt[1], lookAt[2])
         state.endRotation.copy(camera.quaternion)
@@ -192,21 +192,7 @@ export function Player({
       state.previousMode = mode
     }
     if (mode === 'walking') anchor.current.getWorldPosition(state.destination)
-    else state.destination.fromArray(stationView(mode).position)
-    if (mode === 'computer')
-      state.destination.z = archiveFocusZ(size.width / size.height)
-    if (mode === 'communications')
-      state.destination.z =
-        WALL_SCREEN_POSES.communications.position[2] +
-        monitorDistance(size.width / size.height)
-    if (mode === 'personal')
-      state.destination.x =
-        WALL_SCREEN_POSES.personal.position[0] -
-        wallMonitorDistance(size.width / size.height)
-    if (mode === 'crew')
-      state.destination.z =
-        WALL_SCREEN_POSES.crew.position[2] -
-        wallMonitorDistance(size.width / size.height)
+    else setStationFocus(state.destination, mode, aspect, fov)
     if (transitioning) {
       state.elapsed += delta
       const t = reducedMotion.current ? 1 : Math.min(state.elapsed / 0.65, 1)

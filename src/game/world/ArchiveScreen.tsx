@@ -1,4 +1,4 @@
-import { SCREEN_POSITION } from '../interaction/station'
+import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 import { PhysicalScreen } from './PhysicalScreen'
 import { Computer } from '../ui/Computer'
 import type { MissionId } from '../missions'
@@ -16,7 +16,11 @@ export function ArchiveScreen({
   subtitle?: ReactNode
 }) {
   return (
-    <PhysicalScreen position={SCREEN_POSITION} distanceFactor={2 / 3}>
+    <PhysicalScreen
+      position={TERMINAL_SCREENS.computer.position}
+      rotation={TERMINAL_SCREENS.computer.rotation}
+      distanceFactor={terminalHtmlScale('computer')}
+    >
       <Computer
         onClose={onClose}
         onMissionComplete={onMissionComplete}

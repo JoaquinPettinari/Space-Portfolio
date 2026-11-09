@@ -13,12 +13,7 @@ it('opens the Central Archive and completes archives from the service record', (
   fireEvent.click(nav.getByRole('button', { name: 'Service Record' }))
   expect(screen.getByRole('heading', { name: 'Service Record' })).toHaveFocus()
   expect(complete).toHaveBeenCalledExactlyOnceWith('archives')
-  fireEvent.click(nav.getByRole('button', { name: 'Contact' }))
-  const email = screen.getByRole('link', {
-    name: 'joaquinpettinari@hotmail.com',
-  })
-  email.addEventListener('click', (event) => event.preventDefault())
-  fireEvent.click(email)
+  expect(nav.queryByRole('button', { name: 'Contact' })).not.toBeInTheDocument()
   expect(complete).not.toHaveBeenCalledWith('uplink')
 })
 
@@ -26,7 +21,7 @@ it('keeps keyboard focus inside the archive and provides an explicit exit', () =
   const exit = vi.fn()
   render(<Computer onClose={exit} />)
   const close = screen.getByRole('button', { name: 'Exit computer' })
-  const first = screen.getByRole('button', { name: 'Profile' })
+  const first = screen.getByRole('button', { name: 'Overview' })
   fireEvent.keyDown(close, { key: 'Tab' })
   expect(first).toHaveFocus()
   fireEvent.keyDown(first, { key: 'Tab', shiftKey: true })
@@ -50,4 +45,20 @@ it('keeps subtitles and their dismissal inside the modal and restores focus on e
   dialog.getByRole('button', { name: 'Dismiss message' }).focus()
   rerender(<Computer onClose={() => {}} />)
   expect(dialog.getByRole('button', { name: 'Exit computer' })).toHaveFocus()
+})
+
+it('opens a featured real record and keeps CV available from Overview', () => {
+  const complete = vi.fn()
+  render(<Computer onClose={() => {}} onMissionComplete={complete} />)
+  expect(complete).not.toHaveBeenCalled()
+  expect(
+    screen.getByRole('link', { name: 'Download CV (PDF)' }),
+  ).toHaveAttribute('href', '/documents/joaquin-pettinari-cv.pdf')
+  fireEvent.click(screen.getByRole('button', { name: /RouteWise/ }))
+  expect(screen.getByRole('heading', { name: 'RouteWise' })).toHaveFocus()
+  expect(complete).toHaveBeenCalledExactlyOnceWith('archives')
+  fireEvent.click(screen.getByRole('button', { name: 'Overview' }))
+  expect(screen.getByRole('button', { name: /AccesiWeb/ })).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: 'Education' }))
+  expect(screen.getByRole('heading', { name: /Master’s Degree/ })).toBeVisible()
 })

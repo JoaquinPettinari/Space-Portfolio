@@ -2,6 +2,8 @@ import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react'
 import { PortfolioContent } from '../../portfolio/PortfolioContent'
 import type { MissionId } from '../missions'
 import './Computer.css'
+import '../../portfolio/ArchiveOverview.css'
+import { Compass } from 'lucide-react'
 
 export function Computer({
   onClose,
@@ -43,7 +45,7 @@ export function Computer({
   return (
     <section
       ref={dialog}
-      className="computer physical-archive"
+      className="computer physical-archive central-archive"
       role="dialog"
       aria-modal="true"
       aria-labelledby="computer-title"
@@ -52,13 +54,22 @@ export function Computer({
       <div className="monitor-bezel">
         <div className="desktop">
           <header className="desktop-bar">
-            <span>CRUZ DEL SUR / CDS-01</span>
-            <h1 id="computer-title">Central Archive</h1>
+            <div className="archive-brand">
+              <Compass size={38} aria-hidden="true" />
+              <span>
+                <strong>CRUZ DEL SUR</strong>
+                <small>CDS-01</small>
+              </span>
+            </div>
+            <div className="archive-heading">
+              <h1 id="computer-title">Central Archive</h1>
+              <span>Professional records</span>
+            </div>
           </header>
-          <PortfolioContent onActivity={onMissionComplete} />
+          <PortfolioContent physical onActivity={onMissionComplete} />
           {subtitle}
           <footer className="desktop-footer">
-            <span>E · Return / ESC · Pause</span>
+            <span>E / ESC · Return to station</span>
             <button ref={close} data-capture-pointer onClick={onClose}>
               Exit computer
             </button>
