@@ -12,12 +12,10 @@
 
   border-left: 2px solid rgba(66, 232, 245, 0.4);
 
-  background: linear-gradient(90deg,
-      rgba(5, 19, 29, 0.58),
-      rgba(5, 19, 29, 0));
+  background: linear-gradient(90deg, rgba(5, 19, 29, 0.58), rgba(5, 19, 29, 0));
 
   color: #e9f5fa;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 
   pointer-events: none;
   user-select: none;
@@ -60,7 +58,7 @@
   background: rgba(4, 12, 20, 0.8);
   color: #ffffff;
 
-  font-family: "Rajdhani", sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;

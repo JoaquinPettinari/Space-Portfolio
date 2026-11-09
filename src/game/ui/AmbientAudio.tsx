@@ -148,11 +148,18 @@ export function AmbientAudio({
       <button
         type="button"
         aria-label="Ambient sound"
-        aria-pressed={enabled}
+        role="switch"
+        aria-checked={enabled}
         disabled={!supported || pending}
         onClick={() => void toggle()}
       >
-        Sound {enabled ? 'on' : 'off'}
+        <span>Sound</span>
+        <span className="setting-switch-state" aria-hidden="true">
+          <span>{enabled ? 'On' : 'Off'}</span>
+          <span className="setting-switch-track">
+            <span />
+          </span>
+        </span>
       </button>
       <p role="status">
         {supported ? error : 'Audio is unavailable in this browser.'}

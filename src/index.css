@@ -149,7 +149,7 @@ button:focus-visible {
   box-shadow: 0 24px 100px #0006;
 }
 
-.entry>p:first-child {
+.entry > p:first-child {
   font-size: 10px;
   letter-spacing: 0.2em;
   color: #73d8f3;
@@ -223,10 +223,12 @@ button:focus-visible {
 
 .desktop {
   min-height: min(560px, 65vh);
-  background: radial-gradient(ellipse at 90% 20%,
-      #163e5b 0,
-      #0b2034 38%,
-      #071422 76%);
+  background: radial-gradient(
+    ellipse at 90% 20%,
+    #163e5b 0,
+    #0b2034 38%,
+    #071422 76%
+  );
   border: 1px solid #0a1018;
   border-radius: 8px;
   overflow: hidden;
@@ -301,7 +303,7 @@ button:focus-visible {
   gap: 12px;
 }
 
-.desktop-app>span {
+.desktop-app > span {
   color: #55bddb;
   font-size: 10px;
 }
@@ -357,8 +359,8 @@ button:focus-visible {
     gap: 6px;
   }
 
-  .desktop-footer>span,
-  .desktop-bar>span:last-child {
+  .desktop-footer > span,
+  .desktop-bar > span:last-child {
     display: none;
   }
 
@@ -555,7 +557,7 @@ button:focus-visible {
   font-size: 11px;
 }
 
-.project-card>span {
+.project-card > span {
   font-size: 13px;
   line-height: 1.65;
 }
@@ -723,7 +725,7 @@ button:focus-visible {
   font-size: 28px;
 }
 
-.mission-tablet>p {
+.mission-tablet > p {
   max-width: 700px;
   line-height: 1.6;
   font-size: 14px;
@@ -834,13 +836,12 @@ button:focus-visible {
 .mission-checklist {
   list-style: none;
   padding: 0;
-  margin: 12px 0;
+  margin: 6px 0;
   font-size: 11px;
   line-height: 1.5;
 }
 
 .mission-checklist li {
-  margin-block: 8px;
   display: flex;
   gap: 7px;
 }
@@ -915,7 +916,7 @@ button:focus-visible {
   flex-wrap: wrap;
 }
 
-.portfolio-browser .portfolio-content>h2 {
+.portfolio-browser .portfolio-content > h2 {
   margin: 0 0 24px;
   font-size: clamp(26px, 4vw, 40px);
   line-height: 1.2;

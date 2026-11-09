@@ -25,13 +25,18 @@ export function useStationControls({
   const [transitioning, setTransitioning] = useState(false)
   const [tabletMode, setTabletMode] = useState<TabletMode>('lowered')
   const [showMouseHint, setShowMouseHint] = useState(false)
+  const expectedUnlock = useRef(false)
+  const escapeAction = useRef<'exit' | 'pause' | 'resume' | null>(null)
   const captureRef = useRef<(() => void) | null>(null)
   const playing = active && !suspended
   const tabletOpen = tabletMode === 'focused'
   const tabletRaised = tabletMode !== 'lowered'
 
   useEffect(() => {
-    if (suspended && document.pointerLockElement) document.exitPointerLock()
+    if (suspended && document.pointerLockElement) {
+      expectedUnlock.current = true
+      document.exitPointerLock()
+    }
   }, [suspended])
 
   const changeMode = (next: StationMode) => {
@@ -44,6 +49,7 @@ export function useStationControls({
     setMode(next)
     if (next !== 'walking') {
       setActive(false)
+      expectedUnlock.current = true
       document.exitPointerLock()
     }
   }
@@ -52,11 +58,13 @@ export function useStationControls({
     setShowMouseHint(false)
     setTabletMode('focused')
     setActive(false)
+    expectedUnlock.current = true
     document.exitPointerLock()
   }
   const resumeWalking = () => {
     setTabletMode('lowered')
     setShowMouseHint(false)
+    setError('')
     if (mode !== 'walking') changeMode('walking')
     captureRef.current?.()
   }
@@ -76,19 +84,51 @@ export function useStationControls({
     setTabletMode('lowered')
     if (mode !== 'walking') changeMode('walking')
     setShowMouseHint(true)
-    if (document.pointerLockElement) document.exitPointerLock()
+    if (document.pointerLockElement) {
+      expectedUnlock.current = true
+      document.exitPointerLock()
+    }
   }
   const onLock = () => {
+    expectedUnlock.current = false
     setActive(true)
     setShowMouseHint(false)
     setError('')
   }
-  const onUnlock = () => setActive(false)
+  const onUnlock = () => {
+    setActive(false)
+    const intentional = expectedUnlock.current
+    expectedUnlock.current = false
+    if (intentional || suspended || mode !== 'walking' || transitioning) return
+    if (escapeAction.current === 'exit' || escapeAction.current === 'resume')
+      return
+    // Browsers may consume Escape keydown when releasing Pointer Lock.
+    // That native unlock must still open pause on the first press.
+    escapeAction.current = tabletRaised ? 'exit' : 'pause'
+    if (!tabletRaised) setShowMouseHint(true)
+  }
+
+  const escapeReleased = useEffectEvent((event: KeyboardEvent) => {
+    if (event.code !== 'Escape') return
+    const action = escapeAction.current
+    escapeAction.current = null
+    if (!action || suspended) return
+    event.preventDefault()
+    event.stopPropagation()
+    // Wait until release: capturing on keydown can be undone by that same Escape.
+    if (action === 'pause') pauseStation()
+    else resumeWalking()
+  })
 
   const keyboard = useEffectEvent((event: KeyboardEvent) => {
     if (suspended || event.defaultPrevented) return
     if (event.code === 'Escape') {
-      pauseStation()
+      event.preventDefault()
+      event.stopPropagation()
+      if (event.repeat || escapeAction.current) return
+      if (mode !== 'walking' || tabletRaised) escapeAction.current = 'exit'
+      else if (!transitioning)
+        escapeAction.current = showMouseHint ? 'resume' : 'pause'
       return
     }
     const element = event.target
@@ -106,7 +146,8 @@ export function useStationControls({
       }
       if (event.code === 'KeyT') {
         event.preventDefault()
-        toggleTablet()
+        if (showMouseHint) openTablet()
+        else toggleTablet()
       }
     } else if (event.code === 'KeyE') {
       event.preventDefault()
@@ -117,15 +158,22 @@ export function useStationControls({
   useEffect(() => {
     const failed = () =>
       setError('Could not capture the mouse. Click the scene to try again.')
-    const blur = () => document.exitPointerLock()
+    const blur = () => {
+      expectedUnlock.current = true
+      escapeAction.current = null
+      document.exitPointerLock()
+    }
     const keydown = (event: KeyboardEvent) => keyboard(event)
+    const keyup = (event: KeyboardEvent) => escapeReleased(event)
     document.addEventListener('pointerlockerror', failed)
     window.addEventListener('blur', blur)
     window.addEventListener('keydown', keydown)
+    window.addEventListener('keyup', keyup)
     return () => {
       document.removeEventListener('pointerlockerror', failed)
       window.removeEventListener('blur', blur)
       window.removeEventListener('keydown', keydown)
+      window.removeEventListener('keyup', keyup)
     }
   }, [])
 

@@ -94,7 +94,8 @@ export function ContactForm({
       aria-describedby={`${id}-notice`}
     >
       <p id={`${id}-notice`}>
-        Messages welcome in Spanish, English, Italian and Norwegian.
+        This sends a real message to Joaquín Pettinari. Messages welcome in
+        Spanish, English, Italian and Norwegian.
       </p>
       <p>
         Prefer your email app?{' '}

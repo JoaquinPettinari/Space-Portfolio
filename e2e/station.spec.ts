@@ -198,7 +198,7 @@ test('captures real pointer lock, turns, releases and resumes without held keys'
     .poll(async () => (await snapshot(page)).pointerLocked)
     .toBe(false)
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
+    page.getByRole('button', { name: 'Resume mission' }),
   ).toBeVisible()
   // Browsers enforce a short lock cooldown after Escape. Wait for user-like re-entry.
   await page.waitForTimeout(1200)
@@ -322,8 +322,8 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).not.toBeVisible()
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
-  ).toBeEnabled()
+    page.getByRole('button', { name: 'Resume mission' }),
+  ).not.toBeVisible()
   await page.waitForTimeout(1200)
   await enter(page)
   await expect(
@@ -335,7 +335,7 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect(page.getByRole('dialog')).not.toBeVisible()
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
+    page.getByRole('button', { name: 'Resume mission' }),
   ).not.toBeVisible()
   await expect(
     page.getByText('E · Use computer', { exact: true }),
@@ -492,15 +492,15 @@ test('focused tablet pauses movement, locates independent objectives and closes 
   await page.keyboard.press('Escape')
   await expect(tablet).not.toBeVisible()
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
-  ).toBeVisible()
+    page.getByRole('button', { name: 'Resume mission' }),
+  ).not.toBeVisible()
 })
 
 test('rear crew dossier downloads with E and mouse hint only follows Escape', async ({
   page,
 }) => {
   test.setTimeout(120_000)
-  const hint = page.getByRole('button', { name: 'Click to control the mouse' })
+  const hint = page.getByRole('button', { name: 'Resume mission' })
   await expect(hint).not.toBeVisible()
   await page.getByRole('button', { name: 'Mission tablet · T' }).click()
   await page.getByRole('button', { name: 'Close tablet' }).click()

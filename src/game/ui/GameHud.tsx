@@ -3,7 +3,8 @@ import type { useProtocol } from '../useProtocol'
 import type { useCoffee } from '../useCoffee'
 import { missions } from '../missions'
 import { interactionHint } from '../interaction/hints'
-import { EntryMenu } from './EntryMenu'
+import { PauseMenu } from './PauseMenu'
+import { MissionChecklist } from './MissionChecklist'
 import { AmbientAudio } from './AmbientAudio'
 import { Loading } from './Loading'
 import { TerminalPanel } from './TerminalPanel'
@@ -23,6 +24,8 @@ type Props = {
   bulkheadPhase: BulkheadPhase
   identity: 'idle' | 'scanning' | 'verified'
   scanSignal: number
+  subtitlesEnabled: boolean
+  onToggleSubtitles: () => void
   subtitle: ReactNode
 }
 export function GameHud({
@@ -35,6 +38,8 @@ export function GameHud({
   identity,
   scanSignal,
   subtitle,
+  subtitlesEnabled,
+  onToggleSubtitles,
 }: Props) {
   const { state: protocol, currentObjective } = protocolModel
   const { completed } = protocol
@@ -52,32 +57,22 @@ export function GameHud({
     openTablet,
     resumeWalking,
   } = controls
-  let objective = <p>Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.</p>
-  if (protocol.guidance === 'skipped')
-    objective = <p>Free exploration · Guidance paused</p>
-  else if (currentObjective)
-    objective = (
-      <div aria-live="polite">
-        <p>
-          <strong>{currentObjective.title}</strong>
-        </p>
-        <p>{currentObjective.action}</p>
-      </div>
-    )
   return (
     <>
-      <div className="hud-brand">
-        <div className="hud-brand__icon">
-          <Compass size={44} strokeWidth={1.5} />
-        </div>
+      {ready && mode === 'walking' && !tabletRaised && (
+        <div className="hud-brand">
+          <div className="hud-brand__icon">
+            <Compass size={44} strokeWidth={1.5} />
+          </div>
 
-        <div className="hud-brand__divider" />
+          <div className="hud-brand__divider" />
 
-        <div className="hud-brand__text">
-          <span className="hud-brand__title">CRUZ DEL SUR</span>
-          <span className="hud-brand__subtitle">PAMPA-07</span>
+          <div className="hud-brand__text">
+            <span className="hud-brand__title">CRUZ DEL SUR</span>
+            <span className="hud-brand__subtitle">PAMPA-07</span>
+          </div>
         </div>
-      </div>
+      )}
       {ready && mode === 'walking' && !tabletRaised && <HudControls />}
       {active && (
         <div className="crosshair" aria-hidden="true">
@@ -89,23 +84,28 @@ export function GameHud({
           {interactionHint(target, lightsOn, coffee.state.phase, bulkheadPhase)}
         </div>
       )}
-      <EntryMenu
-        active={
-          active ||
-          mode !== 'walking' ||
-          tabletOpen ||
-          (!showMouseHint && !error)
+      <PauseMenu
+        visible={
+          ready &&
+          !transitioning &&
+          mode === 'walking' &&
+          !active &&
+          !tabletOpen &&
+          showMouseHint &&
+          !suspended
         }
-        ready={ready && !transitioning}
+        onResume={resumeWalking}
+        subtitlesEnabled={subtitlesEnabled}
+        onToggleSubtitles={onToggleSubtitles}
         error={error}
-      />
-      <AmbientAudio
-        coffeeSignal={coffee.state.cups}
-        suspended={suspended}
-        scanSignal={scanSignal}
-        scanning={identity === 'scanning' && mode === 'crew'}
-        hidden={mode !== 'walking' || active || !ready || tabletOpen}
-      />
+      >
+        <AmbientAudio
+          coffeeSignal={coffee.state.cups}
+          suspended={suspended}
+          scanSignal={scanSignal}
+          scanning={identity === 'scanning' && mode === 'crew'}
+        />
+      </PauseMenu>
       {ready && mode === 'walking' && !tabletRaised && (
         <aside className="mission-hud" aria-label="Recovery objectives">
           <p className="eyebrow">CURRENT OBJECTIVE</p>
@@ -114,11 +114,15 @@ export function GameHud({
             {completed.length} / {missions.length} complete
           </strong>
 
-          <div className="mission-hud-content">{objective}</div>
-
-          <button onClick={openTablet} disabled={transitioning}>
-            Mission tablet · T
-          </button>
+          <MissionChecklist
+            completed={completed}
+            current={
+              protocol.guidance === 'skipped' ? undefined : currentObjective?.id
+            }
+          />
+          {protocol.guidance === 'skipped' && (
+            <p>Free exploration · Guidance paused</p>
+          )}
         </aside>
       )}
       {tabletMode === 'held' && !active && mode === 'walking' && (
@@ -127,13 +131,19 @@ export function GameHud({
         </button>
       )}
       {!ready && <Loading />}
-      {((mode === 'walking' && !tabletOpen) || transitioning) && subtitle}
-      {mode === 'photo' && !transitioning && (
-        <TerminalPanel
-          title="Project photo"
-          onClose={resumeWalking}
-          subtitle={subtitle}
+      {!showMouseHint && (
+        <div
+          className={
+            mode === 'walking'
+              ? 'subtitle-overlay'
+              : 'subtitle-overlay subtitle-overlay--terminal'
+          }
         >
+          {subtitle}
+        </div>
+      )}
+      {mode === 'photo' && !transitioning && (
+        <TerminalPanel title="Project photo" onClose={resumeWalking}>
           <PhotoInspection />
         </TerminalPanel>
       )}

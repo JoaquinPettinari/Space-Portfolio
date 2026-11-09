@@ -5,9 +5,11 @@ export type { AssistantEvent } from '../dialogue'
 export function StationAssistant({
   event,
   onDismiss,
+  dismissible = true,
 }: {
   event: AssistantEvent
   onDismiss: () => void
+  dismissible?: boolean
 }) {
   const dismiss = useRef<HTMLButtonElement>(null)
   useLayoutEffect(() => {
@@ -32,9 +34,11 @@ export function StationAssistant({
     >
       <p className="eyebrow">CDS-01 / STATION ASSISTANT</p>
       <p>{dialogueMessages[event]}</p>
-      <button ref={dismiss} onClick={onDismiss} aria-label="Dismiss message">
-        Dismiss
-      </button>
+      {dismissible && (
+        <button ref={dismiss} onClick={onDismiss} aria-label="Dismiss message">
+          Dismiss
+        </button>
+      )}
     </aside>
   )
 }

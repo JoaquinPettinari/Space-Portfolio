@@ -85,7 +85,7 @@ test('tablet focus and exit actions resume real mouse capture without another cl
     await expect(tablet).not.toBeVisible()
     await expectLocked(page, true)
     await expect(
-      page.getByRole('button', { name: 'Click to control the mouse' }),
+      page.getByRole('button', { name: 'Resume mission' }),
     ).not.toBeVisible()
     if (action !== 'Close tablet') {
       await expect(
@@ -97,11 +97,11 @@ test('tablet focus and exit actions resume real mouse capture without another cl
   await page.keyboard.press('Escape')
   await expectLocked(page, false)
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
+    page.getByRole('button', { name: 'Resume mission' }),
   ).toBeVisible()
 })
 
-test('computer E and exit button return directly to walking while Escape leaves the cursor free', async ({
+test('computer E, exit button and Escape return without opening pause', async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -136,10 +136,9 @@ test('computer E and exit button return directly to walking while Escape leaves 
   await expect(archive).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(archive).not.toBeVisible()
-  await expectLocked(page, false)
   await expect(
-    page.getByRole('button', { name: 'Click to control the mouse' }),
-  ).toBeVisible()
+    page.getByRole('button', { name: 'Resume mission' }),
+  ).not.toBeVisible()
 })
 
 test('Crew Access E closes the interaction and recaptures the real mouse', async ({

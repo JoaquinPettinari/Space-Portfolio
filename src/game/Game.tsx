@@ -37,6 +37,7 @@ export function Game({
     'idle',
   )
   const [scanSignal, setScanSignal] = useState(0)
+  const [subtitlesEnabled, setSubtitlesEnabled] = useState(true)
   const dialogue = useDialogue({ paused: suspended })
   const { enqueue, clear } = dialogue
   const finishMission = (id: MissionId) => {
@@ -92,8 +93,12 @@ export function Game({
     dialogue.dismiss()
   }
   const subtitle =
-    dialogue.message && controls.ready && !suspended ? (
-      <StationAssistant event={dialogue.message} onDismiss={dismissMessage} />
+    dialogue.message && controls.ready && !suspended && subtitlesEnabled ? (
+      <StationAssistant
+        event={dialogue.message}
+        onDismiss={dismissMessage}
+        dismissible={mode === 'walking' && !tabletOpen}
+      />
     ) : null
   const downloadDossier = () => {
     const link = document.createElement('a')
@@ -141,7 +146,7 @@ export function Game({
         />
 
         <GameWorld
-          subtitle={subtitle}
+          subtitle={null}
           controls={controls}
           protocolModel={protocolModel}
           coffee={coffee}
@@ -199,6 +204,8 @@ export function Game({
         )}
       </Canvas>
       <GameHud
+        subtitlesEnabled={subtitlesEnabled}
+        onToggleSubtitles={() => setSubtitlesEnabled((value) => !value)}
         controls={controls}
         protocolModel={protocolModel}
         coffee={coffee}

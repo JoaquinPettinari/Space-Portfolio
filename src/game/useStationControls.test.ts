@@ -63,8 +63,9 @@ it('ignores typing and repeated shortcuts while preserving Escape and transition
   fireEvent.keyDown(window, { code: 'KeyE' })
   expect(result.current.mode).toBe('computer')
   fireEvent.keyDown(input, { code: 'Escape' })
+  fireEvent.keyUp(input, { code: 'Escape' })
   expect(result.current.mode).toBe('walking')
-  expect(result.current.showMouseHint).toBe(true)
+  expect(result.current.showMouseHint).toBe(false)
   input.remove()
 })
 
@@ -86,4 +87,73 @@ it('keeps failed capture recoverable and removes listeners on unmount', () => {
   expect(opened).not.toHaveBeenCalled()
   fireEvent.blur(window)
   expect(document.exitPointerLock).not.toHaveBeenCalled()
+})
+
+it('never requests pause after terminal exits, tablet exits or capture failures', () => {
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  const capture = vi.fn()
+  act(() => result.current.setReady(true))
+  result.current.captureRef.current = capture
+  for (const mode of [
+    'computer',
+    'communications',
+    'personal',
+    'crew',
+    'photo',
+  ] as const) {
+    act(() => result.current.changeMode(mode))
+    act(() => result.current.setTransitioning(false))
+    fireEvent.keyDown(window, { code: 'Escape' })
+    fireEvent.keyUp(window, { code: 'Escape' })
+    expect(result.current.mode).toBe('walking')
+    expect(result.current.showMouseHint).toBe(false)
+    fireEvent(document, new Event('pointerlockerror'))
+    expect(result.current.error).not.toBe('')
+    expect(result.current.showMouseHint).toBe(false)
+    act(() => result.current.setTransitioning(false))
+  }
+  act(() => result.current.openTablet())
+  fireEvent.keyDown(window, { code: 'Escape' })
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(result.current.tabletMode).toBe('lowered')
+  expect(result.current.showMouseHint).toBe(false)
+  expect(capture).toHaveBeenCalledTimes(6)
+  fireEvent.keyDown(window, { code: 'Escape' })
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(result.current.showMouseHint).toBe(true)
+})
+
+it('opens pause on native Escape unlock without a keydown and does not toggle it again on keyup', () => {
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  act(() => {
+    result.current.setReady(true)
+    result.current.onLock()
+  })
+  act(() => result.current.onUnlock())
+  expect(result.current.showMouseHint).toBe(true)
+  fireEvent.keyDown(window, { code: 'Escape' })
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(result.current.showMouseHint).toBe(true)
+})
+
+it('recaptures only after Escape release when exiting a computer', () => {
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  const capture = vi.fn()
+  result.current.captureRef.current = capture
+  act(() => {
+    result.current.setReady(true)
+    result.current.changeMode('computer')
+  })
+  act(() => result.current.onUnlock())
+  fireEvent.keyDown(window, { code: 'Escape' })
+  expect(capture).not.toHaveBeenCalled()
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(capture).toHaveBeenCalledOnce()
+  expect(result.current.showMouseHint).toBe(false)
 })
