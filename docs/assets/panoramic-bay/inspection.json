@@ -1,0 +1,16 @@
+{
+  "source": "Original script-built geometry inspired by user reference",
+  "length_m": 2.033333333333333,
+  "walkway_width_m": 2.8,
+  "central_height_m": 3,
+  "materials": 9,
+  "export_bytes": 653220,
+  "meshes": 20,
+  "triangles": 9144,
+  "gltf_bounds_m": [
+    [-2.075000047683716, 2.075000047683716],
+    [-0.23000000417232513, 3.1700000762939453],
+    [-1.0166666507720947, 1.0166666507720947]
+  ],
+  "textures": 0
+}

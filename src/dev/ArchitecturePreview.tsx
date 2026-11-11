@@ -12,8 +12,14 @@ import { Box3, Group, Mesh, Vector3 } from 'three'
 import entryUrl from './assets/01-entry-module.glb?url'
 import passageUrl from './assets/02-panoramic-passage.glb?url'
 import bridgeUrl from './assets/03-faceted-bridge.glb?url'
+import bayUrl from './assets/04-panoramic-bay.glb?url'
 
-const assets = { entry: entryUrl, passage: passageUrl, bridge: bridgeUrl }
+const assets = {
+  entry: entryUrl,
+  passage: passageUrl,
+  bridge: bridgeUrl,
+  bay: bayUrl,
+}
 type ModuleName = keyof typeof assets
 type Stats = { size: number[]; meshes: number; triangles: number }
 function Asset({
@@ -87,23 +93,27 @@ function CameraRig({
 }) {
   const { camera, invalidate } = useThree()
   const centerZ =
-    module === 'entry'
-      ? 5
-      : module === 'passage'
-        ? 1.8
-        : module === 'bridge'
-          ? -5.4
-          : -2
+    module === 'bay'
+      ? 0
+      : module === 'entry'
+        ? 5
+        : module === 'passage'
+          ? 1.8
+          : module === 'bridge'
+            ? -5.4
+            : -2
   const target = useMemo<[number, number, number]>(
     () => [
       0,
       inside ? 1.65 : 1,
       inside
-        ? module === 'entry'
-          ? 3.2
-          : module === 'passage'
-            ? 0
-            : -8
+        ? module === 'bay'
+          ? -1
+          : module === 'entry'
+            ? 3.2
+            : module === 'passage'
+              ? 0
+              : -8
         : centerZ,
     ],
     [module, inside, centerZ],
@@ -113,13 +123,19 @@ function CameraRig({
       camera.position.set(
         0,
         1.65,
-        module === 'entry' ? 5.8 : module === 'passage' ? 3 : -1,
+        module === 'bay'
+          ? 0.8
+          : module === 'entry'
+            ? 5.8
+            : module === 'passage'
+              ? 3
+              : -1,
       )
     else
       camera.position.set(
-        module === 'all' ? 15 : 10,
-        inside ? 1.65 : 9,
-        centerZ + 12,
+        module === 'bay' ? 5 : module === 'all' ? 15 : 10,
+        module === 'bay' ? 3.8 : 9,
+        centerZ + (module === 'bay' ? 4 : 12),
       )
     camera.lookAt(...target)
     invalidate()
@@ -134,7 +150,9 @@ function CameraRig({
   )
 }
 export function ArchitecturePreview() {
-  const [module, setModule] = useState<ModuleName | 'all'>('all')
+  const [module, setModule] = useState<ModuleName | 'all'>(() =>
+    new URLSearchParams(window.location.search).has('bay') ? 'bay' : 'all',
+  )
   const [inside, setInside] = useState(false),
     [roof, setRoof] = useState(true),
     [references, setReferences] = useState(true),
@@ -155,7 +173,9 @@ export function ArchitecturePreview() {
         <directionalLight position={[4, 10, 6]} intensity={2} />
         <Suspense fallback={null}>
           {(Object.keys(assets) as ModuleName[])
-            .filter((name) => module === 'all' || name === module)
+            .filter(
+              (name) => (module === 'all' && name !== 'bay') || name === module,
+            )
             .map((name) => (
               <Asset
                 key={name}
@@ -198,6 +218,7 @@ export function ArchitecturePreview() {
             <option value="entry">Entry module</option>
             <option value="passage">Passage</option>
             <option value="bridge">Bridge</option>
+            <option value="bay">New detailed passage bay</option>
           </select>
         </label>
         <p>
@@ -222,8 +243,9 @@ export function ArchitecturePreview() {
           </label>
         ))}
         <p>
-          Drag to orbit · right-drag to pan · wheel to zoom. Open frames have no
-          glass. Source modules overlap at the entry junction.
+          Drag to orbit · right-drag to pan · wheel to zoom. The new bay is
+          isolated from the source kit; it includes glazing and exterior
+          framing.
         </p>
         <ul>
           {Object.entries(stats).map(([name, value]) => (

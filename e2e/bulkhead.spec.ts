@@ -34,6 +34,7 @@ async function ready(page: Page) {
 test('credential-controlled bulkhead visibly slides with collision and stays open for a return crossing', async ({
   page,
 }, info) => {
+  if (info.config.metadata.softwareRenderingValidation) test.slow()
   await ready(page)
   await enterEntryModule(page)
   await walkTo(page, 0, 13.3)

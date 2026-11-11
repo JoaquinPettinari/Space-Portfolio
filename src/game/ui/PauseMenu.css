@@ -84,7 +84,8 @@
 }
 .pause-menu .ambient-audio {
   position: static;
-  width: auto;
+  width: 100%;
+  max-width: none;
   margin: 0;
   padding: 0;
   transform: none;

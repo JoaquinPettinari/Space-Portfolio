@@ -163,11 +163,10 @@ export async function approach(
 /** Walk to a free floor waypoint with actual WASD; never teleport the capsule. */
 export async function walkTo(page: Page, x: number, z: number) {
   const deadline = Date.now() + 30000
-  let distance = Infinity
   try {
     while (Date.now() < deadline) {
       const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
-      distance = Math.hypot(p.x - x, p.z - z)
+      const distance = Math.hypot(p.x - x, p.z - z)
       if (distance < 0.3) return
       const yaw = Math.atan2(
         2 * (q.x * q.z + q.y * q.w),
@@ -193,11 +192,16 @@ export async function walkTo(page: Page, x: number, z: number) {
           ),
       )
     }
+    // The last native key pulse may finish after the deadline. Assert the actual
+    // stopped pose, not the distance sampled before that final movement.
+    await page.keyboard.up('w')
+    const observed = (await snapshot(page)).cameraPosition
+    const distance = Math.hypot(observed.x - x, observed.z - z)
     expect(
       distance,
       JSON.stringify({
         target: { x, z },
-        observed: (await snapshot(page)).cameraPosition,
+        observed,
       }),
     ).toBeLessThan(0.3)
   } finally {

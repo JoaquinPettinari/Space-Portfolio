@@ -9,6 +9,33 @@ import {
   walkTo,
 } from './helpers/game'
 test.setTimeout(180000)
+
+test('detailed passage bay loads in isolation with orbit inspection and roof toggle', async ({
+  page,
+}) => {
+  const errors: string[] = []
+  page.on('pageerror', (e) => errors.push(e.message))
+  page.on('console', (m) => {
+    if (m.type() === 'error') errors.push(m.text())
+  })
+  await page.goto('/?architecture-preview&bay')
+  await expect(
+    page.getByText('bay: 4.15 × 3.40 × 2.03 m; 20 meshes; 9144 triangles.'),
+  ).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Module')).toHaveValue('bay')
+  await page.getByRole('button', { name: 'View inside' }).click()
+  await page.getByLabel('Roof', { exact: true }).uncheck()
+  await page.getByLabel('Bounding boxes').uncheck()
+  await page.getByRole('button', { name: 'View outside' }).click()
+  await page.mouse.move(800, 400)
+  await page.mouse.down()
+  await page.mouse.move(900, 430, { steps: 6 })
+  await page.mouse.up()
+  await page.mouse.wheel(0, -200)
+  await expect(page.locator('canvas')).toBeVisible()
+  await expect(page.getByLabel('Game controls')).toHaveCount(0)
+  expect(errors).toEqual([])
+})
 test('open docking arrival requires only identity, opens the secured bulkhead automatically and permits return', async ({
   page,
 }, info) => {
@@ -23,6 +50,21 @@ test('open docking arrival requires only identity, opens the secured bulkhead au
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(17.1, 1)
   await enterEntryModule(page)
   const arrival = await snapshot(page)
+  // The expanded lounge remains reachable, but its bench is solid.
+  await walkTo(page, -1.5, 14.72)
+  await lookAt(page, { x: -5, y: 1.7, z: 14.72 })
+  await page.keyboard.down('w')
+  try {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.x)
+      .toBeLessThan(-1.8)
+    await page.waitForTimeout(600)
+    expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-2.45)
+    expect((await snapshot(page)).cameraPosition.y).toBeGreaterThan(1.6)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await walkTo(page, 0, 14.72)
   expect(arrival.powerSwitchCount).toBe(0)
   expect((await snapshot(page)).session.protocol.completed).toEqual([
     'lighting',

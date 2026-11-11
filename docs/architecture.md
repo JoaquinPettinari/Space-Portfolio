@@ -8,6 +8,15 @@ Receiving room: approximately 5.4 × 4.03 m usable behind the door pockets, 3.0 
 
 ## Arquitectura espacial v2
 
+La sala de llegada usa el GLB V4 en `[0,0,12.07]`, sin el terminal de referencia
+de Blender. `arrivalRoomLayout.ts` define la envolvente ensanchada, la bóveda y
+colisiones simples del mobiliario. `EntryAirlock` conserva los bolsillos del
+mamparo y el túnel de docking; dos luces cálidas sin sombras iluminan la sala.
+Crew Access y el estado/cuerpos cinemáticos de la puerta permanecen independientes.
+Fuente editable, exportación por materiales y límites: `assets/arrival-room/README.md`.
+
+El pasaje utiliza ahora tres módulos GLB V2 a escala real, con piso de 3.4 m y perfil lateral ensanchado a 4.1 m entre ejes de marcos. `passageLayout.ts` define colisiones facetadas y adaptadores a las aberturas existentes de 2.68 m. Se conserva la longitud de 6.1 m, el mamparo y el puente. Fuente Blender, medidas y exportación: `assets/panoramic-bay/V2.md`.
+
 Revisión compacta aprobada: piso principal 9.6 × 10.5 m (antes 13.5 m); proa, consola y puestos adelantados 3 m hacia la mesa, manteniendo la zona trasera. Ver `audits/EXPLORATION_BRIDGE_COMPACT.md`. Etapa 1 de exploración implementada: cinco facetas delanteras y cubierta exterior visible. La etapa 2 ya cierra la cubierta con techo de 3.30 a 2.75 m, vidrio superior y colisiones compartidas con el perfil de las ventanas. La etapa 3 lleva la consola a la proa con Archive y Communications a ±45°, y cierra las paredes traseras sobre el ancho del piso. Detalles y límites: `audits/EXPLORATION_BRIDGE_STAGE1.md` y `audits/EXPLORATION_BRIDGE_STAGE2.md` y `audits/EXPLORATION_BRIDGE_STAGE3.md`.
 
 El contorno y las pendientes compartidas están en `src/game/world/bridgeLayout.ts`. `BridgeFloor`, `BridgeRoof` y `ShipHull` usan ese contorno facetado; `Workstation` sigue la consola abierta en tres tramos. `commandLayout.ts` deriva los ingletes, colliders y anclajes de monitores/sillas desde la polilínea compartida. `TERMINAL_SCREENS` alimenta tanto los marcos como Html y el foco dinámico. `PanoramicPassage` conecta Z=5.1 con la entrada trasladada seis metros; `DockingHatch` es la compuerta inicial independiente. Energía e identificación solicitan la apertura automática del mamparo existente, sin duplicar el estado del protocolo. `DeckMap` representa este recorrido.

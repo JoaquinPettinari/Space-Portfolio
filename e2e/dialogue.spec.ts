@@ -81,6 +81,14 @@ test('pause has only essential controls and HUD tracks tablet progress', async (
     name: 'Subtitles',
     exact: true,
   })
+  const soundBounds = await pause
+    .getByRole('switch', { name: 'Ambient sound', exact: true })
+    .boundingBox()
+  const subtitleBounds = await subtitles.boundingBox()
+  expect(soundBounds).not.toBeNull()
+  expect(subtitleBounds).not.toBeNull()
+  expect(Math.abs(soundBounds!.width - subtitleBounds!.width)).toBeLessThan(1)
+  expect(Math.abs(soundBounds!.x - subtitleBounds!.x)).toBeLessThan(1)
   await subtitles.click()
   await expect(subtitles).toHaveAttribute('aria-checked', 'false')
   await expect(

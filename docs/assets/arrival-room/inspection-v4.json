@@ -1,0 +1,49 @@
+{
+  "bytes": 6398696,
+  "meshes": 393,
+  "triangles": 67848,
+  "materials": 8,
+  "images": [
+    {
+      "name": "Warm-grey-panels-color",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "Warm-grey-panels-orm",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "cushion-normal",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "cushion-color",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "Ivory-cabinets-color",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "Ivory-cabinets-orm",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "Graphite-frame-color",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "name": "Graphite-frame-orm",
+      "width": 512,
+      "height": 512
+    }
+  ],
+  "estimatedRGBA8TextureBytesWithMipmaps": 11184810.666666666
+}

@@ -1,114 +1,147 @@
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import { useEffect, useMemo } from 'react'
+import { useGLTF } from '@react-three/drei'
+import {
+  ConvexHullCollider,
+  CuboidCollider,
+  RigidBody,
+} from '@react-three/rapier'
+import { Mesh, type Material } from 'three'
 import { BULKHEAD_POCKET_PANELS } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
 import { ENTRY_PANELS } from './entryLayout'
+import {
+  ARRIVAL_BOXES,
+  ARRIVAL_FURNITURE,
+  ARRIVAL_ORIGIN_Z,
+  ARRIVAL_SHELL_HULLS,
+} from './arrivalRoomLayout'
 
-/** Receiving room with a framed viewport and chamfered ceiling shoulders. */
+const dockingPanels = ENTRY_PANELS.filter(
+  ({ name }) =>
+    name === 'docking-floor' ||
+    name === 'docking-roof' ||
+    name === 'docking-rear' ||
+    name.startsWith('docking-side-'),
+)
+
+/** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
-  const trim = emergency ? '#c5a27d' : '#8ed7ec'
+  const { scene } = useGLTF('/models/cruz-del-sur-arrival-room.glb')
+  const model = useMemo(() => {
+    const root = scene.clone(true)
+    const materials = new Map<Material, Material>()
+    const prepare = (material: Material) => {
+      if (!material.transparent) return material
+      let local = materials.get(material)
+      if (!local) {
+        local = material.clone()
+        local.depthWrite = false
+        materials.set(material, local)
+      }
+      return local
+    }
+    root.traverse((object) => {
+      if (object instanceof Mesh)
+        object.material = Array.isArray(object.material)
+          ? object.material.map(prepare)
+          : prepare(object.material)
+    })
+    return { root, materials }
+  }, [scene])
+  useEffect(
+    () => () => model.materials.forEach((material) => material.dispose()),
+    [model],
+  )
+
   return (
-    <RigidBody
-      type="fixed"
-      colliders={false}
-      friction={0}
-      name="entry-airlock"
-      position={[0, 0, ENTRY_OFFSET]}
-    >
-      {([-1, 1] as const).flatMap((side) =>
-        BULKHEAD_POCKET_PANELS.map(({ at, size }, index) => (
-          <group
-            key={side + ':' + index}
-            position={[side * at[0], at[1], at[2]]}
-          >
+    <group name="entry-airlock">
+      <RigidBody
+        type="fixed"
+        colliders={false}
+        friction={0}
+        position={[0, 0, ARRIVAL_ORIGIN_Z]}
+      >
+        <primitive object={model.root} dispose={null} />
+        {ARRIVAL_SHELL_HULLS.map((vertices, i) => (
+          <ConvexHullCollider key={i} args={[vertices]} />
+        ))}
+        {[...ARRIVAL_BOXES, ...ARRIVAL_FURNITURE].map(
+          ({ position, halfSize }, i) => (
+            <CuboidCollider key={i} position={position} args={halfSize} />
+          ),
+        )}
+      </RigidBody>
+      <RigidBody
+        type="fixed"
+        colliders={false}
+        friction={0}
+        position={[0, 0, ENTRY_OFFSET]}
+      >
+        {([-1, 1] as const).flatMap((side) =>
+          BULKHEAD_POCKET_PANELS.map(({ at, size }, index) => (
+            <group
+              key={`${side}:${index}`}
+              position={[side * at[0], at[1], at[2]]}
+            >
+              <CuboidCollider args={[size[0] / 2, size[1] / 2, size[2] / 2]} />
+              {/* Room-side face is already covered by the GLB facade. */}
+              {index !== 1 && (
+                <mesh>
+                  <boxGeometry args={[...size]} />
+                  <meshStandardMaterial color="#30383e" roughness={0.7} />
+                </mesh>
+              )}
+            </group>
+          )),
+        )}
+        {dockingPanels.map(({ name, at, size }) => (
+          <group key={name} name={name} position={at}>
             <CuboidCollider args={[size[0] / 2, size[1] / 2, size[2] / 2]} />
             <mesh>
-              <boxGeometry args={[...size]} />
-              <meshStandardMaterial color="#2b4052" roughness={0.7} />
-            </mesh>
-          </group>
-        )),
-      )}
-      {ENTRY_PANELS.map(({ name, at, size, rotation, glass }) => (
-        <group key={name} name={name} position={at} rotation={rotation}>
-          <CuboidCollider args={[size[0] / 2, size[1] / 2, size[2] / 2]} />
-          <mesh>
-            <boxGeometry args={size} />
-            {glass ? (
-              <meshBasicMaterial
-                color="#91c1d0"
-                transparent
-                opacity={0.16}
-                depthWrite={false}
-              />
-            ) : (
+              <boxGeometry args={size} />
               <meshStandardMaterial
-                color={
-                  name.includes('floor')
-                    ? '#273035'
-                    : name.includes('shoulder')
-                      ? '#b5b4a8'
-                      : '#303b42'
-                }
-                roughness={0.6}
+                color="#30383e"
+                roughness={0.65}
                 metalness={0.25}
               />
-            )}
-          </mesh>
-        </group>
-      ))}
-      {[-1, 1].map((side) => (
-        <group key={side}>
-          <mesh position={[side * 2.68, 0.12, 8.1]}>
-            <boxGeometry args={[0.025, 0.035, 4.1]} />
-            <meshBasicMaterial color={trim} />
-          </mesh>
-          <mesh position={[side * 1.8, 2.98, 8.1]}>
-            <boxGeometry args={[0.07, 0.025, 3.8]} />
-            <meshBasicMaterial color={trim} />
-          </mesh>
-        </group>
-      ))}
-      {/* Recessed seals visibly locate the side glass without blocking its view. */}
-      {[1, 2.1].map((y) => (
-        <mesh key={y} position={[-2.67, y, 8.2]}>
-          <boxGeometry args={[0.16, 0.1, 2.16]} />
-          <meshStandardMaterial color="#121d23" roughness={0.8} />
-        </mesh>
-      ))}
-      {[7.2, 9.2].map((z) => (
-        <mesh key={z} position={[-2.67, 1.55, z]}>
-          <boxGeometry args={[0.16, 1.2, 0.1]} />
-          <meshStandardMaterial color="#121d23" roughness={0.8} />
-        </mesh>
-      ))}
-      {/* Exterior sill makes the viewport part of a layered ship hull. */}
-      <mesh position={[-3.15, 0.8, 8.2]} rotation={[0, 0, -0.2]}>
-        <boxGeometry args={[0.75, 0.18, 2.5]} />
-        <meshStandardMaterial
-          color="#3f4b52"
-          metalness={0.45}
-          roughness={0.5}
-        />
-      </mesh>
-      {/* Shallow storage faces stay outside the player circulation envelope. */}
-      {[7.3, 8.8].map((z) => (
-        <group key={z} position={[2.66, 1.25, z]}>
+            </mesh>
+          </group>
+        ))}
+      </RigidBody>
+      {/* Only exposed thresholds; never a second floor beneath GLB plates. */}
+      {[
+        [11.2, ARRIVAL_ORIGIN_Z, 2.8],
+        [16.2, 16.3, 1.6],
+      ].map(([start, end, halfWidth]) => (
+        <RigidBody
+          key={start}
+          type="fixed"
+          colliders={false}
+          friction={0}
+          position={[0, -0.1, (start + end) / 2]}
+        >
+          <CuboidCollider args={[halfWidth, 0.1, (end - start) / 2]} />
           <mesh>
-            <boxGeometry args={[0.08, 1.5, 1.15]} />
-            <meshStandardMaterial color="#b5b4a8" roughness={0.7} />
+            <boxGeometry args={[halfWidth * 2, 0.2, end - start]} />
+            <meshStandardMaterial
+              color="#30383e"
+              roughness={0.65}
+              metalness={0.25}
+            />
           </mesh>
-          <mesh position={[-0.05, 0, 0.35]}>
-            <boxGeometry args={[0.03, 0.25, 0.045]} />
-            <meshStandardMaterial color="#182127" />
-          </mesh>
-        </group>
+        </RigidBody>
       ))}
-      {[6.8, 7.8, 8.8, 9.8].map((z) => (
-        <mesh key={z} position={[0, 0.003, z]}>
-          <boxGeometry args={[5.3, 0.006, 0.025]} />
-          <meshStandardMaterial color="#121d23" />
-        </mesh>
+      {/* Practical fills illuminate PBR surfaces without shadow maps. */}
+      {[-1.5, 1.5].map((x) => (
+        <pointLight
+          key={x}
+          position={[x, 2.75, 14.1]}
+          color="#ffd4a4"
+          intensity={emergency ? 1 : 7}
+          distance={5}
+          decay={2}
+        />
       ))}
-    </RigidBody>
+    </group>
   )
 }
