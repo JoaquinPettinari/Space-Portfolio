@@ -10,7 +10,7 @@ import type { MissionId } from './missions'
 import { useDialogue } from './useDialogue'
 import { missions } from './missions'
 import { StationAssistant } from './ui/StationAssistant'
-import type { BulkheadPhase } from './world/bulkhead'
+import { requestBridgeAccess, type BulkheadPhase } from './world/bulkhead'
 const Diagnostics = import.meta.env.DEV
   ? lazy(() =>
       import('./debug/GameDiagnostics').then(({ GameDiagnostics }) => ({
@@ -55,7 +55,8 @@ export function Game({
       finishMission('tablet')
       if (protocol.guidance !== 'skipped') enqueue('tablet')
     },
-    onModeChange: () => setIdentity('idle'),
+    onModeChange: () =>
+      setIdentity(completed.includes('crew') ? 'verified' : 'idle'),
   })
   useEffect(() => {
     if (controls.ready) enqueue('arrival')
@@ -157,13 +158,14 @@ export function Game({
           identity={identity}
           finishMission={finishMission}
           onIdentityVerified={() => {
+            setBulkheadPhase((phase) => requestBridgeAccess(phase, true))
             setIdentity('verified')
             finishMission('crew')
             enqueue('identity')
           }}
           onCameraRest={() => {
             controls.setTransitioning(false)
-            if (mode === 'crew') {
+            if (mode === 'crew' && !completed.includes('crew')) {
               setIdentity('scanning')
               setScanSignal((v) => v + 1)
             }
@@ -178,13 +180,9 @@ export function Game({
             )
           }}
           onBulkhead={() => {
-            if (lightsOn && bulkheadPhase === 'closed')
-              setBulkheadPhase('unlocking')
-          }}
-          onLighting={() => {
-            if (lightsOn) return
-            finishMission('lighting')
-            enqueue('restored')
+            setBulkheadPhase((phase) =>
+              requestBridgeAccess(phase, completed.includes('crew')),
+            )
           }}
           onDossier={downloadDossier}
           onAccessiblePortfolio={onAccessiblePortfolio}

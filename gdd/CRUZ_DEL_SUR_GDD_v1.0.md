@@ -5,6 +5,12 @@
 **Expedition shuttle:** PAMPA-07  
 **Language:** English UI, narration and subtitles. Contact accepts Spanish, English, Italian and Norwegian.
 
+## Approved arrival revision — 2026-11-10
+
+The latest owner brief removes the dedicated light room and mandatory switch. Sequence: PAMPA-07 docking collar through an already open hatch → single receiving room → credential-secured sliding bulkhead with adjacent Crew Access → short framed panoramic passage → main bridge reveal. Power is online from session start; the existing lighting objective records automatic arrival systems readiness, not an interaction. Crew verification alone authorizes automatic opening. Quick Portfolio Access remains available before identification. Reload resets credentials and bulkhead, never arrival power. This supersedes the historical power-gated descriptions below.
+
+Receiving room: approximately 5.4 × 4.03 m usable behind the door pockets, 3.0 m central ceiling with chamfered shoulders; rear hatch Z=16.2, spawn Z=17.1, Crew screen unchanged at [2,1.68,12.515]. Secured bulkhead Z=11.65, panoramic passage Z=11.2…5.1, length6.1 m (~2.03 s at3 m/s). Original two-leaf GLB, sweep pockets and kinematic collider synchronization retained. Passage adds angled ribs, gaskets, segmented floor and exterior hull stringers. Compact bridge and console layout remain unchanged. Visual review is manual.
+
 ## Approved direction update — 2026-11-07
 
 ### Latest architecture and interaction brief

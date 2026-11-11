@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import type { MeshStandardMaterial, PointLight, SpotLight } from 'three'
 import { restorationIntensity } from './lighting'
+import { roofHeight } from './bridgeLayout'
 
 export function CabinLighting({ emergency }: { emergency: boolean }) {
   const light = useRef<PointLight>(null)
@@ -64,7 +65,7 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
         distance={9}
         decay={2}
       />
-      <group position={[0, 3.35, 4.5]} name="emergency-beacon">
+      <group position={[0, roofHeight(4.5) - 0.2, 4.5]} name="emergency-beacon">
         <mesh>
           <boxGeometry args={[0.72, 0.2, 0.22]} />
           <meshStandardMaterial

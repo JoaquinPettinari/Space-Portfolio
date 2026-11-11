@@ -5,7 +5,11 @@ import { WallTerminal } from './WallTerminal'
 export function RearWorkstation({ target }: { target: StationTarget }) {
   return (
     <group>
-      <RigidBody type="fixed" colliders={false} position={[4.4, 0.45, 2.1]}>
+      <RigidBody
+        type="fixed"
+        colliders={false}
+        position={[PERSONAL_POSITION[0] - 0.15, 0.45, PERSONAL_POSITION[2]]}
+      >
         <CuboidCollider args={[0.4, 0.45, 0.9]} />
         <mesh>
           <boxGeometry args={[0.8, 0.9, 1.8]} />

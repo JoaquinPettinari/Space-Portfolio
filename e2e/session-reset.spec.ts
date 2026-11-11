@@ -16,7 +16,7 @@ async function ready(page: Page) {
 
 async function expectFreshSession(page: Page) {
   const state = await snapshot(page)
-  expect(state.session.protocol.completed).toEqual([])
+  expect(state.session.protocol.completed).toEqual(['lighting'])
   expect(state.session.protocol.guidance).toBe('pending')
   expect(state.session.bulkheadOpen).toBe(false)
   expect(state.session.identity).toBe('idle')
@@ -25,8 +25,8 @@ async function expectFreshSession(page: Page) {
     cups: 0,
     achievement: false,
   })
-  expect(state.cameraPosition.z).toBeCloseTo(7, 1)
-  expect(state.cabinLighting.ambientIntensity).toBe(0.25)
+  expect(state.cameraPosition.z).toBeCloseTo(17.1, 1)
+  expect(state.cabinLighting.ambientIntensity).toBe(0.65)
   expect(
     await page.evaluate(() => ({
       protocol: localStorage.getItem('cruz-del-sur.protocol'),
@@ -75,12 +75,16 @@ test('refresh resets actual gameplay and ignores legacy saved progress without d
   await page.getByRole('button', { name: 'Skip Tutorial', exact: true }).click()
   await page.keyboard.press('t')
   expect((await protocol(page)).guidance).toBe('skipped')
-  expect((await protocol(page)).completed).toEqual(['lighting', 'tablet'])
+  expect((await protocol(page)).completed).toEqual([
+    'lighting',
+    'crew',
+    'tablet',
+  ])
   await walkTo(page, -2.4, 3.1)
   await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Brew coffee')
   await page.keyboard.press('e')
   await expect(
-    page.getByText('E · Drink coffee', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Drink coffee' }),
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect

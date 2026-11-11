@@ -33,31 +33,20 @@ test.beforeEach(async ({ page }) => {
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toBeVisible({ timeout: 60000 })
-  expect((await snapshot(page)).powerSwitchCount).toBe(1)
+  expect((await snapshot(page)).powerSwitchCount).toBe(0)
 })
 test.afterEach(({ page }) => {
   expect(browserErrors.get(page)).toEqual([])
 })
 
-test('the single auxiliary switch restores power once without toggling it off', async ({
+test('arrival power is online without a switch interaction', async ({
   page,
 }) => {
   await enter(page)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
-  await expect(
-    page.getByText('E · Restore lighting', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
-  await expect
-    .poll(async () => (await protocol(page)).completed)
-    .toEqual(['lighting'])
-  await expect(
-    page.getByText('Auxiliary power online', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
   expect((await protocol(page)).completed).toEqual(['lighting'])
-  expect((await snapshot(page)).powerSwitchCount).toBe(1)
+  expect((await snapshot(page)).powerSwitchCount).toBe(0)
   expect((await snapshot(page)).cabinLighting.ambientIntensity).toBe(0.65)
+  expect((await snapshot(page)).session.bulkheadPhase).toBe('closed')
 })
 
 test('Crew Access scans once into a compact physical identity and resets crew progress on refresh', async ({
@@ -65,9 +54,9 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
 }) => {
   await approachCrew(page)
   await expect(
-    page.getByText('E · Crew Access', { exact: true }),
+    page.locator('.interaction-hint'),
     JSON.stringify(await snapshot(page)),
-  ).toBeVisible()
+  ).toContainText('Crew Access')
   await page.keyboard.press('e')
   const dialog = page.getByRole('dialog', { name: 'Crew Access' })
   await expect(
@@ -96,12 +85,12 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
   ).toBeVisible({ timeout: 60000 })
-  expect((await protocol(page)).completed).toEqual([])
+  expect((await protocol(page)).completed).toEqual(['lighting'])
 })
 
 test('cancelled Crew Access does not authenticate', async ({ page }) => {
   await approachCrew(page)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(page.locator('.interaction-hint')).toBeVisible()
   await page.keyboard.press('e')
   // Cancel during approach, before the short scan can finish on a slow runner.
   await page.keyboard.press('Escape')

@@ -20,7 +20,7 @@ export type ProtocolEvent =
   | { type: 'transmission'; outcome: 'accepted' | 'skipped' }
 
 export function initialProtocol(): ProtocolState {
-  return { version: 1, completed: [], guidance: 'pending' }
+  return { version: 1, completed: ['lighting'], guidance: 'pending' }
 }
 export function protocolReducer(
   state: ProtocolState,
@@ -43,7 +43,7 @@ export function protocolReducer(
       // Replaying guidance must never plunge an occupied room back into darkness.
       return {
         ...initialProtocol(),
-        completed: state.completed.includes('lighting') ? ['lighting'] : [],
+        completed: ['lighting'],
         guidance: 'active',
       }
   }

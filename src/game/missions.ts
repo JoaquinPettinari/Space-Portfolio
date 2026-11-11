@@ -6,19 +6,20 @@ export type MissionId = ObjectiveId | 'diagnostics'
 export const missions: { id: ObjectiveId; title: string; action: string }[] = [
   {
     id: 'lighting',
-    title: 'Restore interior lighting',
-    action: 'Airlock → Aim at the auxiliary light switch and press E.',
-  },
-  {
-    id: 'tablet',
-    title: 'Open mission tablet',
-    action: 'Press T to open your personal mission tablet.',
+    title: 'Arrival systems online',
+    action:
+      'Docking arrival → Power is already online. No switch interaction is required.',
   },
   {
     id: 'crew',
     title: 'Verify crew identity',
     action:
-      'Inside the bridge → Aim at the Crew Access terminal beside the entrance and press E once. Your full record remains available in the Central Archive.',
+      'Arrival room → Aim at Crew Access beside the secured bulkhead and press E once. Your full record remains available in the Central Archive.',
+  },
+  {
+    id: 'tablet',
+    title: 'Open mission tablet',
+    action: 'Press T to open your personal mission tablet.',
   },
   {
     id: 'archives',

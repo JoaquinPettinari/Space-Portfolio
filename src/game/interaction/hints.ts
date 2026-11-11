@@ -9,16 +9,17 @@ export function interactionHint(
   bulkhead: BulkheadPhase = 'closed',
 ) {
   switch (target) {
+    case 'docking':
+      return 'E Open docking hatch'
     case 'tactical':
       return 'E Tactical Table'
     case 'crew':
       return 'E Crew Access'
     case 'bulkhead':
-      if (!lightsOn) return 'Restore auxiliary power first'
       if (bulkhead === 'unlocking') return 'Bulkhead unlocking…'
       if (bulkhead === 'opening') return 'Bulkhead opening…'
       if (bulkhead === 'open') return 'Bulkhead open'
-      return 'E Open bulkhead'
+      return 'Use Crew Access to open the bulkhead'
     case 'coffee':
       if (coffee === 'brewing') return 'Coffee brewing…'
       return coffee === 'ready' ? 'E Drink coffee' : 'E Brew coffee'

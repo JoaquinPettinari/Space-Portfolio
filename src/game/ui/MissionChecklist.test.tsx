@@ -8,12 +8,12 @@ test('renders all objectives and reacts to the shared completion state', () => {
   )
   expect(screen.getAllByRole('listitem')).toHaveLength(6)
   expect(
-    screen.getByText('Restore interior lighting').closest('li'),
+    screen.getByText('Arrival systems online').closest('li'),
   ).toHaveAttribute('aria-current', 'step')
   rerender(
     <MissionChecklist completed={['lighting', 'tablet']} current="crew" />,
   )
-  expect(screen.getByText('Restore interior lighting').tagName).toBe('S')
+  expect(screen.getByText('Arrival systems online').tagName).toBe('S')
   expect(screen.getByText('Open mission tablet').closest('li')).toHaveAttribute(
     'data-complete',
     'true',

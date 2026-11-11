@@ -1,8 +1,10 @@
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { SpaceExterior } from './SpaceExterior'
 import { ShipHull } from './ShipHull'
+import { BridgeFloor } from './BridgeFloor'
 import { CabinLighting } from './CabinLighting'
 import { EntryAirlock } from './EntryAirlock'
+import { PanoramicPassage } from './PanoramicPassage'
 import { TABLE_POSITION } from '../interaction/station'
 import { Bulkhead } from './SlidingBulkhead'
 import type { BulkheadPhase } from './bulkhead'
@@ -97,47 +99,24 @@ export function Greybox({
       <CabinLighting emergency={emergency} />
       {/* Colisiones sencillas e independientes del vidrio y sus marcos. */}
       <RigidBody type="fixed" colliders={false} friction={0}>
-        <CuboidCollider args={[5.2, 0.1, 5.2]} position={[0, -0.1, 0]} />
-        <CuboidCollider args={[5.2, 2.25, 0.1]} position={[0, 2.25, -5.1]} />
-        {[-3.225, 3.225].map((x) => (
+        <BridgeFloor />
+        {[-3.07, 3.07].map((x) => (
           <CuboidCollider
             key={x}
-            args={[1.975, 2.25, 0.15]}
-            position={[x, 2.25, 5.1]}
+            args={[1.73, 1.65, 0.15]}
+            position={[x, 1.65, 5.1]}
           />
         ))}
-        <CuboidCollider args={[1.25, 0.6, 0.15]} position={[0, 3.9, 5.1]} />
-        <CuboidCollider args={[0.1, 2.25, 5]} position={[-5.1, 2.25, 0]} />
-        <CuboidCollider args={[0.1, 2.25, 5]} position={[5.1, 2.25, 0]} />
-        <CuboidCollider args={[5.2, 0.1, 5.2]} position={[0, 4.6, 0]} />
-        <mesh position={[0, -0.1, 0]} name="continuous-cabin-floor">
-          <boxGeometry args={[10.4, 0.2, 10.4]} />
-          <meshStandardMaterial
-            color="#303538"
-            metalness={0.35}
-            roughness={0.32}
-          />
-        </mesh>
+        <CuboidCollider args={[1.34, 0.39, 0.15]} position={[0, 2.91, 5.1]} />
         <ShipHull />
       </RigidBody>
       <EntryAirlock emergency={emergency} />
-      <Bulkhead phase={bulkheadPhase} onPhaseChange={onBulkheadPhaseChange} />
-      {/* Stationary frame sits outside the clear opening; no raised threshold. */}
-      <group position={[0, 0, 4.86]}>
-        {[-1.3, 1.3].map((x) => (
-          <Panel
-            key={x}
-            position={[x, 1.65, 0]}
-            size={[0.1, 3.3, 0.32]}
-            color="#385268"
-          />
-        ))}
-        <Panel
-          position={[0, 3.35, 0]}
-          size={[2.7, 0.1, 0.32]}
-          color="#385268"
-        />
-      </group>
+      <PanoramicPassage />
+      <Bulkhead
+        phase={bulkheadPhase}
+        powered={!emergency}
+        onPhaseChange={onBulkheadPhaseChange}
+      />
       <CentralTable />
     </group>
   )

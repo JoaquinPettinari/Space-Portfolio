@@ -1,3 +1,9 @@
+import {
+  ENTRY_POWER_POSITION,
+  ENTRY_CREW_POSITION,
+  ENTRY_CREW_SCREEN,
+} from '../world/entryLayout'
+import { COMMAND_POSES } from '../world/commandLayout'
 export type StationMode =
   | 'tactical'
   | 'walking'
@@ -7,6 +13,7 @@ export type StationMode =
   | 'photo'
   | 'crew'
 export type StationTarget =
+  | 'docking'
   | 'tactical'
   | 'computer'
   | 'dossier'
@@ -19,14 +26,14 @@ export type StationTarget =
   | 'crew'
   | null
 
-export const SCREEN_POSITION = [-2.4, 1.65, -3.715] as const
-export const COMMUNICATIONS_POSITION = [2.4, 1.65, -3.82] as const
-export const PERSONAL_POSITION = [4.55, 1.65, 2.1] as const
+export const SCREEN_POSITION = COMMAND_POSES.computer.position
+export const COMMUNICATIONS_POSITION = COMMAND_POSES.communications.position
+export const PERSONAL_POSITION = [4.35, 1.65, 2.1] as const
 export const COFFEE_POSITION = [-4.25, 0, 3.65] as const
-export const PHOTO_POSITION = [-4.78, 1.75, 2.2] as const
-export const POWER_POSITION = [-1.4, 1.65, 6.1] as const
-export const CREW_ACCESS_POSITION = [2.05, 1.65, 4.65] as const
-export const CREW_ACCESS_ROTATION = Math.PI
+export const PHOTO_POSITION = [-4.58, 1.75, 2.2] as const
+export const POWER_POSITION = ENTRY_POWER_POSITION
+export const CREW_ACCESS_POSITION = ENTRY_CREW_POSITION
+export const CREW_ACCESS_ROTATION = 0
 export const TABLE_POSITION = [0, 0, 0.5] as const
 /** Fit the whole physical bezel while leaving readable margins. */
 export function monitorDistance(
@@ -38,25 +45,12 @@ export function monitorDistance(
   const field = 2 * Math.tan((verticalFov * Math.PI) / 360)
   return Math.max(height / (field * 0.82), width / (field * aspect * 0.85))
 }
-export const FOCUS_POSITION = [
-  -2.4,
-  1.65,
-  -3.715 + monitorDistance(16 / 9),
-] as const
-export function archiveFocusZ(aspect: number) {
-  return SCREEN_POSITION[2] + monitorDistance(aspect)
-}
 export const INTERACTION_DISTANCE = 2.8
 export const WALL_SCREEN_POSES = {
-  communications: { position: [2.4, 1.65, -3.715], rotation: 0 },
-  personal: { position: [4.405, 1.68, 2.1], rotation: -Math.PI / 2 },
-  crew: { position: [2.05, 1.68, 4.505], rotation: CREW_ACCESS_ROTATION },
+  communications: COMMAND_POSES.communications,
+  personal: { position: [4.205, 1.68, 2.1], rotation: -Math.PI / 2 },
+  crew: { position: ENTRY_CREW_SCREEN, rotation: CREW_ACCESS_ROTATION },
 } as const
-export const COMMUNICATIONS_FOCUS = [
-  2.4,
-  1.65,
-  -3.715 + monitorDistance(16 / 9),
-] as const
 export function wallMonitorDistance(aspect: number) {
   return monitorDistance(aspect, 1.3, 1.1)
 }
@@ -75,8 +69,7 @@ export const TERMINAL_SCREENS = {
     pixels: [960, 540],
   },
   computer: {
-    position: SCREEN_POSITION,
-    rotation: 0,
+    ...COMMAND_POSES.computer,
     frame: [1.8, 1.1],
     display: [1.6, 0.9],
     pixels: [960, 540],
@@ -127,7 +120,7 @@ const views = {
   communications: terminalView('communications'),
   personal: terminalView('personal'),
   crew: terminalView('crew'),
-  photo: { position: [-2.98, 1.75, 2.2] as const, lookAt: PHOTO_POSITION },
+  photo: { position: [-2.78, 1.75, 2.2] as const, lookAt: PHOTO_POSITION },
 } as const
 
 /** Writes into the caller-owned vector: no allocations during frame updates. */

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { InstancedMesh, Light, Vector3 } from 'three'
+import { InstancedMesh, Light, Mesh, Raycaster, Vector3 } from 'three'
 import type { ProtocolState } from '../protocol'
 import type { CoffeeState } from '../coffee'
 import type { BulkheadPhase } from '../world/bulkhead'
@@ -14,6 +14,7 @@ export type SessionSnapshot = {
 }
 
 export type GameSnapshot = {
+  explorationHull: { noseMounted: boolean; noseInSight: boolean }
   bulkheadLeaves: {
     left: { x: number; y: number; z: number } | null
     right: { x: number; y: number; z: number } | null
@@ -23,6 +24,7 @@ export type GameSnapshot = {
   cameraPosition: { x: number; y: number; z: number }
   cameraRotation: { x: number; y: number; z: number; w: number }
   pointerLocked: boolean
+  resources: { geometries: number; textures: number; programs: number }
   drawCalls: number
   triangles: number
   frameMs: number
@@ -58,6 +60,43 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
     maxEyeHeight.current = Math.max(maxEyeHeight.current, camera.position.y)
   })
   useEffect(() => {
+    const sightRay = new Raycaster()
+    const sightTarget = new Vector3(0, 0.67, -6.85)
+    const sightDirection = new Vector3()
+    const projectedTarget = new Vector3()
+    const noseSight = () => {
+      const nose = scene.getObjectByName('exploration-bow-deck')
+      if (!nose) return { noseMounted: false, noseInSight: false }
+      projectedTarget.copy(sightTarget).project(camera)
+      if (
+        Math.abs(projectedTarget.x) > 1 ||
+        Math.abs(projectedTarget.y) > 1 ||
+        Math.abs(projectedTarget.z) > 1
+      )
+        return { noseMounted: true, noseInSight: false }
+      sightDirection.copy(sightTarget).sub(camera.position)
+      sightRay.far = sightDirection.length() + 0.5
+      sightRay.set(camera.position, sightDirection.normalize())
+      const hit = sightRay
+        .intersectObjects(scene.children, true)
+        .find(({ object }) => {
+          if (!(object instanceof Mesh)) return false
+          let visible = object.visible
+          object.traverseAncestors((ancestor) => {
+            visible = visible && ancestor.visible
+          })
+          const materials = Array.isArray(object.material)
+            ? object.material
+            : [object.material]
+          return (
+            visible &&
+            materials.some(
+              (material) => material.visible && material.opacity > 0.2,
+            )
+          )
+        })
+      return { noseMounted: true, noseInSight: hit?.object === nose }
+    }
     const leafPosition = new Vector3()
     const leaf = (name: string) => {
       const object = scene.getObjectByName(name)
@@ -75,6 +114,7 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
     }
     const api = Object.freeze({
       snapshot: (): GameSnapshot => ({
+        explorationHull: noseSight(),
         bulkheadLeaves: {
           left: leaf('bulkhead-left-leaf'),
           right: leaf('bulkhead-right-leaf'),
@@ -106,6 +146,11 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
           w: camera.quaternion.w,
         },
         pointerLocked: !!document.pointerLockElement?.contains(gl.domElement),
+        resources: {
+          geometries: gl.info.memory.geometries,
+          textures: gl.info.memory.textures,
+          programs: gl.info.programs?.length ?? 0,
+        },
         drawCalls: gl.info.render.calls,
         triangles: gl.info.render.triangles,
         frameMs: frameMs.current,

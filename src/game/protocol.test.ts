@@ -23,7 +23,7 @@ describe('recovery protocol', () => {
         type: 'transmission',
         outcome,
       })
-      expect(state.completed).toEqual(['uplink'])
+      expect(state.completed).toEqual(['lighting', 'uplink'])
       expect(protocolReducer(state, { type: 'transmission', outcome })).toBe(
         state,
       )
@@ -34,7 +34,7 @@ describe('recovery protocol', () => {
       type: 'activity',
       id: 'crew',
     })
-    expect(getCurrentObjective(state)?.id).toBe('lighting')
+    expect(state.completed).toEqual(['lighting', 'crew'])
     state = protocolReducer(state, { type: 'activity', id: 'lighting' })
     expect(getCurrentObjective(state)?.id).toBe('tablet')
     state = protocolReducer(state, { type: 'activity', id: 'tablet' })
@@ -45,10 +45,10 @@ describe('recovery protocol', () => {
     let state = protocolReducer(initialProtocol(), { type: 'skip' })
     expect(getCurrentObjective(state)).toBeNull()
     state = protocolReducer(state, { type: 'activity', id: 'dossier' })
-    expect(state.completed).toEqual(['dossier'])
+    expect(state.completed).toEqual(['lighting', 'dossier'])
     state = protocolReducer(state, { type: 'continue' })
     expect(state.guidance).toBe('active')
-    expect(getCurrentObjective(state)?.id).toBe('lighting')
+    expect(getCurrentObjective(state)?.id).toBe('crew')
   })
   it('replays the protocol without switching restored lighting off', () => {
     const state: ProtocolState = {
@@ -59,10 +59,10 @@ describe('recovery protocol', () => {
     const replay = protocolReducer(state, { type: 'replay' })
     expect(replay.completed).toEqual(['lighting'])
     expect(replay.guidance).toBe('active')
-    expect(getCurrentObjective(replay)?.id).toBe('tablet')
+    expect(getCurrentObjective(replay)?.id).toBe('crew')
     expect(
       protocolReducer(initialProtocol(), { type: 'replay' }).completed,
-    ).toEqual([])
+    ).toEqual(['lighting'])
   })
   it('does not mark email drafts as sent or duplicate archive progress', () => {
     const state = protocolReducer(initialProtocol(), {
@@ -143,7 +143,7 @@ describe('session-only progress', () => {
     first.unmount()
     const second = renderHook(() => useProtocol())
     expect(second.result.current.state).toEqual(initialProtocol())
-    expect(second.result.current.currentObjective?.id).toBe('lighting')
+    expect(second.result.current.currentObjective?.id).toBe('crew')
     expect(localStorage.getItem(PROTOCOL_STORAGE_KEY)).toBeNull()
   })
   it('works when removal of legacy browser storage is denied', () => {
@@ -155,6 +155,6 @@ describe('session-only progress', () => {
     act(() =>
       result.current.dispatch({ type: 'transmission', outcome: 'skipped' }),
     )
-    expect(result.current.state.completed).toEqual(['uplink'])
+    expect(result.current.state.completed).toEqual(['lighting', 'uplink'])
   })
 })

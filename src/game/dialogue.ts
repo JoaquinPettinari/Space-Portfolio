@@ -1,9 +1,9 @@
 /** Approved GDD lines are kept verbatim; remaining lines describe actual events. */
 export const dialogueMessages = {
   arrival:
-    'Welcome aboard CRUZ DEL SUR. Interior lighting is offline. Activate the auxiliary switch beside the airlock.',
+    'Welcome aboard CRUZ DEL SUR. Docking hatch open. Arrival systems online. Verify your credentials at Crew Access beside the secured bulkhead to enter the bridge.',
   restored:
-    'Interior lighting online. Press E at the bulkhead to enter the observation room.',
+    'Interior lighting online. Identify yourself at Crew Access to open the bridge bulkhead. Quick Portfolio Access remains available in your tablet.',
   unlocking: 'Bulkhead unlocking.',
   opening: 'Bulkhead opening. Keep clear of the moving leaves.',
   open: 'Bulkhead open. Explore freely. All professional records remain available at the Central Archive.',

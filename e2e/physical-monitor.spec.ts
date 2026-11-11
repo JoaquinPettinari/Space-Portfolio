@@ -1,3 +1,4 @@
+import { SCREEN_POSITION } from '../src/game/interaction/station'
 import {
   expect,
   test,
@@ -130,7 +131,13 @@ async function expectPhysicalScreen(page: Page) {
   if (!box) throw new Error('Physical screen has no layout')
   const camera = (await snapshot(page)).cameraPosition
   const projectedWidth =
-    (1.6 / (2 * Math.tan((65 * Math.PI) / 360) * (camera.z + 3.715))) *
+    (1.6 /
+      (2 *
+        Math.tan((65 * Math.PI) / 360) *
+        Math.hypot(
+          camera.x - SCREEN_POSITION[0],
+          camera.z - SCREEN_POSITION[2],
+        ))) *
     viewport.height
   expect(Math.abs(box.width - projectedWidth)).toBeLessThan(2)
   expect(Math.abs(box.height - (box.width * 0.9) / 1.6)).toBeLessThan(2)

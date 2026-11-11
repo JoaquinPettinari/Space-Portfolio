@@ -65,6 +65,29 @@ export function GameHud({
   )
   return (
     <>
+      {ready &&
+        active &&
+        mode === 'walking' &&
+        !suspended &&
+        !transitioning &&
+        !tabletRaised && (
+          <svg
+            className="crosshair"
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M6 1v3m0 4v3M1 6h3m4 0h3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+        )}
       {ready && mode === 'walking' && !tabletRaised && (
         <div className="hud-brand">
           <div className="hud-brand__icon">

@@ -3,6 +3,7 @@ import {
   advanceBulkheadElapsed,
   bulkheadLeafOffset,
   nextBulkheadPhase,
+  requestBridgeAccess,
   BULKHEAD_LEAF_HALF_WIDTH,
   BULKHEAD_LEAF_TRAVEL,
   BULKHEAD_UNLOCK_SECONDS,
@@ -10,7 +11,7 @@ import {
   type BulkheadPhase,
 } from './bulkhead'
 
-it('never opens from the closed state without an explicit powered interaction', () => {
+it('never opens from the closed state without successful credential verification', () => {
   expect(nextBulkheadPhase('closed', 100)).toBe('closed')
   expect(advanceBulkheadElapsed('closed', 0, 100, true)).toBe(0)
   expect(bulkheadLeafOffset('closed', 100)).toBe(0)
@@ -68,4 +69,11 @@ it('moves leaf inner edges outside the full 2.5 m doorway and clamps malformed d
   expect(advanceBulkheadElapsed('opening', 0.3, 100, false)).toBe(
     BULKHEAD_OPEN_SECONDS,
   )
+})
+
+it('opens automatically from crew credentials without a separate power interaction', () => {
+  expect(requestBridgeAccess('closed', false)).toBe('closed')
+  expect(requestBridgeAccess('closed', true)).toBe('unlocking')
+  expect(requestBridgeAccess('opening', true)).toBe('opening')
+  expect(requestBridgeAccess('open', true)).toBe('open')
 })

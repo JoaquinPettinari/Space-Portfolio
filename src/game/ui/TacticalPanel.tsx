@@ -47,8 +47,8 @@ export function TacticalPanel({
               <h3>CRUZ DEL SUR</h3>
               <p>Observation bridge & entry airlock.</p>
               <p>
-                Optional station inspection. Explore freely after restoring
-                power.
+                Optional station inspection. Explore freely after crew
+                verification.
               </p>
             </>
           )}

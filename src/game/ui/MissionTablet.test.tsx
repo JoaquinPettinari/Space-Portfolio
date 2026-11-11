@@ -43,7 +43,7 @@ it('offers optional guidance, retains progress when skipped and resumes the next
     screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
   const lighting = screen.getByRole('button', {
-    name: /Restore interior lighting/,
+    name: /Arrival systems online/,
   })
   expect(lighting).toHaveAttribute('data-complete', 'true')
   fireEvent.click(screen.getByRole('button', { name: 'Skip Tutorial' }))
@@ -58,7 +58,7 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   ).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Replay Protocol' }))
   expect(
-    screen.getByText('Current objective: Open mission tablet'),
+    screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
   expect(lighting).toHaveAttribute('data-complete', 'true')
   expect(

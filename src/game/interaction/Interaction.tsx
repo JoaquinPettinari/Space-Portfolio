@@ -17,14 +17,16 @@ export function Interaction({
   onLighting,
   onCoffee,
   onBulkhead,
+  onDocking,
 }: {
   active: boolean
   mode: StationMode
   onTarget: (target: StationTarget) => void
   onMode: (mode: StationMode) => void
   onDossier: () => void
-  onLighting: () => void
+  onLighting?: () => void
   onCoffee: () => void
+  onDocking?: () => void
   onBulkhead: () => void
 }) {
   const { camera, scene } = useThree()
@@ -50,7 +52,8 @@ export function Interaction({
       if (
         hit &&
         hit.distance <= INTERACTION_DISTANCE &&
-        (kind === 'tactical' ||
+        (kind === 'docking' ||
+          kind === 'tactical' ||
           kind === 'computer' ||
           kind === 'dossier' ||
           kind === 'lighting' ||
@@ -73,6 +76,11 @@ export function Interaction({
   const key = useEffectEvent((event: KeyboardEvent) => {
     if (!active || event.repeat) return
     if (event.code === 'KeyE') {
+      if (target.current === 'docking') {
+        event.preventDefault()
+        onDocking?.()
+        return
+      }
       if (target.current === 'bulkhead') {
         event.preventDefault()
         onBulkhead()
@@ -85,7 +93,7 @@ export function Interaction({
       }
       if (target.current === 'lighting') {
         event.preventDefault()
-        onLighting()
+        onLighting?.()
         return
       }
       if (target.current === 'dossier') {

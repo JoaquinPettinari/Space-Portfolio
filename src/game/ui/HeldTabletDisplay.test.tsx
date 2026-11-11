@@ -22,7 +22,7 @@ it('shows real objectives, completed state and current room map without stealing
   ).toBeVisible()
   expect(screen.queryByRole('button')).not.toBeInTheDocument()
   expect(screen.getByText(/R · Interact & skip tutorial/)).toBeVisible()
-  expect(screen.getByText(/Restore interior lighting/)).toHaveAttribute(
+  expect(screen.getByText(/Arrival systems online/)).toHaveAttribute(
     'data-complete',
     'true',
   )

@@ -1,5 +1,23 @@
 # Arquitectura
 
+## Approved arrival revision — 2026-11-10
+
+The latest owner brief removes the dedicated light room and mandatory switch. Sequence: PAMPA-07 docking collar through an already open hatch → single receiving room → credential-secured sliding bulkhead with adjacent Crew Access → short framed panoramic passage → main bridge reveal. Power is online from session start; the existing lighting objective records automatic arrival systems readiness, not an interaction. Crew verification alone authorizes automatic opening. Quick Portfolio Access remains available before identification. Reload resets credentials and bulkhead, never arrival power. This supersedes the historical power-gated descriptions below.
+
+Receiving room: approximately 5.4 × 4.03 m usable behind the door pockets, 3.0 m central ceiling with chamfered shoulders; rear hatch Z=16.2, spawn Z=17.1, Crew screen unchanged at [2,1.68,12.515]. Secured bulkhead Z=11.65, panoramic passage Z=11.2…5.1, length6.1 m (~2.03 s at3 m/s). Original two-leaf GLB, sweep pockets and kinematic collider synchronization retained. Passage adds angled ribs, gaskets, segmented floor and exterior hull stringers. Compact bridge and console layout remain unchanged. Visual review is manual.
+
+## Arquitectura espacial v2
+
+Revisión compacta aprobada: piso principal 9.6 × 10.5 m (antes 13.5 m); proa, consola y puestos adelantados 3 m hacia la mesa, manteniendo la zona trasera. Ver `audits/EXPLORATION_BRIDGE_COMPACT.md`. Etapa 1 de exploración implementada: cinco facetas delanteras y cubierta exterior visible. La etapa 2 ya cierra la cubierta con techo de 3.30 a 2.75 m, vidrio superior y colisiones compartidas con el perfil de las ventanas. La etapa 3 lleva la consola a la proa con Archive y Communications a ±45°, y cierra las paredes traseras sobre el ancho del piso. Detalles y límites: `audits/EXPLORATION_BRIDGE_STAGE1.md` y `audits/EXPLORATION_BRIDGE_STAGE2.md` y `audits/EXPLORATION_BRIDGE_STAGE3.md`.
+
+El contorno y las pendientes compartidas están en `src/game/world/bridgeLayout.ts`. `BridgeFloor`, `BridgeRoof` y `ShipHull` usan ese contorno facetado; `Workstation` sigue la consola abierta en tres tramos. `commandLayout.ts` deriva los ingletes, colliders y anclajes de monitores/sillas desde la polilínea compartida. `TERMINAL_SCREENS` alimenta tanto los marcos como Html y el foco dinámico. `PanoramicPassage` conecta Z=5.1 con la entrada trasladada seis metros; `DockingHatch` es la compuerta inicial independiente. Energía e identificación solicitan la apertura automática del mamparo existente, sin duplicar el estado del protocolo. `DeckMap` representa este recorrido.
+
+La etapa 4 amplía el módulo técnico a 5.4 m libres y coloca Crew Access junto al mamparo, de frente. `entryLayout.ts` comparte dimensiones de envolvente y anclajes; se conservan escotilla, spawn, mecanismo de puerta y reglas de energía/identificación. El soporte del lector exige una corrección de montaje de +0.33 m en Z y +0.05 m en X respecto del borrador. Ver `audits/EXPLORATION_BRIDGE_STAGE4.md`.
+
+La etapa 5 agrupa los 45 marcos del techo y cuatro tiras existentes en dos lotes de instancias estáticas, sin cambiar colisiones. Añade una placa física discreta sobre el acceso. La medición automatizada con SwiftShader registra 160→124 llamadas y 337→291 geometrías en vistas próximas; no equivale a una mejora de FPS verificada en la GPU del visitante. Metodología, costes y límites: `audits/EXPLORATION_BRIDGE_STAGE5.md`.
+
+Los GLB modulares nuevos no sustituyen esa escena: `/?architecture-preview` carga un visor solo en desarrollo. Medidas y limitaciones del kit: `docs/assets/modular-architecture/INSPECTION.md`.
+
 ## Revisión vigente de responsabilidades
 
 La revisión actual se registra en `core-interaction-progress.md` y sustituye las descripciones históricas inferiores conforme se valida cada fase. El usuario se ocupa del estilo de las interfaces; este trabajo se limita a arquitectura y comportamiento. `Game` compone `GameWorld` y `GameHud`; `useStationControls` concentra modos, T/R/E/Escape y ciclo de Pointer Lock. El reducer del protocolo conserva las reglas de objetivos. El modo antiguo `hologram` ya no participa en los controles. El puente de fase4 anterior está implementado; su plano ya fue aprobado. No se deben interpretar los párrafos históricos como nuevas instrucciones de producto.

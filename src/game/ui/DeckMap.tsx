@@ -1,73 +1,136 @@
 import {
+  TERMINAL_SCREENS,
   SCREEN_POSITION,
   COMMUNICATIONS_POSITION,
   PERSONAL_POSITION,
   CREW_ACCESS_POSITION,
-  POWER_POSITION,
+  COFFEE_POSITION,
+  TABLE_POSITION,
 } from '../interaction/station'
+import { PLAYER_SPAWN_POSITION } from '../player/jump'
+import { BRIDGE_OUTLINE, BOW_EDGES, CONSOLE_PATH } from '../world/bridgeLayout'
 import type { ObjectiveId } from '../missions'
 
-/** Current room coordinates, not the proposed bridge or the reference game's map.
- * 30 SVG units per metre; proa is up (-Z). Update locations when geometry moves. */
 const locations: Record<ObjectiveId, readonly [number, number]> = {
-  lighting: [POWER_POSITION[0], POWER_POSITION[2]],
-  tablet: [0, 7],
+  lighting: [0, 14.2],
+  tablet: [PLAYER_SPAWN_POSITION[0], PLAYER_SPAWN_POSITION[2]],
   crew: [CREW_ACCESS_POSITION[0], CREW_ACCESS_POSITION[2]],
   archives: [SCREEN_POSITION[0], SCREEN_POSITION[2]],
   uplink: [COMMUNICATIONS_POSITION[0], COMMUNICATIONS_POSITION[2]],
   dossier: [PERSONAL_POSITION[0], PERSONAL_POSITION[2]],
 }
-const x = (value: number) => 200 + value * 30
-const z = (value: number) => 185 + value * 30
-
+const scale = 18
+const x = (v: number) => 200 + v * scale,
+  z = (v: number) => 170 + v * scale
+const path = (points: readonly (readonly [number, number])[]) =>
+  points.map((p, i) => `${i ? 'L' : 'M'}${x(p[0])} ${z(p[1])}`).join(' ')
+/** Geometric map follows the same metre coordinates as the physical deck. */
 export function DeckMap({ selected }: { selected: ObjectiveId }) {
   const point = locations[selected]
   return (
     <svg
-      viewBox="0 0 400 450"
+      viewBox="0 0 400 520"
       role="img"
-      aria-label="CRUZ DEL SUR current deck map: forward port Archive, forward starboard Communications, central table, rear Personal Workstation, Crew Access beside the bridge entrance and auxiliary power in the airlock."
+      aria-label="CRUZ DEL SUR current deck map: faceted bridge, glass passage, Crew Access in the docking arrival room, docking hatch and PAMPA-07 arrival."
     >
       <path
-        d="M80 35 H320 L350 65 V320 L335 335 H65 L50 320 V65 Z"
+        d={path(BRIDGE_OUTLINE) + ' Z'}
         fill="#102c3b"
         stroke="#6dabbf"
         strokeWidth="3"
       />
       <rect
         x={x(-1.4)}
-        y={z(5)}
-        width={84}
-        height={93}
+        y={z(5.1)}
+        width={2.8 * scale}
+        height={6.1 * scale}
+        fill="#102c3b"
+        stroke="#9ce8ff"
+      />
+      <rect
+        x={x(-2.8)}
+        y={z(11.2)}
+        width={5.6 * scale}
+        height={5 * scale}
         fill="#102c3b"
         stroke="#6dabbf"
       />
-      <path
-        d="M50 65 L80 35 H320 L350 65 M50 65 V185 M350 65 V185 M50 188 V221 M350 188 V221"
-        stroke="#9ce8ff"
-        strokeWidth="5"
-      />
-      <rect x={x(-3.8)} y={z(-4.6)} width={228} height={36} fill="#3eacc4" />
       <rect
-        x={x(-1.05)}
-        y={z(-0.85)}
-        width={63}
-        height={81}
+        x={x(-1.6)}
+        y={z(16.2)}
+        width={3.2 * scale}
+        height={2 * scale}
+        fill="#102c3b"
+        stroke="#6dabbf"
+      />
+      {BOW_EDGES.map((edge, i) => (
+        <path key={i} d={path(edge)} stroke="#9ce8ff" strokeWidth="5" />
+      ))}
+      <path
+        d={path(CONSOLE_PATH)}
+        fill="none"
+        stroke="#3eacc4"
+        strokeWidth={1.05 * scale}
+      />
+      <rect
+        x={x(TABLE_POSITION[0] - 1.05)}
+        y={z(TABLE_POSITION[2] - 1.35)}
+        width={2.1 * scale}
+        height={2.7 * scale}
         rx="8"
         fill="#234554"
         stroke="#8bb0c2"
       />
-      <rect x={x(-3.3)} y={z(-3.82)} width={54} height={5} fill="#b4e9f4" />
-      <rect x={x(1.5)} y={z(-3.82)} width={54} height={5} fill="#b4e9f4" />
-      <rect x={x(4)} y={z(1.2)} width={24} height={54} fill="#3eacc4" />
-      <rect x={x(-4.15)} y={z(4.77)} width={54} height={4} fill="#3eacc4" />
-      <rect x={x(-1.4)} y={z(5.79)} width={7} height={18.6} fill="#ffd384" />
+      {(['computer', 'communications'] as const).map((kind) => {
+        const { position: p, rotation } = TERMINAL_SCREENS[kind]
+        return (
+          <rect
+            key={kind}
+            transform={`rotate(${(-rotation * 180) / Math.PI} ${x(p[0])} ${z(p[2])})`}
+            x={x(p[0] - 0.9)}
+            y={z(p[2])}
+            width={1.8 * scale}
+            height="5"
+            fill="#b4e9f4"
+          />
+        )
+      })}
+      <rect
+        x={x(PERSONAL_POSITION[0] - 0.55)}
+        y={z(1.2)}
+        width={0.8 * scale}
+        height={1.8 * scale}
+        fill="#3eacc4"
+      />
+      <rect
+        x={x(COFFEE_POSITION[0] - 0.6)}
+        y={z(COFFEE_POSITION[2] - 0.4)}
+        width={1.2 * scale}
+        height={0.8 * scale}
+        fill="#ffd384"
+      />
       <rect
         x={x(CREW_ACCESS_POSITION[0] - 0.65)}
-        y={z(CREW_ACCESS_POSITION[2] - 0.12)}
-        width={39}
-        height={7.2}
+        y={z(CREW_ACCESS_POSITION[2])}
+        width={1.3 * scale}
+        height="6"
         fill="#73d5ac"
+      />
+      <path
+        d={path([
+          [-1.34, 11.65],
+          [1.34, 11.65],
+        ])}
+        stroke="#73d5ac"
+        strokeWidth="5"
+      />
+      <path
+        d={path([
+          [-1.2, 16.2],
+          [1.2, 16.2],
+        ])}
+        stroke="#b4e9f4"
+        strokeWidth="5"
       />
       <circle
         cx={x(point[0])}
@@ -79,28 +142,37 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         strokeDasharray="4 5"
       />
       <g fill="#d8eff6" fontSize="13" textAnchor="middle">
-        <text x="128" y="109">
+        <text x={x(-2.4)} y={z(-4.9)}>
           ARCHIVE
         </text>
-        <text x="272" y="109">
-          EARTH COMMS
+        <text x={x(2.4)} y={z(-2.8)}>
+          COMMS
         </text>
-        <text x="200" y="203">
+        <text x={x(0)} y={z(0.5)}>
           TABLE
         </text>
-        <text x="104" y="315">
-          CV
+        <text x={x(-3.8)} y={z(4.6)}>
+          COFFEE
         </text>
-        <text x="290" y="286">
+        <text x={x(3.4)} y={z(4.6)}>
           PERSONAL
         </text>
-        <text x={x(CREW_ACCESS_POSITION[0])} y="315">
+        <text x="200" y={z(8.2)}>
+          PASSAGE
+        </text>
+        <text x="200" y={z(13.7)}>
+          ARRIVAL
+        </text>
+        <text
+          x={x(CREW_ACCESS_POSITION[0] + 1.1)}
+          y={z(CREW_ACCESS_POSITION[2] + 0.4)}
+        >
           CREW
         </text>
-        <text x="200" y="421">
-          AIRLOCK
+        <text x="200" y={z(17.6)}>
+          PAMPA-07
         </text>
-        <text x="200" y="20">
+        <text x="200" y="12">
           BOW
         </text>
       </g>

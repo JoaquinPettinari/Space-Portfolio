@@ -4,6 +4,8 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
   testDir: './e2e',
   testMatch: [
+    'architecture-v2.spec.ts',
+    'roof-performance.spec.ts',
     'physical-monitor.spec.ts',
     'next-phase.spec.ts',
     'bridge-layout.spec.ts',

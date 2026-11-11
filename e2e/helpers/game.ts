@@ -1,3 +1,5 @@
+import { CREW_ACCESS_POSITION } from '../../src/game/interaction/station'
+import { COMMAND_POSES } from '../../src/game/world/commandLayout'
 import { expect, type Page } from '@playwright/test'
 import type { GameSnapshot } from '../../src/game/debug/GameDiagnostics'
 
@@ -60,9 +62,8 @@ export async function enter(page: Page) {
   if (!box) throw new Error('Canvas not ready')
   await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  // The crosshair is intentionally absent. After real browser capture, allow
-  // React's active-control commit before sending held movement keys.
-  await expect(page.locator('.crosshair')).toHaveCount(0)
+  // Wait for React's active-control commit after native browser capture.
+  await expect(page.locator('.crosshair')).toBeVisible()
   await page.evaluate(
     () =>
       new Promise<void>((resolve) => {
@@ -71,41 +72,62 @@ export async function enter(page: Page) {
   )
 }
 
-/** Complete the real airlock entry, then stop on the observation-room floor. */
+export async function enterEntryModule(page: Page) {
+  await enter(page)
+  if ((await snapshot(page)).cameraPosition.z < 15.5) return
+  // The docking hatch starts open: cross it using movement alone.
+  await walkTo(page, 0, 15)
+}
+/** Compatibility helper: arrival power is automatic; no switch is interacted with. */
+export async function restoreEntryPower(page: Page) {
+  await enterEntryModule(page)
+  expect((await protocol(page)).completed).toContain('lighting')
+}
+/** Native open-hatch arrival, identification and passage traversal, never a teleport. */
 export async function enterObservationRoom(page: Page) {
   await enter(page)
   if ((await snapshot(page)).cameraPosition.z < 5) return
-  const hadPower =
-    (await protocol(page)).completed?.includes('lighting') ?? false
-  if (!hadPower) {
-    await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
+  await restoreEntryPower(page)
+  if (!(await protocol(page)).completed.includes('crew')) {
+    await approachCrew(page)
+    const returnPosition = (await snapshot(page)).cameraPosition
+    await page.keyboard.press('e')
+    const terminal = page.getByRole('dialog', { name: 'Crew Access' })
     await expect(
-      page.getByText('E · Restore lighting', { exact: true }),
-    ).toBeVisible()
-    await page.keyboard.press('e')
+      terminal.locator('.crew-identity').getByRole('status'),
+    ).toContainText('ACCESS GRANTED')
     await expect
-      .poll(async () => (await protocol(page)).completed)
-      .toContain('lighting')
+      .poll(async () => (await snapshot(page)).session.bulkheadPhase)
+      .toBe('open')
+    await terminal.getByRole('button', { name: 'Leave terminal' }).click()
+    await expect
+      .poll(async () => (await snapshot(page)).pointerLocked)
+      .toBe(true)
+    await expect
+      .poll(async () => {
+        const p = (await snapshot(page)).cameraPosition
+        return Math.hypot(
+          p.x - returnPosition.x,
+          p.y - returnPosition.y,
+          p.z - returnPosition.z,
+        )
+      })
+      .toBeLessThan(0.01)
+    await expect(page.locator('.interaction-hint')).toContainText('Crew Access')
   }
-  if ((await snapshot(page)).session.bulkheadPhase === 'closed') {
-    await approach(page, { x: 0, y: 1.65, z: 5.12 }, 'E · Open bulkhead')
-    await page.keyboard.press('e')
-  }
-  await expect
-    .poll(async () => (await snapshot(page)).session.bulkheadPhase)
-    .toBe('open')
+  await walkTo(page, 0, 13.3)
   await lookAt(page, { x: 0, y: (await snapshot(page)).cameraPosition.y, z: 0 })
   await page.keyboard.down('w')
   try {
     await expect
       .poll(async () => (await snapshot(page)).cameraPosition.z, {
         intervals: [30, 50],
+        timeout: 30000,
       })
       .toBeLessThan(3.55)
   } finally {
     await page.keyboard.up('w')
   }
-  await page.waitForTimeout(150)
   await lookAt(page, {
     x: 0,
     y: (await snapshot(page)).cameraPosition.y,
@@ -121,50 +143,92 @@ export async function approach(
   await lookAt(page, target)
   await page.keyboard.down('w')
   try {
-    await expect(page.getByText(hint, { exact: true })).toBeVisible()
+    await expect(
+      page
+        .locator('.interaction-hint')
+        .filter({ hasText: hint.replace(/^E\s*·?\s*/, '') }),
+    ).toBeVisible()
   } finally {
     await page.keyboard.up('w')
   }
   // Re-aim from the approach position, not the initial distant viewing angle.
   await lookAt(page, target)
-  await expect(page.getByText(hint, { exact: true })).toBeVisible()
+  await expect(
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: hint.replace(/^E\s*·?\s*/, '') }),
+  ).toBeVisible()
 }
 
 /** Walk to a free floor waypoint with actual WASD; never teleport the capsule. */
 export async function walkTo(page: Page, x: number, z: number) {
-  const pose = (await snapshot(page)).cameraPosition
-  await lookAt(page, { x, y: pose.y, z })
-  await page.keyboard.down('w')
+  const deadline = Date.now() + 30000
+  let distance = Infinity
   try {
-    await expect
-      .poll(
-        async () => {
-          const p = (await snapshot(page)).cameraPosition
-          return Math.hypot(p.x - x, p.z - z)
-        },
-        { intervals: [25], timeout: 15000 },
+    while (Date.now() < deadline) {
+      const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
+      distance = Math.hypot(p.x - x, p.z - z)
+      if (distance < 0.3) return
+      const yaw = Math.atan2(
+        2 * (q.x * q.z + q.y * q.w),
+        1 - 2 * (q.x * q.x + q.y * q.y),
       )
-      .toBeLessThan(0.3)
+      const desired = Math.atan2(p.x - x, p.z - z)
+      if (
+        Math.abs(Math.atan2(Math.sin(desired - yaw), Math.cos(desired - yaw))) >
+        0.015
+      )
+        await lookAt(page, { x, y: p.y, z })
+      // Short native holds keep low-FPS software rendering from overshooting
+      // a waypoint while polling. Collisions still block this real traversal.
+      await page.keyboard.down('w')
+      await page.waitForTimeout(
+        Math.min(250, Math.max(30, ((distance - 0.18) / 3) * 1000)),
+      )
+      await page.keyboard.up('w')
+      await page.evaluate(
+        () =>
+          new Promise<void>((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+          ),
+      )
+    }
+    expect(
+      distance,
+      JSON.stringify({
+        target: { x, z },
+        observed: (await snapshot(page)).cameraPosition,
+      }),
+    ).toBeLessThan(0.3)
   } finally {
     await page.keyboard.up('w')
   }
-  await page.waitForTimeout(100)
 }
 
 export async function forwardStation(page: Page, side: -1 | 1) {
   await walkTo(page, side * 2.4, 3.1)
   await walkTo(page, side * 2.4, -1.2)
+  await walkTo(page, side * 0.75, -2.1)
+  const [x, y, z] =
+    COMMAND_POSES[side === -1 ? 'computer' : 'communications'].position
   await approach(
     page,
-    { x: side * 2.4, y: 1.65, z: -3.715 },
+    { x, y, z },
     side === -1 ? 'E Use computer' : 'E · Earth Communications',
   )
 }
 
 export async function approachCrew(page: Page) {
-  await enterObservationRoom(page)
-  await walkTo(page, 2.05, 3.2)
-  await approach(page, { x: 2.05, y: 1.65, z: 4.65 }, 'E · Crew Access')
+  await restoreEntryPower(page)
+  await approach(
+    page,
+    {
+      x: CREW_ACCESS_POSITION[0],
+      y: CREW_ACCESS_POSITION[1],
+      z: CREW_ACCESS_POSITION[2],
+    },
+    'E Crew Access',
+  )
 }
 
 export async function protocol(
