@@ -115,6 +115,19 @@
   justify-content: center;
   color: var(--terminal-accent);
 }
+.crew-loading-spinner {
+  animation: crew-verification-spin 1s linear infinite;
+}
+@keyframes crew-verification-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crew-loading-spinner {
+    animation: none;
+  }
+}
 .crew-terminal .desktop {
   background: var(--terminal-bg);
 }

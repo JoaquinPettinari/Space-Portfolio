@@ -1,4 +1,4 @@
-import { BadgeCheck, CreditCard, ScanLine } from 'lucide-react'
+import { BadgeCheck, CreditCard, LoaderCircle } from 'lucide-react'
 import { education, profile } from '../../data/portfolio'
 import './CrewIdentity.css'
 
@@ -35,9 +35,15 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
           </>
         ) : (
           <div className="crew-scan-copy">
-            <ScanLine size={40} aria-hidden="true" />
+            <LoaderCircle
+              className="crew-loading-spinner"
+              size={40}
+              aria-hidden="true"
+            />
             <h2>Crew verification</h2>
-            <p>One scan. No card pickup required. You can leave at any time.</p>
+            <p>
+              Verifying credentials… Please wait. You can leave at any time.
+            </p>
           </div>
         )}
         <p
@@ -47,11 +53,15 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
           {verified ? (
             <BadgeCheck size={25} aria-hidden="true" />
           ) : (
-            <ScanLine size={25} aria-hidden="true" />
+            <LoaderCircle
+              className="crew-loading-spinner"
+              size={25}
+              aria-hidden="true"
+            />
           )}
           {verified
             ? 'ACCESS GRANTED · Identity verified'
-            : 'Reading crew card…'}
+            : 'Reading crew card… Verifying credentials'}
         </p>
         {verified && (
           <p className="crew-record-hint">

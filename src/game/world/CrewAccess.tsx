@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import type { Group } from 'three'
+import { CrewStandbyScreen } from './CrewStandbyScreen'
 import {
   advanceIdentification,
   identificationReach,
@@ -26,6 +28,8 @@ export function CrewAccess({
   verified: boolean
   onComplete: () => void
 }) {
+  const { scene } = useGLTF('/models/cruz-del-sur-crew-access.glb')
+  const model = useMemo(() => scene.clone(true), [scene])
   return (
     <group
       position={[...CREW_ACCESS_POSITION]}
@@ -34,25 +38,11 @@ export function CrewAccess({
       <RigidBody type="fixed" colliders={false}>
         <CuboidCollider args={[0.65, 0.55, 0.12]} />
         <CuboidCollider args={[0.25, 0.25, 0.09]} position={[0, 0, -0.21]} />
-        <mesh position={[0, 0, -0.21]}>
-          <boxGeometry args={[0.5, 0.5, 0.18]} />
-          <meshStandardMaterial color="#293239" />
-        </mesh>
         <group userData={{ interaction: 'crew' }}>
-          <mesh>
-            <boxGeometry args={[1.3, 1.1, 0.24]} />
-            <meshStandardMaterial color="#293239" />
-          </mesh>
-          <mesh position={[0, 0.03, 0.13]}>
-            <planeGeometry args={[1.1, 0.8]} />
-            <meshBasicMaterial color={verified ? '#155f4c' : '#174559'} />
-          </mesh>
-          <mesh position={[0, -0.48, 0.09]}>
-            <boxGeometry args={[0.42, 0.18, 0.12]} />
-            <meshStandardMaterial color="#bcc5c5" />
-          </mesh>
-          <mesh position={[0, -0.48, 0.155]}>
-            <planeGeometry args={[0.3, 0.13]} />
+          <primitive object={model} dispose={null} />
+          <CrewStandbyScreen verified={verified} scanning={scanning} />
+          <mesh position={[0, -0.48, 0.157]}>
+            <planeGeometry args={[0.3, 0.045]} />
             <meshBasicMaterial color={verified ? '#83e5b4' : '#e4ba74'} />
           </mesh>
         </group>

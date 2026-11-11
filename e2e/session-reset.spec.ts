@@ -25,7 +25,7 @@ async function expectFreshSession(page: Page) {
     cups: 0,
     achievement: false,
   })
-  expect(state.cameraPosition.z).toBeCloseTo(17.1, 1)
+  expect(state.cameraPosition.z).toBeCloseTo(15, 1)
   expect(state.cabinLighting.ambientIntensity).toBe(0.65)
   expect(
     await page.evaluate(() => ({

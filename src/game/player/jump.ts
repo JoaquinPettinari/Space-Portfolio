@@ -33,6 +33,6 @@ export const PLAYER_SPAWN_Y = 1
 export const PLAYER_SPAWN_POSITION = [
   0,
   PLAYER_SPAWN_Y,
-  ENTRY_DOCKING_DEPTH + 0.9,
+  ENTRY_DOCKING_DEPTH - 1.2,
 ] as const
 export const JUMP_SPEED = 4

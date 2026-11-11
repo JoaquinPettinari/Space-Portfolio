@@ -8,21 +8,12 @@ import {
 import { Mesh, type Material } from 'three'
 import { BULKHEAD_POCKET_PANELS } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
-import { ENTRY_PANELS } from './entryLayout'
 import {
   ARRIVAL_BOXES,
   ARRIVAL_FURNITURE,
   ARRIVAL_ORIGIN_Z,
   ARRIVAL_SHELL_HULLS,
 } from './arrivalRoomLayout'
-
-const dockingPanels = ENTRY_PANELS.filter(
-  ({ name }) =>
-    name === 'docking-floor' ||
-    name === 'docking-roof' ||
-    name === 'docking-rear' ||
-    name.startsWith('docking-side-'),
-)
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
@@ -94,25 +85,9 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
             </group>
           )),
         )}
-        {dockingPanels.map(({ name, at, size }) => (
-          <group key={name} name={name} position={at}>
-            <CuboidCollider args={[size[0] / 2, size[1] / 2, size[2] / 2]} />
-            <mesh>
-              <boxGeometry args={size} />
-              <meshStandardMaterial
-                color="#30383e"
-                roughness={0.65}
-                metalness={0.25}
-              />
-            </mesh>
-          </group>
-        ))}
       </RigidBody>
       {/* Only exposed thresholds; never a second floor beneath GLB plates. */}
-      {[
-        [11.2, ARRIVAL_ORIGIN_Z, 2.8],
-        [16.2, 16.3, 1.6],
-      ].map(([start, end, halfWidth]) => (
+      {[[11.2, ARRIVAL_ORIGIN_Z, 2.8]].map(([start, end, halfWidth]) => (
         <RigidBody
           key={start}
           type="fixed"

@@ -7,7 +7,7 @@ import io
 
 ROOT=Path(__file__).resolve().parents[2]
 scene=bpy.context.scene
-assert scene.name=='Arrival Room - Materials V4'
+assert scene.name in {'Arrival Room - Materials V4', 'Arrival Room - Rear Closure V5', 'Arrival Room - Equipment Details V6', 'Arrival Room - Bench and Portal V7', 'Arrival Room - Fitted Lounge V8', 'Arrival Room - Coffee and Memories V9'}
 temp=bpy.data.collections.new('Arrival runtime export temporary')
 scene.collection.children.link(temp)
 selected=list(bpy.context.selected_objects)
@@ -23,7 +23,10 @@ try:
         # Primitive source boxes had inward winding masked by double-sided shading.
         # Correct evaluated closed surfaces before enabling opaque backface culling.
         bm=bmesh.new();bm.from_mesh(mesh)
-        bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+        # Photo inserts are intentionally open, front-facing planes. There is no
+        # closed volume from which Blender can infer their outward direction.
+        if not obj.get('photo_slot'):
+            bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
         bm.to_mesh(mesh);bm.free();mesh.update()
         for i,material in enumerate(mesh.materials):
             if material.name not in runtime_materials:

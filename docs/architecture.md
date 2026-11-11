@@ -1,5 +1,15 @@
 # Arquitectura
 
+## Interior spawn revision — 2026-11-11
+
+Start inside the arrival room at body position `[0,1,15]`, looking straight
+toward the secured bridge bulkhead (camera yaw/pitch zero, forward -Z).
+The procedural rear docking annex is no longer rendered or collidable. The
+existing docking hatch stays closed at Z=16.2 and has no interaction target;
+its later visual redesign will follow the owner's docking-access reference.
+Crew Access and the automatic credential-controlled bridge door are unchanged.
+This supersedes the open rear hatch and spawn Z=17.1 described below.
+
 ## Approved arrival revision — 2026-11-10
 
 The latest owner brief removes the dedicated light room and mandatory switch. Sequence: PAMPA-07 docking collar through an already open hatch → single receiving room → credential-secured sliding bulkhead with adjacent Crew Access → short framed panoramic passage → main bridge reveal. Power is online from session start; the existing lighting objective records automatic arrival systems readiness, not an interaction. Crew verification alone authorizes automatic opening. Quick Portfolio Access remains available before identification. Reload resets credentials and bulkhead, never arrival power. This supersedes the historical power-gated descriptions below.

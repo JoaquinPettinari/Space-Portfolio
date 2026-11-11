@@ -51,7 +51,9 @@ export async function lookAt(
       )
     mouseX -= yawDelta / 0.002
     mouseY -= pitchDelta / 0.002
-    await page.mouse.move(mouseX, mouseY, { steps: 4 })
+    // One native delta per correction avoids queued interpolation events being
+    // coalesced under load while Pointer Lock is consuming relative movement.
+    await page.mouse.move(mouseX, mouseY)
   }
 }
 
@@ -75,7 +77,7 @@ export async function enter(page: Page) {
 export async function enterEntryModule(page: Page) {
   await enter(page)
   if ((await snapshot(page)).cameraPosition.z < 15.5) return
-  // The docking hatch starts open: cross it using movement alone.
+  // Return from the rear hatch area to the interior starting point.
   await walkTo(page, 0, 15)
 }
 /** Compatibility helper: arrival power is automatic; no switch is interacted with. */
@@ -83,7 +85,7 @@ export async function restoreEntryPower(page: Page) {
   await enterEntryModule(page)
   expect((await protocol(page)).completed).toContain('lighting')
 }
-/** Native open-hatch arrival, identification and passage traversal, never a teleport. */
+/** Native interior arrival, identification and passage traversal, never a teleport. */
 export async function enterObservationRoom(page: Page) {
   await enter(page)
   if ((await snapshot(page)).cameraPosition.z < 5) return

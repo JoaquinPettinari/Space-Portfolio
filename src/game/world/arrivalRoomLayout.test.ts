@@ -44,3 +44,21 @@ it('uses finite convex shell strips across the room depth', () => {
   expect(Math.min(...z)).toBe(0)
   expect(Math.max(...z)).toBeCloseTo(ARRIVAL_DEPTH)
 })
+
+it('covers the fitted curved bench continuously without a straight invisible barrier', () => {
+  const bench = ARRIVAL_FURNITURE.filter((b) => b.position[1] === 0.545)
+  for (let z = 1.39; z < 3.91; z += 0.02) {
+    const x = -2.24 - arrivalPortExpansion(z)
+    const section = bench.find(
+      (b) => Math.abs(b.position[2] - z) <= b.halfSize[2] + 0.0001,
+    )
+    expect(section).toBeDefined()
+    if (!section) throw new Error('Missing bench collider')
+    expect(Math.abs(x - section.position[0]) + 0.42).toBeLessThanOrEqual(
+      section.halfSize[0],
+    )
+    expect(section.position[0] + section.halfSize[0] - (x + 0.42)).toBeLessThan(
+      0.15,
+    )
+  }
+})

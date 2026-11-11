@@ -20,9 +20,7 @@ test.beforeEach(async ({ page }) => {
     if (message.type() === 'error') collected.push(message.text())
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 45_000 })
   await enterObservationRoom(page)
   await page.keyboard.press('t')
   await page.keyboard.press('r')

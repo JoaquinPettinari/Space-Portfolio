@@ -114,7 +114,7 @@ export function Game({
     <div className="game" aria-label="Explorable 3D room">
       <Canvas
         frameloop={frameLoop}
-        onCreated={({ camera }) => camera.rotation.set(0, 0.35, 0)}
+        onCreated={({ camera }) => camera.rotation.set(0, 0, 0)}
         camera={{
           position: [
             PLAYER_SPAWN_POSITION[0],

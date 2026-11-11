@@ -106,7 +106,7 @@ export function GameWorld({
           bulkheadPhase={bulkheadPhase}
           onBulkheadPhaseChange={onBulkheadPhaseChange}
         />
-        <DockingHatch phase="open" />
+        <DockingHatch />
         <Workstation target={target} />
         <CrewDossier target={target} />
         <CoffeeMachine state={coffee.state} target={target} />

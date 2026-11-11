@@ -36,7 +36,7 @@ test('detailed passage bay loads in isolation with orbit inspection and roof tog
   await expect(page.getByLabel('Game controls')).toHaveCount(0)
   expect(errors).toEqual([])
 })
-test('open docking arrival requires only identity, opens the secured bulkhead automatically and permits return', async ({
+test('interior arrival requires only identity, opens the secured bulkhead automatically and permits return', async ({
   page,
 }, info) => {
   const errors: string[] = []
@@ -47,7 +47,21 @@ test('open docking arrival requires only identity, opens the secured bulkhead au
   await page.goto('/')
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
   await enter(page)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(17.1, 1)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(15, 1)
+  const initial = await snapshot(page)
+  expect(initial.cameraPosition.x).toBeCloseTo(0, 2)
+  expect(initial.cameraRotation).toEqual({ x: 0, y: 0, z: 0, w: 1 })
+  // The rear docking hatch is now closed; no annex is part of the playable route.
+  await page.keyboard.down('s')
+  try {
+    await page.waitForTimeout(800)
+    const rear = await snapshot(page)
+    expect(rear.cameraPosition.z).toBeGreaterThan(15.5)
+    expect(rear.cameraPosition.z).toBeLessThan(15.9)
+    expect(rear.cameraPosition.y).toBeGreaterThan(1.6)
+  } finally {
+    await page.keyboard.up('s')
+  }
   await enterEntryModule(page)
   const arrival = await snapshot(page)
   // The expanded lounge remains reachable, but its bench is solid.
@@ -93,7 +107,7 @@ test('open docking arrival requires only identity, opens the secured bulkhead au
     'crew',
   ])
   expect((await snapshot(page)).session.bulkheadPhase).toBe('open')
-  await walkTo(page, 0, 17.1)
+  await walkTo(page, 0, 15)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
@@ -101,7 +115,7 @@ test('open docking arrival requires only identity, opens the secured bulkhead au
     'lighting',
   ])
   expect((await snapshot(page)).session.bulkheadPhase).toBe('closed')
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(17.1, 1)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(15, 1)
   expect(errors).toEqual([])
 })
 

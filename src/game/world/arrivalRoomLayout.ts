@@ -110,10 +110,19 @@ export const ARRIVAL_BOXES: Box[] = [
   { position: [0, 2.95, 4.18], halfSize: [2.8, 0.45, 0.08] },
 ]
 export const ARRIVAL_FURNITURE: Box[] = [
-  ...[1.8, 2.65, 3.5].map((z): Box => ({
-    position: [-2.27 - arrivalPortExpansion(z), 0.545, z],
-    halfSize: [0.45, 0.545, 0.41],
-  })),
+  // Short boxes follow the continuous V8 bench without blocking its curved aisle.
+  ...Array.from({ length: 12 }, (_, i): Box => {
+    const start = 1.38 + (2.54 * i) / 12
+    const end = 1.38 + (2.54 * (i + 1)) / 12
+    const z = (start + end) / 2
+    const expansions = [start, z, end].map(arrivalPortExpansion)
+    const min = Math.min(...expansions)
+    const max = Math.max(...expansions)
+    return {
+      position: [-2.24 - (min + max) / 2, 0.545, z],
+      halfSize: [0.45 + (max - min) / 2, 0.545, (end - start) / 2],
+    }
+  }),
   {
     position: [-2.15 - arrivalPortExpansion(0.48), 0.51, 0.48],
     halfSize: [0.55, 0.51, 0.36],

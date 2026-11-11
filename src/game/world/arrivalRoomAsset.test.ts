@@ -18,9 +18,11 @@ type Asset = {
   }[]
   bufferViews: { byteOffset?: number; byteStride?: number }[]
   materials: {
+    name: string
     doubleSided?: boolean
     alphaMode?: string
     pbrMetallicRoughness?: {
+      baseColorFactor?: number[]
       baseColorTexture?: unknown
       metallicRoughnessTexture?: unknown
     }
@@ -63,6 +65,20 @@ it('ships only runtime geometry with embedded PBR textures and UVs', () => {
     ),
   ).toBe(true)
   expect(asset.materials.some((material) => material.normalTexture)).toBe(true)
+  for (const slot of ['01', '02', '03']) {
+    expect(
+      asset.materials.filter((m) => m.name.includes(`ARRIVAL_MEMORY_${slot}`)),
+    ).toHaveLength(1)
+    expect(
+      asset.nodes.some((n) => n.name.includes(`ARRIVAL_MEMORY_${slot}`)),
+    ).toBe(true)
+  }
+  const flagWhite = asset.materials.find((m) => m.name.includes('Flag white'))
+  expect(flagWhite).toBeDefined()
+  expect(flagWhite?.pbrMetallicRoughness?.baseColorTexture).toBeUndefined()
+  expect(
+    flagWhite?.pbrMetallicRoughness?.baseColorFactor ?? [1, 1, 1, 1],
+  ).toEqual([1, 1, 1, 1])
   expect(
     asset.materials
       .filter((m) => m.alphaMode !== 'BLEND')
