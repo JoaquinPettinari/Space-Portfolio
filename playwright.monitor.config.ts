@@ -6,6 +6,7 @@ export default defineConfig({
   testMatch: [
     'architecture-v2.spec.ts',
     'roof-performance.spec.ts',
+    'arrival-performance.spec.ts',
     'physical-monitor.spec.ts',
     'next-phase.spec.ts',
     'bridge-layout.spec.ts',
@@ -24,6 +25,9 @@ export default defineConfig({
   reporter: 'list',
   use: {
     ...devices['Desktop Chrome'],
+    // Full Chromium's modern headless uses the available GPU. Headless Shell
+    // falls back to SwiftShader here and distorts native input/render timing.
+    channel: 'chromium',
     baseURL: 'http://127.0.0.1:4173',
     viewport: { width: 1280, height: 720 },
     screenshot: 'off',

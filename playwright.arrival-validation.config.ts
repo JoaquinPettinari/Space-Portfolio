@@ -1,9 +1,6 @@
 import { defineConfig } from '@playwright/test'
-import base from './playwright.monitor.config'
-// Reduced pixel load for software-rendered integration checks. This does not
-// replace the default 1280x720 suite or establish hardware performance.
+import base from './playwright.monitor.config.ts'
+// Compatibility entry point: same browser, resolution and budgets as monitor.
 export default defineConfig({
   ...base,
-  metadata: { softwareRenderingValidation: true },
-  use: { ...base.use, viewport: { width: 800, height: 450 } },
 })

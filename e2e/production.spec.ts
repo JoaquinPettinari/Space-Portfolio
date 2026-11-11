@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import type {} from '../src/game/debug/GameDiagnostics'
 import { readSecurityHeaders } from '../server/securityHeaders'
 
-// Full software-rendered entry, two monitor/tablet transitions and CSP checks.
+// Production entry, real monitor/tablet transitions and CSP checks.
 // Individual assertions retain their own bounded timeouts.
 test.setTimeout(90_000)
 
@@ -34,9 +34,9 @@ test('starts directly in the production station and keeps portfolio access secon
     expect(await response!.headerValue(name)).toBe(value)
   }
   await expect(page.locator('canvas')).toBeVisible()
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeEnabled({ timeout: 15_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 15_000,
+  })
   await expect(
     page.getByRole('button', { name: 'Enter station', exact: true }),
   ).toHaveCount(0)
@@ -57,7 +57,9 @@ test('starts directly in the production station and keeps portfolio access secon
     .toBe(false)
   await expect(quick).not.toBeVisible()
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toBeVisible()
   await expect(quick).toBeVisible()
   await quick.click()
   await expect(
@@ -69,10 +71,16 @@ test('starts directly in the production station and keeps portfolio access secon
   await expect(page.locator('.physical-archive')).toBeVisible()
   await expect(page.locator('canvas')).toBeVisible()
   await page.getByRole('button', { name: 'Exit computer' }).click()
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeEnabled()
+  await expect
+    .poll(() => page.evaluate(() => !!document.pointerLockElement))
+    .toBe(true)
+  await expect(page.getByLabel('Game controls')).toBeVisible()
+  // Production has no debug observer: allow the 650 ms return animation to finish.
+  await page.waitForTimeout(750)
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
   await page.keyboard.press('r')
   await page
     .getByRole('button', { name: 'Read without 3D', exact: true })

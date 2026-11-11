@@ -1,6 +1,7 @@
 """Export evaluated material batches from V4; never join or edit source meshes."""
 from pathlib import Path
 import bpy
+import bmesh
 import contextlib
 import io
 
@@ -11,7 +12,7 @@ temp=bpy.data.collections.new('Arrival runtime export temporary')
 scene.collection.children.link(temp)
 selected=list(bpy.context.selected_objects)
 active=bpy.context.view_layer.objects.active
-groups={};created_mesh_names=[]
+groups={};created_mesh_names=[];runtime_materials={}
 try:
     deps=bpy.context.evaluated_depsgraph_get()
     for obj in list(scene.objects):
@@ -19,6 +20,17 @@ try:
         mesh=bpy.data.meshes.new_from_object(obj.evaluated_get(deps),preserve_all_data_layers=True,depsgraph=deps)
         created_mesh_names.append(mesh.name)
         mesh.transform(obj.matrix_world)
+        # Primitive source boxes had inward winding masked by double-sided shading.
+        # Correct evaluated closed surfaces before enabling opaque backface culling.
+        bm=bmesh.new();bm.from_mesh(mesh)
+        bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+        bm.to_mesh(mesh);bm.free();mesh.update()
+        for i,material in enumerate(mesh.materials):
+            if material.name not in runtime_materials:
+                local=material.copy();local.name=material.name+' runtime'
+                local.use_backface_culling='Glazing' not in material.name
+                runtime_materials[material.name]=local
+            mesh.materials[i]=runtime_materials[material.name]
         copy=bpy.data.objects.new('runtime part',mesh);temp.objects.link(copy)
         key=tuple(m.name for m in mesh.materials)
         groups.setdefault(key,[]).append(copy)
@@ -45,5 +57,7 @@ finally:
     for name in created_mesh_names:
         mesh=bpy.data.meshes.get(name)
         if mesh is not None and mesh.users==0:bpy.data.meshes.remove(mesh)
+    for material in runtime_materials.values():
+        if material.users==0:bpy.data.materials.remove(material)
     for obj in selected:obj.select_set(True)
     bpy.context.view_layer.objects.active=active

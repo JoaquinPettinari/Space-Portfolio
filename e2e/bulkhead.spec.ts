@@ -19,7 +19,8 @@ test.beforeEach(({ page }) => {
   errors.set(page, collected)
   page.on('pageerror', (error) => collected.push(error.message))
   page.on('console', (message) => {
-    if (message.type() === 'error') collected.push(message.text())
+    if (message.type() === 'error')
+      collected.push(`${message.text()} (${message.location().url})`)
   })
 })
 test.afterEach(({ page }) => {
@@ -34,7 +35,6 @@ async function ready(page: Page) {
 test('credential-controlled bulkhead visibly slides with collision and stays open for a return crossing', async ({
   page,
 }, info) => {
-  if (info.config.metadata.softwareRenderingValidation) test.slow()
   await ready(page)
   await enterEntryModule(page)
   await walkTo(page, 0, 13.3)

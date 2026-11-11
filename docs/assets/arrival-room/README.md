@@ -99,7 +99,7 @@ asset from the live V4 scene. Evaluated temporary copies are joined by material;
 source meshes remain editable. The `Access references` collection is excluded,
 so the existing interactive Crew Access remains the only terminal.
 
-Runtime asset: `public/models/cruz-del-sur-arrival-room.glb`, 6,311,280 bytes,
+Runtime asset: `public/models/cruz-del-sur-arrival-room.glb`, 6,310,444 bytes,
 7 material batches, 67,632 triangles and 8 embedded textures. The translation is
 `[0, 0, 12.07]`, without rotation or scale distortion. The source blend and review
 exports remain available for comparison. Production lights and colliders are
@@ -113,6 +113,17 @@ uses fixed convex shell strips plus furniture boxes; no decorative triangle-mesh
 physics. Two warm point lights (intensity 7, distance 5 m, no shadows) supply practical
 fill alongside existing ambient lighting. Transparent glass uses a locally owned
 material with depth writes disabled; cached GLTF resources remain shared.
+
+### Performance follow-up
+
+See [PERFORMANCE.md](./PERFORMANCE.md) for the controlled renderer comparison,
+normal/culling correction and current validation. Full Chromium modern headless
+uses the available GPU on the development machine; the previous Headless Shell
+used SwiftShader. The arrival-validation configuration now shares the standard
+1280 × 720 resolution and budgets. The following notes preserve the original
+integration investigation and do not describe the current test configuration.
+
+### Historical integration validation
 
 Validation: typecheck, lint, production build and 16 relevant unit tests passed.
 The default 1280 × 720 E2E runs failed at the initial waypoint due to native key
