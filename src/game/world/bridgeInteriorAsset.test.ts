@@ -229,7 +229,7 @@ it('the exported architecture leaves both physical monitor focus rays clear', ()
       expect(entry.intersectObjects(meshes)).toHaveLength(0)
     }
     // Niches have a recessed back, rather than a flat panel across their mouth.
-    for (const x of [-2.56, 2.56]) {
+    for (const x of [-3.97, -2.56, 2.56, 3.97]) {
       const niche = new Raycaster(
         new Vector3(x, 1.57, 5.5 + BRIDGE_OFFSET_Z),
         new Vector3(0, 0, -1),

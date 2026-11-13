@@ -1,5 +1,90 @@
 # Industrial bridge interior
 
+## Ergonomic seats V18 — Blender review only
+
+Source: `bridge-interior-v18-seats.blend`, scene `Bridge - Ergonomic Seats V18`.
+Script: `scripts/assets/refine-seats-v18-live.py`.
+Four seats retain their anchors, shell and arms, with segmented cushions,
+head cushions, adjustment details and five radial feet with twin casters.
+Vertex checks after a view-layer update passed for the existing 0.84 m square
+and 1.30 m high seat envelopes. Other object transforms and metadata were
+asserted unchanged. V17 walls and preview lighting remain. Initial checks ran
+before updated beam matrices; the script now updates before verifying.
+Blender could not replace the initial V18 filename; the completed scene was
+saved successfully under the distinct `v18-seats` filename above.
+No runtime export or browser tests; visual and runtime validation remain pending.
+
+## Lower console walls V17 — Blender review only
+
+Source: `bridge-interior-v17.blend`, scene `Bridge - Closed Console Walls V17`.
+Script: `scripts/assets/close-bridge-walls-v17-live.py`.
+Seven mitered lower hull segments follow the existing outline with its baked
+-3.15 m longitudinal offset. Walls extend from -0.06 to 0.80 m in height,
+16 cm outward from the existing perimeter. Two lateral sill sections complete
+the five existing bow sills. The upper panoramic openings remain unobstructed.
+No existing furniture, monitor, geometry or interaction metadata was changed.
+63 mesh ray checks verified coverage at three positions and three heights on
+each segment; assertions also compared all original vertices and transforms.
+V16 and its preview lighting are preserved. No runtime export, collider or app
+changes; integration must check the new shell against existing runtime hull
+visuals before export. Browser tests were not rerun. Visual review is pending.
+
+## Lighting study V16 — Blender review only
+
+Source: `bridge-interior-v16.blend`, scene `Bridge - Lighting Study V16`.
+Reproduce from V15 with `scripts/assets/light-bridge-v16-live.py`.
+Four broad area lights approximate two warm ceiling banks, the entry ceiling and
+cool bow daylight. A copied world provides subdued ambient illumination. Lights
+live in `PREVIEW ONLY / V16 lighting - exclude from GLB` and carry `preview_only`.
+They are an art-direction study, not a measured or exportable Three.js lighting
+setup. No runtime lighting, shadows or GLB changes were made.
+Assertions verified all 1,323 mesh vertex positions, transforms and object metadata
+against V15. Materials remain unchanged. Blender viewport uses rendered shading
+for manual inspection; no captures generated. App tests were not rerun because
+runtime files were unchanged. Visual approval and runtime light tuning remain pending.
+
+## Material study V15 — Blender review only
+
+Source: `bridge-interior-v15.blend`, scene `Bridge - Material Study V15`.
+Reproduce from V14 with `scripts/assets/finish-bridge-v15-live.py`.
+Darker graphite, subdued off-white panels and brushed metal retain six materials
+and seven packed 512px image maps. Lower-frequency, low-amplitude normal detail
+reduces high-frequency surface detail; actual browser shimmer remains untested.
+Warm amber emission and restrained cyan are material adjustments, not additional
+scene lights. Blender preview lighting does not establish runtime illumination.
+All 1,323 meshes, vertex positions, transforms and object metadata were asserted
+unchanged. V14 materials remain independent, and its lamp separation is preserved.
+No GLB export or application change in this iteration. No application checks were
+rerun; manual Blender review and subsequent runtime integration are pending.
+
+## Ceiling lamp correction V14 — Blender review only
+
+Source: `bridge-interior-v14.blend`, scene `Bridge - Ceiling Lamp Fix V14`.
+Reproduce from V13 with `scripts/assets/fix-entry-lamps-v14-live.py`.
+The selected entry diffuser and all five matching lamps shared the same 3.04 m
+underside plane with solid housing faces. Housing bottoms now start at 3.06 m;
+diffusers remain at 3.04..3.052 m. Assertions verified all six pairs, leaving
+8 mm separation and retaining the existing ceiling clearance. V13 is preserved.
+No runtime export or app code changes: the user now reviews visual edits in
+Blender before integration. App flicker verification remains pending after export;
+no application tests were rerun for this source-only adjustment.
+
+## Matching outer entry niches V13
+
+Current source: `bridge-interior-v13.blend`, scene `Bridge - Matching Entry Niches V13`.
+Reproduce from V12 with `scripts/assets/match-entry-niches-v13-live.py`.
+The user selected `Entry outer panel.015` and requested the matching opposite
+panel to be treated like its neighbour. Both full-height Ivory panels are replaced
+by copies of their adjacent recess assemblies, widened from 1.16 to 1.66 m.
+Centres remain X=±3.97, world Z=1.95. Dark recessed backs, metal upper/lower panels,
+edge liners and warm strips preserve the closed wall volume. Runtime colliders,
+entry clearance, computers and other furniture are unchanged. V12 remains intact.
+Exported-asset ray checks now cover both new recess backs as well as the originals.
+This is the selected-panel correction; the broader texture/lighting pass remains pending.
+Validation: typecheck, lint, formatting, two exported-asset tests, build and the
+native transition/table E2E passed. No console errors; existing deprecation and
+large-chunk warnings remain. Visual review is manual; no captures generated.
+
 ## Manufactured console monitors V12
 
 Current source: `bridge-interior-v12.blend`, scene `Bridge - Console Monitors V12`.
