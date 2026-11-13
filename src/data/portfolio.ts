@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Joaquín Pettinari',
-  role: 'Full-Stack Developer',
+  role: 'Software Engineer',
   location: 'Milan, Italy',
   intro:
     'I build web applications with React, TypeScript and Node.js. My experience spans financial products, 3D human motion visualization and healthcare portals.',
