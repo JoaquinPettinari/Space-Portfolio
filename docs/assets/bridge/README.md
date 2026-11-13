@@ -1,5 +1,26 @@
 # Industrial bridge interior
 
+## Current editable sources — consolidated
+
+- `bridge-interior-final.blend`: finished Blender-only bridge, one scene.
+- `bridge-interior-backup.blend`: compact rollback before final finishing.
+- `bridge-interior-v13.blend`: source retained for the currently deployed GLB.
+
+The final scene includes closed lower hull walls, refined seats, material and
+preview-light studies, hull service panels, console cable channels and tactical
+grip insets. Original vertices, transforms and interaction metadata were checked
+unchanged during the finishing pass. All seven textures are packed. Four area
+lights are preview-only and must be excluded from future runtime exports.
+The final file was reopened and checked: one scene, 1,581 meshes and four lights.
+No runtime asset or application changes were made for this pass; visual and
+browser validation after integration remain pending.
+
+Twenty intermediate/temporary Blend files were removed (120,623,557 bytes).
+Older version entries below are historical records; their separate files are no
+longer retained. Generation scripts remain as history, not a standalone rebuild
+pipeline: several require the historical scenes. Work forward from the final
+source. Deleting working-tree files does not shrink existing Git history.
+
 ## Ergonomic seats V18 — Blender review only
 
 Source: `bridge-interior-v18-seats.blend`, scene `Bridge - Ergonomic Seats V18`.
