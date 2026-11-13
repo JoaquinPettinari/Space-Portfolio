@@ -82,10 +82,14 @@ export const ROOF_PANELS: RoofPanel[] = stations
   })
 /** Approved continuous console, ordered from port to starboard. */
 export const CONSOLE_PATH = [
+  [-4, 3],
+  [-4, -0.4],
   [-3.3, -2.95],
   [-1.6, -4.65],
   [1.6, -4.65],
   [3.3, -2.95],
+  [4, -0.4],
+  [4, 3],
 ] as const
 /** Exterior deck is visual only; containment is provided by the interior wall colliders. */
 export const NOSE_DECK = [

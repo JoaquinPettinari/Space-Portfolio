@@ -1,5 +1,17 @@
 # Arquitectura
 
+## Arrival footprint V10 — 2026-11-11
+
+The arrival room now expands 1.5× in plan (8.4 × 6.195 m before the port bow),
+while preserving ceiling height and human-scale furniture/controls. Its front
+anchor stays at Z=12.07; docking hatch moves to Z=18.265 and spawn to
+`[0,1,17.065]`. `arrivalRoomLayout.ts` is the runtime source for the scaled shell,
+adapted portal closures and relocated furniture colliders. Crew Access, the
+sliding bulkhead, passage and bridge retain their positions and state machines.
+The tablet map uses these dimensions. This supersedes the earlier Z=16.2 docking
+and Z=15 spawn measurements below. Asset/source workflow is documented in
+`assets/arrival-room/README.md` (V10).
+
 ## Interior spawn revision — 2026-11-11
 
 Start inside the arrival room at body position `[0,1,15]`, looking straight

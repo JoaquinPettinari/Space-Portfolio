@@ -29,6 +29,8 @@ export function interactionHint(
       return lightsOn ? 'Auxiliary power online' : 'E Restore lighting'
     case 'personal':
       return 'E Personal Workstation'
+    case 'arcade':
+      return 'E Recreation Terminal'
     case 'communications':
       return 'E Earth Communications'
     case 'computer':

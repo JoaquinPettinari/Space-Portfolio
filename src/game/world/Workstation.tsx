@@ -4,11 +4,19 @@ import {
   RigidBody,
 } from '@react-three/rapier'
 import { useEffect, useMemo } from 'react'
-import { CanvasTexture, SRGBColorSpace, Shape } from 'three'
+import { CanvasTexture, SRGBColorSpace } from 'three'
+import { BridgeInterior } from './BridgeInterior'
+import { BRIDGE_OFFSET_Z, bridgePoint } from './bridgePlacement'
 import { TERMINAL_SCREENS, type StationTarget } from '../interaction/station'
-import { COMMAND_SEGMENTS, COMMAND_POSES } from './commandLayout'
+import { COMMAND_SEGMENTS, COMMAND_POSES, SIDE_CHAIRS } from './commandLayout'
 
-function MonitorLabel({ kind }: { kind: 'computer' | 'communications' }) {
+function MonitorLabel({
+  kind,
+  highlighted,
+}: {
+  kind: 'computer' | 'communications'
+  highlighted: boolean
+}) {
   const texture = useMemo(() => {
     const canvas = document.createElement('canvas')
     canvas.width = 768
@@ -42,7 +50,10 @@ function MonitorLabel({ kind }: { kind: 'computer' | 'communications' }) {
   return (
     <mesh position={[0, 0, -0.003]} userData={{ interaction: kind }}>
       <planeGeometry args={[1.6, 0.9]} />
-      <meshBasicMaterial map={texture} />
+      <meshBasicMaterial
+        map={texture}
+        color={highlighted ? '#ffffff' : '#d5e4e8'}
+      />
     </mesh>
   )
 }
@@ -89,92 +100,29 @@ function CommandMonitor({
       userData={{ interaction: kind }}
     >
       <CuboidCollider args={[0.9, 0.55, 0.09]} position={[0, 0, -0.105]} />
-      <Part at={[0, -0.55, -0.185]} size={[0.2, 0.3, 0.2]} />
-      <Part
-        at={[0, 0, -0.105]}
-        size={[1.8, 1.1, 0.18]}
-        color={target === kind ? '#52777b' : '#45494b'}
-        interaction={kind}
-      />
-      <Part
-        at={[0, 0, -0.01]}
-        size={[1.6, 0.9, 0.01]}
-        color="#09232d"
-        interaction={kind}
-      />
-      <MonitorLabel kind={kind} />
-      <Part
-        at={[-0.55, -0.5, -0.005]}
-        size={[0.16, 0.02, 0.015]}
-        color="#83d1cd"
-        light
-        interaction={kind}
-      />
-      <Part
-        at={[0, -0.585, 0.18]}
-        size={[0.85, 0.05, 0.25]}
-        color="#747974"
-        interaction={kind}
-      />
+      {/* Shell, stand and keys are interactive Blender geometry. */}
+      <MonitorLabel kind={kind} highlighted={target === kind} />
     </group>
   )
 }
 
-function CommandChair({ kind }: { kind: keyof typeof COMMAND_POSES }) {
-  const pose = COMMAND_POSES[kind]
+function CommandChair({
+  kind,
+}: {
+  kind: keyof typeof COMMAND_POSES | keyof typeof SIDE_CHAIRS
+}) {
+  const pose = { ...COMMAND_POSES, ...SIDE_CHAIRS }[kind]
   return (
     <RigidBody
       type="fixed"
       colliders={false}
       friction={0}
-      position={pose.chair}
+      position={bridgePoint(pose.chair)}
       rotation={[0, pose.rotation, 0]}
     >
       <CuboidCollider args={[0.42, 0.65, 0.42]} position={[0, 0.65, 0]} />
-      <Part at={[0, 0.1, 0]} size={[0.8, 0.12, 0.8]} />
-      <Part at={[0, 0.38, 0]} size={[0.15, 0.5, 0.15]} color="#727675" />
-      <Part at={[0, 0.66, 0]} size={[0.76, 0.18, 0.72]} color="#49413b" />
-      {/* Low back keeps the E ray and focused monitor view clear at eye height. */}
-      <Part at={[0, 1.02, 0.34]} size={[0.76, 0.56, 0.14]} color="#49413b" />
-      {[-0.36, 0.36].map((side) => (
-        <Part key={side} at={[side, 0.88, 0]} size={[0.12, 0.1, 0.62]} />
-      ))}
+      {/* Seat visuals are batched in BridgeInterior; retain independent physics. */}
     </RigidBody>
-  )
-}
-
-function ConsoleBody({
-  footprint,
-}: {
-  footprint: readonly (readonly [number, number])[]
-}) {
-  const shape = useMemo(() => {
-    const result = new Shape()
-    footprint.forEach(([x, z], i) =>
-      i ? result.lineTo(x, -z) : result.moveTo(x, -z),
-    )
-    result.closePath()
-    return result
-  }, [footprint])
-  return (
-    <group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <extrudeGeometry args={[shape, { depth: 0.94, bevelEnabled: false }]} />
-        <meshStandardMaterial
-          color="#292d30"
-          metalness={0.45}
-          roughness={0.48}
-        />
-      </mesh>
-      <mesh position={[0, 0.94, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <extrudeGeometry args={[shape, { depth: 0.1, bevelEnabled: false }]} />
-        <meshStandardMaterial
-          color="#585e60"
-          metalness={0.45}
-          roughness={0.48}
-        />
-      </mesh>
-    </group>
   )
 }
 
@@ -183,49 +131,42 @@ export function Workstation({ target }: { target: StationTarget }) {
   return (
     <group name="forward-command-console">
       <RigidBody type="fixed" colliders={false} friction={0}>
-        {COMMAND_SEGMENTS.map((segment, index) => (
-          <group key={index}>
-            <ConvexHullCollider args={[segment.collider]} />
-            <ConsoleBody footprint={segment.footprint} />
-            <group
-              position={[segment.x, 0, segment.z]}
-              rotation={[0, segment.yaw, 0]}
-            >
-              <Part
-                at={[0, 0.55, 0.526]}
-                size={[segment.length - 0.4, 0.6, 0.02]}
-                color="#a5a69b"
-              />
-              <Part
-                at={[0, 0.93, 0.54]}
-                size={[segment.length - 0.4, 0.025, 0.025]}
-                color="#e6ad6a"
-                light
-              />
+        <BridgeInterior />
+        <group position={[0, 0, BRIDGE_OFFSET_Z]}>
+          {COMMAND_SEGMENTS.map((segment, index) => (
+            <group key={index}>
+              <ConvexHullCollider args={[segment.collider]} />
+              {segment.supportColliders.map((vertices, i) => (
+                <ConvexHullCollider key={i} args={[vertices]} />
+              ))}
             </group>
-          </group>
-        ))}
+          ))}
+        </group>
         <CommandMonitor kind="computer" target={target} />
         <CommandMonitor kind="communications" target={target} />
-        <Part at={[0, 1.05, -4.5]} size={[1.8, 0.1, 0.65]} color="#151e22" />
-        {[-0.56, 0, 0.56].map((x, index) => (
-          <group key={x}>
-            <Part
-              at={[x, 1.11, -4.6]}
-              size={[0.43, 0.02, 0.32]}
-              color="#22505b"
-              light
-            />
-            <Part
-              at={[x, 1.12, -4.34]}
-              size={[0.09, 0.045, 0.09]}
-              color={index === 1 ? '#d69b5c' : '#7eb8bc'}
-            />
-          </group>
-        ))}
+        <group position={[0, 0, BRIDGE_OFFSET_Z]}>
+          <Part at={[0, 1.05, -4.5]} size={[1.8, 0.1, 0.65]} color="#151e22" />
+          {[-0.56, 0, 0.56].map((x, index) => (
+            <group key={x}>
+              <Part
+                at={[x, 1.11, -4.6]}
+                size={[0.43, 0.02, 0.32]}
+                color="#22505b"
+                light
+              />
+              <Part
+                at={[x, 1.12, -4.34]}
+                size={[0.09, 0.045, 0.09]}
+                color={index === 1 ? '#d69b5c' : '#7eb8bc'}
+              />
+            </group>
+          ))}
+        </group>
       </RigidBody>
       <CommandChair kind="computer" />
       <CommandChair kind="communications" />
+      <CommandChair kind="personal" />
+      <CommandChair kind="arcade" />
     </group>
   )
 }

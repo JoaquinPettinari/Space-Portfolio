@@ -1,3 +1,7 @@
+import {
+  BRIDGE_OFFSET_Z,
+  bridgePoint,
+} from '../../src/game/world/bridgePlacement'
 import { CREW_ACCESS_POSITION } from '../../src/game/interaction/station'
 import { COMMAND_POSES } from '../../src/game/world/commandLayout'
 import { expect, type Page } from '@playwright/test'
@@ -18,7 +22,10 @@ export async function lookAt(
   let mouseX = 640
   let mouseY = 360
   await page.mouse.move(mouseX, mouseY)
-  for (let attempt = 0; attempt < 5; attempt++) {
+  for (let attempt = 0; attempt < 12; attempt++) {
+    // Native input delivery can lag the render frames under GPU load. Keep the
+    // same angular tolerance, but allow bounded convergence before failing.
+    await page.waitForTimeout(80)
     // Observe delivered raw input before calculating the next native mouse move.
     await page.evaluate(
       () =>
@@ -45,7 +52,7 @@ export async function lookAt(
     )
     const pitchDelta = desiredPitch - pitch
     if (Math.abs(yawDelta) < 0.008 && Math.abs(pitchDelta) < 0.008) return
-    if (attempt === 4)
+    if (attempt === 11)
       throw new Error(
         `Native mouse did not settle: ${JSON.stringify({ target, p, yawDelta, pitchDelta })}`,
       )
@@ -88,7 +95,7 @@ export async function restoreEntryPower(page: Page) {
 /** Native interior arrival, identification and passage traversal, never a teleport. */
 export async function enterObservationRoom(page: Page) {
   await enter(page)
-  if ((await snapshot(page)).cameraPosition.z < 5) return
+  if ((await snapshot(page)).cameraPosition.z < 1.6) return
   await restoreEntryPower(page)
   if (!(await protocol(page)).completed.includes('crew')) {
     await approachCrew(page)
@@ -126,7 +133,7 @@ export async function enterObservationRoom(page: Page) {
         intervals: [30, 50],
         timeout: 30000,
       })
-      .toBeLessThan(3.55)
+      .toBeLessThan(1.6)
   } finally {
     await page.keyboard.up('w')
   }
@@ -212,11 +219,12 @@ export async function walkTo(page: Page, x: number, z: number) {
 }
 
 export async function forwardStation(page: Page, side: -1 | 1) {
-  await walkTo(page, side * 2.4, 3.1)
-  await walkTo(page, side * 2.4, -1.2)
-  await walkTo(page, side * 0.75, -2.1)
-  const [x, y, z] =
-    COMMAND_POSES[side === -1 ? 'computer' : 'communications'].position
+  await walkTo(page, side * 2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, side * 2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, side * 0.75, -2.1 + BRIDGE_OFFSET_Z)
+  const [x, y, z] = bridgePoint(
+    COMMAND_POSES[side === -1 ? 'computer' : 'communications'].position,
+  )
   await approach(
     page,
     { x, y, z },

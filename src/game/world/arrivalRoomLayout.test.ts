@@ -1,6 +1,8 @@
 import { expect, it } from 'vitest'
 import {
   ARRIVAL_BOXES,
+  ARRIVAL_BASE_DEPTH,
+  ARRIVAL_BENCH_SHIFT,
   ARRIVAL_DEPTH,
   ARRIVAL_FURNITURE,
   ARRIVAL_ORIGIN_Z,
@@ -14,9 +16,11 @@ it('widens the lounge while retaining door and docking anchors', () => {
   expect(ARRIVAL_ORIGIN_Z + ARRIVAL_DEPTH).toBeCloseTo(ENTRY_DOCKING_DEPTH)
   expect(arrivalPortExpansion(0)).toBe(0)
   expect(arrivalPortExpansion(ARRIVAL_DEPTH)).toBeCloseTo(0)
-  expect(arrivalPortExpansion(ARRIVAL_DEPTH / 2)).toBeCloseTo(0.65)
-  expect(arrivalSurface(-2.76, 0.8, ARRIVAL_DEPTH / 2)[0]).toBeCloseTo(-3.41)
-  expect(arrivalSurface(0, 3, ARRIVAL_DEPTH / 2)[1]).toBeCloseTo(3.38)
+  expect(arrivalPortExpansion(ARRIVAL_BASE_DEPTH / 2)).toBeCloseTo(0.65)
+  expect(arrivalSurface(-2.76, 0.8, ARRIVAL_BASE_DEPTH / 2)[0]).toBeCloseTo(
+    -3.41,
+  )
+  expect(arrivalSurface(0, 3, ARRIVAL_BASE_DEPTH / 2)[1]).toBeCloseTo(3.38)
 })
 it('leaves the central walk route and Crew approach clear', () => {
   for (const { position: p, halfSize: h } of [
@@ -47,8 +51,12 @@ it('uses finite convex shell strips across the room depth', () => {
 
 it('covers the fitted curved bench continuously without a straight invisible barrier', () => {
   const bench = ARRIVAL_FURNITURE.filter((b) => b.position[1] === 0.545)
-  for (let z = 1.39; z < 3.91; z += 0.02) {
-    const x = -2.24 - arrivalPortExpansion(z)
+  for (
+    let z = 1.39 + ARRIVAL_BENCH_SHIFT;
+    z < 3.91 + ARRIVAL_BENCH_SHIFT;
+    z += 0.02
+  ) {
+    const x = -3.56 - 1.5 * arrivalPortExpansion(z / 1.5)
     const section = bench.find(
       (b) => Math.abs(b.position[2] - z) <= b.halfSize[2] + 0.0001,
     )

@@ -108,15 +108,7 @@ export function ShipHull() {
           />
         </group>
       ))}
-      {/* Adapt only the rear doorway to the supplied bulkhead opening. */}
-      {[-3.07, 3.07].map((x) => (
-        <Plate
-          key={x}
-          at={[x, 1.65, 5.1]}
-          size={[3.46, 3.3, 0.3]}
-          color="#41494e"
-        />
-      ))}
+      {/* Rear facade and recessed niches are in BridgeInterior; Greybox retains collisions. */}
       {/* Reserved technical service panel; no interaction until separately implemented. */}
       <group position={[4.58, 1.55, 3.65]} rotation={[0, -Math.PI / 2, 0]}>
         <Plate at={[0, 0, 0]} size={[0.9, 1.2, 0.16]} />
@@ -136,7 +128,6 @@ export function ShipHull() {
           />
         ))}
       </group>
-      <Plate at={[0, 2.91, 5.1]} size={[2.68, 0.78, 0.3]} />
       <BridgeDesignation />
       <BridgeRoof />
       <ExteriorHull />

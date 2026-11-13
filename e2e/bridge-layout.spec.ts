@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
 import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
 
@@ -18,19 +19,20 @@ test('bridge circulation, table, faceted hull and jump retain real collision', a
     page.getByRole('button', { name: 'Mission tablet · T' }),
   ).toBeVisible({ timeout: 60000 })
   await enterObservationRoom(page)
+  await walkTo(page, 0, 3.3 + BRIDGE_OFFSET_Z)
 
   // Centered table stops the capsule; its two side corridors stay connected.
-  await lookAt(page, { x: 0, y: 1.7, z: -4 })
+  await lookAt(page, { x: 0, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('w')
   await page.waitForTimeout(1300)
   await page.keyboard.up('w')
   const blocked = (await snapshot(page)).cameraPosition
-  expect(blocked.z).toBeGreaterThan(2.1)
-  expect(blocked.z).toBeLessThan(2.3)
-  await walkTo(page, 2.4, 3.1)
-  await walkTo(page, 2.4, -1.2)
-  await walkTo(page, -2.4, -1.2)
-  await walkTo(page, -2.4, 2.7)
+  expect(blocked.z).toBeGreaterThan(2.1 + BRIDGE_OFFSET_Z)
+  expect(blocked.z).toBeLessThan(2.3 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, 2.7 + BRIDGE_OFFSET_Z)
   await page.keyboard.press('Space')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.y)
@@ -39,29 +41,29 @@ test('bridge circulation, table, faceted hull and jump retain real collision', a
     .poll(async () => (await snapshot(page)).cameraPosition.y)
     .toBeLessThan(1.75)
 
-  await walkTo(page, -2.4, -1.2)
-  await walkTo(page, -4.35, -1.2)
-  await lookAt(page, { x: -6, y: 1.7, z: -1.2 })
+  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -4.35, -1.2 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: -6, y: 1.7, z: -1.2 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('w')
   await page.waitForTimeout(1000)
   await page.keyboard.up('w')
   expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-4.75)
-  await walkTo(page, -4.4, -2.2)
-  await lookAt(page, { x: -5.5, y: 1.7, z: -5.5 })
+  await walkTo(page, -4.4, -2.2 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: -5.5, y: 1.7, z: -5.5 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('w')
   await page.waitForTimeout(1800)
   await page.keyboard.up('w')
   const bow = (await snapshot(page)).cameraPosition
-  expect(bow.z).toBeLessThan(-3.2)
-  expect(bow.x + bow.z).toBeGreaterThan(-8.65)
+  expect(bow.z).toBeLessThan(-3.2 + BRIDGE_OFFSET_Z)
+  expect(bow.x + bow.z).toBeGreaterThan(-8.65 + BRIDGE_OFFSET_Z)
 
-  await walkTo(page, -4.3, -1.2)
-  await walkTo(page, -2.4, 3.1)
-  await walkTo(page, 0, 3.8)
+  await walkTo(page, -4.3, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 0, 3.8 + BRIDGE_OFFSET_Z)
   await walkTo(page, 0, 6.8)
   expect((await snapshot(page)).pointerLocked).toBe(true)
-  await walkTo(page, 0, 3.5)
-  await lookAt(page, { x: 0, y: 1.7, z: -4 })
+  await walkTo(page, 0, 3.5 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: 0, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
   const samples = await page.evaluate(async () => {
     const values = []
     for (let i = 0; i < 90; i++) {

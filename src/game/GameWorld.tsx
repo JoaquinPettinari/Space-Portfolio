@@ -17,6 +17,7 @@ import { CrewIdentity } from './ui/CrewIdentity'
 import { RearWorkstation } from './world/RearWorkstation'
 import { ContactForm } from '../contact/ContactForm'
 import { PersonalDesktop } from '../workstation/PersonalDesktop'
+import { RecreationDesktop } from '../workstation/RecreationDesktop'
 import type { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
 import { ProjectPhoto } from './world/ProjectPhoto'
@@ -184,6 +185,15 @@ export function GameWorld({
             onDossier={() => finishMission('dossier')}
             onBrewCoffee={() => coffee.dispatch('brew')}
           />
+        </PhysicalTerminal>
+      )}
+      {mode === 'arcade' && !transitioning && (
+        <PhysicalTerminal
+          kind="arcade"
+          onClose={resumeWalking}
+          subtitle={subtitle}
+        >
+          <RecreationDesktop onBrewCoffee={() => coffee.dispatch('brew')} />
         </PhysicalTerminal>
       )}
       {mode === 'computer' && !transitioning && (

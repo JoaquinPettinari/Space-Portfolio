@@ -1,4 +1,5 @@
 import { ENTRY_OFFSET } from './bridgeLayout'
+import { ARRIVAL_ORIGIN_Z, ARRIVAL_DEPTH } from './arrivalRoomLayout'
 
 type Panel = {
   name: string
@@ -49,7 +50,7 @@ for (const side of [-1, 1]) {
     },
   )
 }
-export const ENTRY_DOCKING_DEPTH = 10.2 + ENTRY_OFFSET
+export const ENTRY_DOCKING_DEPTH = ARRIVAL_ORIGIN_Z + ARRIVAL_DEPTH
 export const ENTRY_POWER_POSITION = [-2.7, 1.65, 7.4 + ENTRY_OFFSET] as const
 // Support extends 0.30 m behind the body: its back meets the pocket face at 12.07.
 // X=2.00 keeps the 1.30 m casing entirely outside the 2.68 m central opening.

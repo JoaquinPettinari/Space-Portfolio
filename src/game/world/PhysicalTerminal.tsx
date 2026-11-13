@@ -10,7 +10,7 @@ export function PhysicalTerminal({
   children,
   subtitle,
 }: {
-  kind: 'communications' | 'personal' | 'crew'
+  kind: 'communications' | 'personal' | 'arcade' | 'crew'
   onClose: () => void
   children: ReactNode
   subtitle?: ReactNode
@@ -26,7 +26,7 @@ export function PhysicalTerminal({
         className={
           kind === 'communications'
             ? 'forward-terminal'
-            : kind === 'personal'
+            : kind === 'personal' || kind === 'arcade'
               ? 'personal-terminal'
               : 'crew-terminal'
         }
@@ -39,7 +39,9 @@ export function PhysicalTerminal({
               ? 'Earth Communications'
               : kind === 'personal'
                 ? 'Personal Workstation'
-                : 'Crew Access'
+                : kind === 'arcade'
+                  ? 'Recreation Terminal'
+                  : 'Crew Access'
           }
           onClose={onClose}
           subtitle={subtitle}

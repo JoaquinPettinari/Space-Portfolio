@@ -64,6 +64,25 @@ it('the exported room seals the portals and keeps furniture and wall details uno
     }),
   )
   try {
+    // These points lie outside the old footprint but inside the enlarged room.
+    for (const x of [-3.0, 3.0]) {
+      const floor = new Raycaster(
+        new Vector3(x, 0.4, 5.8),
+        new Vector3(0, -1, 0),
+        0,
+        0.6,
+      )
+      expect(floor.intersectObjects(meshes)[0]?.point.y).toBeCloseTo(0, 2)
+      const roof = new Raycaster(
+        new Vector3(x, 2.5, 5.8),
+        new Vector3(0, 1, 0),
+        0,
+        1,
+      )
+      const hits = roof.intersectObjects(meshes)
+      expect(hits.length).toBeGreaterThan(0)
+      expect(hits[0].point.y).toBeLessThan(3.6)
+    }
     for (const x of [-2.38, -2.14]) {
       for (const y of [2.12, 2.4]) {
         const ray = new Raycaster(
@@ -95,7 +114,7 @@ it('the exported room seals the portals and keeps furniture and wall details uno
     // The old straight plinth crossed the seating space above the cushions.
     for (const z of [1.8, 2.65]) {
       const seating = new Raycaster(
-        new Vector3(-2.9, 0.65, z),
+        new Vector3(-4.28, 0.65, z + 1.325),
         new Vector3(1, 0, 0),
         0,
         0.4,
@@ -125,7 +144,7 @@ it('the exported room seals the portals and keeps furniture and wall details uno
     }
     for (const x of [-1.6, -0.8, 0, 0.8, 1.6]) {
       const ray = new Raycaster(
-        new Vector3(x, 3.2, 3.6),
+        new Vector3(x, 3.2, 3.6 + 2.065),
         new Vector3(0, 0, 1),
         0,
         0.7,
@@ -133,7 +152,9 @@ it('the exported room seals the portals and keeps furniture and wall details uno
       const hits = ray.intersectObjects(meshes)
       expect(hits.length, `Rear seal at X=${x}`).toBeGreaterThan(0)
       // A ceiling rib can be closer; require the rear wall itself behind it.
-      expect(hits.some((hit) => Math.abs(hit.point.z - 4.1) < 0.025)).toBe(true)
+      expect(hits.some((hit) => Math.abs(hit.point.z - 6.165) < 0.025)).toBe(
+        true,
+      )
     }
   } finally {
     meshes.forEach((m) => m.geometry.dispose())

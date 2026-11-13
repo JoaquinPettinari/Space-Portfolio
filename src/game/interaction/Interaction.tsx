@@ -59,6 +59,7 @@ export function Interaction({
           kind === 'lighting' ||
           kind === 'communications' ||
           kind === 'personal' ||
+          kind === 'arcade' ||
           kind === 'photo' ||
           kind === 'coffee' ||
           kind === 'bulkhead' ||

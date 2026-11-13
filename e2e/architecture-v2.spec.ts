@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
 import {
   enter,
@@ -47,7 +48,7 @@ test('interior arrival requires only identity, opens the secured bulkhead automa
   await page.goto('/')
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
   await enter(page)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(15, 1)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(17.065, 1)
   const initial = await snapshot(page)
   expect(initial.cameraPosition.x).toBeCloseTo(0, 2)
   expect(initial.cameraRotation).toEqual({ x: 0, y: 0, z: 0, w: 1 })
@@ -56,8 +57,8 @@ test('interior arrival requires only identity, opens the secured bulkhead automa
   try {
     await page.waitForTimeout(800)
     const rear = await snapshot(page)
-    expect(rear.cameraPosition.z).toBeGreaterThan(15.5)
-    expect(rear.cameraPosition.z).toBeLessThan(15.9)
+    expect(rear.cameraPosition.z).toBeGreaterThan(17.565)
+    expect(rear.cameraPosition.z).toBeLessThan(17.965)
     expect(rear.cameraPosition.y).toBeGreaterThan(1.6)
   } finally {
     await page.keyboard.up('s')
@@ -65,20 +66,20 @@ test('interior arrival requires only identity, opens the secured bulkhead automa
   await enterEntryModule(page)
   const arrival = await snapshot(page)
   // The expanded lounge remains reachable, but its bench is solid.
-  await walkTo(page, -1.5, 14.72)
-  await lookAt(page, { x: -5, y: 1.7, z: 14.72 })
+  await walkTo(page, -3, 16.045)
+  await lookAt(page, { x: -7, y: 1.7, z: 16.045 })
   await page.keyboard.down('w')
   try {
     await expect
       .poll(async () => (await snapshot(page)).cameraPosition.x)
-      .toBeLessThan(-1.8)
+      .toBeLessThan(-3.2)
     await page.waitForTimeout(600)
-    expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-2.45)
+    expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-4.0)
     expect((await snapshot(page)).cameraPosition.y).toBeGreaterThan(1.6)
   } finally {
     await page.keyboard.up('w')
   }
-  await walkTo(page, 0, 14.72)
+  await walkTo(page, 0, 16.045)
   expect(arrival.powerSwitchCount).toBe(0)
   expect((await snapshot(page)).session.protocol.completed).toEqual([
     'lighting',
@@ -107,7 +108,7 @@ test('interior arrival requires only identity, opens the secured bulkhead automa
     'crew',
   ])
   expect((await snapshot(page)).session.bulkheadPhase).toBe('open')
-  await walkTo(page, 0, 15)
+  await walkTo(page, 0, 17.065)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
@@ -115,7 +116,7 @@ test('interior arrival requires only identity, opens the secured bulkhead automa
     'lighting',
   ])
   expect((await snapshot(page)).session.bulkheadPhase).toBe('closed')
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(15, 1)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(17.065, 1)
   expect(errors).toEqual([])
 })
 
@@ -160,13 +161,13 @@ test('compact bow is reachable in front of the diagonal consoles, contains the p
   await page.goto('/')
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
   await enterObservationRoom(page)
-  await walkTo(page, 2.6, 3.5)
-  await walkTo(page, 2.6, -1.5)
-  await walkTo(page, 3.95, -1.8)
-  await walkTo(page, 3.25, -1.9)
-  await walkTo(page, 0, -1.9)
-  await walkTo(page, 0, -3.3)
-  await lookAt(page, { x: 0, y: 0.67, z: -6.85 })
+  await walkTo(page, 2.6, 3.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 2.6, -1.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 3.95, -1.8 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 3.25, -1.9 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 0, -1.9 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 0, -3.3 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: 0, y: 0.67, z: -6.85 + BRIDGE_OFFSET_Z })
   await expect
     .poll(async () => (await snapshot(page)).explorationHull.noseInSight)
     .toBe(true)
@@ -174,14 +175,16 @@ test('compact bow is reachable in front of the diagonal consoles, contains the p
   try {
     await expect
       .poll(async () => (await snapshot(page)).cameraPosition.z)
-      .toBeLessThan(-3.7)
+      .toBeLessThan(-3.7 + BRIDGE_OFFSET_Z)
     await page.waitForTimeout(800)
-    expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(-3.87)
+    expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(
+      -3.87 + BRIDGE_OFFSET_Z,
+    )
     expect((await snapshot(page)).cameraPosition.y).toBeGreaterThan(1.6)
   } finally {
     await page.keyboard.up('w')
   }
-  await walkTo(page, 0, -2.5)
+  await walkTo(page, 0, -2.5 + BRIDGE_OFFSET_Z)
   // Jump under the forward canopy: the camera keeps headroom and lands on the floor.
   await page.keyboard.press('Space')
   await expect
@@ -191,11 +194,11 @@ test('compact bow is reachable in front of the diagonal consoles, contains the p
     .poll(async () => (await snapshot(page)).cameraPosition.y)
     .toBeLessThan(1.8)
   expect((await snapshot(page)).maxEyeHeight).toBeLessThan(2.62)
-  await walkTo(page, 0, -1.9)
-  await walkTo(page, -3.25, -1.9)
-  await walkTo(page, -3.95, -1.8)
-  await walkTo(page, -3.95, -1.5)
-  await walkTo(page, -2.4, 3.1)
+  await walkTo(page, 0, -1.9 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -3.25, -1.9 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -3.95, -1.8 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -3.95, -1.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])
 })

@@ -1,5 +1,6 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
-import { enterObservationRoom, lookAt, snapshot } from './helpers/game'
+import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
 
 test.setTimeout(180000)
 test('measures the roof from a repeatable native gameplay view', async ({
@@ -14,7 +15,8 @@ test('measures the roof from a repeatable native gameplay view', async ({
   await page.goto('/')
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
   await enterObservationRoom(page)
-  await lookAt(page, { x: 0, y: 3.2, z: -6 })
+  await walkTo(page, 0, 3.3 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: 0, y: 3.2, z: -6 + BRIDGE_OFFSET_Z })
   const result = await page.evaluate(async () => {
     const frame = () =>
       new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))

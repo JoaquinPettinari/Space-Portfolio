@@ -1,5 +1,6 @@
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { SpaceExterior } from './SpaceExterior'
+import { BRIDGE_OFFSET_Z, TRANSITION_CENTER } from './bridgePlacement'
 import { ShipHull } from './ShipHull'
 import { BridgeFloor } from './BridgeFloor'
 import { CabinLighting } from './CabinLighting'
@@ -46,16 +47,7 @@ function CentralTable() {
         friction={0}
       >
         <CuboidCollider args={[1.05, 0.52, 1.35]} position={[0, 0.52, 0]} />
-        <Panel
-          position={[0, 0.45, 0]}
-          size={[1.25, 0.9, 1.7]}
-          color="#252a2e"
-        />
-        <Panel
-          position={[0, 0.96, 0]}
-          size={[2.1, 0.16, 2.7]}
-          color="#42484b"
-        />
+        {/* Base and open bezel are Blender meshes; keep the live display here. */}
         <Panel
           position={[0, 1.045, 0]}
           size={[1.8, 0.015, 2.4]}
@@ -96,9 +88,16 @@ export function Greybox({
   return (
     <group>
       <SpaceExterior />
-      <CabinLighting emergency={emergency} />
+      <group position={[0, 0, BRIDGE_OFFSET_Z]}>
+        <CabinLighting emergency={emergency} />
+      </group>
       {/* Colisiones sencillas e independientes del vidrio y sus marcos. */}
-      <RigidBody type="fixed" colliders={false} friction={0}>
+      <RigidBody
+        type="fixed"
+        colliders={false}
+        friction={0}
+        position={[0, 0, BRIDGE_OFFSET_Z]}
+      >
         <BridgeFloor />
         {[-3.07, 3.07].map((x) => (
           <CuboidCollider
@@ -112,6 +111,12 @@ export function Greybox({
       </RigidBody>
       <EntryAirlock emergency={emergency} />
       <PanoramicPassage />
+      <RigidBody type="fixed" colliders={false}>
+        <CuboidCollider
+          position={[0, -0.1, TRANSITION_CENTER - 0.075]}
+          args={[1.5, 0.1, 1.575]}
+        />
+      </RigidBody>
       <Bulkhead
         phase={bulkheadPhase}
         powered={!emergency}

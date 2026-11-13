@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
@@ -20,7 +21,9 @@ test.beforeEach(async ({ page }) => {
     if (message.type() === 'error') collected.push(message.text())
   })
   await page.goto('/')
-  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await enterObservationRoom(page)
   await page.keyboard.press('t')
   await page.keyboard.press('r')
@@ -42,12 +45,16 @@ test('coffee and image inspection remain available with guidance skipped', async
 }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
-  await walkTo(page, -2.4, 3.1)
-  await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Brew coffee')
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: -4.25, y: 1.2, z: 3.65 + BRIDGE_OFFSET_Z },
+    'E · Brew coffee',
+  )
   await page.keyboard.press('e')
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect(
-    page.getByText('E · Drink coffee', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Drink coffee' }),
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect
@@ -57,7 +64,7 @@ test('coffee and image inspection remain available with guidance skipped', async
   expect(await protocol(page)).toEqual(before)
   await approach(
     page,
-    { x: -4.78, y: 1.75, z: 2.2 },
+    { x: -4.78, y: 1.75, z: 2.2 + BRIDGE_OFFSET_Z },
     'E · Inspect project photo',
   )
   await page.keyboard.press('e')
@@ -78,9 +85,7 @@ test('coffee and image inspection remain available with guidance skipped', async
   )
   await page.keyboard.press('Escape')
   await expect(photo).not.toBeVisible()
-  await expect
-    .poll(async () => (await snapshot(page)).pointerLocked)
-    .toBe(false)
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   expect(await protocol(page)).toEqual(before)
 })
 
@@ -89,8 +94,12 @@ test('fictional command input preserves E and T and brews through the shared dis
 }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
-  await walkTo(page, 3.2, 3.1)
-  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
+  await walkTo(page, 3.2, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: 4.55, y: 1.65, z: 2.1 + BRIDGE_OFFSET_Z },
+    'E · Personal Workstation',
+  )
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',
@@ -123,10 +132,16 @@ test('fictional command input preserves E and T and brews through the shared dis
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   // Capture resumes before the camera's return transition has finished.
   await expect(
-    page.getByText('E · Personal Workstation', { exact: true }),
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: 'Personal Workstation' }),
   ).toBeVisible()
-  await walkTo(page, -2.4, 3.1)
-  await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Drink coffee')
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: -4.25, y: 1.2, z: 3.65 + BRIDGE_OFFSET_Z },
+    'E · Drink coffee',
+  )
   await page.keyboard.press('e')
   await expect
     .poll(async () => (await snapshot(page)).session.coffee.achievement)

@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { readFile } from 'node:fs/promises'
 import { expect, test, type Page } from '@playwright/test'
 import { enterObservationRoom, approach, walkTo } from './helpers/game'
@@ -29,8 +30,12 @@ async function openWorkstation(page: Page) {
     body: JSON.stringify(samples),
     contentType: 'application/json',
   })
-  await walkTo(page, 3.2, 3.1)
-  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
+  await walkTo(page, 3.2, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: 4.55, y: 1.65, z: 2.1 + BRIDGE_OFFSET_Z },
+    'E Personal Workstation',
+  )
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',

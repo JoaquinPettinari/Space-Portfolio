@@ -5,6 +5,7 @@ import { PhysicalScreen } from './PhysicalScreen'
 import { TerminalPanel } from '../ui/TerminalPanel'
 import { TacticalPanel } from '../ui/TacticalPanel'
 import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
+import { bridgePoint } from './bridgePlacement'
 import type { ProtocolState } from '../protocol'
 import type { BulkheadPhase } from './bulkhead'
 
@@ -55,7 +56,7 @@ export function TacticalStation({
   return (
     <>
       <group
-        position={[0, 1.85, 0.5]}
+        position={bridgePoint([0, 1.85, 0.5])}
         rotation={[0.35, 0, 0]}
         userData={{ interaction: 'tactical' }}
       >

@@ -107,13 +107,13 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
         </RigidBody>
       ))}
       {/* Practical fills illuminate PBR surfaces without shadow maps. */}
-      {[-1.5, 1.5].map((x) => (
+      {[-2.25, 2.25].map((x) => (
         <pointLight
           key={x}
-          position={[x, 2.75, 14.1]}
+          position={[x, 2.75, 15.15]}
           color="#ffd4a4"
           intensity={emergency ? 1 : 7}
-          distance={5}
+          distance={7}
           decay={2}
         />
       ))}

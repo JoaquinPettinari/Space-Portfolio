@@ -7,7 +7,7 @@ import io
 
 ROOT=Path(__file__).resolve().parents[2]
 scene=bpy.context.scene
-assert scene.name in {'Arrival Room - Materials V4', 'Arrival Room - Rear Closure V5', 'Arrival Room - Equipment Details V6', 'Arrival Room - Bench and Portal V7', 'Arrival Room - Fitted Lounge V8', 'Arrival Room - Coffee and Memories V9'}
+assert scene.name in {'Arrival Room - Materials V4', 'Arrival Room - Rear Closure V5', 'Arrival Room - Equipment Details V6', 'Arrival Room - Bench and Portal V7', 'Arrival Room - Fitted Lounge V8', 'Arrival Room - Coffee and Memories V9', 'Arrival Room - Spacious V10'}
 temp=bpy.data.collections.new('Arrival runtime export temporary')
 scene.collection.children.link(temp)
 selected=list(bpy.context.selected_objects)

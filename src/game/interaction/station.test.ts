@@ -41,6 +41,7 @@ it('requires a computer target to open the screen', () => {
   expect(interactionMode('walking', 'computer')).toBe('computer')
   expect(interactionMode('walking', 'communications')).toBe('communications')
   expect(interactionMode('walking', 'personal')).toBe('personal')
+  expect(interactionMode('walking', 'arcade')).toBe('arcade')
   expect(interactionMode('walking', 'photo')).toBe('photo')
   expect(interactionMode('walking', 'crew')).toBe('crew')
   expect(interactionMode('walking', 'tactical')).toBe('tactical')
@@ -86,6 +87,7 @@ it('fits every terminal frame using actual FOV and viewport aspect without tilti
     'computer',
     'communications',
     'personal',
+    'arcade',
     'crew',
     'tactical',
   ] as const) {
@@ -114,6 +116,7 @@ it('maps each unchanged CSS screen onto its physical surface without stretching'
     'computer',
     'communications',
     'personal',
+    'arcade',
     'crew',
     'tactical',
   ] as const) {

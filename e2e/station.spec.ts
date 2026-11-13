@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test, type Page } from '@playwright/test'
 import {
   enter as capture,
@@ -62,7 +63,7 @@ test.afterEach(async ({ page }, info) => {
 })
 
 async function enter(page: Page) {
-  if ((await snapshot(page)).cameraPosition.z < 4.5) {
+  if ((await snapshot(page)).cameraPosition.z < 4.5 + BRIDGE_OFFSET_Z) {
     await capture(page)
   } else {
     await enterObservationRoom(page)
@@ -219,8 +220,8 @@ test('walks forward, collides with chair, and stops when the key is released', a
   page,
 }) => {
   await enter(page)
-  await walkTo(page, -2.4, 3.1)
-  await lookAt(page, { x: -2.4, y: 1.7, z: -4 })
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: -2.4, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
   const start = await snapshot(page)
   await page.keyboard.down('w')
   await expect
@@ -238,9 +239,11 @@ test('walks forward, collides with chair, and stops when the key is released', a
   // Chair rear is z=-2.43, plus the player's capsule radius of 0.3.
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeLessThan(-2.05)
+    .toBeLessThan(-2.05 + BRIDGE_OFFSET_Z)
   await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(-2.2)
+  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(
+    -2.2 + BRIDGE_OFFSET_Z,
+  )
   await page.keyboard.up('w')
   const stopped = await snapshot(page)
   await page.waitForTimeout(300)
@@ -350,9 +353,9 @@ test('side wall blocks the player and Escape clears a held movement key', async 
   page,
 }) => {
   await enter(page)
-  await walkTo(page, 2.4, 3.1)
-  await walkTo(page, 2.4, 0)
-  await lookAt(page, { x: 2.4, y: 1.7, z: -4 })
+  await walkTo(page, 2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 2.4, 0 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: 2.4, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('d')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
@@ -439,8 +442,8 @@ test('chamfered hull blocks diagonal walking near the rear corner', async ({
 }) => {
   test.setTimeout(60_000)
   await enter(page)
-  await walkTo(page, 3.2, 4.35)
-  await lookAt(page, { x: 3.2, y: 1.7, z: -4 })
+  await walkTo(page, 3.2, 4.35 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: 3.2, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('d')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
@@ -456,14 +459,14 @@ test('chamfered hull blocks diagonal walking near the rear corner', async ({
       const { x, z } = (await snapshot(page)).cameraPosition
       return x + z
     })
-    .toBeGreaterThan(8.5)
+    .toBeGreaterThan(8.5 + BRIDGE_OFFSET_Z)
   await page.waitForTimeout(400)
   await page.keyboard.up('d')
   await page.keyboard.up('s')
   const corner = (await snapshot(page)).cameraPosition
-  expect(corner.x + corner.z).toBeLessThan(9)
+  expect(corner.x + corner.z).toBeLessThan(9 + BRIDGE_OFFSET_Z)
   expect(corner.x).toBeLessThan(4.8)
-  expect(corner.z).toBeLessThan(4.8)
+  expect(corner.z).toBeLessThan(4.8 + BRIDGE_OFFSET_Z)
 })
 
 test('focused tablet pauses movement, locates independent objectives and closes safely', async ({
@@ -507,7 +510,7 @@ test('rear crew dossier downloads with E and mouse hint only follows Escape', as
     .poll(async () => (await snapshot(page)).cameraPosition.z, {
       intervals: [30, 50],
     })
-    .toBeLessThan(2.6)
+    .toBeLessThan(2.6 + BRIDGE_OFFSET_Z)
   await page.keyboard.up('w')
   await page.keyboard.down('a')
   await expect
@@ -516,7 +519,7 @@ test('rear crew dossier downloads with E and mouse hint only follows Escape', as
     })
     .toBeLessThan(-3.1)
   await page.keyboard.up('a')
-  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 })
+  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 + BRIDGE_OFFSET_Z })
   // The lateral route can overshoot on a slow renderer. Finish the approach
   // towards the visible panel instead of assuming timed walking reached it.
   await page.keyboard.down('w')
@@ -533,7 +536,7 @@ test('rear crew dossier downloads with E and mouse hint only follows Escape', as
   } finally {
     await page.keyboard.up('w')
   }
-  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 })
+  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 + BRIDGE_OFFSET_Z })
   const rearView = await snapshot(page)
   await test.info().attach('dossier-approach', {
     body: JSON.stringify(rearView),
@@ -542,7 +545,7 @@ test('rear crew dossier downloads with E and mouse hint only follows Escape', as
   expect(
     Math.hypot(
       rearView.cameraPosition.x + 3.25,
-      rearView.cameraPosition.z - 4.77,
+      rearView.cameraPosition.z - (4.77 + BRIDGE_OFFSET_Z),
     ),
   ).toBeLessThan(2.8)
   await expect(

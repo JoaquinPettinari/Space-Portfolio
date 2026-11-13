@@ -25,12 +25,41 @@ export const COMMAND_SEGMENTS = edges.map((pose, index) => {
     offsetAt(index + 1, CONSOLE_DEPTH / 2),
     offsetAt(index, CONSOLE_DEPTH / 2),
   ]
+  // Local X openings: side terminals sit at different points along the desk.
+  const opening = (
+    { 0: pose.z - 0.4, 2: 0, 4: 0, 6: 2.1 - pose.z } as Record<number, number>
+  )[index]
+  const localX = ([x, z]: Point) =>
+    (x - pose.x) * Math.cos(pose.yaw) - (z - pose.z) * Math.sin(pose.yaw)
+  const clip = (boundary: number, sign: number) => {
+    const result: Point[] = []
+    footprint.forEach((a, i) => {
+      const b = footprint[(i + 1) % footprint.length]
+      const da = (localX(a) - boundary) * sign
+      const db = (localX(b) - boundary) * sign
+      if (da >= 0) result.push(a)
+      if (da >= 0 !== db >= 0) {
+        const t = da / (da - db)
+        result.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t])
+      }
+    })
+    return result
+  }
+  const supports =
+    opening === undefined
+      ? [footprint]
+      : [clip(opening - 0.55, -1), clip(opening + 0.55, 1)]
+  const vertices = (points: readonly Point[], bottom: number, top: number) =>
+    new Float32Array(
+      [bottom, top].flatMap((y) => points.flatMap(([x, z]) => [x, y, z])),
+    )
   return {
     ...pose,
     footprint,
-    collider: new Float32Array(
-      [0, 1.02].flatMap((y) => footprint.flatMap(([x, z]) => [x, y, z])),
-    ),
+    opening,
+    supports,
+    collider: vertices(footprint, 0.94, 1.04),
+    supportColliders: supports.map((p) => vertices(p, 0, 0.94)),
   }
 })
 function monitorPose(index: number) {
@@ -43,6 +72,11 @@ function monitorPose(index: number) {
   }
 }
 export const COMMAND_POSES = {
-  computer: monitorPose(0),
-  communications: monitorPose(2),
+  computer: monitorPose(2),
+  communications: monitorPose(4),
+}
+
+export const SIDE_CHAIRS = {
+  personal: { chair: [3.2, 0, 2.1] as const, rotation: -Math.PI / 2 },
+  arcade: { chair: [-3.2, 0, 0.4] as const, rotation: Math.PI / 2 },
 }

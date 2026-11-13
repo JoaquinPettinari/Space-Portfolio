@@ -1,5 +1,29 @@
 # Arrival room — architectural study
 
+## V10 — larger footprint, human-scale fittings
+
+Latest source: `arrival-room-v10.blend`, scene `Arrival Room - Spacious V10`.
+Reproduction: run `scripts/assets/expand-arrival-v10-live.py` after V9.
+Main envelope is 8.4 × 6.195 m (formerly 5.6 × 4.13 m); the curved port extension
+also scales in plan. Heights remain unchanged. Architecture expands 1.5× in X/Z;
+furniture is relocated, with the existing bench fitted to the new curvature.
+An additional 60 mm inward bench allowance clears the scaled wall/ribs.
+Coffee supplies, photographs, cabinets and Crew Access remain human-sized.
+
+The front portal, bulkhead and reader keep their positions. End-wall adapter
+panels seal around original-sized doors. Docking hatch world Z is now 18.265 m;
+spawn is `[0,1,17.065]`, still facing forward. Shell/furniture colliders and the
+tablet map match the enlarged room. Two existing practical lights are repositioned;
+no new lights, textures or interaction state. The bridge geometry is unchanged.
+
+Validation: nine relevant unit tests passed, including exported floor/roof rays
+outside the old footprint, doorway seals and human-scale fittings. Four E2E
+scenarios passed (arrival/bench/identity/return/reload, door collision, reduced
+motion and performance); the arrival scenario passed again after the final
+bench fitting adjustment. The short 1280×720 Intel UHD sample measured median
+14 ms / p95 21 ms; this does not establish sustained performance. Visual review
+remains manual. Previous Blender versions are retained.
+
 ## V9 — coffee supplies and personal memory mounts
 
 Latest source: `arrival-room-v9.blend`, scene `Arrival Room - Coffee and Memories V9`.
@@ -24,6 +48,13 @@ were added. Frames remain separate from replaceable image surfaces, and runtime
 material batching preserves the three slot identifiers.
 Runtime GLB: 9,435,440 bytes, 15 material batches. Existing eight embedded images
 are reused; photo slots do not allocate image textures yet. Original V8 retained.
+
+Validation: typecheck, lint, build, changed-file formatting and six relevant unit
+tests passed. Playwright passed the arrival/identity/door/return scenario and the
+coffee/drink/photo/zoom/exit scenario with guidance skipped. The extras test now
+uses the current HUD labels and expects the approved automatic Pointer Lock
+restoration on photo exit. Visual review remains manual, with no screenshots or
+videos generated. The existing large-bundle build warning remains.
 
 ## V8 — fitted lounge and mounted details
 

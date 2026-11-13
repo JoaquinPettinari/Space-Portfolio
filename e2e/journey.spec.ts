@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
 import {
   approach,
@@ -71,11 +72,11 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     page.getByText('E · Use computer', { exact: true }),
   ).toBeVisible()
 
-  await walkTo(page, -2.4, -1.3)
-  await walkTo(page, 2.4, -1.3)
+  await walkTo(page, -2.4, -1.3 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 2.4, -1.3 + BRIDGE_OFFSET_Z)
   await approach(
     page,
-    { x: 2.4, y: 1.65, z: -3.715 },
+    { x: 2.4, y: 1.65, z: -3.715 + BRIDGE_OFFSET_Z },
     'E · Earth Communications',
   )
   await page.keyboard.press('e')
@@ -94,8 +95,12 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     page.getByText('E · Earth Communications', { exact: true }),
   ).toBeVisible()
 
-  await walkTo(page, 2.4, 3.1)
-  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
+  await walkTo(page, 2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: 4.55, y: 1.65, z: 2.1 + BRIDGE_OFFSET_Z },
+    'E Personal Workstation',
+  )
   await page.keyboard.press('e')
   const desktop = page.getByRole('dialog', {
     name: 'Personal Workstation',
@@ -113,7 +118,7 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   )
   await page.keyboard.press('e')
   await expect(
-    page.getByText('E · Personal Workstation', { exact: true }),
+    page.getByText('E Personal Workstation', { exact: true }),
   ).toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),

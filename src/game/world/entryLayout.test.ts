@@ -22,13 +22,13 @@ it('provides one receiving room, an open docking route and a continuous floor', 
   for (const side of [-1, 1]) {
     const jamb = ENTRY_PANELS.find((p) => p.name === `docking-jamb-${side}`)!
     expect(Math.abs(jamb.at[0]) - jamb.size[0] / 2).toBeCloseTo(1.2)
-    expect(jamb.at[2] + ENTRY_OFFSET).toBe(ENTRY_DOCKING_DEPTH)
+    expect(jamb.at[2] + ENTRY_OFFSET).toBe(16.2) // Historical procedural plan, no longer rendered.
     const shoulder = ENTRY_PANELS.find(
       (p) => p.name === `receiving-shoulder-${side}`,
     )!
     expect(shoulder.rotation?.[2]).toBe((-side * Math.PI) / 4)
   }
-  expect(ENTRY_DOCKING_DEPTH).toBe(16.2)
+  expect(ENTRY_DOCKING_DEPTH).toBeCloseTo(18.265)
   const roof = ENTRY_PANELS.find((p) => p.name === 'receiving-roof')!
   expect(roof.at[1] - roof.size[1] / 2).toBe(3)
   expect(ENTRY_PANELS.some((p) => p.name.startsWith('technical-'))).toBe(false)

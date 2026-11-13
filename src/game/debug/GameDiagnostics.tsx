@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { InstancedMesh, Light, Mesh, Raycaster, Vector3 } from 'three'
+import { bridgePoint } from '../world/bridgePlacement'
 import type { ProtocolState } from '../protocol'
 import type { CoffeeState } from '../coffee'
 import type { BulkheadPhase } from '../world/bulkhead'
@@ -61,7 +62,7 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
   })
   useEffect(() => {
     const sightRay = new Raycaster()
-    const sightTarget = new Vector3(0, 0.67, -6.85)
+    const sightTarget = new Vector3(...bridgePoint([0, 0.67, -6.85]))
     const sightDirection = new Vector3()
     const projectedTarget = new Vector3()
     const noseSight = () => {

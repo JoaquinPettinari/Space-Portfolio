@@ -1,3 +1,4 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
@@ -25,7 +26,7 @@ async function expectFreshSession(page: Page) {
     cups: 0,
     achievement: false,
   })
-  expect(state.cameraPosition.z).toBeCloseTo(15, 1)
+  expect(state.cameraPosition.z).toBeCloseTo(17.065, 1)
   expect(state.cabinLighting.ambientIntensity).toBe(0.65)
   expect(
     await page.evaluate(() => ({
@@ -80,8 +81,12 @@ test('refresh resets actual gameplay and ignores legacy saved progress without d
     'crew',
     'tablet',
   ])
-  await walkTo(page, -2.4, 3.1)
-  await approach(page, { x: -4.25, y: 1.2, z: 3.65 }, 'E · Brew coffee')
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await approach(
+    page,
+    { x: -4.25, y: 1.2, z: 3.65 + BRIDGE_OFFSET_Z },
+    'E · Brew coffee',
+  )
   await page.keyboard.press('e')
   await expect(
     page.locator('.interaction-hint').filter({ hasText: 'Drink coffee' }),

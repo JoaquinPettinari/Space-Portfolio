@@ -1,3 +1,5 @@
+import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
+import { TERMINAL_SCREENS } from '../src/game/interaction/station'
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
@@ -183,7 +185,9 @@ test('physical Personal Workstation supports keyboard apps and the real CV', asy
   page,
 }) => {
   await enterObservationRoom(page)
-  await approach(page, { x: 4.55, y: 1.65, z: 2.1 }, 'E · Personal Workstation')
+  await walkTo(page, 2, 0.3)
+  const [x, y, z] = TERMINAL_SCREENS.personal.position
+  await approach(page, { x, y, z }, 'E Personal Workstation')
   await page.keyboard.press('e')
   const dialog = page.getByRole('dialog', { name: 'Personal Workstation' })
   await expect(dialog).toBeVisible()
@@ -238,7 +242,7 @@ test('held tablet keeps movement and real mouse capture, focus pauses and Skip r
   page,
 }) => {
   await enterObservationRoom(page)
-  await walkTo(page, -2.4, 3.1)
+  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
   await lookAt(page, {
     x: -2.4,
     y: (await snapshot(page)).cameraPosition.y,
@@ -280,9 +284,14 @@ test('optional tactical table reads session state, supports inspection and retur
   page,
 }) => {
   await enterObservationRoom(page)
-  await approach(page, { x: 0, y: 1.05, z: 0.5 }, 'E · Tactical Table')
+  await walkTo(page, 0, -0.2)
+  await approach(
+    page,
+    { x: 0, y: 1.04, z: 1.65 + BRIDGE_OFFSET_Z },
+    'E · Tactical Table',
+  )
   await expect(
-    page.getByText('E · Tactical Table', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Tactical Table' }),
     JSON.stringify(await snapshot(page)),
   ).toBeVisible()
   const before = await snapshot(page)
@@ -304,7 +313,7 @@ test('optional tactical table reads session state, supports inspection and retur
   await expect(dialog.getByRole('slider')).toHaveValue('0.85')
   const focused = await snapshot(page)
   expect(focused.cameraPosition.x).toBeLessThan(-1.05)
-  expect(focused.cameraPosition.z).toBeCloseTo(0.5, 2)
+  expect(focused.cameraPosition.z).toBeCloseTo(0.5 + BRIDGE_OFFSET_Z, 2)
   console.log(
     'tactical-render-sample',
     JSON.stringify({

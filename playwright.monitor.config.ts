@@ -10,6 +10,8 @@ export default defineConfig({
     'physical-monitor.spec.ts',
     'next-phase.spec.ts',
     'bridge-layout.spec.ts',
+    'bridge-transition.spec.ts',
+    'recreation.spec.ts',
     'extras.spec.ts',
     'session-reset.spec.ts',
     'bulkhead.spec.ts',

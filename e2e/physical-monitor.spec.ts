@@ -280,9 +280,12 @@ test('approaches the physical Archive with E, reads records, downloads CV and ex
       ),
     )
     .toBeLessThan(0.08)
-  const after = await snapshot(page)
-  expect(after.cameraPosition.x).toBeCloseTo(before.cameraPosition.x, 2)
-  expect(after.cameraPosition.y).toBeCloseTo(before.cameraPosition.y, 2)
+  // Z entering its tolerance does not mean the smooth return finished on X/Y.
+  for (const axis of ['x', 'y'] as const) {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition[axis])
+      .toBeCloseTo(before.cameraPosition[axis], 2)
+  }
   await page.keyboard.press('Escape')
   await expect
     .poll(async () => (await snapshot(page)).pointerLocked)

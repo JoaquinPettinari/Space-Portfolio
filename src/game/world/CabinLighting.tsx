@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import type { MeshStandardMaterial, PointLight, SpotLight } from 'three'
+import { Object3D } from 'three'
 import { restorationIntensity } from './lighting'
 import { roofHeight } from './bridgeLayout'
 
 export function CabinLighting({ emergency }: { emergency: boolean }) {
+  const spillTarget = useMemo(() => new Object3D(), [])
   const light = useRef<PointLight>(null)
   const lens = useRef<MeshStandardMaterial>(null)
   const windowSpill = useRef<SpotLight>(null)
@@ -45,10 +47,12 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
   })
   return (
     <group>
+      <primitive object={spillTarget} />
       {/* Broad spill from the front glazing; no shadow maps or extra render passes. */}
       <spotLight
         name="cabin-window-spill"
         ref={windowSpill}
+        target={spillTarget}
         position={[1.8, 4.2, -4.6]}
         color="#91ceff"
         intensity={emergency ? 65 * 0.28 : 65}

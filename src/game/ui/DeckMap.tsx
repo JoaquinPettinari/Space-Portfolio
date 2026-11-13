@@ -10,6 +10,31 @@ import {
 import { PLAYER_SPAWN_POSITION } from '../player/jump'
 import { BRIDGE_OUTLINE, BOW_EDGES, CONSOLE_PATH } from '../world/bridgeLayout'
 import type { ObjectiveId } from '../missions'
+import {
+  ARRIVAL_DEPTH,
+  ARRIVAL_ORIGIN_Z,
+  ARRIVAL_PLAN_SCALE,
+  arrivalSurface,
+} from '../world/arrivalRoomLayout'
+import { ENTRY_DOCKING_DEPTH } from '../world/entryLayout'
+import {
+  BRIDGE_OFFSET_Z,
+  TRANSITION_START,
+  TRANSITION_END,
+} from '../world/bridgePlacement'
+
+const arrivalOutline: [number, number][] = [
+  [4.2, ARRIVAL_ORIGIN_Z],
+  [4.2, ENTRY_DOCKING_DEPTH],
+  ...Array.from({ length: 13 }, (_, i): [number, number] => {
+    const depth = ARRIVAL_DEPTH * (1 - i / 12)
+    return [
+      arrivalSurface(-2.8, 0, depth / ARRIVAL_PLAN_SCALE)[0] *
+        ARRIVAL_PLAN_SCALE,
+      ARRIVAL_ORIGIN_Z + depth,
+    ]
+  }),
+]
 
 const locations: Record<ObjectiveId, readonly [number, number]> = {
   lighting: [0, 14.2],
@@ -24,17 +49,19 @@ const x = (v: number) => 200 + v * scale,
   z = (v: number) => 170 + v * scale
 const path = (points: readonly (readonly [number, number])[]) =>
   points.map((p, i) => `${i ? 'L' : 'M'}${x(p[0])} ${z(p[1])}`).join(' ')
+const bridgePath = (points: readonly (readonly [number, number])[]) =>
+  path(points.map(([x, z]) => [x, z + BRIDGE_OFFSET_Z]))
 /** Geometric map follows the same metre coordinates as the physical deck. */
 export function DeckMap({ selected }: { selected: ObjectiveId }) {
   const point = locations[selected]
   return (
     <svg
-      viewBox="0 0 400 520"
+      viewBox="0 0 400 550"
       role="img"
       aria-label="CRUZ DEL SUR current deck map: faceted bridge, glass passage, Crew Access in the docking arrival room, docking hatch and PAMPA-07 arrival."
     >
       <path
-        d={path(BRIDGE_OUTLINE) + ' Z'}
+        d={bridgePath(BRIDGE_OUTLINE) + ' Z'}
         fill="#102c3b"
         stroke="#6dabbf"
         strokeWidth="3"
@@ -47,27 +74,20 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         fill="#102c3b"
         stroke="#9ce8ff"
       />
+      <path d={path(arrivalOutline) + ' Z'} fill="#102c3b" stroke="#6dabbf" />
       <rect
-        x={x(-2.8)}
-        y={z(11.2)}
-        width={5.6 * scale}
-        height={5 * scale}
-        fill="#102c3b"
-        stroke="#6dabbf"
-      />
-      <rect
-        x={x(-1.6)}
-        y={z(16.2)}
-        width={3.2 * scale}
-        height={2 * scale}
-        fill="#102c3b"
+        x={x(-1.5)}
+        y={z(TRANSITION_START)}
+        width={3 * scale}
+        height={(TRANSITION_END - TRANSITION_START) * scale}
+        fill="#26343c"
         stroke="#6dabbf"
       />
       {BOW_EDGES.map((edge, i) => (
-        <path key={i} d={path(edge)} stroke="#9ce8ff" strokeWidth="5" />
+        <path key={i} d={bridgePath(edge)} stroke="#9ce8ff" strokeWidth="5" />
       ))}
       <path
-        d={path(CONSOLE_PATH)}
+        d={bridgePath(CONSOLE_PATH)}
         fill="none"
         stroke="#3eacc4"
         strokeWidth={1.05 * scale}
@@ -97,7 +117,7 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
       })}
       <rect
         x={x(PERSONAL_POSITION[0] - 0.55)}
-        y={z(1.2)}
+        y={z(PERSONAL_POSITION[2] - 0.9)}
         width={0.8 * scale}
         height={1.8 * scale}
         fill="#3eacc4"
@@ -126,8 +146,8 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
       />
       <path
         d={path([
-          [-1.2, 16.2],
-          [1.2, 16.2],
+          [-1.2, ENTRY_DOCKING_DEPTH],
+          [1.2, ENTRY_DOCKING_DEPTH],
         ])}
         stroke="#b4e9f4"
         strokeWidth="5"
@@ -142,10 +162,10 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         strokeDasharray="4 5"
       />
       <g fill="#d8eff6" fontSize="13" textAnchor="middle">
-        <text x={x(-2.4)} y={z(-4.9)}>
+        <text x={x(-2.4)} y={z(-4.9 + BRIDGE_OFFSET_Z)}>
           ARCHIVE
         </text>
-        <text x={x(2.4)} y={z(-2.8)}>
+        <text x={x(2.4)} y={z(-2.8 + BRIDGE_OFFSET_Z)}>
           COMMS
         </text>
         <text x={x(0)} y={z(0.5)}>
@@ -169,7 +189,7 @@ export function DeckMap({ selected }: { selected: ObjectiveId }) {
         >
           CREW
         </text>
-        <text x="200" y={z(17.6)}>
+        <text x="200" y={z(ENTRY_DOCKING_DEPTH + 1.2)}>
           PAMPA-07
         </text>
         <text x="200" y="12">
