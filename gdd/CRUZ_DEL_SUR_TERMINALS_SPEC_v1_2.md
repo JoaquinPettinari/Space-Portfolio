@@ -19,14 +19,14 @@
 
 ## 1. Mapa de responsabilidades
 
-| Dispositivo | Propósito | Entrada | Acciones importantes | Relación con misiones |
-|---|---|---|---|---|
-| **Crew Access** | Identificación breve | `E` junto a la entrada | Animar tarjeta, verificar, mostrar ficha | Completa identificación |
-| **Central Archive** | Portfolio profesional | `E` o Quick Portfolio Access desde tablet | Perfil, proyectos, experiencia, educación, CV | Abrir un expediente real puede completar revisión |
-| **Earth Communications** | Contacto real | `E` en puente de mando | Enviar email, omitir envío | Enviar o Skip completa contacto |
-| **Personal Workstation** | Escritorio personal y dossier | `E` en rincón personal | CV, galería, terminal, extras | Abrir/descargar dossier o Skip |
-| **Tactical Table** | Estado y ficción de la estación | `E` en mesa central | Rotar nave, ver sistemas y registros | Opcional; refleja progreso real |
-| **Mission Tablet** | Orientación y acceso rápido | `T`, luego `R` para cursor | Objetivos, mapa, historial, Skip, Quick Portfolio | No obliga a seguir el tutorial |
+| Dispositivo              | Propósito                       | Entrada                                   | Acciones importantes                              | Relación con misiones                             |
+| ------------------------ | ------------------------------- | ----------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| **Crew Access**          | Identificación breve            | `E` junto a la entrada                    | Animar tarjeta, verificar, mostrar ficha          | Completa identificación                           |
+| **Central Archive**      | Portfolio profesional           | `E` o Quick Portfolio Access desde tablet | Perfil, proyectos, experiencia, educación, CV     | Abrir un expediente real puede completar revisión |
+| **Earth Communications** | Contacto real                   | `E` en puente de mando                    | Enviar email, omitir envío                        | Enviar o Skip completa contacto                   |
+| **Personal Workstation** | Escritorio personal y dossier   | `E` en rincón personal                    | CV, galería, terminal, extras                     | Abrir/descargar dossier o Skip                    |
+| **Tactical Table**       | Estado y ficción de la estación | `E` en mesa central                       | Rotar nave, ver sistemas y registros              | Opcional; refleja progreso real                   |
+| **Mission Tablet**       | Orientación y acceso rápido     | `T`, luego `R` para cursor                | Objetivos, mapa, historial, Skip, Quick Portfolio | No obliga a seguir el tutorial                    |
 
 ## 2. Patrón común de interacción de monitores
 
@@ -88,13 +88,13 @@
 
 **Pantalla:** escritorio retrofuturista `CREW DESKTOP`, barra de estado y un conjunto limitado de iconos.
 
-| Aplicación | Acción | Alcance inicial |
-|---|---|---|
-| `Crew Dossier.pdf` | Abrir/descargar el CV real | Obligatorio para misión, pero omisible |
-| `Gallery` | Ver fotos reales aprobadas | Opcional; placeholders solo si están claramente marcados |
-| `Command Terminal` | Comandos ficticios seguros, incluido `npm install coffee` | Opcional; comandos en whitelist, sin ejecución real |
-| `Arcade` | Minijuego ligero | Posterior, no bloquear v1 |
-| `Notes` / `Logs` | Recuerdos y pequeños secretos | Posterior |
+| Aplicación         | Acción                                                    | Alcance inicial                                          |
+| ------------------ | --------------------------------------------------------- | -------------------------------------------------------- |
+| `Crew Dossier.pdf` | Abrir/descargar el CV real                                | Obligatorio para misión, pero omisible                   |
+| `Gallery`          | Ver fotos reales aprobadas                                | Opcional; placeholders solo si están claramente marcados |
+| `Command Terminal` | Comandos ficticios seguros, incluido `npm install coffee` | Opcional; comandos en whitelist, sin ejecución real      |
+| `Arcade`           | Minijuego ligero                                          | Posterior, no bloquear v1                                |
+| `Notes` / `Logs`   | Recuerdos y pequeños secretos                             | Posterior                                                |
 
 **Interacción:** un clic o doble clic para abrir icono; flechas + Enter; cerrar ventana; volver al escritorio. Una ventana activa a la vez inicialmente para evitar un gestor de ventanas complejo. Sin simular comandos del sistema operativo real ni permitir ejecución arbitraria.
 
@@ -134,16 +134,16 @@
 
 ## 9. Matriz de contenido para evitar duplicaciones
 
-| Información | Fuente principal | Accesos secundarios permitidos |
-|---|---|---|
-| Perfil completo | Central Archive | Crew Access solo resumen |
-| Proyectos | Central Archive | Tablet solo acceso rápido al Archive |
-| Experiencia laboral | Central Archive | Ninguna copia completa |
-| Estudios | Central Archive | Crew Access solo grado breve |
-| Contacto real | Earth Communications | Archive puede enlazar al puesto, no repetir formulario |
-| CV | Archivo real único | Archive + Personal Workstation |
-| Estado de la estación | Tactical Table | Tablet puede mostrar objetivo, no panel técnico completo |
-| Misiones | Mission Tablet | HUD muestra solo objetivo resumido |
+| Información           | Fuente principal     | Accesos secundarios permitidos                           |
+| --------------------- | -------------------- | -------------------------------------------------------- |
+| Perfil completo       | Central Archive      | Crew Access solo resumen                                 |
+| Proyectos             | Central Archive      | Tablet solo acceso rápido al Archive                     |
+| Experiencia laboral   | Central Archive      | Ninguna copia completa                                   |
+| Estudios              | Central Archive      | Crew Access solo grado breve                             |
+| Contacto real         | Earth Communications | Archive puede enlazar al puesto, no repetir formulario   |
+| CV                    | Archivo real único   | Archive + Personal Workstation                           |
+| Estado de la estación | Tactical Table       | Tablet puede mostrar objetivo, no panel técnico completo |
+| Misiones              | Mission Tablet       | HUD muestra solo objetivo resumido                       |
 
 ## 10. Orden de desarrollo y reparto
 
@@ -176,7 +176,6 @@
 
 **Regla de trabajo:** no implementar todas las pantallas de una vez. Diseñar, programar, probar y aprobar **una pantalla por iteración**.
 
-
 ---
 
 # 12. Anexo visual — diseños de referencia v1.2
@@ -194,6 +193,7 @@
 **Flujo de clics:** `E` en monitor izquierdo (o Quick Portfolio Access desde tablet) → **Overview** → **Projects** → seleccionar tarjeta → **Project Detail** → **Back to Projects**. Desde barra lateral: **Service Record** o **Education**. **Download CV** accesible desde Overview. **Exit** retorna a FPS.
 
 **Vistas:**
+
 1. Overview: nombre, rol, resumen, 3–5 tecnologías, CV, proyectos destacados; sin scroll inicial.
 2. Projects: lista de proyectos reales con título, rol, problema y `Open record`.
 3. Project Detail: portada si existe, problema, solución, aportes, stack y enlaces verificados; `Back` y opcional `Next`.

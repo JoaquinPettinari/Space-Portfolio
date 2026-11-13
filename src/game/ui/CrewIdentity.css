@@ -15,14 +15,16 @@
   padding: 20px 12px;
   border: 1px solid var(--terminal-border);
   border-radius: 12px 3px;
-  background: radial-gradient(ellipse,
-      var(--terminal-surface),
-      var(--terminal-bg));
+  background: radial-gradient(
+    ellipse,
+    var(--terminal-surface),
+    var(--terminal-bg)
+  );
   color: var(--terminal-accent);
   text-align: center;
 }
 
-.crew-reader-display>span {
+.crew-reader-display > span {
   font-size: 13px;
   letter-spacing: 0.12em;
 }

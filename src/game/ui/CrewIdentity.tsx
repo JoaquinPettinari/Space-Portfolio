@@ -15,7 +15,7 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
           aria-hidden="true"
         />
         <h2>Crew verification</h2>
-        <p>Verifying credentials… Please wait.</p>
+        <p role="status">Verifying credentials… Please wait.</p>
       </div>
     )
   }

@@ -19,7 +19,17 @@ it('shows one verified factual identity including the existing Master degree wit
   expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
 })
 it('does not claim access granted before the reader finishes', () => {
-  render(<CrewIdentity verified={false} />)
-  expect(screen.getByRole('status')).toHaveTextContent('Reading crew card')
+  const { rerender } = render(<CrewIdentity verified={false} />)
+  expect(screen.getByRole('status')).toHaveTextContent(
+    'Verifying credentials… Please wait.',
+  )
   expect(screen.queryByText(/ACCESS GRANTED/)).not.toBeInTheDocument()
+  expect(
+    screen.queryByRole('img', { name: profile.name }),
+  ).not.toBeInTheDocument()
+
+  rerender(<CrewIdentity verified />)
+  expect(screen.getAllByRole('status')).toHaveLength(1)
+  expect(screen.getByRole('status')).toHaveTextContent('ACCESS GRANTED')
+  expect(screen.queryByText(/Please wait/)).not.toBeInTheDocument()
 })

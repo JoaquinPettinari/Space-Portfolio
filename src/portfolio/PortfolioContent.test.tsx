@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { expect, it, vi } from 'vitest'
+import { profile } from '../data/portfolio'
 import { PortfolioContent } from './PortfolioContent'
 
 function select(name: string) {
@@ -15,7 +16,9 @@ it('exposes real profile and CV immediately without game state or callbacks', ()
   expect(
     screen.getByRole('heading', { name: 'Joaquín Pettinari' }),
   ).toBeVisible()
-  expect(screen.getByText(/Full-Stack Developer · Milan, Italy/)).toBeVisible()
+  expect(
+    screen.getByText(`${profile.role} · ${profile.location}`),
+  ).toBeVisible()
   const cv = screen.getByRole('link', { name: 'Download CV (PDF)' })
   expect(cv).toHaveAttribute('href', '/documents/joaquin-pettinari-cv.pdf')
   expect(cv).toHaveAttribute('download')

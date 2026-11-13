@@ -86,9 +86,11 @@
 /* The forward monitor remains the existing 960 × 540 CSS canvas. */
 .forward-terminal .desktop {
   background:
-    radial-gradient(ellipse at top right,
+    radial-gradient(
+      ellipse at top right,
       var(--terminal-surface),
-      transparent 70%),
+      transparent 70%
+    ),
     var(--terminal-bg);
   color: var(--terminal-text);
 }
@@ -108,7 +110,7 @@
   color: var(--terminal-text);
 }
 
-.communications-brand>span {
+.communications-brand > span {
   display: grid;
   gap: 3px;
 }

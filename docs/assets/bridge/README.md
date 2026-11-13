@@ -6,6 +6,13 @@
 - `bridge-interior-backup.blend`: compact rollback before final finishing.
 - `bridge-interior-v13.blend`: source retained for the currently deployed GLB.
 
+Latest Blender-only finish: 24 cushion/arm-pad parts across the four seats use
+`BRIDGE Upholstery`, a separate nonmetallic dark blue-gray material (roughness
+0.78, sheen weight 0.22). Wheels and seals retain their original gasket material.
+No geometry or runtime export changed. The compact backup now precedes this
+material adjustment; final and backup filenames are reused rather than adding
+version files. Sheen appearance must be checked in Three.js at future integration.
+
 The final scene includes closed lower hull walls, refined seats, material and
 preview-light studies, hull service panels, console cable channels and tactical
 grip insets. Original vertices, transforms and interaction metadata were checked
