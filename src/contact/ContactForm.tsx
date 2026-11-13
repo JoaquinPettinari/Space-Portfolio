@@ -102,10 +102,6 @@ export function ContactForm({
         This sends a real message to Joaquín Pettinari. Messages welcome in
         Spanish, English, Italian and Norwegian.
       </p>
-      <p className="contact-alternative">
-        Prefer your email app?{' '}
-        <a href={`mailto:${profile.email}`}>{profile.email}</a>
-      </p>
       <fieldset disabled={status === 'sending' || status === 'accepted'}>
         <legend>Your transmission</legend>
         <div className="contact-field">
@@ -178,6 +174,10 @@ export function ContactForm({
           {status === 'sending' ? 'Transmitting…' : 'Send Transmission'}
         </button>
       </div>
+      <p className="contact-alternative">
+        Prefer your email app?{' '}
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      </p>
       {status === 'error' && <p role="alert">{error}</p>}
       <p ref={statusMessage} tabIndex={-1} role="status" aria-live="polite">
         {status === 'sending' &&

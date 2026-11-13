@@ -5,6 +5,21 @@ import './CrewIdentity.css'
 /** Compact factual identity; verification is owned by the existing reader. */
 export function CrewIdentity({ verified }: { verified: boolean }) {
   const master = education.find((item) => item.title.includes('Master'))
+
+  if (!verified) {
+    return (
+      <div className="crew-scan-copy">
+        <LoaderCircle
+          className="crew-loading-spinner"
+          size={40}
+          aria-hidden="true"
+        />
+        <h2>Crew verification</h2>
+        <p>Verifying credentials… Please wait.</p>
+      </div>
+    )
+  }
+
   return (
     <div className="crew-identity">
       <div className="crew-reader-display" aria-hidden="true">
@@ -21,9 +36,12 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
             <div className="crew-identity-person">
               <img src="/images/crew-portrait.webp" alt={profile.name} />
               <div>
-                <h2>{profile.name}</h2>
+                <div className="crew-name-location">
+                  <h2>{profile.name}</h2>
+                  <p>{profile.location}</p>
+                </div>
                 <p className="crew-role">{profile.role}</p>
-                <p>{profile.location}</p>
+                <p>+6 years</p>
               </div>
             </div>
             {master && (
@@ -42,7 +60,8 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
             />
             <h2>Crew verification</h2>
             <p>
-              Verifying credentials… Please wait. You can leave at any time.
+              Verifying credentials… <br /> Please wait. You can leave at any
+              time.
             </p>
           </div>
         )}
