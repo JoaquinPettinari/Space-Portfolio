@@ -119,53 +119,55 @@ export function SpaceExterior() {
   }, [])
 
   return (
-    <group ref={orbit} name="orbital-drift">
-      <AsteroidField />
-      <DistantShip />
-      <mesh position={[-8, 18, -66]} name="distant-moon">
-        <sphereGeometry args={[3.4, 32, 24]} />
-        <meshStandardMaterial color="#8b8b89" roughness={1} />
-      </mesh>
-      <mesh
-        position={[44, 8, -61]}
-        rotation={[0.15, -0.4, -0.18]}
-        name="distant-planet"
-      >
-        <sphereGeometry args={[6.5, 48, 32]} />
-        <shaderMaterial
-          vertexShader={planetVertex}
-          fragmentShader={distantPlanetFragment}
-        />
-      </mesh>
-      <group ref={starField} name="orbital-stars">
-        {layers.map((layer, index) => (
-          <points key={index}>
-            <bufferGeometry>
-              <bufferAttribute
-                attach="attributes-position"
-                args={[layer.positions, 3]}
+    <>
+      <group ref={orbit} name="orbital-drift">
+        <AsteroidField />
+        <DistantShip />
+        <mesh position={[-8, 18, -66]} name="distant-moon">
+          <sphereGeometry args={[3.4, 32, 24]} />
+          <meshStandardMaterial color="#8b8b89" roughness={1} />
+        </mesh>
+        <mesh
+          position={[44, 8, -61]}
+          rotation={[0.15, -0.4, -0.18]}
+          name="distant-planet"
+        >
+          <sphereGeometry args={[6.5, 48, 32]} />
+          <shaderMaterial
+            vertexShader={planetVertex}
+            fragmentShader={distantPlanetFragment}
+          />
+        </mesh>
+        <group ref={starField} name="orbital-stars">
+          {layers.map((layer, index) => (
+            <points key={index}>
+              <bufferGeometry>
+                <bufferAttribute
+                  attach="attributes-position"
+                  args={[layer.positions, 3]}
+                />
+              </bufferGeometry>
+              <pointsMaterial
+                color={layer.color}
+                size={layer.size}
+                sizeAttenuation
               />
-            </bufferGeometry>
-            <pointsMaterial
-              color={layer.color}
-              size={layer.size}
-              sizeAttenuation
-            />
-          </points>
-        ))}
+            </points>
+          ))}
+        </group>
+        <mesh
+          ref={planet}
+          name="orbital-planet"
+          position={[-25, 10, -38]}
+          rotation={[0.2, -0.5, 0.3]}
+        >
+          <sphereGeometry args={[13, 128, 96]} />
+          <shaderMaterial
+            vertexShader={planetVertex}
+            fragmentShader={planetFragment}
+          />
+        </mesh>
       </group>
-      <mesh
-        ref={planet}
-        name="orbital-planet"
-        position={[-25, 10, -38]}
-        rotation={[0.2, -0.5, 0.3]}
-      >
-        <sphereGeometry args={[13, 128, 96]} />
-        <shaderMaterial
-          vertexShader={planetVertex}
-          fragmentShader={planetFragment}
-        />
-      </mesh>
-    </group>
+    </>
   )
 }

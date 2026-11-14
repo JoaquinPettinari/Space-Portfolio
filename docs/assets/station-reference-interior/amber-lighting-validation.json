@@ -1,0 +1,76 @@
+{
+  "lights_before": 16,
+  "lights_after": 16,
+  "new_area_lights": 0,
+  "lamp_slots_recolored": 166,
+  "surface_slots_overridden": 2253,
+  "independent_surface_materials": 14,
+  "original_source_materials_modified": false,
+  "old_lights": {
+    "STN / Preview warm ceiling.006": {
+      "energy": 162.0,
+      "color": [1.0, 0.7599999904632568, 0.5]
+    },
+    "STN / Preview warm ceiling.007": {
+      "energy": 162.0,
+      "color": [1.0, 0.7599999904632568, 0.5]
+    },
+    "STN / Preview entry ceiling.003": {
+      "energy": 90.0,
+      "color": [1.0, 0.7599999904632568, 0.5]
+    },
+    "STN / Preview bow daylight.003": {
+      "energy": 220.0,
+      "color": [0.47999998927116394, 0.7200000286102295, 1.0]
+    },
+    "STN / Forward warm ceiling": {
+      "energy": 220.0,
+      "color": [1.0, 0.7200000286102295, 0.4300000071525574]
+    },
+    "STN / Observation left softbox": {
+      "energy": 90.0,
+      "color": [1.0, 0.75, 0.47999998927116394]
+    },
+    "STN / Observation right softbox": {
+      "energy": 90.0,
+      "color": [1.0, 0.75, 0.47999998927116394]
+    },
+    "STN / Cool window bounce": {
+      "energy": 180.0,
+      "color": [0.2199999988079071, 0.550000011920929, 1.0]
+    },
+    "STN / Arrival ceiling": {
+      "energy": 240.0,
+      "color": [1.0, 0.7699999809265137, 0.5]
+    },
+    "STN / Passage ceiling": {
+      "energy": 40.0,
+      "color": [1.0, 0.75, 0.44999998807907104]
+    },
+    "STN / Passage ceiling.001": {
+      "energy": 40.0,
+      "color": [1.0, 0.75, 0.44999998807907104]
+    },
+    "STN / Exterior ship key": {
+      "energy": 33000.0,
+      "color": [0.75, 0.8500000238418579, 1.0]
+    },
+    "STN / Exterior ship warm rim": {
+      "energy": 38000.0,
+      "color": [1.0, 0.699999988079071, 0.4000000059604645]
+    },
+    "STN / Entry warm camera fill": {
+      "energy": 120.0,
+      "color": [1.0, 0.7300000190734863, 0.47999998927116394]
+    },
+    "STN / Arrival lounge soft fill": {
+      "energy": 110.0,
+      "color": [0.6499999761581421, 0.7799999713897705, 1.0]
+    },
+    "STN / Docking door warm fill": {
+      "energy": 120.0,
+      "color": [1.0, 0.7799999713897705, 0.5400000214576721]
+    }
+  },
+  "intent": "Localized honey/amber fixtures and spill, restrained cool rim, cyan screens preserved. Solid proxy is not a lighting preview."
+}

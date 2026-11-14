@@ -36,7 +36,7 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
       ? 0.28
       : restorationIntensity(restorationElapsed.current, reducedMotion.current)
     if (windowSpill.current) windowSpill.current.intensity = 65 * power
-    if (sideSpill.current) sideSpill.current.intensity = 10 * power
+    if (sideSpill.current) sideSpill.current.intensity = 18 * power
     // A soft four-second pulse, never a rapid strobe.
     const pulse = reducedMotion.current
       ? 0.5
@@ -48,24 +48,24 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
   return (
     <group>
       <primitive object={spillTarget} />
-      {/* Broad spill from the front glazing; no shadow maps or extra render passes. */}
+      {/* Reuse the auxiliary spill for warm overhead light; no shadow maps. */}
       <spotLight
         name="cabin-window-spill"
         ref={windowSpill}
         target={spillTarget}
-        position={[1.8, 4.2, -4.6]}
-        color="#91ceff"
+        position={[0, 3.15, 0.5]}
+        color="#ffc279"
         intensity={emergency ? 65 * 0.28 : 65}
-        angle={0.85}
+        angle={1.05}
         penumbra={0.7}
         distance={14}
         decay={2}
       />
       <pointLight
         ref={sideSpill}
-        position={[-3.8, 3.2, 1.2]}
-        color="#ffd2a0"
-        intensity={emergency ? 2.8 : 10}
+        position={[0, 1.1, 1.8]}
+        color="#ffb65e"
+        intensity={emergency ? 5.04 : 18}
         distance={9}
         decay={2}
       />

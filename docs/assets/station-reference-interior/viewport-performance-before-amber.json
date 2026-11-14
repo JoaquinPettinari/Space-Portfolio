@@ -1,0 +1,63 @@
+{
+  "method": "Three trials of three synchronous full-window redraws after warmup; UI overhead included, not sustained animation FPS.",
+  "baseline": {
+    "scene": "Station / Reference interior and Cruz del Sur",
+    "method": "3 synchronous full-window redraws; includes UI overhead, not sustained interactive FPS",
+    "seconds": 0.24855550000211224,
+    "mean_ms": 82.85183333403741,
+    "viewport_shading": "MATERIAL",
+    "raytracing": true,
+    "lights": 16,
+    "scene_objects": 3168,
+    "modifiers": 2714
+  },
+  "solid_unbatched_ms": 45.13576666552884,
+  "solid_batched_trials_ms": [
+    43.18793333368376, 40.11946666287258, 39.372866662840046
+  ],
+  "proxy_objects": [
+    {
+      "name": "STN EDIT / Station - base geometry",
+      "source_objects": 3477,
+      "vertices": 86933,
+      "faces": 69890,
+      "materials": 50
+    },
+    {
+      "name": "STN EDIT / Ship - base geometry",
+      "source_objects": 1750,
+      "vertices": 119666,
+      "faces": 103818,
+      "materials": 14
+    }
+  ],
+  "render_raytracing_preserved": true,
+  "render_samples_preserved": 96,
+  "full_detail_sources_preserved": true,
+  "transparent_panes_omitted_in_solid_proxy_only": true,
+  "controlled_same_scene_comparison": [
+    {
+      "name": "detailed_material",
+      "trials_mean_redraw_ms": [
+        243.36139999407655, 214.8223666687651, 202.95266666410802
+      ],
+      "median_trial_ms": 214.8223666687651
+    },
+    {
+      "name": "detailed_solid",
+      "trials_mean_redraw_ms": [
+        96.78023332768741, 85.20546667083788, 68.04146667127497
+      ],
+      "median_trial_ms": 85.20546667083788
+    },
+    {
+      "name": "edit_preview_solid",
+      "trials_mean_redraw_ms": [
+        46.78816666516165, 46.19480000110343, 47.17630000474552
+      ],
+      "median_trial_ms": 46.78816666516165
+    }
+  ],
+  "comparison_conditions": "Same camera and 1574x860 viewport; browser tests stopped. 3 warmup redraws, 3 trials x 3 redraws. Sources retain bevels in both detailed conditions.",
+  "warning": "Other applications, driver scheduling, caches and UI overhead affect these short timings. Do not interpret reciprocal milliseconds as sustained FPS."
+}

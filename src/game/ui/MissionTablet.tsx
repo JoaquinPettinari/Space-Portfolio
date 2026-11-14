@@ -139,8 +139,8 @@ export function MissionTablet({
             </div>
             <small>
               Hover, focus or tap an objective to locate its station. The
-              personal workstation is on the rear starboard wall; a second CV
-              copy is beside the airlock.
+              personal workstation is on the rear starboard wall. Central
+              Archive also offers the CV download.
             </small>
           </div>
         </div>

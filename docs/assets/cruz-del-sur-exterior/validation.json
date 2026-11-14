@@ -1,0 +1,15 @@
+{
+  "objects_visible_ship": 1802,
+  "mesh_objects_visible_ship": 1749,
+  "source_faces": 24958,
+  "evaluated_triangles": 240804,
+  "nonfinite_objects": [],
+  "zero_area_face_objects": [],
+  "bounds_min": [-8.032500267028809, -19.70199966430664, -4.40749979019165],
+  "bounds_max": [8.032500267028809, 30.155000686645508, 6.820000171661377],
+  "original_bridge_objects": 2300,
+  "original_bridge_hidden": true,
+  "web_exported": false,
+  "web_performance_measured": false,
+  "note": "Exterior glazing includes intentional single-surface panes; not a collider mesh."
+}

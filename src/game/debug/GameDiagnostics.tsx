@@ -47,7 +47,13 @@ export type GameSnapshot = {
 
 declare global {
   interface Window {
-    __GAME_DEBUG__?: Readonly<{ snapshot: () => GameSnapshot }>
+    __GAME_DEBUG__?: Readonly<{
+      snapshot: () => GameSnapshot
+      performance: () => Pick<
+        GameSnapshot,
+        'frameMs' | 'drawCalls' | 'triangles'
+      >
+    }>
   }
 }
 
@@ -114,6 +120,12 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         mouse.current = { x: event.movementX, y: event.movementY }
     }
     const api = Object.freeze({
+      // No scene traversal or raycasts while measuring frame timing.
+      performance: () => ({
+        frameMs: frameMs.current,
+        drawCalls: gl.info.render.calls,
+        triangles: gl.info.render.triangles,
+      }),
       snapshot: (): GameSnapshot => ({
         explorationHull: noseSight(),
         bulkheadLeaves: {

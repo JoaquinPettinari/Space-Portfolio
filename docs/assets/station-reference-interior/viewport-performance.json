@@ -1,0 +1,38 @@
+{
+  "method": "Three trials of three synchronous full-window redraws after warmup; UI overhead included, not sustained animation FPS.",
+  "baseline": {
+    "scene": "Station / Reference interior and Cruz del Sur",
+    "method": "3 synchronous full-window redraws; includes UI overhead, not sustained interactive FPS",
+    "seconds": 0.24855550000211224,
+    "mean_ms": 82.85183333403741,
+    "viewport_shading": "MATERIAL",
+    "raytracing": true,
+    "lights": 16,
+    "scene_objects": 3168,
+    "modifiers": 2714
+  },
+  "solid_unbatched_ms": 45.13576666552884,
+  "solid_batched_trials_ms": [
+    24.1821666713804, 25.165733338023227, 27.82629999758986
+  ],
+  "proxy_objects": [
+    {
+      "name": "STN EDIT / Station - base geometry",
+      "source_objects": 3535,
+      "vertices": 87413,
+      "faces": 70246,
+      "materials": 50
+    },
+    {
+      "name": "STN EDIT / Ship - base geometry",
+      "source_objects": 1750,
+      "vertices": 119666,
+      "faces": 103818,
+      "materials": 14
+    }
+  ],
+  "render_raytracing_preserved": true,
+  "render_samples_preserved": 96,
+  "full_detail_sources_preserved": true,
+  "transparent_panes_omitted_in_solid_proxy_only": true
+}

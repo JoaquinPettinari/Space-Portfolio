@@ -1,0 +1,23 @@
+{
+  "source": "C:\\Users\\joaqu\\Downloads\\spacecraft 3d model.glb",
+  "generator": "Tripo",
+  "identity": "Unverified: no Argentina/PAMPA-07 identification in GLB metadata",
+  "meshes": 1,
+  "triangles": 258560,
+  "dimensionsBlenderXYZ": [0.3944549560546875, 1.0, 0.354888916015625],
+  "textures": [
+    {
+      "name": "spacecraft_3d_model_basecolor.jpg",
+      "size": [2048, 2048]
+    },
+    {
+      "name": "spacecraft_3d_model_rm.jpg",
+      "size": [2048, 2048]
+    },
+    {
+      "name": "spacecraft_3d_model_normal.png",
+      "size": [2048, 2048]
+    }
+  ],
+  "output": "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\spacecraft-study\\spacecraft.blend"
+}

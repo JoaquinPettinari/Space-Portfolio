@@ -1,0 +1,66 @@
+{
+  "BRIDGE V15 Ivory": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "BRIDGE V15 Ivory-color"
+  },
+  "BRIDGE V15 Metal": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "BRIDGE V15 Metal-color"
+  },
+  "BRIDGE V15 Graphite": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "BRIDGE V15 Graphite-color"
+  },
+  "BRIDGE V15 Amber": {
+    "baseColorFactor": [1, 0.45, 0.11, 1],
+    "emissiveFactor": [1, 0.36, 0.065],
+    "emissiveStrength": 2.5
+  },
+  "BRIDGE Deck finish": {
+    "baseColorFactor": [
+      0.46000000834465027, 0.4000000059604645, 0.3149999976158142, 1
+    ],
+    "sourceImage": "BRIDGE V15 Graphite-color",
+    "roughnessFactor": 0.23499999940395355,
+    "metallicFactor": 0.6499999761581421,
+    "constantMetalRoughness": true
+  },
+  "BRIDGE Counter finish": {
+    "baseColorFactor": [
+      0.662400038337708, 0.554400008296966, 0.3960000243186954, 1
+    ],
+    "sourceImage": "BRIDGE V15 Ivory-color",
+    "roughnessFactor": 0.3799999952316284,
+    "metallicFactor": 0.7200000286102295,
+    "constantMetalRoughness": true
+  },
+  "ARRIVAL V4 Graphite frame": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "ARRIVAL V4 Graphite-frame-color.001"
+  },
+  "ARRIVAL V4 Warm grey panels": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "ARRIVAL V4 Warm-grey-panels-color.001"
+  },
+  "ARRIVAL V4 Amber lamps": {
+    "baseColorFactor": [1, 0.45, 0.11, 1],
+    "emissiveFactor": [1, 0.36, 0.065],
+    "emissiveStrength": 2.5
+  },
+  "ARRIVAL V4 Ivory cabinets": {
+    "baseColorFactor": [
+      0.9200000166893005, 0.7699999809265137, 0.550000011920929, 1
+    ],
+    "sourceImage": "ARRIVAL V4 Ivory-cabinets-color.001"
+  }
+}

@@ -12,13 +12,13 @@ import { Box3, Group, Mesh, Vector3 } from 'three'
 import entryUrl from './assets/01-entry-module.glb?url'
 import passageUrl from './assets/02-panoramic-passage.glb?url'
 import bridgeUrl from './assets/03-faceted-bridge.glb?url'
-import bayUrl from './assets/04-panoramic-bay.glb?url'
+import { PANORAMIC_BAY_ASSET } from '../game/world/passageLayout'
 
 const assets = {
   entry: entryUrl,
   passage: passageUrl,
   bridge: bridgeUrl,
-  bay: bayUrl,
+  bay: PANORAMIC_BAY_ASSET,
 }
 type ModuleName = keyof typeof assets
 type Stats = { size: number[]; meshes: number; triangles: number }

@@ -12,7 +12,7 @@ import {
 } from 'three'
 import { expect, it } from 'vitest'
 import { COMMAND_POSES, COMMAND_SEGMENTS } from './commandLayout'
-import { ROOF_PANELS } from './bridgeLayout'
+import { BRIDGE_OUTLINE, ROOF_PANELS } from './bridgeLayout'
 import { stationView, TERMINAL_SCREENS } from '../interaction/station'
 
 it('builds from current console and roof anchors, without duplicating screens', () => {
@@ -40,6 +40,7 @@ it('the exported architecture leaves both physical monitor focus rays clear', ()
   const asset = JSON.parse(bytes.toString('utf8', 20, 20 + length)) as {
     nodes: { name: string; extras?: { interaction?: string } }[]
     cameras?: unknown[]
+    extensions?: { KHR_lights_punctual?: unknown }
     accessors: {
       bufferView: number
       byteOffset?: number
@@ -54,8 +55,9 @@ it('the exported architecture leaves both physical monitor focus rays clear', ()
   expect(asset.nodes.every((n) => n.name.startsWith('BRIDGE_RUNTIME_'))).toBe(
     true,
   )
-  // Six room materials, three table batches, and three per interactive monitor.
-  expect(asset.nodes.length).toBeLessThanOrEqual(21)
+  // Finished bridge: thirteen room batches (including navigation), six tactical and five per computer.
+  // Preview lights/cameras must never enter the runtime asset.
+  expect(asset.nodes.length).toBeLessThanOrEqual(39)
   for (const kind of [
     'computer',
     'communications',
@@ -63,17 +65,18 @@ it('the exported architecture leaves both physical monitor focus rays clear', ()
     'arcade',
   ] as const) {
     const parts = asset.nodes.filter((n) => n.name.endsWith('_' + kind))
-    expect(parts).toHaveLength(3)
+    expect(parts).toHaveLength(5)
     expect(parts.every((n) => n.extras?.interaction === kind)).toBe(true)
   }
   const tacticalDetails = asset.nodes.filter((n) =>
     n.name.endsWith('_tactical'),
   )
-  expect(tacticalDetails).toHaveLength(3)
+  expect(tacticalDetails).toHaveLength(6)
   expect(
     tacticalDetails.every((n) => n.extras?.interaction === 'tactical'),
   ).toBe(true)
   expect(asset.cameras).toBeUndefined()
+  expect(asset.extensions?.KHR_lights_punctual).toBeUndefined()
   const data = (id: number, components: number) => {
     const a = asset.accessors[id],
       v = asset.bufferViews[a.bufferView]
@@ -99,6 +102,28 @@ it('the exported architecture leaves both physical monitor focus rays clear', ()
     }),
   )
   try {
+    // Blender owns the lower skin now; every perimeter segment must be closed.
+    for (let i = 0; i < BRIDGE_OUTLINE.length - 1; i++) {
+      const a = BRIDGE_OUTLINE[i]
+      const b = BRIDGE_OUTLINE[i + 1]
+      const outward = new Vector3(b[1] - a[1], 0, a[0] - b[0]).normalize()
+      for (const height of [0.15, 0.4, 0.7]) {
+        const boundary = new Vector3(
+          (a[0] + b[0]) / 2,
+          height,
+          (a[1] + b[1]) / 2 + BRIDGE_OFFSET_Z,
+        )
+        const origin = boundary.clone().addScaledVector(outward, -0.04)
+        const hits = new Raycaster(origin, outward, 0, 0.25).intersectObjects(
+          meshes,
+        )
+        expect(hits.length, `lower hull segment ${i}`).toBeGreaterThan(0)
+        // Raised service fittings may be closer; require the actual hull face too.
+        expect(hits.some((hit) => hit.point.distanceTo(boundary) < 0.001)).toBe(
+          true,
+        )
+      }
+    }
     // Frame seals must leave all four live displays clear, including the corners.
     for (const kind of [
       'computer',

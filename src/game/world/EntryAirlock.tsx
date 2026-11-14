@@ -111,8 +111,8 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
         <pointLight
           key={x}
           position={[x, 2.75, 15.15]}
-          color="#ffd4a4"
-          intensity={emergency ? 1 : 7}
+          color="#ffc17b"
+          intensity={emergency ? 1 : 9}
           distance={7}
           decay={2}
         />

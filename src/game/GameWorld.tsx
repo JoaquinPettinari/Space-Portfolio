@@ -11,7 +11,6 @@ import { TacticalStation } from './world/TacticalStation'
 import { PhysicalTerminal } from './world/PhysicalTerminal'
 import { HandheldTablet } from './world/HandheldTablet'
 import type { useProtocol } from './useProtocol'
-import { CrewDossier } from './world/CrewDossier'
 import { CrewAccess } from './world/CrewAccess'
 import { CrewIdentity } from './ui/CrewIdentity'
 import { RearWorkstation } from './world/RearWorkstation'
@@ -109,7 +108,6 @@ export function GameWorld({
         />
         <DockingHatch />
         <Workstation target={target} />
-        <CrewDossier target={target} />
         <CoffeeMachine state={coffee.state} target={target} />
         <ProjectPhoto />
         <CrewAccess

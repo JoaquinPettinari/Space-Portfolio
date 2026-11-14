@@ -1,5 +1,7 @@
 import { ENTRY_OFFSET } from './bridgeLayout'
 
+export const PANORAMIC_BAY_ASSET = '/models/cruz-del-sur-panoramic-bay.glb'
+
 export const PASSAGE_START = 5.1
 export const PASSAGE_DEPTH = ENTRY_OFFSET + 0.1
 export const PASSAGE_CENTER = PASSAGE_START + PASSAGE_DEPTH / 2

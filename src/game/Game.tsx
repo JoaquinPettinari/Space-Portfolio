@@ -131,19 +131,21 @@ export function Game({
         <color attach="background" args={['#030815']} />
         <ambientLight
           name="cabin-ambient"
-          intensity={lightsOn ? 0.65 : 0.25}
-          color="#9bbfe3"
+          intensity={lightsOn ? 0.5 : 0.2}
+          color="#dfbf94"
         />
-        <hemisphereLight args={['#a7dfff', '#16273c', lightsOn ? 1.4 : 0.45]} />
+        <hemisphereLight
+          args={['#ffe0b0', '#251b16', lightsOn ? 0.85 : 0.35]}
+        />
         <directionalLight
           position={[4, 8, -6]}
-          color="#d0edff"
-          intensity={lightsOn ? 2.4 : 0.8}
+          color="#ffd099"
+          intensity={lightsOn ? 2 : 0.7}
         />
         <directionalLight
           position={[-3, 4, 5]}
-          color="#84b6dc"
-          intensity={lightsOn ? 1.6 : 0.35}
+          color="#84afcd"
+          intensity={lightsOn ? 0.45 : 0.2}
         />
 
         <GameWorld

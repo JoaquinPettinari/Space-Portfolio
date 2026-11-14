@@ -21,7 +21,7 @@ test('detailed passage bay loads in isolation with orbit inspection and roof tog
   })
   await page.goto('/?architecture-preview&bay')
   await expect(
-    page.getByText('bay: 4.15 × 3.40 × 2.03 m; 20 meshes; 9144 triangles.'),
+    page.getByText('bay: 4.82 × 3.54 × 2.03 m; 17 meshes; 8304 triangles.'),
   ).toBeVisible({ timeout: 60000 })
   await expect(page.getByLabel('Module')).toHaveValue('bay')
   await page.getByRole('button', { name: 'View inside' }).click()
@@ -163,8 +163,7 @@ test('compact bow is reachable in front of the diagonal consoles, contains the p
   await enterObservationRoom(page)
   await walkTo(page, 2.6, 3.5 + BRIDGE_OFFSET_Z)
   await walkTo(page, 2.6, -1.5 + BRIDGE_OFFSET_Z)
-  await walkTo(page, 3.95, -1.8 + BRIDGE_OFFSET_Z)
-  await walkTo(page, 3.25, -1.9 + BRIDGE_OFFSET_Z)
+  // The perimeter desk now occupies the old starboard detour. Use its aisle.
   await walkTo(page, 0, -1.9 + BRIDGE_OFFSET_Z)
   await walkTo(page, 0, -3.3 + BRIDGE_OFFSET_Z)
   await lookAt(page, { x: 0, y: 0.67, z: -6.85 + BRIDGE_OFFSET_Z })
@@ -195,9 +194,7 @@ test('compact bow is reachable in front of the diagonal consoles, contains the p
     .toBeLessThan(1.8)
   expect((await snapshot(page)).maxEyeHeight).toBeLessThan(2.62)
   await walkTo(page, 0, -1.9 + BRIDGE_OFFSET_Z)
-  await walkTo(page, -3.25, -1.9 + BRIDGE_OFFSET_Z)
-  await walkTo(page, -3.95, -1.8 + BRIDGE_OFFSET_Z)
-  await walkTo(page, -3.95, -1.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, -1.9 + BRIDGE_OFFSET_Z)
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])

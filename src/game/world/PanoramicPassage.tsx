@@ -14,9 +14,9 @@ import {
   PASSAGE_CENTER,
   PASSAGE_DEPTH,
   PASSAGE_WALLS,
+  PANORAMIC_BAY_ASSET,
 } from './passageLayout'
 
-const ASSET = '/models/cruz-del-sur-panoramic-bay.glb'
 const collars = COLLAR_POLYGONS.map((points) => {
   const shape = new Shape()
   points.forEach(([x, y], i) =>
@@ -35,7 +35,7 @@ const collars = COLLAR_POLYGONS.map((points) => {
 
 /** Native-scale bays share cached geometry; only transparent materials are locally owned. */
 export function PanoramicPassage() {
-  const { scene } = useGLTF(ASSET)
+  const { scene } = useGLTF(PANORAMIC_BAY_ASSET)
   const { bays, materials } = useMemo(() => {
     const materials = new Map<Material, Material>()
     const materialFor = (material: Material) => {

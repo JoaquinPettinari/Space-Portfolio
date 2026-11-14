@@ -31,9 +31,9 @@ test.beforeEach(async ({ page }) => {
     description: 'Unexpected errors fail this test',
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await expect
     .poll(() => page.evaluate(() => !!window.__GAME_DEBUG__))
     .toBe(true)
@@ -495,71 +495,17 @@ test('focused tablet pauses movement, locates independent objectives and closes 
   ).not.toBeVisible()
 })
 
-test('rear crew dossier downloads with E and mouse hint only follows Escape', async ({
+test('rear alcove is decorative without a wall CV interaction', async ({
   page,
 }) => {
   test.setTimeout(120_000)
-  const hint = page.getByRole('button', { name: 'Resume mission' })
-  await expect(hint).not.toBeVisible()
-  await page.getByRole('button', { name: 'Mission tablet · T' }).click()
-  await page.getByRole('button', { name: 'Close tablet' }).click()
-  await expect(hint).not.toBeVisible()
-  await enter(page)
-  await page.keyboard.down('w')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z, {
-      intervals: [30, 50],
-    })
-    .toBeLessThan(2.6 + BRIDGE_OFFSET_Z)
-  await page.keyboard.up('w')
-  await page.keyboard.down('a')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.x, {
-      intervals: [30, 50],
-    })
-    .toBeLessThan(-3.1)
-  await page.keyboard.up('a')
-  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 + BRIDGE_OFFSET_Z })
-  // The lateral route can overshoot on a slow renderer. Finish the approach
-  // towards the visible panel instead of assuming timed walking reached it.
-  await page.keyboard.down('w')
-  try {
-    await expect
-      .poll(
-        async () => {
-          const { x, z } = (await snapshot(page)).cameraPosition
-          return Math.hypot(x + 3.25, z - 4.77)
-        },
-        { intervals: [30, 50] },
-      )
-      .toBeLessThan(2.3)
-  } finally {
-    await page.keyboard.up('w')
-  }
-  await lookAt(page, { x: -3.25, y: 1.65, z: 4.77 + BRIDGE_OFFSET_Z })
-  const rearView = await snapshot(page)
-  await test.info().attach('dossier-approach', {
-    body: JSON.stringify(rearView),
-    contentType: 'application/json',
-  })
-  expect(
-    Math.hypot(
-      rearView.cameraPosition.x + 3.25,
-      rearView.cameraPosition.z - (4.77 + BRIDGE_OFFSET_Z),
-    ),
-  ).toBeLessThan(2.8)
+  await enterObservationRoom(page)
+  await walkTo(page, -2.2, 0.5)
+  await lookAt(page, { x: -3.25, y: 1.65, z: 1.62 })
   await expect(
     page.getByText('E · Download crew dossier (CV / PDF)', { exact: true }),
-  ).toBeVisible()
-  const downloaded = page.waitForEvent('download')
-  await page.keyboard.press('e')
-  const file = await downloaded
-  expect(await file.failure()).toBeNull()
-  await expect(
-    page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('3 / 6 complete')
-  await page.keyboard.press('Escape')
-  await expect(hint).toBeVisible()
+  ).not.toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(true)
 })
 
 test('Space jumps once while held, lands and remains disabled in the focused tablet', async ({

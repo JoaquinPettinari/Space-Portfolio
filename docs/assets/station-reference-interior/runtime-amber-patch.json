@@ -1,0 +1,40 @@
+{
+  "assets": [
+    {
+      "filename": "cruz-del-sur-bridge-interior.glb",
+      "changedMaterials": [
+        "BRIDGE Counter finish",
+        "BRIDGE Deck finish",
+        "BRIDGE V15 Amber",
+        "BRIDGE V15 Graphite",
+        "BRIDGE V15 Ivory",
+        "BRIDGE V15 Metal"
+      ],
+      "bytesBefore": 21635420,
+      "bytesAfter": 21635820,
+      "sourceSha256": "1b1559d155f687c7352498769c9f01ec07d8784f532621473362ee393d044954",
+      "outputSha256": "ab6732cd4d4b71a5e1c2346ebf1b18667546eed834d1f84b376bf4191dfcb2ce",
+      "binaryChunkSha256": "1dd67fe0005308e00f1a0537a95fcc02364083a38bb4ec64419c5af110d7240a",
+      "geometryAndEmbeddedImagesUnchanged": true,
+      "meshBatches": 39
+    },
+    {
+      "filename": "cruz-del-sur-arrival-room.glb",
+      "changedMaterials": [
+        "ARRIVAL V4 Amber lamps runtime",
+        "ARRIVAL V4 Graphite frame runtime",
+        "ARRIVAL V4 Ivory cabinets runtime",
+        "ARRIVAL V4 Warm grey panels runtime"
+      ],
+      "bytesBefore": 9449244,
+      "bytesAfter": 9449428,
+      "sourceSha256": "4930e4a8b8f7bb5a3ddcc562187b76452521ec8f1dba2a78eb10e1452fe1538c",
+      "outputSha256": "d4ac4cf3f08e869bf38f2385ae59b577543983d11e0b169a51df668003489d6c",
+      "binaryChunkSha256": "79be5d7ceab51cc6ff42b06dc326912f810027cb0d2c398d8b178b849f038172",
+      "geometryAndEmbeddedImagesUnchanged": true,
+      "meshBatches": 15
+    }
+  ],
+  "panoramicPassageSha256": "1a174eb7b69c69318df2338d2330c688a63672b3d7212b7f03aa6b30d8099868",
+  "panoramicPassageModified": false
+}

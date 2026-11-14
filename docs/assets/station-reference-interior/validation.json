@@ -1,0 +1,44 @@
+{
+  "scene": "Station / Reference interior and Cruz del Sur",
+  "visible_station_meshes": 3526,
+  "station_source_faces": 34677,
+  "nonfinite_station_objects": [],
+  "zero_area_face_station_objects": [],
+  "missing_external_images": [],
+  "ship_is_real_collection_instance": true,
+  "ship_source_objects": 1858,
+  "ship_position": [0.0, 83.0, 4.599999904632568],
+  "ship_visibility_ray_hits": ["CDS | Overhanging bridge roof"],
+  "ship_visible_from_observation": true,
+  "original_cabin_objects": 2300,
+  "original_cabin_stays_hidden": true,
+  "new_station_separate_scene": true,
+  "ship_cabin_fitted_to_exterior": false,
+  "traversable_docking_connection": false,
+  "runtime_integrated": false,
+  "panoramic_passage_matches_game_v2": true,
+  "lightweight_edit_preview_present": true,
+  "panoramic_passage_glass_rays": [
+    {
+      "hit": "STN GLASS BAY 2 / V2 GLASS side facet -1 0",
+      "point": [-1.856533408164978, -8.149999618530273, 0.5],
+      "glass": true
+    },
+    {
+      "hit": "STN GLASS BAY 2 / V2 GLASS side facet 1 1",
+      "point": [2.0439999103546143, -8.149999618530273, 1.7000000476837158],
+      "glass": true
+    },
+    {
+      "hit": "STN GLASS BAY 2 / V2 GLASS side facet -1 2",
+      "point": [-1.893291711807251, -8.149999618530273, 2.700000047683716],
+      "glass": true
+    },
+    {
+      "hit": "STN GLASS BAY 2 / V2 GLASS roof.001",
+      "point": [0.75, -8.149999618530273, 3.194000005722046],
+      "glass": true
+    }
+  ],
+  "notes": "Single-surface glass, display cards and decorative leaves are intentional; source study is not a collider model."
+}

@@ -54,7 +54,7 @@ export function ShipHull() {
               args={[edge.length / 2, height / 2, 0.1]}
               position={[0, height / 2, 0]}
             />
-            <Plate at={[0, 0.4, 0]} size={[edge.length, 0.8, 0.2]} />
+            {/* Lower hull skin is supplied by the Blender interior. */}
             <HullPanel
               glass
               side={FrontSide}
@@ -91,10 +91,9 @@ export function ShipHull() {
             args={[0.1, 1.65, 2.35]}
             position={[side * 4.8, 1.65, 2.75]}
           />
-          <Plate at={[side * 4.8, 0.55, 2.75]} size={[0.2, 1.1, 4.7]} />
           <Plate
-            at={[side * 4.8, 2.2, 2.75]}
-            size={[0.2, 2.2, 4.7]}
+            at={[side * 4.8, 2.05, 2.75]}
+            size={[0.2, 2.5, 4.7]}
             color="#b1b0a6"
           />
           {[1.2, 4.45].map((z) => (

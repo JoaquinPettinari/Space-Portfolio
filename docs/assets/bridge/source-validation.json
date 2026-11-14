@@ -1,0 +1,66 @@
+{
+  "scene": "Bridge - Finished Interior",
+  "meshes": 2697,
+  "evaluatedTriangles": 261780,
+  "materials": 13,
+  "textures": [
+    {
+      "name": "BRIDGE Counter finish ORM",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE Deck finish ORM",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Graphite-color",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Graphite-orm",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Ivory-color",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Ivory-orm",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Metal-color",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 Metal-orm",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "BRIDGE V15 micro-normal",
+      "size": [512, 512],
+      "packed": true
+    },
+    {
+      "name": "central-navigation.png",
+      "size": [2048, 512],
+      "packed": true
+    }
+  ],
+  "previewLights": 4,
+  "exactDuplicateMeshes": [],
+  "screenRayCount": 36,
+  "screenObstructions": [],
+  "routeSampleCount": 498,
+  "minimumSampledClearanceMetres": 0.4000000059604645,
+  "routeObstructions": [],
+  "limits": "Sampled Blender visual geometry only. No runtime export, physics, Pointer Lock, browser performance or visual screenshot verification."
+}

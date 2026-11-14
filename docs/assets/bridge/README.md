@@ -1,6 +1,374 @@
 # Industrial bridge interior
 
+## Blender-only combined interior/exterior review
+
+### Whole-vessel primary-form reset
+
+First detail pass on the approved extended form: `detail-primary-armor-live.py`
+adds `SHIP / Large armor panels` (62 pieces, 2,728 evaluated triangles), fitting
+each panel to the actual hull station geometry. Upper deck armor is split into
+two lanes with a central seam; lateral plates follow the faceted body. Faces are
+inset and offset 0.025–0.085 m from the base to avoid coplanar overlays. Original
+forms, dimensions and hidden interior remain unchanged. Mesh indices/manifold
+edges and protected-file checksum were checked. Working-copy save only; no app
+export, runtime performance measurement or claim of completed cabin integration.
+
+Bow proportion adjustment (`lengthen-primary-bow-live.py`): extends only the
+continuous hull and foredeck beyond Blender Y=8.7, moving the tip from Y=20 to
+Y=30. Overall length is now 49.13 m; forward reach beyond the bridge is 21.3 m,
+versus 16.98 m aft (unchanged). Beam, heights, bridge, stern, engines and interior
+are unchanged. No extra geometry or detail; copy-only save, original hash checked.
+
+`blockout-whole-ship-live.py` creates `SHIP / Primary forms` in the isolated
+working copy. Previous exterior and interior collections are hidden, not deleted.
+Ten simple closed meshes (584 triangles) establish a continuous flattened hull,
+broad blunt prow, aft body, raised bridge and integrated engine masses. Overall
+proportions: 39.13 m long, 14.4 m beam, 7.85 m high. The viewport uses solid
+material colors to review silhouette without detail or lighting distractions.
+Mesh indices/manifold edges and unchanged original transforms were checked.
+Protected original SHA256 remains unchanged. These masses are an exterior design
+study: the opaque window-band placeholder and solid bridge volumes are not ready
+for interior views, collision integration or export. Manual reference comparison
+and interior fit remain pending; previous window-clearance results do not apply
+to these new primary forms. No React or public asset changes.
+
+Current work continues in `crash-investigation/bridge-antennas-validated.blend`,
+not the protected original. `refine-exterior-copy-live.py` adds 50 roof-finish
+pieces / 2,200 evaluated triangles: layered side inserts, fasteners, rear marker
+lenses and antenna receiver cabinets. Its box helper uses local immutable topology
+and validates indices before mesh creation. Six service window rays and the full
+source checks pass. Materials/lights are reused; original SHA256 remains unchanged.
+A single rolling `.blend1` backup belongs to the working copy only. No runtime
+export or performance measurement; rendered appearance remains for manual review.
+
+`build-exterior-stern-live.py` adds `EXTERIOR / Stern and engines`: two stepped
+lateral stern pods, service panels, cooling fins and open octagonal nozzle shrouds
+with recessed cyan cores. 69 pieces / 8,372 evaluated triangles, shared materials,
+no added lights. The central access remains open; the cross member is below the
+floor. Six window-service views, nine horizon rays and full source geometry
+checks pass. Original objects/interaction metadata are unchanged. Saved source
+only; no GLB export, runtime tests or rendered visual verification for this pass.
+
+New spacecraft side-reference study: `shape-exterior-reference-live.py` adds
+`EXTERIOR / Stepped silhouette`, with an elongated low prow and layered lateral
+shoulders, dark panels, amber lenses and restrained cyan accents. 57 pieces /
+6,316 evaluated triangles, existing materials, no added lights or textures.
+Six service-view rays and nine horizon rays still pass. Interior transforms and
+metadata remain unchanged. This is a partial silhouette study around the bridge,
+not a complete recreation of the reference spacecraft; rendered appearance needs
+manual review. No app export or runtime performance claim.
+
+Window-view correction: `adjust-exterior-window-views-live.py` raises the 38
+paired service-bay fittings by 0.35 m onto ten supporting fairing/vent pieces.
+They previously sat behind the 0.92 m sill. Six actual scene rays from three
+standing positions per side now reach the service fittings first, and nine
+horizontal exterior rays remain clear. Results are recorded in
+`exterior-window-validation.json`. Interior transforms/metadata are unchanged.
+This supersedes the service-bay occlusion limitation below; it does not claim
+visibility from every position behind a monitor. No app export was performed.
+
+`detail-exterior-service-live.py` adds 49 source-only service fittings (5,568
+evaluated triangles): paired framed cooling bays, amber lenses, hatch hinges and
+fasteners, and a circular bow inspection collar. Existing objects and materials
+are unchanged. Source screen/route/duplicate checks pass. Low exterior fittings
+are partly occluded by desks/monitor backs from sampled interior positions;
+their composition through the windows still needs manual review. No runtime
+export or performance measurement was performed for this source-only pass.
+
+The subsequent `refine-exterior-shoulders-live.py` pass adds a nested
+`EXTERIOR / Shoulder plating` collection: diagonal window undertrays, segmented
+armor, ribs, conduits/clamps, lifting sockets and maintenance markings. 48 pieces,
+5,184 evaluated triangles, shared materials and no additional lights/textures.
+Original object transforms and interaction metadata remain unchanged. Nine
+horizontal exterior sightlines at 1.7 m eye height are clear; full source checks
+also pass. The viewport is positioned inside the bridge toward a diagonal window
+for manual appearance review. No app export or browser performance claim.
+
+`build-exterior-source-live.py` adds `EXTERIOR / Upper hull` to the same
+`bridge-interior-final.blend`, separate from `BRIDGE / EDITABLE`. Central command
+and desk finish collections now belong under the interior collection. The rear
+recess assemblies and their plant/case dressing were facing aft; they are reflected
+about the wall center so their openings face into the bridge. Panoramic glazing
+anchors are unchanged. This corrects the recess orientation, not a runtime export.
+
+The exterior has 74 editable pieces: continuous skin, armor tiles, segmented edge
+rails, heat exchangers, hatches, low sensor pod and amber markers. Existing shared
+materials are reused. The source now has 228,002 evaluated triangles, 13 materials
+and four unchanged preview lights. Validation passed: 338 interaction-tagged parts
+retain transforms/metadata, 36 screen rays clear, 498 route samples clear, no exact
+duplicate meshes. The existing backup holds the scene before this pass.
+
+No React or public GLB changes were made for this pass. Browser performance and
+final appearance must be checked when exporting later; source geometry checks do
+not establish either. The previously published procedural exterior is still in
+React and must be replaced rather than duplicated on eventual integration.
+
+## Visible exterior deck detail
+
+Second detail pass: tapered segmented perimeter armor, cable trays with retaining
+straps, chamfered shoulder hatches with dark gaskets and a low sensor blister.
+All additions use the same four static batches and remain within the tested
+footprint and height envelope. No collider, interaction, texture or light changes.
+`npm run check` passed (190 tests). Native bow traversal, containment and exterior
+visibility E2E passed. An isolated performance run at 1280×720 / DPR 1 on Intel
+UHD measured 13.7 ms median / 14.9 ms p95 over 90 frames. Draw calls remain 120;
+triangles rise by 404 to 256,966; textures/geometries/programs stay unchanged.
+The small timing difference from the first pass is sample variation, not a claimed
+optimization. Appearance remains subject to manual review from the windows.
+
+The existing React exterior skin now includes separated armored tiles, a central
+service spine, paired heat-exchanger slats, maintenance hatches, handles and warm
+markers. `src/game/world/exteriorDeck.ts` builds static geometry from the existing
+`NOSE_DECK` slope/footprint and merges it into four material groups. There are no
+new textures, dynamic lights, per-frame updates or dependencies. The deck remains
+one named mesh for visibility diagnostics and stays outside the playable hull.
+This pass lives in React, separately from the editable Blender interior; neither
+PAMPA-07 study asset is used. Original red/cyan navigation lights are raised above
+the new panels. No interior collider or interaction anchor is changed.
+
+Unit checks cover the exterior footprint, low profile, geometry/group budget and
+actual separation between panel and continuous skin (avoiding coplanar overlap).
+Visual comparison to the references remains a manual review.
+
+Validation: `npm run check` passed (190 tests, typecheck, lint, format and build).
+Native Archive interaction/CV/Pointer Lock and bow traversal/containment/jump
+E2Es passed. The bow test's obsolete desk-crossing waypoints were moved into
+the current aisles; its assertions and actual gameplay inputs remain intact.
+The isolated performance E2E passed: Intel UHD, 1280×720, DPR 1, 90 samples,
+median 14.0 ms / p95 16.2 ms (~71 FPS in this view), 120 calls / 256,562 triangles
+(+3 calls / +852 triangles). Resources remain 229 geometries, 25 textures and
+19 programs. This short sample does not guarantee performance in every view.
+No screenshots or videos were generated.
+
+## Four desks and chairs — single-screen reference pass
+
+`scripts/assets/refine-desks-seats-reference-live.py` updates the current editable
+bridge and its GLB. All four stations retain their single physical display,
+screen anchors, interaction extras and existing colliders. No spacecraft-study
+asset is imported. The room was not enlarged: its 1.10 m knee bays and circulation
+already accommodate this pass.
+
+Seats replace boxy rear armor/arms with tapered shoulder shells, separate headrest
+support, open bent brackets, soft arm pads, narrow rear rails and adjustment
+paddles. Existing upholstery and five-spoke bases remain. Rubber casters retain
+their 12-sided silhouette without unnecessary bevel tessellation. Evaluated seat
+vertices (including bevels) were checked against the original 0.84 m square /
+1.30 m high collision envelopes.
+
+Desks add three-drawer fronts beside each knee bay, recessed pulls, warm strips,
+forearm pads, mouse/pad and cable grommets. These are decorative fittings, not new
+interaction targets. Existing keyboards, monitor frames and central navigation
+console remain. Source validation: 36 clear monitor rays, 498 route samples,
+minimum sampled clearance 0.4 m, no exact duplicate meshes. Manual visual review
+remains necessary; geometry checks are not a rendered-reference comparison.
+
+Export: 39 batches and 13 materials unchanged; 219,954 triangles (+10,288),
+21,635,420 bytes. Shared materials and the existing BVH remain in use. The
+single `bridge-interior-backup.blend` holds the source before this pass.
+
+Validation: `npm run check` passed (188 tests, typecheck, lint, format and build).
+Four native E2Es passed for Archive, Communications, Personal and Recreation,
+including actual E interaction, keyboard navigation, CV and Pointer Lock return.
+The isolated roof benchmark also passed: Intel UHD, 1280×720, DPR 1, 90 frames,
+median 14.3 ms / p95 16.2 ms (~70 FPS in that view), 117 calls / 255,710 triangles.
+Resources remain 229 geometries, 25 textures and 19 programs. Previous console
+pass was 14.0 ms median; this short sample is not a guarantee for all views or
+hardware. No screenshots/videos were generated. Existing deprecation/chunk-size
+warnings remain.
+
+## Central command console — reference pass
+
+The center of the existing 3.2 m bow desk now has a layered, chamfered 2.46 ×
+0.77 m monitor housing with a 2.24 × 0.56 m display, two small side readouts,
+sloped controls, tactile keys/toggles, amber practical strips, two louvered vents
+and a central maintenance hatch. It follows the owner's central-console image
+within the existing desk footprint; the four interactive computers are unchanged.
+Navigation graphics are static decorative instrumentation, not live mission
+telemetry or a fifth interactive computer. Visual fidelity is for manual review.
+
+Reproducible source: `scripts/assets/build-central-command-live.py` in live
+Blender, and `scripts/assets/create-central-navigation.mjs` for the original SVG
+and packed 2048 × 512 PNG (canvas rasterization, not a screenshot). Editable file:
+`bridge-interior-final.blend`; the single backup precedes this console pass.
+44 obsolete center trim/readout pieces were replaced by 132 editable pieces.
+Export: 39 material/interaction batches, 13 materials, 209,666 triangles,
+20,506,900 bytes. One additional navigation material is shared by four displays;
+existing BVH acceleration, physics, monitor focus positions and input are retained.
+Source checks: 36 unobstructed monitor rays, 498 route samples with minimum 0.4 m
+clearance, no exact duplicate meshes. These do not replace manual visual review.
+
+Validation for this console: `npm run check` passed (188 tests, typecheck, lint,
+format and build), plus three native E2Es for transition/table, Communications
+and Archive (including E, CV download and Pointer Lock exit). The first check
+stopped on generated JSON formatting; it was formatted and the full check rerun.
+Isolated roof benchmark: Intel UHD, 1280×720, DPR 1, 90 frames, median 14.0 ms,
+p95 15.8 ms (~71 FPS in that view); 118 calls / 245,746 triangles, 229 geometries,
+25 textures, 19 programs. No screenshots/videos. Existing deprecation and
+large-chunk warnings remain. New instrument graphics are original and editable.
+
+## Raycast optimization — 2026-11-13
+
+`BridgeInterior` now uses Drei `Bvh indirect`: an exact spatial index for its 38
+static batches. Original triangle indices, materials, interactions and colliders
+remain intact. Drei constructs the index on mount and disposes it/restores raycast
+on unmount. No new dependencies or asset/lighting/resolution changes. CPU memory
+and initial index construction cost increase; peak memory/cold load were not
+measured in this pass.
+
+The earlier 34.1 ms measurement below included a full diagnostic `snapshot()`
+every frame, including its own exterior-visibility raycast. It overstated normal
+frame cost. The benchmark now uses a lightweight, read-only `performance()`
+sample (dev/test only). Do not compare that old number directly to the new one.
+
+Controlled native Chromium comparison: Intel UHD, 1280×720, DPR 1, Blender Solid,
+reduced motion, actual walking/credential interaction to the same bridge view.
+120 rAF samples after 40 warmup frames:
+
+| Configuration                      | Before median | After BVH median |
+| ---------------------------------- | ------------: | ---------------: |
+| Normal gameplay                    |       20.7 ms |          13.9 ms |
+| Raycasts temporarily disabled      |       13.9 ms |          13.9 ms |
+| Internal resolution reduced to 65% |       20.8 ms |           7.0 ms |
+
+Normal p95: 21.0 → 14.1 ms. This isolates a CPU raycast bottleneck and improves
+this view from approximately 48 to 72 FPS without visual reduction. A subsequent
+90-frame lightweight measurement gave median 13.8 ms / p95 16.2 ms. Counts:
+115 calls / 234,181 triangles vs 116 / 234,193 before (minor native navigation /
+frustum difference), unchanged 228 geometries, 24 textures, 18 programs.
+These short samples do not guarantee sustained 60 FPS at every resolution/view.
+
+Reproduce in PowerShell without concurrent builds/rendered Blender previews:
+
+```powershell
+$env:PROFILE_BRIDGE='1'
+npx playwright test --config playwright.monitor.config.ts e2e/roof-performance.spec.ts
+Remove-Item Env:PROFILE_BRIDGE
+```
+
+`e2e/helpers/profileBridge.ts` performs optional test-only ablations through the
+installed Fiber/Vite development internals. A `finally` restores all raycasts and
+pixel ratio. It never enters production or exposes gameplay shortcuts. Ablations
+diagnose cost; separate normal E2E scenarios validate interactions. No automatic
+screenshots/videos; manual visual review remains with the owner.
+
+Validation: `npm run check` passed (188 unit/DOM tests, typecheck, lint, format,
+production build). All five native interaction E2Es passed: transition / Crew
+Access / bulkhead / table, Communications, Personal, Recreation and Archive.
+The roof measurement passed, as did `npm run test:e2e:production`, including
+accessible-mode unmount/reentry and absence of the debug API in production.
+The first pre-optimization measurement attempt failed native mouse convergence
+before reaching the bridge; its repeat passed and supplied the baseline above.
+Existing THREE.Clock/Rapier deprecations and large-chunk build warning remain.
+
+## React integration of the finished bridge
+
+The finished source is now exported to `public/models/cruz-del-sur-bridge-interior.glb`
+with `scripts/assets/export-finished-bridge-live.py`. Earlier source-only notes
+below describe the development history and no longer indicate integration status.
+The export contains 38 material/interaction batches, 12 materials, nine embedded
+images and 198,437 triangles; download size is 18,700,624 bytes. Four Blender preview
+lights and cameras are excluded. One shared linear/mipmap sampler is exported;
+Blender's multiple-image sampler warning did not produce conflicting samplers.
+
+React retains the opaque roof skin, panoramic roof/wall glazing, upper side walls,
+exterior hull and all original colliders. These already close the upper room;
+they were not duplicated in the GLB. `ShipHull` removes its old lower skin and
+extends the upper side panels down to Y=0.8, meeting the Blender lower perimeter.
+The source-only Blender file therefore remains an interior asset, not a standalone
+copy of every runtime hull/glass component. Screens, mission state and input
+controllers are unchanged. The asset tests verify all seven lower perimeter
+segments, screen apertures, knee openings, floor and entry clearance and metadata.
+
+Integration validation: `npm run check` passed all 188 unit/DOM tests, typecheck,
+lint, format and build. Six native Chromium E2E scenarios passed: transition /
+Crew Access / bulkhead / table, Communications, Personal, Recreation, Archive,
+and roof measurement. No screenshots/videos were generated. An isolated repeat
+with Blender switched to Solid measured median 34.1 ms / p95 37.4 ms over 90 frames
+on Intel UHD at 1280x720, DPR 1: 116 draw calls, 234,193 visible triangles,
+228 geometries, 24 textures, 18 programs. The initial concurrent run was 71.3 ms
+median with Blender rendered and other checks active; it is not comparable.
+The isolated result is approximately 29 FPS, not evidence of sustained 60 FPS.
+Existing THREE.Clock/Rapier deprecation and build chunk-size warnings remain.
+
 ## Current editable sources — consolidated
+
+Joint review: `scripts/assets/fix-bridge-trim-joints-live.py` replaces 21 sill,
+counter-seal and protective-nosing segments with exact shared miter joints.
+A polygon-intersection review identified 14 genuine coplanar overlaps among the
+previous straight-ended pieces (rather than relying on axis-aligned bounds).
+Exact polygon clipping of all repaired top faces subsequently found no
+positive-area overlap. Other geometry/anchors and interaction metadata remain
+unchanged. Source screen/route checks passed again (36 rays / 498 samples).
+Evaluated triangles are now 198,437. The backup precedes this repair.
+This is a geometric review, not a rendered image comparison or confirmation
+that every possible source of runtime flicker has been eliminated.
+
+### Completed source polish and audit
+
+`scripts/assets/polish-bridge-source-live.py` gives 78 deck parts and seven
+countertops independent PBR finishes while retaining their dark graphite and
+off-white colors. Two packed 512px ORM maps provide low-contrast roughness
+variation. Forty-two prominent bevels have smoother silhouettes, including
+upholstery, counter edges and the tactical rim. No raw vertices, object anchors
+or interaction metadata changed. Objects are organized into nine editable
+subsystem collections under `BRIDGE / EDITABLE`; preview lights are isolated.
+
+`scripts/assets/validate-bridge-source-live.py` writes `source-validation.json`.
+The complete evaluated scene passed 36 monitor-clearance rays and 498 sampled
+circulation-clearance checks around both sides of the table. No exact-position
+duplicate meshes or unpacked textures were found. These are geometric source
+checks, not a substitute for runtime physics or browser visual/performance tests.
+
+Current source: 2,036 editable meshes, 200,453 evaluated triangles, 12 materials,
+nine packed 512px textures and four preview lights. The texture estimate is
+approximately 12 MiB at uncompressed RGBA8 with mipmaps, excluding framebuffers,
+geometry and other runtime assets. No runtime draw-call claims are made.
+The final file opens in an eye-level entrance perspective, without adding a
+camera or generating renders/captures. The compact backup precedes this polish.
+The Blender design pass is complete for this iteration; nothing was exported
+to `public/models` or integrated into the app.
+
+Latest cohesive pass (Blender only):
+
+- `scripts/assets/refine-bridge-instruments-live.py` replaces 24 flat auxiliary
+  parts with six sloped instrument pods (dark insets, restrained vector diagrams,
+  tactile keys and captive fixings), and adds open retaining frames to ten ceiling
+  diffusers. All four main monitor assemblies and anchors are preserved.
+- `scripts/assets/dress-bridge-niches-live.py` adds two compact equipment cases
+  to the outer port recess and a planter with 28 shaped leaves to the opposite
+  recess. All dressing vertices were checked inside the existing recess bounds;
+  other niches stay available for personal memorabilia. These are decorative,
+  not additional missions or interaction targets.
+- After both stages, 36 rays against the complete evaluated scene found no
+  obstruction across the four main screen rectangles. Ten lamp-center rays
+  against new instrument/housing geometry also passed. No runtime/browser tests
+  were run because the app and exported models did not change.
+- Current editable source: one scene, 2,036 meshes, 193,269 evaluated triangles,
+  ten materials, four preview lights. This is not a runtime performance measurement.
+  No new textures; final/backup filenames are reused. Backup precedes both stages.
+
+Industrial finishing pass (`scripts/assets/finish-bridge-industrial-pass-live.py`):
+cabinet handle sockets, hinges, service stencils and caution inlays, protective
+counter lips, tactical service latches/markings and opaque-roof junction shoes.
+Adds 161 parts and one non-emissive safety-paint material. Cabinet fittings stay
+on occupied support spans; no strips span the knee bays. Tactical markings are
+placed on the existing service insets rather than floating above the pedestal.
+45 ray checks against evaluated new geometry passed across the four monitor
+rectangles and tactical opening before the stencil placement refinement.
+Existing object transforms/metadata are unchanged; four preview lights retained.
+Current evaluated source: 1,814 meshes / 179,105 triangles. These are editable
+source counts, not runtime draw calls or measured frame performance. No export.
+The compact backup contains the state immediately before this finishing pass.
+Visual review remains manual; no screenshots or videos were generated.
+
+Panoramic-frame finish: six warm diffuser assemblies with retaining rails,
+end caps, fixings and twelve reinforcing collars now follow the existing window
+armor. Script: `scripts/assets/detail-bridge-window-fixtures-live.py` (run once
+on the preceding final source). This adds 72 editable fittings using existing
+materials, no textures or actual lights. Original transforms and interaction
+metadata were asserted unchanged. The four preview lights remain unchanged.
+Final and compact backup filenames are reused; the backup precedes this pass.
+Manual visual inspection remains pending; no app export or browser tests.
 
 - `bridge-interior-final.blend`: finished Blender-only bridge, one scene.
 - `bridge-interior-backup.blend`: compact rollback before final finishing.

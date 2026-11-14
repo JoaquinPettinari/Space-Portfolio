@@ -1,5 +1,38 @@
 # Arquitectura
 
+## Corrección visual y nave de referencia — 2026-11-14
+
+Corrección de interpretación posterior: el jugador está dentro de la nave,
+en su módulo superior. `PlayerShipHull` se monta en `Greybox` con coordenadas
+de mundo ya ajustadas; no forma parte de `SpaceExterior` ni de la órbita.
+La copia distante se retiró. Se conservan llegada, punto de inicio, puerta,
+controles y colisiones. La arquitectura jugable constituye la piel de la cubierta
+superior y el casco Blender adaptado se une por debajo.
+
+`scripts/assets/fit-player-ship.mjs` conserva la exportación original, ajusta una
+copia y recorta triángulos contra los volúmenes de despeje. No descarta caras
+completas por su bounding box. Agrega una base a Y=-0.251, separada del piso
+visible, y conserva el casco inferior/proa/motores. La torre cerrada de exhibición
+se sustituye por la arquitectura real del juego para evitar vidrios opacos,
+techos duplicados y piezas atravesando las salas. El exterior necesita este
+ajuste porque el recorrido es más largo que la torre del modelo de referencia.
+
+`playerShipHullAsset.test.ts` comprueba casco por debajo de puente/pasillo/llegada,
+despeje de vistas laterales/superiores y presupuesto del GLB adaptado. El color
+ámbar se conserva: cambiar RGB no reduce el coste de las luces; importan su
+número, sombras, alcance y el coste de materiales/reflejos.
+
+Se retira el panel de CV de la pared trasera para dedicar ambos nichos a
+decoración. CV y su objetivo siguen disponibles en Central Archive y Personal
+Workstation; la alternativa DOM se conserva. `BridgeInterior` cierra los reversos
+de los nichos vistos desde el pasillo de vidrio. Se retiran una planta antigua
+fuera del volumen útil y tres paneles de casillero desprendidos de la llegada,
+sin mover colliders ni anclajes de estaciones.
+
+La colocación anterior de `ReferenceShip` fuera de una estación fue una
+interpretación incorrecta y está sustituida por `PlayerShipHull`. Exportación, backups,
+presupuesto y evidencia visual: `assets/station-reference-interior/README.md`.
+
 ## Arrival footprint V10 — 2026-11-11
 
 The arrival room now expands 1.5× in plan (8.4 × 6.195 m before the port bow),

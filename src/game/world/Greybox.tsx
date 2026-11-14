@@ -1,5 +1,6 @@
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { SpaceExterior } from './SpaceExterior'
+import { PlayerShipHull } from './PlayerShipHull'
 import { BRIDGE_OFFSET_Z, TRANSITION_CENTER } from './bridgePlacement'
 import { ShipHull } from './ShipHull'
 import { BridgeFloor } from './BridgeFloor'
@@ -88,6 +89,7 @@ export function Greybox({
   return (
     <group>
       <SpaceExterior />
+      <PlayerShipHull />
       <group position={[0, 0, BRIDGE_OFFSET_Z]}>
         <CabinLighting emergency={emergency} />
       </group>

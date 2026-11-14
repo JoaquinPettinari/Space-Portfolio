@@ -1,3 +1,4 @@
+import { profileBridge } from './helpers/profileBridge'
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
 import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
@@ -17,6 +18,8 @@ test('measures the roof from a repeatable native gameplay view', async ({
   await enterObservationRoom(page)
   await walkTo(page, 0, 3.3 + BRIDGE_OFFSET_Z)
   await lookAt(page, { x: 0, y: 3.2, z: -6 + BRIDGE_OFFSET_Z })
+  if (process.env.PROFILE_BRIDGE)
+    console.log('BRIDGE_ABLATION', JSON.stringify(await profileBridge(page)))
   const result = await page.evaluate(async () => {
     const frame = () =>
       new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
@@ -24,7 +27,7 @@ test('measures the roof from a repeatable native gameplay view', async ({
     const samples = []
     for (let i = 0; i < 90; i++) {
       await frame()
-      const s = window.__GAME_DEBUG__!.snapshot()
+      const s = window.__GAME_DEBUG__!.performance()
       samples.push({
         frameMs: s.frameMs,
         drawCalls: s.drawCalls,

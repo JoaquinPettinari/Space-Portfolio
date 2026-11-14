@@ -37,7 +37,7 @@ export const missions: { id: ObjectiveId; title: string; action: string }[] = [
     id: 'dossier',
     title: 'Download crew dossier',
     action:
-      'Rear starboard → Personal Workstation · Press E, then open Crew Dossier.pdf or choose Skip dossier. The wall panel and Central Archive also offer the real CV.',
+      'Rear starboard → Personal Workstation · Press E, then open Crew Dossier.pdf or choose Skip dossier. Central Archive also offers the real CV.',
   },
 ]
 
