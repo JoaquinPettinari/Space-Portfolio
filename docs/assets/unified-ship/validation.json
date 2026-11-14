@@ -1,0 +1,59 @@
+{
+  "scene": "CRUZ DEL SUR / Unified compact vessel",
+  "newEvaluatedTriangles": 38130,
+  "newEditableMeshes": 371,
+  "meshObjectsInScene": 861,
+  "previewLights": 8,
+  "nonfiniteObjects": [],
+  "degenerateNewTriangles": 0,
+  "centralClearanceRays": [
+    {
+      "x": -0.75,
+      "height": 0.5,
+      "clear": true
+    },
+    {
+      "x": -0.75,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.75,
+      "height": 2.35,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.5,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.35,
+      "clear": true
+    },
+    {
+      "x": 0.75,
+      "height": 0.5,
+      "clear": true
+    },
+    {
+      "x": 0.75,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.75,
+      "height": 2.35,
+      "clear": true
+    }
+  ],
+  "sixLateralPanoramicRaysClear": true,
+  "runtimeFilesModified": false,
+  "fpsMeasured": false
+}

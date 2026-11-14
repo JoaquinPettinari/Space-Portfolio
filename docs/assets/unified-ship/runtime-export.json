@@ -1,0 +1,35 @@
+{
+  "assets": [
+    {
+      "file": "cruz-del-sur-unified-envelope.glb",
+      "sourceObjects": 370,
+      "batches": 33,
+      "triangles": 114135,
+      "bytes": 8201664,
+      "collisionOnly": false,
+      "localOriginZ": 0
+    },
+    {
+      "file": "cruz-del-sur-unified-collision.glb",
+      "sourceObjects": 134,
+      "batches": 1,
+      "triangles": 1698,
+      "bytes": 91500,
+      "collisionOnly": true,
+      "localOriginZ": 0
+    },
+    {
+      "file": "cruz-del-sur-unified-arrival.glb",
+      "sourceObjects": 373,
+      "batches": 14,
+      "triangles": 62317,
+      "bytes": 7186336,
+      "collisionOnly": false,
+      "localOriginZ": 12.07
+    }
+  ],
+  "sourceModified": false,
+  "previewLightsExported": false,
+  "movingDoorPlaceholdersExported": false,
+  "bridgeGlassDuplicated": false
+}

@@ -162,3 +162,8 @@ export const ARRIVAL_FURNITURE: Box[] = [
     halfSize: [0.18, 0.9, 0.5],
   })),
 ]
+
+/** Retain the original floor footprint; unified structural mesh owns walls/roof. */
+export const ARRIVAL_FLOOR_HULLS = ARRIVAL_SHELL_HULLS.filter((vertices) =>
+  Array.from(vertices).every((value, i) => i % 3 !== 1 || value <= 0.0001),
+)

@@ -123,8 +123,15 @@ test('reviews the panoramic passage through real gameplay and records render cos
   await expect
     .poll(async () => (await snapshot(page)).pointerLocked)
     .toBe(false)
-  const resume = page.getByRole('button', { name: 'Resume' })
-  if (await resume.isVisible()) await resume.click()
+  // Pointer Lock releases before React commits the pause overlay. Wait for the
+  // actual resume control instead of racing a canvas click behind the dialog.
+  const resume = page.getByRole('button', {
+    name: 'Resume mission',
+    exact: true,
+  })
+  await expect(resume).toBeVisible()
+  await resume.click()
+  await expect(resume).not.toBeVisible()
   await enter(page)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Bvh, useGLTF } from '@react-three/drei'
 import {
   ConvexHullCollider,
   CuboidCollider,
@@ -9,15 +9,15 @@ import { Mesh, type Material } from 'three'
 import { BULKHEAD_POCKET_PANELS } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
 import {
-  ARRIVAL_BOXES,
   ARRIVAL_FURNITURE,
   ARRIVAL_ORIGIN_Z,
-  ARRIVAL_SHELL_HULLS,
+  ARRIVAL_FLOOR_HULLS,
 } from './arrivalRoomLayout'
+import { UNIFIED_ARRIVAL_ASSET } from './unifiedShipAssets'
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
-  const { scene } = useGLTF('/models/cruz-del-sur-arrival-room.glb')
+  const { scene } = useGLTF(UNIFIED_ARRIVAL_ASSET)
   const model = useMemo(() => {
     const root = scene.clone(true)
     const materials = new Map<Material, Material>()
@@ -52,15 +52,15 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
         friction={0}
         position={[0, 0, ARRIVAL_ORIGIN_Z]}
       >
-        <primitive object={model.root} dispose={null} />
-        {ARRIVAL_SHELL_HULLS.map((vertices, i) => (
+        <Bvh indirect>
+          <primitive object={model.root} dispose={null} />
+        </Bvh>
+        {ARRIVAL_FLOOR_HULLS.map((vertices, i) => (
           <ConvexHullCollider key={i} args={[vertices]} />
         ))}
-        {[...ARRIVAL_BOXES, ...ARRIVAL_FURNITURE].map(
-          ({ position, halfSize }, i) => (
-            <CuboidCollider key={i} position={position} args={halfSize} />
-          ),
-        )}
+        {ARRIVAL_FURNITURE.map(({ position, halfSize }, i) => (
+          <CuboidCollider key={i} position={position} args={halfSize} />
+        ))}
       </RigidBody>
       <RigidBody
         type="fixed"

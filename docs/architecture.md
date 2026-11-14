@@ -1,5 +1,30 @@
 # Arquitectura
 
+## Runtime de la nave unificada — 2026-11-14
+
+`PlayerShipHull` carga la envolvente unificada y un GLB estructural separado de
+1698 triángulos para Rapier. `EntryAirlock` monta mobiliario/piso de llegada sin
+la caja anterior, conserva piso y muebles físicos y usa la estructura nueva
+para paredes/techo. La malla invisible de colisión no se renderiza. La envolvente
+y la llegada usan BVH para la oclusión real de interacciones.
+
+Se conservan puerta automática, docking, credenciales y pasillo de vidrio con
+sus mecanismos/colliders. La exportación excluye placeholders de escotilla y
+vidrios de presentación duplicados. El vidrio nuevo es unlit, sin refracción;
+se mantienen luces y sombras del runtime. Detalles, pruebas y mediciones en
+`assets/unified-ship/RUNTIME.md`.
+
+## Fuente Blender unificada — 2026-11-14
+
+El nuevo diseño de envolvente se trabaja en
+`assets/unified-ship/cruz-del-sur-unified.blend`, conservando las fuentes anteriores.
+Los hombros y largueros conectan casco/cubierta; la llegada reemplaza la caja
+rectangular por un volumen de presión facetado, costillas oblicuas y extremos
+biselados. El conector panorámico y los anclajes del recorrido son referencias.
+La pasada inicial no cambió el runtime; la integración posterior está descrita
+arriba. Organización,
+renders y límites de comprobación: `assets/unified-ship/README.md`.
+
 ## Corrección visual y nave de referencia — 2026-11-14
 
 Corrección de interpretación posterior: el jugador está dentro de la nave,

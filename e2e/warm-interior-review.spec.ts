@@ -1,6 +1,12 @@
 import { writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
-import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
+import {
+  enter,
+  enterObservationRoom,
+  lookAt,
+  snapshot,
+  walkTo,
+} from './helpers/game'
 
 test('records warm interior appearance and render cost from native gameplay', async ({
   page,
@@ -16,15 +22,11 @@ test('records warm interior appearance and render cost from native gameplay', as
   await expect(page.getByLabel('Game controls')).toBeVisible({
     timeout: 60_000,
   })
-  await enterObservationRoom(page)
-  await walkTo(page, 0, 0.6)
-  const measurements = []
-  for (const [name, target] of [
-    ['bridge-forward', { x: 0, y: 1.7, z: -12 }],
-    ['bridge-rear', { x: 0, y: 1.7, z: 8 }],
-  ] as const) {
-    await lookAt(page, target)
-    const measurement = await page.evaluate(async () => {
+  await enter(page)
+  await lookAt(page, { x: 1, y: 1.9, z: 12 })
+  await page.screenshot({ path: info.outputPath('unified-arrival-entry.png') })
+  const measure = () =>
+    page.evaluate(async () => {
       const frame = () =>
         new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
       for (let i = 0; i < 30; i++) await frame()
@@ -56,6 +58,15 @@ test('records warm interior appearance and render cost from native gameplay', as
         samples,
       }
     })
+  const measurements = [{ name: 'arrival-entry', ...(await measure()) }]
+  await enterObservationRoom(page)
+  await walkTo(page, 0, 0.6)
+  for (const [name, target] of [
+    ['bridge-forward', { x: 0, y: 1.7, z: -12 }],
+    ['bridge-rear', { x: 0, y: 1.7, z: 8 }],
+  ] as const) {
+    await lookAt(page, target)
+    const measurement = await measure()
     measurements.push({ name, ...measurement })
     await page.screenshot({ path: info.outputPath(`${name}.png`) })
     expect(measurement.samples.every((sample) => sample.drawCalls > 0)).toBe(
@@ -104,6 +115,8 @@ test('records warm interior appearance and render cost from native gameplay', as
     path: info.outputPath('passage-sealed-niche-back.png'),
   })
   await walkTo(page, 0, 14.5)
+  await lookAt(page, { x: 3.8, y: 1.9, z: 13.8 })
+  await page.screenshot({ path: info.outputPath('unified-arrival-ribs.png') })
   await lookAt(page, { x: -4, y: 0.55, z: 16 })
   await page.screenshot({ path: info.outputPath('arrival-bench-cleanup.png') })
   expect((await snapshot(page)).pointerLocked).toBe(true)

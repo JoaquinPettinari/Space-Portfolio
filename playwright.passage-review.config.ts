@@ -7,6 +7,7 @@ export default defineConfig({
     'panoramic-passage-review.spec.ts',
     'architecture-v2.spec.ts',
     'warm-interior-review.spec.ts',
+    'unified-interior.spec.ts',
     'station.spec.ts',
     'extras.spec.ts',
     'physical-monitor.spec.ts',
