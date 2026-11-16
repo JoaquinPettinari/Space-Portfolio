@@ -405,7 +405,7 @@ test('animates the exterior, respects reduced motion, and blocks the rear airloc
   expect(before.orbit).not.toBeNull()
   await expect
     .poll(async () => (await snapshot(page)).spaceMotion.orbit)
-    .not.toBe(before.orbit)
+    .toBe(before.orbit)
   expect(before.asteroid).not.toBeNull()
   expect(before.shuttle).not.toBeNull()
   await expect
@@ -420,6 +420,7 @@ test('animates the exterior, respects reduced motion, and blocks the rear airloc
   await expect
     .poll(async () => (await snapshot(page)).spaceMotion.planet)
     .toBeGreaterThan(before.planet!)
+  expect((await snapshot(page)).spaceMotion.orbit).toBe(before.orbit)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.waitForTimeout(150)
   const still = (await snapshot(page)).spaceMotion

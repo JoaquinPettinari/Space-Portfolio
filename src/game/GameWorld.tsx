@@ -19,7 +19,6 @@ import { PersonalDesktop } from '../workstation/PersonalDesktop'
 import { RecreationDesktop } from '../workstation/RecreationDesktop'
 import type { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
-import { ProjectPhoto } from './world/ProjectPhoto'
 import type { StationControls } from './useStationControls'
 import type { MissionId } from './missions'
 import type { BulkheadPhase } from './world/bulkhead'
@@ -109,7 +108,6 @@ export function GameWorld({
         <DockingHatch />
         <Workstation target={target} />
         <CoffeeMachine state={coffee.state} target={target} />
-        <ProjectPhoto />
         <CrewAccess
           scanning={mode === 'crew' && identity === 'scanning'}
           paused={suspended}

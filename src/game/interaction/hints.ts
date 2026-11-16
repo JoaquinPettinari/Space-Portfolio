@@ -23,8 +23,6 @@ export function interactionHint(
     case 'coffee':
       if (coffee === 'brewing') return 'Coffee brewing…'
       return coffee === 'ready' ? 'E Drink coffee' : 'E Brew coffee'
-    case 'photo':
-      return 'E Inspect project photo'
     case 'lighting':
       return lightsOn ? 'Auxiliary power online' : 'E Restore lighting'
     case 'personal':

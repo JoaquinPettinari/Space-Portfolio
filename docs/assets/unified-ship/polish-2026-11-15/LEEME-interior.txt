@@ -1,0 +1,58 @@
+CRUZ DEL SUR — INTERIOR / 15 NOVIEMBRE 2026
+
+ARCHIVO PRINCIPAL
+cruz-del-sur-interior-panels.blend
+Pasada de arte SOLO EN BLENDER. No se exportaron GLB ni se modifico el juego.
+
+CONTENIDO
+- Ventanales con vidrio fino mas claro, sin transmision/refraccion costosa.
+- Cielo estelar de revision, visible a camara. La iluminacion ambiental original se conserva.
+- Equilibrio de luces exteriores e interiores; dos practicas de nicho sin sombras.
+- Panel de expedicion Serrano IX, mapa de ruta, lista y tarjetas de campo.
+- Repisa de especimen vivo con hojas y tallos estaticos y dos tarjetas personales.
+- Cajas SCI-1187 y EXP-7423 con cierres, refuerzos, asas y apoyos.
+- Escotilla con rotulos, emblema, juntas, precaucion y actuador de emergencia.
+- Cuero del banco y textil plegado estatico. No hay simulacion de tela.
+- Rotulos de cubierta, refinamiento de suelo y paso central preservado.
+
+ORGANIZACION
+Coleccion: UNIFIED / 10 Full interior polish - Blender only
+Colecciones 08 y 09 conservan las pasadas anteriores.
+Camaras de revision: prefijo UNIFIED / POLISH.
+Vista de puente frontal: UNIFIED / Detail - bridge consoles overview.
+Vista de escritorio: UNIFIED / Detail - lived in bridge console.
+
+COSTE Y COMPROBACIONES
++6969 triangulos respecto al inicio de esta pasada (+1.549%).
+33 mallas estaticas adicionales agrupadas por material/funcion.
+10 luces en total; siguen siendo 8 las que proyectan sombras.
+No se agregaron simulaciones, subdivisiones ni animaciones.
+Despeje revisado: volumen central del mamparo y pasillo panoramico.
+Imagenes de esta pasada empaquetadas dentro del .blend.
+Redibujado SOLID calentado: control 12.53 ms, detalle 12.31–12.52 ms.
+Es una comprobacion de redibujado, NO una promesa de FPS de navegacion/render.
+No se midieron FPS del juego: esta pasada no se integro al codigo.
+
+USO
+Se deja SOLID como modo de trabajo liviano. Las texturas, estrellas y la luz real
+se ven en Rendered o en los renders guardados en polish-2026-11-15.
+Los graficos y la proyeccion tactica son estaticos de previsualizacion.
+
+RESPALDO
+before-full-interior-polish-2026-11-15.blend conserva el estado anterior.
+
+Postales: atlas fotografico generado con imagegen integrado, empaquetado en el blend. Tres inserciones del tablero comparten una malla/material (6 triangulos). Archivo fuente: blender-expedition-photographs.png.
+Auditoria final exacta:
+{
+  "detailBatches": 33,
+  "detailTriangles": 6969,
+  "lightCount": 10,
+  "shadowLights": 8,
+  "passageAndBulkheadSweepClear": true,
+  "codeChanged": false,
+  "runtimeExported": false,
+  "baselineTriangles": 450027,
+  "finalTriangles": 456996,
+  "addedTriangles": 6969,
+  "increasePercent": 1.549
+}

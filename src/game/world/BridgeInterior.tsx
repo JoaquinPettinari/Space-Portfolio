@@ -1,21 +1,26 @@
 import { Bvh, useGLTF } from '@react-three/drei'
 import { CuboidCollider } from '@react-three/rapier'
 import { TRANSITION_CENTER } from './bridgePlacement'
+import { useMemo } from 'react'
+import { REFINED_BRIDGE_ASSET } from './refinedArtAssets'
+import { StaticPanels } from './StaticPanels'
+import { SPINE_BACK_PANELS } from './bridgeWallPanels'
+import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
+import { PASSAGE_RECESS_PANELS } from './passageRecessPanels'
+
+const shelfPanels = [...INTERIOR_SHELF_PANELS, ...PASSAGE_RECESS_PANELS]
 
 /** Static Blender architecture. Screen hit targets and physics remain independent. */
 export function BridgeInterior() {
-  const [interior, amber, furnishings] = useGLTF([
-    '/models/cruz-del-sur-bridge-interior.glb',
-    '/models/cruz-del-sur-amber-details.glb',
-    '/models/cruz-del-sur-furnishings.glb',
-  ])
+  const { scene } = useGLTF(REFINED_BRIDGE_ASSET)
+  const root = useMemo(() => scene.clone(true), [scene])
   return (
     <>
+      <StaticPanels panels={SPINE_BACK_PANELS} />
+      <StaticPanels panels={shelfPanels} />
       {/* Spatial index accelerates exact triangle hits without changing the mesh. */}
       <Bvh indirect>
-        <primitive object={interior.scene} dispose={null} />
-        <primitive object={amber.scene} dispose={null} />
-        <primitive object={furnishings.scene} dispose={null} />
+        <primitive object={root} dispose={null} />
       </Bvh>
       {/* Opaque exterior backs close the niches when seen from the glass passage. */}
       {[-1, 1].map((side) => (

@@ -42,7 +42,6 @@ it('requires a computer target to open the screen', () => {
   expect(interactionMode('walking', 'communications')).toBe('communications')
   expect(interactionMode('walking', 'personal')).toBe('personal')
   expect(interactionMode('walking', 'arcade')).toBe('arcade')
-  expect(interactionMode('walking', 'photo')).toBe('photo')
   expect(interactionMode('walking', 'crew')).toBe('crew')
   expect(interactionMode('walking', 'tactical')).toBe('tactical')
   expect(interactionMode('walking', 'coffee')).toBe('walking')
@@ -127,10 +126,8 @@ it('maps each unchanged CSS screen onto its physical surface without stretching'
   }
 })
 
-it('keeps focus finite during zero-size resize events and preserves photo focus', () => {
+it('keeps focus finite during zero-size resize events', () => {
   const target = { x: 0, y: 0, z: 0 }
   setStationFocus(target, 'computer', 0)
   expect(Number.isFinite(target.z)).toBe(true)
-  setStationFocus(target, 'photo', 1)
-  expect([target.x, target.y, target.z]).toEqual(stationView('photo').position)
 })

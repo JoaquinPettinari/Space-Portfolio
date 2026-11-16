@@ -27,6 +27,7 @@ export function PlayerShipHull() {
       if (!local) {
         local = material.clone()
         local.depthWrite = false
+        if (/glass|glazing/i.test(local.name)) local.forceSinglePass = true
         materials.set(material, local)
       }
       return local

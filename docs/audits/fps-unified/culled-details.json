@@ -1,0 +1,18 @@
+[
+  {
+    "file": "cruz-del-sur-panoramic-bay.glb",
+    "sourceObjects": 148,
+    "closedSolids": 114,
+    "batches": 17,
+    "bytes": 488176,
+    "triangles": 8304
+  },
+  {
+    "file": "cruz-del-sur-amber-details.glb",
+    "sourceObjects": 58,
+    "closedSolids": 58,
+    "batches": 5,
+    "bytes": 334664,
+    "triangles": 6104
+  }
+]

@@ -8,7 +8,7 @@ import {
   type InstancedMesh,
 } from 'three'
 
-const COUNT = 95
+const COUNT = 24
 
 export function AsteroidField() {
   const instances = useRef<InstancedMesh>(null)
@@ -57,11 +57,11 @@ export function AsteroidField() {
       // Distant debris: even the nearest rock remains over 40 m from the origin.
       // Rotations around the cabin preserve that separation throughout the orbit.
       transform.position.set(
-        -44 - random() * 23,
+        -65 - random() * 17,
         -8 + random() * 26,
         -18 - random() * 37,
       )
-      const size = 0.18 + Math.pow(random(), 2) * 1.9
+      const size = 0.12 + Math.pow(random(), 2) * 0.65
       transform.scale.set(
         size * (0.6 + random()),
         size * (0.6 + random()),
@@ -82,9 +82,9 @@ export function AsteroidField() {
       transform.updateMatrix()
       instances.current.setMatrixAt(i, transform.matrix)
       color.setHSL(
-        0.08 + random() * 0.08,
-        0.08 + random() * 0.12,
-        0.2 + random() * 0.2,
+        0.56 + random() * 0.06,
+        0.02 + random() * 0.04,
+        0.1 + random() * 0.12,
       )
       instances.current.setColorAt(i, color)
     }

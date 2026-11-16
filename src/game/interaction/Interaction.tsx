@@ -60,7 +60,6 @@ export function Interaction({
           kind === 'communications' ||
           kind === 'personal' ||
           kind === 'arcade' ||
-          kind === 'photo' ||
           kind === 'coffee' ||
           kind === 'bulkhead' ||
           kind === 'crew')

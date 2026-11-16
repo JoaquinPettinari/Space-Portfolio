@@ -4,7 +4,7 @@ The live moving doors, existing bridge glass and furniture physics stay in code.
 Static collision uses un-bevelled structural meshes, never all visual detail.
 """
 from pathlib import Path
-import bpy,json,struct
+import bpy,bmesh,json,struct
 from mathutils import Vector,Matrix
 ROOT=Path(r'C:\Users\joaqu\Desktop\Space-Portfolio');OUT=ROOT/'docs/assets/unified-ship'
 source_scene=bpy.context.scene
@@ -24,6 +24,7 @@ envelope=[ob for key in ['hull','skin','roof','details','ribs'] for ob in cols[k
 arrival=[ob for ob in cols['interior'].objects if ob.type=='MESH' and ob.get('source_scene')=='Arrival Room - Spacious V10' and 'panoramic glass' not in ob.get('original_object','')]
 collision=[ob for key in ['skin','roof','ribs'] for ob in cols[key].objects if ob.type=='MESH' and not skip(ob)]
 reports=[]
+runtime_materials={}
 targets=set(globals().get('UNIFIED_TARGETS',{'envelope','arrival','collision'}))
 def export(name,objects,physics=False,local_z=0):
     temp=bpy.data.scenes.new('TEMP / Unified runtime '+name);bpy.context.window.scene=temp
@@ -42,6 +43,23 @@ def export(name,objects,physics=False,local_z=0):
             if not len(data.polygons):bpy.data.meshes.remove(data);continue
             assert len(data.materials)==1,ob.name
             material=data.materials[0]
+            # Only watertight solids can safely drop their back faces. Some
+            # legacy boxes had inward winding hidden by double-sided shading.
+            # Repair evaluated copies; preserve open panels, glass and source.
+            if not physics and material.use_nodes:
+                bm=bmesh.new();bm.from_mesh(data)
+                closed=bool(bm.faces) and all(e.is_manifold for e in bm.edges)
+                if closed:
+                    bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+                    bm.to_mesh(data);data.update()
+                    if not material.use_backface_culling:
+                        if material.name not in runtime_materials:
+                            local=material.copy();local.name=material.name+' / closed solids'
+                            local.use_backface_culling=True
+                            runtime_materials[material.name]=local
+                        material=runtime_materials[material.name]
+                        data.materials[0]=material
+                bm.free()
             if physics:data.materials.clear();data.materials.append(collision_material);material=collision_material
             part=bpy.data.objects.new('Runtime unified part',data);temp.collection.objects.link(part)
             z=sum(-v.co.y for v in data.vertices)/len(data.vertices)
@@ -105,6 +123,8 @@ finally:
     for data in set(bpy.data.meshes)-old_meshes:
         if data.users==0:bpy.data.meshes.remove(data)
     if collision_material.users==0:bpy.data.materials.remove(collision_material)
+    for material in runtime_materials.values():
+        if material.users==0:bpy.data.materials.remove(material)
 report_path=OUT/'runtime-export.json'
 if report_path.exists():
     previous=json.loads(report_path.read_text()).get('assets',[])

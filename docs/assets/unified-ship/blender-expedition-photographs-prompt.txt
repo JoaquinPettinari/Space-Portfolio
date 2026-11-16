@@ -1,0 +1,5 @@
+Modo: herramienta integrada imagegen.
+Destino: blender-expedition-photographs.png
+Uso: atlas de postales de expedicion del interior Blender, sin exportar al juego.
+
+Use case: photorealistic-natural. Asset type: one photographic texture atlas for tiny expedition postcards inside a Blender spaceship interior. Create a wide horizontal triptych, three equally wide landscape photographs touching edge to edge, each panel landscape 3:2, total ratio 9:2. Left panel: Patagonian granite mountain spires at golden dawn above a rugged valley. Middle panel: snow capped Andes reflected in an alpine turquoise lake, soft daylight. Right panel: remote ochre basalt desert valley with dramatic mesas at sunset. Real documentary landscape photography, restrained natural colors, detailed geological texture, believable atmospheric perspective. No people, no spacecraft, no buildings, no text, no borders, no paper, no frames, no montage overlaps. Exactly three equal rectangular photographs side by side. Fill entire canvas.

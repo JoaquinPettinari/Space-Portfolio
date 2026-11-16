@@ -1,0 +1,917 @@
+{
+  "measurements": [
+    {
+      "name": "bridge-forward",
+      "position": {
+        "x": 0.012606487490236766,
+        "y": 1.698724091053009,
+        "z": 0.40811097621917725
+      },
+      "rotation": {
+        "x": 0.000999999333333301,
+        "y": 0.0009999993333335646,
+        "z": -9.999996666666435e-7,
+        "w": 0.9999990000003334
+      },
+      "resources": {
+        "geometries": 305,
+        "textures": 32,
+        "programs": 25
+      },
+      "viewport": [1280, 720],
+      "dpr": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "medianMs": 36,
+      "p95Ms": 92.10000002384186,
+      "drawCalls": 163,
+      "triangles": 348541,
+      "samples": [
+        {
+          "frameMs": 56.59999996423721,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 47.200000047683716,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 36,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 49.19999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 41.09999996423721,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 46,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 44.200000047683716,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 27.69999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 20.899999976158142,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 36.5,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 54.10000002384186,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 44,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 20.19999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 25.30000001192093,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 40.39999997615814,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 29.69999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 36.5,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 24.400000035762787,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 28.099999964237213,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 22.400000035762787,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 39.5,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 43.09999996423721,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 33.10000002384186,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 31.69999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 47.40000003576279,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 27.099999964237213,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 59.19999998807907,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 46.200000047683716,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 27.099999964237213,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 92.10000002384186,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 19.5,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 219.39999997615814,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 27.900000035762787,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 19.5,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 16.299999952316284,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 13.700000047683716,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 21.899999976158142,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 15.899999976158142,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 16.400000035762787,
+          "drawCalls": 163,
+          "triangles": 348541
+        },
+        {
+          "frameMs": 44,
+          "drawCalls": 163,
+          "triangles": 348541
+        }
+      ]
+    },
+    {
+      "name": "bridge-rear",
+      "position": {
+        "x": 0.012606192044913776,
+        "y": 1.698724091053009,
+        "z": 0.40811097621917725
+      },
+      "rotation": {
+        "x": -1.8224948798234547e-16,
+        "y": 0.9999987023081802,
+        "z": 1.1072883878140824e-16,
+        "w": 0.0016110189184408588
+      },
+      "resources": {
+        "geometries": 318,
+        "textures": 33,
+        "programs": 25
+      },
+      "viewport": [1280, 720],
+      "dpr": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "medianMs": 39.89999997615814,
+      "p95Ms": 63.5,
+      "drawCalls": 236,
+      "triangles": 448919,
+      "samples": [
+        {
+          "frameMs": 60.19999998807907,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 42.200000047683716,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 28.599999964237213,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 50.60000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 52.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 56.80000001192093,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 34.299999952316284,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 41.700000047683716,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 40,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 28.899999976158142,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 44.10000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 45.299999952316284,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 30.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 63.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 43.10000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 24.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 43.89999997615814,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 26,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 34.40000003576279,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 50.39999997615814,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 40.19999998807907,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 27.30000001192093,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 41.40000003576279,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 39.89999997615814,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 28.19999998807907,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 34.80000001192093,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 48.60000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 28.399999976158142,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 34.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 34.39999997615814,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 64.60000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 26.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 33.60000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 35.59999996423721,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 54.80000001192093,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 26.899999976158142,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 22.5,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 41.10000002384186,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 39.69999998807907,
+          "drawCalls": 236,
+          "triangles": 448919
+        },
+        {
+          "frameMs": 20.30000001192093,
+          "drawCalls": 236,
+          "triangles": 448919
+        }
+      ]
+    },
+    {
+      "name": "glass-passage",
+      "position": {
+        "x": -0.014107638970017433,
+        "y": 1.698862075805664,
+        "z": 7.956690788269043
+      },
+      "rotation": {
+        "x": 0.002809157693505877,
+        "y": 0.711883998135723,
+        "z": -0.002847551179498805,
+        "w": 0.7022856778289238
+      },
+      "resources": {
+        "geometries": 318,
+        "textures": 33,
+        "programs": 25
+      },
+      "viewport": [1280, 720],
+      "dpr": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "medianMs": 41.40000003576279,
+      "p95Ms": 60.60000002384186,
+      "drawCalls": 119,
+      "triangles": 372303,
+      "samples": [
+        {
+          "frameMs": 47.799999952316284,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 43.30000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 26.19999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 33.10000002384186,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 29.600000023841858,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 27.099999964237213,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 49.60000002384186,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 41.5,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 69.5,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 53.59999996423721,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 41.5,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 22.30000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 29.900000035762787,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 46.799999952316284,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 51.5,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 42.80000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 31,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 27.19999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 30.80000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 27.80000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 32.19999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 49.30000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 33,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 28.19999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 22,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 28.30000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 54.10000002384186,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 41.59999996423721,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 26.80000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 32.19999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 31.400000035762787,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 51.69999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 33.69999998807907,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 47.30000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 47.89999997615814,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 52.80000001192093,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 24,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 60.60000002384186,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 58.299999952316284,
+          "drawCalls": 119,
+          "triangles": 372303
+        },
+        {
+          "frameMs": 41.40000003576279,
+          "drawCalls": 119,
+          "triangles": 372303
+        }
+      ]
+    },
+    {
+      "name": "arrival",
+      "position": {
+        "x": 0.0019330558469519065,
+        "y": 1.6988623142242432,
+        "z": 15.976832389831543
+      },
+      "rotation": {
+        "x": 0.024809109290581215,
+        "y": -0.12246789954145214,
+        "z": 0.003062335501683317,
+        "w": 0.9921576204310422
+      },
+      "resources": {
+        "geometries": 318,
+        "textures": 33,
+        "programs": 25
+      },
+      "viewport": [1280, 720],
+      "dpr": 1,
+      "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "medianMs": 41.5,
+      "p95Ms": 54.799999952316284,
+      "drawCalls": 359,
+      "triangles": 477767,
+      "samples": [
+        {
+          "frameMs": 52.5,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 31.5,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 52.19999998807907,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 51.60000002384186,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40.89999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 36.5,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 54.40000003576279,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 38.39999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 47.19999998807907,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 33.40000003576279,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 34,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40.09999996423721,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 38.80000001192093,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 33.40000003576279,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 36,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 35.299999952316284,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40.40000003576279,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 37.39999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 54.90000003576279,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 50.89999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40.30000001192093,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 34.30000001192093,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 49.19999998807907,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 38.80000001192093,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 46,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 54.799999952316284,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 50.30000001192093,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 46.10000002384186,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 44.19999998807907,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 53.39999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 40.200000047683716,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 48.39999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 49.5,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 49,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 49.19999998807907,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 31.600000023841854,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 41.5,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 47.39999997615814,
+          "drawCalls": 359,
+          "triangles": 477767
+        },
+        {
+          "frameMs": 25.400000035762787,
+          "drawCalls": 359,
+          "triangles": 477767
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

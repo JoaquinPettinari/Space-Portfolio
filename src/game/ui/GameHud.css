@@ -74,11 +74,9 @@
 
   background: linear-gradient(
     110deg,
-    rgba(5, 15, 22, 0.88),
-    rgba(8, 22, 31, 0.78)
+    rgba(5, 15, 22, 0.95),
+    rgba(8, 22, 31, 0.94)
   );
-
-  backdrop-filter: blur(8px);
 
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.35),
@@ -181,15 +179,13 @@
   background: linear-gradient(
     115deg,
     rgba(5, 19, 29, 0.95),
-    rgba(12, 38, 51, 0.8)
+    rgba(12, 38, 51, 0.95)
   );
 
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(131, 246, 255, 0.12),
     0 0 14px rgba(66, 232, 245, 0.08);
-
-  backdrop-filter: blur(8px);
 
   color: var(--hud-text);
   font-family: var(--hud-font-body);

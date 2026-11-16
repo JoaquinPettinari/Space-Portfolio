@@ -22,7 +22,6 @@ export type StationMode =
   | 'communications'
   | 'personal'
   | 'arcade'
-  | 'photo'
   | 'crew'
 export type StationTarget =
   | 'docking'
@@ -33,7 +32,6 @@ export type StationTarget =
   | 'communications'
   | 'personal'
   | 'arcade'
-  | 'photo'
   | 'coffee'
   | 'bulkhead'
   | 'crew'
@@ -44,7 +42,6 @@ export const COMMUNICATIONS_POSITION = BRIDGE_MONITORS.communications.position
 export const PERSONAL_POSITION = bridgePoint([4.35, 1.65, 2.1])
 export const ARCADE_POSITION = bridgePoint([-4.35, 1.65, 0.4])
 export const COFFEE_POSITION = bridgePoint([-4.25, 0, 3.65])
-export const PHOTO_POSITION = bridgePoint([-4.58, 1.75, 2.2])
 export const POWER_POSITION = ENTRY_POWER_POSITION
 export const CREW_ACCESS_POSITION = ENTRY_CREW_POSITION
 export const CREW_ACCESS_ROTATION = 0
@@ -148,7 +145,6 @@ const views = {
   personal: terminalView('personal'),
   arcade: terminalView('arcade'),
   crew: terminalView('crew'),
-  photo: { position: bridgePoint([-2.78, 1.75, 2.2]), lookAt: PHOTO_POSITION },
 } as const
 
 /** Writes into the caller-owned vector: no allocations during frame updates. */
@@ -158,13 +154,6 @@ export function setStationFocus(
   aspect: number,
   verticalFov = 65,
 ) {
-  if (mode === 'photo') {
-    const [x, y, z] = views.photo.position
-    target.x = x
-    target.y = y
-    target.z = z
-    return
-  }
   const screen = TERMINAL_SCREENS[mode]
   const distance = monitorDistance(
     aspect > 0 && Number.isFinite(aspect) ? aspect : 1,
@@ -189,7 +178,6 @@ export function interactionMode(
   if (target === 'communications') return 'communications'
   if (target === 'personal') return 'personal'
   if (target === 'arcade') return 'arcade'
-  if (target === 'photo') return 'photo'
   if (target === 'crew') return 'crew'
   return mode
 }

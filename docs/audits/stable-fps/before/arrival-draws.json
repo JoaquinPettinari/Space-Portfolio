@@ -1,0 +1,1572 @@
+[
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exploration-bow-deck",
+    "draws": 4,
+    "triangles": 1268
+  },
+  {
+    "name": "orbital-drift/orbital-shuttle/Mesh",
+    "draws": 1,
+    "triangles": 8
+  },
+  {
+    "name": "orbital-drift/orbital-shuttle/Mesh",
+    "draws": 1,
+    "triangles": 8
+  },
+  {
+    "name": "orbital-drift/orbital-shuttle/Mesh",
+    "draws": 1,
+    "triangles": 8
+  },
+  {
+    "name": "orbital-drift/orbital-shuttle/Mesh",
+    "draws": 1,
+    "triangles": 32
+  },
+  {
+    "name": "orbital-drift/orbital-shuttle/Mesh",
+    "draws": 1,
+    "triangles": 32
+  },
+  {
+    "name": "orbital-drift/distant-mars/Mesh",
+    "draws": 1,
+    "triangles": 1216
+  },
+  {
+    "name": "orbital-drift/distant-jupiter/Mesh",
+    "draws": 1,
+    "triangles": 1216
+  },
+  {
+    "name": "orbital-drift/distant-moon/Mesh",
+    "draws": 1,
+    "triangles": 1216
+  },
+  {
+    "name": "orbital-drift/fixed-galactic-sky",
+    "draws": 1,
+    "triangles": 2208
+  },
+  {
+    "name": "orbital-drift/orbital-planet",
+    "draws": 1,
+    "triangles": 6016
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Blue_titanium_closed_solids",
+    "draws": 1,
+    "triangles": 3424
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Deep_pressure_seals",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Deep_pressure_seals_closed_solids",
+    "draws": 1,
+    "triangles": 3456
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Graphite_ceramic",
+    "draws": 1,
+    "triangles": 136
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Graphite_ceramic_closed_solids",
+    "draws": 1,
+    "triangles": 4020
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Machined_seam_edges_closed_solids",
+    "draws": 1,
+    "triangles": 7344
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Panoramic_smoked_glass",
+    "draws": 1,
+    "triangles": 6
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_arrival_UNIFIED_Warm_practical_cores_closed_solids",
+    "draws": 1,
+    "triangles": 2160
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+    "draws": 1,
+    "triangles": 1944
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+    "draws": 1,
+    "triangles": 4104
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+    "draws": 1,
+    "triangles": 2592
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+    "draws": 1,
+    "triangles": 2052
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Warm_practical_cores_closed_solids",
+    "draws": 1,
+    "triangles": 216
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Blue_titanium_closed_solids",
+    "draws": 1,
+    "triangles": 616
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Cyan_navigation_markings_closed_solids",
+    "draws": 1,
+    "triangles": 216
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Deep_pressure_seals_closed_solids",
+    "draws": 1,
+    "triangles": 2376
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Graphite_ceramic_closed_solids",
+    "draws": 1,
+    "triangles": 432
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Machined_seam_edges_closed_solids",
+    "draws": 1,
+    "triangles": 1728
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Warm_practical_cores_closed_solids",
+    "draws": 1,
+    "triangles": 864
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+    "draws": 1,
+    "triangles": 136
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+    "draws": 1,
+    "triangles": 1298
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+    "draws": 1,
+    "triangles": 9339
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+    "draws": 1,
+    "triangles": 3845
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+    "draws": 1,
+    "triangles": 8078
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+    "draws": 1,
+    "triangles": 2378
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+    "draws": 1,
+    "triangles": 10633
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+    "draws": 1,
+    "triangles": 29596
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+    "draws": 1,
+    "triangles": 1498
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+    "draws": 1,
+    "triangles": 191
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+    "draws": 1,
+    "triangles": 537
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+    "draws": 1,
+    "triangles": 3623
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+    "draws": 1,
+    "triangles": 1753
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+    "draws": 1,
+    "triangles": 2016
+  },
+  {
+    "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-unified-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+    "draws": 1,
+    "triangles": 1418
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Brushed_steel_rebates",
+    "draws": 1,
+    "triangles": 266
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Brushed_steel_rebates001",
+    "draws": 1,
+    "triangles": 528
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+    "draws": 1,
+    "triangles": 42
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Muted_safety_ochre",
+    "draws": 1,
+    "triangles": 254
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Pressure_panel_warm_graphite",
+    "draws": 1,
+    "triangles": 18
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Recesses_and_gaskets",
+    "draws": 1,
+    "triangles": 114
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Recesses_and_gaskets001",
+    "draws": 1,
+    "triangles": 1276
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Service_stencils",
+    "draws": 1,
+    "triangles": 1153
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_POLISH_Scientific_transport_blue_grey",
+    "draws": 1,
+    "triangles": 176
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Printed_keycaps_shared_atlas",
+    "draws": 1,
+    "triangles": 456
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Satin_keycap_sides",
+    "draws": 1,
+    "triangles": 1824
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Brushed_steel_rebates",
+    "draws": 1,
+    "triangles": 946
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Brushed_steel_rebates001",
+    "draws": 1,
+    "triangles": 440
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+    "draws": 1,
+    "triangles": 24
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Muted_safety_ochre",
+    "draws": 1,
+    "triangles": 96
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets",
+    "draws": 1,
+    "triangles": 392
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets001",
+    "draws": 1,
+    "triangles": 352
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Service_stencils",
+    "draws": 1,
+    "triangles": 892
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_POLISH_Shade_grown_CDS_REFINE_FURNISH_Leaf_light005",
+    "draws": 1,
+    "triangles": 968
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_POLISH_Shade_grown_CDS_REFINE_FURNISH_Leaf001",
+    "draws": 1,
+    "triangles": 2112
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_control_inset",
+    "draws": 1,
+    "triangles": 176
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_encoder_satin_metal",
+    "draws": 1,
+    "triangles": 1056
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_instrument_engraving",
+    "draws": 1,
+    "triangles": 823
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Living_specimen_stems",
+    "draws": 1,
+    "triangles": 456
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Matte_expedition_photographs",
+    "draws": 1,
+    "triangles": 10
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Recess_expedition_board",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_Coffee_surface",
+    "draws": 1,
+    "triangles": 22
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_Expedition_blue_binding",
+    "draws": 1,
+    "triangles": 188
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+    "draws": 1,
+    "triangles": 2364
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_Ivory_paper_edges",
+    "draws": 1,
+    "triangles": 132
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_Oxide_field_journal",
+    "draws": 1,
+    "triangles": 132
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_Sage_survey_binding",
+    "draws": 1,
+    "triangles": 132
+  },
+  {
+    "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Subtle_sewn_leather_piping",
+    "draws": 1,
+    "triangles": 2496
+  },
+  {
+    "name": "emergency-beacon/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "emergency-beacon/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/bridge-entry-designation",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exterior-facet-0",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exterior-facet-1",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exterior-facet-2",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exterior-facet-3",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/exterior-facet-4",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/arrival-starboard-shoulder-closure",
+    "draws": 1,
+    "triangles": 8
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Amber_lamps",
+    "draws": 1,
+    "triangles": 5024
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Gaskets",
+    "draws": 1,
+    "triangles": 16420
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Graphite_frame",
+    "draws": 1,
+    "triangles": 15784
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Ivory_cabinets",
+    "draws": 1,
+    "triangles": 7216
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Ivory_cabinets001",
+    "draws": 1,
+    "triangles": 5324
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V4_Warm_grey_panels",
+    "draws": 1,
+    "triangles": 3824
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V6_Medical_red",
+    "draws": 1,
+    "triangles": 108
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V8_Flag_sky_blue",
+    "draws": 1,
+    "triangles": 24
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V8_Flag_white",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V8_Sun_features",
+    "draws": 1,
+    "triangles": 25
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_V8_Sun_gold",
+    "draws": 1,
+    "triangles": 318
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_MEMORY_01",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_MEMORY_02",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_ARRIVAL_MEMORY_03",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "entry-airlock/TEMP__Refined_runtime_export/REFINED_arrival_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+    "draws": 1,
+    "triangles": 5184
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "entry-airlock/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+    "draws": 1,
+    "triangles": 1296
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+    "draws": 1,
+    "triangles": 7128
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Cyan floor guidance / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+    "draws": 1,
+    "triangles": 9396
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+    "draws": 1,
+    "triangles": 2448
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Safety ochre / closed solids.001",
+    "draws": 1,
+    "triangles": 144
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Blue-grey glazing V2 / retained surfaces.001",
+    "draws": 1,
+    "triangles": 288
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Amber diffuser / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/panoramic-bay-batches/panoramic-Off-white ceramic housings / closed solids.001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "panoramic-passage/passage-end-adapter/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_LEFT",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_RIGHT",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_TOP",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_THRESHOLD",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/SEAL_L",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_WHITE_L",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/SEAL_R",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/FRAME_WHITE_R",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_WHITE",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/STATUS_LIGHT_-157",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/EDGE_AMBER_-157",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/STATUS_LIGHT_157",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/EDGE_AMBER_157",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_0",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_1",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_2",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_3",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_4",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_5",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_6",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_7",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/world/HEADER_INDICATOR_8",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 24
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/LEAF_LEFT_SLIDE_INNER",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/LEAF_LEFT_SLIDE_PANEL",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/LEAF_LEFT_SLIDE_CENTER_SEAL",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/LEAF_LEFT_SLIDE_HANDLE_RECESS",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/LEAF_LEFT_SLIDE_HANDLE",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 36
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 24
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-left-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 36
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/LEAF_RIGHT_SLIDE_INNER",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/LEAF_RIGHT_SLIDE_PANEL",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/LEAF_RIGHT_SLIDE_CENTER_SEAL",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/LEAF_RIGHT_SLIDE_HANDLE_RECESS",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/LEAF_RIGHT_SLIDE_HANDLE",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 36
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 24
+  },
+  {
+    "name": "animated-bulkhead/bulkhead-right-leaf/bulkhead-material-batch",
+    "draws": 1,
+    "triangles": 36
+  },
+  {
+    "name": "tactical-table/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "tactical-table/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "tactical-table/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "tactical-table/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "tactical-table/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "docking-hatch/Docking_Door_and_Crew_Access_V2/DOCK_CDS_hardware_Amber_diffuser001",
+    "draws": 1,
+    "triangles": 564
+  },
+  {
+    "name": "docking-hatch/Docking_Door_and_Crew_Access_V2/DOCK_CDS_hardware_Graphite001",
+    "draws": 1,
+    "triangles": 3760
+  },
+  {
+    "name": "docking-hatch/Docking_Door_and_Crew_Access_V2/DOCK_CDS_hardware_Rubber_seals001",
+    "draws": 1,
+    "triangles": 5032
+  },
+  {
+    "name": "docking-hatch/Docking_Door_and_Crew_Access_V2/DOCK_CDS_hardware_Steel_fasteners001",
+    "draws": 1,
+    "triangles": 3408
+  },
+  {
+    "name": "docking-hatch/Docking_Door_and_Crew_Access_V2/DOCK_CDS_hardware_Warm_grey_alloy001",
+    "draws": 1,
+    "triangles": 2880
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/static-pressure-panels",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 10
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 2624
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 87
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 2944
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 2948
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 174
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 3268
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 2948
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 174
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 3268
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 10
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 2624
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 87
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 2944
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Central_navigation001",
+    "draws": 1,
+    "triangles": 8
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 34
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 10276
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Cyan001",
+    "draws": 1,
+    "triangles": 216
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Gasket001",
+    "draws": 1,
+    "triangles": 23896
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 52246
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 15004
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 63552
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Brushed_graphite_desktop",
+    "draws": 1,
+    "triangles": 1316
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+    "draws": 1,
+    "triangles": 3448
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf_light005",
+    "draws": 1,
+    "triangles": 2816
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf001",
+    "draws": 1,
+    "triangles": 8224
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Ivory001",
+    "draws": 1,
+    "triangles": 4464
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+    "draws": 1,
+    "triangles": 1968
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Blue_charcoal_performance_leather",
+    "draws": 1,
+    "triangles": 5616
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Amber005",
+    "draws": 1,
+    "triangles": 1776
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Graphite005",
+    "draws": 1,
+    "triangles": 936
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_STATION_AMBER_Honey_amber_light_core001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_STATION_AMBER_Soft_warm_ceiling001",
+    "draws": 1,
+    "triangles": 1080
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_STATION_AMBER_Warm_brushed_trim001",
+    "draws": 1,
+    "triangles": 2484
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_STATION_AMBER_Warm_graphite001",
+    "draws": 1,
+    "triangles": 1188
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_STATION_Deep_gasket001",
+    "draws": 1,
+    "triangles": 704
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_Safety_paint001",
+    "draws": 1,
+    "triangles": 20
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_V15_Amber001",
+    "draws": 1,
+    "triangles": 648
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_V15_Gasket001",
+    "draws": 1,
+    "triangles": 1512
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_V15_Graphite001",
+    "draws": 1,
+    "triangles": 4560
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_V15_Ivory001",
+    "draws": 1,
+    "triangles": 476
+  },
+  {
+    "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_tactical_BRIDGE_V15_Metal001",
+    "draws": 1,
+    "triangles": 4504
+  },
+  {
+    "name": "forward-command-console/rear-niche-opaque-exterior-back",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/rear-niche-opaque-exterior-back",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "forward-command-console/Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 860
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 2580
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 324
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Amber_diffuser001",
+    "draws": 1,
+    "triangles": 376
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Graphite001",
+    "draws": 1,
+    "triangles": 1880
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Off_white_enamel001",
+    "draws": 1,
+    "triangles": 852
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Rubber_seals001",
+    "draws": 1,
+    "triangles": 1376
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Safety_ochre001",
+    "draws": 1,
+    "triangles": 376
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Steel_fasteners001",
+    "draws": 1,
+    "triangles": 1136
+  },
+  {
+    "name": "Docking_Door_and_Crew_Access_V2/CREW_CDS_hardware_Warm_grey_alloy001",
+    "draws": 1,
+    "triangles": 380
+  },
+  {
+    "name": "crew-standby-display",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 2
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 12
+  },
+  {
+    "name": "Mesh",
+    "draws": 1,
+    "triangles": 12
+  }
+]

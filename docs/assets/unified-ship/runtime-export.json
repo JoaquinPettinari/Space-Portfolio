@@ -3,11 +3,20 @@
     {
       "file": "cruz-del-sur-unified-envelope.glb",
       "sourceObjects": 370,
-      "batches": 33,
+      "batches": 35,
       "triangles": 114135,
-      "bytes": 8201664,
+      "bytes": 8203808,
       "collisionOnly": false,
       "localOriginZ": 0
+    },
+    {
+      "file": "cruz-del-sur-unified-arrival.glb",
+      "sourceObjects": 373,
+      "batches": 15,
+      "triangles": 62317,
+      "bytes": 6961324,
+      "collisionOnly": false,
+      "localOriginZ": 12.07
     },
     {
       "file": "cruz-del-sur-unified-collision.glb",
@@ -17,15 +26,6 @@
       "bytes": 91500,
       "collisionOnly": true,
       "localOriginZ": 0
-    },
-    {
-      "file": "cruz-del-sur-unified-arrival.glb",
-      "sourceObjects": 373,
-      "batches": 14,
-      "triangles": 62317,
-      "bytes": 7186336,
-      "collisionOnly": false,
-      "localOriginZ": 12.07
     }
   ],
   "sourceModified": false,

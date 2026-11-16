@@ -3,60 +3,11 @@ import {
   CuboidCollider,
   RigidBody,
 } from '@react-three/rapier'
-import { useEffect, useMemo } from 'react'
-import { CanvasTexture, SRGBColorSpace } from 'three'
+import { ConsoleDisplay } from './ConsoleDisplay'
 import { BridgeInterior } from './BridgeInterior'
 import { BRIDGE_OFFSET_Z, bridgePoint } from './bridgePlacement'
 import { TERMINAL_SCREENS, type StationTarget } from '../interaction/station'
 import { COMMAND_SEGMENTS, COMMAND_POSES, SIDE_CHAIRS } from './commandLayout'
-
-function MonitorLabel({
-  kind,
-  highlighted,
-}: {
-  kind: 'computer' | 'communications'
-  highlighted: boolean
-}) {
-  const texture = useMemo(() => {
-    const canvas = document.createElement('canvas')
-    canvas.width = 768
-    canvas.height = 432
-    const context = canvas.getContext('2d')
-    if (context) {
-      context.fillStyle = '#09232d'
-      context.fillRect(0, 0, 768, 432)
-      context.strokeStyle = '#56838c'
-      context.lineWidth = 3
-      context.strokeRect(24, 24, 720, 384)
-      context.fillStyle = '#b9edf0'
-      context.textAlign = 'center'
-      context.font = 'bold 45px sans-serif'
-      const lines =
-        kind === 'computer'
-          ? ['CENTRAL', 'ARCHIVE']
-          : ['EARTH', 'COMMUNICATIONS']
-      lines.forEach((line, index) =>
-        context.fillText(line, 384, 196 + index * 58),
-      )
-      context.font = '20px sans-serif'
-      context.fillStyle = '#b9b5a5'
-      context.fillText('CRUZ DEL SUR · CDS-01', 384, 353)
-    }
-    const result = new CanvasTexture(canvas)
-    result.colorSpace = SRGBColorSpace
-    return result
-  }, [kind])
-  useEffect(() => () => texture.dispose(), [texture])
-  return (
-    <mesh position={[0, 0, -0.003]} userData={{ interaction: kind }}>
-      <planeGeometry args={[1.6, 0.9]} />
-      <meshBasicMaterial
-        map={texture}
-        color={highlighted ? '#ffffff' : '#d5e4e8'}
-      />
-    </mesh>
-  )
-}
 
 function Part({
   at,
@@ -101,7 +52,13 @@ function CommandMonitor({
     >
       <CuboidCollider args={[0.9, 0.55, 0.09]} position={[0, 0, -0.105]} />
       {/* Shell, stand and keys are interactive Blender geometry. */}
-      <MonitorLabel kind={kind} highlighted={target === kind} />
+      <ConsoleDisplay
+        kind={kind}
+        highlighted={target === kind}
+        width={1.6}
+        height={0.9}
+        position={[0, 0, -0.003]}
+      />
     </group>
   )
 }

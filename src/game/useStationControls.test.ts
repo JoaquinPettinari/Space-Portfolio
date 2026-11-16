@@ -101,7 +101,6 @@ it('never requests pause after terminal exits, tablet exits or capture failures'
     'communications',
     'personal',
     'crew',
-    'photo',
   ] as const) {
     act(() => result.current.changeMode(mode))
     act(() => result.current.setTransitioning(false))
@@ -119,7 +118,7 @@ it('never requests pause after terminal exits, tablet exits or capture failures'
   fireEvent.keyUp(window, { code: 'Escape' })
   expect(result.current.tabletMode).toBe('lowered')
   expect(result.current.showMouseHint).toBe(false)
-  expect(capture).toHaveBeenCalledTimes(6)
+  expect(capture).toHaveBeenCalledTimes(5)
   fireEvent.keyDown(window, { code: 'Escape' })
   fireEvent.keyUp(window, { code: 'Escape' })
   expect(result.current.showMouseHint).toBe(true)

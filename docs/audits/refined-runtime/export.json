@@ -1,0 +1,32 @@
+{
+  "source": "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\unified-ship\\cruz-del-sur-interior-panels.blend",
+  "sourceSaved": false,
+  "lightsExported": false,
+  "collidersChanged": false,
+  "assets": [
+    {
+      "file": "cruz-del-sur-refined-bridge.glb",
+      "sourceObjects": 48,
+      "batches": 48,
+      "triangles": 239066,
+      "bytes": 20995700,
+      "arrivalLocal": false
+    },
+    {
+      "file": "cruz-del-sur-refined-arrival.glb",
+      "sourceObjects": 373,
+      "batches": 16,
+      "triangles": 62317,
+      "bytes": 4127064,
+      "arrivalLocal": true
+    },
+    {
+      "file": "cruz-del-sur-refined-details.glb",
+      "sourceObjects": 61,
+      "batches": 38,
+      "triangles": 21725,
+      "bytes": 1791048,
+      "arrivalLocal": false
+    }
+  ]
+}

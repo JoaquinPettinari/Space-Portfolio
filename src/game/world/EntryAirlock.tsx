@@ -13,11 +13,14 @@ import {
   ARRIVAL_ORIGIN_Z,
   ARRIVAL_FLOOR_HULLS,
 } from './arrivalRoomLayout'
-import { UNIFIED_ARRIVAL_ASSET } from './unifiedShipAssets'
+import { REFINED_ARRIVAL_ASSET } from './refinedArtAssets'
+import { createArrivalShoulderClosure } from './arrivalShoulderClosure'
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
-  const { scene } = useGLTF(UNIFIED_ARRIVAL_ASSET)
+  const shoulderClosure = useMemo(() => createArrivalShoulderClosure(), [])
+  useEffect(() => () => shoulderClosure.dispose(), [shoulderClosure])
+  const { scene } = useGLTF(REFINED_ARRIVAL_ASSET)
   const model = useMemo(() => {
     const root = scene.clone(true)
     const materials = new Map<Material, Material>()
@@ -46,6 +49,17 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
 
   return (
     <group name="entry-airlock">
+      <mesh
+        name="arrival-starboard-shoulder-closure"
+        geometry={shoulderClosure}
+      >
+        <meshStandardMaterial
+          color="#38444c"
+          metalness={0.48}
+          roughness={0.43}
+          flatShading
+        />
+      </mesh>
       <RigidBody
         type="fixed"
         colliders={false}

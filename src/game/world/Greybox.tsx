@@ -1,5 +1,7 @@
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { SpaceExterior } from './SpaceExterior'
+import { RefinedInteriorDetails } from './RefinedInteriorDetails'
+import { TacticalSurface } from './TacticalSurface'
 import { PlayerShipHull } from './PlayerShipHull'
 import { BRIDGE_OFFSET_Z, TRANSITION_CENTER } from './bridgePlacement'
 import { ShipHull } from './ShipHull'
@@ -68,10 +70,7 @@ function CentralTable() {
             light
           />
         ))}
-        <mesh position={[0, 1.07, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[0.42, 0.435, 48]} />
-          <meshBasicMaterial color="#69d7ec" />
-        </mesh>
+        <TacticalSurface />
       </RigidBody>
     </group>
   )
@@ -90,6 +89,7 @@ export function Greybox({
     <group>
       <SpaceExterior />
       <PlayerShipHull />
+      <RefinedInteriorDetails />
       <group position={[0, 0, BRIDGE_OFFSET_Z]}>
         <CabinLighting emergency={emergency} />
       </group>

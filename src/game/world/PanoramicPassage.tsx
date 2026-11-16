@@ -5,7 +5,8 @@ import {
   CuboidCollider,
   RigidBody,
 } from '@react-three/rapier'
-import { Mesh, Shape, type Material } from 'three'
+import { Shape } from 'three'
+import { batchPanoramicPassage } from './batchPanoramicPassage'
 import {
   BAY_CENTERS,
   COLLAR_CENTERS,
@@ -33,49 +34,18 @@ const collars = COLLAR_POLYGONS.map((points) => {
   }
 })
 
-/** Native-scale bays share cached geometry; only transparent materials are locally owned. */
+/** Native-scale bays merge static surfaces; colliders retain their original layout. */
 export function PanoramicPassage() {
   const { scene } = useGLTF(PANORAMIC_BAY_ASSET)
-  const { bays, materials } = useMemo(() => {
-    const materials = new Map<Material, Material>()
-    const materialFor = (material: Material) => {
-      if (!material.transparent) return material
-      let local = materials.get(material)
-      if (!local) {
-        local = material.clone()
-        local.depthWrite = false
-        materials.set(material, local)
-      }
-      return local
-    }
-    const bays = BAY_CENTERS.map(() => {
-      const bay = scene.clone(true)
-      bay.traverse((object) => {
-        if (object instanceof Mesh) {
-          object.material = Array.isArray(object.material)
-            ? object.material.map(materialFor)
-            : materialFor(object.material)
-        }
-      })
-      return bay
-    })
-    return { bays, materials }
-  }, [scene])
-  useEffect(
-    () => () => materials.forEach((material) => material.dispose()),
-    [materials],
+  const model = useMemo(
+    () => batchPanoramicPassage(scene, BAY_CENTERS),
+    [scene],
   )
+  useEffect(() => () => model.dispose(), [model])
 
   return (
     <RigidBody type="fixed" colliders={false} name="panoramic-passage">
-      {bays.map((bay, i) => (
-        <primitive
-          key={i}
-          object={bay}
-          position={[0, 0, BAY_CENTERS[i]]}
-          dispose={null}
-        />
-      ))}
+      <primitive object={model.root} dispose={null} />
       <CuboidCollider
         args={[1.7, 0.115, PASSAGE_DEPTH / 2]}
         position={[0, -0.115, PASSAGE_CENTER]}

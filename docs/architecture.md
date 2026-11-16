@@ -1,5 +1,56 @@
 # Arquitectura
 
+## Arte refinado integrado — 2026-11-15
+
+`BridgeInterior` y `EntryAirlock` cargan las copias refinadas del puente y la
+llegada; `RefinedInteriorDetails` monta decoración estática agrupada por sala y
+material. Se conservan anclajes, interacciones, colliders, hojas de puerta,
+pasillo de vidrio y cierre del hombro derecho. El exportador evalúa copias de
+`cruz-del-sur-interior-panels.blend`, sin guardar ni alterar esa fuente.
+
+Las cuatro pantallas comparten un atlas y seleccionan panel por UV. Las funciones
+y superficies DOM existentes siguen en sus posiciones. La mesa táctica conserva
+su proyector vivo sobre una carta instrumental estática; no se importa el globo
+de previsualización de Blender. La geometría propia de pantalla se libera al
+desmontar y los GLTF/texturas de caché siguen compartidos.
+
+El exterior usa un cielo con galaxias y cuerpos lejanos y una vista orbital
+texturada de dos triángulos, con bordes suaves. Mantiene deriva, movimiento
+reducido, asteroides y lancha; no añade luces ni postprocesado. Se conserva la
+iluminación cálida del juego, sin importar luces de estudio.
+
+Presupuesto, correcciones de UV/color al exportar, capturas, mediciones y límites:
+[`audits/refined-runtime/REVIEW.md`](audits/refined-runtime/REVIEW.md).
+
+## Acabados del interior — 2026-11-14
+
+`BridgeInterior` aplica acabados locales mediante `prepareInteriorFinishes`:
+cuero satinado, herrajes neutros, nervaduras y variación de verde en las hojas,
+y ajuste leve de las texturas de desgaste existentes. Se clonan únicamente los
+materiales modificados y las dos geometrías de follaje que necesitan UVs;
+posiciones, índices, anclajes y colliders se conservan. Las normales del follaje
+se suavizan en esas copias para quitar el aspecto de papel facetado.
+
+Dos mapas opacos compartidos de 256 px se generan una vez al cargar, con mipmaps;
+no hay nuevos objetos visibles, luces, transparencias ni trabajo por cuadro.
+Las placas y etiquetas reutilizan sus canvas y dimensiones anteriores. Los
+recursos propios se liberan al desmontar sin disponer los GLTF compartidos.
+Evidencia y coste: `audits/interior-finishes/REVIEW.md`.
+
+## Render interior y pasada de FPS — 2026-11-14
+
+El renderer ordena las superficies opacas por profundidad manteniendo las
+prioridades explícitas; el vidrio conserva el orden transparente de Three.
+Los exportadores recalculan normales y activan backface culling únicamente en
+copias evaluadas de sólidos cerrados. Paneles abiertos, cristal, iluminación,
+geometría de colisión y fuente Blender se conservan.
+
+`batchBulkhead` agrupa materiales dentro de cada hoja y de cada zona del marco;
+no une hojas ni cambia anclajes o colliders. Sus geometrías propias se liberan
+al desmontar; los recursos de `useGLTF` siguen compartidos. Las consolas añaden
+gráficos en sus dos texturas existentes, sin animación ni luces nuevas.
+Mediciones, limitaciones y reproducción: `audits/fps-unified/REVIEW.md`.
+
 ## Runtime de la nave unificada — 2026-11-14
 
 `PlayerShipHull` carga la envolvente unificada y un GLB estructural separado de
@@ -239,3 +290,33 @@ La pausa también se abre con el botón visible Pause · Menu, de modo que un vi
 T cierra la tablet y E cierra computadora/holograma; los botones de salida también retoman el control en el mismo gesto. Game invoca una referencia interna tipada expuesta por MouseLook para solicitar Pointer Lock inmediatamente, sin esperar renders, efectos ni el final de la transición de cámara. Se conserva la entrada raw con fallback convencional y la protección contra peticiones duplicadas. La cámara y física siguen bloqueadas durante la transición aunque el navegador ya haya capturado el cursor.
 
 Escape y la pausa explícita mantienen el cursor libre; no intentamos recapturar automáticamente tras la liberación de seguridad del navegador. Los campos editables no consumen E/T. Encender luces y descargar el CV con E siguen siendo acciones sin modal y no liberan intencionalmente el cursor. El acceso rápido desde pausa tampoco fuerza captura al regresar.
+
+## Fondo orbital y paneles estáticos: revisión de rendimiento
+
+Esta revisión reemplaza el fondo orbital descrito anteriormente: la nave y la esfera de galaxias quedan fijas. La Tierra usa una esfera completa con mapa equirectangular, iluminación solar y borde atmosférico en un único shader; ya no es una fotografía sobre un plano. Las estrellas son puntos con fases independientes de brillo y deriva mínima; el planeta, los asteroides y la nave auxiliar mantienen su movimiento propio. Movimiento reducido congela estas animaciones. No se agregan luces, sombras ni postprocesado.
+
+`batchPanoramicPassage` combina superficies estáticas compatibles de los tres módulos conservando sus triángulos y transformaciones. Posee sus geometrías combinadas y copias de materiales transparentes, que libera al desmontar; no libera los recursos del GLB compartido. El vidrio fino usa una sola pasada. Las colisiones, adaptadores y el ciclo de apertura de puertas conservan su geometría y reglas.
+
+`StaticPanels` instancia los marcos y revestimientos por acabado; `bridgeWallPanels` define paneles oscuros, juntas, rejillas y tiras cálidas en los laterales y en la cara del mamparo visible desde el pasillo. La cafetera combina piezas estáticas en cuatro acabados y conserva el collider e interacción existentes. Su pantalla se genera únicamente al cambiar la fase del café. Las mediciones de esta revisión están en `docs/audits/fps-scenery`; una reducción de llamadas de dibujo no garantiza 60 FPS.
+
+## Acabados interiores y mapas planetarios
+
+La Tierra y el cielo usan ahora mapas de Solar System Scope con licencia CC BY 4.0, acreditados en `/credits.html` desde pausa. Se preparan como WebP con `scripts/assets/prepare-solar-textures.py`; los originales JPG quedan fuera del directorio público. La Tierra combina superficie, nubes, ciudades nocturnas, reflejo del océano y borde atmosférico en una sola superficie. La Luna y los otros siete planetas son cuerpos distantes con posiciones cinematográficas; no representan un sistema solar a escala ni una alineación real. Se reduce la presencia de asteroides a 24 piezas pequeñas y oscuras, instanciadas.
+
+El pasillo conserva sus colisiones y usa vidrio neutro sin iluminación, con opacidad 0,025, también en los laterales. Las rejillas profundizan únicamente la geometría visual bajo el plano caminable. `interiorShelfPanels` agrega repisas y soportes en coordenadas mundiales: sus límites se comprueban contra `BRIDGE_OFFSET_Z`, para que los objetos no terminen fuera del puente al desplazarse el casco compacto. Se preservan el tablero de expedición y la planta colgante.
+
+`passageRecessPanels` llena las dos ranuras del corredor opaco entre puente y vidrio. Sus objetos quedan detrás del plano físico en |X| = 1,5 m y dentro de los tres metros de transición; comparten los acabados instanciados con las repisas del puente. No se agregan colisiones para detalles inaccesibles detrás de ese límite.
+
+Se elimina Project Photo de escena, HUD, modos, blancos de interacción y enfoque de cámara; las imágenes de los proyectos siguen disponibles en el archivo profesional. Se elimina el panel técnico reservado junto al puesto personal, incluyendo su collider, y la segunda leyenda decorativa de Docking Access. El exportador trabaja sobre copias evaluadas: no guarda ni altera el archivo Blender editable.
+
+## Presupuesto de cuadros
+
+`roofVisuals` combina solo la representación del techo en dos superficies por acabado; los colliders y todas las caras se conservan. `exteriorPanels` instancia cajas exteriores con sus acabados originales. `StaticPanels` agrupa además por metalicidad y rugosidad para no combinar materiales distintos accidentalmente.
+
+`WarmLightFastPath` instala hooks reversibles en los materiales PBR presentes al completar la carga. Evita evaluar la reflexión directa de luces cuya contribución ya es cero según Three, manteniendo sus valores y preservando hooks previos. La prueba de contrato acompaña a la versión fijada de Three. Los materiales básicos y shaders de planetas permanecen independientes.
+
+El grupo exterior decorativo retorna `false` al raycast para detener la recursión de picking en Three r186. Sus objetos están fuera del alcance de interacción; consolas, puertas y superficies cercanas siguen usando el rayo y sus reglas existentes. El cielo se dibuja después de los sólidos para aprovechar el depth buffer, y las estrellas después del cielo; el vidrio conserva su fase transparente. El contrato de raycast se prueba con objetos y rayos reales de Three.
+
+Se mantiene el DPR original `[1, 1.5]`. Se ensayó y retiró una resolución adaptativa al comprobar el margen obtenido con las optimizaciones anteriores, para preservar la nitidez. Las mediciones finales usan resolución nativa; no garantizan 60 FPS sin picos en cualquier hardware.
+
+Se elimina el backdrop blur continuo del HUD y se refuerza su fondo. La pausa conserva su efecto visual. La medición prolongada y las limitaciones están en `docs/audits/stable-fps/REVIEW.md`.

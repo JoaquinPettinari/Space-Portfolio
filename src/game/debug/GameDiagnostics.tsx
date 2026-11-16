@@ -1,6 +1,16 @@
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
-import { InstancedMesh, Light, Mesh, Raycaster, Vector3 } from 'three'
+import {
+  Frustum,
+  InstancedMesh,
+  Light,
+  Matrix4,
+  Mesh,
+  Points,
+  ShaderMaterial,
+  Raycaster,
+  Vector3,
+} from 'three'
 import { bridgePoint } from '../world/bridgePlacement'
 import type { ProtocolState } from '../protocol'
 import type { CoffeeState } from '../coffee'
@@ -29,6 +39,7 @@ export type GameSnapshot = {
   drawCalls: number
   triangles: number
   frameMs: number
+  renderDpr: number
   maxEyeHeight: number
   mouseDelta: { x: number; y: number }
   cabinLighting: {
@@ -51,8 +62,13 @@ declare global {
       snapshot: () => GameSnapshot
       performance: () => Pick<
         GameSnapshot,
-        'frameMs' | 'drawCalls' | 'triangles'
+        'frameMs' | 'drawCalls' | 'triangles' | 'cameraPosition' | 'renderDpr'
       >
+      renderInventory: () => {
+        name: string
+        draws: number
+        triangles: number
+      }[]
     }>
   }
 }
@@ -120,11 +136,56 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         mouse.current = { x: event.movementX, y: event.movementY }
     }
     const api = Object.freeze({
+      renderInventory: () => {
+        const frustum = new Frustum().setFromProjectionMatrix(
+          new Matrix4().multiplyMatrices(
+            camera.projectionMatrix,
+            camera.matrixWorldInverse,
+          ),
+        )
+        const entries: { name: string; draws: number; triangles: number }[] = []
+        scene.traverseVisible((object) => {
+          if (!(object instanceof Mesh) || !frustum.intersectsObject(object))
+            return
+          const materials = Array.isArray(object.material)
+            ? object.material
+            : [object.material]
+          const draws = Array.isArray(object.material)
+            ? object.geometry.groups.length
+            : 1
+          const lineage = []
+          let parent = object.parent
+          while (parent) {
+            if (parent.name) lineage.push(parent.name)
+            parent = parent.parent
+          }
+          entries.push({
+            name: [...lineage.reverse(), object.name || object.type].join('/'),
+            draws:
+              draws *
+              (materials.some(
+                (m) => m.transparent && m.side === 2 && !m.forceSinglePass,
+              )
+                ? 2
+                : 1),
+            triangles:
+              (object.geometry.index?.count ??
+                object.geometry.attributes.position.count) / 3,
+          })
+        })
+        return entries.sort((a, b) => b.draws - a.draws)
+      },
       // No scene traversal or raycasts while measuring frame timing.
       performance: () => ({
         frameMs: frameMs.current,
+        renderDpr: gl.getPixelRatio(),
         drawCalls: gl.info.render.calls,
         triangles: gl.info.render.triangles,
+        cameraPosition: {
+          x: camera.position.x,
+          y: camera.position.y,
+          z: camera.position.z,
+        },
       }),
       snapshot: (): GameSnapshot => ({
         explorationHull: noseSight(),
@@ -167,6 +228,7 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         drawCalls: gl.info.render.calls,
         triangles: gl.info.render.triangles,
         frameMs: frameMs.current,
+        renderDpr: gl.getPixelRatio(),
         maxEyeHeight: maxEyeHeight.current,
         mouseDelta: { ...mouse.current },
         cabinLighting: {
@@ -183,7 +245,13 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
               : null
           })(),
           shuttle: scene.getObjectByName('orbital-shuttle')?.position.x ?? null,
-          stars: scene.getObjectByName('orbital-stars')?.rotation.y ?? null,
+          stars: (() => {
+            const stars = scene.getObjectByName('orbital-stars')
+            return stars instanceof Points &&
+              stars.material instanceof ShaderMaterial
+              ? Number(stars.material.uniforms.time.value)
+              : null
+          })(),
           planet: scene.getObjectByName('orbital-planet')?.rotation.y ?? null,
         },
       }),

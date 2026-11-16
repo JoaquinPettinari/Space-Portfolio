@@ -27,8 +27,8 @@ export function PauseMenu({
   const trapFocus = (event: KeyboardEvent<HTMLElement>) => {
     if (!visible || event.key !== 'Tab') return
     const controls = Array.from(
-      dialog.current?.querySelectorAll<HTMLButtonElement>(
-        'button:not(:disabled)',
+      dialog.current?.querySelectorAll<HTMLElement>(
+        'button:not(:disabled), a[href]',
       ) ?? [],
     ).filter(
       (button) => !button.closest('[hidden], [inert], [aria-hidden="true"]'),
@@ -92,6 +92,9 @@ export function PauseMenu({
         )}
         <footer>
           <span>ESC to resume</span>
+          <a href="/credits.html" target="_blank" rel="noreferrer">
+            Visual credits
+          </a>
           <span>T · Tablet</span>
         </footer>
       </section>

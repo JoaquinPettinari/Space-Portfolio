@@ -4,6 +4,7 @@ import base from './playwright.config.ts'
 export default defineConfig({
   ...base,
   testMatch: [
+    'interior-performance.spec.ts',
     'panoramic-passage-review.spec.ts',
     'architecture-v2.spec.ts',
     'warm-interior-review.spec.ts',

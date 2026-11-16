@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { GameWorld } from './GameWorld'
+import { opaqueDepthOrder } from './rendering/opaqueDepthOrder'
+import { ZeroContributionLights } from './rendering/WarmLightFastPath'
 import { GameHud } from './ui/GameHud'
 import { useStationControls } from './useStationControls'
 import { useProtocol } from './useProtocol'
@@ -114,7 +116,10 @@ export function Game({
     <div className="game" aria-label="Explorable 3D room">
       <Canvas
         frameloop={frameLoop}
-        onCreated={({ camera }) => camera.rotation.set(0, 0, 0)}
+        onCreated={({ camera, gl }) => {
+          camera.rotation.set(0, 0, 0)
+          gl.setOpaqueSort(opaqueDepthOrder)
+        }}
         camera={{
           position: [
             PLAYER_SPAWN_POSITION[0],
@@ -129,6 +134,7 @@ export function Game({
         fallback={<p className="fallback">This experience requires WebGL.</p>}
       >
         <color attach="background" args={['#030815']} />
+        <ZeroContributionLights ready={controls.ready} />
         <ambientLight
           name="cabin-ambient"
           intensity={lightsOn ? 0.5 : 0.2}

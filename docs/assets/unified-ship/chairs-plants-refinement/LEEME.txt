@@ -1,0 +1,24 @@
+SOLO BLENDER. No se modifico ni exporto el juego.
+
+Cuatro sillas: asiento redondeado, respaldo lumbar continuo, apoyacabezas y apoyabrazos acolchados; cuero azul carbon con microrelieve y costuras agrupadas. Bastidores y posiciones conservados. Se quitaron cuatro tiras antiguas que atravesaban el respaldo nuevo.
+
+131 hojas: contorno suavizado, curvatura transversal y nervaduras. Tallos y anclajes originales retenidos. Dos macetas principales reconstruidas con paredes continuas y aros laminados. Una textura botanica compartida, generada mediante imagegen integrado, guardada y empaquetada. Prompt en chairs-plants-refinement/leaf-surface-prompt.txt.
+
+Presupuesto: {
+  "baselineTriangles": 456996,
+  "finalTriangles": 465452,
+  "deltaTriangles": 8456,
+  "percent": 1.85,
+  "addedMeshObjects": 2,
+  "leavesRefined": 131,
+  "chairSets": 4,
+  "lightCount": 10,
+  "shadowLights": 8,
+  "applicationCodeChanged": false,
+  "boundsInsideBridge": true,
+  "newSimulations": 0,
+  "newImageTextures": 1
+}
+
+Los limites geometricos de los elementos refinados permanecen dentro del puente y fuera del pasillo panoramico. No es una prueba de colisiones del juego. No se midieron FPS del juego porque no se exporto esta pasada.
+Respaldo: before-chair-plant-refinement.blend.

@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { buildExteriorDeck } from './exteriorDeck'
-import { BOW_EDGES, segmentPose } from './bridgeLayout'
+import { EXTERIOR_PANELS } from './exteriorPanels'
+import { StaticPanels } from './StaticPanels'
 
 /** Lightweight visible hull only. The interior envelope owns all collisions. */
 export function ExteriorHull() {
@@ -35,45 +36,9 @@ export function ExteriorHull() {
           roughness={0.45}
         />
       </mesh>
-      {/* Edge axes use +Z inward; negative local Z places plating outside. */}
-      {BOW_EDGES.map(([a, b], index) => {
-        const edge = segmentPose(a, b)
-        return (
-          <group
-            key={index}
-            position={[edge.x, 0, edge.z]}
-            rotation={[0, edge.yaw, 0]}
-          >
-            <mesh name={`exterior-facet-${index}`} position={[0, 0.45, -0.35]}>
-              <boxGeometry args={[edge.length + 0.12, 0.3, 0.7]} />
-              <meshStandardMaterial
-                color="#394249"
-                metalness={0.35}
-                roughness={0.65}
-              />
-            </mesh>
-            {[-0.32, 0.32].map((fraction) => (
-              <mesh
-                key={fraction}
-                position={[edge.length * fraction, 0.62, -0.35]}
-              >
-                <boxGeometry args={[0.055, 0.04, 0.7]} />
-                <meshStandardMaterial color="#778087" roughness={0.75} />
-              </mesh>
-            ))}
-          </group>
-        )
-      })}
+      <StaticPanels panels={EXTERIOR_PANELS} />
       {[-1, 1].map((side) => (
         <group key={side}>
-          <mesh position={[side * 5.05, 0.45, 3.2]}>
-            <boxGeometry args={[0.7, 0.3, 5.6]} />
-            <meshStandardMaterial
-              color="#394249"
-              metalness={0.35}
-              roughness={0.65}
-            />
-          </mesh>
           <mesh position={[side * 0.7, 0.66, -7.8]}>
             <boxGeometry args={[0.06, 0.04, 0.3]} />
             <meshBasicMaterial color={side < 0 ? '#ef8b69' : '#78c6c4'} />

@@ -52,7 +52,10 @@ export function Bulkhead({
     }
   }, [model, powered, phase])
   useEffect(
-    () => () => model.indicators.forEach((material) => material.dispose()),
+    () => () => {
+      model.indicators.forEach((material) => material.dispose())
+      model.geometries.forEach((geometry) => geometry.dispose())
+    },
     [model],
   )
   useBeforePhysicsStep((world) => {

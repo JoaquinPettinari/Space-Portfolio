@@ -1,0 +1,18 @@
+{
+  "baselineTriangles": 465452,
+  "finalTriangles": 464597,
+  "triangleDelta": -855,
+  "deltaPercent": -0.184,
+  "meshObjectDelta": 5,
+  "lights": 10,
+  "shadowLights": 8,
+  "backgroundTriangles": 2,
+  "newKeycaps": 228,
+  "staticInstrumentDisplays": 4,
+  "applicationCodeChanged": false,
+  "exportedToGame": false,
+  "newDeskDetailsWithinBridge": true,
+  "warmLightingRetained": true,
+  "backgroundIsDistantStaticArtwork": true,
+  "runtimeFPSMeasured": false
+}

@@ -28,6 +28,26 @@ it('keeps the supplied leaf transforms and clears fixed frame and wall pockets t
     '',
   )
   const model = prepareBulkhead(source.scene)
+  const budget = (objects: import('three').Object3D[]) => {
+    let meshes = 0,
+      triangles = 0
+    for (const root of objects)
+      root.traverse((node) => {
+        if (!(node instanceof Mesh)) return
+        meshes++
+        triangles +=
+          (node.geometry.index?.count ??
+            node.geometry.attributes.position.count) / 3
+      })
+    return { meshes, triangles }
+  }
+  const originalBudget = budget([source.scene])
+  const runtimeBudget = budget([
+    model.frame,
+    ...model.leaves.map(({ visual }) => visual),
+  ])
+  expect(runtimeBudget.triangles).toBe(originalBudget.triangles)
+  expect(runtimeBudget.meshes).toBeLessThan(originalBudget.meshes)
   expect(source.scene.getObjectByName('LEAF_RIGHT_SLIDE')!.position.x).toBe(
     0.685,
   )
@@ -94,4 +114,5 @@ it('keeps the supplied leaf transforms and clears fixed frame and wall pockets t
     }
   }
   model.indicators.forEach((material) => material.dispose())
+  model.geometries.forEach((geometry) => geometry.dispose())
 })

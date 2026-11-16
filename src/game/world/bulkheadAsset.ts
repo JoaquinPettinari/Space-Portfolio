@@ -1,4 +1,5 @@
 import { Group, Mesh, MeshStandardMaterial, type Object3D } from 'three'
+import { batchBulkhead } from './batchBulkhead'
 
 /** Runtime adaptation only: retain the original GLB and recorded leaf transforms. */
 export function prepareBulkhead(source: Object3D) {
@@ -38,5 +39,9 @@ export function prepareBulkhead(source: Object3D) {
       indicators.push(material)
     }
   })
-  return { frame, leaves, indicators }
+  const geometries = [
+    batchBulkhead(frame),
+    ...leaves.map(({ visual }) => batchBulkhead(visual)),
+  ].flat()
+  return { frame, leaves, indicators, geometries }
 }

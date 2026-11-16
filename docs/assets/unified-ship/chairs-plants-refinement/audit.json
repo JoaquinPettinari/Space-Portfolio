@@ -1,0 +1,103 @@
+{
+  "summary": {
+    "baselineTriangles": 456996,
+    "finalTriangles": 465452,
+    "deltaTriangles": 8456,
+    "percent": 1.85,
+    "addedMeshObjects": 2,
+    "leavesRefined": 131,
+    "chairSets": 4,
+    "lightCount": 10,
+    "shadowLights": 8,
+    "applicationCodeChanged": false,
+    "boundsInsideBridge": true,
+    "newSimulations": 0,
+    "newImageTextures": 1
+  },
+  "bounds": {
+    "BRIDGE_RUNTIME_BRIDGE_Upholstery_": {
+      "min": [
+        -3.5585,
+        0.64,
+        0.599
+      ],
+      "max": [
+        3.5585,
+        6.924,
+        1.287
+      ]
+    },
+    "FURNISH_Leaf.004": {
+      "min": [
+        -4.3941,
+        0.0425,
+        1.2284
+      ],
+      "max": [
+        4.4285,
+        0.7565,
+        1.711
+      ]
+    },
+    "FURNISH_Leaf light.004": {
+      "min": [
+        -4.3191,
+        0.067,
+        1.314
+      ],
+      "max": [
+        4.3556,
+        0.6573,
+        1.711
+      ]
+    },
+    "CDS POLISH / Living specimen shelf / Leaf.001": {
+      "min": [
+        -3.5728,
+        -1.6898,
+        1.3152
+      ],
+      "max": [
+        -3.0019,
+        -1.3283,
+        2.1397
+      ]
+    },
+    "CDS POLISH / Living specimen shelf / Leaf light.005": {
+      "min": [
+        -3.4458,
+        -1.6332,
+        1.4027
+      ],
+      "max": [
+        -2.9836,
+        -1.3388,
+        2.0857
+      ]
+    },
+    "CDS TAILORED / Batched seat piping": {
+      "min": [
+        -3.5164,
+        0.6465,
+        0.7076
+      ],
+      "max": [
+        3.5164,
+        6.6147,
+        1.2746
+      ]
+    },
+    "CDS ORGANIC / Continuous rolled steel planters": {
+      "min": [
+        -4.1925,
+        0.2375,
+        1.045
+      ],
+      "max": [
+        4.1925,
+        0.5225,
+        1.23
+      ]
+    }
+  }
+}

@@ -9,7 +9,6 @@ import {
   TERMINAL_SCREENS,
   TABLE_POSITION,
   COFFEE_POSITION,
-  PHOTO_POSITION,
 } from '../interaction/station'
 import { COMMAND_POSES } from './commandLayout'
 
@@ -26,7 +25,7 @@ it('reserves three metres before the bridge, including clearance from its rear f
       TRANSITION_START - 0.5,
     )
   expect(TABLE_POSITION[2] + 1.35).toBeLessThan(TRANSITION_START)
-  for (const p of [COFFEE_POSITION, PHOTO_POSITION])
+  for (const p of [COFFEE_POSITION])
     expect(p[2] + 0.5).toBeLessThan(TRANSITION_START)
   expect(TERMINAL_SCREENS.crew.position[2]).toBeGreaterThan(TRANSITION_END)
 })

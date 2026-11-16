@@ -7,8 +7,6 @@ import { PauseMenu } from './PauseMenu'
 import { MissionChecklist } from './MissionChecklist'
 import { AmbientAudio } from './AmbientAudio'
 import { Loading } from './Loading'
-import { TerminalPanel } from './TerminalPanel'
-import { PhotoInspection } from './PhotoInspection'
 import type { ReactNode } from 'react'
 import type { BulkheadPhase } from '../world/bulkhead'
 import './GameHud.css'
@@ -172,11 +170,6 @@ export function GameHud({
         >
           {subtitle}
         </div>
-      )}
-      {mode === 'photo' && !transitioning && (
-        <TerminalPanel title="Project photo" onClose={resumeWalking}>
-          <PhotoInspection />
-        </TerminalPanel>
       )}
     </>
   )

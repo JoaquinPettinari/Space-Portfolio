@@ -1,5 +1,16 @@
 # Envolvente unificada en el juego
 
+La integración de los detalles de `cruz-del-sur-interior-panels.blend` usa tres
+assets refinados nuevos, conserva la envolvente/colisión de esta página y
+reemplaza únicamente puente, mobiliario y contenido de llegada. Se mantienen
+las funciones del juego y el cierre puntual del hombro derecho.
+Informe actual: [`../../audits/refined-runtime/REVIEW.md`](../../audits/refined-runtime/REVIEW.md).
+
+La pasada posterior de FPS conserva este diseño y añade descarte de caras
+traseras solo en sólidos cerrados. Presupuestos actuales y mediciones:
+[`../../audits/fps-unified/REVIEW.md`](../../audits/fps-unified/REVIEW.md).
+Las cifras siguientes documentan la integración inicial.
+
 El juego monta la nueva versión de Blender. Las fuentes y los GLB anteriores se
 conservan; se sustituyen las URLs usadas por el runtime, sin superponer la caja
 de llegada antigua a la envolvente nueva.

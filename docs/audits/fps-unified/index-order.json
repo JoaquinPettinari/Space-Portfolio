@@ -1,0 +1,62 @@
+[
+  {
+    "filename": "cruz-del-sur-bridge-interior.glb",
+    "optimizedBatches": 0,
+    "bitIdenticalDuplicateVertices": 211,
+    "simulatedCacheMissesBefore": 439593,
+    "simulatedCacheMissesAfter": 439593,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 23382400
+  },
+  {
+    "filename": "cruz-del-sur-unified-envelope.glb",
+    "optimizedBatches": 16,
+    "bitIdenticalDuplicateVertices": 57168,
+    "simulatedCacheMissesBefore": 304651,
+    "simulatedCacheMissesAfter": 247549,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 8203808
+  },
+  {
+    "filename": "cruz-del-sur-unified-arrival.glb",
+    "optimizedBatches": 4,
+    "bitIdenticalDuplicateVertices": 2,
+    "simulatedCacheMissesBefore": 115059,
+    "simulatedCacheMissesAfter": 110597,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 6961324
+  },
+  {
+    "filename": "cruz-del-sur-panoramic-bay.glb",
+    "optimizedBatches": 0,
+    "bitIdenticalDuplicateVertices": 0,
+    "simulatedCacheMissesBefore": 15984,
+    "simulatedCacheMissesAfter": 15984,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 488176
+  },
+  {
+    "filename": "cruz-del-sur-amber-details.glb",
+    "optimizedBatches": 0,
+    "bitIdenticalDuplicateVertices": 0,
+    "simulatedCacheMissesBefore": 12192,
+    "simulatedCacheMissesAfter": 12192,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 334664
+  },
+  {
+    "filename": "cruz-del-sur-furnishings.glb",
+    "optimizedBatches": 0,
+    "bitIdenticalDuplicateVertices": 0,
+    "simulatedCacheMissesBefore": 35664,
+    "simulatedCacheMissesAfter": 35664,
+    "sameOrientedTriangles": true,
+    "vertexAttributesUnchanged": true,
+    "bytes": 966972
+  }
+]

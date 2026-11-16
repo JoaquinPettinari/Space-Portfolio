@@ -1,0 +1,27 @@
+SOLO BLENDER. Archivo principal: cruz-del-sur-interior-panels.blend. Respaldo: before-consoles-and-orbit.blend.
+
+Cuatro pantallas estaticas de mayor resolucion, un atlas 1536x1024 compartido: navegacion, topografia, ingenieria y comunicaciones. Se ajusto la profundidad de las superficies para integrarlas al marco.
+228 teclas fisicas con leyendas compartidas, barra espaciadora sin rotulo, paneles de dos encoders, tornilleria y etiquetas de servicio. Acabado de escritorio en grafito cepillado. Los teclados reemplazan las teclas simplificadas anteriores.
+
+Escenario orbital: fondo estelar con galaxia, banda galactica y planetas lejanos, mas una vista orbital distante de dos triangulos a 170 metros. Arte de fondo estatico, no planeta fisico ni espacio navegable. El ambiente original y las luces calidas interiores se conservaron. Ambas imagenes generadas con imagegen integrado; prompts en generated-background-prompts.txt. Todas las imagenes activas empaquetadas.
+
+No se modificaron colisiones, puertas ni el pasillo de vidrio. Limites del equipo nuevo comprobados dentro del puente. La revision visual no demuestra funcionamiento de colisiones o FPS del juego; no se exporto esta pasada.
+
+{
+  "baselineTriangles": 465452,
+  "finalTriangles": 464597,
+  "triangleDelta": -855,
+  "deltaPercent": -0.184,
+  "meshObjectDelta": 5,
+  "lights": 10,
+  "shadowLights": 8,
+  "backgroundTriangles": 2,
+  "newKeycaps": 228,
+  "staticInstrumentDisplays": 4,
+  "applicationCodeChanged": false,
+  "exportedToGame": false,
+  "newDeskDetailsWithinBridge": true,
+  "warmLightingRetained": true,
+  "backgroundIsDistantStaticArtwork": true,
+  "runtimeFPSMeasured": false
+}

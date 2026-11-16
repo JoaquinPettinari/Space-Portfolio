@@ -40,9 +40,7 @@ test.afterEach(async ({ page }, info) => {
   expect(errors.get(page)).toEqual([])
 })
 
-test('coffee and image inspection remain available with guidance skipped', async ({
-  page,
-}) => {
+test('coffee remains available with guidance skipped', async ({ page }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
@@ -60,31 +58,6 @@ test('coffee and image inspection remain available with guidance skipped', async
   await expect
     .poll(async () => (await snapshot(page)).session.coffee.achievement)
     .toBe(true)
-  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  expect(await protocol(page)).toEqual(before)
-  await approach(
-    page,
-    { x: -4.78, y: 1.75, z: 2.2 + BRIDGE_OFFSET_Z },
-    'E · Inspect project photo',
-  )
-  await page.keyboard.press('e')
-  const photo = page.getByRole('dialog', { name: 'Project photo', exact: true })
-  await expect(photo).toBeVisible()
-  await expect(
-    photo.getByRole('img', {
-      name: 'RouteWise landing page with a coastal destination',
-    }),
-  ).toBeVisible()
-  await photo.getByRole('button', { name: 'Zoom in' }).click()
-  await expect(photo.getByRole('status', { name: '', exact: true })).toHaveText(
-    'Magnification: 2×',
-  )
-  await photo.getByRole('button', { name: 'Fit image' }).click()
-  await expect(photo.getByRole('status', { name: '', exact: true })).toHaveText(
-    'Magnification: 1×',
-  )
-  await page.keyboard.press('Escape')
-  await expect(photo).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   expect(await protocol(page)).toEqual(before)
 })
