@@ -1,3 +1,4 @@
+import { isStationTarget } from './station'
 import { expect, it } from 'vitest'
 import {
   TERMINAL_SCREENS,
@@ -130,4 +131,19 @@ it('keeps focus finite during zero-size resize events', () => {
   const target = { x: 0, y: 0, z: 0 }
   setStationFocus(target, 'computer', 0)
   expect(Number.isFinite(target.z)).toBe(true)
+})
+
+it('accepts interaction tags and rejects foreign GLTF user data', () => {
+  expect(isStationTarget('crew')).toBe(true)
+  expect(isStationTarget('bulkhead')).toBe(true)
+  for (const value of [
+    null,
+    undefined,
+    {},
+    ['crew'],
+    'constructor',
+    'unknown',
+  ]) {
+    expect(isStationTarget(value)).toBe(false)
+  }
 })

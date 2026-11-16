@@ -134,4 +134,6 @@ export const projects = [
     stack: ['React', 'Node.js', 'Express', 'Pa11y', 'Cypress', 'Accessibility'],
     links: [],
   },
-]
+] as const
+
+export type ProjectId = (typeof projects)[number]['id']

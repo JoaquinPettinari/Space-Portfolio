@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { missions } from '../missions'
+import { completedObjectiveCount, missions } from '../missions'
 import type { ProtocolState } from '../protocol'
 import type { BulkheadPhase } from '../world/bulkhead'
 import './TacticalPanel.css'
@@ -79,7 +79,8 @@ export function TacticalPanel({
           {section === 'Mission Log' && (
             <>
               <p>
-                Session objectives · {protocol.completed.length} /{' '}
+                Session objectives ·{' '}
+                {completedObjectiveCount(protocol.completed)} /{' '}
                 {missions.length}
               </p>
               <ul>

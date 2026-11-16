@@ -1,3 +1,4 @@
+import { useReducedMotionRef } from '../useReducedMotionRef'
 import { useEffect, useMemo, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import {
@@ -30,19 +31,10 @@ export function Bulkhead({
   const model = useMemo(() => prepareBulkhead(scene), [scene])
   const left = useRef<RapierRigidBody>(null)
   const right = useRef<RapierRigidBody>(null)
-  const reduced = useRef(false)
+  const reduced = useReducedMotionRef()
   const motion = useRef({ lastPhase: phase, elapsed: 0, notified: false })
   const leftPosition = useRef({ x: 0, y: -0.18, z: BULKHEAD_DEPTH })
   const rightPosition = useRef({ x: 0, y: -0.18, z: BULKHEAD_DEPTH })
-  useEffect(() => {
-    const query = matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reduced.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
   useEffect(() => {
     for (const material of model.indicators) {
       material.color.set(

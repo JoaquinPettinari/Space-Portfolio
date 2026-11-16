@@ -82,9 +82,7 @@ test('credential-controlled bulkhead visibly slides with collision and stays ope
   let samples: Awaited<typeof recording>
   try {
     await page.keyboard.press('e')
-    const identity = page
-      .getByRole('dialog', { name: 'Crew Access' })
-      .locator('.crew-identity')
+    const identity = page.getByRole('dialog', { name: 'Crew Access' })
     await expect(identity.getByRole('status')).toContainText(
       'Verifying credentials',
     )

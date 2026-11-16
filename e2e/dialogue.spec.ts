@@ -48,7 +48,10 @@ test('arrival expires and reopening the held tablet does not repeat its subtitle
   // Observe several frames after the second real input, not just the key event.
   await page.waitForTimeout(500)
   await expect(subtitle).not.toBeVisible()
-  expect((await snapshot(page)).session.protocol.completed).toEqual(['tablet'])
+  expect((await snapshot(page)).session.protocol.completed).toEqual([
+    'lighting',
+    'tablet',
+  ])
 })
 
 test('real power and bulkhead interactions advance entry dialogue without stacked subtitles', async ({
@@ -58,11 +61,15 @@ test('real power and bulkhead interactions advance entry dialogue without stacke
   await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
   await enterObservationRoom(page)
   expect((await snapshot(page)).session.bulkheadPhase).toBe('open')
-  // Short entry states replace stale entry guidance. The final open event must
-  // be readable, without requiring the browser to render every 350ms state.
-  await expect(subtitle).toHaveAttribute('data-dialogue-event', 'open', {
-    timeout: 20000,
-  })
+  // The completed entry flow now ends with the useful tablet hint. Short door
+  // messages may finish while the helper walks across the passage.
+  await expect(subtitle).toHaveAttribute(
+    'data-dialogue-event',
+    'tabletPrompt',
+    {
+      timeout: 20000,
+    },
+  )
   await expect(subtitle).toHaveCount(1)
   await expect(subtitle).not.toBeVisible({ timeout: 30000 })
   expect((await snapshot(page)).pointerLocked).toBe(true)
@@ -104,8 +111,12 @@ test('pause has only essential controls and HUD tracks tablet progress', async (
     .getByRole('complementary', { name: 'Recovery objectives' })
     .getByRole('listitem')
     .filter({ hasText: 'Open mission tablet' })
-  await expect(item).toHaveAttribute('data-complete', 'true')
-  await expect(item.locator('s')).toHaveText('Open mission tablet')
+  await expect(item).toHaveCount(0)
+  await expect(
+    page
+      .getByRole('complementary', { name: 'Recovery objectives' })
+      .getByRole('listitem'),
+  ).toHaveCount(4)
   await page.keyboard.press('Escape')
   await expect(pause).toBeVisible()
   await page.keyboard.press('t')

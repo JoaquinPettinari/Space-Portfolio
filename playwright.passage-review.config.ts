@@ -3,6 +3,14 @@ import base from './playwright.config.ts'
 
 export default defineConfig({
   ...base,
+  outputDir: 'test-results/passage-review',
+  reporter: [
+    ['list'],
+    [
+      'html',
+      { open: 'never', outputFolder: 'playwright-report/passage-review' },
+    ],
+  ],
   testMatch: [
     'interior-performance.spec.ts',
     'panoramic-passage-review.spec.ts',

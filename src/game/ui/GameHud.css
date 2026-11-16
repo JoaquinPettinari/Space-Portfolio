@@ -491,3 +491,18 @@
     max-height: 40dvh;
   }
 }
+
+/* Touch devices cannot invoke the keyboard-only T/R handoff. Keep the same
+ * focused tablet action available inside the existing objectives panel. */
+.touch-tablet-button {
+  display: none;
+}
+@media (pointer: coarse) {
+  .touch-tablet-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 12px;
+  }
+}

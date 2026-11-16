@@ -1,3 +1,4 @@
+import { crewDossier } from '../data/documents'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { GameWorld } from './GameWorld'
@@ -105,8 +106,8 @@ export function Game({
     ) : null
   const downloadDossier = () => {
     const link = document.createElement('a')
-    link.href = '/documents/joaquin-pettinari-cv.pdf'
-    link.download = 'joaquin-pettinari-cv.pdf'
+    link.href = crewDossier.href
+    link.download = crewDossier.filename
     document.body.append(link)
     link.click()
     link.remove()

@@ -14,7 +14,7 @@ export function ControlKey({ children, wide = false }: ControlKeyProps) {
 
 export function HudControls() {
   return (
-    <div className="hud-controls" aria-label="Game controls">
+    <div className="hud-controls" role="group" aria-label="Game controls">
       <div className="hud-control-row">
         <div className="hud-wasd">
           <ControlKey>W</ControlKey>

@@ -1,5 +1,24 @@
 # Arquitectura
 
+## Estado actual tras revisión — 2026-11-16
+
+Las secciones fechadas inferiores conservan la evolución del proyecto; no todas
+describen componentes activos. El espejo fue retirado por decisión del usuario.
+La identificación actual usa CrewAccess y su gesto local; EntryMenu,
+CrewIdentification, AuxiliarySwitch, CrewHologram, AstronautArm y HologramPanel
+fueron retirados por no tener consumidores. Los acabados actuales llegan en
+los GLB refinados: prepareInteriorFinishes y sus mapas procedurales permanecen
+como utilidades históricas comprobadas, sin montarse en el runtime.
+
+Los diálogos comparten trapDialogFocus; la preferencia de animación se consulta
+con useReducedMotionRef sin renders por cuadro. prepareShipModel define la
+propiedad de materiales clonados para llegada/envolvente, sin disponer los
+recursos de caché. Los targets de interacción y su guardia se derivan de
+STATION_TARGETS. crewDossier centraliza el documento profesional; ProjectId
+y el atlas de imágenes exigen cobertura no vacía al compilar.
+
+Informe de revisión y límites: [code-review-2026-11-16.md](code-review-2026-11-16.md).
+
 ## Arte refinado integrado — 2026-11-15
 
 `BridgeInterior` y `EntryAirlock` cargan las copias refinadas del puente y la
@@ -320,3 +339,30 @@ El grupo exterior decorativo retorna `false` al raycast para detener la recursi�
 Se mantiene el DPR original `[1, 1.5]`. Se ensayó y retiró una resolución adaptativa al comprobar el margen obtenido con las optimizaciones anteriores, para preservar la nitidez. Las mediciones finales usan resolución nativa; no garantizan 60 FPS sin picos en cualquier hardware.
 
 Se elimina el backdrop blur continuo del HUD y se refuerza su fondo. La pausa conserva su efecto visual. La medición prolongada y las limitaciones están en `docs/audits/stable-fps/REVIEW.md`.
+
+## Tablet y presencia de tripulación — 2026-11-16
+
+`CrewMirror` mantiene un render target propio de512×288, con cámara reflejada y
+recorte oblicuo. Actualiza como máximo a10Hz cerca y orientado hacia el espejo;
+el astronauta procedural vive en capa1, visible solo para esa cámara. El montaje
+tiene collider fijo y libera sus recursos al desmontar. Los guantes/tablet
+siguen siendo visuales relativos a la cámara, sin colisiones ni raycasts.
+`ArrivalServiceDetails` instancia rejillas estáticas sin luces nuevas.
+El listado de misiones contiene cuatro objetivos; las banderas internas de
+potencia/tablet no forman parte del contador. Evidencia y límites en
+`audits/crew-presence/REVIEW.md`.
+
+## Suites E2E y profiling observacional
+
+`e2e/suites.ts` clasifica cada spec en regresión, auditoría o producción.
+`playwright.shared.config.ts` comparte el navegador y sus límites; cada entrada
+elige specs, puerto, artefactos e informe HTML. Una prueba exige inventario
+exhaustivo y disjunto, incluso para futuros subdirectorios. Las recetas de
+revisión anteriores mantienen sus configuraciones explícitas como compatibilidad.
+
+`profileBridge` utiliza exclusivamente el observador de desarrollo y CDP
+Profiler de Chromium: devuelve muestras, percentiles, entorno y perfil CPU.
+No accede a raíces de Fiber, rutas del caché Vite ni altera raycasts/DPR. Cierra
+el profiler y su sesión en finally. El coste de instrumentación no se presenta
+como FPS de producción; los diagnósticos siguen ausentes del build publicado.
+Comandos y límites: [testing.md](testing.md).

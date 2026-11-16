@@ -1,3 +1,4 @@
+import { PERSONAL_POSITION } from '../src/game/interaction/station'
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { readFile } from 'node:fs/promises'
 import { expect, test, type Page } from '@playwright/test'
@@ -15,9 +16,9 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
 }
 async function openWorkstation(page: Page) {
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await enterObservationRoom(page)
   // Lit observation room, facing forward after the real airlock walkthrough.
   // These host samples are observations, not a frame-rate acceptance claim.
@@ -33,7 +34,11 @@ async function openWorkstation(page: Page) {
   await walkTo(page, 3.2, 3.1 + BRIDGE_OFFSET_Z)
   await approach(
     page,
-    { x: 4.55, y: 1.65, z: 2.1 + BRIDGE_OFFSET_Z },
+    {
+      x: PERSONAL_POSITION[0],
+      y: PERSONAL_POSITION[1],
+      z: PERSONAL_POSITION[2],
+    },
     'E Personal Workstation',
   )
   await page.keyboard.press('e')
@@ -123,7 +128,7 @@ test('keyboard desktop opens optional apps and downloads the real dossier withou
   expect(pdf.length).toBeGreaterThan(1000)
   await expect
     .poll(async () => (await snapshot(page)).session.protocol.completed)
-    .toEqual(['lighting', 'dossier'])
+    .toEqual(['lighting', 'crew', 'dossier'])
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()
   await expect(dossier).toBeFocused()
@@ -159,11 +164,15 @@ test('single-click desktop allows explicitly skipping the dossier without downlo
   expect(downloads).toBe(0)
   await expect
     .poll(async () => (await snapshot(page)).session.protocol.completed)
-    .toEqual(['lighting', 'dossier'])
+    .toEqual(['lighting', 'crew', 'dossier'])
   await page.keyboard.press('Escape')
   await expect(desktop).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(desktop).not.toBeVisible()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  // Escape from a terminal resumes walking; the next Escape releases the cursor.
+  await expect(page.locator('.crosshair')).toBeVisible()
+  await page.keyboard.press('Escape')
   await expect
     .poll(async () => (await snapshot(page)).pointerLocked)
     .toBe(false)

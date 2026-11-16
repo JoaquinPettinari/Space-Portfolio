@@ -1,3 +1,4 @@
+import { useReducedMotionRef } from '../useReducedMotionRef'
 import { useEffect, useEffectEvent, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
@@ -54,16 +55,7 @@ export function Player({
     destination: new Vector3(),
     elapsed: 0,
   })
-  const reducedMotion = useRef(false)
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reducedMotion.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
+  const reducedMotion = useReducedMotionRef()
   const vectors = useRef({
     forward: new Vector3(),
     move: new Vector3(),

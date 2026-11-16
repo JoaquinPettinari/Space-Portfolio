@@ -5,7 +5,7 @@ import {
   CuboidCollider,
   RigidBody,
 } from '@react-three/rapier'
-import { Mesh, type Material } from 'three'
+import { prepareShipModel } from './prepareShipModel'
 import { BULKHEAD_POCKET_PANELS } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
 import {
@@ -15,40 +15,19 @@ import {
 } from './arrivalRoomLayout'
 import { REFINED_ARRIVAL_ASSET } from './refinedArtAssets'
 import { createArrivalShoulderClosure } from './arrivalShoulderClosure'
+import { ArrivalServiceDetails } from './ArrivalServiceDetails'
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
   const shoulderClosure = useMemo(() => createArrivalShoulderClosure(), [])
   useEffect(() => () => shoulderClosure.dispose(), [shoulderClosure])
   const { scene } = useGLTF(REFINED_ARRIVAL_ASSET)
-  const model = useMemo(() => {
-    const root = scene.clone(true)
-    const materials = new Map<Material, Material>()
-    const prepare = (material: Material) => {
-      if (!material.transparent) return material
-      let local = materials.get(material)
-      if (!local) {
-        local = material.clone()
-        local.depthWrite = false
-        materials.set(material, local)
-      }
-      return local
-    }
-    root.traverse((object) => {
-      if (object instanceof Mesh)
-        object.material = Array.isArray(object.material)
-          ? object.material.map(prepare)
-          : prepare(object.material)
-    })
-    return { root, materials }
-  }, [scene])
-  useEffect(
-    () => () => model.materials.forEach((material) => material.dispose()),
-    [model],
-  )
+  const model = useMemo(() => prepareShipModel(scene), [scene])
+  useEffect(() => () => model.dispose(), [model])
 
   return (
     <group name="entry-airlock">
+      <ArrivalServiceDetails />
       <mesh
         name="arrival-starboard-shoulder-closure"
         geometry={shoulderClosure}

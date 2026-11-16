@@ -1,3 +1,4 @@
+import { useReducedMotionRef } from '../useReducedMotionRef'
 import { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import {
@@ -16,7 +17,7 @@ export function AsteroidField() {
   const rocks = useRef<
     { transform: Object3D; x: number; y: number; phase: number; spin: number }[]
   >([])
-  const reducedMotion = useRef(false)
+  const reducedMotion = useReducedMotionRef()
   const geometry = useMemo(() => {
     const rock = new IcosahedronGeometry(1, 1)
     const positions = rock.attributes.position
@@ -32,15 +33,6 @@ export function AsteroidField() {
     return rock
   }, [])
   useEffect(() => () => geometry.dispose(), [geometry])
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reducedMotion.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
   useLayoutEffect(() => {
     if (!instances.current) return
     let seed = 84013

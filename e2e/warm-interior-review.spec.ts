@@ -114,7 +114,9 @@ test('records warm interior appearance and render cost from native gameplay', as
     path: info.outputPath('decorative-alcove-no-cv.png'),
   })
   await expect(
-    page.getByText('E · Download crew dossier (CV / PDF)', { exact: true }),
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: 'Download crew dossier (CV / PDF)' }),
   ).not.toBeVisible()
   await walkTo(page, 0, 6.3)
   await lookAt(page, { x: 3.97, y: 1.3, z: 1.965 })

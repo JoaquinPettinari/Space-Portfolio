@@ -27,7 +27,7 @@ async function expectFreshSession(page: Page) {
     achievement: false,
   })
   expect(state.cameraPosition.z).toBeCloseTo(17.065, 1)
-  expect(state.cabinLighting.ambientIntensity).toBe(0.65)
+  expect(state.cabinLighting.ambientIntensity).toBe(0.5)
   expect(
     await page.evaluate(() => ({
       protocol: localStorage.getItem('cruz-del-sur.protocol'),

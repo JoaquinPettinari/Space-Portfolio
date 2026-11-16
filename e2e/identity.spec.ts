@@ -12,9 +12,9 @@ test.beforeEach(async ({ page }) => {
     if (message.type() === 'error') collected.push(message.text())
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await expect
     .poll(() => page.evaluate(() => !!window.__GAME_DEBUG__))
     .toBe(true)
@@ -45,14 +45,14 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(
     tablet.getByRole('button', { name: /Open mission tablet/ }),
-  ).toHaveAttribute('data-complete', 'true')
-  await expect(tablet).toContainText('1 / 6 objectives complete')
+  ).toHaveCount(0)
+  await expect(tablet).toContainText('0 / 4 objectives complete')
   await tablet.getByRole('button', { name: /Verify crew identity/ }).hover()
   await expect(tablet.locator('.map-objective')).toContainText('Crew Access')
   await tablet.getByRole('button', { name: 'Close tablet' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await approachCrew(page)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(page.locator('.interaction-hint')).toContainText('Crew Access')
   const standing = await snapshot(page)
   await page.keyboard.press('e')
   const identity = page.getByRole('dialog', {
@@ -67,7 +67,10 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
     identity.getByRole('heading', { name: 'Joaquín Pettinari' }),
   ).toBeVisible()
   await expect(identity.getByRole('heading', { name: /Master/ })).toBeVisible()
-  await expect(identity.locator('img')).toHaveCount(0)
+  const portrait = identity.getByRole('img', { name: 'Joaquín Pettinari' })
+  await expect(portrait).toHaveCount(1)
+  await expect(portrait).toBeVisible()
+  await expect(portrait).toHaveAttribute('src', '/images/crew-portrait.webp')
   await expect(
     identity.getByRole('button', { name: 'Training record' }),
   ).toHaveCount(0)
@@ -81,5 +84,5 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   await enterObservationRoom(page)
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('3 / 6 complete')
+  ).toContainText('1 / 4 complete')
 })

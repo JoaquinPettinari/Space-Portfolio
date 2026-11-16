@@ -45,9 +45,9 @@ test('walks to independent communications, skips without sending and resumes con
     return route.fulfill({ status: 500, json: { error: 'Unexpected send' } })
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await enterObservationRoom(page)
   const samples: GameSnapshot[] = []
   for (let i = 0; i < 15; i++) {
@@ -91,9 +91,9 @@ test('walks to independent communications, skips without sending and resumes con
   await page.keyboard.press('e')
   await expect(terminal).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  await expect(
-    page.getByText('E · Earth Communications', { exact: true }),
-  ).toBeVisible()
+  await expect(page.locator('.interaction-hint')).toContainText(
+    'Earth Communications',
+  )
   await page.keyboard.press('e')
   await expect(terminal).toBeVisible()
   await terminal
@@ -103,6 +103,10 @@ test('walks to independent communications, skips without sending and resumes con
   await expect(terminal).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(terminal).not.toBeVisible()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  // Escape from a terminal resumes walking; the next Escape releases the cursor.
+  await expect(page.locator('.crosshair')).toBeVisible()
+  await page.keyboard.press('Escape')
   await expect
     .poll(async () => (await snapshot(page)).pointerLocked)
     .toBe(false)
@@ -128,11 +132,17 @@ test('quick portfolio contact preserves failed draft and confirms only accepted 
     )
   })
   await page.goto('/')
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
+  await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
+  await page.keyboard.press('r')
   await page
-    .getByRole('button', { name: 'Mission tablet · T' })
-    .click({ timeout: 45_000 })
-  await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
+    .getByRole('dialog', { name: 'Mission tablet' })
+    .getByRole('button', { name: 'Read without 3D', exact: true })
     .click()
   await page.getByRole('button', { name: 'Contact', exact: true }).click()
   const form = page.getByRole('form', { name: 'Earth Communications' })

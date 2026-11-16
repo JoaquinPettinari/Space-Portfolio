@@ -1,56 +1,49 @@
 import type { Page } from '@playwright/test'
-import type { RootState } from '@react-three/fiber'
-import type { Object3D } from 'three'
 
-/** Test-only ablations; restores every mutation before returning to gameplay. */
+/** Observe the unmodified scene through the development diagnostics and Chromium's
+ * public DevTools Protocol. No renderer roots, DPR changes or raycast overrides. */
 export async function profileBridge(page: Page) {
-  return page.evaluate(async () => {
-    const url = '/node_modules/.vite/deps/@react-three_fiber.js'
-    const fiber = (await import(url)) as {
-      _roots: Map<HTMLCanvasElement, { store: { getState: () => RootState } }>
-    }
-    const canvas = document.querySelector('canvas')!
-    const { scene, gl } = fiber._roots.get(canvas)!.store.getState()
-    const frame = () =>
-      new Promise<number>((resolve) => requestAnimationFrame(resolve))
-    const measure = async () => {
+  const client = await page.context().newCDPSession(page)
+  try {
+    await client.send('Profiler.enable')
+    await client.send('Profiler.start')
+    const measurement = await page.evaluate(async () => {
+      const frame = () =>
+        new Promise<number>((resolve) => requestAnimationFrame(resolve))
       for (let i = 0; i < 40; i++) await frame()
-      const times: number[] = []
-      let last = await frame()
+      const samples = []
+      let previous = await frame()
       for (let i = 0; i < 120; i++) {
         const now = await frame()
-        times.push(now - last)
-        last = now
+        const diagnostics = window.__GAME_DEBUG__
+        if (!diagnostics)
+          throw new Error('Development diagnostics are unavailable')
+        samples.push({ ...diagnostics.performance(), rafMs: now - previous })
+        previous = now
       }
-      times.sort((a, b) => a - b)
+      const times = samples.map(({ frameMs }) => frameMs).sort((a, b) => a - b)
       return {
-        medianMs: times[60],
-        p95Ms: times[114],
-        calls: gl.info.render.calls,
-        triangles: gl.info.render.triangles,
+        kind: 'observational' as const,
+        viewport: {
+          width: innerWidth,
+          height: innerHeight,
+          browserDpr: devicePixelRatio,
+        },
+        browser: navigator.userAgent,
+        meanMs: times.reduce((sum, value) => sum + value, 0) / times.length,
+        medianMs: times[Math.floor(times.length * 0.5)],
+        p95Ms: times[Math.floor(times.length * 0.95)],
+        p99Ms: times[Math.floor(times.length * 0.99)],
+        samples,
       }
-    }
-    const raycasts = new Map<Object3D, Object3D['raycast']>()
-    scene.traverse((object) => raycasts.set(object, object.raycast))
-    const dpr = gl.getPixelRatio()
+    })
+    const { profile } = await client.send('Profiler.stop')
+    return { ...measurement, cpuProfile: profile }
+  } finally {
     try {
-      const baseline = await measure()
-      raycasts.forEach((_, object) => {
-        object.raycast = () => {}
-      })
-      const withoutRaycasts = await measure()
-      raycasts.forEach((raycast, object) => {
-        object.raycast = raycast
-      })
-      gl.setPixelRatio(dpr * 0.65)
-      const reducedResolution = await measure()
-      gl.setPixelRatio(dpr)
-      return { baseline, withoutRaycasts, reducedResolution }
+      await client.send('Profiler.disable')
     } finally {
-      raycasts.forEach((raycast, object) => {
-        object.raycast = raycast
-      })
-      gl.setPixelRatio(dpr)
+      await client.detach()
     }
-  })
+  }
 }

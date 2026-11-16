@@ -66,10 +66,19 @@ export async function lookAt(
 
 export async function enter(page: Page) {
   if ((await snapshot(page)).pointerLocked) return
-  const canvas = page.locator('canvas')
-  const box = await canvas.boundingBox()
-  if (!box) throw new Error('Canvas not ready')
-  await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
+  const resume = page.getByRole('button', {
+    name: 'Resume mission',
+    exact: true,
+  })
+  if (await resume.isVisible()) {
+    // Resume through the actual modal action; never click through its backdrop.
+    await resume.click()
+  } else {
+    const canvas = page.locator('canvas')
+    const box = await canvas.boundingBox()
+    if (!box) throw new Error('Canvas not ready')
+    await canvas.click({ position: { x: box.width / 2, y: box.height / 2 } })
+  }
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   // Wait for React's active-control commit after native browser capture.
   await expect(page.locator('.crosshair')).toBeVisible()

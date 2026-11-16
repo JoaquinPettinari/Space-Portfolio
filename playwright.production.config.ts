@@ -1,13 +1,20 @@
 import { defineConfig } from '@playwright/test'
+import shared from './playwright.shared.config.ts'
+import { productionSpecs } from './e2e/suites.ts'
 
 export default defineConfig({
-  testDir: './e2e',
-  testMatch: 'production.spec.ts',
+  ...shared,
+  testMatch: productionSpecs,
+  outputDir: 'test-results/production',
+  reporter: [
+    ['list'],
+    ['html', { open: 'never', outputFolder: 'playwright-report/production' }],
+  ],
   workers: 1,
   use: {
+    ...shared.use,
     baseURL: 'http://127.0.0.1:4174',
     browserName: 'chromium',
-    channel: 'chromium',
   },
   webServer: {
     command:

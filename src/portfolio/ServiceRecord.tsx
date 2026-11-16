@@ -1,3 +1,4 @@
+import { crewDossier } from '../data/documents'
 import { useState } from 'react'
 import { BriefcaseBusiness, MapPin, Download } from 'lucide-react'
 import { experience } from '../data/portfolio'
@@ -42,7 +43,7 @@ export function ServiceRecord({ onDownload }: { onDownload: () => void }) {
         </article>
         <a
           className="archive-service-download"
-          href="/documents/joaquin-pettinari-cv.pdf"
+          href={crewDossier.href}
           download
           onClick={onDownload}
         >

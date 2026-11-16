@@ -1,3 +1,4 @@
+import { crewDossier } from '../data/documents'
 import { ArrowUpRight, Download, MapPin } from 'lucide-react'
 import { profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
@@ -34,7 +35,7 @@ export function ArchiveOverview({
           </div>
           <a
             className="archive-download"
-            href="/documents/joaquin-pettinari-cv.pdf"
+            href={crewDossier.href}
             download
             onClick={onDownload}
           >

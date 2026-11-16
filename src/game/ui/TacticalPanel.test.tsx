@@ -33,7 +33,7 @@ it('reflects real session state without claiming docking or email delivery', () 
   expect(screen.getByText('Verified')).toBeVisible()
   expect(screen.getByText(/does not confirm email delivery/)).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Mission Log' }))
-  expect(screen.getByText('Session objectives · 3 / 6')).toBeVisible()
+  expect(screen.getByText('Session objectives · 2 / 4')).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Rotate left' }))
   expect(props.onRotate).toHaveBeenCalledWith(-1)
   fireEvent.change(screen.getByRole('slider', { name: 'Zoom' }), {

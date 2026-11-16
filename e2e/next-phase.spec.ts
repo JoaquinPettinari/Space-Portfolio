@@ -47,7 +47,7 @@ test('arrival power is online without a switch interaction', async ({
   await enter(page)
   expect((await protocol(page)).completed).toEqual(['lighting'])
   expect((await snapshot(page)).powerSwitchCount).toBe(0)
-  expect((await snapshot(page)).cabinLighting.ambientIntensity).toBe(0.65)
+  expect((await snapshot(page)).cabinLighting.ambientIntensity).toBe(0.5)
   expect((await snapshot(page)).session.bulkheadPhase).toBe('closed')
 })
 
@@ -306,7 +306,7 @@ test('optional tactical table reads session state, supports inspection and retur
   await dialog.getByRole('button', { name: 'Systems', exact: true }).click()
   await expect(dialog.getByText('Online', { exact: true })).toBeVisible()
   await dialog.getByRole('button', { name: 'Mission Log' }).click()
-  await expect(dialog.getByRole('listitem')).toHaveCount(6)
+  await expect(dialog.getByRole('listitem')).toHaveCount(4)
   await dialog.getByRole('button', { name: 'Rotate right' }).click()
   await dialog.getByRole('slider', { name: 'Zoom' }).focus()
   await page.keyboard.press('ArrowRight')

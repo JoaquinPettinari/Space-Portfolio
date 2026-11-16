@@ -1,3 +1,4 @@
+import { profile } from '../src/data/portfolio'
 import { expect, test, type Page } from '@playwright/test'
 import { enter as enterGame } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
@@ -77,7 +78,7 @@ test('reads the complete mobile portfolio through the unavailable-WebGL fallback
     page.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
   ).toBeVisible()
   await expect(
-    page.getByText(/Full-Stack Developer · Milan, Italy/),
+    page.getByText(`${profile.role} · ${profile.location}`, { exact: true }),
   ).toBeVisible()
   const nav = page.getByRole('navigation')
   await nav.getByRole('button', { name: 'Projects', exact: true }).focus()
@@ -192,9 +193,9 @@ test('opens the accessible HTML alternative from the tablet and returns without 
 }) => {
   test.setTimeout(120_000)
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   const canvas = page.locator('canvas')
   await enterGame(page)
   const beforeMovement = await snapshot(page)
@@ -204,7 +205,7 @@ test('opens the accessible HTML alternative from the tablet and returns without 
       .poll(async () => (await snapshot(page)).cameraPosition.z, {
         intervals: [30, 50],
       })
-      .toBeLessThan(6)
+      .toBeLessThan(beforeMovement.cameraPosition.z - 0.15)
   } finally {
     await page.keyboard.up('w')
     const afterMovement = await snapshot(page)
@@ -239,14 +240,14 @@ test('opens the accessible HTML alternative from the tablet and returns without 
     .click()
   await expect(canvas).toBeVisible()
   const restoredTablet = page.getByRole('dialog', { name: 'Mission tablet' })
-  await expect(restoredTablet).toContainText('1 / 6 objectives complete')
+  await expect(restoredTablet).toContainText('0 / 4 objectives complete')
   expect((await snapshot(page)).pointerLocked).toBe(false)
   expect((await snapshot(page)).cameraPosition).toEqual(before.cameraPosition)
   await restoredTablet.getByRole('button', { name: 'Close tablet' }).click()
   await expect(restoredTablet).not.toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('1 / 6 complete')
+  ).toContainText('0 / 4 complete')
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.waitForTimeout(200)
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(
@@ -260,9 +261,9 @@ test('offers quick access only inside the focused tablet, not as an entry or pau
   page,
 }) => {
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await expect(page.locator('canvas')).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Enter station', exact: true }),
@@ -274,8 +275,8 @@ test('offers quick access only inside the focused tablet, not as an entry or pau
   await expect(quick).not.toBeVisible()
   await page.keyboard.press('Escape')
   await expect(quick).not.toBeVisible()
+  // T opens focus directly from the paused mode; R would return to held mode.
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toBeVisible()
   await expect(
@@ -284,7 +285,12 @@ test('offers quick access only inside the focused tablet, not as an entry or pau
   await page.keyboard.press('Escape')
   await expect(tablet).not.toBeVisible()
   await expect(quick).not.toBeVisible()
-  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect(page.locator('.crosshair')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect
+    .poll(async () => (await snapshot(page)).pointerLocked)
+    .toBe(false)
 })
 
 test.describe('mobile touch tablet route', () => {
@@ -300,7 +306,7 @@ test.describe('mobile touch tablet route', () => {
     await page.goto('/')
     await expect(page.locator('canvas')).toBeVisible()
     const tabletButton = page.getByRole('button', {
-      name: 'Mission tablet · T',
+      name: 'Mission tablet',
       exact: true,
     })
     await expect(tabletButton).toBeVisible({ timeout: 45_000 })

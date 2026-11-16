@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useReducedMotionRef } from '../useReducedMotionRef'
+import { useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { Group } from 'three'
 import { PhysicalScreen } from './PhysicalScreen'
@@ -28,18 +29,9 @@ export function TacticalStation({
   const model = useRef<Group>(null)
   const [zoom, setZoom] = useState(0.8)
   const [rotating, setRotating] = useState(true)
-  const reduced = useRef(false)
+
   const invalidate = useThree((state) => state.invalidate)
-  useEffect(() => {
-    const query = matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reduced.current = query.matches
-      invalidate()
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [invalidate])
+  const reduced = useReducedMotionRef(invalidate)
   useFrame((_, delta) => {
     if (
       !model.current ||

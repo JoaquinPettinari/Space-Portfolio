@@ -1,4 +1,5 @@
-import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react'
+import { trapDialogFocus } from './dialogFocus'
+import { useEffect, useRef, type ReactNode } from 'react'
 import './PauseMenu.css'
 
 type PauseMenuProps = {
@@ -19,39 +20,19 @@ export function PauseMenu({
   error,
   children,
 }: PauseMenuProps) {
-  const dialog = useRef<HTMLElement>(null)
   const resume = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     if (visible) resume.current?.focus({ preventScroll: true })
   }, [visible])
-  const trapFocus = (event: KeyboardEvent<HTMLElement>) => {
-    if (!visible || event.key !== 'Tab') return
-    const controls = Array.from(
-      dialog.current?.querySelectorAll<HTMLElement>(
-        'button:not(:disabled), a[href]',
-      ) ?? [],
-    ).filter(
-      (button) => !button.closest('[hidden], [inert], [aria-hidden="true"]'),
-    )
-    const first = controls[0]
-    const last = controls.at(-1)
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault()
-      last?.focus()
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault()
-      first?.focus()
-    }
-  }
+
   return (
     <div className="pause-menu-backdrop" hidden={!visible}>
       <section
-        ref={dialog}
         className="pause-menu"
         role="dialog"
         aria-modal="true"
         aria-labelledby="pause-menu-title"
-        onKeyDown={trapFocus}
+        onKeyDown={trapDialogFocus}
       >
         <header>
           <h1 id="pause-menu-title">

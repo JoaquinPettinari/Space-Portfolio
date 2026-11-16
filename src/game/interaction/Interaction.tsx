@@ -4,6 +4,7 @@ import { Raycaster, Vector2, type Intersection } from 'three'
 import {
   INTERACTION_DISTANCE,
   interactionMode,
+  isStationTarget,
   type StationMode,
   type StationTarget,
 } from './station'
@@ -52,17 +53,7 @@ export function Interaction({
       if (
         hit &&
         hit.distance <= INTERACTION_DISTANCE &&
-        (kind === 'docking' ||
-          kind === 'tactical' ||
-          kind === 'computer' ||
-          kind === 'dossier' ||
-          kind === 'lighting' ||
-          kind === 'communications' ||
-          kind === 'personal' ||
-          kind === 'arcade' ||
-          kind === 'coffee' ||
-          kind === 'bulkhead' ||
-          kind === 'crew')
+        isStationTarget(kind)
       ) {
         next = kind
       }

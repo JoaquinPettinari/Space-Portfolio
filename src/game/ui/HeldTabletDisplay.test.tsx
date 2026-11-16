@@ -15,17 +15,14 @@ it('shows real objectives, completed state and current room map without stealing
       currentObjective={getCurrentObjective(state)}
     />,
   )
-  expect(screen.getByText('2 / 6')).toBeVisible()
+  expect(screen.getByText('0 / 4')).toBeVisible()
   expect(screen.getByText(/Objective: Verify crew identity/)).toBeVisible()
   expect(
     screen.getByRole('img', { name: /CRUZ DEL SUR current deck map/ }),
   ).toBeVisible()
   expect(screen.queryByRole('button')).not.toBeInTheDocument()
   expect(screen.getByText(/R · Interact & skip tutorial/)).toBeVisible()
-  expect(screen.getByText(/Arrival systems online/)).toHaveAttribute(
-    'data-complete',
-    'true',
-  )
+  expect(screen.queryByText(/Arrival systems online/)).not.toBeInTheDocument()
 })
 
 it('keeps completed objectives visible when guidance is skipped', () => {
@@ -38,5 +35,5 @@ it('keeps completed objectives visible when guidance is skipped', () => {
   expect(screen.getByText('Free exploration · Guidance paused')).toBeVisible()
   expect(
     screen.getByRole('list', { name: 'Mission progress' }).children,
-  ).toHaveLength(6)
+  ).toHaveLength(4)
 })

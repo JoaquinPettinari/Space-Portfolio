@@ -1,3 +1,4 @@
+import { crewDossier } from '../data/documents'
 import { useEffect, useId, useRef, useState } from 'react'
 import { education, experience, profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
@@ -136,7 +137,7 @@ export function PortfolioContent({
             </p>
             <a
               className="portfolio-link"
-              href="/documents/joaquin-pettinari-cv.pdf"
+              href={crewDossier.href}
               download
               onClick={() => onActivity?.('dossier')}
             >
@@ -175,7 +176,7 @@ export function PortfolioContent({
             </div>
             <a
               className="portfolio-link"
-              href="/documents/joaquin-pettinari-cv.pdf"
+              href={crewDossier.href}
               download
               onClick={() => onActivity?.('dossier')}
             >
@@ -263,7 +264,7 @@ export function PortfolioContent({
                 GitHub ↗
               </a>
               <a
-                href="/documents/joaquin-pettinari-cv.pdf"
+                href={crewDossier.href}
                 download
                 onClick={() => onActivity?.('dossier')}
               >

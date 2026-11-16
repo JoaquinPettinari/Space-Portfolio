@@ -5,21 +5,10 @@ export type MissionId = ObjectiveId | 'diagnostics'
 
 export const missions: { id: ObjectiveId; title: string; action: string }[] = [
   {
-    id: 'lighting',
-    title: 'Arrival systems online',
-    action:
-      'Docking arrival → Power is already online. No switch interaction is required.',
-  },
-  {
     id: 'crew',
     title: 'Verify crew identity',
     action:
       'Arrival room → Aim at Crew Access beside the secured bulkhead and press E once. Your full record remains available in the Central Archive.',
-  },
-  {
-    id: 'tablet',
-    title: 'Open mission tablet',
-    action: 'Press T to open your personal mission tablet.',
   },
   {
     id: 'archives',
@@ -49,4 +38,9 @@ export function completeMission(
   if (id === 'uplink') return completed
   const objective = id === 'diagnostics' ? 'archives' : id
   return completed.includes(objective) ? completed : [...completed, objective]
+}
+
+/** Internal power/tablet activity flags never count as playable objectives. */
+export function completedObjectiveCount(completed: readonly ObjectiveId[]) {
+  return missions.filter((mission) => completed.includes(mission.id)).length
 }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Bvh, useGLTF } from '@react-three/drei'
 import { RigidBody, TrimeshCollider } from '@react-three/rapier'
-import { Mesh, type Material } from 'three'
+import { prepareShipModel } from './prepareShipModel'
 import {
   UNIFIED_ENVELOPE_ASSET,
   UNIFIED_COLLISION_ASSET,
@@ -18,32 +18,12 @@ export function PlayerShipHull() {
     () => readUnifiedCollision(collision.scene),
     [collision.scene],
   )
-  const model = useMemo(() => {
-    const root = envelope.scene.clone(true)
-    const materials = new Map<Material, Material>()
-    const prepare = (material: Material) => {
-      if (!material.transparent) return material
-      let local = materials.get(material)
-      if (!local) {
-        local = material.clone()
-        local.depthWrite = false
-        if (/glass|glazing/i.test(local.name)) local.forceSinglePass = true
-        materials.set(material, local)
-      }
-      return local
-    }
-    root.traverse((object) => {
-      if (object instanceof Mesh)
-        object.material = Array.isArray(object.material)
-          ? object.material.map(prepare)
-          : prepare(object.material)
-    })
-    return { root, materials }
-  }, [envelope.scene])
-  useEffect(
-    () => () => model.materials.forEach((material) => material.dispose()),
-    [model],
+  const model = useMemo(
+    () => prepareShipModel(envelope.scene, true),
+    [envelope.scene],
   )
+  useEffect(() => () => model.dispose(), [model])
+
   return (
     <group name="cruz-del-sur-player-hull">
       <Bvh indirect>

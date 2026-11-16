@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useReducedMotionRef } from '../useReducedMotionRef'
+import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import { BackSide, SRGBColorSpace, type Mesh, type ShaderMaterial } from 'three'
@@ -24,7 +25,7 @@ export function SpaceExterior() {
   const planet = useRef<Mesh>(null)
   const earthMaterial = useRef<ShaderMaterial>(null)
   const stars = useRef<ShaderMaterial>(null)
-  const reducedMotion = useRef(false)
+  const reducedMotion = useReducedMotionRef()
   const data = useMemo(() => createIndependentStars(), [])
   const starUniforms = useMemo(() => ({ time: { value: 0 } }), [])
   const [skyMap, surface, clouds, night] = useTexture(
@@ -43,15 +44,6 @@ export function SpaceExterior() {
     }),
     [surface, clouds, night],
   )
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reducedMotion.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
   useFrame((_, delta) => {
     if (reducedMotion.current || document.hidden) return
     const step = Math.min(delta, 0.05)

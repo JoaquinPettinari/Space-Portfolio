@@ -36,7 +36,7 @@ describe('recovery protocol', () => {
     })
     expect(state.completed).toEqual(['lighting', 'crew'])
     state = protocolReducer(state, { type: 'activity', id: 'lighting' })
-    expect(getCurrentObjective(state)?.id).toBe('tablet')
+    expect(getCurrentObjective(state)?.id).toBe('archives')
     state = protocolReducer(state, { type: 'activity', id: 'tablet' })
     expect(getCurrentObjective(state)?.id).toBe('archives')
     expect(state.guidance).toBe('pending')

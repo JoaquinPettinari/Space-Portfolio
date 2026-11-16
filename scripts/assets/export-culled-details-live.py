@@ -6,7 +6,13 @@ evaluated temporary meshes are repaired; no source .blend is saved.
 from pathlib import Path
 import bpy, bmesh, json
 
-ROOT=Path(r'C:\Users\joaqu\Desktop\Space-Portfolio')
+# Live exec may not define __file__; locate the checkout from the saved source.
+if not bpy.data.filepath:
+    raise RuntimeError('Save the Blender source inside the intended checkout before exporting')
+ROOT = next((parent for parent in Path(bpy.data.filepath).resolve().parents
+             if (parent / 'package.json').is_file() and (parent / 'src').is_dir()), None)
+if ROOT is None:
+    raise RuntimeError('The Blender source must belong to a Space-Portfolio checkout')
 source_scene=bpy.context.scene
 reports=[]
 for collection,filename,prefix in [

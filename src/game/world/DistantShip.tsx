@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { useReducedMotionRef } from '../useReducedMotionRef'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Vector3, type Group } from 'three'
 import { sampleShuttleRoute } from './shuttleRoute'
@@ -8,16 +9,7 @@ export function DistantShip() {
   const ship = useRef<Group>(null)
   const elapsed = useRef(0)
   const tangent = useRef(new Vector3())
-  const reducedMotion = useRef(false)
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reducedMotion.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
+  const reducedMotion = useReducedMotionRef()
   useFrame((_, delta) => {
     if (!ship.current || reducedMotion.current || document.hidden) return
     elapsed.current += Math.min(delta, 0.05)

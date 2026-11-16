@@ -1,4 +1,7 @@
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
+import { CONSOLE_PATH } from '../src/game/world/bridgeLayout'
+import { CONSOLE_DEPTH } from '../src/game/world/commandLayout'
+import { PLAYER_CAPSULE_RADIUS } from '../src/game/player/jump'
 import { expect, test } from '@playwright/test'
 import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
 
@@ -15,9 +18,7 @@ test('bridge circulation, table, faceted hull and jump retain real collision', a
     if (message.type() === 'error') errors.push(message.text())
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
   await enterObservationRoom(page)
   await walkTo(page, 0, 3.3 + BRIDGE_OFFSET_Z)
 
@@ -41,23 +42,45 @@ test('bridge circulation, table, faceted hull and jump retain real collision', a
     .poll(async () => (await snapshot(page)).cameraPosition.y)
     .toBeLessThan(1.75)
 
-  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
-  await walkTo(page, -4.35, -1.2 + BRIDGE_OFFSET_Z)
-  await lookAt(page, { x: -6, y: 1.7, z: -1.2 + BRIDGE_OFFSET_Z })
+  // The console now fills the old side-window waypoint. Probe the outer side
+  // wall behind the desk's aft end, on connected free floor instead.
+  await walkTo(page, -2.4, 4.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -4.1, 4.5 + BRIDGE_OFFSET_Z)
+  await lookAt(page, { x: -6, y: 1.7, z: 4.5 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('w')
-  await page.waitForTimeout(1000)
-  await page.keyboard.up('w')
-  expect((await snapshot(page)).cameraPosition.x).toBeGreaterThan(-4.75)
-  await walkTo(page, -4.4, -2.2 + BRIDGE_OFFSET_Z)
+  try {
+    await page.waitForTimeout(1000)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  const side = (await snapshot(page)).cameraPosition
+  expect(side.x).toBeLessThan(-4.1)
+  expect(side.x).toBeGreaterThan(-4.75)
+  expect(side.y).toBeGreaterThan(1.6)
+
+  await walkTo(page, -2.4, 4.5 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 0, -3.2 + BRIDGE_OFFSET_Z)
   await lookAt(page, { x: -5.5, y: 1.7, z: -5.5 + BRIDGE_OFFSET_Z })
   await page.keyboard.down('w')
-  await page.waitForTimeout(1800)
-  await page.keyboard.up('w')
+  try {
+    await page.waitForTimeout(1800)
+  } finally {
+    await page.keyboard.up('w')
+  }
   const bow = (await snapshot(page)).cameraPosition
+  // The continuous diagonal console protects the bow before the window wall.
+  // Its inward face plus capsule radius determines the standing contact plane.
+  const consolePlane = CONSOLE_PATH[2][0] + CONSOLE_PATH[2][1]
+  const standingPlane =
+    consolePlane + Math.SQRT2 * (CONSOLE_DEPTH / 2 + PLAYER_CAPSULE_RADIUS)
+  const observedPlane = bow.x + bow.z - BRIDGE_OFFSET_Z
   expect(bow.z).toBeLessThan(-3.2 + BRIDGE_OFFSET_Z)
-  expect(bow.x + bow.z).toBeGreaterThan(-8.65 + BRIDGE_OFFSET_Z)
-
-  await walkTo(page, -4.3, -1.2 + BRIDGE_OFFSET_Z)
+  expect(observedPlane).toBeGreaterThan(standingPlane - 0.15)
+  expect(observedPlane).toBeLessThan(standingPlane + 0.3)
+  expect(bow.y).toBeGreaterThan(1.6)
+  await walkTo(page, 0, -3.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
   await walkTo(page, 0, 3.8 + BRIDGE_OFFSET_Z)
   await walkTo(page, 0, 6.8)

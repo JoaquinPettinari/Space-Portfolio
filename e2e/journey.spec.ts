@@ -29,11 +29,13 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     })
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await approachCrew(page)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   await page.keyboard.press('e')
   const identity = page.getByRole('dialog', {
     name: 'Crew Access',
@@ -43,7 +45,9 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     identity.locator('.crew-identity').getByRole('status'),
   ).toContainText('ACCESS GRANTED')
   await page.keyboard.press('e')
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   await enterObservationRoom(page)
   await page.keyboard.press('t')
   await page.keyboard.press('r')
@@ -69,7 +73,7 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
 
   await walkTo(page, -2.4, -1.3 + BRIDGE_OFFSET_Z)
@@ -92,7 +96,9 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   ).toContainText('No message was sent')
   await page.keyboard.press('e')
   await expect(
-    page.getByText('E · Earth Communications', { exact: true }),
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: 'Earth Communications' }),
   ).toBeVisible()
 
   await walkTo(page, 2.4, 3.1 + BRIDGE_OFFSET_Z)
@@ -118,11 +124,13 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   )
   await page.keyboard.press('e')
   await expect(
-    page.getByText('E Personal Workstation', { exact: true }),
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: 'Personal Workstation' }),
   ).toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('6 / 6 complete')
+  ).toContainText('4 / 4 complete')
   const completed = (await protocol(page)).completed
   expect(completed).toHaveLength(6)
   expect(completed).toEqual(
@@ -150,8 +158,8 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   await page.reload()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('0 / 6 complete', { timeout: 45_000 })
-  expect((await protocol(page)).completed).toEqual([])
+  ).toContainText('0 / 4 complete', { timeout: 45_000 })
+  expect((await protocol(page)).completed).toEqual(['lighting'])
   expect(transmissions).toBe(0)
   expect(errors).toEqual([])
 })

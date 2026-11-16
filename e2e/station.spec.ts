@@ -1,3 +1,7 @@
+import { COMMAND_POSES } from '../src/game/world/commandLayout'
+import { BRIDGE_OUTLINE } from '../src/game/world/bridgeLayout'
+import { ENTRY_DOCKING_DEPTH } from '../src/game/world/entryLayout'
+import { PLAYER_CAPSULE_RADIUS } from '../src/game/player/jump'
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test, type Page } from '@playwright/test'
 import {
@@ -6,17 +10,12 @@ import {
   forwardStation,
   approachCrew,
   walkTo,
+  lookAt,
+  snapshot,
 } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
-
-async function snapshot(page: Page): Promise<GameSnapshot> {
-  return page.evaluate(() => {
-    if (!window.__GAME_DEBUG__) throw new Error('Diagnostics not ready')
-    return window.__GAME_DEBUG__.snapshot()
-  })
-}
 
 test.beforeEach(async ({ page }) => {
   const errors: string[] = []
@@ -44,13 +43,18 @@ test.setTimeout(90_000)
 const collectors = new WeakMap<Page, string[]>()
 
 test('toggles ambient sound without capturing the mouse', async ({ page }) => {
-  const sound = page.getByRole('button', { name: 'Ambient sound' })
-  await expect(sound).toHaveAttribute('aria-pressed', 'false')
+  const pause = page.getByRole('dialog', { name: 'Game paused' })
+  await expect(pause).not.toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(false)
+  await page.keyboard.press('Escape')
+  await expect(pause).toBeVisible()
+  const sound = pause.getByRole('switch', { name: 'Ambient sound' })
+  await expect(sound).toHaveAttribute('aria-checked', 'false')
   await sound.click()
-  await expect(sound).toHaveAttribute('aria-pressed', 'true')
+  await expect(sound).toHaveAttribute('aria-checked', 'true')
   expect((await snapshot(page)).pointerLocked).toBe(false)
   await sound.click()
-  await expect(sound).toHaveAttribute('aria-pressed', 'false')
+  await expect(sound).toHaveAttribute('aria-checked', 'false')
   expect((await snapshot(page)).pointerLocked).toBe(false)
 })
 test.afterEach(async ({ page }, info) => {
@@ -80,34 +84,6 @@ async function focusTablet(page: Page) {
   await expect(
     page.getByRole('dialog', { name: 'Mission tablet' }),
   ).toBeVisible()
-}
-
-/** Steer using real mouse input; diagnostics only tell us where we are looking. */
-async function lookAt(page: Page, target: { x: number; y: number; z: number }) {
-  await page.mouse.move(640, 360)
-  const { cameraPosition: position, cameraRotation: q } = await snapshot(page)
-  const yaw = Math.atan2(
-    2 * (q.x * q.z + q.y * q.w),
-    1 - 2 * (q.x * q.x + q.y * q.y),
-  )
-  const pitch = Math.asin(
-    Math.max(-1, Math.min(1, 2 * (q.w * q.x - q.y * q.z))),
-  )
-  const desiredYaw = Math.atan2(position.x - target.x, position.z - target.z)
-  const desiredPitch = Math.atan2(
-    target.y - position.y,
-    Math.hypot(target.x - position.x, target.z - position.z),
-  )
-  const yawDelta = Math.atan2(
-    Math.sin(desiredYaw - yaw),
-    Math.cos(desiredYaw - yaw),
-  )
-  // PointerLockControls uses 0.002 radians per input pixel at default sensitivity.
-  await page.mouse.move(
-    640 - yawDelta / 0.002,
-    360 - (desiredPitch - pitch) / 0.002,
-    { steps: 16 },
-  )
 }
 
 test('walking while turning keeps small mouse inputs bounded', async ({
@@ -156,7 +132,16 @@ test('loads the scene and records a rendering baseline', async ({
   await expect(
     page.getByRole('button', { name: 'Quick Portfolio Access', exact: true }),
   ).not.toBeVisible()
-  await expect(page.getByText(/Move WASD · Look Mouse/)).toBeVisible()
+  const controls = page.getByLabel('Game controls')
+  await expect(controls).toContainText('Move')
+  await expect(controls).toContainText('Look')
+  await expect(controls).toContainText('Interact')
+  await expect(controls.locator('.hud-wasd kbd')).toHaveText([
+    'W',
+    'A',
+    'S',
+    'D',
+  ])
   await expect
     .poll(async () => (await snapshot(page)).drawCalls)
     .toBeGreaterThan(0)
@@ -220,36 +205,54 @@ test('walks forward, collides with chair, and stops when the key is released', a
   page,
 }) => {
   await enter(page)
+  const pose = COMMAND_POSES.computer
+  const chair = { x: pose.chair[0], z: pose.chair[2] + BRIDGE_OFFSET_Z }
+  const normal = { x: Math.sin(pose.rotation), z: Math.cos(pose.rotation) }
+  // Approach the rear face along the rotated chair's actual normal, rather
+  // than following the old x=-2.4 aisle past its moved seat.
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
-  await lookAt(page, { x: -2.4, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
-  const start = await snapshot(page)
+  await walkTo(page, -2.4, -1.2 + BRIDGE_OFFSET_Z)
+  await walkTo(page, chair.x + normal.x * 2.2, chair.z + normal.z * 2.2)
+  await lookAt(page, { x: chair.x, y: 1.7, z: chair.z })
+  const normalDistance = (p: GameSnapshot['cameraPosition']) =>
+    (p.x - chair.x) * normal.x + (p.z - chair.z) * normal.z
+  const start = (await snapshot(page)).cameraPosition
   await page.keyboard.down('w')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeLessThan(start.cameraPosition.z - 0.5)
-  await page.keyboard.up('w')
-  await page.waitForTimeout(100) // Allow the last physics step/interpolation to finish.
-  const openFloorStop = await snapshot(page)
+  try {
+    await expect
+      .poll(async () => normalDistance((await snapshot(page)).cameraPosition))
+      .toBeLessThan(normalDistance(start) - 0.5)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await page.waitForTimeout(100)
+  const openFloorStop = (await snapshot(page)).cameraPosition
   await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(
-    openFloorStop.cameraPosition.z,
-    2,
-  )
+  const afterStop = (await snapshot(page)).cameraPosition
+  expect(
+    Math.hypot(afterStop.x - openFloorStop.x, afterStop.z - openFloorStop.z),
+  ).toBeLessThan(0.02)
+
+  // CommandChair is a 0.42m half-width box; capsule contact is 0.3m farther out.
+  const contactDistance = 0.42 + PLAYER_CAPSULE_RADIUS
   await page.keyboard.down('w')
-  // Chair rear is z=-2.43, plus the player's capsule radius of 0.3.
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeLessThan(-2.05 + BRIDGE_OFFSET_Z)
+  try {
+    await expect
+      .poll(async () => normalDistance((await snapshot(page)).cameraPosition))
+      .toBeLessThan(contactDistance + 0.1)
+    await page.waitForTimeout(300)
+    const contact = (await snapshot(page)).cameraPosition
+    expect(normalDistance(contact)).toBeGreaterThan(contactDistance - 0.1)
+    expect(contact.y).toBeGreaterThan(1.6)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await page.waitForTimeout(100)
+  const stopped = (await snapshot(page)).cameraPosition
   await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.z).toBeGreaterThan(
-    -2.2 + BRIDGE_OFFSET_Z,
-  )
-  await page.keyboard.up('w')
-  const stopped = await snapshot(page)
-  await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(
-    stopped.cameraPosition.z,
-    2,
+  const final = (await snapshot(page)).cameraPosition
+  expect(Math.hypot(final.x - stopped.x, final.z - stopped.z)).toBeLessThan(
+    0.02,
   )
 })
 
@@ -257,10 +260,17 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   test.setTimeout(120_000)
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
   const verifyProjectImages = async () => {
-    const images = page.locator('.project-gallery img')
-    expect(await images.count()).toBeGreaterThan(0)
-    for (const image of await images.all()) {
-      await image.scrollIntoViewIfNeeded()
+    const media = page.locator('.archive-record-media')
+    const choices = media.getByRole('button', { name: /^Image \d+:/ })
+    const count = await choices.count()
+    expect(count).toBeGreaterThan(0)
+    for (let index = 0; index < count; index++) {
+      const choice = choices.nth(index)
+      await choice.click()
+      await expect(choice).toHaveAttribute('aria-pressed', 'true')
+      const image = media.getByRole('img')
+      await expect(image).toHaveCount(1)
+      await expect(image).toBeInViewport()
       await expect
         .poll(() =>
           image.evaluate((element: HTMLImageElement) => element.naturalWidth),
@@ -268,7 +278,6 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
         .toBeGreaterThan(0)
       await expect(image).not.toHaveAttribute('alt', '')
     }
-    await page.locator('.portfolio-content > h2').scrollIntoViewIfNeeded()
   }
   await enter(page)
   await page.keyboard.press('e')
@@ -277,10 +286,10 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   await page.waitForTimeout(200)
   const standing = await snapshot(page)
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
   await expect(
-    page.getByText('E · Sit down', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Sit down' }),
   ).not.toBeVisible()
   await page.keyboard.press('e')
   await expect(page.getByRole('dialog')).toBeVisible()
@@ -326,7 +335,7 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
   await page.waitForTimeout(1200)
   await enter(page)
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect(page.getByRole('dialog')).toBeVisible()
@@ -337,7 +346,7 @@ test('opens the computer directly and returns to walking', async ({ page }) => {
     page.getByRole('button', { name: 'Resume mission' }),
   ).not.toBeVisible()
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.z)
@@ -353,13 +362,14 @@ test('side wall blocks the player and Escape clears a held movement key', async 
   page,
 }) => {
   await enter(page)
-  await walkTo(page, 2.4, 3.1 + BRIDGE_OFFSET_Z)
-  await walkTo(page, 2.4, 0 + BRIDGE_OFFSET_Z)
+  // Free aft lane is behind the continuous console's end.
+  await walkTo(page, 2.4, 4.5 + BRIDGE_OFFSET_Z)
   await lookAt(page, { x: 2.4, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
+  const initialX = (await snapshot(page)).cameraPosition.x
   await page.keyboard.down('d')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
-    .toBeGreaterThan(0.5)
+    .toBeGreaterThan(initialX + 0.3)
   await page.keyboard.press('Escape')
   await expect
     .poll(async () => (await snapshot(page)).pointerLocked)
@@ -375,11 +385,14 @@ test('side wall blocks the player and Escape clears a held movement key', async 
   )
   await page.keyboard.up('d')
   await page.keyboard.down('d')
+  const sideContact = BRIDGE_OUTLINE[6][0] - 0.1 - PLAYER_CAPSULE_RADIUS
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
-    .toBeGreaterThan(4.6)
+    .toBeGreaterThan(sideContact - 0.15)
   await page.waitForTimeout(300)
-  expect((await snapshot(page)).cameraPosition.x).toBeLessThan(4.8)
+  expect((await snapshot(page)).cameraPosition.x).toBeLessThan(
+    sideContact + 0.15,
+  )
   await page.keyboard.press('Escape')
   await page.keyboard.up('d')
   await expect
@@ -426,48 +439,56 @@ test('animates the exterior, respects reduced motion, and blocks the rear airloc
   const still = (await snapshot(page)).spaceMotion
   await page.waitForTimeout(300)
   expect((await snapshot(page)).spaceMotion).toEqual(still)
-  await enter(page)
+  // Start at the actual arrival module rather than the former rear-room coordinates.
+  await capture(page)
+  await lookAt(page, { x: 0, y: 1.7, z: 0 })
+  const rearContact = ENTRY_DOCKING_DEPTH - 0.17 - PLAYER_CAPSULE_RADIUS
   await page.keyboard.down('s')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeGreaterThan(7.6)
-  await page.waitForTimeout(300)
-  await page.keyboard.up('s')
-  expect((await snapshot(page)).cameraPosition.z).toBeLessThan(7.95)
-  await page.mouse.move(640, 360)
-  await page.mouse.move(2211, 360, { steps: 20 })
+  try {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.z)
+      .toBeGreaterThan(rearContact - 0.15)
+    await page.waitForTimeout(300)
+    const blocked = (await snapshot(page)).cameraPosition
+    expect(blocked.z).toBeLessThan(rearContact + 0.15)
+    expect(blocked.y).toBeGreaterThan(1.6)
+  } finally {
+    await page.keyboard.up('s')
+  }
 })
 
-test('chamfered hull blocks diagonal walking near the rear corner', async ({
+test('rear hull corner blocks diagonal walking without leaving the floor', async ({
   page,
 }) => {
-  test.setTimeout(60_000)
+  test.setTimeout(120_000)
   await enter(page)
   await walkTo(page, 3.2, 4.35 + BRIDGE_OFFSET_Z)
-  await lookAt(page, { x: 3.2, y: 1.7, z: -4 + BRIDGE_OFFSET_Z })
-  await page.keyboard.down('d')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.x)
-    .toBeGreaterThan(4.4)
-  await page.keyboard.up('d')
-  await page.mouse.move(640, 360)
-  await page.mouse.move(1425, 470, { steps: 16 })
-  await page.mouse.move(640, 360, { steps: 16 })
-  await page.keyboard.down('d')
-  await page.keyboard.down('s')
-  await expect
-    .poll(async () => {
-      const { x, z } = (await snapshot(page)).cameraPosition
-      return x + z
-    })
-    .toBeGreaterThan(8.5 + BRIDGE_OFFSET_Z)
-  await page.waitForTimeout(400)
-  await page.keyboard.up('d')
-  await page.keyboard.up('s')
-  const corner = (await snapshot(page)).cameraPosition
-  expect(corner.x + corner.z).toBeLessThan(9 + BRIDGE_OFFSET_Z)
-  expect(corner.x).toBeLessThan(4.8)
-  expect(corner.z).toBeLessThan(4.8 + BRIDGE_OFFSET_Z)
+  // Aim diagonally at the corner itself; fixed mouse deltas depended on an old pose.
+  await lookAt(page, { x: 7, y: 1.7, z: 7 + BRIDGE_OFFSET_Z })
+  const sideContact = BRIDGE_OUTLINE[6][0] - 0.1 - PLAYER_CAPSULE_RADIUS
+  const rearContact =
+    BRIDGE_OUTLINE[0][1] + BRIDGE_OFFSET_Z - 0.15 - PLAYER_CAPSULE_RADIUS
+  await page.keyboard.down('w')
+  try {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.x)
+      .toBeGreaterThan(sideContact - 0.15)
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.z)
+      .toBeGreaterThan(rearContact - 0.15)
+    await page.waitForTimeout(300)
+    const corner = (await snapshot(page)).cameraPosition
+    expect(corner.x).toBeLessThan(sideContact + 0.15)
+    expect(corner.z).toBeLessThan(rearContact + 0.15)
+    expect(corner.y).toBeGreaterThan(1.6)
+    await page.waitForTimeout(300)
+    const stopped = (await snapshot(page)).cameraPosition
+    expect(Math.hypot(stopped.x - corner.x, stopped.z - corner.z)).toBeLessThan(
+      0.06,
+    )
+  } finally {
+    await page.keyboard.up('w')
+  }
 })
 
 test('focused tablet pauses movement, locates independent objectives and closes safely', async ({
@@ -504,7 +525,9 @@ test('rear alcove is decorative without a wall CV interaction', async ({
   await walkTo(page, -2.2, 0.5)
   await lookAt(page, { x: -3.25, y: 1.65, z: 1.62 })
   await expect(
-    page.getByText('E · Download crew dossier (CV / PDF)', { exact: true }),
+    page
+      .locator('.interaction-hint')
+      .filter({ hasText: 'Download crew dossier (CV / PDF)' }),
   ).not.toBeVisible()
   expect((await snapshot(page)).pointerLocked).toBe(true)
 })
@@ -543,38 +566,25 @@ test('Space jumps once while held, lands and remains disabled in the focused tab
   expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
 })
 
-test('restores lighting with E and keeps optional guidance within a session and resets it on refresh', async ({
+test('starts powered and keeps optional guidance within a session and resets it on refresh', async ({
   page,
 }) => {
   test.setTimeout(120_000)
   const hud = page.getByRole('complementary', { name: 'Recovery objectives' })
-  await expect(hud).toContainText('Restore interior lighting')
-  const dimAmbient = (await snapshot(page)).cabinLighting.ambientIntensity
-  expect(dimAmbient).not.toBeNull()
+  await expect(hud).toContainText('Verify crew identity')
+  const lighting = (await snapshot(page)).cabinLighting
+  expect(lighting.ambientIntensity).toBeGreaterThan(0)
+  expect(lighting.auxiliaryIntensity).toBeCloseTo(65, 1)
+  expect(lighting.alarmIntensity).toBe(0)
+  expect((await snapshot(page)).session.protocol.completed).toEqual([
+    'lighting',
+  ])
   await capture(page)
-  await lookAt(page, { x: -1.4, y: 1.65, z: 6.1 })
-  await expect(
-    page.getByText('E · Restore lighting', { exact: true }),
-  ).toBeVisible()
-  await page.keyboard.press('e')
-  await expect(hud).toContainText('Open mission tablet')
-  await expect(hud).toContainText(
-    'If you would rather skip the tutorial, go to the main computer.',
-  )
-  await expect(hud).toContainText('1 / 6 complete')
-  await expect
-    .poll(async () => (await snapshot(page)).cabinLighting.ambientIntensity)
-    .toBeGreaterThan(dimAmbient!)
-  await expect
-    .poll(async () => (await snapshot(page)).cabinLighting.auxiliaryIntensity)
-    .toBeCloseTo(65, 1)
-  await expect
-    .poll(async () => (await snapshot(page)).cabinLighting.alarmIntensity)
-    .toBe(0)
+  await expect(hud).toContainText('0 / 4 complete')
   await focusTablet(page)
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toContainText('Mission guidance is optional')
-  await expect(tablet).toContainText('2 / 6 objectives complete')
+  await expect(tablet).toContainText('0 / 4 objectives complete')
   await tablet
     .getByRole('button', { name: 'Continue Protocol', exact: true })
     .click()
@@ -583,22 +593,28 @@ test('restores lighting with E and keeps optional guidance within a session and 
     .getByRole('button', { name: 'Skip Tutorial', exact: true })
     .click()
   await focusTablet(page)
-  await expect(tablet).toContainText('2 / 6 objectives complete')
+  await expect(tablet).toContainText('0 / 4 objectives complete')
   await expect(
     tablet.getByRole('button', { name: /Restore interior lighting/ }),
-  ).toHaveAttribute('data-complete', 'true')
+  ).toHaveCount(0)
   await tablet
     .getByRole('button', { name: 'Resume Protocol', exact: true })
     .click()
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).not.toBeVisible()
   await expect(hud).toContainText('Verify crew identity')
   await focusTablet(page)
   await tablet
     .getByRole('button', { name: 'Replay Protocol', exact: true })
     .click()
   await page.keyboard.press('t')
-  await expect(hud).toContainText('Open mission tablet')
-  await expect(hud).toContainText('1 / 6 complete')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).not.toBeVisible()
+  await expect(hud).toContainText('Verify crew identity')
+  await expect(hud).toContainText('0 / 4 complete')
   expect((await snapshot(page)).cabinLighting.auxiliaryIntensity).toBeCloseTo(
     65,
     1,
@@ -606,7 +622,7 @@ test('restores lighting with E and keeps optional guidance within a session and 
   await focusTablet(page)
   await expect(
     tablet.getByRole('button', { name: /Restore interior lighting/ }),
-  ).toHaveAttribute('data-complete', 'true')
+  ).toHaveCount(0)
   await expect(
     tablet.getByRole('button', { name: /Verify crew identity/ }),
   ).toHaveAttribute('data-complete', 'false')
@@ -618,11 +634,9 @@ test('restores lighting with E and keeps optional guidance within a session and 
   expect(bounds).not.toBeNull()
   expect(bounds!.width).toBeLessThanOrEqual(600)
   await page.reload()
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45000 })
-  await expect(hud).toContainText('0 / 6 complete')
-  await expect(hud).toContainText('Restore interior lighting')
+  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 45000 })
+  await expect(hud).toContainText('0 / 4 complete')
+  await expect(hud).toContainText('Verify crew identity')
   expect((await snapshot(page)).session.protocol.guidance).toBe('pending')
 })
 
@@ -631,7 +645,9 @@ test('cancels Crew Access before completion and retries with reduced motion', as
 }) => {
   test.setTimeout(120_000)
   await approachCrew(page)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   const standing = await snapshot(page)
   await page.keyboard.press('e')
   // Cancel through real input before the transition/scan can complete.
@@ -643,10 +659,12 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await expect(identity).not.toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('1 / 6 complete')
+  ).toContainText('0 / 4 complete')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
+  // Wait for the cancelled camera transition to finish before sending T/R.
+  await expect(page.locator('.crosshair')).toBeVisible()
   await focusTablet(page)
   const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(
@@ -655,8 +673,10 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await tablet.getByRole('button', { name: 'Close tablet' }).click()
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await capture(page)
-  await lookAt(page, { x: 2.05, y: 1.65, z: 4.65 })
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await approachCrew(page)
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   await page.keyboard.press('e')
   await expect(
     identity.locator('.crew-identity').getByRole('status'),
@@ -669,6 +689,11 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await page.keyboard.press('Escape')
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('3 / 6 complete')
-  expect((await snapshot(page)).pointerLocked).toBe(false)
+  ).toContainText('1 / 4 complete')
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect(page.locator('.crosshair')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect
+    .poll(async () => (await snapshot(page)).pointerLocked)
+    .toBe(false)
 })

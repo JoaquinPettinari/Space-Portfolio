@@ -1,8 +1,10 @@
 import { defineConfig, devices } from '@playwright/test'
+import shared from './playwright.shared.config.ts'
 
 /** Manual visual review only: this suite never records screenshots or videos. */
 export default defineConfig({
   testDir: './e2e',
+  outputDir: 'test-results/monitor',
   testMatch: [
     'architecture-v2.spec.ts',
     'roof-performance.spec.ts',
@@ -24,12 +26,15 @@ export default defineConfig({
   retries: 0,
   timeout: 150_000,
   expect: { timeout: 15_000 },
-  reporter: 'list',
+  reporter: [
+    ['list'],
+    ['html', { open: 'never', outputFolder: 'playwright-report/monitor' }],
+  ],
   use: {
+    ...shared.use,
     ...devices['Desktop Chrome'],
     // Full Chromium's modern headless uses the available GPU. Headless Shell
     // falls back to SwiftShader here and distorts native input/render timing.
-    channel: 'chromium',
     baseURL: 'http://127.0.0.1:4173',
     viewport: { width: 1280, height: 720 },
     screenshot: 'off',

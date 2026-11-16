@@ -1,11 +1,10 @@
+import { trapDialogFocus } from './dialogFocus'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import {
-  useEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-  type ReactNode,
-} from 'react'
-import { missions, type ObjectiveId } from '../missions'
+  completedObjectiveCount,
+  missions,
+  type ObjectiveId,
+} from '../missions'
 import type { ProtocolState } from '../protocol'
 import { DeckMap } from './DeckMap'
 
@@ -38,38 +37,23 @@ export function MissionTablet({
 }) {
   const { completed, guidance } = state
   const [selected, setSelected] = useState<ObjectiveId>(
-    currentObjective?.id ?? 'tablet',
+    currentObjective?.id ?? 'crew',
   )
-  const dialog = useRef<HTMLElement>(null)
   const close = useRef<HTMLButtonElement>(null)
   const mission = missions.find((item) => item.id === selected)!
   useEffect(() => {
     close.current?.focus({ preventScroll: true })
     onDisplayReady?.()
   }, [onDisplayReady])
-  const trapFocus = (event: KeyboardEvent) => {
-    if (event.key !== 'Tab') return
-    const buttons = dialog.current?.querySelectorAll('button')
-    if (!buttons?.length) return
-    const first = buttons[0],
-      last = buttons[buttons.length - 1]
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault()
-      last.focus()
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault()
-      first.focus()
-    }
-  }
+
   return (
     <div className={handheld ? 'handheld-tablet-interface' : 'tablet-backdrop'}>
       <section
-        ref={dialog}
         className="mission-tablet"
         role="dialog"
         aria-modal="true"
         aria-labelledby="tablet-title"
-        onKeyDown={trapFocus}
+        onKeyDown={trapDialogFocus}
       >
         <header>
           <div>
@@ -108,7 +92,8 @@ export function MissionTablet({
               : 'Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.'}
         </p>
         <p className="mission-progress" role="status">
-          {completed.length} / {missions.length} objectives complete
+          {completedObjectiveCount(completed)} / {missions.length} objectives
+          complete
         </p>
         <div className="tablet-layout">
           <div className="tablet-objectives" aria-label="Mission objectives">
@@ -146,7 +131,7 @@ export function MissionTablet({
         </div>
         {subtitle}
         <footer>
-          {completed.length === missions.length
+          {completedObjectiveCount(completed) === missions.length
             ? 'Recovery protocol complete. Enjoy your stay.'
             : 'Suggested route only. All portfolio sections remain accessible.'}
           <span>

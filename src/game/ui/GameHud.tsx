@@ -1,7 +1,7 @@
 import type { StationControls } from '../useStationControls'
 import type { useProtocol } from '../useProtocol'
 import type { useCoffee } from '../useCoffee'
-import { missions } from '../missions'
+import { completedObjectiveCount, missions } from '../missions'
 import { interactionHint } from '../interaction/hints'
 import { PauseMenu } from './PauseMenu'
 import { MissionChecklist } from './MissionChecklist'
@@ -140,7 +140,7 @@ export function GameHud({
           <p className="eyebrow">CURRENT OBJECTIVE</p>
 
           <strong>
-            {completed.length} / {missions.length} complete
+            {completedObjectiveCount(completed)} / {missions.length} complete
           </strong>
 
           <MissionChecklist
@@ -151,6 +151,11 @@ export function GameHud({
           />
           {protocol.guidance === 'skipped' && (
             <p>Free exploration · Guidance paused</p>
+          )}
+          {!suspended && !transitioning && !showMouseHint && (
+            <button className="touch-tablet-button" onClick={openTablet}>
+              Mission tablet
+            </button>
           )}
         </aside>
       )}

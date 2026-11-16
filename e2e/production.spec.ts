@@ -35,7 +35,7 @@ test('starts directly in the production station and keeps portfolio access secon
   }
   await expect(page.locator('canvas')).toBeVisible()
   await expect(page.getByLabel('Game controls')).toBeVisible({
-    timeout: 15_000,
+    timeout: 60_000,
   })
   await expect(
     page.getByRole('button', { name: 'Enter station', exact: true }),

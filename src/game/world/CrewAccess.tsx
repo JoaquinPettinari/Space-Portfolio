@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useReducedMotionRef } from '../useReducedMotionRef'
+import { useMemo, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
@@ -62,16 +63,7 @@ function ReaderGesture({
   const hand = useRef<Group>(null)
   const elapsed = useRef(0)
   const complete = useRef(false)
-  const reduced = useRef(false)
-  useEffect(() => {
-    const query = matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reduced.current = query.matches
-    }
-    update()
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
+  const reduced = useReducedMotionRef()
   useFrame((_, delta) => {
     if (!hand.current || complete.current || paused || document.hidden) return
     elapsed.current = advanceIdentification(

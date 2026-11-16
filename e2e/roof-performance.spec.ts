@@ -1,3 +1,4 @@
+import { writeFile } from 'node:fs/promises'
 import { profileBridge } from './helpers/profileBridge'
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
 import { expect, test } from '@playwright/test'
@@ -18,8 +19,40 @@ test('measures the roof from a repeatable native gameplay view', async ({
   await enterObservationRoom(page)
   await walkTo(page, 0, 3.3 + BRIDGE_OFFSET_Z)
   await lookAt(page, { x: 0, y: 3.2, z: -6 + BRIDGE_OFFSET_Z })
-  if (process.env.PROFILE_BRIDGE)
-    console.log('BRIDGE_ABLATION', JSON.stringify(await profileBridge(page)))
+  if (process.env.PROFILE_BRIDGE) {
+    const profile = await profileBridge(page)
+    await info.attach('bridge-observational-profile', {
+      body: JSON.stringify(profile),
+      contentType: 'application/json',
+    })
+    const cpuPath = info.outputPath('bridge.cpuprofile')
+    await writeFile(cpuPath, JSON.stringify(profile.cpuProfile))
+    await info.attach('bridge-cpu-profile', {
+      path: cpuPath,
+      contentType: 'application/json',
+    })
+    expect(profile.cpuProfile.nodes.length).toBeGreaterThan(0)
+    expect(profile.cpuProfile.endTime).toBeGreaterThan(
+      profile.cpuProfile.startTime,
+    )
+    expect(profile.samples).toHaveLength(120)
+    expect(
+      profile.samples.every(
+        (sample) => sample.drawCalls > 0 && sample.triangles > 0,
+      ),
+    ).toBe(true)
+    expect(
+      new Set(profile.samples.map((sample) => sample.renderDpr)).size,
+    ).toBe(1)
+    console.log(
+      'BRIDGE_PROFILE',
+      JSON.stringify({
+        meanMs: profile.meanMs,
+        p95Ms: profile.p95Ms,
+        samples: profile.samples.length,
+      }),
+    )
+  }
   const result = await page.evaluate(async () => {
     const frame = () =>
       new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))

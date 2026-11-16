@@ -1,5 +1,9 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom, approachCrew } from './helpers/game'
+import {
+  enterObservationRoom,
+  approachCrew,
+  forwardStation,
+} from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -28,9 +32,9 @@ test.beforeEach(async ({ page }) => {
     if (message.type() === 'error') collected.push(message.text())
   })
   await page.goto('/')
-  await expect(
-    page.getByRole('button', { name: 'Mission tablet · T' }),
-  ).toBeVisible({ timeout: 45_000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 45_000,
+  })
   await expect
     .poll(() => page.evaluate(() => !!window.__GAME_DEBUG__))
     .toBe(true)
@@ -92,6 +96,9 @@ test('tablet focus and exit actions resume real mouse capture without another cl
         page.getByRole('region', { name: 'Held mission tablet' }),
       ).toBeVisible()
       await page.keyboard.press('t')
+      await expect(
+        page.getByRole('region', { name: 'Held mission tablet' }),
+      ).not.toBeVisible()
     }
   }
   await page.keyboard.press('Escape')
@@ -106,11 +113,10 @@ test('computer E, exit button and Escape return without opening pause', async ({
 }) => {
   test.setTimeout(120_000)
   await enter(page)
-  await page.keyboard.down('w')
+  await forwardStation(page, -1)
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
-  await page.keyboard.up('w')
   const standing = (await snapshot(page)).cameraPosition
   const archive = page.getByRole('dialog', { name: 'Central Archive' })
 
@@ -121,7 +127,7 @@ test('computer E, exit button and Escape return without opening pause', async ({
   await expect(archive).not.toBeVisible()
   await expectLocked(page, true)
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(standing.z, 1)
 
@@ -130,7 +136,7 @@ test('computer E, exit button and Escape return without opening pause', async ({
   await archive.getByRole('button', { name: 'Exit computer' }).click()
   await expectLocked(page, true)
   await expect(
-    page.getByText('E · Use computer', { exact: true }),
+    page.locator('.interaction-hint').filter({ hasText: 'Use computer' }),
   ).toBeVisible()
   await page.keyboard.press('e')
   await expect(archive).toBeVisible()
@@ -146,7 +152,9 @@ test('Crew Access E closes the interaction and recaptures the real mouse', async
 }) => {
   test.setTimeout(120_000)
   await approachCrew(page)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   const standing = (await snapshot(page)).cameraPosition
   await page.keyboard.press('e')
   const identity = page.getByRole('dialog', {
@@ -160,7 +168,9 @@ test('Crew Access E closes the interaction and recaptures the real mouse', async
   await page.keyboard.press('e')
   await expect(identity).not.toBeVisible()
   await expectLocked(page, true)
-  await expect(page.getByText('E · Crew Access', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
+  ).toBeVisible()
   expect((await snapshot(page)).cameraPosition.x).toBeCloseTo(standing.x, 1)
   expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(standing.z, 1)
 })

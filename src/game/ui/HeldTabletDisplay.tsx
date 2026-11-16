@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { missions } from '../missions'
+import { completedObjectiveCount, missions } from '../missions'
 import type { ProtocolState } from '../protocol'
 import { DeckMap } from './DeckMap'
 
@@ -19,7 +19,7 @@ export function HeldTabletDisplay({
       <header>
         <strong>CRUZ DEL SUR · MISSION TABLET</strong>
         <span>
-          {state.completed.length} / {missions.length}
+          {completedObjectiveCount(state.completed)} / {missions.length}
         </span>
       </header>
       <p>
@@ -43,7 +43,7 @@ export function HeldTabletDisplay({
             </li>
           ))}
         </ul>
-        <DeckMap selected={currentObjective?.id ?? 'tablet'} />
+        <DeckMap selected={currentObjective?.id ?? 'crew'} />
       </div>
       <footer>
         WASD · Move / Mouse · Look / R · Interact & skip tutorial / T · Lower

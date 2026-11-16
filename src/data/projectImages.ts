@@ -1,3 +1,5 @@
+import type { ProjectId } from './portfolio'
+
 type ProjectImage = {
   src: string
   alt: string
@@ -6,7 +8,10 @@ type ProjectImage = {
   height: number
 }
 
-export const projectImages: Record<string, ProjectImage[]> = {
+export const projectImages: Record<
+  ProjectId,
+  [ProjectImage, ...ProjectImage[]]
+> = {
   routewise: [
     {
       src: '/images/projects/routewise-home.webp',

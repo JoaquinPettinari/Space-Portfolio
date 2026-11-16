@@ -64,3 +64,30 @@
 .handheld-tablet-interface .mission-tablet > p {
   font-size: 16px;
 }
+
+/* Static instrument finish: no blur, animated filters or extra WebGL passes. */
+.held-tablet-display {
+  background: linear-gradient(135deg, #102a36, #07161e 70%);
+  border: 2px solid #48717b;
+  box-shadow: inset 0 0 0 5px #09141b;
+  font-family: 'Share Tech Mono', monospace;
+}
+.held-tablet-display header {
+  border-bottom: 1px solid #34545a;
+  padding-bottom: 14px;
+  letter-spacing: 1px;
+}
+.held-tablet-display > p {
+  color: #f2d4a0;
+  padding: 10px 12px;
+  border-left: 3px solid #f2c477;
+  background: #18313a;
+}
+.held-tablet-display li {
+  border-bottom: 1px solid #213b43;
+  padding-bottom: 8px;
+}
+.held-tablet-display footer {
+  border-top: 1px solid #34545a;
+  padding-top: 9px;
+}

@@ -23,19 +23,28 @@ export type StationMode =
   | 'personal'
   | 'arcade'
   | 'crew'
-export type StationTarget =
-  | 'docking'
-  | 'tactical'
-  | 'computer'
-  | 'dossier'
-  | 'lighting'
-  | 'communications'
-  | 'personal'
-  | 'arcade'
-  | 'coffee'
-  | 'bulkhead'
-  | 'crew'
-  | null
+export const STATION_TARGETS = [
+  'docking',
+  'tactical',
+  'computer',
+  'dossier',
+  'lighting',
+  'communications',
+  'personal',
+  'arcade',
+  'coffee',
+  'bulkhead',
+  'crew',
+] as const
+export type StationTarget = (typeof STATION_TARGETS)[number] | null
+const stationTargets: ReadonlySet<unknown> = new Set(STATION_TARGETS)
+
+/** User data from imported scene objects is untrusted until narrowed here. */
+export function isStationTarget(
+  value: unknown,
+): value is Exclude<StationTarget, null> {
+  return stationTargets.has(value)
+}
 
 export const SCREEN_POSITION = BRIDGE_MONITORS.computer.position
 export const COMMUNICATIONS_POSITION = BRIDGE_MONITORS.communications.position

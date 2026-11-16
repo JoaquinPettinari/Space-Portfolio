@@ -1,5 +1,6 @@
+import { useReducedMotionRef } from '../useReducedMotionRef'
 import { useEffect, useRef, type ReactNode } from 'react'
-import { Html } from '@react-three/drei'
+import { Html, RoundedBox } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { Group } from 'three'
 import { advanceTabletPose, type TabletMode } from '../tablet'
@@ -42,18 +43,9 @@ export function HandheldTablet({
   const prop = useRef<Group>(null)
   const screen = useRef<HTMLDivElement>(null)
   const pose = useRef({ raised: 0, focused: 0 })
-  const reducedMotion = useRef(false)
+
   const invalidate = useThree((value) => value.invalidate)
-  useEffect(() => {
-    const media = matchMedia('(prefers-reduced-motion: reduce)')
-    const update = () => {
-      reducedMotion.current = media.matches
-      invalidate()
-    }
-    update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
-  }, [invalidate])
+  const reducedMotion = useReducedMotionRef(invalidate)
   useEffect(() => invalidate(), [mode, invalidate])
   useFrame(({ camera, size }, delta) => {
     if (!root.current || !prop.current) return
@@ -97,31 +89,81 @@ export function HandheldTablet({
           <boxGeometry args={[1.24, 0.82, 0.07]} />
           <meshBasicMaterial color="#26343d" depthTest={false} />
         </mesh>
+        <RoundedBox
+          args={[1.29, 0.87, 0.065]}
+          radius={0.045}
+          smoothness={2}
+          position={[0, 0, -0.025]}
+          raycast={ignoreRaycast}
+        >
+          <meshBasicMaterial color="#111d25" depthTest={false} />
+        </RoundedBox>
         {[-1, 1].map((side) => (
           <group key={side}>
-            <mesh position={[side * 0.6, 0.34, 0.008]} raycast={ignoreRaycast}>
-              <boxGeometry args={[0.13, 0.12, 0.08]} />
-              <meshBasicMaterial color="#c57c38" depthTest={false} />
-            </mesh>
-            <group
-              position={[side * 0.66, -0.22, 0.06]}
-              rotation={[0, 0, side * -0.18]}
-            >
-              <mesh raycast={ignoreRaycast}>
-                <boxGeometry args={[0.16, 0.28, 0.13]} />
-                <meshBasicMaterial color="#a5aeb1" depthTest={false} />
-              </mesh>
+            {[-1, 1].map((row) => (
               <mesh
-                position={[-side * 0.075, 0.04, 0.055]}
-                rotation={[0, 0, side * 0.4]}
+                key={row}
+                position={[side * 0.59, row * 0.35, 0.046]}
                 raycast={ignoreRaycast}
               >
-                <boxGeometry args={[0.07, 0.17, 0.09]} />
-                <meshBasicMaterial color="#53606a" depthTest={false} />
+                <circleGeometry args={[0.018, 8]} />
+                <meshBasicMaterial color="#b7a47d" depthTest={false} />
               </mesh>
-              <mesh position={[0, -0.18, -0.01]} raycast={ignoreRaycast}>
-                <boxGeometry args={[0.19, 0.13, 0.16]} />
-                <meshBasicMaterial color="#d3d7d6" depthTest={false} />
+            ))}
+            <mesh position={[side * 0.57, 0.26, 0.047]} raycast={ignoreRaycast}>
+              <boxGeometry args={[0.014, 0.08, 0.012]} />
+              <meshBasicMaterial color="#ffc477" depthTest={false} />
+            </mesh>
+            <group
+              position={[side * 0.67, -0.24, 0.07]}
+              rotation={[0, side * -0.2, side * -0.2]}
+            >
+              <RoundedBox
+                args={[0.17, 0.25, 0.14]}
+                radius={0.055}
+                smoothness={2}
+                raycast={ignoreRaycast}
+              >
+                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
+              </RoundedBox>
+              {[0, 1, 2, 3].map((finger) => (
+                <mesh
+                  key={finger}
+                  position={[-side * 0.055, 0.073 - finger * 0.047, 0.075]}
+                  rotation={[0, 0, Math.PI / 2]}
+                  raycast={ignoreRaycast}
+                >
+                  <capsuleGeometry args={[0.023, 0.075, 3, 6]} />
+                  <meshBasicMaterial
+                    color={finger % 2 ? '#727d7a' : '#818c87'}
+                    depthTest={false}
+                  />
+                </mesh>
+              ))}
+              <mesh
+                position={[-side * 0.085, 0.075, 0.12]}
+                rotation={[0, 0, side * -0.5]}
+                raycast={ignoreRaycast}
+              >
+                <capsuleGeometry args={[0.032, 0.09, 3, 8]} />
+                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
+              </mesh>
+              <RoundedBox
+                position={[0, -0.18, -0.025]}
+                args={[0.2, 0.14, 0.18]}
+                radius={0.025}
+                smoothness={2}
+                raycast={ignoreRaycast}
+              >
+                <meshBasicMaterial color="#343e42" depthTest={false} />
+              </RoundedBox>
+              <mesh position={[0, -0.2, 0.071]} raycast={ignoreRaycast}>
+                <boxGeometry args={[0.16, 0.035, 0.012]} />
+                <meshBasicMaterial color="#c98d45" depthTest={false} />
+              </mesh>
+              <mesh position={[0, -0.33, -0.04]} raycast={ignoreRaycast}>
+                <capsuleGeometry args={[0.092, 0.19, 3, 8]} />
+                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
               </mesh>
             </group>
           </group>

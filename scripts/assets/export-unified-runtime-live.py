@@ -6,7 +6,14 @@ Static collision uses un-bevelled structural meshes, never all visual detail.
 from pathlib import Path
 import bpy,bmesh,json,struct
 from mathutils import Vector,Matrix
-ROOT=Path(r'C:\Users\joaqu\Desktop\Space-Portfolio');OUT=ROOT/'docs/assets/unified-ship'
+# Live exec may not define __file__; locate the checkout from the saved source.
+if not bpy.data.filepath:
+    raise RuntimeError('Save the Blender source inside the intended checkout before exporting')
+ROOT = next((parent for parent in Path(bpy.data.filepath).resolve().parents
+             if (parent / 'package.json').is_file() and (parent / 'src').is_dir()), None)
+if ROOT is None:
+    raise RuntimeError('The Blender source must belong to a Space-Portfolio checkout')
+OUT=ROOT/'docs/assets/unified-ship'
 source_scene=bpy.context.scene
 assert source_scene.name=='CRUZ DEL SUR / Unified compact vessel'
 assert source_scene.get('structural_flow_finish')

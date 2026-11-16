@@ -4,8 +4,17 @@ import base from './playwright.config.ts'
 const executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH
 export default defineConfig({
   ...base,
+  outputDir: 'test-results/refined-review',
+  reporter: [
+    ['list'],
+    [
+      'html',
+      { open: 'never', outputFolder: 'playwright-report/refined-review' },
+    ],
+  ],
   testMatch: [
     'stable-fps.spec.ts',
+    'crew-presence.spec.ts',
     'refined-interior.spec.ts',
     'fps-scenery.spec.ts',
     'interior-orbit-polish.spec.ts',

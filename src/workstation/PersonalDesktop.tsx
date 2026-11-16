@@ -1,3 +1,4 @@
+import { crewDossier } from '../data/documents'
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { profile, projects } from '../data/portfolio'
 import { projectImages } from '../data/projectImages'
@@ -130,15 +131,11 @@ export function PersonalDesktop({
                 The original professional CV supplied by {profile.name}. No
                 mission is required to access it.
               </p>
-              <a
-                href="/documents/joaquin-pettinari-cv.pdf"
-                download
-                onClick={onDossier}
-              >
+              <a href={crewDossier.href} download onClick={onDossier}>
                 Download CV (PDF)
               </a>
               <a
-                href="/documents/joaquin-pettinari-cv.pdf"
+                href={crewDossier.href}
                 target="_blank"
                 rel="noreferrer"
                 onClick={onDossier}

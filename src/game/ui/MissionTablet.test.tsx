@@ -42,16 +42,14 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   expect(
     screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
-  const lighting = screen.getByRole('button', {
-    name: /Arrival systems online/,
-  })
-  expect(lighting).toHaveAttribute('data-complete', 'true')
+  expect(
+    screen.queryByRole('button', { name: /Arrival systems online/ }),
+  ).not.toBeInTheDocument()
   fireEvent.click(screen.getByRole('button', { name: 'Skip Tutorial' }))
   expect(
     screen.getByText('Guidance paused. All facilities remain available.'),
   ).toBeVisible()
-  expect(lighting).toHaveAttribute('data-complete', 'true')
-  expect(screen.getByText('2 / 6 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Resume Protocol' }))
   expect(
     screen.getByText('Current objective: Verify crew identity'),
@@ -60,10 +58,9 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   expect(
     screen.getByText('Current objective: Verify crew identity'),
   ).toBeVisible()
-  expect(lighting).toHaveAttribute('data-complete', 'true')
   expect(
-    screen.getByRole('button', { name: /Open mission tablet/ }),
-  ).toHaveAttribute('data-complete', 'false')
+    screen.queryByRole('button', { name: /Open mission tablet/ }),
+  ).not.toBeInTheDocument()
 })
 
 it('locates objectives by pointer and keyboard without completing them', () => {
@@ -94,7 +91,7 @@ it('locates objectives by pointer and keyboard without completing them', () => {
     ),
   ).toBeVisible()
   expect(archives).toHaveAttribute('data-complete', 'false')
-  expect(screen.getByText('1 / 6 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
 })
 
 it('focuses the close button, wraps Tab at dialog boundaries and supports closing', () => {
@@ -144,5 +141,5 @@ it('offers physical and HTML portfolio access without requiring any mission', ()
   fireEvent.click(screen.getByRole('button', { name: 'Read without 3D' }))
   expect(accessible).toHaveBeenCalledOnce()
   expect(complete).not.toHaveBeenCalled()
-  expect(screen.getByText('0 / 6 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
 })
