@@ -1,3 +1,4 @@
+import { developmentCaptureMode } from '../config/development'
 import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import type { StationMode, StationTarget } from './interaction/station'
 import { tabletTransition, type TabletMode } from './tablet'
@@ -17,6 +18,7 @@ export function useStationControls({
   onTabletOpened,
   onModeChange,
 }: StationControlOptions) {
+  const captureMode = developmentCaptureMode()
   const [active, setActive] = useState(false)
   const [ready, setReady] = useState(false)
   const [error, setError] = useState('')
@@ -25,6 +27,7 @@ export function useStationControls({
   const [transitioning, setTransitioning] = useState(false)
   const [tabletMode, setTabletMode] = useState<TabletMode>('lowered')
   const [showMouseHint, setShowMouseHint] = useState(false)
+  const explicitPause = useRef(false)
   const expectedUnlock = useRef(false)
   const escapeAction = useRef<'exit' | 'pause' | 'resume' | null>(null)
   const captureRef = useRef<(() => void) | null>(null)
@@ -41,6 +44,7 @@ export function useStationControls({
 
   const changeMode = (next: StationMode) => {
     setTabletMode('lowered')
+    explicitPause.current = false
     setShowMouseHint(false)
     if (next === mode) return
     onModeChange?.(next)
@@ -55,6 +59,7 @@ export function useStationControls({
   }
   const openTablet = () => {
     onTabletOpened()
+    explicitPause.current = false
     setShowMouseHint(false)
     setTabletMode('focused')
     setActive(false)
@@ -63,6 +68,7 @@ export function useStationControls({
   }
   const resumeWalking = () => {
     setTabletMode('lowered')
+    explicitPause.current = false
     setShowMouseHint(false)
     setError('')
     if (mode !== 'walking') changeMode('walking')
@@ -77,12 +83,14 @@ export function useStationControls({
   })
   const walkWithTablet = () => {
     setTabletMode(tabletTransition(tabletMode, 'resume'))
+    explicitPause.current = false
     setShowMouseHint(false)
     captureRef.current?.()
   }
   const pauseStation = () => {
     setTabletMode('lowered')
     if (mode !== 'walking') changeMode('walking')
+    explicitPause.current = true
     setShowMouseHint(true)
     if (document.pointerLockElement) {
       expectedUnlock.current = true
@@ -92,6 +100,7 @@ export function useStationControls({
   const onLock = () => {
     expectedUnlock.current = false
     setActive(true)
+    explicitPause.current = false
     setShowMouseHint(false)
     setError('')
   }
@@ -100,17 +109,34 @@ export function useStationControls({
     const intentional = expectedUnlock.current
     expectedUnlock.current = false
     if (intentional || suspended || mode !== 'walking' || transitioning) return
+    // In capture mode, an unexpected unlock alone is never a pause request.
+    // A tab handoff can deliver it after blur and after focus has already returned.
+    // Actual Escape is handled by keydown/keyup below, including native keyup-only.
+    if (captureMode) return
     if (escapeAction.current === 'exit' || escapeAction.current === 'resume')
       return
     // Browsers may consume Escape keydown when releasing Pointer Lock.
     // That native unlock must still open pause on the first press.
     escapeAction.current = tabletRaised ? 'exit' : 'pause'
-    if (!tabletRaised) setShowMouseHint(true)
+    if (!tabletRaised) {
+      explicitPause.current = false
+      setShowMouseHint(true)
+    }
   }
 
   const escapeReleased = useEffectEvent((event: KeyboardEvent) => {
     if (event.code !== 'Escape') return
-    const action = escapeAction.current
+    const action =
+      escapeAction.current ??
+      (captureMode &&
+      !document.pointerLockElement &&
+      mode === 'walking' &&
+      !transitioning &&
+      !showMouseHint
+        ? tabletRaised
+          ? 'exit'
+          : 'pause'
+        : null)
     escapeAction.current = null
     if (!action || suspended) return
     event.preventDefault()
@@ -155,23 +181,35 @@ export function useStationControls({
     }
   })
 
+  const loseFocus = useEffectEvent(() => {
+    // Stop immediately even when the browser dispatches unlock after blur.
+    setActive(false)
+    setTarget(null)
+    expectedUnlock.current = true
+    escapeAction.current = null
+    if (mode === 'walking' && !tabletOpen)
+      setShowMouseHint(!captureMode || explicitPause.current)
+    document.exitPointerLock()
+  })
+
   useEffect(() => {
     const failed = () =>
       setError('Could not capture the mouse. Click the scene to try again.')
-    const blur = () => {
-      expectedUnlock.current = true
-      escapeAction.current = null
-      document.exitPointerLock()
+    const blur = () => loseFocus()
+    const visibility = () => {
+      if (document.hidden) loseFocus()
     }
     const keydown = (event: KeyboardEvent) => keyboard(event)
     const keyup = (event: KeyboardEvent) => escapeReleased(event)
     document.addEventListener('pointerlockerror', failed)
     window.addEventListener('blur', blur)
+    document.addEventListener('visibilitychange', visibility)
     window.addEventListener('keydown', keydown)
     window.addEventListener('keyup', keyup)
     return () => {
       document.removeEventListener('pointerlockerror', failed)
       window.removeEventListener('blur', blur)
+      document.removeEventListener('visibilitychange', visibility)
       window.removeEventListener('keydown', keydown)
       window.removeEventListener('keyup', keyup)
     }

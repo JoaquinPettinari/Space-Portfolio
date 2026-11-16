@@ -5,7 +5,7 @@ Cada spec tiene una clasificación primaria en `e2e/suites.ts`:
 | Comando                       | Selección                                    | Servidor              | Resultados / informe HTML                                  |
 | ----------------------------- | -------------------------------------------- | --------------------- | ---------------------------------------------------------- |
 | `npm run test:e2e`            | 55 regresiones funcionales, 19 specs         | Vite :4173            | `test-results/regression` / `playwright-report/regression` |
-| `npm run test:audit`          | 14 auditorías visuales/performance, 10 specs | Vite :4178            | `test-results/audit` / `playwright-report/audit`           |
+| `npm run test:audit`          | 17 auditorías visuales/performance, 13 specs | Vite :4178            | `test-results/audit` / `playwright-report/audit`           |
 | `npm run test:e2e:production` | 1 smoke de producción                        | build + preview :4174 | `test-results/production` / `playwright-report/production` |
 
 Los números son el inventario al separar las suites; `-- --list` descubre el

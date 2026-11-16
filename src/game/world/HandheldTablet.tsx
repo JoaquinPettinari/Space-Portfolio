@@ -6,13 +6,14 @@ import type { Group } from 'three'
 import { advanceTabletPose, type TabletMode } from '../tablet'
 import { MissionTablet } from '../ui/MissionTablet'
 import { HeldTabletDisplay } from '../ui/HeldTabletDisplay'
+import { AstronautGlove } from './AstronautGlove'
 import type { ProtocolState } from '../protocol'
 import { missions } from '../missions'
 import '../ui/HandheldTablet.css'
 
 const ignoreRaycast = () => {}
 
-/** Camera-relative placeholder prop; no colliders, no scene interaction targets.
+/** Camera-relative rugged tablet prop; no colliders, no scene interaction targets.
  * Mount once so the lower animation can finish; Game owns all input/capture. */
 export function HandheldTablet({
   mode,
@@ -83,91 +84,116 @@ export function HandheldTablet({
     if (values.raised !== raised || values.focused !== focused) invalidate()
   }, -0.25)
   return (
-    <group ref={root} name="handheld-mission-tablet">
-      <group ref={prop}>
-        <mesh raycast={ignoreRaycast}>
-          <boxGeometry args={[1.24, 0.82, 0.07]} />
-          <meshBasicMaterial color="#26343d" depthTest={false} />
-        </mesh>
+    // Camera props render after the world, back to front, without writing depth.
+    // Disabling depth tests alone lets later world meshes overwrite the bezel.
+    <group ref={root} name="handheld-mission-tablet" renderOrder={1000}>
+      <group ref={prop} renderOrder={1000}>
+        <RoundedBox
+          args={[1.24, 0.82, 0.07]}
+          radius={0.035}
+          smoothness={2}
+          raycast={ignoreRaycast}
+          renderOrder={1001}
+        >
+          <meshBasicMaterial
+            color="#35414a"
+            depthTest={false}
+            depthWrite={false}
+          />
+        </RoundedBox>
         <RoundedBox
           args={[1.29, 0.87, 0.065]}
           radius={0.045}
           smoothness={2}
           position={[0, 0, -0.025]}
           raycast={ignoreRaycast}
+          renderOrder={1000}
         >
-          <meshBasicMaterial color="#111d25" depthTest={false} />
+          <meshBasicMaterial
+            color="#111d25"
+            depthTest={false}
+            depthWrite={false}
+          />
         </RoundedBox>
         {[-1, 1].map((side) => (
-          <group key={side}>
+          <group key={side} renderOrder={1000}>
             {[-1, 1].map((row) => (
-              <mesh
-                key={row}
-                position={[side * 0.59, row * 0.35, 0.046]}
-                raycast={ignoreRaycast}
-              >
-                <circleGeometry args={[0.018, 8]} />
-                <meshBasicMaterial color="#b7a47d" depthTest={false} />
-              </mesh>
-            ))}
-            <mesh position={[side * 0.57, 0.26, 0.047]} raycast={ignoreRaycast}>
-              <boxGeometry args={[0.014, 0.08, 0.012]} />
-              <meshBasicMaterial color="#ffc477" depthTest={false} />
-            </mesh>
-            <group
-              position={[side * 0.67, -0.24, 0.07]}
-              rotation={[0, side * -0.2, side * -0.2]}
-            >
-              <RoundedBox
-                args={[0.17, 0.25, 0.14]}
-                radius={0.055}
-                smoothness={2}
-                raycast={ignoreRaycast}
-              >
-                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
-              </RoundedBox>
-              {[0, 1, 2, 3].map((finger) => (
-                <mesh
-                  key={finger}
-                  position={[-side * 0.055, 0.073 - finger * 0.047, 0.075]}
-                  rotation={[0, 0, Math.PI / 2]}
+              <group key={row} renderOrder={1000}>
+                <RoundedBox
+                  args={[0.15, 0.12, 0.09]}
+                  radius={0.018}
+                  smoothness={2}
+                  position={[side * 0.57, row * 0.365, 0.012]}
                   raycast={ignoreRaycast}
+                  renderOrder={1002}
                 >
-                  <capsuleGeometry args={[0.023, 0.075, 3, 6]} />
                   <meshBasicMaterial
-                    color={finger % 2 ? '#727d7a' : '#818c87'}
+                    color="#b96b30"
                     depthTest={false}
+                    depthWrite={false}
+                  />
+                </RoundedBox>
+                <mesh
+                  position={[side * 0.59, row * 0.35, 0.061]}
+                  raycast={ignoreRaycast}
+                  renderOrder={1003}
+                >
+                  <circleGeometry args={[0.012, 10]} />
+                  <meshBasicMaterial
+                    color="#171d23"
+                    depthTest={false}
+                    depthWrite={false}
                   />
                 </mesh>
-              ))}
-              <mesh
-                position={[-side * 0.085, 0.075, 0.12]}
-                rotation={[0, 0, side * -0.5]}
-                raycast={ignoreRaycast}
-              >
-                <capsuleGeometry args={[0.032, 0.09, 3, 8]} />
-                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
-              </mesh>
-              <RoundedBox
-                position={[0, -0.18, -0.025]}
-                args={[0.2, 0.14, 0.18]}
-                radius={0.025}
-                smoothness={2}
-                raycast={ignoreRaycast}
-              >
-                <meshBasicMaterial color="#343e42" depthTest={false} />
-              </RoundedBox>
-              <mesh position={[0, -0.2, 0.071]} raycast={ignoreRaycast}>
-                <boxGeometry args={[0.16, 0.035, 0.012]} />
-                <meshBasicMaterial color="#c98d45" depthTest={false} />
-              </mesh>
-              <mesh position={[0, -0.33, -0.04]} raycast={ignoreRaycast}>
-                <capsuleGeometry args={[0.092, 0.19, 3, 8]} />
-                <meshBasicMaterial color="#b6b6a6" depthTest={false} />
-              </mesh>
+              </group>
+            ))}
+            <mesh
+              position={[side * 0.57, 0.26, 0.047]}
+              raycast={ignoreRaycast}
+              renderOrder={1003}
+            >
+              <boxGeometry args={[0.014, 0.08, 0.012]} />
+              <meshBasicMaterial
+                color="#ffc477"
+                depthTest={false}
+                depthWrite={false}
+              />
+            </mesh>
+            <group
+              position={[side * 0.64, -0.21, 0.07]}
+              rotation={[0, side * -0.2, side * -0.2]}
+              renderOrder={1000}
+            >
+              <group scale={[side, 1, 1]} renderOrder={1000}>
+                <AstronautGlove overlay />
+              </group>
             </group>
           </group>
         ))}
+        <mesh
+          position={[0, 0.365, 0.047]}
+          raycast={ignoreRaycast}
+          renderOrder={1003}
+        >
+          <circleGeometry args={[0.01, 12]} />
+          <meshBasicMaterial
+            color="#78c3d3"
+            depthTest={false}
+            depthWrite={false}
+          />
+        </mesh>
+        <mesh
+          position={[0, -0.367, 0.047]}
+          raycast={ignoreRaycast}
+          renderOrder={1003}
+        >
+          <boxGeometry args={[0.24, 0.009, 0.008]} />
+          <meshBasicMaterial
+            color="#7c8b93"
+            depthTest={false}
+            depthWrite={false}
+          />
+        </mesh>
         <Html
           ref={screen}
           transform

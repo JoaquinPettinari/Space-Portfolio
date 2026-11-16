@@ -432,36 +432,102 @@
   display: flex;
   justify-content: center;
 }
+/* Static chrome: no blur or continuously animated filters over the WebGL view. */
+.station-assistant {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 32px;
+  align-items: center;
+  column-gap: 12px;
+}
+.station-assistant--dismissible {
+  grid-template-columns: 42px minmax(0, 1fr) 32px 24px;
+}
+.station-assistant .subtitle-speaker {
+  color: var(--hud-cyan);
+  font: 700 18px var(--hud-font-display);
+  letter-spacing: 0.04em;
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #28717e;
+  padding-right: 12px;
+}
+.station-assistant .subtitle-message {
+  margin: 0;
+  color: #f0f6fa;
+  font: 400 15px/1.45 var(--hud-font-body);
+}
+.station-assistant .subtitle-waveform {
+  color: #4cb3c4;
+}
+.station-assistant > .subtitle-dismiss {
+  grid-column: 4;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #32778b;
+  border-radius: 3px;
+  background: #0c2c3b;
+  color: #b0dae5;
+  cursor: pointer;
+}
+.station-assistant > .subtitle-dismiss:hover {
+  border-color: #83f6ff;
+  color: #fff;
+}
+.station-assistant > .subtitle-dismiss:focus-visible {
+  outline: 2px solid #83f6ff;
+  outline-offset: 2px;
+}
 .subtitle-overlay .station-assistant {
-  position: static;
+  position: relative;
+  inset: auto;
   transform: none;
   margin: 0;
-  width: min(580px, 100%);
+  width: min(760px, 100%);
   box-sizing: border-box;
-  border: 1px solid var(--hud-border);
-  border-left: 3px solid var(--hud-cyan);
-  border-radius: 8px;
-  background: rgba(3, 16, 24, 0.94);
-  padding: 10px 16px;
+  min-height: 64px;
+  border: 1px solid #276477;
+  border-radius: 10px 3px 10px 3px;
+  background:
+    linear-gradient(135deg, #17435440, transparent 45%),
+    linear-gradient(115deg, #04121bef, #092636ed);
+  padding: 10px 18px;
+  box-shadow:
+    inset 0 1px 0 #74e8ff15,
+    0 5px 18px #0005;
 }
-.subtitle-overlay .station-assistant .eyebrow {
-  color: var(--hud-cyan);
-  letter-spacing: 0.08em;
+.subtitle-overlay .station-assistant::before,
+.subtitle-overlay .station-assistant::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 9px;
+  border-bottom: 1px solid #60d3e5;
+  bottom: 3px;
+  left: 3px;
+  opacity: 0.6;
+}
+.subtitle-overlay .station-assistant::after {
+  bottom: auto;
+  left: auto;
+  top: 3px;
+  right: 3px;
+  transform: rotate(180deg);
 }
 .subtitle-overlay--terminal {
   bottom: 8px;
 }
 .subtitle-overlay--terminal .station-assistant {
   width: min(680px, 100%);
-  padding: 6px 12px;
+  min-height: 48px;
+  padding: 8px 12px;
 }
-.subtitle-overlay--terminal .station-assistant .eyebrow {
-  display: none;
-}
-.subtitle-overlay--terminal .station-assistant p {
+.subtitle-overlay--terminal .station-assistant .subtitle-message {
   font-size: 12px;
-  line-height: 1.3;
-  margin: 0;
+  line-height: 1.4;
 }
 .interaction-hint {
   bottom: 160px;

@@ -3,12 +3,16 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { useStationControls } from './useStationControls'
 
 beforeEach(() => {
+  vi.stubGlobal('__DEV_MODE__', false)
   Object.defineProperty(document, 'exitPointerLock', {
     configurable: true,
     value: vi.fn(),
   })
 })
-afterEach(() => vi.restoreAllMocks())
+afterEach(() => {
+  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
+})
 
 it('keeps T held movement, hands off with R and requests capture synchronously on return', () => {
   const opened = vi.fn()
@@ -155,4 +159,100 @@ it('recaptures only after Escape release when exiting a computer', () => {
   fireEvent.keyUp(window, { code: 'Escape' })
   expect(capture).toHaveBeenCalledOnce()
   expect(result.current.showMouseHint).toBe(false)
+})
+
+it('hides an automatic unlock before blur in DEV_MODE and never recaptures on refocus', () => {
+  vi.stubGlobal('__DEV_MODE__', true)
+  vi.spyOn(document, 'hasFocus').mockReturnValue(true)
+  const capture = vi.fn()
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  act(() => {
+    result.current.setReady(true)
+    result.current.onLock()
+  })
+  result.current.captureRef.current = capture
+  // No automatic overlay even if unlock arrives while the document reports focus.
+  act(() => result.current.onUnlock())
+  expect(result.current.showMouseHint).toBe(false)
+  fireEvent.blur(window)
+  expect(result.current.active).toBe(false)
+  expect(result.current.showMouseHint).toBe(false)
+  fireEvent.focus(window)
+  expect(result.current.playing).toBe(false)
+  expect(capture).not.toHaveBeenCalled()
+  fireEvent.keyDown(window, { code: 'Escape' })
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(result.current.showMouseHint).toBe(true)
+  // This menu was explicitly requested, so losing focus does not dismiss it.
+  fireEvent.blur(window)
+  expect(result.current.showMouseHint).toBe(true)
+})
+
+it('stops immediately on a hidden tab in DEV_MODE and tolerates a later unlock', () => {
+  vi.stubGlobal('__DEV_MODE__', true)
+  const hidden = vi.spyOn(document, 'hidden', 'get').mockReturnValue(false)
+  const capture = vi.fn()
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  act(() => {
+    result.current.setReady(true)
+    result.current.onLock()
+    result.current.setTarget('coffee')
+  })
+  result.current.captureRef.current = capture
+  hidden.mockReturnValue(true)
+  fireEvent(document, new Event('visibilitychange'))
+  expect(result.current.playing).toBe(false)
+  expect(result.current.target).toBeNull()
+  expect(result.current.showMouseHint).toBe(false)
+  expect(document.exitPointerLock).toHaveBeenCalledOnce()
+  act(() => result.current.onUnlock())
+  hidden.mockReturnValue(false)
+  fireEvent(document, new Event('visibilitychange'))
+  fireEvent.focus(window)
+  expect(result.current.playing).toBe(false)
+  expect(result.current.showMouseHint).toBe(false)
+  expect(capture).not.toHaveBeenCalled()
+})
+
+it('keeps the ordinary automatic pause when DEV_MODE is disabled', () => {
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  act(() => {
+    result.current.setReady(true)
+    result.current.onLock()
+  })
+  fireEvent.blur(window)
+  expect(result.current.playing).toBe(false)
+  expect(result.current.showMouseHint).toBe(true)
+})
+
+it('keeps a late focus-handoff unlock hidden but honors native Escape keyup without keydown', () => {
+  vi.stubGlobal('__DEV_MODE__', true)
+  const capture = vi.fn()
+  const { result } = renderHook(() =>
+    useStationControls({ suspended: false, onTabletOpened: () => {} }),
+  )
+  act(() => {
+    result.current.setReady(true)
+    result.current.onLock()
+  })
+  result.current.captureRef.current = capture
+  fireEvent.blur(window)
+  fireEvent.focus(window)
+  // One expected unlock may precede a second late native notification.
+  act(() => result.current.onUnlock())
+  act(() => result.current.onUnlock())
+  expect(result.current.showMouseHint).toBe(false)
+  expect(result.current.playing).toBe(false)
+  expect(capture).not.toHaveBeenCalled()
+  // Chromium can consume keydown when releasing Pointer Lock, but keyup is
+  // still the visitor's explicit Escape request, never a focus event.
+  fireEvent.keyUp(window, { code: 'Escape' })
+  expect(result.current.showMouseHint).toBe(true)
+  expect(capture).not.toHaveBeenCalled()
 })

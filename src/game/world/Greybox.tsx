@@ -9,6 +9,7 @@ import { BridgeFloor } from './BridgeFloor'
 import { CabinLighting } from './CabinLighting'
 import { EntryAirlock } from './EntryAirlock'
 import { PanoramicPassage } from './PanoramicPassage'
+import { BridgeThroatFrame } from './BridgeThroatFrame'
 import { TABLE_POSITION } from '../interaction/station'
 import { Bulkhead } from './SlidingBulkhead'
 import type { BulkheadPhase } from './bulkhead'
@@ -113,6 +114,7 @@ export function Greybox({
       </RigidBody>
       <EntryAirlock emergency={emergency} />
       <PanoramicPassage />
+      <BridgeThroatFrame />
       <RigidBody type="fixed" colliders={false}>
         <CuboidCollider
           position={[0, -0.1, TRANSITION_CENTER - 0.075]}

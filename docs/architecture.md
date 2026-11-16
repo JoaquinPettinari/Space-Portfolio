@@ -366,3 +366,88 @@ No accede a raíces de Fiber, rutas del caché Vite ni altera raycasts/DPR. Cier
 el profiler y su sesión en finally. El coste de instrumentación no se presenta
 como FPS de producción; los diagnósticos siguen ausentes del build publicado.
 Comandos y límites: [testing.md](testing.md).
+
+## Miniatura táctica y capturas de desarrollo
+
+`TacticalStation` reutiliza el GLB de `UNIFIED_ENVELOPE_ASSET` ya cargado por el
+exterior. `tacticalShipModel` prepara una copia estática de posiciones normalizada
+a 1,6 m, sin alterar geometrías ni materiales del caché. Combina la nave en una
+superficie y un lote de aristas visibles; un proxy de doce triángulos conserva
+el picking sin recorrer la miniatura detallada. No duplica física, luces ni el
+interior. Conserva giro con delta, zoom, pausa y movimiento reducido. Sus recursos
+propios se liberan al desmontar. Reutilizar la descarga no elimina el coste GPU:
+la superficie conserva 114.135 triángulos y añade 8.944 segmentos.
+
+La composición de `spaceScenery` aproxima visualmente Saturno con sus anillos
+y amplía Júpiter; conserva la Tierra y los materiales existentes. Es una vista
+cinematográfica, sin pretensión de representar órbitas simultáneas reales.
+
+`DEV_MODE` configura únicamente el servidor de desarrollo y se convierte en un
+booleano; no publica otras variables del entorno. Permite capturas al perder
+foco con los controles detenidos, manteniendo Escape y reentrada explícita.
+El build lo desactiva siempre. Uso: [development-capture.md](development-capture.md).
+Evidencia: [audits/tactical-vista/REVIEW.md](audits/tactical-vista/REVIEW.md).
+
+## Interfaces de referencia, guantes y radio — 2026-11-16
+
+Los subtítulos de `StationAssistant` comparten una franja inferior con etiqueta
+IA, divisor, onda estática y cierre accesible. `PersonalDesktop` reutiliza el
+fondo orbital local detrás de paneles azul petróleo; conserva aplicaciones,
+datos reales, teclado y foco. `CrewIdentity` presenta escáner y ficha únicamente
+al verificar la identidad, sin añadir credenciales ficticias. Son superficies
+DOM sobre las pantallas físicas existentes, sin luces ni postprocesado nuevos.
+
+`AstronautGlove` comparte el diseño y generador entre manos de la tablet y tarjeta. Cada
+guante fusiona colores por vértice en un único mesh de 5.800 triángulos; la
+versión de cámara se dibuja después del escenario y no escribe profundidad.
+La tablet conserva controles y animación, con marco redondeado y protectores
+naranjas. La identificación espera a que termine la transición de cámara; su
+duración propia no cambia. El encuadre de Crew Access incluye lector y muñeca.
+
+`ArrivalOutfitting` añade armario, nicho con chaqueta/casco y señalética contra
+la pared trasera. Se fusiona en seis materiales y dos planos de señalética;
+tres colliders locales protegen el equipamiento sin invadir el paso central.
+Las rejillas y el mecanismo de escotilla existentes se conservan.
+
+`ShipRadio` añade el target `radio` al contrato de estaciones. El prop se ubica
+sobre el escritorio izquierdo; la pantalla física permite reproducir, pausar,
+cambiar pista y volumen. `useShipRadio` crea audio exclusivamente por acción
+del visitante, suspende al perder foco/ocultar página/pausar y libera contexto y
+temporizador al desmontar. El generador agenda hasta 200 ms de notas por delante
+con intervalos de 100 ms, sin depender de `useFrame` ni renders React. Las dos
+pistas son composiciones instrumentales procedurales originales, no grabaciones
+de NCS. La radio tiene su propia activación explícita, independiente del sonido
+ambiental; no hay autoplay ni descargas de música.
+
+Revisión nativa y límites: [audits/reference-style/REVIEW.md](audits/reference-style/REVIEW.md).
+
+## Llegada despejada, nichos y visor táctico — 2026-11-16
+
+La pasada de corrección selecciona tres copias nuevas `clean-*` desde
+`refinedArtAssets.ts`. El exportador retira las piezas identificadas por nombre
+de la caja sobre el banco y la manta con sus costuras; reconstruye dos filtros
+completos y separa los dos armarios, con sus colliders alineados. También evalúa
+el puente desde la fuente que ya retiró la decoración superpuesta a los nichos.
+Los GLB anteriores y la fuente Blender se preservan como referencia.
+
+`ReferenceCassettes` integra la colección Blender pendiente número 13 como
+visual independiente: 15 lotes, 37.832 triángulos y 3.113.116 bytes. Las hojas
+procedurales hornean su color en dos imágenes de 256 px; las pantallas y fotos
+conservan sus imágenes existentes. No importa luces, cámaras ni colliders. El
+marco `BridgeThroatFrame` da hombros achaflanados y esquinas redondeadas al paso,
+manteniendo su abertura de circulación. No modifica la envolvente exterior ni
+el perfil del pasillo de vidrio.
+
+`EVAEquipment` sustituye el traje de primitivas por una adaptación reducida del
+EMU de NASA/Michael D. Carbajal. El equipo queda centrado en el nicho lateral,
+separado de la escotilla. Fuente, preparación y límites: [nasa-emu](assets/nasa-emu/README.md).
+
+La mesa táctica tiene un pivote central del casco y una pose activa independiente
+de la pose libre sobre la mesa. `tacticalDisplayLayout` convierte los límites del
+visor CSS al plano físico y calcula una escala que deja el casco dentro del
+espacio libre para cualquier giro y zoom permitido. El cálculo depende de
+cámara/viewport, no de cada cuadro. El layout usa una columna compacta de
+navegación/datos y un visor amplio con controles inferiores. No añade pases.
+
+Recetas y verificaciones: [arrival-cleanup](audits/arrival-cleanup/README.md) y
+[arrival-layout](audits/arrival-layout/REVIEW.md).

@@ -19,6 +19,8 @@ import { PersonalDesktop } from '../workstation/PersonalDesktop'
 import { RecreationDesktop } from '../workstation/RecreationDesktop'
 import type { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
+import { ShipRadio } from './world/ShipRadio'
+import { ReferenceCassettes } from './world/ReferenceCassettes'
 import type { StationControls } from './useStationControls'
 import type { MissionId } from './missions'
 import type { BulkheadPhase } from './world/bulkhead'
@@ -110,7 +112,7 @@ export function GameWorld({
         <CoffeeMachine state={coffee.state} target={target} />
         <CrewAccess
           scanning={mode === 'crew' && identity === 'scanning'}
-          paused={suspended}
+          paused={suspended || transitioning}
           verified={completed.includes('crew')}
           onComplete={onIdentityVerified}
         />
@@ -139,6 +141,12 @@ export function GameWorld({
         lightsOn={lightsOn}
         onClose={resumeWalking}
       />
+      <ShipRadio
+        active={mode === 'radio' && !transitioning}
+        paused={suspended || controls.showMouseHint}
+        onClose={resumeWalking}
+      />
+      <ReferenceCassettes />
       <HandheldTablet
         mode={mode === 'walking' ? tabletMode : 'lowered'}
         state={protocol}

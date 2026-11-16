@@ -13,6 +13,8 @@ export function interactionHint(
       return 'E Open docking hatch'
     case 'tactical':
       return 'E Tactical Table'
+    case 'radio':
+      return 'E CDS Radio'
     case 'crew':
       return 'E Crew Access'
     case 'bulkhead':

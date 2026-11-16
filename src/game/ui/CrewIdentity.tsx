@@ -2,32 +2,17 @@ import { BadgeCheck, CreditCard, LoaderCircle } from 'lucide-react'
 import { education, profile } from '../../data/portfolio'
 import './CrewIdentity.css'
 
-/** Compact factual identity; verification is owned by the existing reader. */
+/** Factual identity; the existing reader owns verification and access. */
 export function CrewIdentity({ verified }: { verified: boolean }) {
   const master = education.find((item) => item.title.includes('Master'))
-
-  if (!verified) {
-    return (
-      <div className="crew-scan-copy">
-        <LoaderCircle
-          className="crew-loading-spinner"
-          size={40}
-          aria-hidden="true"
-        />
-        <h2>Crew verification</h2>
-        <p role="status">Verifying credentials… Please wait.</p>
-      </div>
-    )
-  }
-
   return (
     <div className="crew-identity">
       <div className="crew-reader-display" aria-hidden="true">
         <span>IDENTIFICATION</span>
         <div className="crew-card-symbol">
-          <CreditCard size={90} strokeWidth={1} />
+          <CreditCard size={100} strokeWidth={1} />
         </div>
-        <strong>{verified ? 'CARD VERIFIED' : 'SCANNING CARD'}</strong>
+        <strong>{verified ? 'CARD VERIFIED' : 'SCAN CREW CARD'}</strong>
         <small>CRUZ DEL SUR · CDS-01</small>
       </div>
       <div className="crew-identity-record">
@@ -36,12 +21,18 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
             <div className="crew-identity-person">
               <img src="/images/crew-portrait.webp" alt={profile.name} />
               <div>
-                <div className="crew-name-location">
-                  <h2>{profile.name}</h2>
-                  <p>{profile.location}</p>
-                </div>
+                <h2>{profile.name}</h2>
                 <p className="crew-role">{profile.role}</p>
-                <p>+6 years</p>
+                <dl className="crew-record-facts">
+                  <div>
+                    <dt>LOCATION</dt>
+                    <dd>{profile.location}</dd>
+                  </div>
+                  <div>
+                    <dt>EXPERIENCE</dt>
+                    <dd>+6 years</dd>
+                  </div>
+                </dl>
               </div>
             </div>
             {master && (
@@ -59,10 +50,7 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
               aria-hidden="true"
             />
             <h2>Crew verification</h2>
-            <p>
-              Verifying credentials… <br /> Please wait. You can leave at any
-              time.
-            </p>
+            <p>Presenting personnel card to the access reader.</p>
           </div>
         )}
         <p
@@ -70,7 +58,7 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
           className={verified ? 'crew-access-granted' : 'crew-access-scanning'}
         >
           {verified ? (
-            <BadgeCheck size={25} aria-hidden="true" />
+            <BadgeCheck size={32} aria-hidden="true" />
           ) : (
             <LoaderCircle
               className="crew-loading-spinner"
@@ -80,7 +68,7 @@ export function CrewIdentity({ verified }: { verified: boolean }) {
           )}
           {verified
             ? 'ACCESS GRANTED · Identity verified'
-            : 'Reading crew card… Verifying credentials'}
+            : 'Verifying credentials… Please wait.'}
         </p>
         {verified && (
           <p className="crew-record-hint">

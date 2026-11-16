@@ -70,3 +70,15 @@ it('covers the fitted curved bench continuously without a straight invisible bar
     )
   }
 })
+
+it('keeps both technical cabinets ahead of the wall ribs and outside the central route', () => {
+  const cabinets = ARRIVAL_FURNITURE.filter((box) => box.position[1] === 1.34)
+  expect(cabinets).toHaveLength(2)
+  expect(cabinets.map((box) => box.position[2] + ARRIVAL_ORIGIN_Z)).toEqual([
+    14.8, 17.1,
+  ])
+  for (const cabinet of cabinets) {
+    expect(cabinet.position[0] - cabinet.halfSize[0]).toBeCloseTo(3.6)
+    expect(cabinet.position[0] + cabinet.halfSize[0]).toBeLessThan(4.2)
+  }
+})

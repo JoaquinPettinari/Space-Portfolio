@@ -1,7 +1,13 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import type { Group } from 'three'
+import { PerspectiveCamera, type Group } from 'three'
+import {
+  createTacticalShipModel,
+  skipTacticalVisualRaycast,
+} from './tacticalShipModel'
+import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TerminalPanel } from '../ui/TerminalPanel'
 import { TacticalPanel } from '../ui/TacticalPanel'
@@ -9,8 +15,12 @@ import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 import { bridgePoint } from './bridgePlacement'
 import type { ProtocolState } from '../protocol'
 import type { BulkheadPhase } from './bulkhead'
+import {
+  tacticalDisplayLayout,
+  TACTICAL_MODEL_TILT,
+} from './tacticalDisplayLayout'
 
-/** A small wireframe of the existing bridge and rear airlock, not a final ship asset. */
+/** A shared-asset ship miniature; the projector owns only its merged display geometry. */
 export function TacticalStation({
   active,
   paused,
@@ -27,8 +37,22 @@ export function TacticalStation({
   onClose: () => void
 }) {
   const model = useRef<Group>(null)
+  const { scene } = useGLTF(UNIFIED_ENVELOPE_ASSET)
+  const hologram = useMemo(() => createTacticalShipModel(scene), [scene])
+  useEffect(() => () => hologram.dispose(), [hologram])
   const [zoom, setZoom] = useState(0.8)
   const [rotating, setRotating] = useState(true)
+  const aspect = useThree((state) => state.size.width / state.size.height)
+  const camera = useThree((state) => state.camera)
+  const display = useMemo(
+    () =>
+      tacticalDisplayLayout(
+        [hologram.size.x, hologram.size.y, hologram.size.z],
+        aspect,
+        camera instanceof PerspectiveCamera ? camera.fov : 65,
+      ),
+    [hologram, aspect, camera],
+  )
 
   const invalidate = useThree((state) => state.invalidate)
   const reduced = useReducedMotionRef(invalidate)
@@ -48,27 +72,54 @@ export function TacticalStation({
   return (
     <>
       <group
-        position={bridgePoint([0, 1.85, 0.5])}
-        rotation={[0.35, 0, 0]}
+        position={active ? screen.position : bridgePoint([0, 1.62, 0.5])}
+        rotation={active ? [0, screen.rotation, 0] : [0.16, 0, 0]}
         userData={{ interaction: 'tactical' }}
       >
-        <group ref={model} scale={active ? zoom : 0.65}>
-          <mesh>
-            <boxGeometry args={[1.05, 0.36, 1.05]} />
-            <meshBasicMaterial color="#42e8f5" wireframe />
-          </mesh>
-          <mesh position={[0, -0.06, 0.71]}>
-            <boxGeometry args={[0.28, 0.36, 0.37]} />
-            <meshBasicMaterial color="#e6b778" wireframe />
-          </mesh>
-          <mesh position={[0, -0.08, 0.05]}>
-            <boxGeometry args={[0.21, 0.1, 0.27]} />
-            <meshBasicMaterial color="#83f6ff" wireframe />
-          </mesh>
-          <mesh position={[0, -0.07, -0.4]}>
-            <boxGeometry args={[0.86, 0.1, 0.15]} />
-            <meshBasicMaterial color="#83f6ff" wireframe />
-          </mesh>
+        <group position={active ? display.position : [0, 0, 0]}>
+          <group rotation={active ? [TACTICAL_MODEL_TILT, 0, 0] : [0, 0, 0]}>
+            <group
+              ref={model}
+              name="tactical-ship-model"
+              rotation={[0, Math.PI / 2, 0]}
+              scale={active ? zoom * display.scale : 0.65}
+            >
+              <group position={[0, -hologram.size.y / 2, 0]}>
+                <group
+                  raycast={skipTacticalVisualRaycast}
+                  name="tactical-ship-visual"
+                >
+                  <mesh geometry={hologram.surface}>
+                    <meshBasicMaterial
+                      color="#07527c"
+                      transparent
+                      opacity={0.4}
+                      depthWrite
+                      toneMapped={false}
+                    />
+                  </mesh>
+                  <lineSegments geometry={hologram.edges}>
+                    <lineBasicMaterial
+                      color="#63d9ff"
+                      transparent
+                      opacity={0.55}
+                      depthWrite={false}
+                      toneMapped={false}
+                    />
+                  </lineSegments>
+                </group>
+                <mesh
+                  name="tactical-ship-interaction-proxy"
+                  position={[0, hologram.size.y / 2, 0]}
+                >
+                  <boxGeometry
+                    args={[hologram.size.x, hologram.size.y, hologram.size.z]}
+                  />
+                  <meshBasicMaterial visible={false} />
+                </mesh>
+              </group>
+            </group>
+          </group>
         </group>
       </group>
       {active && (

@@ -23,6 +23,7 @@ export type StationMode =
   | 'personal'
   | 'arcade'
   | 'crew'
+  | 'radio'
 export const STATION_TARGETS = [
   'docking',
   'tactical',
@@ -35,6 +36,7 @@ export const STATION_TARGETS = [
   'coffee',
   'bulkhead',
   'crew',
+  'radio',
 ] as const
 export type StationTarget = (typeof STATION_TARGETS)[number] | null
 const stationTargets: ReadonlySet<unknown> = new Set(STATION_TARGETS)
@@ -55,6 +57,7 @@ export const POWER_POSITION = ENTRY_POWER_POSITION
 export const CREW_ACCESS_POSITION = ENTRY_CREW_POSITION
 export const CREW_ACCESS_ROTATION = 0
 export const TABLE_POSITION = bridgePoint([0, 0, 0.5])
+export const RADIO_POSITION = bridgePoint([-3.9, 1.27, 2])
 /** Fit the whole physical bezel while leaving readable margins. */
 export function monitorDistance(
   aspect: number,
@@ -82,12 +85,29 @@ export function wallMonitorDistance(aspect: number) {
   return monitorDistance(aspect, 1.3, 1.1)
 }
 export type TerminalKind =
-  'computer' | 'communications' | 'personal' | 'arcade' | 'crew' | 'tactical'
+  | 'computer'
+  | 'communications'
+  | 'personal'
+  | 'arcade'
+  | 'crew'
+  | 'tactical'
+  | 'radio'
 
 /** Physical display contract, matching current geometry and CSS pixel surfaces.
  * Keep the user's UI layout independent from camera fitting and Html scale.
  */
 export const TERMINAL_SCREENS = {
+  radio: {
+    position: [
+      RADIO_POSITION[0] + 0.176,
+      RADIO_POSITION[1] + 0.02,
+      RADIO_POSITION[2] - 0.065,
+    ],
+    rotation: Math.PI / 2,
+    frame: [0.68, 0.38],
+    display: [0.43, 0.25],
+    pixels: [640, 360],
+  },
   tactical: {
     position: bridgePoint([-0.55, 1.85, 0.5]),
     rotation: -Math.PI / 2,
@@ -121,7 +141,8 @@ export const TERMINAL_SCREENS = {
   },
   crew: {
     ...WALL_SCREEN_POSES.crew,
-    frame: [1.3, 1.1],
+    // Include the reader and card-holding wrist below the monitor bezel.
+    frame: [1.3, 1.35],
     display: [1.1, 0.8],
     pixels: [770, 560],
   },
@@ -148,6 +169,7 @@ function terminalView(kind: TerminalKind) {
   }
 }
 const views = {
+  radio: terminalView('radio'),
   tactical: terminalView('tactical'),
   computer: terminalView('computer'),
   communications: terminalView('communications'),
@@ -188,5 +210,6 @@ export function interactionMode(
   if (target === 'personal') return 'personal'
   if (target === 'arcade') return 'arcade'
   if (target === 'crew') return 'crew'
+  if (target === 'radio') return 'radio'
   return mode
 }

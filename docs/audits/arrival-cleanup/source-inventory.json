@@ -1,0 +1,3150 @@
+[
+  {
+    "name": "CDS U / Retained ARR10 floor substrate",
+    "original": "ARR10 floor substrate",
+    "min": [-5.1724, -18.265, -0.24],
+    "max": [4.2, -12.07, -0.04],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate",
+    "original": "ARR10 deck plate",
+    "min": [-4.65, -13.594, -0.04],
+    "max": [-2.1229, -12.094, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.001",
+    "original": "ARR10 deck plate.001",
+    "min": [-5.1516, -15.1435, -0.04],
+    "max": [-2.3262, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.002",
+    "original": "ARR10 deck plate.002",
+    "min": [-5.1516, -16.693, -0.04],
+    "max": [-2.3259, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.003",
+    "original": "ARR10 deck plate.003",
+    "min": [-4.6492, -18.2425, -0.04],
+    "max": [-2.1228, -16.7425, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.004",
+    "original": "ARR10 deck plate.004",
+    "min": [-2.2623, -13.594, -0.04],
+    "max": [-0.0225, -12.094, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.007",
+    "original": "ARR10 deck plate.007",
+    "min": [-2.262, -18.2425, -0.04],
+    "max": [-0.0225, -16.7425, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.008",
+    "original": "ARR10 deck plate.008",
+    "min": [0.0225, -13.594, -0.04],
+    "max": [2.0775, -12.094, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.011",
+    "original": "ARR10 deck plate.011",
+    "min": [0.0225, -18.2425, -0.04],
+    "max": [2.0775, -16.7425, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.012",
+    "original": "ARR10 deck plate.012",
+    "min": [2.1225, -13.594, -0.04],
+    "max": [4.1775, -12.094, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.013",
+    "original": "ARR10 deck plate.013",
+    "min": [2.1225, -15.1435, -0.04],
+    "max": [4.1775, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.014",
+    "original": "ARR10 deck plate.014",
+    "min": [2.1225, -16.693, -0.04],
+    "max": [4.1775, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 deck plate.015",
+    "original": "ARR10 deck plate.015",
+    "min": [2.1225, -18.2425, -0.04],
+    "max": [4.1775, -16.7425, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light",
+    "original": "ARR10 inset path light",
+    "min": [-2.6119, -13.5325, 0.0],
+    "max": [-2.3715, -12.5575, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.001",
+    "original": "ARR10 inset path light.001",
+    "min": [-2.8686, -15.0775, 0.0],
+    "max": [-2.6813, -14.1025, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.002",
+    "original": "ARR10 inset path light.002",
+    "min": [-2.842, -16.6225, 0.0],
+    "max": [-2.5951, -15.6475, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.003",
+    "original": "ARR10 inset path light.003",
+    "min": [-2.5523, -18.0325, 0.0],
+    "max": [-2.3503, -17.0575, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.004",
+    "original": "ARR10 inset path light.004",
+    "min": [2.3438, -13.5325, 0.0],
+    "max": [2.3963, -12.5575, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.005",
+    "original": "ARR10 inset path light.005",
+    "min": [2.3438, -15.0775, 0.0],
+    "max": [2.3963, -14.1025, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.006",
+    "original": "ARR10 inset path light.006",
+    "min": [2.3438, -16.6225, 0.0],
+    "max": [2.3963, -15.6475, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 inset path light.007",
+    "original": "ARR10 inset path light.007",
+    "min": [2.3438, -18.0325, 0.0],
+    "max": [2.3963, -17.0575, 0.012],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating dark well",
+    "original": "ARR10 grating dark well",
+    "min": [-2.0775, -15.1435, -0.035],
+    "max": [-0.0225, -13.6435, -0.023],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame",
+    "original": "ARR10 grating side frame",
+    "min": [-2.0775, -15.1435, -0.016],
+    "max": [-2.0175, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.001",
+    "original": "ARR10 grating side frame.001",
+    "min": [-0.0825, -15.1435, -0.016],
+    "max": [-0.0225, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame",
+    "original": "ARR10 grating end frame",
+    "min": [-2.0175, -13.7035, -0.016],
+    "max": [-0.0825, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.001",
+    "original": "ARR10 grating end frame.001",
+    "min": [-2.0175, -15.1435, -0.016],
+    "max": [-0.0825, -15.0835, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar",
+    "original": "ARR10 grating crossbar",
+    "min": [-2.0175, -13.7875, -0.016],
+    "max": [-0.0825, -13.7395, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.001",
+    "original": "ARR10 grating crossbar.001",
+    "min": [-2.0175, -13.8925, -0.016],
+    "max": [-0.0825, -13.8445, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.002",
+    "original": "ARR10 grating crossbar.002",
+    "min": [-2.0175, -13.9975, -0.016],
+    "max": [-0.0825, -13.9495, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.003",
+    "original": "ARR10 grating crossbar.003",
+    "min": [-2.0175, -14.1025, -0.016],
+    "max": [-0.0825, -14.0545, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.004",
+    "original": "ARR10 grating crossbar.004",
+    "min": [-2.0175, -14.2075, -0.016],
+    "max": [-0.0825, -14.1595, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.005",
+    "original": "ARR10 grating crossbar.005",
+    "min": [-2.0175, -14.3125, -0.016],
+    "max": [-0.0825, -14.2645, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.006",
+    "original": "ARR10 grating crossbar.006",
+    "min": [-2.0175, -14.4175, -0.016],
+    "max": [-0.0825, -14.3695, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.007",
+    "original": "ARR10 grating crossbar.007",
+    "min": [-2.0175, -14.5225, -0.016],
+    "max": [-0.0825, -14.4745, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.008",
+    "original": "ARR10 grating crossbar.008",
+    "min": [-2.0175, -14.6275, -0.016],
+    "max": [-0.0825, -14.5795, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.009",
+    "original": "ARR10 grating crossbar.009",
+    "min": [-2.0175, -14.7325, -0.016],
+    "max": [-0.0825, -14.6845, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.010",
+    "original": "ARR10 grating crossbar.010",
+    "min": [-2.0175, -14.8375, -0.016],
+    "max": [-0.0825, -14.7895, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.011",
+    "original": "ARR10 grating crossbar.011",
+    "min": [-2.0175, -14.9425, -0.016],
+    "max": [-0.0825, -14.8945, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.012",
+    "original": "ARR10 grating crossbar.012",
+    "min": [-2.0175, -15.0475, -0.016],
+    "max": [-0.0825, -14.9995, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch",
+    "original": "ARR10 grating latch",
+    "min": [-1.9913, -13.7597, 0.0],
+    "max": [-1.9087, -13.7072, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.001",
+    "original": "ARR10 grating latch.001",
+    "min": [-1.9913, -15.0798, 0.0],
+    "max": [-1.9087, -15.0272, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.002",
+    "original": "ARR10 grating latch.002",
+    "min": [-0.1912, -13.7597, 0.0],
+    "max": [-0.1088, -13.7072, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.003",
+    "original": "ARR10 grating latch.003",
+    "min": [-0.1912, -15.0798, 0.0],
+    "max": [-0.1088, -15.0272, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating dark well.001",
+    "original": "ARR10 grating dark well.001",
+    "min": [-2.0775, -16.693, -0.035],
+    "max": [-0.0225, -15.193, -0.023],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.002",
+    "original": "ARR10 grating side frame.002",
+    "min": [-2.0775, -16.693, -0.016],
+    "max": [-2.0175, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.003",
+    "original": "ARR10 grating side frame.003",
+    "min": [-0.0825, -16.693, -0.016],
+    "max": [-0.0225, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.002",
+    "original": "ARR10 grating end frame.002",
+    "min": [-2.0175, -15.253, -0.016],
+    "max": [-0.0825, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.003",
+    "original": "ARR10 grating end frame.003",
+    "min": [-2.0175, -16.693, -0.016],
+    "max": [-0.0825, -16.633, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.013",
+    "original": "ARR10 grating crossbar.013",
+    "min": [-2.0175, -15.337, -0.016],
+    "max": [-0.0825, -15.289, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.014",
+    "original": "ARR10 grating crossbar.014",
+    "min": [-2.0175, -15.442, -0.016],
+    "max": [-0.0825, -15.394, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.015",
+    "original": "ARR10 grating crossbar.015",
+    "min": [-2.0175, -15.547, -0.016],
+    "max": [-0.0825, -15.499, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.016",
+    "original": "ARR10 grating crossbar.016",
+    "min": [-2.0175, -15.652, -0.016],
+    "max": [-0.0825, -15.604, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.017",
+    "original": "ARR10 grating crossbar.017",
+    "min": [-2.0175, -15.757, -0.016],
+    "max": [-0.0825, -15.709, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.018",
+    "original": "ARR10 grating crossbar.018",
+    "min": [-2.0175, -15.862, -0.016],
+    "max": [-0.0825, -15.814, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.019",
+    "original": "ARR10 grating crossbar.019",
+    "min": [-2.0175, -15.967, -0.016],
+    "max": [-0.0825, -15.919, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.020",
+    "original": "ARR10 grating crossbar.020",
+    "min": [-2.0175, -16.072, -0.016],
+    "max": [-0.0825, -16.024, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.021",
+    "original": "ARR10 grating crossbar.021",
+    "min": [-2.0175, -16.177, -0.016],
+    "max": [-0.0825, -16.129, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.022",
+    "original": "ARR10 grating crossbar.022",
+    "min": [-2.0175, -16.282, -0.016],
+    "max": [-0.0825, -16.234, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.023",
+    "original": "ARR10 grating crossbar.023",
+    "min": [-2.0175, -16.387, -0.016],
+    "max": [-0.0825, -16.339, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.024",
+    "original": "ARR10 grating crossbar.024",
+    "min": [-2.0175, -16.492, -0.016],
+    "max": [-0.0825, -16.444, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.025",
+    "original": "ARR10 grating crossbar.025",
+    "min": [-2.0175, -16.597, -0.016],
+    "max": [-0.0825, -16.549, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.004",
+    "original": "ARR10 grating latch.004",
+    "min": [-1.9913, -15.3092, 0.0],
+    "max": [-1.9087, -15.2568, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.005",
+    "original": "ARR10 grating latch.005",
+    "min": [-1.9913, -16.6292, 0.0],
+    "max": [-1.9087, -16.5767, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.006",
+    "original": "ARR10 grating latch.006",
+    "min": [-0.1912, -15.3092, 0.0],
+    "max": [-0.1088, -15.2568, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.007",
+    "original": "ARR10 grating latch.007",
+    "min": [-0.1912, -16.6292, 0.0],
+    "max": [-0.1088, -16.5767, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating dark well.002",
+    "original": "ARR10 grating dark well.002",
+    "min": [0.0225, -15.1435, -0.035],
+    "max": [2.0775, -13.6435, -0.023],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.004",
+    "original": "ARR10 grating side frame.004",
+    "min": [0.0225, -15.1435, -0.016],
+    "max": [0.0825, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.005",
+    "original": "ARR10 grating side frame.005",
+    "min": [2.0175, -15.1435, -0.016],
+    "max": [2.0775, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.004",
+    "original": "ARR10 grating end frame.004",
+    "min": [0.0825, -13.7035, -0.016],
+    "max": [2.0175, -13.6435, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.005",
+    "original": "ARR10 grating end frame.005",
+    "min": [0.0825, -15.1435, -0.016],
+    "max": [2.0175, -15.0835, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.026",
+    "original": "ARR10 grating crossbar.026",
+    "min": [0.0825, -13.7875, -0.016],
+    "max": [2.0175, -13.7395, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.027",
+    "original": "ARR10 grating crossbar.027",
+    "min": [0.0825, -13.8925, -0.016],
+    "max": [2.0175, -13.8445, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.028",
+    "original": "ARR10 grating crossbar.028",
+    "min": [0.0825, -13.9975, -0.016],
+    "max": [2.0175, -13.9495, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.029",
+    "original": "ARR10 grating crossbar.029",
+    "min": [0.0825, -14.1025, -0.016],
+    "max": [2.0175, -14.0545, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.030",
+    "original": "ARR10 grating crossbar.030",
+    "min": [0.0825, -14.2075, -0.016],
+    "max": [2.0175, -14.1595, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.031",
+    "original": "ARR10 grating crossbar.031",
+    "min": [0.0825, -14.3125, -0.016],
+    "max": [2.0175, -14.2645, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.032",
+    "original": "ARR10 grating crossbar.032",
+    "min": [0.0825, -14.4175, -0.016],
+    "max": [2.0175, -14.3695, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.033",
+    "original": "ARR10 grating crossbar.033",
+    "min": [0.0825, -14.5225, -0.016],
+    "max": [2.0175, -14.4745, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.034",
+    "original": "ARR10 grating crossbar.034",
+    "min": [0.0825, -14.6275, -0.016],
+    "max": [2.0175, -14.5795, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.035",
+    "original": "ARR10 grating crossbar.035",
+    "min": [0.0825, -14.7325, -0.016],
+    "max": [2.0175, -14.6845, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.036",
+    "original": "ARR10 grating crossbar.036",
+    "min": [0.0825, -14.8375, -0.016],
+    "max": [2.0175, -14.7895, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.037",
+    "original": "ARR10 grating crossbar.037",
+    "min": [0.0825, -14.9425, -0.016],
+    "max": [2.0175, -14.8945, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.038",
+    "original": "ARR10 grating crossbar.038",
+    "min": [0.0825, -15.0475, -0.016],
+    "max": [2.0175, -14.9995, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.008",
+    "original": "ARR10 grating latch.008",
+    "min": [0.1088, -13.7597, 0.0],
+    "max": [0.1912, -13.7072, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.009",
+    "original": "ARR10 grating latch.009",
+    "min": [0.1088, -15.0798, 0.0],
+    "max": [0.1912, -15.0272, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.010",
+    "original": "ARR10 grating latch.010",
+    "min": [1.9087, -13.7597, 0.0],
+    "max": [1.9913, -13.7072, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.011",
+    "original": "ARR10 grating latch.011",
+    "min": [1.9087, -15.0798, 0.0],
+    "max": [1.9913, -15.0272, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating dark well.003",
+    "original": "ARR10 grating dark well.003",
+    "min": [0.0225, -16.693, -0.035],
+    "max": [2.0775, -15.193, -0.023],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.006",
+    "original": "ARR10 grating side frame.006",
+    "min": [0.0225, -16.693, -0.016],
+    "max": [0.0825, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating side frame.007",
+    "original": "ARR10 grating side frame.007",
+    "min": [2.0175, -16.693, -0.016],
+    "max": [2.0775, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.006",
+    "original": "ARR10 grating end frame.006",
+    "min": [0.0825, -15.253, -0.016],
+    "max": [2.0175, -15.193, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating end frame.007",
+    "original": "ARR10 grating end frame.007",
+    "min": [0.0825, -16.693, -0.016],
+    "max": [2.0175, -16.633, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.039",
+    "original": "ARR10 grating crossbar.039",
+    "min": [0.0825, -15.337, -0.016],
+    "max": [2.0175, -15.289, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.040",
+    "original": "ARR10 grating crossbar.040",
+    "min": [0.0825, -15.442, -0.016],
+    "max": [2.0175, -15.394, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.041",
+    "original": "ARR10 grating crossbar.041",
+    "min": [0.0825, -15.547, -0.016],
+    "max": [2.0175, -15.499, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.042",
+    "original": "ARR10 grating crossbar.042",
+    "min": [0.0825, -15.652, -0.016],
+    "max": [2.0175, -15.604, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.043",
+    "original": "ARR10 grating crossbar.043",
+    "min": [0.0825, -15.757, -0.016],
+    "max": [2.0175, -15.709, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.044",
+    "original": "ARR10 grating crossbar.044",
+    "min": [0.0825, -15.862, -0.016],
+    "max": [2.0175, -15.814, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.045",
+    "original": "ARR10 grating crossbar.045",
+    "min": [0.0825, -15.967, -0.016],
+    "max": [2.0175, -15.919, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.046",
+    "original": "ARR10 grating crossbar.046",
+    "min": [0.0825, -16.072, -0.016],
+    "max": [2.0175, -16.024, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.047",
+    "original": "ARR10 grating crossbar.047",
+    "min": [0.0825, -16.177, -0.016],
+    "max": [2.0175, -16.129, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.048",
+    "original": "ARR10 grating crossbar.048",
+    "min": [0.0825, -16.282, -0.016],
+    "max": [2.0175, -16.234, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.049",
+    "original": "ARR10 grating crossbar.049",
+    "min": [0.0825, -16.387, -0.016],
+    "max": [2.0175, -16.339, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.050",
+    "original": "ARR10 grating crossbar.050",
+    "min": [0.0825, -16.492, -0.016],
+    "max": [2.0175, -16.444, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating crossbar.051",
+    "original": "ARR10 grating crossbar.051",
+    "min": [0.0825, -16.597, -0.016],
+    "max": [2.0175, -16.549, 0.0],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.012",
+    "original": "ARR10 grating latch.012",
+    "min": [0.1088, -15.3092, 0.0],
+    "max": [0.1912, -15.2568, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.013",
+    "original": "ARR10 grating latch.013",
+    "min": [0.1088, -16.6292, 0.0],
+    "max": [0.1912, -16.5767, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.014",
+    "original": "ARR10 grating latch.014",
+    "min": [1.9087, -15.3092, 0.0],
+    "max": [1.9913, -15.2568, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 grating latch.015",
+    "original": "ARR10 grating latch.015",
+    "min": [1.9087, -16.6292, 0.0],
+    "max": [1.9913, -16.5767, 0.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window rib",
+    "original": "ARR10 window rib",
+    "min": [-4.2271, -12.1675, 0.7919],
+    "max": [-3.6498, -11.9725, 2.459],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window rib.001",
+    "original": "ARR10 window rib.001",
+    "min": [-4.9914, -14.233, 0.7917],
+    "max": [-4.2441, -14.038, 2.4583],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window rib.002",
+    "original": "ARR10 window rib.002",
+    "min": [-4.9908, -16.2985, 0.7917],
+    "max": [-4.2435, -16.1035, 2.4583],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window rib.003",
+    "original": "ARR10 window rib.003",
+    "min": [-4.2271, -18.3625, 0.7919],
+    "max": [-3.6498, -18.1675, 2.459],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window sill",
+    "original": "ARR10 window sill",
+    "min": [-5.2174, -18.265, 0.74],
+    "max": [-4.0394, -12.07, 0.86],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window sill.001",
+    "original": "ARR10 window sill.001",
+    "min": [-4.7263, -18.265, 2.39],
+    "max": [-3.6339, -12.07, 2.5201],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 panoramic glass",
+    "original": "ARR10 panoramic glass",
+    "min": [-4.8196, -14.0328, 0.8491],
+    "max": [-3.742, -12.1727, 2.4009],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window mid rail",
+    "original": "ARR10 window mid rail",
+    "min": [-4.6334, -14.0477, 1.6125],
+    "max": [-3.885, -12.1578, 1.6675],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 panoramic glass.001",
+    "original": "ARR10 panoramic glass.001",
+    "min": [-5.1097, -16.0982, 0.8491],
+    "max": [-4.4221, -14.2382, 2.4009],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window mid rail.001",
+    "original": "ARR10 window mid rail.001",
+    "min": [-4.9074, -16.1133, 1.6125],
+    "max": [-4.594, -14.2232, 1.6675],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 panoramic glass.002",
+    "original": "ARR10 panoramic glass.002",
+    "min": [-4.8192, -18.163, 0.8491],
+    "max": [-3.742, -16.303, 2.4009],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 window mid rail.002",
+    "original": "ARR10 window mid rail.002",
+    "min": [-4.6331, -18.178, 1.6125],
+    "max": [-3.885, -16.288, 1.6675],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 outer hull sill",
+    "original": "ARR10 outer hull sill",
+    "min": [-5.7649, -18.265, 0.57],
+    "max": [-4.122, -12.07, 0.73],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service cabinet",
+    "original": "ARR10 service cabinet",
+    "min": [-4.1329, -12.86, 0.0],
+    "max": [-3.1329, -12.24, 0.96],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service countertop",
+    "original": "ARR10 service countertop",
+    "min": [-4.1829, -12.91, 0.96],
+    "max": [-3.0829, -12.19, 1.02],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 technical cabinet",
+    "original": "ARR10 technical cabinet",
+    "min": [3.82, -15.42, 0.44],
+    "max": [4.12, -14.42, 2.24],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet handle",
+    "original": "ARR10 cabinet handle",
+    "min": [3.77, -15.2375, 1.215],
+    "max": [3.81, -15.2025, 1.465],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 technical cabinet.001",
+    "original": "ARR10 technical cabinet.001",
+    "min": [3.82, -17.37, 0.44],
+    "max": [4.12, -16.37, 2.24],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet handle.001",
+    "original": "ARR10 cabinet handle.001",
+    "min": [3.77, -17.1875, 1.215],
+    "max": [3.81, -17.1525, 1.465],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal backing seal",
+    "original": "ARR10 portal backing seal",
+    "min": [-1.605, -12.26, 0.08],
+    "max": [-1.355, -12.14, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal armor",
+    "original": "ARR10 portal armor",
+    "min": [-1.575, -12.34, 0.08],
+    "max": [-1.385, -12.21, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal outer bead",
+    "original": "ARR10 portal outer bead",
+    "min": [-1.6085, -12.3525, 0.08],
+    "max": [-1.5735, -12.3275, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal backing seal.001",
+    "original": "ARR10 portal backing seal.001",
+    "min": [-1.5661, -12.26, 2.4759],
+    "max": [-0.9639, -12.14, 3.0841],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal armor.001",
+    "original": "ARR10 portal armor.001",
+    "min": [-1.5446, -12.34, 2.4969],
+    "max": [-0.9854, -12.21, 3.0631],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal outer bead.001",
+    "original": "ARR10 portal outer bead.001",
+    "min": [-1.6005, -12.3525, 2.5499],
+    "max": [-1.1193, -12.3275, 3.0101],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal armor.002",
+    "original": "ARR10 portal armor.002",
+    "min": [-1.05, -12.34, 2.905],
+    "max": [1.05, -12.21, 3.095],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal outer bead.002",
+    "original": "ARR10 portal outer bead.002",
+    "min": [-1.1288, -12.3525, 2.9825],
+    "max": [1.1288, -12.3275, 3.0175],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal backing seal.003",
+    "original": "ARR10 portal backing seal.003",
+    "min": [0.9639, -12.26, 2.4759],
+    "max": [1.5661, -12.14, 3.0841],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal armor.003",
+    "original": "ARR10 portal armor.003",
+    "min": [0.9854, -12.34, 2.4969],
+    "max": [1.5446, -12.21, 3.0631],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal outer bead.003",
+    "original": "ARR10 portal outer bead.003",
+    "min": [1.1193, -12.3525, 2.5499],
+    "max": [1.6005, -12.3275, 3.0101],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal backing seal.004",
+    "original": "ARR10 portal backing seal.004",
+    "min": [1.355, -12.26, 0.08],
+    "max": [1.605, -12.14, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal armor.004",
+    "original": "ARR10 portal armor.004",
+    "min": [1.385, -12.34, 0.08],
+    "max": [1.575, -12.21, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal outer bead.004",
+    "original": "ARR10 portal outer bead.004",
+    "min": [1.5735, -12.3525, 0.08],
+    "max": [1.6085, -12.3275, 2.56],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert",
+    "original": "ARR10 portal removable insert",
+    "min": [-1.5375, -12.3615, 0.25],
+    "max": [-1.4225, -12.3365, 0.55],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener",
+    "original": "ARR10 portal fastener",
+    "min": [-1.4925, -12.372, 0.2775],
+    "max": [-1.4675, -12.36, 0.3025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.001",
+    "original": "ARR10 portal fastener.001",
+    "min": [-1.4925, -12.372, 0.4975],
+    "max": [-1.4675, -12.36, 0.5225],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert.001",
+    "original": "ARR10 portal removable insert.001",
+    "min": [-1.5375, -12.3615, 0.9],
+    "max": [-1.4225, -12.3365, 1.2],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.002",
+    "original": "ARR10 portal fastener.002",
+    "min": [-1.4925, -12.372, 0.9275],
+    "max": [-1.4675, -12.36, 0.9525],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.003",
+    "original": "ARR10 portal fastener.003",
+    "min": [-1.4925, -12.372, 1.1475],
+    "max": [-1.4675, -12.36, 1.1725],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert.002",
+    "original": "ARR10 portal removable insert.002",
+    "min": [-1.5375, -12.3615, 2.15],
+    "max": [-1.4225, -12.3365, 2.45],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.004",
+    "original": "ARR10 portal fastener.004",
+    "min": [-1.4925, -12.372, 2.1775],
+    "max": [-1.4675, -12.36, 2.2025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.005",
+    "original": "ARR10 portal fastener.005",
+    "min": [-1.4925, -12.372, 2.3975],
+    "max": [-1.4675, -12.36, 2.4225],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal light recess",
+    "original": "ARR10 portal light recess",
+    "min": [-1.5275, -12.3675, 1.375],
+    "max": [-1.4325, -12.3425, 2.025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal amber lens",
+    "original": "ARR10 portal amber lens",
+    "min": [-1.501, -12.386, 1.425],
+    "max": [-1.459, -12.364, 1.975],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal base shoe",
+    "original": "ARR10 portal base shoe",
+    "min": [-1.625, -12.37, 0.0],
+    "max": [-1.355, -12.11, 0.3],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert.003",
+    "original": "ARR10 portal removable insert.003",
+    "min": [1.4225, -12.3615, 0.25],
+    "max": [1.5375, -12.3365, 0.55],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.006",
+    "original": "ARR10 portal fastener.006",
+    "min": [1.4675, -12.372, 0.2775],
+    "max": [1.4925, -12.36, 0.3025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.007",
+    "original": "ARR10 portal fastener.007",
+    "min": [1.4675, -12.372, 0.4975],
+    "max": [1.4925, -12.36, 0.5225],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert.004",
+    "original": "ARR10 portal removable insert.004",
+    "min": [1.4225, -12.3615, 0.9],
+    "max": [1.5375, -12.3365, 1.2],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.008",
+    "original": "ARR10 portal fastener.008",
+    "min": [1.4675, -12.372, 0.9275],
+    "max": [1.4925, -12.36, 0.9525],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.009",
+    "original": "ARR10 portal fastener.009",
+    "min": [1.4675, -12.372, 1.1475],
+    "max": [1.4925, -12.36, 1.1725],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal removable insert.005",
+    "original": "ARR10 portal removable insert.005",
+    "min": [1.4225, -12.3615, 2.15],
+    "max": [1.5375, -12.3365, 2.45],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.010",
+    "original": "ARR10 portal fastener.010",
+    "min": [1.4675, -12.372, 2.1775],
+    "max": [1.4925, -12.36, 2.2025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal fastener.011",
+    "original": "ARR10 portal fastener.011",
+    "min": [1.4675, -12.372, 2.3975],
+    "max": [1.4925, -12.36, 2.4225],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal light recess.001",
+    "original": "ARR10 portal light recess.001",
+    "min": [1.4325, -12.3675, 1.375],
+    "max": [1.5275, -12.3425, 2.025],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal amber lens.001",
+    "original": "ARR10 portal amber lens.001",
+    "min": [1.459, -12.386, 1.425],
+    "max": [1.501, -12.364, 1.975],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 portal base shoe.001",
+    "original": "ARR10 portal base shoe.001",
+    "min": [1.355, -12.37, 0.0],
+    "max": [1.625, -12.11, 0.3],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket",
+    "original": "ARR10 glazing horizontal gasket",
+    "min": [-4.1973, -12.6402, 0.834],
+    "max": [-4.0796, -12.1703, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.001",
+    "original": "ARR10 glazing horizontal gasket.001",
+    "min": [-4.3595, -13.1078, 0.834],
+    "max": [-4.1576, -12.6327, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.002",
+    "original": "ARR10 glazing horizontal gasket.002",
+    "min": [-4.5757, -13.5744, 0.834],
+    "max": [-4.3233, -13.0961, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.003",
+    "original": "ARR10 glazing horizontal gasket.003",
+    "min": [-4.7986, -14.0395, 0.834],
+    "max": [-4.5409, -13.561, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.004",
+    "original": "ARR10 glazing horizontal gasket.004",
+    "min": [-3.8138, -12.6399, 2.384],
+    "max": [-3.7041, -12.1706, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.005",
+    "original": "ARR10 glazing horizontal gasket.005",
+    "min": [-3.958, -13.1072, 2.384],
+    "max": [-3.7734, -12.6333, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.006",
+    "original": "ARR10 glazing horizontal gasket.006",
+    "min": [-4.15, -13.5735, 2.384],
+    "max": [-3.9209, -13.097, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.007",
+    "original": "ARR10 glazing horizontal gasket.007",
+    "min": [-4.3481, -14.0387, 2.384],
+    "max": [-4.1143, -13.5618, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket",
+    "original": "ARR10 glazing vertical gasket",
+    "min": [-4.1211, -12.199, 0.8484],
+    "max": [-3.9864, -12.1465, 1.2391],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.001",
+    "original": "ARR10 glazing vertical gasket.001",
+    "min": [-4.0273, -12.199, 1.2359],
+    "max": [-3.8925, -12.1465, 1.6266],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.002",
+    "original": "ARR10 glazing vertical gasket.002",
+    "min": [-3.9334, -12.199, 1.6234],
+    "max": [-3.7987, -12.1465, 2.0141],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.003",
+    "original": "ARR10 glazing vertical gasket.003",
+    "min": [-3.8396, -12.199, 2.0109],
+    "max": [-3.7049, -12.1465, 2.4016],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.004",
+    "original": "ARR10 glazing vertical gasket.004",
+    "min": [-4.8012, -14.059, 0.8481],
+    "max": [-4.6485, -14.0065, 1.2394],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.005",
+    "original": "ARR10 glazing vertical gasket.005",
+    "min": [-4.6885, -14.059, 1.2356],
+    "max": [-4.5358, -14.0065, 1.6269],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.006",
+    "original": "ARR10 glazing vertical gasket.006",
+    "min": [-4.5757, -14.059, 1.6231],
+    "max": [-4.423, -14.0065, 2.0144],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.007",
+    "original": "ARR10 glazing vertical gasket.007",
+    "min": [-4.463, -14.059, 2.0106],
+    "max": [-4.3103, -14.0065, 2.4019],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.008",
+    "original": "ARR10 glazing horizontal gasket.008",
+    "min": [-5.0351, -14.7078, 0.834],
+    "max": [-4.8494, -14.2337, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.009",
+    "original": "ARR10 glazing horizontal gasket.009",
+    "min": [-5.0902, -15.1699, 0.834],
+    "max": [-4.9944, -14.7016, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.010",
+    "original": "ARR10 glazing horizontal gasket.010",
+    "min": [-5.0902, -15.635, 0.834],
+    "max": [-4.994, -15.1665, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.011",
+    "original": "ARR10 glazing horizontal gasket.011",
+    "min": [-5.0347, -16.1028, 0.834],
+    "max": [-4.8488, -15.6287, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.012",
+    "original": "ARR10 glazing horizontal gasket.012",
+    "min": [-4.5585, -14.7073, 2.384],
+    "max": [-4.3884, -14.2342, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.013",
+    "original": "ARR10 glazing horizontal gasket.013",
+    "min": [-4.6075, -15.1698, 2.384],
+    "max": [-4.5173, -14.7017, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.014",
+    "original": "ARR10 glazing horizontal gasket.014",
+    "min": [-4.6075, -15.6348, 2.384],
+    "max": [-4.517, -15.1667, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.015",
+    "original": "ARR10 glazing horizontal gasket.015",
+    "min": [-4.5582, -16.1023, 2.384],
+    "max": [-4.3878, -15.6292, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.008",
+    "original": "ARR10 glazing vertical gasket.008",
+    "min": [-4.8886, -14.2645, 0.8481],
+    "max": [-4.7335, -14.212, 1.2394],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.009",
+    "original": "ARR10 glazing vertical gasket.009",
+    "min": [-4.7734, -14.2645, 1.2356],
+    "max": [-4.6184, -14.212, 1.6269],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.010",
+    "original": "ARR10 glazing vertical gasket.010",
+    "min": [-4.6582, -14.2645, 1.6231],
+    "max": [-4.5032, -14.212, 2.0144],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.011",
+    "original": "ARR10 glazing vertical gasket.011",
+    "min": [-4.5431, -14.2645, 2.0106],
+    "max": [-4.3881, -14.212, 2.4019],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.012",
+    "original": "ARR10 glazing vertical gasket.012",
+    "min": [-4.888, -16.1245, 0.8481],
+    "max": [-4.7329, -16.072, 1.2394],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.013",
+    "original": "ARR10 glazing vertical gasket.013",
+    "min": [-4.7728, -16.1245, 1.2356],
+    "max": [-4.6178, -16.072, 1.6269],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.014",
+    "original": "ARR10 glazing vertical gasket.014",
+    "min": [-4.6577, -16.1245, 1.6231],
+    "max": [-4.5027, -16.072, 2.0144],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.015",
+    "original": "ARR10 glazing vertical gasket.015",
+    "min": [-4.5425, -16.1245, 2.0106],
+    "max": [-4.3875, -16.072, 2.4019],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.016",
+    "original": "ARR10 glazing horizontal gasket.016",
+    "min": [-4.7982, -16.7748, 0.834],
+    "max": [-4.5405, -16.2962, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.017",
+    "original": "ARR10 glazing horizontal gasket.017",
+    "min": [-4.5753, -17.2396, 0.834],
+    "max": [-4.323, -16.7614, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.018",
+    "original": "ARR10 glazing horizontal gasket.018",
+    "min": [-4.3592, -17.703, 0.834],
+    "max": [-4.1574, -17.228, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.019",
+    "original": "ARR10 glazing horizontal gasket.019",
+    "min": [-4.1971, -18.1654, 0.834],
+    "max": [-4.0796, -17.6956, 0.866],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.020",
+    "original": "ARR10 glazing horizontal gasket.020",
+    "min": [-4.3478, -16.7739, 2.384],
+    "max": [-4.114, -16.2971, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.021",
+    "original": "ARR10 glazing horizontal gasket.021",
+    "min": [-4.1497, -17.2388, 2.384],
+    "max": [-3.9206, -16.7622, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.022",
+    "original": "ARR10 glazing horizontal gasket.022",
+    "min": [-3.9577, -17.7025, 2.384],
+    "max": [-3.7732, -17.2285, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing horizontal gasket.023",
+    "original": "ARR10 glazing horizontal gasket.023",
+    "min": [-3.8136, -18.1651, 2.384],
+    "max": [-3.7041, -17.6959, 2.416],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.016",
+    "original": "ARR10 glazing vertical gasket.016",
+    "min": [-4.8009, -16.3293, 0.8481],
+    "max": [-4.6482, -16.2767, 1.2394],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.017",
+    "original": "ARR10 glazing vertical gasket.017",
+    "min": [-4.6881, -16.3293, 1.2356],
+    "max": [-4.5354, -16.2767, 1.6269],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.018",
+    "original": "ARR10 glazing vertical gasket.018",
+    "min": [-4.5754, -16.3293, 1.6231],
+    "max": [-4.4227, -16.2767, 2.0144],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.019",
+    "original": "ARR10 glazing vertical gasket.019",
+    "min": [-4.4627, -16.3293, 2.0106],
+    "max": [-4.31, -16.2767, 2.4019],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.020",
+    "original": "ARR10 glazing vertical gasket.020",
+    "min": [-4.121, -18.1892, 0.8484],
+    "max": [-3.9863, -18.1367, 1.2391],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.021",
+    "original": "ARR10 glazing vertical gasket.021",
+    "min": [-4.0272, -18.1892, 1.2359],
+    "max": [-3.8925, -18.1367, 1.6266],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.022",
+    "original": "ARR10 glazing vertical gasket.022",
+    "min": [-3.9334, -18.1892, 1.6234],
+    "max": [-3.7987, -18.1367, 2.0141],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 glazing vertical gasket.023",
+    "original": "ARR10 glazing vertical gasket.023",
+    "min": [-3.8396, -18.1892, 2.0109],
+    "max": [-3.7049, -18.1367, 2.4016],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bridge sign backing",
+    "original": "ARR10 bridge sign backing",
+    "min": [-0.815, -12.3625, 2.7],
+    "max": [0.815, -12.3275, 2.88],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 BRIDGE ACCESS",
+    "original": "ARR10 BRIDGE ACCESS",
+    "min": [-0.4045, -12.369, 2.749],
+    "max": [0.4094, -12.367, 2.8295],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 equipment case",
+    "original": "ARR10 equipment case",
+    "min": [-4.3382, -17.1788, 0.59],
+    "max": [-3.7011, -16.6112, 0.878],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case lid seam",
+    "original": "ARR10 case lid seam",
+    "min": [-4.3523, -17.1929, 0.7988],
+    "max": [-3.6869, -16.5971, 0.8132],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case reinforced corner",
+    "original": "ARR10 case reinforced corner",
+    "min": [-4.3458, -17.1927, 0.581],
+    "max": [-4.1439, -16.7796, 0.887],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case latch",
+    "original": "ARR10 case latch",
+    "min": [-4.1172, -17.1734, 0.7115],
+    "max": [-4.0617, -17.1353, 0.7925],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case reinforced corner.001",
+    "original": "ARR10 case reinforced corner.001",
+    "min": [-3.8953, -17.0104, 0.581],
+    "max": [-3.6934, -16.5973, 0.887],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case latch.001",
+    "original": "ARR10 case latch.001",
+    "min": [-3.8168, -17.0519, 0.7115],
+    "max": [-3.7613, -17.0137, 0.7925],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 case carry handle",
+    "original": "ARR10 case carry handle",
+    "min": [-4.1245, -16.9515, 0.878],
+    "max": [-3.9147, -16.8385, 0.905],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 medical cabinet",
+    "original": "ARR10 medical cabinet",
+    "min": [-2.42, -12.33, 2.08],
+    "max": [-2.1, -12.17, 2.44],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 medical cross horizontal",
+    "original": "ARR10 medical cross horizontal",
+    "min": [-2.35, -12.341, 2.2325],
+    "max": [-2.17, -12.329, 2.2875],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 medical cross vertical",
+    "original": "ARR10 medical cross vertical",
+    "min": [-2.2875, -12.342, 2.17],
+    "max": [-2.2325, -12.33, 2.35],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation",
+    "original": "ARR10 cabinet ventilation",
+    "min": [3.805, -15.17, 1.924],
+    "max": [3.817, -14.67, 1.936],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.001",
+    "original": "ARR10 cabinet ventilation.001",
+    "min": [3.805, -15.17, 1.959],
+    "max": [3.817, -14.67, 1.971],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.002",
+    "original": "ARR10 cabinet ventilation.002",
+    "min": [3.805, -15.17, 1.994],
+    "max": [3.817, -14.67, 2.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.003",
+    "original": "ARR10 cabinet ventilation.003",
+    "min": [3.805, -15.17, 2.029],
+    "max": [3.817, -14.67, 2.041],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.004",
+    "original": "ARR10 cabinet ventilation.004",
+    "min": [3.805, -15.17, 2.064],
+    "max": [3.817, -14.67, 2.076],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.005",
+    "original": "ARR10 cabinet ventilation.005",
+    "min": [3.805, -15.17, 2.099],
+    "max": [3.817, -14.67, 2.111],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet hinge",
+    "original": "ARR10 cabinet hinge",
+    "min": [3.797, -14.525, 0.745],
+    "max": [3.819, -14.475, 0.855],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet hinge.001",
+    "original": "ARR10 cabinet hinge.001",
+    "min": [3.797, -14.525, 1.845],
+    "max": [3.819, -14.475, 1.955],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet service strip",
+    "original": "ARR10 cabinet service strip",
+    "min": [3.8, -15.14, 0.6025],
+    "max": [3.818, -14.7, 0.6375],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.006",
+    "original": "ARR10 cabinet ventilation.006",
+    "min": [3.805, -17.12, 1.924],
+    "max": [3.817, -16.62, 1.936],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.007",
+    "original": "ARR10 cabinet ventilation.007",
+    "min": [3.805, -17.12, 1.959],
+    "max": [3.817, -16.62, 1.971],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.008",
+    "original": "ARR10 cabinet ventilation.008",
+    "min": [3.805, -17.12, 1.994],
+    "max": [3.817, -16.62, 2.006],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.009",
+    "original": "ARR10 cabinet ventilation.009",
+    "min": [3.805, -17.12, 2.029],
+    "max": [3.817, -16.62, 2.041],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.010",
+    "original": "ARR10 cabinet ventilation.010",
+    "min": [3.805, -17.12, 2.064],
+    "max": [3.817, -16.62, 2.076],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet ventilation.011",
+    "original": "ARR10 cabinet ventilation.011",
+    "min": [3.805, -17.12, 2.099],
+    "max": [3.817, -16.62, 2.111],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet hinge.002",
+    "original": "ARR10 cabinet hinge.002",
+    "min": [3.797, -16.475, 0.745],
+    "max": [3.819, -16.425, 0.855],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet hinge.003",
+    "original": "ARR10 cabinet hinge.003",
+    "min": [3.797, -16.475, 1.845],
+    "max": [3.819, -16.425, 1.955],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 cabinet service strip.001",
+    "original": "ARR10 cabinet service strip.001",
+    "min": [3.8, -17.09, 0.6025],
+    "max": [3.818, -16.65, 0.6375],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service pull mount",
+    "original": "ARR10 service pull mount",
+    "min": [-3.95, -12.8845, 0.63],
+    "max": [-3.85, -12.8595, 0.73],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service pull grip",
+    "original": "ARR10 service pull grip",
+    "min": [-3.9325, -12.9075, 0.671],
+    "max": [-3.8675, -12.8825, 0.689],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service pull mount.001",
+    "original": "ARR10 service pull mount.001",
+    "min": [-3.4, -12.8845, 0.63],
+    "max": [-3.3, -12.8595, 0.73],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service pull grip.001",
+    "original": "ARR10 service pull grip.001",
+    "min": [-3.3825, -12.9075, 0.671],
+    "max": [-3.3175, -12.8825, 0.689],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 supply plaque",
+    "original": "ARR10 supply plaque",
+    "min": [-3.905, -12.881, 0.21],
+    "max": [-3.355, -12.863, 0.33],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 CABIN SUPPLIES",
+    "original": "ARR10 CABIN SUPPLIES",
+    "min": [-3.7883, -12.8855, 0.2496],
+    "max": [-3.471, -12.8845, 0.2811],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 MEDICAL",
+    "original": "ARR10 MEDICAL",
+    "min": [-2.33, -12.3365, 2.1297],
+    "max": [-2.1878, -12.3355, 2.1542],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench continuous base",
+    "original": "ARR10 bench continuous base",
+    "min": [-4.9848, -17.315, 0.0],
+    "max": [-3.4408, -14.775, 0.48],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench recessed toe kick",
+    "original": "ARR10 bench recessed toe kick",
+    "min": [-4.207, -17.285, 0.015],
+    "max": [-3.4371, -14.805, 0.135],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench warm light strip",
+    "original": "ARR10 bench warm light strip",
+    "min": [-4.1908, -17.245, 0.074],
+    "max": [-3.4436, -14.845, 0.096],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted cushion",
+    "original": "ARR10 bench fitted cushion",
+    "min": [-4.955, -15.595, 0.47],
+    "max": [-4.1346, -14.795, 0.59],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted back",
+    "original": "ARR10 bench fitted back",
+    "min": [-4.9735, -15.595, 0.57],
+    "max": [-4.6761, -14.795, 1.09],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench cushion piping",
+    "original": "ARR10 bench cushion piping",
+    "min": [-4.1763, -15.56, 0.5435],
+    "max": [-4.1317, -14.83, 0.5525],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker inset",
+    "original": "ARR10 bench locker inset",
+    "min": [-4.2058, -15.56, 0.155],
+    "max": [-4.1507, -14.83, 0.425],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker face",
+    "original": "ARR10 bench locker face",
+    "min": [-4.1878, -15.54, 0.17],
+    "max": [-4.1404, -14.85, 0.41],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench recessed pull",
+    "original": "ARR10 bench recessed pull",
+    "min": [-4.1755, -15.29, 0.326],
+    "max": [-4.1589, -15.1, 0.354],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent",
+    "original": "ARR10 bench locker vent",
+    "min": [-4.175, -15.285, 0.197],
+    "max": [-4.1596, -15.105, 0.203],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.001",
+    "original": "ARR10 bench locker vent.001",
+    "min": [-4.175, -15.285, 0.215],
+    "max": [-4.1596, -15.105, 0.221],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.002",
+    "original": "ARR10 bench locker vent.002",
+    "min": [-4.175, -15.285, 0.233],
+    "max": [-4.1596, -15.105, 0.239],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted cushion.001",
+    "original": "ARR10 bench fitted cushion.001",
+    "min": [-4.893, -16.445, 0.47],
+    "max": [-3.828, -15.645, 0.59],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted back.001",
+    "original": "ARR10 bench fitted back.001",
+    "min": [-4.9114, -16.445, 0.57],
+    "max": [-4.3713, -15.645, 1.09],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench cushion piping.001",
+    "original": "ARR10 bench cushion piping.001",
+    "min": [-4.1116, -16.41, 0.5435],
+    "max": [-3.8316, -15.68, 0.5525],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker inset.001",
+    "original": "ARR10 bench locker inset.001",
+    "min": [-4.1404, -16.41, 0.155],
+    "max": [-3.8511, -15.68, 0.425],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker face.001",
+    "original": "ARR10 bench locker face.001",
+    "min": [-4.1174, -16.39, 0.17],
+    "max": [-3.8464, -15.7, 0.41],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench recessed pull.001",
+    "original": "ARR10 bench recessed pull.001",
+    "min": [-4.0286, -16.14, 0.326],
+    "max": [-3.9453, -15.95, 0.354],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.003",
+    "original": "ARR10 bench locker vent.003",
+    "min": [-4.0273, -16.135, 0.197],
+    "max": [-3.9468, -15.955, 0.203],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.004",
+    "original": "ARR10 bench locker vent.004",
+    "min": [-4.0273, -16.135, 0.215],
+    "max": [-3.9468, -15.955, 0.221],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.005",
+    "original": "ARR10 bench locker vent.005",
+    "min": [-4.0273, -16.135, 0.233],
+    "max": [-3.9468, -15.955, 0.239],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted cushion.002",
+    "original": "ARR10 bench fitted cushion.002",
+    "min": [-4.5679, -17.295, 0.47],
+    "max": [-3.4251, -16.495, 0.59],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench fitted back.002",
+    "original": "ARR10 bench fitted back.002",
+    "min": [-4.5845, -17.295, 0.57],
+    "max": [-3.9683, -16.495, 1.09],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench cushion piping.002",
+    "original": "ARR10 bench cushion piping.002",
+    "min": [-3.7799, -17.26, 0.5435],
+    "max": [-3.4272, -16.53, 0.5525],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker inset.002",
+    "original": "ARR10 bench locker inset.002",
+    "min": [-3.8084, -17.26, 0.155],
+    "max": [-3.4466, -16.53, 0.425],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker face.002",
+    "original": "ARR10 bench locker face.002",
+    "min": [-3.7808, -17.24, 0.17],
+    "max": [-3.441, -16.55, 0.41],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench recessed pull.002",
+    "original": "ARR10 bench recessed pull.002",
+    "min": [-3.6452, -16.99, 0.326],
+    "max": [-3.5428, -16.8, 0.354],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.006",
+    "original": "ARR10 bench locker vent.006",
+    "min": [-3.6434, -16.985, 0.197],
+    "max": [-3.5446, -16.805, 0.203],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.007",
+    "original": "ARR10 bench locker vent.007",
+    "min": [-3.6434, -16.985, 0.215],
+    "max": [-3.5446, -16.805, 0.221],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 bench locker vent.008",
+    "original": "ARR10 bench locker vent.008",
+    "min": [-3.6434, -16.985, 0.233],
+    "max": [-3.5446, -16.805, 0.239],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 medical wall bracket",
+    "original": "ARR10 medical wall bracket",
+    "min": [-2.405, -12.17, 2.1],
+    "max": [-2.115, -12.07, 2.42],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 medical latch",
+    "original": "ARR10 medical latch",
+    "min": [-2.1425, -12.353, 2.2275],
+    "max": [-2.1175, -12.331, 2.2925],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flag wall bracket",
+    "original": "ARR10 flag wall bracket",
+    "min": [-2.05, -12.16, 2.205],
+    "max": [-1.67, -12.07, 2.455],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flag enamel frame",
+    "original": "ARR10 flag enamel frame",
+    "min": [-2.06, -12.19, 2.1975],
+    "max": [-1.66, -12.16, 2.4625],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flag sky stripe",
+    "original": "ARR10 flag sky stripe",
+    "min": [-2.04, -12.198, 2.2175],
+    "max": [-1.68, -12.19, 2.2925],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flag white stripe",
+    "original": "ARR10 flag white stripe",
+    "min": [-2.04, -12.198, 2.2925],
+    "max": [-1.68, -12.19, 2.3675],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flag sky stripe.001",
+    "original": "ARR10 flag sky stripe.001",
+    "min": [-2.04, -12.198, 2.3675],
+    "max": [-1.68, -12.19, 2.4425],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray",
+    "original": "ARR10 sun ray",
+    "min": [-1.849, -12.199, 2.3287],
+    "max": [-1.83, -12.199, 2.3313],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.001",
+    "original": "ARR10 sun ray.001",
+    "min": [-1.8494, -12.199, 2.3314],
+    "max": [-1.8325, -12.199, 2.3355],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.002",
+    "original": "ARR10 sun ray.002",
+    "min": [-1.8503, -12.199, 2.333],
+    "max": [-1.8323, -12.199, 2.3415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.003",
+    "original": "ARR10 sun ray.003",
+    "min": [-1.8513, -12.199, 2.3354],
+    "max": [-1.8367, -12.199, 2.3456],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.004",
+    "original": "ARR10 sun ray.004",
+    "min": [-1.8531, -12.199, 2.3369],
+    "max": [-1.8388, -12.199, 2.3512],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.005",
+    "original": "ARR10 sun ray.005",
+    "min": [-1.8546, -12.199, 2.3387],
+    "max": [-1.8443, -12.199, 2.3533],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.006",
+    "original": "ARR10 sun ray.006",
+    "min": [-1.857, -12.199, 2.3397],
+    "max": [-1.8485, -12.199, 2.3577],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.007",
+    "original": "ARR10 sun ray.007",
+    "min": [-1.8596, -12.199, 2.3406],
+    "max": [-1.8531, -12.199, 2.3575],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.008",
+    "original": "ARR10 sun ray.008",
+    "min": [-1.8613, -12.199, 2.341],
+    "max": [-1.8587, -12.199, 2.36],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.009",
+    "original": "ARR10 sun ray.009",
+    "min": [-1.8655, -12.199, 2.3406],
+    "max": [-1.8614, -12.199, 2.3575],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.010",
+    "original": "ARR10 sun ray.010",
+    "min": [-1.8715, -12.199, 2.3397],
+    "max": [-1.863, -12.199, 2.3577],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.011",
+    "original": "ARR10 sun ray.011",
+    "min": [-1.8756, -12.199, 2.3387],
+    "max": [-1.8654, -12.199, 2.3533],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.012",
+    "original": "ARR10 sun ray.012",
+    "min": [-1.8812, -12.199, 2.3369],
+    "max": [-1.8669, -12.199, 2.3512],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.013",
+    "original": "ARR10 sun ray.013",
+    "min": [-1.8833, -12.199, 2.3354],
+    "max": [-1.8687, -12.199, 2.3457],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.014",
+    "original": "ARR10 sun ray.014",
+    "min": [-1.8877, -12.199, 2.333],
+    "max": [-1.8697, -12.199, 2.3415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.015",
+    "original": "ARR10 sun ray.015",
+    "min": [-1.8875, -12.199, 2.3304],
+    "max": [-1.8706, -12.199, 2.3369],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.016",
+    "original": "ARR10 sun ray.016",
+    "min": [-1.89, -12.199, 2.3287],
+    "max": [-1.871, -12.199, 2.3313],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.017",
+    "original": "ARR10 sun ray.017",
+    "min": [-1.8875, -12.199, 2.3245],
+    "max": [-1.8706, -12.199, 2.3286],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.018",
+    "original": "ARR10 sun ray.018",
+    "min": [-1.8877, -12.199, 2.3185],
+    "max": [-1.8697, -12.199, 2.327],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.019",
+    "original": "ARR10 sun ray.019",
+    "min": [-1.8833, -12.199, 2.3144],
+    "max": [-1.8687, -12.199, 2.3246],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.020",
+    "original": "ARR10 sun ray.020",
+    "min": [-1.8812, -12.199, 2.3088],
+    "max": [-1.8669, -12.199, 2.3231],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.021",
+    "original": "ARR10 sun ray.021",
+    "min": [-1.8757, -12.199, 2.3067],
+    "max": [-1.8654, -12.199, 2.3213],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.022",
+    "original": "ARR10 sun ray.022",
+    "min": [-1.8715, -12.199, 2.3023],
+    "max": [-1.863, -12.199, 2.3203],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.023",
+    "original": "ARR10 sun ray.023",
+    "min": [-1.8669, -12.199, 2.3025],
+    "max": [-1.8604, -12.199, 2.3194],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.024",
+    "original": "ARR10 sun ray.024",
+    "min": [-1.8613, -12.199, 2.3],
+    "max": [-1.8587, -12.199, 2.319],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.025",
+    "original": "ARR10 sun ray.025",
+    "min": [-1.8586, -12.199, 2.3025],
+    "max": [-1.8545, -12.199, 2.3194],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.026",
+    "original": "ARR10 sun ray.026",
+    "min": [-1.857, -12.199, 2.3023],
+    "max": [-1.8485, -12.199, 2.3203],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.027",
+    "original": "ARR10 sun ray.027",
+    "min": [-1.8546, -12.199, 2.3067],
+    "max": [-1.8444, -12.199, 2.3213],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.028",
+    "original": "ARR10 sun ray.028",
+    "min": [-1.8531, -12.199, 2.3088],
+    "max": [-1.8388, -12.199, 2.3231],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.029",
+    "original": "ARR10 sun ray.029",
+    "min": [-1.8513, -12.199, 2.3143],
+    "max": [-1.8367, -12.199, 2.3246],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.030",
+    "original": "ARR10 sun ray.030",
+    "min": [-1.8503, -12.199, 2.3185],
+    "max": [-1.8323, -12.199, 2.327],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun ray.031",
+    "original": "ARR10 sun ray.031",
+    "min": [-1.8494, -12.199, 2.3231],
+    "max": [-1.8325, -12.199, 2.3296],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun disk",
+    "original": "ARR10 sun disk",
+    "min": [-1.873, -12.2, 2.317],
+    "max": [-1.847, -12.2, 2.343],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun eye",
+    "original": "ARR10 sun eye",
+    "min": [-1.8656, -12.201, 2.3314],
+    "max": [-1.8632, -12.201, 2.3326],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun eye.001",
+    "original": "ARR10 sun eye.001",
+    "min": [-1.8568, -12.201, 2.3314],
+    "max": [-1.8544, -12.201, 2.3326],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun nose",
+    "original": "ARR10 sun nose",
+    "min": [-1.8606, -12.201, 2.328],
+    "max": [-1.859, -12.201, 2.333],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 sun mouth",
+    "original": "ARR10 sun mouth",
+    "min": [-1.8635, -12.201, 2.324],
+    "max": [-1.8565, -12.201, 2.325],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 service backsplash",
+    "original": "ARR10 service backsplash",
+    "min": [-3.92, -12.17, 1.045],
+    "max": [-3.07, -12.1, 1.915],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee shelf",
+    "original": "ARR10 coffee shelf",
+    "min": [-4.03, -12.48, 1.5925],
+    "max": [-3.69, -12.16, 1.6275],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee shelf lower",
+    "original": "ARR10 coffee shelf lower",
+    "min": [-4.03, -12.48, 1.1125],
+    "max": [-3.69, -12.16, 1.1475],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 shelf bracket",
+    "original": "ARR10 shelf bracket",
+    "min": [-4.0125, -12.22, 1.475],
+    "max": [-3.9875, -12.16, 1.605],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 shelf bracket.001",
+    "original": "ARR10 shelf bracket.001",
+    "min": [-3.7325, -12.22, 1.475],
+    "max": [-3.7075, -12.16, 1.605],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee shelf light",
+    "original": "ARR10 coffee shelf light",
+    "min": [-3.995, -12.4225, 1.579],
+    "max": [-3.725, -12.3975, 1.591],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 counter edge trim",
+    "original": "ARR10 counter edge trim",
+    "min": [-4.15, -12.909, 0.9525],
+    "max": [-3.11, -12.891, 0.9875],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 counter drip tray",
+    "original": "ARR10 counter drip tray",
+    "min": [-3.98, -12.765, 1.019],
+    "max": [-3.62, -12.515, 1.037],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot",
+    "original": "ARR10 tray slot",
+    "min": [-3.946, -12.735, 1.0365],
+    "max": [-3.934, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.001",
+    "original": "ARR10 tray slot.001",
+    "min": [-3.906, -12.735, 1.0365],
+    "max": [-3.894, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.002",
+    "original": "ARR10 tray slot.002",
+    "min": [-3.866, -12.735, 1.0365],
+    "max": [-3.854, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.003",
+    "original": "ARR10 tray slot.003",
+    "min": [-3.826, -12.735, 1.0365],
+    "max": [-3.814, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.004",
+    "original": "ARR10 tray slot.004",
+    "min": [-3.786, -12.735, 1.0365],
+    "max": [-3.774, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.005",
+    "original": "ARR10 tray slot.005",
+    "min": [-3.746, -12.735, 1.0365],
+    "max": [-3.734, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.006",
+    "original": "ARR10 tray slot.006",
+    "min": [-3.706, -12.735, 1.0365],
+    "max": [-3.694, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 tray slot.007",
+    "original": "ARR10 tray slot.007",
+    "min": [-3.666, -12.735, 1.0365],
+    "max": [-3.654, -12.545, 1.0415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee canister",
+    "original": "ARR10 coffee canister",
+    "min": [-3.994, -12.334, 1.63],
+    "max": [-3.906, -12.246, 1.83],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister lid",
+    "original": "ARR10 canister lid",
+    "min": [-3.997, -12.337, 1.8265],
+    "max": [-3.903, -12.243, 1.8415],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister label",
+    "original": "ARR10 canister label",
+    "min": [-3.974, -12.339, 1.7025],
+    "max": [-3.926, -12.331, 1.7575],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee canister.001",
+    "original": "ARR10 coffee canister.001",
+    "min": [-3.874, -12.334, 1.63],
+    "max": [-3.786, -12.246, 1.79],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister lid.001",
+    "original": "ARR10 canister lid.001",
+    "min": [-3.877, -12.337, 1.7865],
+    "max": [-3.783, -12.243, 1.8015],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister label.001",
+    "original": "ARR10 canister label.001",
+    "min": [-3.854, -12.339, 1.6825],
+    "max": [-3.806, -12.331, 1.7375],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 coffee canister.002",
+    "original": "ARR10 coffee canister.002",
+    "min": [-3.764, -12.334, 1.63],
+    "max": [-3.676, -12.246, 1.81],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister lid.002",
+    "original": "ARR10 canister lid.002",
+    "min": [-3.767, -12.337, 1.8065],
+    "max": [-3.673, -12.243, 1.8215],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 canister label.002",
+    "original": "ARR10 canister label.002",
+    "min": [-3.744, -12.339, 1.6925],
+    "max": [-3.696, -12.331, 1.7475],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 insulated flask",
+    "original": "ARR10 insulated flask",
+    "min": [-4.035, -12.775, 1.02],
+    "max": [-3.905, -12.645, 1.4],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 flask cap",
+    "original": "ARR10 flask cap",
+    "min": [-4.039, -12.779, 1.4],
+    "max": [-3.901, -12.641, 1.432],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 crew mug",
+    "original": "ARR10 crew mug",
+    "min": [-3.835, -12.705, 1.04],
+    "max": [-3.725, -12.595, 1.17],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle",
+    "original": "ARR10 mug handle",
+    "min": [-3.7285, -12.658, 1.059],
+    "max": [-3.6835, -12.642, 1.071],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle.001",
+    "original": "ARR10 mug handle.001",
+    "min": [-3.7285, -12.658, 1.139],
+    "max": [-3.6835, -12.642, 1.151],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle outer",
+    "original": "ARR10 mug handle outer",
+    "min": [-3.693, -12.658, 1.065],
+    "max": [-3.681, -12.642, 1.145],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 crew mug.001",
+    "original": "ARR10 crew mug.001",
+    "min": [-3.585, -12.755, 1.02],
+    "max": [-3.475, -12.645, 1.15],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle.002",
+    "original": "ARR10 mug handle.002",
+    "min": [-3.4785, -12.708, 1.039],
+    "max": [-3.4335, -12.692, 1.051],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle.003",
+    "original": "ARR10 mug handle.003",
+    "min": [-3.4785, -12.708, 1.119],
+    "max": [-3.4335, -12.692, 1.131],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 mug handle outer.001",
+    "original": "ARR10 mug handle outer.001",
+    "min": [-3.443, -12.708, 1.045],
+    "max": [-3.431, -12.692, 1.125],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory board",
+    "original": "ARR10 memory board",
+    "min": [-3.615, -12.2175, 1.175],
+    "max": [-3.085, -12.1625, 1.945],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory frame 01",
+    "original": "ARR10 memory frame 01",
+    "min": [-3.5825, -12.2475, 1.6725],
+    "max": [-3.3575, -12.2225, 1.8475],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 MEMORY_PHOTO_01",
+    "original": "ARR10 MEMORY_PHOTO_01",
+    "min": [-3.57, -12.249, 1.685],
+    "max": [-3.37, -12.249, 1.835],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory retaining clip 01",
+    "original": "ARR10 memory retaining clip 01",
+    "min": [-3.4875, -12.266, 1.832],
+    "max": [-3.4525, -12.254, 1.854],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory frame 02",
+    "original": "ARR10 memory frame 02",
+    "min": [-3.3225, -12.2475, 1.5675],
+    "max": [-3.1175, -12.2225, 1.8325],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 MEMORY_PHOTO_02",
+    "original": "ARR10 MEMORY_PHOTO_02",
+    "min": [-3.31, -12.249, 1.58],
+    "max": [-3.13, -12.249, 1.82],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory retaining clip 02",
+    "original": "ARR10 memory retaining clip 02",
+    "min": [-3.2375, -12.266, 1.817],
+    "max": [-3.2025, -12.254, 1.839],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory frame 03",
+    "original": "ARR10 memory frame 03",
+    "min": [-3.5775, -12.2475, 1.3275],
+    "max": [-3.3025, -12.2225, 1.5325],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 MEMORY_PHOTO_03",
+    "original": "ARR10 MEMORY_PHOTO_03",
+    "min": [-3.565, -12.249, 1.34],
+    "max": [-3.315, -12.249, 1.52],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 memory retaining clip 03",
+    "original": "ARR10 memory retaining clip 03",
+    "min": [-3.4575, -12.266, 1.517],
+    "max": [-3.4225, -12.254, 1.539],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 notes holder",
+    "original": "ARR10 notes holder",
+    "min": [-3.3, -12.25, 1.28],
+    "max": [-3.16, -12.23, 1.42],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 blank note line",
+    "original": "ARR10 blank note line",
+    "min": [-3.2775, -12.2535, 1.378],
+    "max": [-3.1825, -12.2505, 1.382],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 blank note line.001",
+    "original": "ARR10 blank note line.001",
+    "min": [-3.2775, -12.2535, 1.353],
+    "max": [-3.1825, -12.2505, 1.357],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 blank note line.002",
+    "original": "ARR10 blank note line.002",
+    "min": [-3.2775, -12.2535, 1.328],
+    "max": [-3.1825, -12.2505, 1.332],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 CREW MEMORIES",
+    "original": "ARR10 CREW MEMORIES",
+    "min": [-3.4815, -12.2305, 1.9797],
+    "max": [-3.218, -12.2295, 2.0035],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS U / Retained ARR10 COFFEE",
+    "original": "ARR10 COFFEE",
+    "min": [-3.9207, -12.1905, 1.8697],
+    "max": [-3.7986, -12.1895, 1.8949],
+    "collections": ["UNIFIED / 02 Interior and equipment - retained anchors"]
+  },
+  {
+    "name": "CDS DETAIL / arrival / Recesses and gaskets",
+    "original": "",
+    "min": [-1.0, -18.2, 0.001],
+    "max": [1.0, -12.14, 0.013],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / arrival / Brushed steel rebates",
+    "original": "",
+    "min": [-0.86, -16.21, 0.006],
+    "max": [0.86, -13.19, 0.014],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / arrival / Graphite deck - restrained foot traffic",
+    "original": "",
+    "min": [-0.992, -18.191, 0.002],
+    "max": [0.992, -12.149, 0.008],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / arrival / Service stencils",
+    "original": "",
+    "min": [-0.3774, -16.0001, 0.013],
+    "max": [0.0405, -14.1546, 0.013],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / arrival / Muted safety ochre",
+    "original": "",
+    "min": [-0.4675, -15.1325, 0.013],
+    "max": [-0.0025, -13.3075, 0.013],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / walls / Brushed steel rebates",
+    "original": "",
+    "min": [3.9516, -17.92, 0.6245],
+    "max": [4.1372, -13.48, 2.1331],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / walls / Pressure panel warm graphite",
+    "original": "",
+    "min": [3.9526, -17.9, 0.6441],
+    "max": [4.1332, -13.5, 2.1131],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / walls / Recesses and gaskets",
+    "original": "",
+    "min": [3.9639, -17.8302, 0.7614],
+    "max": [4.1157, -13.5698, 1.9951],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / walls / Service stencils",
+    "original": "",
+    "min": [3.992, -17.6917, 1.6048],
+    "max": [4.0125, -13.7134, 1.7719],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / walls / Muted safety ochre",
+    "original": "",
+    "min": [4.1148, -17.6575, 0.7525],
+    "max": [4.1174, -13.7425, 0.7733],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / bridge / Recesses and gaskets",
+    "original": "",
+    "min": [-1.76, -1.01, 0.004],
+    "max": [1.76, 4.96, 0.0086],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / bridge / Graphite deck - restrained foot traffic",
+    "original": "",
+    "min": [-1.745, -0.995, 0.006],
+    "max": [1.745, 4.945, 0.006],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS DETAIL / bridge / Brushed steel rebates",
+    "original": "",
+    "min": [-1.707, -0.862, 0.008],
+    "max": [1.707, 4.812, 0.008],
+    "collections": [
+      "UNIFIED / 08 Interior floor and wall finish - Blender only"
+    ]
+  },
+  {
+    "name": "CDS REFINE / Static preview display personal",
+    "original": "",
+    "min": [4.205, 0.4877, 1.28],
+    "max": [4.2084, 1.6124, 2.1137],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Static preview display arcade",
+    "original": "",
+    "min": [-4.2084, 2.1876, 1.28],
+    "max": [-4.205, 3.3123, 2.1137],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Static preview display computer",
+    "original": "",
+    "min": [-2.9517, 6.3082, 1.2],
+    "max": [-1.8082, 7.4516, 2.1301],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Static preview display communications",
+    "original": "",
+    "min": [1.8082, 6.3082, 1.2],
+    "max": [2.9516, 7.4517, 2.1301],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Expedition blue binding",
+    "original": "",
+    "min": [3.9853, 1.7603, 1.041],
+    "max": [4.2546, 2.3994, 1.234],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Ivory paper edges",
+    "original": "",
+    "min": [3.9917, 2.0478, 1.046],
+    "max": [4.2483, 2.3922, 1.136],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Muted safety ochre",
+    "original": "",
+    "min": [3.9905, 2.1025, 1.05],
+    "max": [3.9935, 2.3375, 1.136],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Recesses and gaskets",
+    "original": "",
+    "min": [3.927, 1.748, 1.041],
+    "max": [4.2415, 2.3308, 1.134],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Oxide field journal",
+    "original": "",
+    "min": [3.9899, 2.0438, 1.075],
+    "max": [4.2501, 2.3962, 1.109],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Sage survey binding",
+    "original": "",
+    "min": [3.9887, 2.0429, 1.109],
+    "max": [4.2513, 2.3971, 1.143],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Service stencils",
+    "original": "",
+    "min": [4.1126, 2.1463, 1.1436],
+    "max": [4.1294, 2.2922, 1.1436],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Brushed steel rebates",
+    "original": "",
+    "min": [3.897, 1.742, 1.041],
+    "max": [4.188, 1.935, 1.234],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Props / Coffee surface",
+    "original": "",
+    "min": [3.9412, 1.8712, 1.124],
+    "max": [3.9988, 1.9288, 1.124],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Static tactical surface - Blender preview",
+    "original": "",
+    "min": [-0.9, 1.45, 1.057],
+    "max": [0.9, 3.85, 1.057],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS REFINE / Static navigation globe - no animation",
+    "original": "",
+    "min": [-0.2459, 2.4041, 1.1241],
+    "max": [0.2459, 2.8959, 1.6159],
+    "collections": ["UNIFIED / 09 Bridge lived-in details - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Recess expedition board",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Expedition board hardware / Brushed steel rebates",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Living specimen shelf / Brushed steel rebates",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Living specimen shelf / Recesses and gaskets",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Living specimen shelf / Living specimen stems",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Living specimen shelf / Leaf light.005",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Living specimen shelf / Leaf.001",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Cordillera postcard",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Valle Sur postcard",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Personal postcard clips / Recesses and gaskets",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Personal postcard clips / Brushed steel rebates",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Scientific transport cases / Recesses and gaskets",
+    "original": "",
+    "min": [2.7775, -15.3925, 0.0],
+    "max": [3.4225, -14.9075, 0.726],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Scientific transport cases / Scientific transport blue grey",
+    "original": "",
+    "min": [2.7855, -15.3845, 0.024],
+    "max": [3.4145, -14.9155, 0.725],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Scientific transport cases / Brushed steel rebates",
+    "original": "",
+    "min": [2.8785, -14.968, 0.2442],
+    "max": [3.3199, -14.875, 0.689],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Scientific transport cases / Muted safety ochre",
+    "original": "",
+    "min": [2.8865, -14.958, 0.066],
+    "max": [3.3119, -14.889, 0.659],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Scientific transport cases / Service stencils",
+    "original": "",
+    "min": [2.9628, -14.959, 0.1379],
+    "max": [3.1915, -14.909, 0.558],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Docking pressure hatch labels and seams / Service stencils",
+    "original": "",
+    "min": [-0.3773, -18.447, 1.9318],
+    "max": [0.3752, -18.447, 2.374],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Docking pressure hatch labels and seams / Brushed steel rebates",
+    "original": "",
+    "min": [-1.104, -18.451, 0.376],
+    "max": [1.104, -18.443, 2.254],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Docking pressure hatch labels and seams / Recesses and gaskets",
+    "original": "",
+    "min": [-0.9825, -18.451, 0.5369],
+    "max": [0.9825, -18.443, 1.32],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Docking pressure hatch labels and seams / Muted safety ochre",
+    "original": "",
+    "min": [-0.6, -18.447, 0.17],
+    "max": [0.6, -18.447, 0.245],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Protected emergency release - fixed wall / Recesses and gaskets",
+    "original": "",
+    "min": [1.7, -18.414, 1.1],
+    "max": [1.9, -18.386, 1.54],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Protected emergency release - fixed wall / Brushed steel rebates",
+    "original": "",
+    "min": [1.719, -18.3745, 1.175],
+    "max": [1.881, -18.3595, 1.465],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Protected emergency release - fixed wall / Emergency release vermilion",
+    "original": "",
+    "min": [1.75, -18.382, 1.2495],
+    "max": [1.85, -18.356, 1.3775],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Protected emergency release - fixed wall / Service stencils",
+    "original": "",
+    "min": [1.7285, -18.381, 1.1444],
+    "max": [1.8696, -18.38, 1.5048],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Protected emergency release - fixed wall / Muted safety ochre",
+    "original": "",
+    "min": [1.7305, -18.381, 1.109],
+    "max": [1.8595, -18.379, 1.121],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Arrival flush deck navigation / Muted safety ochre",
+    "original": "",
+    "min": [-0.14, -17.365, 0.004],
+    "max": [0.14, -17.005, 0.004],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Arrival flush deck navigation / Service stencils",
+    "original": "",
+    "min": [-0.2588, -17.5701, 0.004],
+    "max": [0.2458, -17.5246, 0.004],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Draped field textile - static no simulation",
+    "original": "",
+    "min": [-4.3872, -16.265, 0.2182],
+    "max": [-3.8578, -15.835, 0.6092],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Textile edging / Textile bound seams",
+    "original": "",
+    "min": [-4.3873, -16.2664, 0.2289],
+    "max": [-3.8564, -15.8336, 0.6064],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Exploration badge on fixed docking collar",
+    "original": "",
+    "min": [1.58, -18.415, 1.82],
+    "max": [2.02, -18.415, 2.26],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Bridge pressure-spine designation / Service stencils",
+    "original": "",
+    "min": [-0.3644, -1.783, 2.8479],
+    "max": [0.3607, -1.782, 3.0727],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Bridge pressure-spine designation / Muted safety ochre",
+    "original": "",
+    "min": [-0.97, -1.786, 2.854],
+    "max": [0.97, -1.782, 2.866],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS POLISH / Board photographic inserts",
+    "original": "",
+    "min": [0.0, 0.0, 0.0],
+    "max": [0.0, 0.0, 0.0],
+    "collections": ["UNIFIED / 10 Full interior polish - Blender only"]
+  },
+  {
+    "name": "CDS TAILORED / Batched seat piping",
+    "original": "",
+    "min": [-3.5164, 0.6465, 0.7076],
+    "max": [3.5164, 6.6147, 1.2746],
+    "collections": [
+      "UNIFIED / 11 Rounded chairs and organic plants - Blender only"
+    ]
+  },
+  {
+    "name": "CDS ORGANIC / Continuous rolled steel planters",
+    "original": "",
+    "min": [-4.1925, 0.2375, 1.045],
+    "max": [4.1925, 0.5225, 1.23],
+    "collections": [
+      "UNIFIED / 11 Rounded chairs and organic plants - Blender only"
+    ]
+  },
+  {
+    "name": "CDS CONSOLE / Four detailed low cost keyboards",
+    "original": "",
+    "min": [-3.794, 0.745, 1.061],
+    "max": [3.794, 6.8081, 1.078],
+    "collections": [
+      "UNIFIED / 12 Detailed consoles and orbital scenery - Blender only"
+    ]
+  },
+  {
+    "name": "CDS POLISH / Inset rotary controls and service marks / Console control inset",
+    "original": "",
+    "min": [-4.035, 0.86, 1.043],
+    "max": [4.035, 6.8944, 1.053],
+    "collections": [
+      "UNIFIED / 12 Detailed consoles and orbital scenery - Blender only"
+    ]
+  },
+  {
+    "name": "CDS POLISH / Inset rotary controls and service marks / Console encoder satin metal",
+    "original": "",
+    "min": [-4.012, 0.877, 1.053],
+    "max": [4.012, 6.8543, 1.072],
+    "collections": [
+      "UNIFIED / 12 Detailed consoles and orbital scenery - Blender only"
+    ]
+  },
+  {
+    "name": "CDS POLISH / Inset rotary controls and service marks / Console instrument engraving",
+    "original": "",
+    "min": [-4.0035, 0.934, 1.055],
+    "max": [4.0035, 6.8226, 1.0735],
+    "collections": [
+      "UNIFIED / 12 Detailed consoles and orbital scenery - Blender only"
+    ]
+  },
+  {
+    "name": "CDS POLISH / Distant orbital vista - backdrop only",
+    "original": "",
+    "min": [-237.522, 170.0, -103.5529],
+    "max": [167.522, 170.0, 143.5529],
+    "collections": [
+      "UNIFIED / 12 Detailed consoles and orbital scenery - Blender only"
+    ]
+  }
+]

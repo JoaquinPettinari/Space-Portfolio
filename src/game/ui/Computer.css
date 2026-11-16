@@ -8,7 +8,7 @@
   padding: 0;
   display: block;
   overflow: hidden;
-  background: #10191f;
+  background: #03121b;
   color: #e4e8e9;
   z-index: auto;
 }
@@ -27,7 +27,9 @@
   min-height: 0;
   border: 0;
   border-radius: 0;
-  background: #10191f;
+  background:
+    radial-gradient(ellipse at 70% 10%, #10435380, transparent 65%),
+    linear-gradient(125deg, #031019, #06202c 65%, #020c12);
 }
 .physical-archive .desktop-bar,
 .physical-archive .desktop-footer {
@@ -110,4 +112,52 @@
 .forward-terminal .computer.physical-terminal {
   width: 960px;
   height: 540px;
+}
+
+/* Shared screen chrome. The gradients are static and remain inside the physical
+   display; no extra postprocessing or full-screen translucent layers. */
+.physical-terminal .desktop {
+  box-shadow:
+    inset 0 0 0 1px #377889,
+    inset 0 0 35px #001018;
+}
+.physical-terminal .desktop .desktop-bar {
+  min-height: 66px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 10px 20px;
+  background: linear-gradient(110deg, #06212c, #020c13 75%);
+  border-color: #2c7586;
+  box-shadow:
+    0 1px 0 #002531,
+    0 6px 25px #00b9e610;
+}
+.physical-terminal .desktop-bar > .terminal-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e7f5fa;
+  flex-shrink: 0;
+}
+.terminal-brand > span {
+  display: grid;
+  gap: 2px;
+}
+.terminal-brand strong {
+  font-size: 17px;
+  letter-spacing: 0.06em;
+}
+.terminal-brand small {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #91cbda;
+}
+.physical-terminal .desktop .desktop-bar h1 {
+  border-left: 1px solid #2f7887;
+  padding-left: 24px;
+  color: #a6e2ed;
+  letter-spacing: 0.08em;
+  font-size: 19px;
+  text-transform: uppercase;
 }

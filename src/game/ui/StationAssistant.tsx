@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
+import { X } from 'lucide-react'
 import { dialogueMessages, type AssistantEvent } from '../dialogue'
 export type { AssistantEvent } from '../dialogue'
 
@@ -27,16 +28,38 @@ export function StationAssistant({
   }, [])
   return (
     <aside
-      className="station-assistant"
+      className={`station-assistant${dismissible ? ' station-assistant--dismissible' : ''}`}
       aria-label="Station assistant"
       role="status"
       data-dialogue-event={event}
     >
-      <p className="eyebrow">CDS-01 / STATION ASSISTANT</p>
-      <p>{dialogueMessages[event]}</p>
+      <span className="subtitle-speaker" aria-label="Station AI">
+        IA
+      </span>
+      <p className="subtitle-message">{dialogueMessages[event]}</p>
+      <svg
+        className="subtitle-waveform"
+        width="32"
+        height="28"
+        viewBox="0 0 32 28"
+        aria-hidden="true"
+      >
+        <path
+          d="M2 11v6m5-10v14m5-18v22m5-16v10m5-13v16m5-11v6m4-4v2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+      </svg>
       {dismissible && (
-        <button ref={dismiss} onClick={onDismiss} aria-label="Dismiss message">
-          Dismiss
+        <button
+          className="subtitle-dismiss"
+          ref={dismiss}
+          onClick={onDismiss}
+          aria-label="Dismiss message"
+          title="Dismiss message"
+        >
+          <X size={16} aria-hidden="true" />
         </button>
       )}
     </aside>

@@ -5,6 +5,7 @@ import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import type { Group } from 'three'
 import { CrewStandbyScreen } from './CrewStandbyScreen'
+import { AstronautGlove } from './AstronautGlove'
 import {
   advanceIdentification,
   identificationReach,
@@ -73,6 +74,10 @@ function ReaderGesture({
       reduced.current,
     )
     const reach = identificationReach(elapsed.current)
+    if (import.meta.env.DEV) {
+      hand.current.userData.identificationElapsed = elapsed.current
+      hand.current.userData.identificationReach = reach
+    }
     hand.current.position.set(
       -0.22 * (1 - reach),
       -0.7 + 0.22 * reach,
@@ -85,22 +90,13 @@ function ReaderGesture({
   })
   return (
     <group ref={hand} name="crew-reader-gesture" position={[-0.22, -0.7, 0.75]}>
-      <mesh
-        position={[0, -0.24, 0.11]}
-        rotation={[-0.4, 0, 0]}
-        raycast={ignoreRaycast}
+      <group
+        position={[0.13, -0.07, 0.045]}
+        rotation={[-0.22, 0, -0.18]}
+        scale={0.83}
       >
-        <capsuleGeometry args={[0.07, 0.27, 6, 10]} />
-        <meshStandardMaterial color="#d6dbd8" />
-      </mesh>
-      <mesh
-        position={[0, -0.06, 0.06]}
-        scale={[1, 1.2, 0.7]}
-        raycast={ignoreRaycast}
-      >
-        <sphereGeometry args={[0.085, 12, 8]} />
-        <meshStandardMaterial color="#adb8bb" />
-      </mesh>
+        <AstronautGlove />
+      </group>
       <mesh raycast={ignoreRaycast}>
         <boxGeometry args={[0.23, 0.14, 0.012]} />
         <meshStandardMaterial color="#eee7d7" />

@@ -9,13 +9,24 @@ import {
   Images,
   SlidersHorizontal,
   SquareTerminal,
+  ChevronRight,
 } from 'lucide-react'
 
 const applications = [
-  { id: 'dossier', title: 'Crew Dossier.pdf', icon: FileUser },
-  { id: 'gallery', title: 'Project Gallery', icon: Images },
-  { id: 'settings', title: 'Station Settings', icon: SlidersHorizontal },
-  { id: 'command', title: 'Command Terminal', icon: SquareTerminal },
+  { id: 'dossier', title: 'Crew Dossier.pdf', label: 'CV', icon: FileUser },
+  { id: 'gallery', title: 'Project Gallery', label: 'FILES', icon: Images },
+  {
+    id: 'settings',
+    title: 'Station Settings',
+    label: 'SETTINGS',
+    icon: SlidersHorizontal,
+  },
+  {
+    id: 'command',
+    title: 'Command Terminal',
+    label: 'TERMINAL',
+    icon: SquareTerminal,
+  },
 ] as const
 type Application = (typeof applications)[number]['id']
 const gallery = projects.flatMap((project) =>
@@ -95,6 +106,7 @@ export function PersonalDesktop({
               icons.current[index] = element
             }}
             type="button"
+            aria-label={item.title}
             tabIndex={selected === index ? 0 : -1}
             aria-pressed={application === item.id}
             onFocus={() => setSelected(index)}
@@ -103,14 +115,24 @@ export function PersonalDesktop({
               setApplication(item.id)
             }}
           >
-            <item.icon size={36} aria-hidden="true" />
-            {item.title}
+            <item.icon
+              className="personal-app-icon"
+              size={52}
+              strokeWidth={1.25}
+              aria-hidden="true"
+            />
+            <strong>{item.label}</strong>
+            <ChevronRight
+              className="personal-app-chevron"
+              size={22}
+              aria-hidden="true"
+            />
           </button>
         ))}
       </div>
       <p className="personal-desktop-help">
-        Click once or press Enter to open. Arrow keys select applications.
-        Escape closes the current window; Escape again returns to the station.
+        Click / Enter · Open app. Arrows · Select. Esc · Close app / return to
+        station.
       </p>
       {active && (
         <section className="personal-desktop-window" aria-labelledby={titleId}>

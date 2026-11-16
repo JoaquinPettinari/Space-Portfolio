@@ -46,7 +46,13 @@ export function TerminalPanel({
                 </span>
               </span>
             ) : (
-              <span>CRUZ DEL SUR / CDS-01</span>
+              <span className="terminal-brand">
+                <Compass size={34} aria-hidden="true" />
+                <span>
+                  <strong>CRUZ DEL SUR</strong>
+                  <small>CDS-01</small>
+                </span>
+              </span>
             )}
             <h1 id={id}>
               {communications && <Satellite size={27} aria-hidden="true" />}

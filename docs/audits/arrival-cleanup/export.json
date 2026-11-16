@@ -1,0 +1,52 @@
+{
+  "source": "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\unified-ship\\cruz-del-sur-interior-panels.blend",
+  "sourceSaved": false,
+  "originalRuntimeFilesChanged": false,
+  "removedNamedSourceObjects": [
+    "CDS U / Retained ARR10 equipment case",
+    "CDS U / Retained ARR10 case lid seam",
+    "CDS U / Retained ARR10 case reinforced corner",
+    "CDS U / Retained ARR10 case latch",
+    "CDS U / Retained ARR10 case reinforced corner.001",
+    "CDS U / Retained ARR10 case latch.001",
+    "CDS U / Retained ARR10 case carry handle",
+    "CDS DETAIL / walls / Brushed steel rebates",
+    "CDS DETAIL / walls / Pressure panel warm graphite",
+    "CDS DETAIL / walls / Recesses and gaskets",
+    "CDS DETAIL / walls / Service stencils",
+    "CDS DETAIL / walls / Muted safety ochre",
+    "CDS POLISH / Draped field textile - static no simulation",
+    "CDS POLISH / Textile edging / Textile bound seams"
+  ],
+  "filterWorldCentersZ": [13.6, 15.9],
+  "cabinetWorldCentersZ": [14.8, 17.1],
+  "cabinetWorldCentersX": [3.78, 3.78],
+  "environmentFilterCount": 2,
+  "technicalCabinetCount": 2,
+  "assets": [
+    {
+      "file": "cruz-del-sur-clean-bridge.glb",
+      "sourceObjects": 48,
+      "batches": 43,
+      "triangles": 232274,
+      "bytes": 20585060,
+      "arrivalLocal": false
+    },
+    {
+      "file": "cruz-del-sur-clean-arrival.glb",
+      "sourceObjects": 366,
+      "batches": 16,
+      "triangles": 61561,
+      "bytes": 4074144,
+      "arrivalLocal": true
+    },
+    {
+      "file": "cruz-del-sur-clean-details.glb",
+      "sourceObjects": 63,
+      "batches": 29,
+      "triangles": 15548,
+      "bytes": 890844,
+      "arrivalLocal": false
+    }
+  ]
+}

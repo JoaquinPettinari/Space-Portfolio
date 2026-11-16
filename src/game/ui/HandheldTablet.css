@@ -2,55 +2,129 @@
 .handheld-tablet-interface {
   width: 800px;
   height: 500px;
-  background: #081c29;
   color: #deedf1;
   overflow: hidden;
+  background: linear-gradient(130deg, #17323e, #081c29 36%, #06151e 80%);
 }
 .held-tablet-display {
-  padding: 20px;
+  padding: 18px 24px;
   box-sizing: border-box;
-  font-size: 20px;
+  font:
+    18px 'Share Tech Mono',
+    monospace;
+  border: 2px solid #42606d;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 5px #09141b;
 }
 .held-tablet-display header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
-  color: #80ddea;
-  font-size: 19px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #34545a;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #b8dbe6;
+}
+.held-tablet-display header span {
+  color: #7bd7e5;
+}
+.held-tablet-display > p {
+  margin: 10px 0;
+  padding: 7px 10px;
+  color: #f2d4a0;
+  border-left: 3px solid #c4935f;
+  background: #122a34;
+  font-size: 16px;
 }
 .held-tablet-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 330px;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 18px;
+  height: 310px;
+}
+.held-tablet-tasks,
+.held-tablet-map {
+  border: 1px solid #31505d;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #102733, #091b26);
+}
+.held-tablet-section-label {
+  padding: 10px 12px;
+  border-bottom: 1px solid #31505d;
+  color: #b8dbe6;
+  letter-spacing: 2px;
+  font-size: 16px;
+}
+.held-tablet-map {
+  display: grid;
+  place-items: center;
+  background-color: #0d2230;
+  background-image:
+    linear-gradient(#22415044 1px, transparent 1px),
+    linear-gradient(90deg, #22415044 1px, transparent 1px);
+  background-size: 20px 20px;
+  overflow: hidden;
 }
 .held-tablet-layout svg {
-  height: 100%;
+  height: 296px;
   max-width: 100%;
 }
 .held-tablet-display ul {
+  margin: 10px;
   padding: 0;
   list-style: none;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 .held-tablet-display li {
-  margin-bottom: 13px;
+  margin-bottom: 9px;
+  padding: 7px 8px;
+  border: 1px solid #325769;
+  border-radius: 4px;
+  background: linear-gradient(110deg, #113646, #102734 70%);
+  font-size: 17px;
+}
+.held-tablet-display li span {
+  color: #64dae9;
 }
 .held-tablet-display li[data-complete='true'] {
   color: #839ba8;
 }
-.held-tablet-display footer {
+.held-tablet-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0 7px;
   font-size: 16px;
-  color: #dfc393;
+  color: #a4c2d0;
+}
+.held-tablet-tabs span {
+  padding: 5px 13px;
+  border: 1px solid #31505d;
+  border-radius: 4px;
+  background: #0d2533;
+}
+.held-tablet-tabs .selected {
+  border-color: #65cde3;
+  background: linear-gradient(125deg, #17536a, #103243);
+  color: #dbf6ff;
+}
+.held-tablet-display footer {
+  font-size: 13px;
+  color: #a6bdc7;
+  text-align: center;
 }
 .handheld-tablet-interface .mission-tablet {
   width: 100%;
   height: 100%;
   max-height: none;
   box-sizing: border-box;
-  border: 0;
-  border-radius: 0;
+  border: 1px solid #416778;
+  border-radius: 10px;
   padding: 18px;
-  box-shadow: none;
+  box-shadow: inset 0 0 0 4px #09141b;
+  background: linear-gradient(130deg, #14313f, #071923 65%);
 }
 .handheld-tablet-interface .mission-tablet h1 {
   font-size: 24px;
@@ -58,36 +132,7 @@
 .handheld-tablet-interface .tablet-layout {
   grid-template-columns: 1fr 1fr;
 }
-.handheld-tablet-interface .mission-tablet button {
-  font-size: 16px;
-}
+.handheld-tablet-interface .mission-tablet button,
 .handheld-tablet-interface .mission-tablet > p {
   font-size: 16px;
-}
-
-/* Static instrument finish: no blur, animated filters or extra WebGL passes. */
-.held-tablet-display {
-  background: linear-gradient(135deg, #102a36, #07161e 70%);
-  border: 2px solid #48717b;
-  box-shadow: inset 0 0 0 5px #09141b;
-  font-family: 'Share Tech Mono', monospace;
-}
-.held-tablet-display header {
-  border-bottom: 1px solid #34545a;
-  padding-bottom: 14px;
-  letter-spacing: 1px;
-}
-.held-tablet-display > p {
-  color: #f2d4a0;
-  padding: 10px 12px;
-  border-left: 3px solid #f2c477;
-  background: #18313a;
-}
-.held-tablet-display li {
-  border-bottom: 1px solid #213b43;
-  padding-bottom: 8px;
-}
-.held-tablet-display footer {
-  border-top: 1px solid #34545a;
-  padding-top: 9px;
 }

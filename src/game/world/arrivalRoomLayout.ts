@@ -157,8 +157,8 @@ export const ARRIVAL_FURNITURE: Box[] = [
     position: [-3.55 - arrivalPortExpansion(0.48), 0.51, 0.48],
     halfSize: [0.55, 0.51, 0.36],
   },
-  ...[1.9, 3.2].map((z): Box => ({
-    position: [3.97, 1.34, z * 1.5],
+  ...[14.8, 17.1].map((worldZ): Box => ({
+    position: [3.78, 1.34, worldZ - ARRIVAL_ORIGIN_Z],
     halfSize: [0.18, 0.9, 0.5],
   })),
 ]

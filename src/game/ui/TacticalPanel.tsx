@@ -26,20 +26,20 @@ export function TacticalPanel({
   const [section, setSection] = useState('Station Overview')
   return (
     <div className="tactical-console">
-      <nav aria-label="Tactical sections">
-        {['Station Overview', 'Docking Bay', 'Systems', 'Mission Log'].map(
-          (item) => (
-            <button
-              key={item}
-              aria-pressed={section === item}
-              onClick={() => setSection(item)}
-            >
-              {item}
-            </button>
-          ),
-        )}
-      </nav>
-      <div className="tactical-body">
+      <aside className="tactical-sidebar">
+        <nav aria-label="Tactical sections">
+          {['Station Overview', 'Docking Bay', 'Systems', 'Mission Log'].map(
+            (item) => (
+              <button
+                key={item}
+                aria-pressed={section === item}
+                onClick={() => setSection(item)}
+              >
+                {item}
+              </button>
+            ),
+          )}
+        </nav>
         <section className="tactical-card">
           <h2>{section}</h2>
           {section === 'Station Overview' && (
@@ -56,25 +56,28 @@ export function TacticalPanel({
             <>
               <h3>PAMPA-07</h3>
               <p>Docking status unavailable.</p>
-              <p>
-                No docking telemetry or approved vessel model is connected in
-                this build.
-              </p>
+              <p>External berthing telemetry offline.</p>
             </>
           )}
           {section === 'Systems' && (
-            <dl>
-              <dt>Auxiliary power</dt>
-              <dd>{lightsOn ? 'Online' : 'Offline'}</dd>
-              <dt>Bridge bulkhead</dt>
-              <dd>{bulkhead}</dd>
-              <dt>Crew identity</dt>
-              <dd>
-                {protocol.completed.includes('crew')
-                  ? 'Verified'
-                  : 'Not verified'}
-              </dd>
-            </dl>
+            <>
+              <dl>
+                <dt>Auxiliary power</dt>
+                <dd>{lightsOn ? 'Online' : 'Offline'}</dd>
+                <dt>Bridge bulkhead</dt>
+                <dd>{bulkhead}</dd>
+                <dt>Crew identity</dt>
+                <dd>
+                  {protocol.completed.includes('crew')
+                    ? 'Verified'
+                    : 'Not verified'}
+                </dd>
+              </dl>
+              <p className="tactical-note">
+                Objective completion may include Skip. This display does not
+                confirm email delivery.
+              </p>
+            </>
           )}
           {section === 'Mission Log' && (
             <>
@@ -94,14 +97,6 @@ export function TacticalPanel({
             </>
           )}
         </section>
-        <div className="tactical-model-caption">
-          <span>CDS-01</span>
-          <small>
-            Bridge + airlock schematic
-            <br />
-            Provisional geometry · not a final vessel model
-          </small>
-        </div>
         <section className="tactical-card tactical-status">
           <h2>Station status</h2>
           <dl>
@@ -109,18 +104,12 @@ export function TacticalPanel({
             <dd>{lightsOn ? 'Restored' : 'Emergency lighting'}</dd>
             <dt>Bulkhead</dt>
             <dd>{bulkhead}</dd>
-            <dt>Protocol guidance</dt>
-            <dd>{protocol.guidance}</dd>
-            <dt>Communications objective</dt>
-            <dd>
-              {protocol.completed.includes('uplink') ? 'Completed' : 'Pending'}
-            </dd>
           </dl>
-          <p className="tactical-note">
-            Objective completion may include Skip. This display does not confirm
-            email delivery.
-          </p>
         </section>
+      </aside>
+      <div className="tactical-model-caption">
+        <span>CDS-01 · CRUZ DEL SUR</span>
+        <small>Vessel hologram · Rotate to inspect</small>
       </div>
       <div
         className="tactical-model-controls"

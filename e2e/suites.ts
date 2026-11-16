@@ -23,6 +23,9 @@ export const regressionSpecs = [
 
 /** Historical visual/asset reviews, timing captures and profiling, not gameplay regression. */
 export const auditSpecs = [
+  'arrival-layout-review.spec.ts',
+  'reference-style-review.spec.ts',
+  'tactical-vista-review.spec.ts',
   'architecture-v2.spec.ts',
   'arrival-performance.spec.ts',
   'fps-scenery.spec.ts',

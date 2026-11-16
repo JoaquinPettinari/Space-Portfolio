@@ -1,0 +1,119 @@
+.ship-radio-panel {
+  box-sizing: border-box;
+  width: 640px;
+  height: 360px;
+  padding: 19px 24px;
+  color: #d4f5f8;
+  background:
+    radial-gradient(ellipse at 30% 0%, #144451 0%, transparent 60%),
+    linear-gradient(135deg, #061b27, #020c12);
+  border: 1px solid #46d6e6;
+  border-radius: 12px;
+  font-family: 'Rajdhani', sans-serif;
+}
+.ship-radio-panel header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #246372;
+  color: #65edf4;
+}
+.ship-radio-panel h1 {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
+.ship-radio-panel header > span {
+  margin-left: auto;
+  font-size: 13px;
+}
+.radio-now-playing {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 17px 0 8px;
+}
+.radio-now-playing > svg {
+  width: 45px;
+  height: 45px;
+}
+.radio-now-playing small {
+  color: #6ba9b6;
+  letter-spacing: 2px;
+}
+.radio-now-playing strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1.2;
+}
+.radio-now-playing p {
+  margin: 2px 0;
+  color: #8cc6d3;
+}
+.radio-spectrum {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 1px solid #17404d;
+}
+.radio-spectrum i {
+  display: block;
+  flex: 1;
+  background: #238092;
+  opacity: 0.6;
+}
+.radio-spectrum[data-playing='true'] i {
+  background: #56edee;
+  opacity: 1;
+}
+.radio-transport {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 15px;
+}
+.ship-radio-panel button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 13px;
+  color: #cffaff;
+  border: 1px solid #348995;
+  border-radius: 5px;
+  background: linear-gradient(#154354, #09212d);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ship-radio-panel button:focus-visible {
+  outline: 3px solid #8ffcff;
+  outline-offset: 2px;
+}
+.ship-radio-panel button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.radio-transport label {
+  display: grid;
+  flex: 1;
+  font-size: 15px;
+}
+.radio-transport input {
+  width: 100%;
+  accent-color: #42d7e8;
+}
+.ship-radio-panel footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 14px;
+}
+.ship-radio-panel footer p {
+  margin: 0;
+  max-width: 390px;
+  color: #79d3d8;
+}

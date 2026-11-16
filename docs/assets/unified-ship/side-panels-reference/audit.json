@@ -1,0 +1,14 @@
+{
+  "scene": "CRUZ DEL SUR / Unified compact vessel",
+  "new_collection": "UNIFIED / 13 Reference side cassettes - Blender only",
+  "mesh_batches": 15,
+  "triangles": 37832,
+  "lights_total": 10,
+  "additional_lights": 0,
+  "bounds_min": [-3.7700002193450928, -1.75, 0.08000004291534424],
+  "bounds_max": [3.7699999809265137, -1.0399999618530273, 2.9600000381469727],
+  "door_clearance_x": 1.9500000476837158,
+  "archived_original_meshes": 20,
+  "runtime_exported": false,
+  "scope": "Blender reference maquette; no game code, GLB or collider edits"
+}

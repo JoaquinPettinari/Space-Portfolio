@@ -16,6 +16,7 @@ import {
 import { REFINED_ARRIVAL_ASSET } from './refinedArtAssets'
 import { createArrivalShoulderClosure } from './arrivalShoulderClosure'
 import { ArrivalServiceDetails } from './ArrivalServiceDetails'
+import { ArrivalOutfitting } from './ArrivalOutfitting'
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
@@ -28,6 +29,7 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
   return (
     <group name="entry-airlock">
       <ArrivalServiceDetails />
+      <ArrivalOutfitting />
       <mesh
         name="arrival-starboard-shoulder-closure"
         geometry={shoulderClosure}

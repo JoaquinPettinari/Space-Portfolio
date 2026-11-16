@@ -1,3 +1,4 @@
+import { developmentCaptureMode } from '../../config/development'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
@@ -25,6 +26,16 @@ export type SessionSnapshot = {
 }
 
 export type GameSnapshot = {
+  developmentCapture: boolean
+  tacticalModelHeading: number | null
+  crewGesture: {
+    elapsedSeconds: number | null
+    reach: number | null
+    visible: boolean
+    localPosition: { x: number; y: number; z: number }
+    worldPosition: { x: number; y: number; z: number }
+    projectedPosition: { x: number; y: number; z: number }
+  } | null
   explorationHull: { noseMounted: boolean; noseInSight: boolean }
   bulkheadLeaves: {
     left: { x: number; y: number; z: number } | null
@@ -131,6 +142,43 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
       const object = scene.getObjectByName(name)
       return object instanceof Light ? object.intensity : null
     }
+    const gestureWorld = new Vector3()
+    const gestureProjected = new Vector3()
+    const crewGesture = (): GameSnapshot['crewGesture'] => {
+      const gesture = scene.getObjectByName('crew-reader-gesture')
+      if (!gesture) return null
+      gesture.getWorldPosition(gestureWorld)
+      gestureProjected.copy(gestureWorld).project(camera)
+      let visible = gesture.visible
+      gesture.traverseAncestors((ancestor) => {
+        visible = visible && ancestor.visible
+      })
+      const { identificationElapsed, identificationReach } = gesture.userData
+      return {
+        elapsedSeconds:
+          typeof identificationElapsed === 'number'
+            ? identificationElapsed
+            : null,
+        reach:
+          typeof identificationReach === 'number' ? identificationReach : null,
+        visible,
+        localPosition: {
+          x: gesture.position.x,
+          y: gesture.position.y,
+          z: gesture.position.z,
+        },
+        worldPosition: {
+          x: gestureWorld.x,
+          y: gestureWorld.y,
+          z: gestureWorld.z,
+        },
+        projectedPosition: {
+          x: gestureProjected.x,
+          y: gestureProjected.y,
+          z: gestureProjected.z,
+        },
+      }
+    }
     const onMouse = (event: MouseEvent) => {
       if (document.pointerLockElement)
         mouse.current = { x: event.movementX, y: event.movementY }
@@ -188,6 +236,10 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         },
       }),
       snapshot: (): GameSnapshot => ({
+        developmentCapture: developmentCaptureMode(),
+        crewGesture: crewGesture(),
+        tacticalModelHeading:
+          scene.getObjectByName('tactical-ship-model')?.rotation.y ?? null,
         explorationHull: noseSight(),
         bulkheadLeaves: {
           left: leaf('bulkhead-left-leaf'),

@@ -17,7 +17,7 @@ export function HeldTabletDisplay({
   return (
     <section className="held-tablet-display" aria-label="Held mission tablet">
       <header>
-        <strong>CRUZ DEL SUR · MISSION TABLET</strong>
+        <strong>CDS-01 · TASK MANAGER</strong>
         <span>
           {completedObjectiveCount(state.completed)} / {missions.length}
         </span>
@@ -30,20 +30,32 @@ export function HeldTabletDisplay({
             : 'Protocol complete'}
       </p>
       <div className="held-tablet-layout">
-        <ul aria-label="Mission progress">
-          {missions.map((mission) => (
-            <li
-              key={mission.id}
-              data-complete={state.completed.includes(mission.id)}
-            >
-              <span aria-hidden="true">
-                {state.completed.includes(mission.id) ? '☑' : '□'}
-              </span>{' '}
-              {mission.title}
-            </li>
-          ))}
-        </ul>
-        <DeckMap selected={currentObjective?.id ?? 'crew'} />
+        <div className="held-tablet-tasks">
+          <div className="held-tablet-section-label" aria-hidden="true">
+            TASKS
+          </div>
+          <ul aria-label="Mission progress">
+            {missions.map((mission) => (
+              <li
+                key={mission.id}
+                data-complete={state.completed.includes(mission.id)}
+              >
+                <span aria-hidden="true">
+                  {state.completed.includes(mission.id) ? '☑' : '□'}
+                </span>{' '}
+                {mission.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="held-tablet-map">
+          <DeckMap selected={currentObjective?.id ?? 'crew'} />
+        </div>
+      </div>
+      <div className="held-tablet-tabs" aria-hidden="true">
+        <span>☷ Tasks</span>
+        <span className="selected">⌖ Deck map</span>
+        <span>▤ Logs</span>
       </div>
       <footer>
         WASD · Move / Mouse · Look / R · Interact & skip tutorial / T · Lower

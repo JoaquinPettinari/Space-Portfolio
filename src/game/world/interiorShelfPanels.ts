@@ -21,10 +21,6 @@ for (const z of [wallZ - 0.31, wallZ + 0.31]) {
 }
 add([4.37, 1.69, wallZ], [0.055, 0.022, 0.61], '#edbd7c', true)
 
-// Existing expedition volumes sit below the board; give them a lower support.
-add([2.86, 0.975, 1.52], [1.26, 0.05, 0.38], '#3e4a50')
-for (const x of [2.35, 3.37]) add([x, 0.86, 1.72], [0.045, 0.22, 0.12])
-
 // Outer recesses beside the entrance; keep the board and hanging plant clear.
 for (const side of [-1, 1]) {
   const width = side < 0 ? 1.02 : 1.14
