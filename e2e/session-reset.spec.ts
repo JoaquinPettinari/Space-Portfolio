@@ -72,10 +72,8 @@ test('refresh resets actual gameplay and ignores legacy saved progress without d
   await enterObservationRoom(page)
   expect((await snapshot(page)).session.bulkheadOpen).toBe(true)
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await page.getByRole('button', { name: 'Skip Tutorial', exact: true }).click()
   await page.keyboard.press('t')
-  expect((await protocol(page)).guidance).toBe('skipped')
+  expect((await protocol(page)).guidance).toBe('pending')
   expect((await protocol(page)).completed).toEqual([
     'lighting',
     'crew',

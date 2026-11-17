@@ -1,6 +1,6 @@
-/** Held mode keeps real FPS input. Focused mode is an explicit cursor handoff. */
-export type TabletMode = 'lowered' | 'held' | 'focused'
-export type TabletEvent = 'toggle' | 'focus' | 'resume' | 'dismiss'
+/** Mission/map reader stays held while FPS controls retain mouse ownership. */
+export type TabletMode = 'lowered' | 'held'
+export type TabletEvent = 'toggle' | 'resume' | 'dismiss'
 
 export function tabletTransition(
   mode: TabletMode,
@@ -8,12 +8,11 @@ export function tabletTransition(
 ): TabletMode {
   if (event === 'dismiss') return 'lowered'
   if (event === 'toggle') return mode === 'lowered' ? 'held' : 'lowered'
-  if (event === 'focus') return mode === 'held' ? 'focused' : mode
-  return mode === 'focused' ? 'held' : mode
+  return mode
 }
 
 export function tabletAllowsMovement(mode: TabletMode) {
-  return mode !== 'focused'
+  return mode === 'held' || mode === 'lowered'
 }
 
 /** Bounded, frame-rate independent raise/lower interpolation. */

@@ -1,0 +1,39 @@
+{
+  "trianglesBefore": 320534,
+  "trianglesAfter": 346188,
+  "floorHighestY": 0.015000000596046448,
+  "slotsPreserved": [
+    "SLOT / Fixed docking door",
+    "SLOT / Sliding leaves",
+    "SLOT / Sliding stationary frame",
+    "SLOT / Credential terminal",
+    "SLOT / Full NASA EMU",
+    "LEAF_LEFT_SLIDE",
+    "LEAF_RIGHT_SLIDE"
+  ],
+  "copyTravelTests": [
+    {
+      "pivot": "LEAF_LEFT_SLIDE",
+      "partsFollowing": 30,
+      "travel": -1.37,
+      "openCenterX": -2.055000066757202
+    },
+    {
+      "pivot": "LEAF_RIGHT_SLIDE",
+      "partsFollowing": 30,
+      "travel": 1.37,
+      "openCenterX": 2.055000066757202
+    }
+  ],
+  "archivedReplacements": [
+    "DETAIL / Large register dark face",
+    "DETAIL / Large register dark face.001",
+    "DETAIL / Large register dark face.002",
+    "DETAIL / Large register dark face.003"
+  ],
+  "activeObjects": 1414,
+  "archivedObjects": 636,
+  "runtimeChanged": false,
+  "actualOpenCounterboresVerified": 16,
+  "originalFacesHiddenInArchive": 4
+}

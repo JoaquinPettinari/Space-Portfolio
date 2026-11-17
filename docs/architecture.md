@@ -1,5 +1,128 @@
 # Arquitectura
 
+## Maestro artístico de la cabina
+
+`docs/assets/cabin-master/cabin-master.blend` reúne la cabina de llegada, entre
+la puerta de docking fija y la puerta móvil de acceso. Conserva módulos separados
+y las coordenadas del runtime, incorpora la pared técnica refinada y permite
+revisar la iluminación y los materiales en conjunto. Las fuentes originales se
+conservan. Inventario y contrato de las puertas: [maestro](assets/cabin-master/README.md).
+
+El maestro no es una nueva escena ejecutable del juego. La integración posterior
+debe sustituir los recursos visuales correspondientes, sin duplicarlos, y conservar
+el control de acreditación, las hojas móviles, las colisiones y las interfaces
+dinámicas en código. Las luces de render y los materiales procedurales necesitan
+adaptación y validación antes de publicarse.
+
+## Estudio de arte de la pared técnica
+
+`docs/assets/service-wall-studio/service-wall-design.blend` es el documento
+editable independiente para refinar el diseño contra la referencia del usuario.
+Su iluminación de estudio y sus materiales de autoría se revisan mediante renders
+en Blender. El archivo no sustituye automáticamente los GLB del juego.
+
+El script de creación sólo prepara la base y rechaza sobrescribirla; las futuras
+exportaciones deben partir del diseño revisado, sin regenerar encima con la
+receta anterior. La integración requiere preparar materiales compatibles con
+glTF y comprobar coste, iluminación y colisiones en el navegador.
+
+## Pared técnica de llegada — 2026-11-17
+
+`detail-service-wall.py` reemplaza los armarios y filtros antiguos del lado de
+estribor por una banda de almacenamiento, estantes, mantenimiento, tuberías,
+soporte vital y botiquín. Reutiliza los helpers y materiales del decorado de
+referencia. El exportador comprueba que las piezas permanezcan dentro del banco
+técnico definido en `arrivalCabinLayout.json`; las colisiones y los accesos no
+cambian. Las pantallas nuevas son señalética estática, sin nuevas estaciones.
+
+Una luz puntual cálida ilumina el banco técnico. Los difusores y pantallas se
+exportan como materiales emisivos, sin luces importadas ni actualizaciones por
+cuadro. Evidencia y mediciones: [pared técnica](audits/service-wall/README.md).
+
+## Materiales y nicho EVA — 2026-11-17
+
+La llegada y sus lotes estructurales comparten un único reflejo local mediante
+`ArrivalSurfaceEnvironment`. El mapa se genera al montar y se libera al desmontar;
+no hay capturas por cuadro ni cambio del entorno global. `arrivalShellMaterials`
+aplica el acabado solo a los lotes de llegada, con materiales y geometrías propios,
+y un mapa pequeño de rugosidad/relieve. El puente conserva sus materiales.
+
+El sillón usa tapizado grafito con ribetes cálidos y frentes metálicos. El nicho EVA
+incorpora marco achaflanado, laterales retraídos y zócalo continuo hasta el piso.
+`EVA_ALCOVE` define geometría y collider; el test sobre el GLB verifica apoyo de las
+botas y separación de casco, manos y escotilla. Las luces prácticas de llegada
+se redistribuyen sin añadir luces ni sombras dinámicas.
+
+Evidencia y límites: [materiales de cabina](audits/cabin-materials/README.md).
+
+## Perfil recto de la cabina — 2026-11-17
+
+`arrivalShellLayout.json` define una sección constante: paredes a X ±4,95 m,
+hombros desde Y 2,50 m hasta X ±3,35 / Y 3,30 m y techo plano. Los nuevos
+`straight-envelope` y `straight-collision` se exportan desde la misma geometría,
+incluido el vidrio lateral continuo y los encuentros con los marcos de puerta.
+Se conserva la fuente Blender anterior y una copia editable de la estructura en
+`docs/assets/straight-cabin/straight-pressure-shell.blend`.
+
+El exportador de llegada retira los marcos curvos ARR10 que duplicaban la
+envolvente. El cierre detrás del sillón pasa a una pieza recta; su collider usa
+el límite de pared del mismo JSON. Se elimina el antiguo parche triangular
+`arrivalShoulderClosure`, ya integrado en el cierre completo. La geometría nueva
+también llega a los visores exterior y táctico mediante el asset compartido.
+
+La regresión comprueba el GLB físico con rayos a varias alturas, juntas y esquinas,
+y el navegador con movimiento y saltos reales hacia la mesita y el ventanal.
+Ver [evidencia del perfil recto](audits/straight-cabin/README.md).
+
+## Referencia visual de la llegada — 2026-11-17
+
+La llegada pasa a `cruz-del-sur-reference-arrival.glb`, conservando las variantes
+anteriores. El exportador añade panelado de techo, luminarias con difusores ámbar,
+costuras, manta estática, almohadón, plantas de hojas sólidas, cafetera, estante
+y mesa lateral. Esta última comparte medidas con su collider en
+`arrivalCabinLayout.json`. La fuente unificada no se guarda; los objetos editables
+se conservan aparte en `docs/assets/cabin-reference/cabin-reference-dressing.blend`.
+El traje completo reutiliza las piernas y botas de la fuente NASA original y
+extiende su nicho/collider hasta el piso, sin invadir la escotilla.
+
+`EntryAirlock` mantiene dos luces sin sombras y aplica reflejos locales filtrados
+por rugosidad, generados una vez mediante PMREM de 128 px por cara. Los materiales
+se clonan; los recursos GLTF permanecen compartidos. `arrivalFloorTextures` crea
+dos mapas de 256 px para color/desgaste y rugosidad. El canal R del segundo guarda
+una oclusión de contacto estática derivada de los colliders; no añade otra textura.
+Las copias locales de geometría del piso aportan UV1 en coordenadas de habitación,
+preservando UV0 y las normales originales. Mapas y copias se liberan al desmontar.
+Los materiales de tela,
+vegetación y techo no reciben el mapa de reflejos. La panorámica galáctica
+existente se orienta hacia las ventanas del salón, sin una descarga nueva.
+
+Comparación visual, receta y medidas: [cabin-reference](audits/cabin-reference/README.md).
+
+## Cabina e inspección exterior — 2026-11-17
+
+La llegada usa `cruz-del-sur-cabin-arrival.glb` y los detalles
+`cruz-del-sur-cabin-details.glb`. El banco pasa a tres plazas rectas con respaldo,
+apoyabrazos y un cierre trasero ajustado al casco; el banco técnico incorpora
+zócalo y retornos laterales. `arrivalCabinLayout.json` comparte medidas entre el
+exportador Blender y los volúmenes físicos, cerrando los accesos detrás de ambos
+muebles. Se retiran las cajas de transporte sueltas y se detalla la escotilla de
+servicio junto al botiquín. Las fuentes Blender y los GLB anteriores se conservan.
+
+La pantalla panorámica central ofrece `navigation`, un modo de inspección
+exterior con órbita alrededor del origen, zoom acotado y sin desplazamiento del
+centro. Usa los estados de estación y la salida existentes. El visor monta un
+Canvas bajo demanda solo mientras está abierto; reutiliza los assets descargados,
+pero su contexto WebGL necesita sus propias cargas GPU. Los botones, teclado y
+arrastre controlan el mismo OrbitControls. No mueve el casco real ni al jugador.
+
+`physicalPress` comparte el contacto a los 0,5 segundos. La radio ejecuta la acción
+y pulsa la tecla al llegar el guante, no al iniciar el gesto. La acreditación
+añade la fase `presenting`: empieza carga/sonido al contacto y conserva su duración
+total de un segundo. La pose del traje colgado se hornea en Blender, sin rig ni
+cálculos nuevos por cuadro.
+
+Receta, costes y validación: [cabin-revision](audits/cabin-revision/README.md).
+
 ## Estado actual tras revisión — 2026-11-16
 
 Las secciones fechadas inferiores conservan la evolución del proyecto; no todas
@@ -409,15 +532,19 @@ la pared trasera. Se fusiona en seis materiales y dos planos de señalética;
 tres colliders locales protegen el equipamiento sin invadir el paso central.
 Las rejillas y el mecanismo de escotilla existentes se conservan.
 
-`ShipRadio` añade el target `radio` al contrato de estaciones. El prop se ubica
-sobre el escritorio izquierdo; la pantalla física permite reproducir, pausar,
-cambiar pista y volumen. `useShipRadio` crea audio exclusivamente por acción
-del visitante, suspende al perder foco/ocultar página/pausar y libera contexto y
-temporizador al desmontar. El generador agenda hasta 200 ms de notas por delante
-con intervalos de 100 ms, sin depender de `useFrame` ni renders React. Las dos
-pistas son composiciones instrumentales procedurales originales, no grabaciones
-de NCS. La radio tiene su propia activación explícita, independiente del sonido
-ambiental; no hay autoplay ni descargas de música.
+`ShipRadio` se opera desde el recorrido: cada tecla 3D tiene un target propio
+(Play/Pausa, anterior, siguiente, volumen +/−). El raycast normal selecciona la
+superficie más cercana; la carcasa y la pantalla no activan nada. E pulsa la tecla
+bajo la mira, anima su recorrido y el índice del guante, conservando posición,
+orientación y Pointer Lock. No existe modo de cámara de radio ni interfaz de
+computadora. El frente usa carcasa metálica gris, defensas, asa, rejilla y teclas
+salientes con señal de hover. La pantalla es una textura reutilizada y actualizada
+por eventos de pista/estado y segundos completos, sin luces o sombras añadidas.
+`useShipRadio` conserva un único HTMLAudioElement creado al primer Play,
+suspende en pausa o al perder foco y no solicita la siguiente pista si está
+pausado. `radioTracks.ts` centraliza los cinco MP3 y sus atribuciones;
+`npm run credits:music` genera `/credits.html` y `CREDITS.txt`.
+Los archivos suman aproximadamente 43,4 MB, descargados bajo demanda.
 
 Revisión nativa y límites: [audits/reference-style/REVIEW.md](audits/reference-style/REVIEW.md).
 
@@ -451,3 +578,27 @@ navegación/datos y un visor amplio con controles inferiores. No añade pases.
 
 Recetas y verificaciones: [arrival-cleanup](audits/arrival-cleanup/README.md) y
 [arrival-layout](audits/arrival-layout/REVIEW.md).
+
+## Proyector táctico fijo — 2026-11-17
+
+Se retira la pose activa que trasladaba el holograma al plano de la interfaz.
+Su posición, inclinación y escala inicial permanecen iguales al abrir y cerrar
+con E; el zoom explícito se conserva al regresar al recorrido. La pantalla y
+su encuadre se alinean al centro fijo del proyector usando el área libre del
+layout, con una única definición en `tacticalDisplayLayout.ts` compartida por
+la estación y la geometría visual. No se añaden pases ni animaciones.
+
+La regresión nativa compara la posición mundial del holograma antes de abrir,
+durante la interacción/zoom y después de salir, además de giro y reentrada en
+Pointer Lock. Las pruebas geométricas comprueban el encuadre del casco fijo
+en64ángulos, dos niveles de zoom y tres proporciones de pantalla.
+
+## Interacción física y tablet de lectura — 2026-11-17
+
+La tablet se sostiene más alta, con guardas naranjas y guantes articulados en los
+bordes. T muestra/guarda misiones, destinos y mapa sin liberar el cursor; R no
+activa ningún modo. Quick Portfolio Access y Read without 3D se conservan en
+pausa, también con botón táctil de menú. La acreditación tarda un segundo y
+reserva las mismas filas antes y después de conceder acceso. El traje colgado
+usa un GLB derivado con brazos y guantes caídos y soporte de hombros; la fuente
+original se preserva y sus colliders mantienen libre la escotilla.

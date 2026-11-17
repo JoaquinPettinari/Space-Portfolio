@@ -21,7 +21,12 @@ it('shows real objectives, completed state and current room map without stealing
     screen.getByRole('img', { name: /CRUZ DEL SUR current deck map/ }),
   ).toBeVisible()
   expect(screen.queryByRole('button')).not.toBeInTheDocument()
-  expect(screen.getByText(/R · Interact & skip tutorial/)).toBeVisible()
+  expect(screen.getByText('T · Lower tablet')).toBeVisible()
+  expect(screen.queryByText(/R ·/)).not.toBeInTheDocument()
+  expect(screen.getByText('Arrival deck · Crew Access')).toBeVisible()
+  expect(screen.getByText('Bridge · Port archive console')).toBeVisible()
+  expect(screen.getByText('Bridge · Starboard communications')).toBeVisible()
+  expect(screen.getByText('Bridge · Personal workstation')).toBeVisible()
   expect(screen.queryByText(/Arrival systems online/)).not.toBeInTheDocument()
 })
 

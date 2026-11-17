@@ -32,7 +32,8 @@ export function useStationControls({
   const escapeAction = useRef<'exit' | 'pause' | 'resume' | null>(null)
   const captureRef = useRef<(() => void) | null>(null)
   const playing = active && !suspended
-  const tabletOpen = tabletMode === 'focused'
+  // The held tablet never takes ownership of the mouse.
+  const tabletOpen = false
   const tabletRaised = tabletMode !== 'lowered'
 
   useEffect(() => {
@@ -61,10 +62,8 @@ export function useStationControls({
     onTabletOpened()
     explicitPause.current = false
     setShowMouseHint(false)
-    setTabletMode('focused')
-    setActive(false)
-    expectedUnlock.current = true
-    document.exitPointerLock()
+    setTabletMode('held')
+    if (!active) captureRef.current?.()
   }
   const resumeWalking = () => {
     setTabletMode('lowered')
@@ -165,11 +164,6 @@ export function useStationControls({
       return
     if (event.repeat || !ready || transitioning) return
     if (mode === 'walking') {
-      if (event.code === 'KeyR' && tabletRaised) {
-        event.preventDefault()
-        if (tabletOpen) walkWithTablet()
-        else openTablet()
-      }
       if (event.code === 'KeyT') {
         event.preventDefault()
         if (showMouseHint) openTablet()

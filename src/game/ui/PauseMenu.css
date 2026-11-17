@@ -165,3 +165,12 @@
     transition: none;
   }
 }
+
+.pause-menu .pause-menu__shortcut {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: #0a2733;
+  border: 1px solid #267187;
+  border-radius: 5px;
+}

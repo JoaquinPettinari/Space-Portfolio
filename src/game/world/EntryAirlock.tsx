@@ -1,11 +1,12 @@
-import { useEffect, useMemo } from 'react'
+import { useContext, useEffect, useLayoutEffect, useMemo } from 'react'
 import { Bvh, useGLTF } from '@react-three/drei'
 import {
   ConvexHullCollider,
   CuboidCollider,
   RigidBody,
 } from '@react-three/rapier'
-import { prepareShipModel } from './prepareShipModel'
+import { prepareArrivalMaterials } from './arrivalReflections'
+import { ArrivalEnvironmentContext } from './arrivalEnvironment'
 import { BULKHEAD_POCKET_PANELS } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
 import {
@@ -14,33 +15,31 @@ import {
   ARRIVAL_FLOOR_HULLS,
 } from './arrivalRoomLayout'
 import { REFINED_ARRIVAL_ASSET } from './refinedArtAssets'
-import { createArrivalShoulderClosure } from './arrivalShoulderClosure'
 import { ArrivalServiceDetails } from './ArrivalServiceDetails'
 import { ArrivalOutfitting } from './ArrivalOutfitting'
 
 /** Native-scale shell. Door, credential terminal and their state remain independent. */
 export function EntryAirlock({ emergency }: { emergency: boolean }) {
-  const shoulderClosure = useMemo(() => createArrivalShoulderClosure(), [])
-  useEffect(() => () => shoulderClosure.dispose(), [shoulderClosure])
   const { scene } = useGLTF(REFINED_ARRIVAL_ASSET)
-  const model = useMemo(() => prepareShipModel(scene), [scene])
+  const environment = useContext(ArrivalEnvironmentContext)
+  const model = useMemo(() => prepareArrivalMaterials(scene), [scene])
   useEffect(() => () => model.dispose(), [model])
+  useLayoutEffect(() => {
+    model.setPower(emergency ? 0.12 : 1)
+  }, [emergency, model])
+  useLayoutEffect(
+    () =>
+      environment?.channel.subscribe((resources) => {
+        model.setReflection(resources?.reflection ?? null)
+        model.setFloorTextures(resources?.floor ?? null)
+      }),
+    [environment?.channel, model],
+  )
 
   return (
     <group name="entry-airlock">
       <ArrivalServiceDetails />
       <ArrivalOutfitting />
-      <mesh
-        name="arrival-starboard-shoulder-closure"
-        geometry={shoulderClosure}
-      >
-        <meshStandardMaterial
-          color="#38444c"
-          metalness={0.48}
-          roughness={0.43}
-          flatShading
-        />
-      </mesh>
       <RigidBody
         type="fixed"
         colliders={false}
@@ -101,17 +100,32 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
           </mesh>
         </RigidBody>
       ))}
-      {/* Practical fills illuminate PBR surfaces without shadow maps. */}
-      {[-2.25, 2.25].map((x) => (
-        <pointLight
-          key={x}
-          position={[x, 2.75, 15.15]}
-          color="#ffc17b"
-          intensity={emergency ? 1 : 9}
-          distance={7}
-          decay={2}
-        />
-      ))}
+      {/* Restrained practicals shape the furniture zones. Rectangular
+          reflections share the one static map; no shadow render passes. */}
+      <pointLight
+        name="arrival-lounge-wash"
+        position={[-2.7, 2.5, 16.65]}
+        color="#ffc184"
+        intensity={emergency ? 2.16 : 18}
+        distance={5.2}
+        decay={2}
+      />
+      <pointLight
+        name="arrival-service-wash"
+        position={[-2.9, 2.25, 12.7]}
+        color="#ffc184"
+        intensity={emergency ? 1.2 : 10}
+        distance={4.2}
+        decay={2}
+      />
+      <pointLight
+        name="arrival-technical-wall-wash"
+        position={[2.75, 2.4, 15.5]}
+        color="#ffc184"
+        intensity={emergency ? 1.44 : 12}
+        distance={4.5}
+        decay={2}
+      />
     </group>
   )
 }

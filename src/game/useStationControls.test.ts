@@ -14,7 +14,7 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-it('keeps T held movement, hands off with R and requests capture synchronously on return', () => {
+it('keeps T held movement and ignores R without releasing native capture', () => {
   const opened = vi.fn()
   const capture = vi.fn()
   const { result } = renderHook(() =>
@@ -30,15 +30,13 @@ it('keeps T held movement, hands off with R and requests capture synchronously o
   expect(result.current.playing).toBe(true)
   expect(opened).toHaveBeenCalledTimes(1)
   fireEvent.keyDown(window, { code: 'KeyR' })
-  expect(result.current.tabletMode).toBe('focused')
-  expect(result.current.playing).toBe(false)
-  expect(document.exitPointerLock).toHaveBeenCalledTimes(1)
-  fireEvent.keyDown(window, { code: 'KeyR' })
-  expect(capture).toHaveBeenCalledTimes(1)
   expect(result.current.tabletMode).toBe('held')
-  // Only the browser's lock callback activates gameplay again.
-  expect(result.current.active).toBe(false)
-  act(() => result.current.onLock())
+  expect(result.current.playing).toBe(true)
+  expect(result.current.tabletOpen).toBe(false)
+  expect(document.exitPointerLock).not.toHaveBeenCalled()
+  expect(capture).not.toHaveBeenCalled()
+  fireEvent.keyDown(window, { code: 'KeyT' })
+  expect(result.current.tabletMode).toBe('lowered')
   expect(result.current.playing).toBe(true)
 })
 
@@ -122,7 +120,7 @@ it('never requests pause after terminal exits, tablet exits or capture failures'
   fireEvent.keyUp(window, { code: 'Escape' })
   expect(result.current.tabletMode).toBe('lowered')
   expect(result.current.showMouseHint).toBe(false)
-  expect(capture).toHaveBeenCalledTimes(5)
+  expect(capture).toHaveBeenCalledTimes(6)
   fireEvent.keyDown(window, { code: 'Escape' })
   fireEvent.keyUp(window, { code: 'Escape' })
   expect(result.current.showMouseHint).toBe(true)

@@ -13,7 +13,9 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 /** One static, vertex-coloured draw for the shared tablet/card glove.
  * Soft shading is baked for the camera prop; the reader also receives room light.
  * Dimensions are local metres, wrist down -Y and tablet grip toward -X. */
-export function createAstronautGloveGeometry() {
+export const GLOVE_POINT_FINGERTIP = [-0.055, 0.36, 0.02] as const
+
+export function createAstronautGloveGeometry(pose: 'grip' | 'point' = 'grip') {
   const pieces: BufferGeometry[] = []
   const light = new Vector3(-0.4, 0.7, 1).normalize()
   const normal = new Vector3()
@@ -45,7 +47,7 @@ export function createAstronautGloveGeometry() {
   // Black pressure glove, raised knuckle pads and curved fingertips gripping an edge.
   add(softBox(0.158, 0.23, 0.125, 0.045), '#263039', [0, 0, 0])
   add(softBox(0.108, 0.16, 0.025, 0.012), '#37414a', [0.025, 0.012, 0.065])
-  for (let finger = 0; finger < 4; finger++) {
+  for (let finger = pose === 'point' ? 1 : 0; finger < 4; finger++) {
     const y = 0.075 - finger * 0.049
     add(
       new CapsuleGeometry(0.023, 0.075, 4, 10),
@@ -60,6 +62,32 @@ export function createAstronautGloveGeometry() {
       [0.35, 0, 0.2],
     )
     add(softBox(0.038, 0.027, 0.011, 0.006), '#4d5358', [-0.038, y, 0.063])
+  }
+  if (pose === 'point') {
+    add(
+      new CapsuleGeometry(0.024, 0.09, 5, 12),
+      '#303941',
+      [-0.055, 0.205, 0.02],
+    )
+    add(
+      new CapsuleGeometry(0.022, 0.085, 5, 12),
+      '#3e474e',
+      [-0.055, 0.295, 0.02],
+    )
+    add(softBox(0.032, 0.026, 0.01, 0.004), '#626a70', [-0.055, 0.24, 0.04])
+  }
+  // Thin seam strips and articulated knuckle pads break up the mitten silhouette.
+  for (let row = 0; row < 3; row++) {
+    add(softBox(0.075, 0.009, 0.008, 0.003), '#58616a', [
+      0.023,
+      0.045 - row * 0.042,
+      0.082,
+    ])
+    add(softBox(0.008, 0.022, 0.008, 0.003), '#899095', [
+      0.069,
+      0.045 - row * 0.042,
+      0.062,
+    ])
   }
   // A diagonal thumb sits on the front bezel, separate from the four rear fingers.
   add(

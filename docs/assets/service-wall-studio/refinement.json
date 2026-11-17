@@ -1,0 +1,29 @@
+{
+  "editableObjects": 375,
+  "meshObjects": 283,
+  "evaluatedTriangles": 107116,
+  "materials": 16,
+  "packedImages": [
+    "ARRIVAL V4 Graphite-frame-color.001",
+    "ARRIVAL V4 Graphite-frame-orm.001",
+    "ARRIVAL V4 Ivory-cabinets-color.001",
+    "ARRIVAL V4 Ivory-cabinets-orm.001",
+    "ARRIVAL V4 Warm-grey-panels-color.001",
+    "ARRIVAL V4 Warm-grey-panels-orm.001",
+    "CABIN / Charcoal woven upholstery albedo 256",
+    "CABIN / Charcoal woven upholstery relief 256",
+    "CABIN / REFERENCE / Flight cushion textile albedo 256",
+    "CABIN / REFERENCE / Flight cushion textile relief 256",
+    "CABIN / REFERENCE / Padded ceiling albedo 256",
+    "CABIN / REFERENCE / Woven cream albedo 256",
+    "CABIN / REFERENCE / Woven cream relief 256",
+    "CDS DETAIL / Packed wear roughness microheight 512",
+    "deep-space.webp.001",
+    "earth-surface.png.001",
+    "orbital-vista.webp.001",
+    "REFERENCE / User service wall"
+  ],
+  "proceduralMaterialsRequireBaking": true,
+  "runtimeChanged": false,
+  "cameraChanged": false
+}

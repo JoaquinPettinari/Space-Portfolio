@@ -4,14 +4,20 @@ import {
   BoxGeometry,
   BufferGeometry,
   CanvasTexture,
+  ExtrudeGeometry,
   Matrix4,
   MeshStandardMaterial,
   SRGBColorSpace,
+  Shape,
+  Path,
 } from 'three'
-import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
+import {
+  mergeGeometries,
+  mergeVertices,
+} from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { ARRIVAL_DEPTH, ARRIVAL_ORIGIN_Z } from './arrivalRoomLayout'
 import { EVAEquipment } from './EVAEquipment'
-import { EVA_EQUIPMENT_LAYOUT } from './evaEquipmentLayout'
+import { EVA_ALCOVE, EVA_EQUIPMENT_LAYOUT } from './evaEquipmentLayout'
 
 const REAR = ARRIVAL_ORIGIN_Z + ARRIVAL_DEPTH - 0.04
 const finishes = {
@@ -19,6 +25,8 @@ const finishes = {
   dark: ['#111d24', 0.25, 0.65],
   metal: ['#8a999b', 0.78, 0.3],
   orange: ['#c29247', 0.4, 0.52],
+  cyan: ['#7ce4ee', 0, 0.4],
+  lamp: ['#ffd4a0', 0, 0.4],
 } as const
 type Finish = keyof typeof finishes
 
@@ -75,13 +83,95 @@ function buildOutfitting() {
     box('metal', x, 2.58, -0.27, 0.045, 0.2, 0.025)
     box('orange', x, 2.58, -0.289, 0.028, 0.038, 0.01)
   }
-  // Narrower, recessed niche: its right edge clears the hatch surround by 24 cm.
-  box('dark', -2.17, 1.59, -0.025, 0.95, 1.7, 0.04)
-  box('shell', -2.17, 2.45, -0.08, 1.0, 0.055, 0.12)
-  for (const x of [-2.6675, -1.6725])
-    box('shell', x, 1.61, -0.08, 0.045, 1.7, 0.12)
-  box('metal', -2.17, 2.23, -0.1, 0.68, 0.025, 0.03)
-  box('metal', -2.17, 2.19, -0.1, 0.04, 0.1, 0.05)
+  // The shallow mounting recess leaves the suit visible from the central aisle;
+  // its deep floor plinth and top canopy still tie it to the rear wall.
+  const bay = EVA_ALCOVE
+  const depth = bay.backZ - bay.frontZ
+  const middleZ = (bay.frontZ + bay.backZ) / 2
+  const sideDepth = bay.backZ - bay.frameZ
+  const sideMiddleZ = (bay.frameZ + bay.backZ) / 2
+  box('dark', bay.centerX, 1.31, bay.backZ - 0.035, bay.width, 2.62, 0.07)
+  for (const side of [-1, 1]) {
+    const x = bay.centerX + (side * (bay.width - bay.jamb)) / 2
+    box(
+      'shell',
+      x,
+      bay.height / 2,
+      sideMiddleZ,
+      bay.jamb,
+      bay.height,
+      sideDepth,
+    )
+    // Recessed inner metal strips show the depth of the cavity.
+    box('metal', x - side * 0.043, 1.33, -0.24, 0.012, 2.16, 0.045)
+  }
+  box('shell', bay.centerX, bay.height - 0.07, -0.33, bay.width, 0.14, 0.7)
+  // Feet touch the recessed anti-slip deck; the plinth extends down to the floor.
+  box(
+    'shell',
+    bay.centerX,
+    (bay.floorY - 0.008) / 2,
+    middleZ,
+    bay.width,
+    bay.floorY - 0.008,
+    depth,
+  )
+  box(
+    'dark',
+    bay.centerX,
+    bay.floorY - 0.004,
+    middleZ,
+    bay.width - 0.12,
+    0.008,
+    depth - 0.08,
+  )
+  const outline = (
+    path: Shape | Path,
+    halfWidth: number,
+    bottom: number,
+    top: number,
+    corner: number,
+  ) => {
+    path.moveTo(-halfWidth + corner, bottom)
+    path.lineTo(halfWidth - corner, bottom)
+    path.lineTo(halfWidth, bottom + corner)
+    path.lineTo(halfWidth, top - corner)
+    path.lineTo(halfWidth - corner, top)
+    path.lineTo(-halfWidth + corner, top)
+    path.lineTo(-halfWidth, top - corner)
+    path.lineTo(-halfWidth, bottom + corner)
+    path.closePath()
+  }
+  const surround = new Shape()
+  outline(surround, bay.width / 2, 0, bay.height, 0.09)
+  const aperture = new Path()
+  outline(
+    aperture,
+    bay.width / 2 - bay.jamb,
+    bay.floorY,
+    bay.height - 0.19,
+    0.06,
+  )
+  surround.holes.push(aperture)
+  const frame = new ExtrudeGeometry(surround, {
+    depth: 0.075,
+    bevelEnabled: true,
+    bevelThickness: 0.008,
+    bevelSize: 0.008,
+    bevelSegments: 1,
+    steps: 1,
+  })
+  add('shell', mergeVertices(frame), bay.centerX, 0, bay.frameZ + 0.008)
+  frame.dispose()
+  box('dark', bay.centerX, 2.52, -0.687, 0.79, 0.057, 0.016)
+  box('cyan', bay.centerX, 2.52, -0.697, 0.66, 0.015, 0.008)
+  box('metal', bay.centerX, 2.42, -0.57, 0.85, 0.045, 0.25)
+  box('lamp', bay.centerX, 2.394, -0.58, 0.68, 0.012, 0.105)
+  box('dark', bay.centerX, 0.092, bay.frontZ - 0.007, 0.84, 0.057, 0.018)
+  box('cyan', bay.centerX, 0.092, bay.frontZ - 0.018, 0.67, 0.018, 0.009)
+  for (const x of [bay.centerX - 0.54, bay.centerX + 0.54])
+    for (const y of [0.28, 1.25, 2.3])
+      box('metal', x, y, bay.frameZ - 0.006, 0.024, 0.049, 0.018)
   // Status display complements the existing emergency release; do not duplicate it.
   box('shell', 1.96, 1.98, -0.05, 0.79, 0.38, 0.08)
   // Captive bolts and lower threshold stripes keep the relief restrained.
@@ -94,7 +184,13 @@ function buildOutfitting() {
     return {
       finish,
       geometry,
-      material: new MeshStandardMaterial({ color, metalness, roughness }),
+      material: new MeshStandardMaterial({
+        color,
+        metalness,
+        roughness,
+        emissive: finish === 'cyan' || finish === 'lamp' ? color : '#000000',
+        emissiveIntensity: 1.8,
+      }),
     }
   })
 }

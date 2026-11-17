@@ -47,65 +47,44 @@ test.afterEach(async ({ page }, info) => {
   expect(errors.get(page)).toEqual([])
 })
 
-test('tablet focus and exit actions resume real mouse capture without another click or held-key drift', async ({
+test('tablet toggle and R retain real mouse capture; lowering and pausing leave no held-key drift', async ({
   page,
 }) => {
   test.setTimeout(120_000)
   await enter(page)
-  await page.keyboard.down('w')
+  const tablet = page.getByRole('region', { name: 'Held mission tablet' })
   await page.keyboard.press('t')
-  await expect(
-    page.getByRole('region', { name: 'Held mission tablet' }),
-  ).toBeVisible()
+  await expect(tablet).toBeVisible()
   await expectLocked(page, true)
   await page.keyboard.press('r')
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
   await expect(tablet).toBeVisible()
-  await expectLocked(page, false)
-  const stopped = (await snapshot(page)).cameraPosition
-  await page.keyboard.press('t')
-  await expect(tablet).not.toBeVisible()
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toHaveCount(0)
   await expectLocked(page, true)
-  await page.waitForTimeout(200)
-  // Rapier finishes interpolating the last pre-pause step on resume.
-  const settled = (await snapshot(page)).cameraPosition.z
-  expect(Math.abs(settled - stopped.z)).toBeLessThan(0.08)
-  await page.waitForTimeout(350)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(settled, 3)
-  await page.keyboard.up('w')
-
-  for (const action of [
-    'Close tablet',
-    'Continue Protocol',
-    'Skip Tutorial',
-    'Resume Protocol',
-    'Replay Protocol',
-  ]) {
+  for (let cycle = 0; cycle < 2; cycle++) {
     await page.keyboard.press('t')
-    await page.keyboard.press('r')
-    await expect(tablet).toBeVisible()
-    await expectLocked(page, false)
-    await tablet.getByRole('button', { name: action, exact: true }).click()
     await expect(tablet).not.toBeVisible()
     await expectLocked(page, true)
-    await expect(
-      page.getByRole('button', { name: 'Resume mission' }),
-    ).not.toBeVisible()
-    if (action !== 'Close tablet') {
-      await expect(
-        page.getByRole('region', { name: 'Held mission tablet' }),
-      ).toBeVisible()
-      await page.keyboard.press('t')
-      await expect(
-        page.getByRole('region', { name: 'Held mission tablet' }),
-      ).not.toBeVisible()
-    }
+    await page.keyboard.press('t')
+    await expect(tablet).toBeVisible()
+    await expectLocked(page, true)
   }
+  await page.keyboard.press('Escape')
+  await expect(tablet).not.toBeVisible()
+  await expectLocked(page, true)
+  await expect(
+    page.getByRole('button', { name: 'Resume mission' }),
+  ).not.toBeVisible()
   await page.keyboard.press('Escape')
   await expectLocked(page, false)
   await expect(
     page.getByRole('button', { name: 'Resume mission' }),
   ).toBeVisible()
+  const stopped = (await snapshot(page)).cameraPosition
+  await page.keyboard.press('w')
+  await page.waitForTimeout(200)
+  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(stopped.z, 2)
 })
 
 test('computer E, exit button and Escape return without opening pause', async ({

@@ -1,3 +1,4 @@
+import { RADIO_BUTTONS, type RadioAction } from '../src/game/radioControls'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
 import {
@@ -135,28 +136,29 @@ test('reviews reference styling, shared gloves, arrival outfitting and radio thr
   await page.screenshot({ path: out + '/tactical.png' })
   await measure('tactical')
   await walkTo(page, -2.4, -0.05)
-  await approach(
-    page,
-    { x: RADIO_POSITION[0], y: RADIO_POSITION[1], z: RADIO_POSITION[2] },
-    'E CDS Radio',
-  )
-  await page.keyboard.press('e')
-  const radio = page.getByRole('dialog', { name: 'CDS Radio', exact: true })
-  await expect(radio).toBeVisible()
-  await radio.getByRole('button', { name: 'Play radio', exact: true }).click()
-  await expect(
-    radio.getByRole('button', { name: 'Pause radio', exact: true }),
-  ).toBeVisible()
-  const track = await radio.locator('.radio-now-playing strong').innerText()
-  await radio.getByRole('button', { name: 'Next radio track' }).click()
-  await expect(radio.locator('.radio-now-playing strong')).not.toHaveText(track)
-  await radio.getByRole('slider', { name: 'Radio volume' }).fill('0.2')
-  await expect(radio.getByRole('slider', { name: 'Radio volume' })).toHaveValue(
-    '0.2',
-  )
+  const pressRadio = async (action: RadioAction) => {
+    const button = RADIO_BUTTONS.find((entry) => entry.action === action)!
+    const [x, y, z] = button.position
+    await lookAt(page, {
+      x: RADIO_POSITION[0] + z + 0.024,
+      y: RADIO_POSITION[1] + y,
+      z: RADIO_POSITION[2] - x,
+    })
+    await expect(page.locator('.interaction-hint')).toContainText(button.label)
+    await page.keyboard.press('e')
+    await page.waitForTimeout(650)
+  }
+  await pressRadio('radio-play')
+  await expect
+    .poll(async () => (await snapshot(page)).radio?.playing)
+    .toBe(true)
+  await pressRadio('radio-next')
+  await expect.poll(async () => (await snapshot(page)).radio?.track).toBe(1)
+  await pressRadio('radio-quieter')
+  await pressRadio('radio-quieter')
+  expect((await snapshot(page)).radio?.volume).toBeCloseTo(0.15)
   await page.screenshot({ path: out + '/radio.png' })
-  await radio.getByRole('button', { name: 'Pause radio', exact: true }).click()
-  await radio.getByRole('button', { name: 'Leave radio' }).click()
+  await pressRadio('radio-play')
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])
   await writeFile(out + '/timing.json', JSON.stringify(costs, null, 2))

@@ -101,6 +101,15 @@ export function Workstation({ target }: { target: StationTarget }) {
         </group>
         <CommandMonitor kind="computer" target={target} />
         <CommandMonitor kind="communications" target={target} />
+        {/* Transparent picking surface over the existing navigation artwork. */}
+        <mesh
+          name="navigation-screen-target"
+          position={[...TERMINAL_SCREENS.navigation.position]}
+          userData={{ interaction: 'navigation' }}
+        >
+          <planeGeometry args={[...TERMINAL_SCREENS.navigation.display]} />
+          <meshBasicMaterial colorWrite={false} depthWrite={false} />
+        </mesh>
         <group position={[0, 0, BRIDGE_OFFSET_Z]}>
           <Part at={[0, 1.05, -4.5]} size={[1.8, 0.1, 0.65]} color="#151e22" />
           {[-0.56, 0, 0.56].map((x, index) => (

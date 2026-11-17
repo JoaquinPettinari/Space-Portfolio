@@ -1,8 +1,9 @@
+import cabinLayout from './arrivalCabinLayout.json' with { type: 'json' }
+import shellLayout from './arrivalShellLayout.json' with { type: 'json' }
 import { expect, it } from 'vitest'
 import {
   ARRIVAL_BOXES,
   ARRIVAL_BASE_DEPTH,
-  ARRIVAL_BENCH_SHIFT,
   ARRIVAL_DEPTH,
   ARRIVAL_FURNITURE,
   ARRIVAL_ORIGIN_Z,
@@ -49,36 +50,23 @@ it('uses finite convex shell strips across the room depth', () => {
   expect(Math.max(...z)).toBeCloseTo(ARRIVAL_DEPTH)
 })
 
-it('covers the fitted curved bench continuously without a straight invisible barrier', () => {
-  const bench = ARRIVAL_FURNITURE.filter((b) => b.position[1] === 0.545)
-  for (
-    let z = 1.39 + ARRIVAL_BENCH_SHIFT;
-    z < 3.91 + ARRIVAL_BENCH_SHIFT;
-    z += 0.02
-  ) {
-    const x = -3.56 - 1.5 * arrivalPortExpansion(z / 1.5)
-    const section = bench.find(
-      (b) => Math.abs(b.position[2] - z) <= b.halfSize[2] + 0.0001,
+it('closes the rear of the bench and service bank while leaving the aisle clear', () => {
+  const inside = (x: number, y: number, worldZ: number) =>
+    ARRIVAL_FURNITURE.some(
+      ({ position: p, halfSize: h }) =>
+        Math.abs(x - p[0]) <= h[0] + 1e-6 &&
+        Math.abs(y - p[1]) <= h[1] + 1e-6 &&
+        Math.abs(worldZ - ARRIVAL_ORIGIN_Z - p[2]) <= h[2] + 1e-6,
     )
-    expect(section).toBeDefined()
-    if (!section) throw new Error('Missing bench collider')
-    expect(Math.abs(x - section.position[0]) + 0.42).toBeLessThanOrEqual(
-      section.halfSize[0],
-    )
-    expect(section.position[0] + section.halfSize[0] - (x + 0.42)).toBeLessThan(
-      0.15,
-    )
+  const { bench, serviceBay } = cabinLayout
+  for (let z = bench.startZ; z <= bench.endZ; z += 0.04) {
+    expect(inside(bench.x, 0.7, z)).toBe(true)
+    expect(inside(-shellLayout.wallX + 0.1, 0.7, z)).toBe(true)
+    expect(inside(bench.x + bench.depth / 2 + 0.1, 0.7, z)).toBe(false)
   }
-})
-
-it('keeps both technical cabinets ahead of the wall ribs and outside the central route', () => {
-  const cabinets = ARRIVAL_FURNITURE.filter((box) => box.position[1] === 1.34)
-  expect(cabinets).toHaveLength(2)
-  expect(cabinets.map((box) => box.position[2] + ARRIVAL_ORIGIN_Z)).toEqual([
-    14.8, 17.1,
-  ])
-  for (const cabinet of cabinets) {
-    expect(cabinet.position[0] - cabinet.halfSize[0]).toBeCloseTo(3.6)
-    expect(cabinet.position[0] + cabinet.halfSize[0]).toBeLessThan(4.2)
+  for (let z = serviceBay.startZ; z <= serviceBay.endZ; z += 0.04) {
+    expect(inside(serviceBay.frontX + 0.01, 1.6, z)).toBe(true)
+    expect(inside(serviceBay.rearX - 0.01, 1.6, z)).toBe(true)
+    expect(inside(serviceBay.frontX - 0.1, 1.6, z)).toBe(false)
   }
 })

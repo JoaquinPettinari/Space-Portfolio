@@ -9,6 +9,7 @@ import { AmbientAudio } from './AmbientAudio'
 import { Loading } from './Loading'
 import type { ReactNode } from 'react'
 import type { BulkheadPhase } from '../world/bulkhead'
+import type { IdentityPhase } from '../world/identification'
 import './GameHud.css'
 import { ControlKey, HudControls } from './HudControls'
 import { Compass } from 'lucide-react'
@@ -20,10 +21,11 @@ type Props = {
   suspended: boolean
   lightsOn: boolean
   bulkheadPhase: BulkheadPhase
-  identity: 'idle' | 'scanning' | 'verified'
+  identity: IdentityPhase
   scanSignal: number
   subtitlesEnabled: boolean
   onToggleSubtitles: () => void
+  onAccessiblePortfolio?: () => void
   subtitle: ReactNode
 }
 export function GameHud({
@@ -38,6 +40,7 @@ export function GameHud({
   subtitle,
   subtitlesEnabled,
   onToggleSubtitles,
+  onAccessiblePortfolio,
 }: Props) {
   const { state: protocol, currentObjective } = protocolModel
   const { completed } = protocol
@@ -63,6 +66,15 @@ export function GameHud({
   )
   return (
     <>
+      {ready && mode === 'walking' && !showMouseHint && !suspended && (
+        <button
+          className="touch-pause-button"
+          aria-label="Pause menu"
+          onClick={controls.pauseStation}
+        >
+          Menu
+        </button>
+      )}
       {ready &&
         active &&
         mode === 'walking' &&
@@ -124,6 +136,8 @@ export function GameHud({
           !suspended
         }
         onResume={resumeWalking}
+        onOpenArchive={controls.openArchive}
+        onAccessiblePortfolio={onAccessiblePortfolio}
         subtitlesEnabled={subtitlesEnabled}
         onToggleSubtitles={onToggleSubtitles}
         error={error}
@@ -161,7 +175,7 @@ export function GameHud({
       )}
       {tabletMode === 'held' && !active && mode === 'walking' && (
         <button className="quick-access-button" onClick={openTablet}>
-          Interact with tablet · R
+          Resume exploration
         </button>
       )}
       {!ready && <Loading />}

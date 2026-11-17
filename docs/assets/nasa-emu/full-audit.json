@@ -1,0 +1,10 @@
+{
+  "sourcesPreserved": ["original.glb", "cruz-del-sur-eva-hanging.glb"],
+  "lowerGarmentComponents": [22067, 2176, 2176],
+  "output": "cruz-del-sur-eva-full.glb",
+  "triangles": 56206,
+  "materials": 5,
+  "bytes": 1461080,
+  "boundsMin": [-0.4399999976158142, 0.0, -0.37385624647140503],
+  "boundsMax": [0.4399999976158142, 2.118037223815918, 0.37385624647140503]
+}

@@ -558,12 +558,22 @@
   }
 }
 
-/* Touch devices cannot invoke the keyboard-only T/R handoff. Keep the same
- * focused tablet action available inside the existing objectives panel. */
+/* Touch equivalents preserve access to the held reader and pause menu. */
+.touch-pause-button {
+  display: none;
+}
 .touch-tablet-button {
   display: none;
 }
 @media (pointer: coarse) {
+  .touch-pause-button {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    min-height: 44px;
+    z-index: 6;
+  }
   .touch-tablet-button {
     display: inline-flex;
     align-items: center;

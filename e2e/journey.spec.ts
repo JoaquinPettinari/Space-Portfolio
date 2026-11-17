@@ -50,10 +50,6 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   ).toBeVisible()
   await enterObservationRoom(page)
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await page
-    .getByRole('button', { name: 'Continue Protocol', exact: true })
-    .click()
   await expect(
     page.getByRole('region', { name: 'Held mission tablet' }),
   ).toBeVisible()
@@ -149,10 +145,9 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   })
   await expect(subtitle).not.toBeVisible({ timeout: 15000 })
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
   await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toContainText('Protocol complete. Enjoy your stay aboard CRUZ DEL SUR.')
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toContainText('Protocol complete')
   await page.waitForTimeout(500)
   await expect(subtitle).not.toBeVisible()
   await page.reload()

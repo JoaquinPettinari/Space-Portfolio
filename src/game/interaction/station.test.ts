@@ -45,6 +45,7 @@ it('requires a computer target to open the screen', () => {
   expect(interactionMode('walking', 'arcade')).toBe('arcade')
   expect(interactionMode('walking', 'crew')).toBe('crew')
   expect(interactionMode('walking', 'tactical')).toBe('tactical')
+  expect(interactionMode('walking', 'navigation')).toBe('navigation')
   expect(interactionMode('walking', 'coffee')).toBe('walking')
   expect(interactionMode('walking', 'bulkhead')).toBe('walking')
   expect(interactionMode('walking', 'dossier')).toBe('walking')
@@ -90,6 +91,7 @@ it('fits every terminal frame using actual FOV and viewport aspect without tilti
     'arcade',
     'crew',
     'tactical',
+    'navigation',
   ] as const) {
     const screen = TERMINAL_SCREENS[kind]
     for (const aspect of [390 / 844, 16 / 9, 32 / 9]) {
@@ -119,6 +121,7 @@ it('maps each unchanged CSS screen onto its physical surface without stretching'
     'arcade',
     'crew',
     'tactical',
+    'navigation',
   ] as const) {
     const { display, pixels } = TERMINAL_SCREENS[kind]
     const scale = terminalHtmlScale(kind) / 400

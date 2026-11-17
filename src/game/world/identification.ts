@@ -1,5 +1,10 @@
-export const CARD_GESTURE_DURATION = 1.2
-export const VERIFICATION_DURATION = 1.5
+import { PHYSICAL_CONTACT_DELAY } from './physicalPress'
+
+export type IdentityPhase = 'idle' | 'presenting' | 'scanning' | 'verified'
+export const IDENTIFICATION_CONTACT_TIME = PHYSICAL_CONTACT_DELAY
+
+export const CARD_GESTURE_DURATION = 0.75
+export const VERIFICATION_DURATION = 0.25
 export const IDENTIFICATION_DURATION =
   CARD_GESTURE_DURATION + VERIFICATION_DURATION
 
@@ -18,7 +23,14 @@ export function advanceIdentification(
 
 /** Reach, hold against the reader, withdraw. Returns a scalar without allocating. */
 export function identificationReach(elapsed: number) {
-  const t = Math.max(0, Math.min(1, elapsed / CARD_GESTURE_DURATION))
-  const linear = t < 0.45 ? t / 0.45 : t < 0.7 ? 1 : (1 - t) / 0.3
+  const linear =
+    elapsed < IDENTIFICATION_CONTACT_TIME
+      ? Math.max(0, elapsed / IDENTIFICATION_CONTACT_TIME)
+      : elapsed < CARD_GESTURE_DURATION
+        ? 1
+        : Math.max(
+            0,
+            1 - (elapsed - CARD_GESTURE_DURATION) / VERIFICATION_DURATION,
+          )
   return linear * linear * (3 - 2 * linear)
 }

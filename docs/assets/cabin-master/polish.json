@@ -1,0 +1,14 @@
+{
+  "glassFix": "Thin clear sheet with discrete reflection; blue fill hidden from glossy rays",
+  "backgroundFix": "Full image UV on dedicated distant plane",
+  "floor": "Procedural dark metal, variable roughness and deeper grilles",
+  "terminalPreviewCollection": "13 Preview displays - not for export",
+  "previewOnly": true,
+  "runtimeChanged": false,
+  "cameras": [
+    "CAM / Lounge and EVA",
+    "CAM / Service wall and access",
+    "CAM / Fixed docking and EVA",
+    "CAM / Sliding access and terminal"
+  ]
+}

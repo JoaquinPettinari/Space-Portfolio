@@ -1,3 +1,4 @@
+import { isRadioAction, type RadioAction } from '../radioControls'
 import { useEffect, useEffectEvent, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Raycaster, Vector2, type Intersection } from 'three'
@@ -19,6 +20,7 @@ export function Interaction({
   onCoffee,
   onBulkhead,
   onDocking,
+  onRadio,
 }: {
   active: boolean
   mode: StationMode
@@ -27,6 +29,7 @@ export function Interaction({
   onDossier: () => void
   onLighting?: () => void
   onCoffee: () => void
+  onRadio: (action: RadioAction) => void
   onDocking?: () => void
   onBulkhead: () => void
 }) {
@@ -67,6 +70,11 @@ export function Interaction({
   const key = useEffectEvent((event: KeyboardEvent) => {
     if (!active || event.repeat) return
     if (event.code === 'KeyE') {
+      if (isRadioAction(target.current)) {
+        event.preventDefault()
+        onRadio(target.current)
+        return
+      }
       if (target.current === 'docking') {
         event.preventDefault()
         onDocking?.()

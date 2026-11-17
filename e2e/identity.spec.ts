@@ -1,5 +1,15 @@
 import { expect, test, type Page } from '@playwright/test'
-import { enterObservationRoom, approachCrew } from './helpers/game'
+import {
+  enterObservationRoom,
+  approachCrew,
+  lookAt,
+  walkTo,
+} from './helpers/game'
+import {
+  ARRIVAL_ORIGIN_Z,
+  ARRIVAL_DEPTH,
+} from '../src/game/world/arrivalRoomLayout'
+import { EVA_EQUIPMENT_LAYOUT } from '../src/game/world/evaEquipmentLayout'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -35,22 +45,24 @@ async function snapshot(page: Page): Promise<GameSnapshot> {
 }
 test('tablet locates Crew Access and one scan reveals the compact identity record', async ({
   page,
-}) => {
+}, info) => {
   test.setTimeout(120_000)
   await page.keyboard.press('t')
   await expect(
     page.getByRole('region', { name: 'Held mission tablet' }),
   ).toBeVisible()
-  await page.keyboard.press('r')
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  const tablet = page.getByRole('region', { name: 'Held mission tablet' })
   await expect(
-    tablet.getByRole('button', { name: /Open mission tablet/ }),
-  ).toHaveCount(0)
-  await expect(tablet).toContainText('0 / 4 objectives complete')
-  await tablet.getByRole('button', { name: /Verify crew identity/ }).hover()
-  await expect(tablet.locator('.map-objective')).toContainText('Crew Access')
-  await tablet.getByRole('button', { name: 'Close tablet' }).click()
-  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+    tablet.getByRole('listitem').filter({ hasText: 'Verify crew identity' }),
+  ).toHaveAttribute('data-complete', 'false')
+  await expect(tablet).toContainText('0 / 4')
+  await expect(
+    tablet.getByRole('img', {
+      name: /Crew Access in the docking arrival room/,
+    }),
+  ).toBeVisible()
+  await page.keyboard.press('t')
+  await expect(tablet).not.toBeVisible()
   await approachCrew(page)
   await expect(page.locator('.interaction-hint')).toContainText('Crew Access')
   const standing = await snapshot(page)
@@ -60,6 +72,29 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
     exact: true,
   })
   await expect(identity).toBeVisible()
+  const panel = identity.locator('.crew-identity')
+  const status = panel.getByRole('status')
+  await expect(status).toContainText('Verifying credentials')
+  const scanningBounds = await panel.boundingBox()
+  const scanningStatus = await status.boundingBox()
+  const started = Date.now()
+  await expect(status).toContainText('ACCESS GRANTED', { timeout: 3000 })
+  expect(Date.now() - started).toBeLessThan(3000)
+  const grantedBounds = await panel.boundingBox()
+  const grantedStatus = await status.boundingBox()
+  expect(scanningBounds).not.toBeNull()
+  expect(scanningStatus).not.toBeNull()
+  expect(grantedBounds).not.toBeNull()
+  expect(grantedStatus).not.toBeNull()
+  for (const dimension of ['x', 'y', 'width', 'height'] as const) {
+    expect(
+      Math.abs(scanningBounds![dimension] - grantedBounds![dimension]),
+    ).toBeLessThanOrEqual(1)
+    expect(
+      Math.abs(scanningStatus![dimension] - grantedStatus![dimension]),
+    ).toBeLessThanOrEqual(1)
+  }
+  await page.screenshot({ path: info.outputPath('crew-access-granted.png') })
   await expect(
     identity.locator('.crew-identity').getByRole('status'),
   ).toContainText('ACCESS GRANTED')
@@ -81,6 +116,17 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
+  await walkTo(page, -0.8, 16)
+  await lookAt(page, {
+    x: EVA_EQUIPMENT_LAYOUT.position[0],
+    y: 1.75,
+    z:
+      ARRIVAL_ORIGIN_Z +
+      ARRIVAL_DEPTH -
+      0.04 +
+      EVA_EQUIPMENT_LAYOUT.position[2],
+  })
+  await page.screenshot({ path: info.outputPath('hanging-suit.png') })
   await enterObservationRoom(page)
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),

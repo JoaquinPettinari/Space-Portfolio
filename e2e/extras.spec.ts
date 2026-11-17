@@ -26,10 +26,8 @@ test.beforeEach(async ({ page }) => {
   })
   await enterObservationRoom(page)
   await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await page.getByRole('button', { name: 'Skip Tutorial', exact: true }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
-  expect((await protocol(page)).guidance).toBe('skipped')
+  expect((await protocol(page)).guidance).toBe('pending')
   await page.keyboard.press('t')
 })
 test.afterEach(async ({ page }, info) => {
@@ -40,7 +38,9 @@ test.afterEach(async ({ page }, info) => {
   expect(errors.get(page)).toEqual([])
 })
 
-test('coffee remains available with guidance skipped', async ({ page }) => {
+test('coffee remains available without opening a mission menu', async ({
+  page,
+}) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)

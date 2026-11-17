@@ -1,0 +1,56 @@
+{
+  "retired": [
+    "LEAF_LEFT_SLIDE_BODY",
+    "LEAF_LEFT_SLIDE_BOLT_0.58",
+    "LEAF_LEFT_SLIDE_BOLT_1.43",
+    "LEAF_LEFT_SLIDE_BOLT_2.28",
+    "LEAF_LEFT_SLIDE_BOTTOM_PLATE",
+    "LEAF_LEFT_SLIDE_CENTER_SEAL",
+    "LEAF_LEFT_SLIDE_DIAGONAL_STRIPE",
+    "LEAF_LEFT_SLIDE_HANDLE",
+    "LEAF_LEFT_SLIDE_HANDLE_RECESS",
+    "LEAF_LEFT_SLIDE_INNER",
+    "LEAF_LEFT_SLIDE_LOWER_STRIPE",
+    "LEAF_LEFT_SLIDE_PANEL",
+    "LEAF_LEFT_SLIDE_TOP_PLATE",
+    "LEAF_RIGHT_SLIDE_BODY",
+    "LEAF_RIGHT_SLIDE_BOLT_0.58",
+    "LEAF_RIGHT_SLIDE_BOLT_1.43",
+    "LEAF_RIGHT_SLIDE_BOLT_2.28",
+    "LEAF_RIGHT_SLIDE_BOTTOM_PLATE",
+    "LEAF_RIGHT_SLIDE_CENTER_SEAL",
+    "LEAF_RIGHT_SLIDE_DIAGONAL_STRIPE",
+    "LEAF_RIGHT_SLIDE_HANDLE",
+    "LEAF_RIGHT_SLIDE_HANDLE_RECESS",
+    "LEAF_RIGHT_SLIDE_INNER",
+    "LEAF_RIGHT_SLIDE_LOWER_STRIPE",
+    "LEAF_RIGHT_SLIDE_PANEL",
+    "LEAF_RIGHT_SLIDE_TOP_PLATE",
+    "REV / Panoramic structural perimeter",
+    "REV / Panoramic inner metal rebate"
+  ],
+  "preservedSlots": [
+    "SLOT / Fixed docking door",
+    "SLOT / Sliding leaves",
+    "SLOT / Sliding stationary frame",
+    "SLOT / Credential terminal",
+    "SLOT / Full NASA EMU",
+    "LEAF_LEFT_SLIDE",
+    "LEAF_RIGHT_SLIDE"
+  ],
+  "copyTravelTests": [
+    {
+      "pivot": "LEAF_LEFT_SLIDE",
+      "partsFollowing": 18,
+      "testedTravel": -1.37,
+      "openCenterX": -2.055000066757202
+    },
+    {
+      "pivot": "LEAF_RIGHT_SLIDE",
+      "partsFollowing": 18,
+      "testedTravel": 1.37,
+      "openCenterX": 2.055000066757202
+    }
+  ],
+  "runtimeChanged": false
+}

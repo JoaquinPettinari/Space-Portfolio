@@ -1,3 +1,4 @@
+import { openPausePortfolio } from './helpers/portfolio'
 import { expect, test, type Page } from '@playwright/test'
 import { enterObservationRoom, forwardStation } from './helpers/game'
 import type { GameSnapshot } from '../src/game/debug/GameDiagnostics'
@@ -135,15 +136,7 @@ test('quick portfolio contact preserves failed draft and confirms only accepted 
   await expect(page.getByLabel('Game controls')).toBeVisible({
     timeout: 45_000,
   })
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('region', { name: 'Held mission tablet' }),
-  ).toBeVisible()
-  await page.keyboard.press('r')
-  await page
-    .getByRole('dialog', { name: 'Mission tablet' })
-    .getByRole('button', { name: 'Read without 3D', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Read without 3D')
   await page.getByRole('button', { name: 'Contact', exact: true }).click()
   const form = page.getByRole('form', { name: 'Earth Communications' })
   await form

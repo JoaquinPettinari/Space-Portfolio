@@ -1,3 +1,4 @@
+import { openPausePortfolio } from './helpers/portfolio'
 import { expect, test } from '@playwright/test'
 import type {} from '../src/game/debug/GameDiagnostics'
 import { readSecurityHeaders } from '../server/securityHeaders'
@@ -55,11 +56,6 @@ test('starts directly in the production station and keeps portfolio access secon
   await expect
     .poll(() => page.evaluate(() => !!document.pointerLockElement))
     .toBe(false)
-  await expect(quick).not.toBeVisible()
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toBeVisible()
   await expect(quick).toBeVisible()
   await quick.click()
   await expect(
@@ -77,14 +73,7 @@ test('starts directly in the production station and keeps portfolio access secon
   await expect(page.getByLabel('Game controls')).toBeVisible()
   // Production has no debug observer: allow the 650 ms return animation to finish.
   await page.waitForTimeout(750)
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('region', { name: 'Held mission tablet' }),
-  ).toBeVisible()
-  await page.keyboard.press('r')
-  await page
-    .getByRole('button', { name: 'Read without 3D', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Read without 3D')
   await expect(page.locator('canvas')).not.toBeVisible()
   await page
     .getByRole('button', { name: 'Back to station', exact: true })

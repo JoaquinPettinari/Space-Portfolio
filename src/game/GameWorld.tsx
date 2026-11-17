@@ -1,4 +1,4 @@
-import { Suspense, useEffect, type ReactNode } from 'react'
+import { Suspense, useEffect, useRef, type ReactNode } from 'react'
 import { Physics } from '@react-three/rapier'
 import { Greybox } from './world/Greybox'
 import { DockingHatch } from './world/DockingHatch'
@@ -19,11 +19,13 @@ import { PersonalDesktop } from '../workstation/PersonalDesktop'
 import { RecreationDesktop } from '../workstation/RecreationDesktop'
 import type { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
-import { ShipRadio } from './world/ShipRadio'
+import { ShipRadio, type ShipRadioHandle } from './world/ShipRadio'
 import { ReferenceCassettes } from './world/ReferenceCassettes'
+import { NavigationConsole } from './world/NavigationConsole'
 import type { StationControls } from './useStationControls'
 import type { MissionId } from './missions'
 import type { BulkheadPhase } from './world/bulkhead'
+import type { IdentityPhase } from './world/identification'
 
 function Ready({ onReady }: { onReady: (ready: boolean) => void }) {
   useEffect(() => {
@@ -41,15 +43,14 @@ type Props = {
   lightsOn: boolean
   bulkheadPhase: BulkheadPhase
   onBulkheadPhaseChange: (phase: BulkheadPhase) => void
-  identity: 'idle' | 'scanning' | 'verified'
+  identity: IdentityPhase
+  onIdentityContact: () => void
   finishMission: (id: MissionId) => void
   onIdentityVerified: () => void
   onCameraRest: () => void
-  onSkipMessage: () => void
   onBulkhead: () => void
   onDossier: () => void
   onTransmission: (outcome: 'accepted' | 'skipped') => void
-  onAccessiblePortfolio?: () => void
 }
 export function GameWorld({
   subtitle,
@@ -63,14 +64,14 @@ export function GameWorld({
   identity,
   finishMission,
   onIdentityVerified,
+  onIdentityContact,
   onCameraRest,
-  onSkipMessage,
   onBulkhead,
   onDossier,
   onTransmission,
-  onAccessiblePortfolio,
 }: Props) {
-  const { state: protocol, dispatch, currentObjective } = protocolModel
+  const radio = useRef<ShipRadioHandle>(null)
+  const { state: protocol, currentObjective } = protocolModel
   const { completed } = protocol
   const {
     playing,
@@ -85,7 +86,6 @@ export function GameWorld({
     setTarget,
     changeMode,
     resumeWalking,
-    walkWithTablet,
   } = controls
   return (
     <Suspense fallback={null}>
@@ -111,10 +111,12 @@ export function GameWorld({
         <Workstation target={target} />
         <CoffeeMachine state={coffee.state} target={target} />
         <CrewAccess
+          presenting={mode === 'crew' && identity === 'presenting'}
           scanning={mode === 'crew' && identity === 'scanning'}
           paused={suspended || transitioning}
           verified={completed.includes('crew')}
           onComplete={onIdentityVerified}
+          onContact={onIdentityContact}
         />
         <RearWorkstation target={target} />
         <Player
@@ -130,7 +132,10 @@ export function GameWorld({
           onClose={resumeWalking}
           subtitle={subtitle}
         >
-          <CrewIdentity verified={identity === 'verified'} />
+          <CrewIdentity
+            verified={identity === 'verified'}
+            scanning={identity === 'scanning'}
+          />
         </PhysicalTerminal>
       )}
       <TacticalStation
@@ -142,33 +147,18 @@ export function GameWorld({
         onClose={resumeWalking}
       />
       <ShipRadio
-        active={mode === 'radio' && !transitioning}
+        ref={radio}
+        target={target}
         paused={suspended || controls.showMouseHint}
-        onClose={resumeWalking}
       />
       <ReferenceCassettes />
+      {mode === 'navigation' && !transitioning && (
+        <NavigationConsole onClose={resumeWalking} />
+      )}
       <HandheldTablet
         mode={mode === 'walking' ? tabletMode : 'lowered'}
         state={protocol}
         currentObjective={currentObjective}
-        onContinue={() => {
-          dispatch({ type: 'continue' })
-          walkWithTablet()
-        }}
-        onSkip={() => {
-          dispatch({ type: 'skip' })
-          onSkipMessage()
-          walkWithTablet()
-        }}
-        onReplay={() => {
-          dispatch({ type: 'replay' })
-          walkWithTablet()
-        }}
-        onClose={resumeWalking}
-        onResume={walkWithTablet}
-        onOpenArchive={controls.openArchive}
-        onAccessiblePortfolio={onAccessiblePortfolio}
-        subtitle={subtitle}
       />
       {mode === 'communications' && !transitioning && (
         <PhysicalTerminal
@@ -208,6 +198,7 @@ export function GameWorld({
         />
       )}
       <Interaction
+        onRadio={(action) => radio.current?.press(action)}
         onBulkhead={onBulkhead}
         onCoffee={() => coffee.dispatch('interact')}
         active={playing && !transitioning && !tabletRaised}

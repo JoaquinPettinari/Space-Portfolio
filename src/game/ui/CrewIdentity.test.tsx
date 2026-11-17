@@ -19,7 +19,9 @@ it('shows one verified factual identity including the existing Master degree wit
   expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
 })
 it('does not claim access granted before the reader finishes', () => {
-  const { rerender } = render(<CrewIdentity verified={false} />)
+  const { rerender, container } = render(
+    <CrewIdentity verified={false} scanning />,
+  )
   expect(screen.getByRole('status')).toHaveTextContent(
     'Verifying credentials… Please wait.',
   )
@@ -28,8 +30,25 @@ it('does not claim access granted before the reader finishes', () => {
     screen.queryByRole('img', { name: profile.name }),
   ).not.toBeInTheDocument()
 
+  const status = screen.getByRole('status')
+  const record = container.querySelector('.crew-record-main')
+  const hint = container.querySelector('.crew-record-hint')
+  expect(hint).not.toBeVisible()
   rerender(<CrewIdentity verified />)
+  expect(screen.getByRole('status')).toBe(status)
+  expect(container.querySelector('.crew-record-main')).toBe(record)
+  expect(container.querySelector('.crew-record-hint')).toBe(hint)
+  expect(hint).toBeVisible()
   expect(screen.getAllByRole('status')).toHaveLength(1)
   expect(screen.getByRole('status')).toHaveTextContent('ACCESS GRANTED')
   expect(screen.queryByText(/Please wait/)).not.toBeInTheDocument()
+})
+
+it('waits for contact before showing loading feedback', () => {
+  const { container, rerender } = render(<CrewIdentity verified={false} />)
+  expect(screen.getByRole('status')).toHaveTextContent('Presenting crew card')
+  expect(container.querySelector('.crew-loading-spinner')).toBeNull()
+  rerender(<CrewIdentity verified={false} scanning />)
+  expect(screen.getByRole('status')).toHaveTextContent('Verifying credentials')
+  expect(container.querySelector('.crew-loading-spinner')).not.toBeNull()
 })

@@ -10,6 +10,7 @@ import {
   advanceIdentification,
   identificationReach,
   IDENTIFICATION_DURATION,
+  IDENTIFICATION_CONTACT_TIME,
 } from './identification'
 
 import {
@@ -21,14 +22,18 @@ const ignoreRaycast = () => {}
 /** Reader and animation share this terminal's local coordinate system. */
 export function CrewAccess({
   scanning,
+  presenting,
   paused,
   verified,
   onComplete,
+  onContact,
 }: {
   scanning: boolean
+  presenting: boolean
   paused: boolean
   verified: boolean
   onComplete: () => void
+  onContact: () => void
 }) {
   const { scene } = useGLTF('/models/cruz-del-sur-crew-access.glb')
   const model = useMemo(() => scene.clone(true), [scene])
@@ -49,7 +54,13 @@ export function CrewAccess({
           </mesh>
         </group>
       </RigidBody>
-      {scanning && <ReaderGesture paused={paused} onComplete={onComplete} />}
+      {(presenting || scanning) && (
+        <ReaderGesture
+          paused={paused}
+          onComplete={onComplete}
+          onContact={onContact}
+        />
+      )}
     </group>
   )
 }
@@ -57,13 +68,16 @@ export function CrewAccess({
 function ReaderGesture({
   paused,
   onComplete,
+  onContact,
 }: {
   paused: boolean
   onComplete: () => void
+  onContact: () => void
 }) {
   const hand = useRef<Group>(null)
   const elapsed = useRef(0)
   const complete = useRef(false)
+  const contacted = useRef(false)
   const reduced = useReducedMotionRef()
   useFrame((_, delta) => {
     if (!hand.current || complete.current || paused || document.hidden) return
@@ -74,6 +88,10 @@ function ReaderGesture({
       reduced.current,
     )
     const reach = identificationReach(elapsed.current)
+    if (!contacted.current && elapsed.current >= IDENTIFICATION_CONTACT_TIME) {
+      contacted.current = true
+      onContact()
+    }
     if (import.meta.env.DEV) {
       hand.current.userData.identificationElapsed = elapsed.current
       hand.current.userData.identificationReach = reach

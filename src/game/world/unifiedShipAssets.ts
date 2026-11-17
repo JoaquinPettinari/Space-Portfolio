@@ -1,10 +1,10 @@
 import { Mesh, Object3D, Vector3 } from 'three'
 
 export const UNIFIED_ENVELOPE_ASSET =
-  '/models/cruz-del-sur-unified-envelope.glb'
+  '/models/cruz-del-sur-straight-envelope.glb'
 export const UNIFIED_ARRIVAL_ASSET = '/models/cruz-del-sur-unified-arrival.glb'
 export const UNIFIED_COLLISION_ASSET =
-  '/models/cruz-del-sur-unified-collision.glb'
+  '/models/cruz-del-sur-straight-collision.glb'
 
 /** Structural-only mesh, baked into world metres once at load time. */
 export function readUnifiedCollision(scene: Object3D) {

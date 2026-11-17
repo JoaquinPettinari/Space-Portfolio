@@ -1,3 +1,4 @@
+import { RADIO_BUTTONS } from '../radioControls'
 import type { CoffeeState } from '../coffee'
 import type { StationTarget } from './station'
 import type { BulkheadPhase } from '../world/bulkhead'
@@ -8,13 +9,15 @@ export function interactionHint(
   coffee: CoffeeState['phase'],
   bulkhead: BulkheadPhase = 'closed',
 ) {
+  const button = RADIO_BUTTONS.find((entry) => entry.action === target)
+  if (button) return 'E ' + button.label
   switch (target) {
+    case 'navigation':
+      return 'E Exterior inspection'
     case 'docking':
       return 'E Open docking hatch'
     case 'tactical':
       return 'E Tactical Table'
-    case 'radio':
-      return 'E CDS Radio'
     case 'crew':
       return 'E Crew Access'
     case 'bulkhead':
@@ -38,6 +41,8 @@ export function interactionHint(
     case 'dossier':
       return 'E Download crew dossier (CV / PDF)'
     case null:
+      return ''
+    default:
       return ''
   }
 }

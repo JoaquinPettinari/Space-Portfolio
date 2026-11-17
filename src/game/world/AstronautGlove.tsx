@@ -2,8 +2,14 @@ import { useEffect, useMemo } from 'react'
 import { createAstronautGloveGeometry } from './astronautGloveGeometry'
 
 /** Both gestures use the same silhouette, fabric, cuff and finger construction. */
-export function AstronautGlove({ overlay = false }: { overlay?: boolean }) {
-  const geometry = useMemo(() => createAstronautGloveGeometry(), [])
+export function AstronautGlove({
+  overlay = false,
+  pose = 'grip',
+}: {
+  overlay?: boolean
+  pose?: 'grip' | 'point'
+}) {
+  const geometry = useMemo(() => createAstronautGloveGeometry(pose), [pose])
   useEffect(() => () => geometry.dispose(), [geometry])
   return (
     <mesh

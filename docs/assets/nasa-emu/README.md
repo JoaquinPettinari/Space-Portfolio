@@ -1,5 +1,32 @@
 # EMU: chaqueta de exposición adaptada
 
+## Traje completo de la cabina de referencia — 2026-11-17
+
+El runtime utiliza ahora `cruz-del-sur-eva-full.glb`. Se recuperan pantalón,
+botas y dos bolsillos de la fuente NASA original y se unen a la prenda superior
+con brazos relajados. Se identifican por topología las islas del soporte de
+exposición y se excluyen; también se retiran el fragmento posterior y el antiguo
+colgador de la adaptación superior. Los GLB anteriores permanecen intactos.
+
+La escala uniforme conserva proporciones: 2,118 m de alto, 0,88 m de ancho y
+0,748 m de profundidad. El asset contiene 56.206 triángulos, cinco materiales y
+1.461.080 bytes; no añade texturas, armature, animación ni luces al modelo.
+`full-audit.json` registra las dimensiones, los componentes originales y el coste.
+`full-preview.png` se renderiza leyendo únicamente el GLB final.
+
+El nicho se extiende hasta una plataforma a 0,18 m del piso; se conserva su ancho
+y separación de la escotilla. El collider ahora cubre las piernas y la base.
+Dos acabados emisivos aportan líneas cian y una luminaria cálida visible, sin
+luces reales ni sombras nuevas. La prueba carga el GLB real para verificar
+dimensiones, presupuesto de triángulos, cinco materiales y despeje de escotilla.
+
+```powershell
+& 'C:/Program Files/Blender Foundation/Blender 5.3/blender.exe' --background --factory-startup --python scripts/assets/prepare-full-emu.py
+& 'C:/Program Files/Blender Foundation/Blender 5.3/blender.exe' --background --factory-startup --python scripts/assets/preview-nasa-emu.py -- --full
+```
+
+Las secciones siguientes documentan las adaptaciones anteriores conservadas.
+
 Fuente: [Extravehicular Mobility Unit — NASA Science](https://science.nasa.gov/3d-resources/extravehicular-mobility-unit/).
 Autoría indicada por la fuente: **NASA/Michael D. Carbajal**.
 
@@ -62,3 +89,28 @@ El GLB final tiene **41.642 triángulos, cinco materiales y 1.300.520 bytes**.
 La operación es idempotente y rechaza una coincidencia parcial en lugar de
 borrar geometría distinta por proximidad. El render final se genera únicamente
 leyendo este GLB; no lo reexporta ni lo modifica.
+
+## Postura de prenda vacía — 2026-11-17
+
+El juego usa ahora `cruz-del-sur-eva-hanging.glb`, derivado del preparado anterior
+sin sobrescribirlo. `prepare-hanging-emu.py` orienta brazo y antebrazo hacia abajo
+con dos rotaciones horneadas y una mezcla continua alrededor del codo. Conserva
+las uniones del hombro y las islas completas de los guantes, sin añadir un rig
+al juego. El centro de cada guante queda más de 5 cm por debajo del bajo de la
+prenda y a menos de 12 cm laterales de su hombro. La silueta completa mide 71,4 cm
+de ancho, frente a los 93 cm de la postura anterior con codos separados. Añade un
+soporte visible detrás de los hombros. Las piezas del soporte se unen al mesh
+existente y reutilizan su material: conserva cinco primitivas/materiales, sin
+armature, animaciones, luces ni sombras nuevas.
+
+La copia tiene 41.678 triángulos y 1.120.156 bytes. El test de
+`evaEquipmentLayout.test.ts` carga este GLB real y comprueba el espacio libre
+frente a la escotilla, su contención dentro del collider existente y los límites
+de ancho y caída de las manos. Las medidas
+de exportación están en `hanging-audit.json`; la vista de frente está en
+`hanging-preview.png`. La imagen no constituye una medición de FPS del juego.
+
+```powershell
+& 'C:/Program Files/Blender Foundation/Blender 5.3/blender.exe' --background --factory-startup --python scripts/assets/prepare-hanging-emu.py
+& 'C:/Program Files/Blender Foundation/Blender 5.3/blender.exe' --background --factory-startup --python scripts/assets/preview-nasa-emu.py -- --hanging
+```

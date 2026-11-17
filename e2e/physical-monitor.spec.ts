@@ -1,3 +1,4 @@
+import { openPausePortfolio } from './helpers/portfolio'
 import { SCREEN_POSITION } from '../src/game/interaction/station'
 import {
   expect,
@@ -296,16 +297,9 @@ test('quick access focuses the same physical Archive from the airlock without co
   page,
 }) => {
   await ready(page)
-  await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toBeVisible()
   const before = await snapshot(page)
   const progress = (await snapshot(page)).session.protocol
-  await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Quick Portfolio Access')
   const dialog = await expectPhysicalScreen(page)
   await expect(
     dialog.getByRole('heading', { name: 'Joaquín Pettinari', exact: true }),
@@ -493,14 +487,7 @@ test('accessible HTML contact preserves the failed draft and confirms only a moc
     )
   })
   await ready(page)
-  await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
-  ).toBeVisible()
-  await page
-    .getByRole('button', { name: 'Read without 3D', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Read without 3D')
   const dialog = page.locator('.quick-portfolio')
   await dialog.getByRole('button', { name: 'Contact', exact: true }).click()
   const form = dialog.getByRole('form', { name: 'Earth Communications' })
@@ -543,14 +530,7 @@ test('physical service records remain readable and project details preserve nati
       console.log(message.text())
   })
   await ready(page)
-  await page.keyboard.press('t')
-  await page.keyboard.press('r')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
-  ).toBeVisible()
-  await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Quick Portfolio Access')
   const dialog = await expectPhysicalScreen(page)
   await dialog
     .getByRole('button', { name: 'Service Record', exact: true })

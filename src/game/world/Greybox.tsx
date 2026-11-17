@@ -8,6 +8,7 @@ import { ShipHull } from './ShipHull'
 import { BridgeFloor } from './BridgeFloor'
 import { CabinLighting } from './CabinLighting'
 import { EntryAirlock } from './EntryAirlock'
+import { ArrivalSurfaceEnvironment } from './ArrivalSurfaceEnvironment'
 import { PanoramicPassage } from './PanoramicPassage'
 import { BridgeThroatFrame } from './BridgeThroatFrame'
 import { TABLE_POSITION } from '../interaction/station'
@@ -87,46 +88,48 @@ export function Greybox({
   onBulkheadPhaseChange: (phase: BulkheadPhase) => void
 }) {
   return (
-    <group>
-      <SpaceExterior />
-      <PlayerShipHull />
-      <RefinedInteriorDetails />
-      <group position={[0, 0, BRIDGE_OFFSET_Z]}>
-        <CabinLighting emergency={emergency} />
-      </group>
-      {/* Colisiones sencillas e independientes del vidrio y sus marcos. */}
-      <RigidBody
-        type="fixed"
-        colliders={false}
-        friction={0}
-        position={[0, 0, BRIDGE_OFFSET_Z]}
-      >
-        <BridgeFloor />
-        {[-3.07, 3.07].map((x) => (
+    <ArrivalSurfaceEnvironment emergency={emergency}>
+      <group>
+        <SpaceExterior />
+        <PlayerShipHull />
+        <RefinedInteriorDetails />
+        <group position={[0, 0, BRIDGE_OFFSET_Z]}>
+          <CabinLighting emergency={emergency} />
+        </group>
+        {/* Colisiones sencillas e independientes del vidrio y sus marcos. */}
+        <RigidBody
+          type="fixed"
+          colliders={false}
+          friction={0}
+          position={[0, 0, BRIDGE_OFFSET_Z]}
+        >
+          <BridgeFloor />
+          {[-3.07, 3.07].map((x) => (
+            <CuboidCollider
+              key={x}
+              args={[1.73, 1.65, 0.15]}
+              position={[x, 1.65, 5.1]}
+            />
+          ))}
+          <CuboidCollider args={[1.34, 0.39, 0.15]} position={[0, 2.91, 5.1]} />
+          <ShipHull />
+        </RigidBody>
+        <EntryAirlock emergency={emergency} />
+        <PanoramicPassage />
+        <BridgeThroatFrame />
+        <RigidBody type="fixed" colliders={false}>
           <CuboidCollider
-            key={x}
-            args={[1.73, 1.65, 0.15]}
-            position={[x, 1.65, 5.1]}
+            position={[0, -0.1, TRANSITION_CENTER - 0.075]}
+            args={[1.5, 0.1, 1.575]}
           />
-        ))}
-        <CuboidCollider args={[1.34, 0.39, 0.15]} position={[0, 2.91, 5.1]} />
-        <ShipHull />
-      </RigidBody>
-      <EntryAirlock emergency={emergency} />
-      <PanoramicPassage />
-      <BridgeThroatFrame />
-      <RigidBody type="fixed" colliders={false}>
-        <CuboidCollider
-          position={[0, -0.1, TRANSITION_CENTER - 0.075]}
-          args={[1.5, 0.1, 1.575]}
+        </RigidBody>
+        <Bulkhead
+          phase={bulkheadPhase}
+          powered={!emergency}
+          onPhaseChange={onBulkheadPhaseChange}
         />
-      </RigidBody>
-      <Bulkhead
-        phase={bulkheadPhase}
-        powered={!emergency}
-        onPhaseChange={onBulkheadPhaseChange}
-      />
-      <CentralTable />
-    </group>
+        <CentralTable />
+      </group>
+    </ArrivalSurfaceEnvironment>
   )
 }

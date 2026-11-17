@@ -44,7 +44,9 @@ function asset(path: string) {
 it('ships bounded room/material batches without preview lights, cameras or external texture URLs', () => {
   for (const [path, maxBytes, maxMeshes, maxTriangles] of [
     [REFINED_BRIDGE_ASSET, 22_000_000, 52, 250_000],
-    [REFINED_ARRIVAL_ASSET, 5_500_000, 20, 65_000],
+    // Reference dressing includes ceiling, cloth and solid foliage. Measured
+    // runtime cost is recorded in docs/audits/cabin-reference, not inferred here.
+    [REFINED_ARRIVAL_ASSET, 7_200_000, 28, 125_000],
     [REFINED_DETAILS_ASSET, 2_500_000, 42, 25_000],
   ] as const) {
     const { bytes, metadata } = asset(path)
@@ -126,6 +128,26 @@ it('keeps imported art clear of the arrival route, door sweep and live terminal 
   const hits = (origin: Vector3, direction: Vector3, far: number) =>
     new Raycaster(origin, direction, 0, far).intersectObject(root, true)
   try {
+    // Both perimeter plates and centre maintenance hatches must receive the
+    // deck finish; the raised black backing previously concealed the metal.
+    for (const [x, z] of [
+      [-3, 15.07],
+      [0, 14],
+      [0, 16],
+    ]) {
+      const surface = hits(
+        new Vector3(x, 0.25, z),
+        new Vector3(0, -1, 0),
+        0.5,
+      )[0]
+      expect(surface).toBeDefined()
+      expect(surface.point.y).toBeGreaterThanOrEqual(-0.001)
+      expect(surface.point.y).toBeLessThan(0.025)
+      expect(surface.object.name).toContain('Graphite_deck')
+    }
+    const well = hits(new Vector3(2, 0.25, 14), new Vector3(0, -1, 0), 0.5)[0]
+    expect(well.point.y).toBeLessThan(-0.02)
+    expect(well.object.name).toContain('Graphite_frame')
     for (const x of [-0.75, 0, 0.75])
       for (const y of [0.5, 1.7, 2.35])
         expect(
@@ -137,6 +159,18 @@ it('keeps imported art clear of the arrival route, door sweep and live terminal 
           expect(
             hits(new Vector3(0, y, z), new Vector3(side, 0, 0), 2.74),
           ).toHaveLength(0)
+    // Inspect the actual exported furniture, not just its collider constants.
+    const benchFaces = [15.2, 16.05, 16.9].map((z) => {
+      const hit = hits(new Vector3(-2, 0.28, z), new Vector3(-1, 0, 0), 2)[0]
+      expect(hit).toBeDefined()
+      return hit.point.x
+    })
+    expect(Math.max(...benchFaces) - Math.min(...benchFaces)).toBeLessThan(
+      0.002,
+    )
+    expect(
+      hits(new Vector3(3.1, 0.4, 14.6), new Vector3(0, 0, 1), 1),
+    ).toHaveLength(0)
     for (const kind of [
       'computer',
       'communications',

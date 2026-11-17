@@ -19,7 +19,7 @@ it('focuses resume, traps focus, and only invokes requested settings actions', (
   )
   const first = screen.getByRole('button', { name: 'Resume mission' })
   const setting = screen.getByRole('switch', { name: 'Subtitles' })
-  const last = screen.getByRole('link', { name: 'Visual credits' })
+  const last = screen.getByRole('link', { name: 'Credits' })
   expect(first).toHaveFocus()
   expect(setting).toHaveAttribute('aria-checked', 'true')
   expect(last).toHaveAttribute('href', '/credits.html')

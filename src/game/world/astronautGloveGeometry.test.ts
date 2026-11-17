@@ -1,6 +1,9 @@
 // @vitest-environment node
 import { expect, it } from 'vitest'
-import { createAstronautGloveGeometry } from './astronautGloveGeometry'
+import {
+  createAstronautGloveGeometry,
+  GLOVE_POINT_FINGERTIP,
+} from './astronautGloveGeometry'
 
 it('keeps the shared glove in its grip envelope with one coloured surface and a bounded mesh cost', () => {
   const geometry = createAstronautGloveGeometry()
@@ -32,5 +35,27 @@ it('keeps the shared glove in its grip envelope with one coloured surface and a 
     )
   } finally {
     geometry.dispose()
+  }
+})
+
+it('extends one index for the physical radio press and keeps its contact point inside the mesh', () => {
+  const grip = createAstronautGloveGeometry()
+  const point = createAstronautGloveGeometry('point')
+  try {
+    expect(point.boundingBox!.max.y).toBeCloseTo(GLOVE_POINT_FINGERTIP[1], 2)
+    expect(point.boundingBox!.max.y - grip.boundingBox!.max.y).toBeGreaterThan(
+      0.15,
+    )
+    expect(point.getAttribute('position').count / 3).toBeLessThan(25_000)
+    expect(point.getAttribute('color').count).toBe(
+      point.getAttribute('position').count,
+    )
+    expect(point.groups).toHaveLength(0)
+    expect(
+      [...point.getAttribute('position').array].every(Number.isFinite),
+    ).toBe(true)
+  } finally {
+    grip.dispose()
+    point.dispose()
   }
 })

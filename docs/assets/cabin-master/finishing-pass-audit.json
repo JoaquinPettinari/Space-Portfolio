@@ -1,0 +1,23 @@
+{
+  "before": {
+    "activeObjects": 1134,
+    "evaluatedTriangles": 295507,
+    "archivedObjects": 632
+  },
+  "after": {
+    "activeObjects": 1285,
+    "evaluatedTriangles": 320534,
+    "archivedObjects": 632
+  },
+  "preservedSlots": [
+    "SLOT / Fixed docking door",
+    "SLOT / Sliding leaves",
+    "SLOT / Sliding stationary frame",
+    "SLOT / Credential terminal",
+    "SLOT / Full NASA EMU",
+    "LEAF_LEFT_SLIDE",
+    "LEAF_RIGHT_SLIDE"
+  ],
+  "newObjects": 151,
+  "runtimeChanged": false
+}

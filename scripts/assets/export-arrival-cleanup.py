@@ -14,6 +14,8 @@ exec(compile(prefix, str(recipe), 'exec'), globals())
 OUT = ROOT / 'docs/audits/arrival-cleanup'
 OUT.mkdir(parents=True, exist_ok=True)
 arrival_only = '--arrival-only' in sys.argv
+reference_cabin = '--reference-cabin' in sys.argv
+cabin_revision = '--cabin-revision' in sys.argv or reference_cabin
 
 removed = []
 kept_arrival = []
@@ -68,12 +70,25 @@ for original in filter_sources:
     bpy.data.meshes.remove(data)
 
 kept_details.extend(modules)
-if not arrival_only:
+if cabin_revision:
+    import runpy
+    revise = runpy.run_path(str(ROOT / 'scripts/assets/revise-arrival-cabin.py'))['revise']
+    before_revision = kept_arrival + kept_details
+    kept_arrival, kept_details = revise(kept_arrival, kept_details, reference=reference_cabin)
+    retained_revision = set(kept_arrival + kept_details)
+    removed.extend(obj.name for obj in before_revision if obj not in retained_revision)
+    OUT = ROOT / 'docs/audits' / ('cabin-reference' if reference_cabin else 'cabin-revision')
+    OUT.mkdir(parents=True, exist_ok=True)
+    variant = 'reference' if reference_cabin else 'cabin'
+    export('cruz-del-sur-' + variant + '-arrival.glb', kept_arrival, arrival_local=True)
+    export('cruz-del-sur-' + variant + '-details.glb', kept_details)
+elif not arrival_only:
     export('cruz-del-sur-clean-bridge.glb', bridge)
-export('cruz-del-sur-clean-arrival.glb', kept_arrival, arrival_local=True)
-if not arrival_only:
+if not cabin_revision:
+    export('cruz-del-sur-clean-arrival.glb', kept_arrival, arrival_local=True)
+if not arrival_only and not cabin_revision:
     export('cruz-del-sur-clean-details.glb', kept_details)
-else:
+elif arrival_only and not cabin_revision:
     previous = json.loads((OUT / 'export.json').read_text(encoding='utf-8'))
     replacement = reports[0]
     reports[:] = [replacement if asset['file'] == replacement['file'] else asset
@@ -81,13 +96,19 @@ else:
 report = {
     'source': str(Path(bpy.data.filepath).resolve()),
     'sourceSaved': False,
+    'cabinRevision': cabin_revision,
+    'referenceCabin': reference_cabin,
     'originalRuntimeFilesChanged': False,
     'removedNamedSourceObjects': removed,
-    'filterWorldCentersZ': [13.6, 15.9],
-    'cabinetWorldCentersZ': [14.8, 17.1],
-    'cabinetWorldCentersX': [3.78, 3.78],
-    'environmentFilterCount': 2,
-    'technicalCabinetCount': 2,
+    **({'serviceWallReference': True,
+        'serviceWallLayout': json.loads((ROOT / 'src/game/world/arrivalCabinLayout.json').read_text())['serviceBay'],
+        'serviceWallZones': ['personal-storage', 'maintenance', 'open-engineering', 'life-support', 'medical']}
+       if reference_cabin else {
+           'filterWorldCentersZ': [13.6, 15.9],
+           'cabinetWorldCentersZ': [14.8, 17.1],
+           'cabinetWorldCentersX': [3.78, 3.78],
+           'environmentFilterCount': 2,
+           'technicalCabinetCount': 2}),
     'assets': reports,
 }
 (OUT / 'export.json').write_text(json.dumps(report, indent=2), encoding='utf-8')

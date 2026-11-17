@@ -1,9 +1,21 @@
 import { useEffect } from 'react'
-import { completedObjectiveCount, missions } from '../missions'
+import { BatteryFull, Wifi, MapPin, ClipboardList } from 'lucide-react'
+import {
+  completedObjectiveCount,
+  missions,
+  type ObjectiveId,
+} from '../missions'
 import type { ProtocolState } from '../protocol'
 import { DeckMap } from './DeckMap'
 
-/** Non-interactive reading mode: pointer lock remains owned by the FPS camera. */
+const objectiveLocations: Partial<Record<ObjectiveId, string>> = {
+  crew: 'Arrival deck · Crew Access',
+  archives: 'Bridge · Port archive console',
+  uplink: 'Bridge · Starboard communications',
+  dossier: 'Bridge · Personal workstation',
+}
+
+/** Read-only mission/map reader: mouse and movement remain owned by FPS input. */
 export function HeldTabletDisplay({
   state,
   currentObjective,
@@ -17,11 +29,20 @@ export function HeldTabletDisplay({
   return (
     <section className="held-tablet-display" aria-label="Held mission tablet">
       <header>
-        <strong>CDS-01 · TASK MANAGER</strong>
-        <span>
-          {completedObjectiveCount(state.completed)} / {missions.length}
-        </span>
+        <strong>
+          CDS-01 <span>MISSION ASSISTANT</span>
+        </strong>
+        <div aria-label="Local link online">
+          <Wifi size={21} aria-hidden="true" />
+          <BatteryFull size={25} aria-hidden="true" />
+        </div>
       </header>
+      <div className="held-tablet-summary">
+        <span>EXPEDITION / PAMPA-07</span>
+        <strong>
+          {completedObjectiveCount(state.completed)} / {missions.length}
+        </strong>
+      </div>
       <p>
         {state.guidance === 'skipped'
           ? 'Free exploration · Guidance paused'
@@ -31,34 +52,46 @@ export function HeldTabletDisplay({
       </p>
       <div className="held-tablet-layout">
         <div className="held-tablet-tasks">
-          <div className="held-tablet-section-label" aria-hidden="true">
-            TASKS
+          <div className="held-tablet-section-label">
+            <ClipboardList size={18} aria-hidden="true" /> TASKS{' '}
+            <span>01—04</span>
           </div>
           <ul aria-label="Mission progress">
-            {missions.map((mission) => (
+            {missions.map((mission, index) => (
               <li
                 key={mission.id}
+                data-current={mission.id === currentObjective?.id}
                 data-complete={state.completed.includes(mission.id)}
               >
-                <span aria-hidden="true">
-                  {state.completed.includes(mission.id) ? '☑' : '□'}
-                </span>{' '}
-                {mission.title}
+                <span className="held-task-check" aria-hidden="true">
+                  {state.completed.includes(mission.id)
+                    ? '✓'
+                    : String(index + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <strong>{mission.title}</strong>
+                  <small>
+                    <MapPin size={11} aria-hidden="true" />
+                    {objectiveLocations[mission.id]}
+                  </small>
+                </div>
               </li>
             ))}
           </ul>
         </div>
         <div className="held-tablet-map">
+          <div className="held-tablet-section-label">
+            DECK MAP <span>UPPER DECK</span>
+          </div>
           <DeckMap selected={currentObjective?.id ?? 'crew'} />
+          <span className="held-map-legend">
+            <i /> CURRENT OBJECTIVE
+          </span>
         </div>
       </div>
-      <div className="held-tablet-tabs" aria-hidden="true">
-        <span>☷ Tasks</span>
-        <span className="selected">⌖ Deck map</span>
-        <span>▤ Logs</span>
-      </div>
       <footer>
-        WASD · Move / Mouse · Look / R · Interact & skip tutorial / T · Lower
+        <span>WASD · Move / Mouse · Look</span>
+        <strong>T · Lower tablet</strong>
       </footer>
     </section>
   )

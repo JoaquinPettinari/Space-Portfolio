@@ -11,6 +11,7 @@ import {
 } from './unifiedShipAssets'
 import { ARRIVAL_FLOOR_HULLS } from './arrivalRoomLayout'
 import { TERMINAL_SCREENS } from '../interaction/station'
+import shellLayout from './arrivalShellLayout.json' with { type: 'json' }
 
 async function load(path: string) {
   const bytes = readFileSync(new URL('../../../public' + path, import.meta.url))
@@ -100,6 +101,16 @@ it('uses an inexpensive structural collider with free circulation and door sweep
     expect(floor.length).toBeGreaterThan(0)
     expect(floor[0].point.y).toBeCloseTo(-0.005, 3)
     expect(floor[0].face?.normal.y).toBeGreaterThan(0.99)
+    // The side infill must reach the resized rear collar, not the old floor end.
+    for (const x of [-4.7, 4.7])
+      for (const z of [18.3, 18.35, shellLayout.endZ - 0.02]) {
+        const rearFloor = hits(new Vector3(x, 0.5, z), new Vector3(0, -1, 0), 1)
+        expect(
+          rearFloor.length,
+          `unsupported floor at ${x}, ${z}`,
+        ).toBeGreaterThan(0)
+        expect(rearFloor[0].point.y).toBeCloseTo(-0.005, 3)
+      }
     // Structural sides stop a lateral push; they are not the old hidden X=4.2 wall.
     const right = hits(new Vector3(0, 1.7, 15), new Vector3(1, 0, 0), 7)
     expect(right.length).toBeGreaterThan(0)
@@ -159,6 +170,65 @@ it('exports spatial batches with cheap glass and does not obscure the real Crew 
           ).intersectObjects(scene.children, true),
         ).toHaveLength(0)
       }
+  } finally {
+    release(scene)
+  }
+})
+
+it('seals the lounge glazing and straight roof even above furniture height', async () => {
+  const { scene } = await load(UNIFIED_COLLISION_ASSET)
+  scene.traverse((object) => {
+    if (object instanceof Mesh) {
+      const materials = Array.isArray(object.material)
+        ? object.material
+        : [object.material]
+      materials.forEach((material) => (material.side = DoubleSide))
+    }
+  })
+  const hit = (origin: Vector3, direction: Vector3) =>
+    new Raycaster(origin, direction, 0, 8).intersectObjects(
+      scene.children,
+      true,
+    )[0]
+  try {
+    // Sweep between dividers as well as across them. Raised positions reproduce
+    // the eye level reached by jumping from the side table, without substituting
+    // for the separate browser regression with real movement and jump input.
+    for (const direction of [-1, 1]) {
+      for (const [x, y] of [
+        [-4.6, 2.4],
+        [4.6, 2.4],
+        [-3, 3.05],
+        [3, 3.05],
+      ]) {
+        const cap = hit(new Vector3(x, y, 15), new Vector3(0, 0, direction))
+        expect(
+          cap,
+          `unsealed end corner ${x}, ${y}, ${direction}`,
+        ).toBeDefined()
+        expect(cap.point.z).toBeGreaterThanOrEqual(shellLayout.startZ - 0.15)
+        expect(cap.point.z).toBeLessThanOrEqual(shellLayout.endZ + 0.15)
+      }
+    }
+    for (let z = 12.3; z < 18; z += 0.17) {
+      for (const y of [0.4, 1.1, 1.7, 2.2, 2.48, 2.7, 3.05]) {
+        const side = hit(new Vector3(0, y, z), new Vector3(-1, 0, 0))
+        expect(side, `unsealed port side at height ${y}, z ${z}`).toBeDefined()
+        const { wallX, shoulderY, roofX, roofY } = shellLayout
+        const boundary =
+          y <= shoulderY
+            ? wallX
+            : wallX - ((y - shoulderY) / (roofY - shoulderY)) * (wallX - roofX)
+        expect(Math.abs(side.point.x)).toBeGreaterThan(boundary - 0.25)
+        expect(Math.abs(side.point.x)).toBeLessThanOrEqual(boundary + 0.02)
+      }
+      for (const x of [-3, -1.5, 0, 1.5, 3]) {
+        const roof = hit(new Vector3(x, 2.8, z), new Vector3(0, 1, 0))
+        expect(roof, `unsealed ceiling at x ${x}, z ${z}`).toBeDefined()
+        expect(roof.point.y).toBeGreaterThanOrEqual(3.1)
+        expect(roof.point.y).toBeLessThanOrEqual(3.31)
+      }
+    }
   } finally {
     release(scene)
   }

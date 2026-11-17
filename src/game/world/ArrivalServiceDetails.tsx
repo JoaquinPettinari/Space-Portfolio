@@ -4,7 +4,8 @@ import { ARRIVAL_DEPTH, ARRIVAL_ORIGIN_Z } from './arrivalRoomLayout'
 // Millimetres of relief on the rear pressure wall, outside the hatch opening.
 // Repeated louvres and screws share instances; no lights, updates or colliders.
 const rear = ARRIVAL_ORIGIN_Z + ARRIVAL_DEPTH - 0.04
-const details: StaticPanel[] = [-1, 1].flatMap((side) => {
+// The port grille was replaced by the full-height EVA niche.
+const details: StaticPanel[] = [1].flatMap((side) => {
   const x = side * 2.36
   return [
     { at: [x, 0.61, rear], size: [0.82, 0.58, 0.045], color: '#465057' },

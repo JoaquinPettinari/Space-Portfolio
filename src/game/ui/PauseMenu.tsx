@@ -5,6 +5,8 @@ import './PauseMenu.css'
 type PauseMenuProps = {
   visible: boolean
   onResume: () => void
+  onOpenArchive?: () => void
+  onAccessiblePortfolio?: () => void
   subtitlesEnabled: boolean
   onToggleSubtitles: () => void
   error: string
@@ -15,6 +17,8 @@ type PauseMenuProps = {
 export function PauseMenu({
   visible,
   onResume,
+  onOpenArchive,
+  onAccessiblePortfolio,
   subtitlesEnabled,
   onToggleSubtitles,
   error,
@@ -48,6 +52,19 @@ export function PauseMenu({
         >
           Resume mission
         </button>
+        {onOpenArchive && (
+          <button className="pause-menu__shortcut" onClick={onOpenArchive}>
+            Quick Portfolio Access
+          </button>
+        )}
+        {onAccessiblePortfolio && (
+          <button
+            className="pause-menu__shortcut"
+            onClick={onAccessiblePortfolio}
+          >
+            Read without 3D
+          </button>
+        )}
         <div className="pause-menu__settings">
           {children}
           <button
@@ -74,7 +91,7 @@ export function PauseMenu({
         <footer>
           <span>ESC to resume</span>
           <a href="/credits.html" target="_blank" rel="noreferrer">
-            Visual credits
+            Credits
           </a>
           <span>T · Tablet</span>
         </footer>

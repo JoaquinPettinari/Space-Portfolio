@@ -57,11 +57,15 @@ export function SpaceExterior() {
       <AsteroidField />
       <DistantShip />
       <DistantPlanets />
-      <mesh name="fixed-galactic-sky" renderOrder={1}>
+      <mesh
+        name="fixed-galactic-sky"
+        renderOrder={1}
+        rotation={[0.2, -2.4, 0.15]}
+      >
         <sphereGeometry args={[100, 48, 24]} />
         <meshBasicMaterial
           map={skyMap}
-          color="#646b7b"
+          color="#b6c5df"
           side={BackSide}
           depthWrite={false}
           toneMapped={false}

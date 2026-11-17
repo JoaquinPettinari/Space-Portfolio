@@ -14,6 +14,7 @@ import { useDialogue } from './useDialogue'
 import { missions } from './missions'
 import { StationAssistant } from './ui/StationAssistant'
 import { requestBridgeAccess, type BulkheadPhase } from './world/bulkhead'
+import type { IdentityPhase } from './world/identification'
 const Diagnostics = import.meta.env.DEV
   ? lazy(() =>
       import('./debug/GameDiagnostics').then(({ GameDiagnostics }) => ({
@@ -36,13 +37,11 @@ export function Game({
   const [bulkheadPhase, setBulkheadPhase] = useState<BulkheadPhase>('closed')
   const bulkheadOpen = bulkheadPhase === 'open'
   const coffee = useCoffee(suspended)
-  const [identity, setIdentity] = useState<'idle' | 'scanning' | 'verified'>(
-    'idle',
-  )
+  const [identity, setIdentity] = useState<IdentityPhase>('idle')
   const [scanSignal, setScanSignal] = useState(0)
   const [subtitlesEnabled, setSubtitlesEnabled] = useState(true)
   const dialogue = useDialogue({ paused: suspended })
-  const { enqueue, clear } = dialogue
+  const { enqueue } = dialogue
   const finishMission = (id: MissionId) => {
     dispatch({ type: 'activity', id })
     if (
@@ -165,6 +164,10 @@ export function Game({
           bulkheadPhase={bulkheadPhase}
           onBulkheadPhaseChange={setBulkheadPhase}
           identity={identity}
+          onIdentityContact={() => {
+            setIdentity('scanning')
+            setScanSignal((v) => v + 1)
+          }}
           finishMission={finishMission}
           onIdentityVerified={() => {
             setBulkheadPhase((phase) => requestBridgeAccess(phase, true))
@@ -175,11 +178,9 @@ export function Game({
           onCameraRest={() => {
             controls.setTransitioning(false)
             if (mode === 'crew' && !completed.includes('crew')) {
-              setIdentity('scanning')
-              setScanSignal((v) => v + 1)
+              setIdentity('presenting')
             }
           }}
-          onSkipMessage={clear}
           onTransmission={(outcome) => {
             dispatch({ type: 'transmission', outcome })
             enqueue(
@@ -194,7 +195,6 @@ export function Game({
             )
           }}
           onDossier={downloadDossier}
-          onAccessiblePortfolio={onAccessiblePortfolio}
         />
         {Diagnostics && (
           <Suspense fallback={null}>
@@ -211,6 +211,7 @@ export function Game({
         )}
       </Canvas>
       <GameHud
+        onAccessiblePortfolio={onAccessiblePortfolio}
         subtitlesEnabled={subtitlesEnabled}
         onToggleSubtitles={() => setSubtitlesEnabled((value) => !value)}
         controls={controls}

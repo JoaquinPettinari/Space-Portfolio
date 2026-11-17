@@ -74,16 +74,11 @@ async function enter(page: Page) {
   }
 }
 
-async function focusTablet(page: Page) {
-  if (await page.getByRole('dialog', { name: 'Mission tablet' }).isVisible())
-    return
+async function raiseTablet(page: Page) {
   const held = page.getByRole('region', { name: 'Held mission tablet' })
-  if (!(await held.count())) await page.keyboard.press('t')
+  if (!(await held.isVisible())) await page.keyboard.press('t')
   await expect(held).toBeVisible()
-  await page.keyboard.press('r')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toBeVisible()
+  return held
 }
 
 test('walking while turning keeps small mouse inputs bounded', async ({
@@ -491,30 +486,30 @@ test('rear hull corner blocks diagonal walking without leaving the floor', async
   }
 })
 
-test('focused tablet pauses movement, locates independent objectives and closes safely', async ({
+test('held tablet is a read-only mission map; R keeps native capture and Escape lowers it safely', async ({
   page,
 }) => {
   await enter(page)
-  await page.keyboard.down('w')
-  await focusTablet(page)
-  await page.keyboard.up('w')
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  const tablet = await raiseTablet(page)
+  expect((await snapshot(page)).pointerLocked).toBe(true)
+  await expect(
+    tablet.getByRole('list', { name: 'Mission progress' }),
+  ).toBeVisible()
+  await expect(tablet).toContainText('Bridge · Starboard communications')
+  await expect(tablet).toContainText('Bridge · Port archive console')
+  await expect(tablet.getByRole('button')).toHaveCount(0)
+  await page.keyboard.press('r')
   await expect(tablet).toBeVisible()
-  expect((await snapshot(page)).pointerLocked).toBe(false)
-  const stopped = (await snapshot(page)).cameraPosition
-  await page.keyboard.press('w')
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(stopped.z, 2)
-  await tablet.getByRole('button', { name: /Contact Mission Control/ }).hover()
-  await expect(tablet.locator('.map-objective')).toContainText('Contact')
-  await tablet
-    .getByRole('button', { name: /Review expedition archives/ })
-    .focus()
-  await expect(tablet.locator('.map-objective')).toContainText('Service Record')
+  await expect(
+    page.getByRole('dialog', { name: 'Mission tablet' }),
+  ).toHaveCount(0)
+  expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.keyboard.press('Escape')
   await expect(tablet).not.toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Resume mission' }),
   ).not.toBeVisible()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
 })
 
 test('rear alcove is decorative without a wall CV interaction', async ({
@@ -532,11 +527,12 @@ test('rear alcove is decorative without a wall CV interaction', async ({
   expect((await snapshot(page)).pointerLocked).toBe(true)
 })
 
-test('Space jumps once while held, lands and remains disabled in the focused tablet', async ({
+test('Space jumps once while the tablet is held and R never takes movement away', async ({
   page,
 }) => {
   test.setTimeout(120_000)
   await enter(page)
+  const tablet = await raiseTablet(page)
   await page.waitForTimeout(400)
   const ground = (await snapshot(page)).cameraPosition.y
   await page.keyboard.down('Space')
@@ -554,19 +550,25 @@ test('Space jumps once while held, lands and remains disabled in the focused tab
   await page.waitForTimeout(300)
   expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
   await page.keyboard.up('Space')
-  await focusTablet(page)
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toBeVisible()
-  await page.getByRole('button', { name: /Verify crew identity/ }).focus()
-  await page.keyboard.press('Space')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet' }),
-  ).toBeVisible()
-  expect((await snapshot(page)).cameraPosition.y).toBeCloseTo(ground, 1)
+  await page.keyboard.press('r')
+  await expect(tablet).toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(true)
+  await page.keyboard.down('Space')
+  await expect
+    .poll(async () => (await snapshot(page)).cameraPosition.y, {
+      intervals: [30, 50],
+    })
+    .toBeGreaterThan(ground + 0.2)
+  await page.keyboard.up('Space')
+  await expect
+    .poll(
+      async () => Math.abs((await snapshot(page)).cameraPosition.y - ground),
+      { intervals: [100] },
+    )
+    .toBeLessThan(0.04)
 })
 
-test('starts powered and keeps optional guidance within a session and resets it on refresh', async ({
+test('starts powered, shows read-only objective locations on narrow screens and resets progress on refresh', async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -580,59 +582,19 @@ test('starts powered and keeps optional guidance within a session and resets it 
     'lighting',
   ])
   await capture(page)
-  await expect(hud).toContainText('0 / 4 complete')
-  await focusTablet(page)
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
-  await expect(tablet).toContainText('Mission guidance is optional')
-  await expect(tablet).toContainText('0 / 4 objectives complete')
-  await tablet
-    .getByRole('button', { name: 'Continue Protocol', exact: true })
-    .click()
-  await focusTablet(page)
-  await tablet
-    .getByRole('button', { name: 'Skip Tutorial', exact: true })
-    .click()
-  await focusTablet(page)
-  await expect(tablet).toContainText('0 / 4 objectives complete')
-  await expect(
-    tablet.getByRole('button', { name: /Restore interior lighting/ }),
-  ).toHaveCount(0)
-  await tablet
-    .getByRole('button', { name: 'Resume Protocol', exact: true })
-    .click()
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('region', { name: 'Held mission tablet' }),
-  ).not.toBeVisible()
-  await expect(hud).toContainText('Verify crew identity')
-  await focusTablet(page)
-  await tablet
-    .getByRole('button', { name: 'Replay Protocol', exact: true })
-    .click()
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('region', { name: 'Held mission tablet' }),
-  ).not.toBeVisible()
-  await expect(hud).toContainText('Verify crew identity')
-  await expect(hud).toContainText('0 / 4 complete')
-  expect((await snapshot(page)).cabinLighting.auxiliaryIntensity).toBeCloseTo(
-    65,
-    1,
-  )
-  await focusTablet(page)
-  await expect(
-    tablet.getByRole('button', { name: /Restore interior lighting/ }),
-  ).toHaveCount(0)
-  await expect(
-    tablet.getByRole('button', { name: /Verify crew identity/ }),
-  ).toHaveAttribute('data-complete', 'false')
+  const tablet = await raiseTablet(page)
+  await expect(tablet).toContainText('0 / 4')
+  await expect(tablet.getByRole('listitem')).toHaveCount(4)
+  await expect(tablet.getByRole('button')).toHaveCount(0)
+  await expect(tablet.locator('[data-complete="true"]')).toHaveCount(0)
+  await expect(tablet).toContainText('Arrival deck · Crew Access')
   await page.setViewportSize({ width: 600, height: 800 })
-  await expect(
-    tablet.getByRole('button', { name: 'Close tablet' }),
-  ).toBeVisible()
   const bounds = await tablet.boundingBox()
   expect(bounds).not.toBeNull()
   expect(bounds!.width).toBeLessThanOrEqual(600)
+  await page.keyboard.press('t')
+  await expect(tablet).not.toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 45000 })
   await expect(hud).toContainText('0 / 4 complete')
@@ -663,14 +625,13 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
-  // Wait for the cancelled camera transition to finish before sending T/R.
+  // Wait for the cancelled camera transition before raising the mission reader.
   await expect(page.locator('.crosshair')).toBeVisible()
-  await focusTablet(page)
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
+  const tablet = await raiseTablet(page)
   await expect(
-    tablet.getByRole('button', { name: /Verify crew identity/ }),
+    tablet.getByRole('listitem').filter({ hasText: 'Verify crew identity' }),
   ).toHaveAttribute('data-complete', 'false')
-  await tablet.getByRole('button', { name: 'Close tablet' }).click()
+  await page.keyboard.press('t')
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await capture(page)
   await approachCrew(page)

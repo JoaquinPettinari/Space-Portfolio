@@ -5,20 +5,16 @@ import {
   tabletTransition,
 } from './tablet'
 
-it('raises a readable tablet without suspending movement and focuses only explicitly', () => {
+it('raises a read-only tablet while retaining movement', () => {
   const held = tabletTransition('lowered', 'toggle')
   expect(held).toBe('held')
   expect(tabletAllowsMovement(held)).toBe(true)
-  expect(tabletTransition('lowered', 'focus')).toBe('lowered')
-  expect(tabletTransition(held, 'focus')).toBe('focused')
-  expect(tabletAllowsMovement('focused')).toBe(false)
-  expect(tabletTransition('focused', 'resume')).toBe('held')
+  expect(tabletTransition(held, 'resume')).toBe('held')
+  expect(tabletAllowsMovement('lowered')).toBe(true)
 })
 
-it('lowers from either open mode and dismisses for other station interactions', () => {
+it('lowers the reader and dismisses for other station interactions', () => {
   expect(tabletTransition('held', 'toggle')).toBe('lowered')
-  expect(tabletTransition('focused', 'toggle')).toBe('lowered')
-  expect(tabletTransition('focused', 'dismiss')).toBe('lowered')
   expect(tabletTransition('held', 'dismiss')).toBe('lowered')
 })
 

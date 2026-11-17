@@ -1,112 +1,116 @@
-/** Original procedural instrumentals; these are not recordings from the NCS catalogue. */
-export const RADIO_TRACKS = [
-  {
-    title: 'Southern Orbit',
-    bpm: 78,
-    roots: [45, 41, 48, 43],
-    melody: [0, 7, 12, 10, 7, 3, 5, 7],
-  },
-  {
-    title: 'Night Watch',
-    bpm: 86,
-    roots: [38, 43, 41, 45],
-    melody: [0, 3, 7, 12, 10, 7, 5, 3],
-  },
-] as const
+import { RADIO_TRACKS } from './radioTracks'
+export { RADIO_TRACKS } from './radioTracks'
 
-export function radioNotes(track: number, step: number) {
-  const song = RADIO_TRACKS[track % RADIO_TRACKS.length]
-  const root = song.roots[Math.floor(step / 16) % song.roots.length]
-  const notes = [
-    {
-      midi: root + 24 + song.melody[step % 8],
-      seconds: 0.35,
-      volume: 0.09,
-      type: 'sine' as OscillatorType,
-    },
-  ]
-  if (step % 4 === 0)
-    notes.push({ midi: root, seconds: 0.65, volume: 0.14, type: 'sine' })
-  if (step % 16 === 0) {
-    for (const offset of [12, 15, 19])
-      notes.push({
-        midi: root + offset,
-        seconds: 1.8,
-        volume: 0.025,
-        type: 'triangle',
-      })
-  }
-  return notes
+export function radioTrackUrl(index: number) {
+  // Vite's public-file lookup uses decodeURI, which preserves encoded commas.
+  // Keep literal commas in the path so the original filenames resolve in dev.
+  return (
+    '/audio/radio/' +
+    encodeURIComponent(RADIO_TRACKS[index].file).replaceAll('%2C', ',')
+  )
 }
 
-/** Schedules a bounded 200ms lookahead, independent of rendering and React. */
-export function createRadioMusic() {
-  const context = new AudioContext()
-  const master = context.createGain()
-  master.gain.value = 0.35
-  const filter = context.createBiquadFilter()
-  filter.type = 'lowpass'
-  filter.frequency.value = 2400
-  master.connect(filter).connect(context.destination)
-  const voices = new Set<OscillatorNode>()
-  let track = 0,
-    step = 0,
-    nextTime = context.currentTime + 0.04
-  const schedule = () => {
-    if (context.state !== 'running') return
-    if (nextTime < context.currentTime) nextTime = context.currentTime + 0.04
-    while (nextTime < context.currentTime + 0.2) {
-      for (const note of radioNotes(track, step)) {
-        const oscillator = context.createOscillator()
-        const envelope = context.createGain()
-        oscillator.type = note.type
-        oscillator.frequency.value = 440 * 2 ** ((note.midi - 69) / 12)
-        envelope.gain.setValueAtTime(0, nextTime)
-        envelope.gain.linearRampToValueAtTime(note.volume, nextTime + 0.025)
-        envelope.gain.exponentialRampToValueAtTime(
-          0.001,
-          nextTime + note.seconds,
-        )
-        oscillator.connect(envelope).connect(master)
-        voices.add(oscillator)
-        oscillator.onended = () => {
-          voices.delete(oscillator)
-          oscillator.disconnect()
-          envelope.disconnect()
-        }
-        oscillator.start(nextTime)
-        oscillator.stop(nextTime + note.seconds + 0.02)
-      }
-      nextTime += 60 / RADIO_TRACKS[track].bpm / 2
-      step = (step + 1) % 64
-    }
+/** One streaming media element, created only by the radio's explicit Play action.
+ * Track selection and preload=none keep the rest of the playlist off the network. */
+export function createRadioMusic({
+  initialTrack = 0,
+  onEnded,
+  onError,
+  onTimeUpdate,
+}: {
+  initialTrack?: number
+  onEnded?: () => void
+  onError?: () => void
+  onTimeUpdate?: (elapsed: number, duration: number) => void
+} = {}) {
+  const audio = new Audio()
+  audio.preload = 'none'
+  let selected = initialTrack
+  let loaded: number | null = null
+  let requested = false
+  let disposed = false
+  let generation = 0
+  const progress = () => {
+    if (disposed) return
+    onTimeUpdate?.(
+      Number.isFinite(audio.currentTime) ? Math.max(0, audio.currentTime) : 0,
+      Number.isFinite(audio.duration) ? Math.max(0, audio.duration) : 0,
+    )
   }
-  const timer = window.setInterval(schedule, 100)
+  const ended = () => {
+    if (disposed || !requested) return
+    requested = false
+    onEnded?.()
+  }
+  const failed = () => {
+    if (disposed || !requested || !audio.error) return
+    requested = false
+    generation++
+    audio.pause()
+    onError?.()
+  }
+  audio.addEventListener('ended', ended)
+  audio.addEventListener('error', failed)
+  audio.addEventListener('loadedmetadata', progress)
+  audio.addEventListener('durationchange', progress)
+  audio.addEventListener('timeupdate', progress)
   return {
-    context,
-    resume: () => context.resume().then(schedule),
-    suspend: () => context.suspend(),
-    setVolume(value: number) {
-      master.gain.setTargetAtTime(
-        Math.max(0, Math.min(1, value)),
-        context.currentTime,
-        0.03,
-      )
+    async resume() {
+      if (disposed) return
+      const current = ++generation
+      requested = true
+      if (loaded !== selected) {
+        audio.src = radioTrackUrl(selected)
+        loaded = selected
+      }
+      try {
+        await audio.play()
+      } catch (error) {
+        if (disposed || current !== generation) return
+        requested = false
+        throw error
+      }
+      // A delayed play promise must never restart a paused/disposed radio.
+      // A newer legitimate play on the same element must not be paused by it.
+      if (disposed || !requested) audio.pause()
+    },
+    suspend() {
+      requested = false
+      generation++
+      audio.pause()
+      return Promise.resolve()
     },
     setTrack(value: number) {
-      for (const voice of voices) voice.stop()
-      track =
-        ((value % RADIO_TRACKS.length) + RADIO_TRACKS.length) %
+      const next =
+        ((Math.trunc(value) % RADIO_TRACKS.length) + RADIO_TRACKS.length) %
         RADIO_TRACKS.length
-      step = 0
-      nextTime = context.currentTime + 0.04
+      if (selected === next || disposed) return
+      generation++
+      requested = false
+      selected = next
+      audio.pause()
+      if (loaded !== null) {
+        loaded = null
+        audio.removeAttribute('src')
+        onTimeUpdate?.(0, 0)
+        audio.load()
+      }
+    },
+    setVolume(value: number) {
+      audio.volume = Math.max(0, Math.min(1, value))
     },
     dispose() {
-      window.clearInterval(timer)
-      for (const voice of voices) voice.stop()
-      master.disconnect()
-      filter.disconnect()
-      void context.close().catch(() => {})
+      disposed = true
+      requested = false
+      generation++
+      audio.pause()
+      audio.removeEventListener('ended', ended)
+      audio.removeEventListener('error', failed)
+      audio.removeEventListener('loadedmetadata', progress)
+      audio.removeEventListener('durationchange', progress)
+      audio.removeEventListener('timeupdate', progress)
+      audio.removeAttribute('src')
+      audio.load()
     },
   }
 }

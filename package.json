@@ -19,7 +19,8 @@
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run build",
     "mcp:playwright": "playwright-mcp --config playwright.mcp.config.json",
     "test:e2e:production": "playwright test --config playwright.production.config.ts",
-    "test:audit": "playwright test --config playwright.audit.config.ts"
+    "test:audit": "playwright test --config playwright.audit.config.ts",
+    "credits:music": "node scripts/assets/generate-radio-credits.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

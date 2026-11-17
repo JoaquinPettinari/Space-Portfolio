@@ -1,3 +1,4 @@
+import { openPausePortfolio } from './helpers/portfolio'
 import { expect, test, type Page } from '@playwright/test'
 import { enter, enterObservationRoom, snapshot } from './helpers/game'
 
@@ -75,14 +76,14 @@ test('real power and bulkhead interactions advance entry dialogue without stacke
   expect((await snapshot(page)).pointerLocked).toBe(true)
 })
 
-test('pause has only essential controls and HUD tracks tablet progress', async ({
+test('pause keeps resume and portfolio routes, and HUD tracks tablet progress', async ({
   page,
 }) => {
   await enter(page)
   await page.keyboard.press('Escape')
   const pause = page.getByRole('dialog', { name: 'Game paused' })
   await expect(pause).toBeVisible()
-  await expect(pause.getByRole('button')).toHaveCount(1)
+  await expect(pause.getByRole('button')).toHaveCount(3)
   await expect(pause.getByRole('switch')).toHaveCount(2)
   const subtitles = pause.getByRole('switch', {
     name: 'Subtitles',
@@ -119,13 +120,7 @@ test('pause has only essential controls and HUD tracks tablet progress', async (
   ).toHaveCount(4)
   await page.keyboard.press('Escape')
   await expect(pause).toBeVisible()
-  await page.keyboard.press('t')
-  await expect(
-    page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
-  ).toBeVisible()
-  await page
-    .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
-    .click()
+  await openPausePortfolio(page, 'Quick Portfolio Access')
   const archive = page.getByRole('dialog', { name: 'Central Archive' })
   await expect(archive).toBeVisible()
   await archive
@@ -166,17 +161,7 @@ test('computer exits never open pause or show a cursor recovery notice', async (
   for (const exit of ['button', 'KeyE', 'Escape']) {
     // The return camera animation takes 650ms; shortcuts are intentionally guarded during it.
     await page.waitForTimeout(1000)
-    await page.keyboard.press('t')
-    await expect(
-      page.getByRole('region', { name: 'Held mission tablet' }),
-    ).toBeVisible()
-    await page.keyboard.press('r')
-    await expect(
-      page.getByRole('dialog', { name: 'Mission tablet', exact: true }),
-    ).toBeVisible()
-    await page
-      .getByRole('button', { name: 'Quick Portfolio Access', exact: true })
-      .click()
+    await openPausePortfolio(page, 'Quick Portfolio Access')
     const archive = page.getByRole('dialog', { name: 'Central Archive' })
     await expect(archive).toBeVisible()
     if (exit === 'button')

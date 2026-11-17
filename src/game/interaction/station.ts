@@ -1,3 +1,4 @@
+import { RADIO_ACTIONS } from '../radioControls'
 import {
   ENTRY_POWER_POSITION,
   ENTRY_CREW_POSITION,
@@ -5,6 +6,7 @@ import {
 } from '../world/entryLayout'
 import { COMMAND_POSES } from '../world/commandLayout'
 import { bridgePoint } from '../world/bridgePlacement'
+import { TACTICAL_SCREEN } from '../world/tacticalDisplayLayout'
 const BRIDGE_MONITORS = {
   computer: {
     ...COMMAND_POSES.computer,
@@ -16,6 +18,7 @@ const BRIDGE_MONITORS = {
   },
 }
 export type StationMode =
+  | 'navigation'
   | 'tactical'
   | 'walking'
   | 'computer'
@@ -23,8 +26,8 @@ export type StationMode =
   | 'personal'
   | 'arcade'
   | 'crew'
-  | 'radio'
 export const STATION_TARGETS = [
+  'navigation',
   'docking',
   'tactical',
   'computer',
@@ -36,7 +39,7 @@ export const STATION_TARGETS = [
   'coffee',
   'bulkhead',
   'crew',
-  'radio',
+  ...RADIO_ACTIONS,
 ] as const
 export type StationTarget = (typeof STATION_TARGETS)[number] | null
 const stationTargets: ReadonlySet<unknown> = new Set(STATION_TARGETS)
@@ -91,30 +94,21 @@ export type TerminalKind =
   | 'arcade'
   | 'crew'
   | 'tactical'
-  | 'radio'
+  | 'navigation'
 
 /** Physical display contract, matching current geometry and CSS pixel surfaces.
  * Keep the user's UI layout independent from camera fitting and Html scale.
  */
 export const TERMINAL_SCREENS = {
-  radio: {
-    position: [
-      RADIO_POSITION[0] + 0.176,
-      RADIO_POSITION[1] + 0.02,
-      RADIO_POSITION[2] - 0.065,
-    ],
-    rotation: Math.PI / 2,
-    frame: [0.68, 0.38],
-    display: [0.43, 0.25],
-    pixels: [640, 360],
+  navigation: {
+    // Baked world coordinates of the central panoramic display in the bridge GLB.
+    position: [0, 1.62, -7.974],
+    rotation: 0,
+    frame: [2.46, 0.77],
+    display: [2.24, 0.56],
+    pixels: [1120, 280],
   },
-  tactical: {
-    position: bridgePoint([-0.55, 1.85, 0.5]),
-    rotation: -Math.PI / 2,
-    frame: [2.6, 1.6],
-    display: [2.4, 1.35],
-    pixels: [960, 540],
-  },
+  tactical: TACTICAL_SCREEN,
   computer: {
     ...BRIDGE_MONITORS.computer,
     frame: [1.8, 1.1],
@@ -169,7 +163,7 @@ function terminalView(kind: TerminalKind) {
   }
 }
 const views = {
-  radio: terminalView('radio'),
+  navigation: terminalView('navigation'),
   tactical: terminalView('tactical'),
   computer: terminalView('computer'),
   communications: terminalView('communications'),
@@ -204,12 +198,12 @@ export function interactionMode(
   mode: StationMode,
   target: StationTarget,
 ): StationMode {
+  if (target === 'navigation') return 'navigation'
   if (target === 'tactical') return 'tactical'
   if (target === 'computer') return 'computer'
   if (target === 'communications') return 'communications'
   if (target === 'personal') return 'personal'
   if (target === 'arcade') return 'arcade'
   if (target === 'crew') return 'crew'
-  if (target === 'radio') return 'radio'
   return mode
 }

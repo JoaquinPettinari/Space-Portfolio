@@ -1,10 +1,9 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef } from 'react'
 import { Html, RoundedBox } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import type { Group } from 'three'
 import { advanceTabletPose, type TabletMode } from '../tablet'
-import { MissionTablet } from '../ui/MissionTablet'
 import { HeldTabletDisplay } from '../ui/HeldTabletDisplay'
 import { AstronautGlove } from './AstronautGlove'
 import type { ProtocolState } from '../protocol'
@@ -19,31 +18,15 @@ export function HandheldTablet({
   mode,
   state,
   currentObjective,
-  onContinue,
-  onSkip,
-  onReplay,
-  onClose,
-  onResume,
-  onOpenArchive,
-  onAccessiblePortfolio,
-  subtitle,
 }: {
   mode: TabletMode
   state: ProtocolState
   currentObjective: (typeof missions)[number] | null
-  onContinue: () => void
-  onSkip: () => void
-  onReplay: () => void
-  onClose: () => void
-  onResume: () => void
-  onOpenArchive: () => void
-  onAccessiblePortfolio?: () => void
-  subtitle?: ReactNode
 }) {
   const root = useRef<Group>(null)
   const prop = useRef<Group>(null)
   const screen = useRef<HTMLDivElement>(null)
-  const pose = useRef({ raised: 0, focused: 0 })
+  const pose = useRef({ raised: 0 })
 
   const invalidate = useThree((value) => value.invalidate)
   const reducedMotion = useReducedMotionRef(invalidate)
@@ -51,17 +34,10 @@ export function HandheldTablet({
   useFrame(({ camera, size }, delta) => {
     if (!root.current || !prop.current) return
     const raised = mode === 'lowered' ? 0 : 1
-    const focused = mode === 'focused' ? 1 : 0
     const values = pose.current
     values.raised = advanceTabletPose(
       values.raised,
       raised,
-      Math.min(delta, 0.05),
-      reducedMotion.current,
-    )
-    values.focused = advanceTabletPose(
-      values.focused,
-      focused,
       Math.min(delta, 0.05),
       reducedMotion.current,
     )
@@ -72,16 +48,17 @@ export function HandheldTablet({
     prop.current.scale.setScalar(scale)
     prop.current.position.set(
       0,
-      -0.22 * scale + values.focused * 0.22 * scale - (1 - values.raised) * 1.4,
+      -0.065 * scale - (1 - values.raised) * 1.4,
       -1.15,
     )
+    prop.current.rotation.x = -0.055
     root.current.visible = values.raised > 0
     if (screen.current) {
       screen.current.style.opacity = String(values.raised)
       screen.current.style.visibility =
         values.raised === 0 ? 'hidden' : 'visible'
     }
-    if (values.raised !== raised || values.focused !== focused) invalidate()
+    if (values.raised !== raised) invalidate()
   }, -0.25)
   return (
     // Camera props render after the world, back to front, without writing depth.
@@ -95,7 +72,9 @@ export function HandheldTablet({
           raycast={ignoreRaycast}
           renderOrder={1001}
         >
-          <meshBasicMaterial
+          <meshStandardMaterial
+            roughness={0.54}
+            metalness={0.28}
             color="#35414a"
             depthTest={false}
             depthWrite={false}
@@ -109,7 +88,9 @@ export function HandheldTablet({
           raycast={ignoreRaycast}
           renderOrder={1000}
         >
-          <meshBasicMaterial
+          <meshStandardMaterial
+            roughness={0.54}
+            metalness={0.28}
             color="#111d25"
             depthTest={false}
             depthWrite={false}
@@ -120,15 +101,33 @@ export function HandheldTablet({
             {[-1, 1].map((row) => (
               <group key={row} renderOrder={1000}>
                 <RoundedBox
-                  args={[0.15, 0.12, 0.09]}
-                  radius={0.018}
+                  args={[0.17, 0.055, 0.09]}
+                  radius={0.012}
                   smoothness={2}
-                  position={[side * 0.57, row * 0.365, 0.012]}
+                  position={[side * 0.565, row * 0.41, 0.012]}
                   raycast={ignoreRaycast}
                   renderOrder={1002}
                 >
-                  <meshBasicMaterial
+                  <meshStandardMaterial
+                    roughness={0.54}
+                    metalness={0.28}
                     color="#b96b30"
+                    depthTest={false}
+                    depthWrite={false}
+                  />
+                </RoundedBox>
+                <RoundedBox
+                  args={[0.055, 0.15, 0.09]}
+                  radius={0.012}
+                  smoothness={2}
+                  position={[side * 0.625, row * 0.365, 0.012]}
+                  raycast={ignoreRaycast}
+                  renderOrder={1002}
+                >
+                  <meshStandardMaterial
+                    color="#b96b30"
+                    roughness={0.54}
+                    metalness={0.28}
                     depthTest={false}
                     depthWrite={false}
                   />
@@ -160,8 +159,8 @@ export function HandheldTablet({
               />
             </mesh>
             <group
-              position={[side * 0.64, -0.21, 0.07]}
-              rotation={[0, side * -0.2, side * -0.2]}
+              position={[side * 0.73, -0.11, 0.005]}
+              rotation={[0, side * -0.1, side * -0.08]}
               renderOrder={1000}
             >
               <group scale={[side, 1, 1]} renderOrder={1000}>
@@ -200,31 +199,14 @@ export function HandheldTablet({
           position={[0, 0, 0.041]}
           distanceFactor={0.56}
           zIndexRange={[5, 4]}
-          pointerEvents={mode === 'focused' ? 'auto' : 'none'}
+          pointerEvents="none"
           style={{ opacity: 0, visibility: 'hidden' }}
         >
-          {mode === 'focused' ? (
-            <MissionTablet
-              state={state}
-              currentObjective={currentObjective}
-              onContinue={onContinue}
-              onSkip={onSkip}
-              onReplay={onReplay}
-              onClose={onClose}
-              onResume={onResume}
-              onOpenArchive={onOpenArchive}
-              onAccessiblePortfolio={onAccessiblePortfolio}
-              subtitle={subtitle}
-              handheld
-              onDisplayReady={invalidate}
-            />
-          ) : (
-            <HeldTabletDisplay
-              state={state}
-              currentObjective={currentObjective}
-              onDisplayReady={invalidate}
-            />
-          )}
+          <HeldTabletDisplay
+            state={state}
+            currentObjective={currentObjective}
+            onDisplayReady={invalidate}
+          />
         </Html>
       </group>
     </group>

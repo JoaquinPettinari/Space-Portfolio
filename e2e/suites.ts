@@ -4,15 +4,18 @@ export const regressionSpecs = [
   'bridge-layout.spec.ts',
   'bridge-transition.spec.ts',
   'bulkhead.spec.ts',
+  'cabin-revision.spec.ts',
   'contact.spec.ts',
   'crew-presence.spec.ts',
   'dialogue.spec.ts',
   'extras.spec.ts',
   'identity.spec.ts',
   'journey.spec.ts',
+  'navigation.spec.ts',
   'next-phase.spec.ts',
   'physical-monitor.spec.ts',
   'portfolio.spec.ts',
+  'radio.spec.ts',
   'recreation.spec.ts',
   'resume.spec.ts',
   'session-reset.spec.ts',
@@ -23,6 +26,8 @@ export const regressionSpecs = [
 
 /** Historical visual/asset reviews, timing captures and profiling, not gameplay regression. */
 export const auditSpecs = [
+  'service-wall-review.spec.ts',
+  'cabin-lighting-review.spec.ts',
   'arrival-layout-review.spec.ts',
   'reference-style-review.spec.ts',
   'tactical-vista-review.spec.ts',

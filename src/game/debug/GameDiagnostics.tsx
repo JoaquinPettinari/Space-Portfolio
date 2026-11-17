@@ -16,18 +16,28 @@ import { bridgePoint } from '../world/bridgePlacement'
 import type { ProtocolState } from '../protocol'
 import type { CoffeeState } from '../coffee'
 import type { BulkheadPhase } from '../world/bulkhead'
+import type { IdentityPhase } from '../world/identification'
 
 export type SessionSnapshot = {
   protocol: ProtocolState
   coffee: CoffeeState
   bulkheadOpen: boolean
   bulkheadPhase: BulkheadPhase
-  identity: 'idle' | 'scanning' | 'verified'
+  identity: IdentityPhase
 }
 
 export type GameSnapshot = {
+  radio: {
+    track: number
+    playing: boolean
+    elapsed: number
+    duration: number
+    volume: number
+    pressing: string | null
+  } | null
   developmentCapture: boolean
   tacticalModelHeading: number | null
+  tacticalModelPosition: { x: number; y: number; z: number } | null
   crewGesture: {
     elapsedSeconds: number | null
     reach: number | null
@@ -236,10 +246,44 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         },
       }),
       snapshot: (): GameSnapshot => ({
+        radio: (() => {
+          const object = scene.getObjectByName('cds-desk-radio')
+          const data: unknown = object?.userData.radioPlayback
+          if (
+            !data ||
+            typeof data !== 'object' ||
+            !('track' in data) ||
+            !('playing' in data) ||
+            !('elapsed' in data) ||
+            !('duration' in data) ||
+            !('volume' in data)
+          )
+            return null
+          if (
+            typeof data.track !== 'number' ||
+            typeof data.playing !== 'boolean' ||
+            typeof data.elapsed !== 'number' ||
+            typeof data.duration !== 'number' ||
+            typeof data.volume !== 'number'
+          )
+            return null
+          return {
+            track: data.track,
+            playing: data.playing,
+            elapsed: data.elapsed,
+            duration: data.duration,
+            volume: data.volume,
+            pressing:
+              typeof object?.userData.radioPress === 'string'
+                ? object.userData.radioPress
+                : null,
+          }
+        })(),
         developmentCapture: developmentCaptureMode(),
         crewGesture: crewGesture(),
         tacticalModelHeading:
           scene.getObjectByName('tactical-ship-model')?.rotation.y ?? null,
+        tacticalModelPosition: leaf('tactical-ship-model'),
         explorationHull: noseSight(),
         bulkheadLeaves: {
           left: leaf('bulkhead-left-leaf'),

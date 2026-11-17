@@ -1,11 +1,15 @@
 """Render the final GLB only; never exports or modifies the asset."""
 from pathlib import Path
-import bpy
+import bpy, sys
 from mathutils import Vector
 
 root=Path(__file__).resolve().parents[2]
+hanging = '--hanging' in sys.argv
+full = '--full' in sys.argv
+model = 'cruz-del-sur-eva-full.glb' if full else 'cruz-del-sur-eva-hanging.glb' if hanging else 'cruz-del-sur-eva-suit.glb'
+preview = 'full-preview.png' if full else 'hanging-preview.png' if hanging else 'prepared-preview.png'
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
-bpy.ops.import_scene.gltf(filepath=str(root/'public/models/cruz-del-sur-eva-suit.glb'))
+bpy.ops.import_scene.gltf(filepath=str(root/'public/models'/model))
 points=[o.matrix_world@v.co for o in bpy.context.scene.objects if o.type=='MESH' for v in o.data.vertices]
 lo=Vector(tuple(min(v[i] for v in points) for i in range(3)))
 hi=Vector(tuple(max(v[i] for v in points) for i in range(3)))
@@ -21,5 +25,5 @@ for loc,power,light_size in [((-2,-4,5),650,4),((3,-1,2),450,3),((0,3,4),700,3)]
 bpy.ops.object.camera_add(location=center+Vector((0,-4,1))*radius)
 camera=bpy.context.object;camera.rotation_euler=(center-camera.location).to_track_quat('-Z','Y').to_euler()
 camera.data.type='ORTHO';camera.data.ortho_scale=2.6*radius
-scene.camera=camera;scene.render.filepath=str(root/'docs/assets/nasa-emu/prepared-preview.png')
+scene.camera=camera;scene.render.filepath=str(root/'docs/assets/nasa-emu'/preview)
 bpy.ops.render.render(write_still=True)

@@ -238,9 +238,9 @@ test('physical Personal Workstation supports keyboard apps and the real CV', asy
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
 })
 
-test('held tablet keeps movement and real mouse capture, focus pauses and Skip resumes', async ({
+test('held tablet keeps movement and real mouse capture; R is inert and T lowers it', async ({
   page,
-}) => {
+}, info) => {
   await enterObservationRoom(page)
   await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
   await lookAt(page, {
@@ -252,37 +252,42 @@ test('held tablet keeps movement and real mouse capture, focus pauses and Skip r
   const held = page.getByRole('region', { name: 'Held mission tablet' })
   await expect(held).toBeVisible()
   expect((await snapshot(page)).pointerLocked).toBe(true)
+  await expect(held).toBeInViewport({ ratio: 1 })
+  await page.waitForTimeout(800)
+  await page.screenshot({ path: info.outputPath('tablet-held.png') })
   const before = (await snapshot(page)).cameraPosition.z
   await page.keyboard.down('w')
-  await expect
-    .poll(async () => (await snapshot(page)).cameraPosition.z)
-    .toBeLessThan(before - 0.4)
-  await page.keyboard.press('r')
-  const tablet = page.getByRole('dialog', { name: 'Mission tablet' })
-  await expect(tablet).toBeVisible()
-  await expect
-    .poll(async () => (await snapshot(page)).pointerLocked)
-    .toBe(false)
-  await page.waitForTimeout(150)
-  const stopped = (await snapshot(page)).cameraPosition.z
-  await page.waitForTimeout(250)
-  expect((await snapshot(page)).cameraPosition.z).toBeCloseTo(stopped, 3)
-  await page.keyboard.up('w')
-  await tablet
-    .getByRole('button', { name: 'Skip Tutorial', exact: true })
-    .click()
-  await expect(held).toBeVisible()
-  await expect(held).toContainText('Guidance paused')
-  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  try {
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.z)
+      .toBeLessThan(before - 0.4)
+    await page.keyboard.press('r')
+    const afterR = (await snapshot(page)).cameraPosition.z
+    await expect(held).toBeVisible()
+    await expect(
+      page.getByRole('dialog', { name: 'Mission tablet' }),
+    ).toHaveCount(0)
+    expect((await snapshot(page)).pointerLocked).toBe(true)
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.z)
+      .toBeLessThan(afterR - 0.15)
+  } finally {
+    await page.keyboard.up('w')
+  }
+  await page.screenshot({ path: info.outputPath('tablet-after-r.png') })
+  await expect(
+    held.getByRole('list', { name: 'Mission progress' }),
+  ).toBeVisible()
   await page.keyboard.press('t')
   await expect(held).not.toBeVisible()
+  expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.keyboard.press('Escape')
   expect((await snapshot(page)).pointerLocked).toBe(false)
 })
 
 test('optional tactical table reads session state, supports inspection and returns to FPS', async ({
   page,
-}) => {
+}, info) => {
   await enterObservationRoom(page)
   await walkTo(page, 0, -0.2)
   await approach(
@@ -295,9 +300,14 @@ test('optional tactical table reads session state, supports inspection and retur
     JSON.stringify(await snapshot(page)),
   ).toBeVisible()
   const before = await snapshot(page)
+  await page.screenshot({ path: info.outputPath('tactical-before.png') })
   await page.keyboard.press('e')
   const dialog = page.getByRole('dialog', { name: 'Tactical Table' })
   await expect(dialog).toBeVisible()
+  const opened = await snapshot(page)
+  expect(before.tacticalModelPosition).not.toBeNull()
+  expect(opened.tacticalModelPosition).toEqual(before.tacticalModelPosition)
+  await page.screenshot({ path: info.outputPath('tactical-open.png') })
   await expect(
     dialog.getByRole('heading', { name: 'Station Overview' }),
   ).toBeVisible()
@@ -313,7 +323,11 @@ test('optional tactical table reads session state, supports inspection and retur
   await expect(dialog.getByRole('slider')).toHaveValue('0.85')
   const focused = await snapshot(page)
   expect(focused.cameraPosition.x).toBeLessThan(-1.05)
-  expect(focused.cameraPosition.z).toBeCloseTo(0.5 + BRIDGE_OFFSET_Z, 2)
+  expect(focused.cameraPosition.z).toBeCloseTo(
+    TERMINAL_SCREENS.tactical.position[2],
+    2,
+  )
+  expect(focused.tacticalModelPosition).toEqual(before.tacticalModelPosition)
   console.log(
     'tactical-render-sample',
     JSON.stringify({
@@ -326,6 +340,9 @@ test('optional tactical table reads session state, supports inspection and retur
   await dialog.getByRole('button', { name: 'Leave terminal' }).click()
   await expect(dialog).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  expect((await snapshot(page)).tacticalModelPosition).toEqual(
+    before.tacticalModelPosition,
+  )
   await expect
     .poll(async () =>
       Math.abs(

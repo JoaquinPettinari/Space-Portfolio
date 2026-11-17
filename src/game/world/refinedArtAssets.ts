@@ -1,8 +1,10 @@
 import { PlaneGeometry } from 'three'
 
 export const REFINED_BRIDGE_ASSET = '/models/cruz-del-sur-clean-bridge.glb'
-export const REFINED_ARRIVAL_ASSET = '/models/cruz-del-sur-clean-arrival.glb'
-export const REFINED_DETAILS_ASSET = '/models/cruz-del-sur-clean-details.glb'
+export const REFINED_ARRIVAL_ASSET =
+  '/models/cruz-del-sur-reference-arrival.glb'
+export const REFINED_DETAILS_ASSET =
+  '/models/cruz-del-sur-reference-details.glb'
 export const CONSOLE_ATLAS = '/textures/cruz-del-sur/console-display-atlas.png'
 export const TACTICAL_SURFACE = '/textures/cruz-del-sur/tactical-surface.webp'
 

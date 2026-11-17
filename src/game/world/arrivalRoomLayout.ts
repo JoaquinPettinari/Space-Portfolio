@@ -1,10 +1,12 @@
+import cabinLayout from './arrivalCabinLayout.json' with { type: 'json' }
+import shellLayout from './arrivalShellLayout.json' with { type: 'json' }
+
 /** Metres in the exported room's local coordinates (X right, Y up, Z aft). */
 export const ARRIVAL_ORIGIN_Z = 12.07
 export const ARRIVAL_BASE_DEPTH = 4.13
 export const ARRIVAL_PLAN_SCALE = 1.5
 export const ARRIVAL_DEPTH = ARRIVAL_BASE_DEPTH * ARRIVAL_PLAN_SCALE
 export const ARRIVAL_EXTENSION = ARRIVAL_DEPTH - ARRIVAL_BASE_DEPTH
-export const ARRIVAL_BENCH_SHIFT = 1.325
 type Point = [number, number, number]
 type Box = { position: Point; halfSize: Point }
 
@@ -138,29 +140,52 @@ for (const vertices of ARRIVAL_SHELL_HULLS) {
   }
 }
 export const ARRIVAL_FURNITURE: Box[] = [
-  // Short boxes follow the continuous V8 bench without blocking its curved aisle.
-  ...Array.from({ length: 12 }, (_, i): Box => {
-    const start = 1.38 + ARRIVAL_BENCH_SHIFT + (2.54 * i) / 12
-    const end = 1.38 + ARRIVAL_BENCH_SHIFT + (2.54 * (i + 1)) / 12
-    const z = (start + end) / 2
-    const expansions = [start, z, end].map(
-      (depth) => 1.5 * arrivalPortExpansion(depth / 1.5),
-    )
-    const min = Math.min(...expansions)
-    const max = Math.max(...expansions)
-    return {
-      position: [-3.56 - (min + max) / 2, 0.545, z],
-      halfSize: [0.45 + (max - min) / 2, 0.545, (end - start) / 2],
-    }
-  }),
+  {
+    position: [
+      cabinLayout.sideTable.x,
+      cabinLayout.sideTable.height / 2,
+      cabinLayout.sideTable.z - ARRIVAL_ORIGIN_Z,
+    ],
+    halfSize: [
+      cabinLayout.sideTable.width / 2,
+      cabinLayout.sideTable.height / 2,
+      cabinLayout.sideTable.length / 2,
+    ],
+  },
+  // The rear sill and straight bench form one closed furniture volume.
+  {
+    position: [
+      (-shellLayout.wallX + cabinLayout.bench.x + cabinLayout.bench.depth / 2) /
+        2,
+      cabinLayout.bench.height / 2,
+      (cabinLayout.bench.startZ + cabinLayout.bench.endZ) / 2 -
+        ARRIVAL_ORIGIN_Z,
+    ],
+    halfSize: [
+      (cabinLayout.bench.x + cabinLayout.bench.depth / 2 - -shellLayout.wallX) /
+        2,
+      cabinLayout.bench.height / 2,
+      (cabinLayout.bench.endZ - cabinLayout.bench.startZ) / 2,
+    ],
+  },
+  // Continuous plinth and end returns close the service bank, including gaps.
+  {
+    position: [
+      (cabinLayout.serviceBay.frontX + cabinLayout.serviceBay.rearX) / 2,
+      cabinLayout.serviceBay.height / 2,
+      (cabinLayout.serviceBay.startZ + cabinLayout.serviceBay.endZ) / 2 -
+        ARRIVAL_ORIGIN_Z,
+    ],
+    halfSize: [
+      (cabinLayout.serviceBay.rearX - cabinLayout.serviceBay.frontX) / 2,
+      cabinLayout.serviceBay.height / 2,
+      (cabinLayout.serviceBay.endZ - cabinLayout.serviceBay.startZ) / 2,
+    ],
+  },
   {
     position: [-3.55 - arrivalPortExpansion(0.48), 0.51, 0.48],
     halfSize: [0.55, 0.51, 0.36],
   },
-  ...[14.8, 17.1].map((worldZ): Box => ({
-    position: [3.78, 1.34, worldZ - ARRIVAL_ORIGIN_Z],
-    halfSize: [0.18, 0.9, 0.5],
-  })),
 ]
 
 /** Retain the original floor footprint; unified structural mesh owns walls/roof. */
