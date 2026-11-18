@@ -1,0 +1,2069 @@
+{
+  "readyMs": 20712,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+  "resources": [
+    {
+      "path": "/models/cruz-del-sur-straight-envelope.glb",
+      "durationMs": 147.10000002384186,
+      "transferBytes": 7555656,
+      "encodedBytes": 7555356,
+      "decodedBytes": 7555356
+    },
+    {
+      "path": "/models/cruz-del-sur-reference-cassettes.glb",
+      "durationMs": 40.89999997615814,
+      "transferBytes": 3113416,
+      "encodedBytes": 3113116,
+      "decodedBytes": 3113116
+    },
+    {
+      "path": "/models/cruz-del-sur-straight-envelope.glb",
+      "durationMs": 63.699999928474426,
+      "transferBytes": 7555656,
+      "encodedBytes": 7555356,
+      "decodedBytes": 7555356
+    },
+    {
+      "path": "/models/cruz-del-sur-straight-collision.glb",
+      "durationMs": 5.299999952316284,
+      "transferBytes": 85596,
+      "encodedBytes": 85296,
+      "decodedBytes": 85296
+    },
+    {
+      "path": "/models/cruz-del-sur-reference-details.glb",
+      "durationMs": 16.800000071525574,
+      "transferBytes": 690396,
+      "encodedBytes": 690096,
+      "decodedBytes": 690096
+    },
+    {
+      "path": "/models/cabin-master-static.glb",
+      "durationMs": 110.20000004768372,
+      "transferBytes": 20835664,
+      "encodedBytes": 20835364,
+      "decodedBytes": 20835364
+    },
+    {
+      "path": "/models/cruz-del-sur-panoramic-bay.glb",
+      "durationMs": 5.199999928474426,
+      "transferBytes": 488476,
+      "encodedBytes": 488176,
+      "decodedBytes": 488176
+    },
+    {
+      "path": "/models/cabin-master-sliding-leaves.glb",
+      "durationMs": 4.899999976158142,
+      "transferBytes": 986468,
+      "encodedBytes": 986168,
+      "decodedBytes": 986168
+    },
+    {
+      "path": "/models/cruz-del-sur-clean-bridge.glb",
+      "durationMs": 207.89999997615814,
+      "transferBytes": 20585360,
+      "encodedBytes": 20585060,
+      "decodedBytes": 20585060
+    },
+    {
+      "path": "/models/cruz-del-sur-crew-access.glb",
+      "durationMs": 2.399999976158142,
+      "transferBytes": 339808,
+      "encodedBytes": 339508,
+      "decodedBytes": 339508
+    }
+  ],
+  "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "viewport": [1280, 720],
+  "canvas": [1280, 720],
+  "medianMs": 21.399999976158142,
+  "p95Ms": 25,
+  "samples": [
+    {
+      "frameMs": 22,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -3.9014750041910515e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -3.9393000203480907e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -3.974027297963839e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.0098958476942055e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.04918821357407e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.0848937244031544e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.121740507346857e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.159402484602614e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.1941297622183625e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.228041845522057e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 25.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.269942833239365e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 33.10000002384186,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.3239086967361973e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.359451168664e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.397602262429246e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.4326556178475587e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.4662416235430464e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.5011319400600773e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.5355331400676185e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.567814834941563e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.6012378017357687e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 18.59999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.6315630299886837e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.6666163854069965e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.7065609066976326e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.739657795883631e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.775200377519231e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.809112815720219e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.59999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.842699172513676e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.877263772946644e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.913458779056747e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.948023379295356e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -4.983892304192287e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.023022040443484e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.058075762501849e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.092966443953628e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.126878882154616e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.161117401374413e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.198616731948478e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.235300859683976e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.270843703367737e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.308179993335216e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 25,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.348940135263547e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.383667776303101e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.421167106877165e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.456872991167511e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 25,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.497633133095842e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.531871652315641e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 26.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.574914362153086e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.606218151231788e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.640782751470397e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.676814716973913e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.710727155174901e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.746596080071831e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.778878112401326e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.815562240136824e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.853387651924059e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.888930495607819e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.926103744968714e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.961320507633664e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -5.994091661782914e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.031101870731582e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.065014308738209e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.098763706332611e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.135121752854939e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.168708109842755e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.201642304404231e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.237674269907748e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.272075829734131e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.306803470579325e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.341368071012294e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.375606590232092e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.412779839592986e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.40000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.447670521239125e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.483539446136056e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.59999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.517125802929514e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.551853443969067e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.587885409472583e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.622450009711192e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.656851569537576e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.691416169970544e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.09999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.727448135279701e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.766577871530899e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.800979431357283e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.83521795057708e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.869293429190293e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.40000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.900923299482165e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.934998778095379e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -6.969400337921761e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.004291019373541e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.03918170082532e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.076028869167404e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.110593469406013e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.145810232070963e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.182657400413046e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.217548081864825e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.252275722904379e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.09999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.286677282536402e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.3258070187876e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.36379547118142e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.395262300672349e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.431946428407846e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.465858866608833e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 17,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.493575763120098e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 28.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.540042324918395e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.09999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.574443884550419e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.609660647215369e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.648464302447756e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.683354983899536e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.716778300280767e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.749549454430017e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.784277095275211e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.817700411656443e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 35.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.875579813194673e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 6.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.885525287864057e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 39.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.94960023089765e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 8.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.963458679153282e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 14.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -7.986610439846319e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.020522877852946e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.057043964981858e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.088836875685956e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.122260192067188e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.161389928318386e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.90000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.198726218480225e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.699999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.235736427234533e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.269485824828935e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 19.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.301278735533033e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.33421293009451e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.373668747558878e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.408396388404072e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.40000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.441656664373077e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.476710386431442e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.51306843295377e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.545676546496434e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.580404187341628e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.615457909399993e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.650674672064943e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.685239272497912e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.718336507665973e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.751922864653789e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 41.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.819095578629423e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 11.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.837682203309869e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 16.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.864746937589153e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.900289781272914e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.937626071240393e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -8.971375468834795e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.011483448531145e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.59999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.046700211001735e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.40000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.08485170400214e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.121535831737638e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.157078675421399e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.189686788964064e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.226370916699562e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.258979030242226e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.299999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.292076265410288e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.300000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.328434312126975e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.362672831346772e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.396748309959986e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.431638991411765e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.800000071525574,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.465551429612752e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.09999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.499952989244776e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.533539064289234e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.56712513478622e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.605765749412022e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 18.199999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.63543913261923e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.669025489607047e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.704079211665412e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.799999952316284,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.73799164967204e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.90000009536743,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.77532793983388e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.809566459053677e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.843804978273474e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 24.699999928474426,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.88407599838205e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.100000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.920107963885566e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.399999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.95662905101448e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.700000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -9.992008854286015e-7,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 20.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010025432170667247,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.899999976158142,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010061138054957593,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 23.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010099615628976808,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.600000023841858,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010134832391641757,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 21.09999990463257,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010169233951273783,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.200000047683716,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010205428957383883,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    },
+    {
+      "frameMs": 22.5,
+      "renderDpr": 1,
+      "drawCalls": 67,
+      "triangles": 390626,
+      "cameraPosition": {
+        "x": -0.0000010242113085119383,
+        "y": 1.6988619565963745,
+        "z": 15.414944648742676
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "using deprecated parameters for the initialization function; pass a single object instead",
+    "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision"
+  ]
+}

@@ -22,6 +22,24 @@ test.afterEach(({ page }) => {
   expect(errors.get(page)).toEqual([])
 })
 
+test('Escape pause preserves the current subtitle until exploration resumes', async ({
+  page,
+}) => {
+  await enter(page)
+  const subtitle = page.getByRole('status', { name: 'Station assistant' })
+  await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog', { name: 'Game paused' })).toBeVisible()
+  await expect(subtitle).not.toBeVisible()
+  // Longer than the full arrival duration; real time and native Pointer Lock.
+  await page.waitForTimeout(11000)
+  await page.getByRole('button', { name: 'Resume mission' }).click()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
+  await expect(subtitle).toBeVisible()
+  await expect(subtitle).not.toBeVisible({ timeout: 12000 })
+})
+
 test('arrival expires and reopening the held tablet does not repeat its subtitle', async ({
   page,
 }) => {
@@ -107,7 +125,13 @@ test('pause keeps resume and portfolio routes, and HUD tracks tablet progress', 
   await expect(pause).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).toBeVisible()
   await page.keyboard.press('t')
+  await expect(
+    page.getByRole('region', { name: 'Held mission tablet' }),
+  ).not.toBeVisible()
   const item = page
     .getByRole('complementary', { name: 'Recovery objectives' })
     .getByRole('listitem')

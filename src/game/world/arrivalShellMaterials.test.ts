@@ -51,7 +51,6 @@ it('shares one reflection with late subscribers and clears it before target disp
   const texture = new Texture()
   const resources = {
     reflection: texture,
-    floor: { albedo: texture, roughness: texture },
   }
   channel.publish(resources)
   channel.subscribe(second)

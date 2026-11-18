@@ -1,0 +1,97 @@
+{
+  "trianglesBefore": 368127,
+  "trianglesAfter": 384405,
+  "lightsBefore": 26,
+  "lightsAfter": 28,
+  "preservedSlots": [
+    "SLOT / Fixed docking door",
+    "SLOT / Sliding leaves",
+    "SLOT / Sliding stationary frame",
+    "SLOT / Credential terminal",
+    "SLOT / Full NASA EMU",
+    "LEAF_LEFT_SLIDE",
+    "LEAF_RIGHT_SLIDE"
+  ],
+  "originalGlassMaterialPreserved": "CDS hardware Inspection glass.001",
+  "apertureClosureRays": [
+    {
+      "x": -0.3,
+      "y": 1.45,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": -0.3,
+      "y": 1.58,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": -0.3,
+      "y": 1.7,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": 0,
+      "y": 1.45,
+      "hit": "DETAIL / Hatch manual lock seat",
+      "runtimeZ": 20.832500457763672
+    },
+    {
+      "x": 0,
+      "y": 1.58,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": 0,
+      "y": 1.7,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": 0.3,
+      "y": 1.45,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": 0.3,
+      "y": 1.58,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    },
+    {
+      "x": 0.3,
+      "y": 1.7,
+      "hit": "DETAIL / Outer hatch pressure leaf",
+      "runtimeZ": 20.872499465942383
+    }
+  ],
+  "windowFloorRefinished": [
+    "REV / Graphite deck face 0 0",
+    "REV / Graphite deck face 0 1",
+    "REV / Graphite deck face 0 2",
+    "REV / Graphite deck face 0 3"
+  ],
+  "cabinFloorMaxY": 0.015000000596046448,
+  "vestibuleBoundsRuntime": {
+    "x": [-1.77, 1.77],
+    "y": [-0.13, 2.85],
+    "z": [18.57, 21.135]
+  },
+  "newOuterClosureStatic": true,
+  "runtimeChanged": false,
+  "wideAngleClosureRays": 35,
+  "wideAngleAllHitVestibule": true,
+  "inspectionGlass": {
+    "shader": "96.5% transparent transmission plus 3.5% dielectric surface",
+    "metallic": 0,
+    "refractiveTransmission": 0,
+    "roughness": 0.08,
+    "ior": 1.35
+  },
+  "glassPaneNormals": "Local mesh copy with flat faces and cleared inherited smooth custom normals",
+  "pressureCollarJoin": "Room front moved behind existing collar back at runtime Z18.56"
+}

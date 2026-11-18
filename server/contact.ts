@@ -101,16 +101,22 @@ async function readBody(request: Request): Promise<unknown> {
 
 // Atomic limits shared by all function instances. Counters expire automatically.
 // Per-IP (5/10 min), per-sender (3/hour), global (50/hour) caps bound abuse and cost.
-const RATE_SCRIPT = `
+// Check every limit before reserving capacity: rejected callers must not consume
+// the shared quota. Both passes run within one atomic Redis EVAL.
+export const CONTACT_RATE_SCRIPT = `
 local limits = {5, 3, 50}
 local windows = {600, 3600, 3600}
 local retry = 0
 for i = 1, 3 do
+  local count = tonumber(redis.call('GET', KEYS[i]) or '0')
+  if count >= limits[i] then retry = math.max(retry, 1, redis.call('TTL', KEYS[i])) end
+end
+if retry > 0 then return retry end
+for i = 1, 3 do
   local count = redis.call('INCR', KEYS[i])
   if count == 1 then redis.call('EXPIRE', KEYS[i], windows[i]) end
-  if count > limits[i] then retry = math.max(retry, 1, redis.call('TTL', KEYS[i])) end
 end
-return retry
+return 0
 `
 
 function digest(secret: string, value: string): string {
@@ -131,7 +137,7 @@ async function rateLimit(
     },
     body: JSON.stringify([
       'EVAL',
-      RATE_SCRIPT,
+      CONTACT_RATE_SCRIPT,
       '3',
       `cds:contact:ip:${digest(config.rateSecret, ip)}`,
       `cds:contact:email:${digest(config.rateSecret, email.toLowerCase())}`,

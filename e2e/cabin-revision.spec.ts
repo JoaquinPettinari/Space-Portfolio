@@ -1,9 +1,63 @@
 import { expect, test } from '@playwright/test'
 import { enter, lookAt, snapshot, walkTo } from './helpers/game'
-import cabinLayout from '../src/game/world/arrivalCabinLayout.json' with { type: 'json' }
+import { CABIN_MASTER_COLLIDERS } from '../src/game/world/cabinMasterLayout'
 import shellLayout from '../src/game/world/arrivalShellLayout.json' with { type: 'json' }
 
-test('arrival furniture closes rear gaps and keeps the main route clear', async ({
+for (const [end, z] of [
+  ['forward', 12.35],
+  ['aft', 18.0],
+] as const) {
+  test(`technical wall ${end} end prevents walking behind the equipment`, async ({
+    page,
+  }, info) => {
+    const errors: string[] = []
+    page.on('pageerror', (error) => errors.push(error.message))
+    page.on('console', (message) => {
+      if (message.type() === 'error') errors.push(message.text())
+    })
+    await page.goto('/')
+    await expect(page.getByLabel('Game controls')).toBeVisible({
+      timeout: 90000,
+    })
+    await enter(page)
+    await walkTo(page, 0, 14)
+    await walkTo(page, 2.8, 14)
+    await walkTo(page, 2.8, z)
+    await lookAt(page, {
+      x: 5.5,
+      y: (await snapshot(page)).cameraPosition.y,
+      z,
+    })
+    await page.keyboard.down('w')
+    try {
+      await page.waitForTimeout(1600)
+    } finally {
+      await page.keyboard.up('w')
+    }
+    const endPosition = (await snapshot(page)).cameraPosition
+    await lookAt(page, { x: 4.65, y: endPosition.y, z: 15.5 })
+    await page.screenshot({ path: info.outputPath(`technical-${end}-gap.png`) })
+    await info.attach('technical-end-position', {
+      body: JSON.stringify({ end, endPosition }),
+      contentType: 'application/json',
+    })
+    // The technical wall starts at x=3.56. Its end closures must prevent
+    // reaching the inaccessible strip between the cabinet and hull.
+    expect(endPosition.x).toBeLessThan(3.56)
+    expect(endPosition.x).toBeGreaterThan(2.8)
+    await walkTo(page, 2.8, 14)
+    await walkTo(page, 0, 14)
+    await walkTo(page, 0, 17.9)
+    await lookAt(page, { x: 0, y: 0.5, z: 20.2 })
+    await page.screenshot({
+      path: info.outputPath(`docking-visor-floor-${end}.png`),
+    })
+    expect((await snapshot(page)).pointerLocked).toBe(true)
+    expect(errors).toEqual([])
+  })
+}
+
+test('master ledge and service furniture block rear gaps while the cleared lounge remains walkable', async ({
   page,
 }, testInfo) => {
   const errors: string[] = []
@@ -24,20 +78,24 @@ test('arrival furniture closes rear gaps and keeps the main route clear', async 
     }
     return (await snapshot(page)).cameraPosition
   }
-  // Real movement into the bench front and both service gaps, not teleporting.
-  await walkTo(page, -2.45, 16)
-  const benchHit = await pushToward(-5.2, 16)
-  expect(benchHit.x).toBeGreaterThan(
-    cabinLayout.bench.x + cabinLayout.bench.depth / 2,
-  )
-  expect(benchHit.x).toBeLessThan(-2.65)
+  const ledge = CABIN_MASTER_COLLIDERS.find(
+    ({ id }) => id === 'observation-ledge',
+  )!
+  const service = CABIN_MASTER_COLLIDERS.find(
+    ({ id }) => id === 'technical-wall',
+  )!
+  // This waypoint occupied the former sofa. It must now be reachable.
+  await walkTo(page, -3.25, 16)
+  const ledgeHit = await pushToward(-5.2, 16)
+  expect(ledgeHit.x).toBeGreaterThan(ledge.position[0] + ledge.halfSize[0])
+  expect(ledgeHit.x).toBeLessThan(-3.35)
   await walkTo(page, 0, 16)
   await lookAt(page, { x: -3.55, y: 0.82, z: 16.05 })
-  await page.screenshot({ path: testInfo.outputPath('straight-lounge.png') })
+  await page.screenshot({ path: testInfo.outputPath('observation-ledge.png') })
   for (const z of [13.6, 15.9, 17.1]) {
     await walkTo(page, 2.8, z)
     const hit = await pushToward(5, z)
-    expect(hit.x).toBeLessThan(cabinLayout.serviceBay.frontX)
+    expect(hit.x).toBeLessThan(service.position[0] - service.halfSize[0])
     expect(hit.x).toBeGreaterThan(3)
     await walkTo(page, 2.6, z)
   }
@@ -46,24 +104,23 @@ test('arrival furniture closes rear gaps and keeps the main route clear', async 
   await page.screenshot({ path: testInfo.outputPath('service-bank.png') })
   await lookAt(page, { x: -2.35, y: 1.2, z: 12.2 })
   await page.screenshot({ path: testInfo.outputPath('side-service-hatch.png') })
-  // Attempt both end routes. Rear outfitting already blocks the aft approach;
-  // the new bench/sill must close the forward approach as well.
+  // EVA vitrine closes the aft approach; the shelf blocks its forward end.
   await walkTo(page, 0, 17.65)
   const rearHit = await pushToward(-5, 17.65)
   expect(rearHit.x).toBeGreaterThan(-1.5)
   await walkTo(page, 0, 17.65)
   await walkTo(page, 0, 14.1)
-  await walkTo(page, -3.4, 14.1)
-  const forwardHit = await pushToward(-3.4, 16)
-  expect(forwardHit.z).toBeLessThan(cabinLayout.bench.startZ)
-  expect(forwardHit.z).toBeGreaterThan(14.3)
+  await walkTo(page, -3.25, 14.1)
+  const forwardHit = await pushToward(-5.2, 14.1)
+  expect(forwardHit.x).toBeGreaterThan(ledge.position[0] + ledge.halfSize[0])
+  expect(forwardHit.x).toBeLessThan(-3.35)
   await walkTo(page, 0, 14.1)
   await walkTo(page, 0, 13.3)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])
 })
 
-test('jumping beside the lounge cannot cross the window or ceiling shell', async ({
+test('jumping beside the observation ledge cannot cross the window or ceiling shell', async ({
   page,
 }, testInfo) => {
   const errors: string[] = []
@@ -74,8 +131,9 @@ test('jumping beside the lounge cannot cross the window or ceiling shell', async
   await page.goto('/')
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 90000 })
   await enter(page)
-  await walkTo(page, 0, cabinLayout.sideTable.z)
-  await walkTo(page, -3.35, cabinLayout.sideTable.z)
+  const approachZ = 14.1
+  await walkTo(page, 0, approachZ)
+  await walkTo(page, -3.35, approachZ)
   const floorEye = (await snapshot(page)).cameraPosition.y
   const attempts: {
     target: { x: number; z: number }
@@ -125,13 +183,13 @@ test('jumping beside the lounge cannot cross the window or ceiling shell', async
     }
     await page.waitForTimeout(300)
   }
-  // Reproduce the stepping-stone approach: jump at the low display table,
-  // then push toward the glass and toward the rear of the taller sofa.
-  await jumpToward(-6, cabinLayout.sideTable.z)
+  // Jump against the low ledge and repeat from any landed position. The glass
+  // and shoulder must contain the capsule even if it reaches the shelf top.
+  await jumpToward(-6, approachZ)
   expect(Math.max(...attempts[0].samples.map((p) => p.y))).toBeGreaterThan(
     floorEye + 0.2,
   )
-  await jumpToward(-6, cabinLayout.sideTable.z)
+  await jumpToward(-6, approachZ)
   await lookAt(page, { x: -4.7, y: 2.85, z: 12.2 })
   await page.screenshot({
     path: testInfo.outputPath('straight-shell-side.png'),

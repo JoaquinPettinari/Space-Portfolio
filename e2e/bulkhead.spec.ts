@@ -72,6 +72,7 @@ test('credential-controlled bulkhead visibly slides with collision and stays ope
       const state = window.__GAME_DEBUG__!.snapshot()
       samples.push({
         phase: state.session.bulkheadPhase,
+        identity: state.session.identity,
         leaves: state.bulkheadLeaves,
         playerZ: state.cameraPosition.z,
       })
@@ -86,9 +87,6 @@ test('credential-controlled bulkhead visibly slides with collision and stays ope
     await expect(identity.getByRole('status')).toContainText(
       'Verifying credentials',
     )
-    await page.waitForTimeout(500)
-    expect((await snapshot(page)).session.identity).toBe('scanning')
-    expect((await snapshot(page)).session.bulkheadPhase).toBe('closed')
     await expect(
       page
         .getByRole('dialog', { name: 'Crew Access' })
@@ -127,6 +125,14 @@ test('credential-controlled bulkhead visibly slides with collision and stays ope
     body: JSON.stringify(samples),
     contentType: 'application/json',
   })
+  // Assert the actual frame sequence, not an instant 500 ms after a DOM wait
+  // which can complete late under GPU load.
+  const scanning = samples.findIndex((sample) => sample.identity === 'scanning')
+  const verified = samples.findIndex((sample) => sample.identity === 'verified')
+  const unlocking = samples.findIndex((sample) => sample.phase === 'unlocking')
+  expect(scanning).toBeGreaterThanOrEqual(0)
+  expect(verified).toBeGreaterThan(scanning)
+  expect(unlocking).toBeGreaterThanOrEqual(verified)
   expect(samples.some((sample) => sample.phase === 'unlocking')).toBe(true)
   expect(samples.some((sample) => sample.phase === 'opening')).toBe(true)
   expect(samples.some((sample) => sample.phase === 'open')).toBe(true)
@@ -138,6 +144,8 @@ test('credential-controlled bulkhead visibly slides with collision and stays ope
     }),
   ).toBe(true)
   for (const sample of samples) {
+    if (sample.identity === 'scanning') expect(sample.phase).toBe('closed')
+    if (sample.phase !== 'closed') expect(sample.identity).toBe('verified')
     expect(sample.leaves.left).not.toBeNull()
     expect(sample.leaves.right).not.toBeNull()
     const gap = sample.leaves.right!.x - sample.leaves.left!.x - 1.38

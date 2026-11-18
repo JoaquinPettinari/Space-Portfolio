@@ -3,7 +3,6 @@ import type { Texture } from 'three'
 
 export type ArrivalSurfaceResources = {
   reflection: Texture
-  floor: { albedo: Texture; roughness: Texture }
 }
 type Consumer = (resources: ArrivalSurfaceResources | null) => void
 

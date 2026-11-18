@@ -1,0 +1,12 @@
+{
+  "source": "/C:/Users/joaqu/Desktop/Space-Portfolio/public/models/cruz-del-sur-straight-envelope.glb",
+  "sourceSha256": "0cd310de3ce0e2cb6de282cff72138a3b1edaceac4512ea4d1c37ca2f3e9fcd9",
+  "clearance": {
+    "min": [-1.75, -0.15, 18.55],
+    "max": [1.75, 3.3, 21.125]
+  },
+  "batches": 15,
+  "trianglesBefore": 76339,
+  "trianglesAfter": 76339,
+  "bytes": 6917488
+}

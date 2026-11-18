@@ -1,0 +1,51 @@
+{
+  "resources": [
+    {
+      "path": "/models/cruz-del-sur-straight-envelope.glb",
+      "transferBytes": 7555656,
+      "durationMs": 196.10000002384186
+    },
+    {
+      "path": "/models/cruz-del-sur-reference-cassettes.glb",
+      "transferBytes": 3113416,
+      "durationMs": 112.39999997615814
+    },
+    {
+      "path": "/models/cruz-del-sur-straight-collision.glb",
+      "transferBytes": 85596,
+      "durationMs": 12.199999928474426
+    },
+    {
+      "path": "/models/cruz-del-sur-reference-details.glb",
+      "transferBytes": 690396,
+      "durationMs": 23.200000047683716
+    },
+    {
+      "path": "/models/cabin-master-static.glb",
+      "transferBytes": 20835664,
+      "durationMs": 195.60000002384186
+    },
+    {
+      "path": "/models/cruz-del-sur-panoramic-bay.glb",
+      "transferBytes": 488476,
+      "durationMs": 8.100000023841858
+    },
+    {
+      "path": "/models/cabin-master-sliding-leaves.glb",
+      "transferBytes": 986468,
+      "durationMs": 19.800000071525574
+    },
+    {
+      "path": "/models/cruz-del-sur-clean-bridge.glb",
+      "transferBytes": 20585360,
+      "durationMs": 316.1999999284744
+    },
+    {
+      "path": "/models/cruz-del-sur-crew-access.glb",
+      "transferBytes": 339808,
+      "durationMs": 5.799999952316284
+    }
+  ],
+  "durationMs": 17371,
+  "status": "passed"
+}

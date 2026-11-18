@@ -274,9 +274,10 @@ export function PersonalDesktop({
                 transitions and stop ambient movement.
               </p>
               <p>
-                Escape releases the mouse. Quick Portfolio Access is available
-                inside the mission tablet (T, then R), with all professional
-                information and no gameplay requirements.
+                Return to exploration, then press Escape to open the pause menu.
+                Choose Read without 3D for all professional information without
+                gameplay. Quick Portfolio Access opens the Central Archive
+                inside the station.
               </p>
               <p>
                 Sound is optional. Use the station sound control while the

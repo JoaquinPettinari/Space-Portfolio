@@ -1,59 +1,51 @@
-import { useContext, useEffect, useLayoutEffect, useMemo } from 'react'
-import { Bvh, useGLTF } from '@react-three/drei'
-import {
-  ConvexHullCollider,
-  CuboidCollider,
-  RigidBody,
-} from '@react-three/rapier'
-import { prepareArrivalMaterials } from './arrivalReflections'
-import { ArrivalEnvironmentContext } from './arrivalEnvironment'
-import { BULKHEAD_POCKET_PANELS } from './bulkhead'
+import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import { BULKHEAD_POCKET_PANELS, type BulkheadPhase } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
+import shellLayout from './arrivalShellLayout.json'
+import { ArrivalCabinModel } from './ArrivalCabinModel'
 import {
-  ARRIVAL_FURNITURE,
-  ARRIVAL_ORIGIN_Z,
-  ARRIVAL_FLOOR_HULLS,
-} from './arrivalRoomLayout'
-import { REFINED_ARRIVAL_ASSET } from './refinedArtAssets'
-import { ArrivalServiceDetails } from './ArrivalServiceDetails'
-import { ArrivalOutfitting } from './ArrivalOutfitting'
+  CABIN_MASTER_COLLIDERS,
+  CABIN_MASTER_FLOOR,
+  CABIN_TECHNICAL_END_PANELS,
+} from './cabinMasterLayout'
 
-/** Native-scale shell. Door, credential terminal and their state remain independent. */
-export function EntryAirlock({ emergency }: { emergency: boolean }) {
-  const { scene } = useGLTF(REFINED_ARRIVAL_ASSET)
-  const environment = useContext(ArrivalEnvironmentContext)
-  const model = useMemo(() => prepareArrivalMaterials(scene), [scene])
-  useEffect(() => () => model.dispose(), [model])
-  useLayoutEffect(() => {
-    model.setPower(emergency ? 0.12 : 1)
-  }, [emergency, model])
-  useLayoutEffect(
-    () =>
-      environment?.channel.subscribe((resources) => {
-        model.setReflection(resources?.reflection ?? null)
-        model.setFloorTextures(resources?.floor ?? null)
-      }),
-    [environment?.channel, model],
-  )
-
+/** The editable master owns visuals; conservative boxes own navigation. */
+export function EntryAirlock({
+  emergency,
+  phase,
+}: {
+  emergency: boolean
+  phase: BulkheadPhase
+}) {
   return (
     <group name="entry-airlock">
-      <ArrivalServiceDetails />
-      <ArrivalOutfitting />
-      <RigidBody
-        type="fixed"
-        colliders={false}
-        friction={0}
-        position={[0, 0, ARRIVAL_ORIGIN_Z]}
-      >
-        <Bvh indirect>
-          <primitive object={model.root} dispose={null} />
-        </Bvh>
-        {ARRIVAL_FLOOR_HULLS.map((vertices, i) => (
-          <ConvexHullCollider key={i} args={[vertices]} />
-        ))}
-        {ARRIVAL_FURNITURE.map(({ position, halfSize }, i) => (
-          <CuboidCollider key={i} position={position} args={halfSize} />
+      <ArrivalCabinModel phase={phase} powered={!emergency} />
+      {CABIN_TECHNICAL_END_PANELS.map(({ position, size }) => (
+        <mesh
+          key={position[2]}
+          name="technical-wall-end-panel"
+          position={[...position]}
+        >
+          <boxGeometry args={[...size]} />
+          <meshStandardMaterial
+            color="#34312b"
+            metalness={0.5}
+            roughness={0.65}
+          />
+        </mesh>
+      ))}
+      <RigidBody type="fixed" colliders={false} friction={0}>
+        <CuboidCollider
+          position={[...CABIN_MASTER_FLOOR.position]}
+          args={[...CABIN_MASTER_FLOOR.halfSize]}
+        />
+        {CABIN_MASTER_COLLIDERS.map(({ id, position, halfSize }) => (
+          <CuboidCollider
+            key={id}
+            name={id}
+            position={[...position]}
+            args={[...halfSize]}
+          />
         ))}
       </RigidBody>
       <RigidBody
@@ -69,19 +61,12 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
               position={[side * at[0], at[1], at[2]]}
             >
               <CuboidCollider args={[size[0] / 2, size[1] / 2, size[2] / 2]} />
-              {/* Room-side face is already covered by the GLB facade. */}
-              {index !== 1 && (
-                <mesh>
-                  <boxGeometry args={[...size]} />
-                  <meshStandardMaterial color="#30383e" roughness={0.7} />
-                </mesh>
-              )}
             </group>
           )),
         )}
       </RigidBody>
       {/* Only exposed thresholds; never a second floor beneath GLB plates. */}
-      {[[11.2, ARRIVAL_ORIGIN_Z, 2.8]].map(([start, end, halfWidth]) => (
+      {[[11.2, shellLayout.startZ, 2.8]].map(([start, end, halfWidth]) => (
         <RigidBody
           key={start}
           type="fixed"
@@ -103,7 +88,7 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
       {/* Restrained practicals shape the furniture zones. Rectangular
           reflections share the one static map; no shadow render passes. */}
       <pointLight
-        name="arrival-lounge-wash"
+        name="arrival-observation-wash"
         position={[-2.7, 2.5, 16.65]}
         color="#ffc184"
         intensity={emergency ? 2.16 : 18}
@@ -112,7 +97,7 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
       />
       <pointLight
         name="arrival-service-wash"
-        position={[-2.9, 2.25, 12.7]}
+        position={[-3.7, 1.4, 14.4]}
         color="#ffc184"
         intensity={emergency ? 1.2 : 10}
         distance={4.2}
@@ -124,6 +109,14 @@ export function EntryAirlock({ emergency }: { emergency: boolean }) {
         color="#ffc184"
         intensity={emergency ? 1.44 : 12}
         distance={4.5}
+        decay={2}
+      />
+      <pointLight
+        name="vestibule-aft-wash"
+        position={[0, 2.35, 20.1]}
+        color="#ffd3a1"
+        intensity={emergency ? 1 : 8}
+        distance={2.5}
         decay={2}
       />
     </group>

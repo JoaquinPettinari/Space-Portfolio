@@ -114,7 +114,7 @@ export function Greybox({
           <CuboidCollider args={[1.34, 0.39, 0.15]} position={[0, 2.91, 5.1]} />
           <ShipHull />
         </RigidBody>
-        <EntryAirlock emergency={emergency} />
+        <EntryAirlock emergency={emergency} phase={bulkheadPhase} />
         <PanoramicPassage />
         <BridgeThroatFrame />
         <RigidBody type="fixed" colliders={false}>

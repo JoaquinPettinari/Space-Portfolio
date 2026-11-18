@@ -1,15 +1,44 @@
 # Maestro de la cabina de llegada
 
-Este estudio reúne la cabina habitable entre la puerta de docking fija y la
-puerta de acceso al puente. Es un documento de autoría para revisar el conjunto;
-no reemplaza automáticamente los recursos publicados del juego.
+Este maestro reúne la cabina habitable entre la puerta de docking fija y la
+puerta de acceso al puente, más la esclusa posterior. Es el documento de autoría;
+el juego utiliza los GLB exportados, no el `.blend` directamente.
+
+## Integración al runtime — 2026-11-18
+
+`scripts/assets/export-cabin-master.py` lee el maestro en Blender background sin
+guardarlo. Exporta `public/models/cabin-master-static.glb` en metros mundiales
+Y-up y `public/models/cabin-master-sliding-leaves.glb` en el espacio local del
+mecanismo existente. Excluye archivos, fondo espacial, luces, cámaras, terminal
+y displays de previsualización; el terminal dinámico permanece en código.
+
+Los objetos estáticos se agrupan por material y zona. Los acabados procedurales
+se convierten a mapas PBR reutilizables de 512 px, conservando fotografías y UV
+de imágenes existentes. El vidrio usa transparencia suave, sin el coste de
+transmisión refractiva. `runtime-export/export.json` registra tamaños, límites,
+materiales, imágenes y pivotes. La fuente `.blend` conserva su hash durante la
+exportación.
+
+El código reemplaza los lotes visuales antiguos de llegada, sin duplicar cabina,
+traje ni puerta fija. Las hojas móviles mantienen su acreditación y recorrido;
+el piso y los muebles usan colisiones independientes. Sofá, mesita y café dejan
+de renderizarse en llegada. La nueva esclusa es visible por el visor y sigue
+cerrada al recorrido. Los visores de navegación y táctico usan el mismo conjunto.
+
+Las luces de estudio no se importan: el juego adapta iluminación y reflejos.
+Las comparaciones de rendimiento, capturas y pruebas están en
+[la auditoría de integración](../../audits/cabin-master-integration/README.md).
+Las secciones siguientes registran las pasadas artísticas anteriores; sus notas
+de «sin cambios en runtime» describen el estado de cada pasada, antes de integrar.
 
 ## Dirección actual: referencia de cuatro vistas
 
 La revisión del ventanal, vitrina y piso sigue las
 [correcciones expresas del usuario](turnaround-direction.md), no las etiquetas
 inconsistentes de la imagen. El lado izquierdo queda despejado, sin sofá,
-mesita, café ni consola. Se conserva el traje junto a la puerta trasera dentro
+mesita, café ni consola. La ampliación del 18 de noviembre permite una repisa
+baja con planta, objetos de exploración y portarretratos, manteniendo el centro
+del ventanal libre. Se conserva el traje junto a la puerta trasera dentro
 de una vitrina, se coloca una planta donde estaba el café y se mantiene la pared
 técnica a la derecha. No se añade ninguna puerta lateral.
 
@@ -104,6 +133,100 @@ sustituidas del piso se conservan archivadas y excluidas.
 El respaldo es `before-surface-polish.blend` y las imágenes anteriores son
 `before-surface-polish-*.png`. Los recursos publicados no se reemplazan.
 
+## Ventanal y repisa de observación — 2026-11-18
+
+`window-dressing.py` reemplaza el marco anterior por un perímetro octagonal
+escalonado y añade una repisa achaflanada con soportes, fascia y acentos ámbar.
+Se reutiliza la planta existente y se agrupan un instrumento orbital, una muestra
+y dos portarretratos en los extremos. No hay consola ni pantalla central.
+Los portarretratos usan imágenes espaciales locales empaquetadas en el maestro.
+
+El respaldo es `before-window-dressing.blend`, con vista anterior en
+`before-window-dressing.png`. La revisión se observa en `turnaround-window.png`
+y `window-dressing-oblique.png`; las otras vistas históricas pueden mostrar el
+ventanal anterior hasta su próximo render.
+
+`window-dressing-audit.json` registra las piezas sustituidas archivadas, los siete
+nodos de integración preservados y la geometría evaluada: 346.188 → 351.899
+triángulos. El centro de la repisa queda libre. Esta revisión es de autoría;
+sus apoyos y decoración requieren colisiones y medición al integrarlos al juego.
+
+### Pulido de follaje y acabados
+
+`window-polish.py` refina los objetos existentes: hojas curvas con nervios y
+peciolos, ramas laterales colgantes, borde y base de maceta, graduaciones y pivotes
+del instrumento orbital, apoyos de portarretratos y vidrio sutil. Las fotografías
+siguen sin emisión. Los acabados de pintura, metal y muestra se ajustan mediante
+materiales locales, sin modificar los materiales compartidos del resto de la
+cabina ni añadir luces.
+
+El respaldo es `before-window-polish.blend`, con vistas previas frontal y oblicua.
+`window-polish-audit.json` registra geometría, follaje archivado y los siete nodos
+de integración conservados. Además de las vistas generales, se revisa
+`window-polish-closeup.png` para comprobar hojas, maceta y herrajes.
+
+### Marco y luz de repisa
+
+`window-frame-light.py` refina las uniones del perímetro y reemplaza las tiras
+anteriores por canales con difusor ámbar. Las luces de apoyo pertenecen al estudio
+de Blender; no se incorporan automáticamente al juego. Se conservan la exposición,
+la iluminación del techo, los objetos y el centro libre.
+
+El respaldo es `before-window-frame-light.blend`, acompañado por las vistas
+anteriores frontal y oblicua. `window-frame-light-audit.json` registra geometría,
+fuentes de luz y las transformaciones de integración preservadas. Las imágenes
+generales del ventanal se actualizan con esta pasada.
+
+## Esclusa detrás de docking y entorno del ventanal
+
+`docking-vestibule.py` incorpora un recinto cerrado detrás de la puerta fija,
+visible por su visor: piso, paredes, techo, pasamanos, ventilación y un cierre
+exterior estático. La abertura de la puerta ya existía; se conserva su malla y
+se sustituye únicamente su material local opaco por vidrio transmisivo. El
+material original se conserva. La puerta no adquiere interacción ni apertura.
+El acabado final del visor simplifica el vidrio: 96,5 % de transparencia y 3,5 %
+de superficie dieléctrica, sin refracción. Evita las imágenes dobles de la malla
+biselada original; el fondo visible sigue siendo el recinto tridimensional.
+La unión frontal queda detrás del collar existente, sin invadir el mamparo.
+
+La misma pasada refina materiales del piso lateral y remates de zócalo junto al
+ventanal. La repisa, los objetos y su centro libre se mantienen. El respaldo es
+`before-vestibule.blend`; `vestibule-audit.json` registra geometría, luces, nodos
+de integración y rayos de comprobación del cierre detrás del visor.
+
+Las vistas actualizadas son `turnaround-window.png`, `turnaround-fixed-door.png`
+y `vestibule-through-glass.png`. Los rayos comprueban muestras de visibilidad,
+no certifican colisiones ni una simulación física de presurización. El recinto
+pertenece al maestro artístico y aún requiere adaptación a la envolvente exterior,
+colisiones y presupuesto de render al integrarse al juego.
+
+### Terminaciones de la esclusa
+
+`vestibule-finish.py` añade el despiece achaflanado y varillaje del cierre exterior,
+soportes de pasamanos, registros con tiradores hundidos y remates de drenaje.
+Conserva vidrio, iluminación y distribución. El respaldo es
+`before-vestibule-finish.blend`, con capturas previas de docking y visor.
+
+`vestibule-finish-audit.json` registra 384.405 → 397.177 triángulos evaluados,
+siete nodos de integración preservados y 35 rayos de comprobación del recinto.
+El detalle nuevo del piso alcanza 0.019 m; la cabina conserva 0.015 m.
+Se revisaron el visor y `vestibule-interior.png`, que muestra el piso y los
+encuentros desde una cámara interior. No se añadieron luces ni funciones al juego.
+
+### Materiales e iluminación de la esclusa
+
+`vestibule-material-light.py` ajusta materiales exclusivos del recinto: pintura
+grafito satinada, acero cálido en herrajes y reflejo suave del piso. Reorienta las
+dos luces interiores existentes hacia el cierre, con 62 y 48 W, conservando
+sombras laterales. Son parámetros de autoría en Blender, no valores para copiar
+directamente al juego.
+
+El respaldo es `before-vestibule-material-light.blend`, con tres capturas previas.
+`vestibule-material-light-audit.json` registra los parámetros anteriores y finales.
+La geometría evaluada se mantiene en 397.177 triángulos: vidrio, siete nodos de
+integración, cámaras, exposición y luces externas no cambian. Se revisaron las
+vistas de docking, visor e interior con las mismas cámaras; no se añadieron luces.
+
 ## Base de ensamblado
 
 Abrir `cabin-master.blend`. El inventario `assembly.json` registra fuentes,
@@ -148,9 +271,8 @@ La pared técnica refinada proviene del estudio dedicado. Se sustituye su versi�
 anterior para evitar superposiciones. El casco debe conservar el perfil recto
 de `arrivalShellLayout.json` y los huecos de ambas puertas.
 
-Podemos exportar la cabina como un conjunto organizado, pero no fusionarla toda
-en una única malla estática. Antes de integrar: preparar texturas compatibles
-con glTF, separar decoración y partes móviles, medir los recursos y revisar
+La exportación conserva decoración y partes móviles separadas, con texturas
+compatibles con glTF. Cada revisión requiere medir los recursos y comprobar
 recorridos, acceso y colisiones en el juego. Los renders de Blender sólo validan
 la composición artística, no el comportamiento ni el rendimiento del navegador.
 

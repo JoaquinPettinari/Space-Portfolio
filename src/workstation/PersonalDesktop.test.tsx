@@ -121,5 +121,7 @@ it('presents real settings guidance without nonfunctional controls', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Station Settings' }))
   expect(screen.getByText(/Reduced motion follows your device/)).toBeVisible()
   expect(screen.getByText(/Quick Portfolio Access/)).toBeVisible()
+  expect(screen.getByText(/Choose Read without 3D/)).toBeVisible()
+  expect(screen.queryByText(/T, then R/)).not.toBeInTheDocument()
   expect(screen.queryByRole('switch')).not.toBeInTheDocument()
 })

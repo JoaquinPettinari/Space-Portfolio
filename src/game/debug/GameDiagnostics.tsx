@@ -7,6 +7,8 @@ import {
   Light,
   Matrix4,
   Mesh,
+  MeshStandardMaterial,
+  MeshPhysicalMaterial,
   Points,
   ShaderMaterial,
   Raycaster,
@@ -89,6 +91,13 @@ declare global {
         name: string
         draws: number
         triangles: number
+      }[]
+      materialInventory: () => {
+        name: string
+        type: string
+        fastPath: boolean
+        normalMap: boolean
+        clearcoat: number
       }[]
     }>
   }
@@ -194,6 +203,27 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         mouse.current = { x: event.movementX, y: event.movementY }
     }
     const api = Object.freeze({
+      materialInventory: () => {
+        const seen = new Set<MeshStandardMaterial>()
+        scene.traverseVisible((object) => {
+          if (!(object instanceof Mesh)) return
+          for (const material of Array.isArray(object.material)
+            ? object.material
+            : [object.material]) {
+            if (material instanceof MeshStandardMaterial) seen.add(material)
+          }
+        })
+        return [...seen].map((material) => ({
+          name: material.name,
+          type: material.type,
+          fastPath: material
+            .customProgramCacheKey()
+            .includes('zero-contribution-lights-v1'),
+          normalMap: material.normalMap !== null,
+          clearcoat:
+            material instanceof MeshPhysicalMaterial ? material.clearcoat : 0,
+        }))
+      },
       renderInventory: () => {
         const frustum = new Frustum().setFromProjectionMatrix(
           new Matrix4().multiplyMatrices(

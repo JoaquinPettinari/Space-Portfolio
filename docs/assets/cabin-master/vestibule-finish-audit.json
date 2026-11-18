@@ -1,0 +1,20 @@
+{
+  "trianglesBefore": 384405,
+  "trianglesAfter": 397177,
+  "preservedSlots": [
+    "SLOT / Fixed docking door",
+    "SLOT / Sliding leaves",
+    "SLOT / Sliding stationary frame",
+    "SLOT / Credential terminal",
+    "SLOT / Full NASA EMU",
+    "LEAF_LEFT_SLIDE",
+    "LEAF_RIGHT_SLIDE"
+  ],
+  "closedRoomRays": 35,
+  "newFloorMaxY": 0.01900000125169754,
+  "cabinFloorMaxY": 0.015000000596046448,
+  "lightsUnchanged": true,
+  "lightCount": 28,
+  "glassUnchanged": true,
+  "runtimeChanged": false
+}

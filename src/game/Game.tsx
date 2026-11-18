@@ -40,7 +40,18 @@ export function Game({
   const [identity, setIdentity] = useState<IdentityPhase>('idle')
   const [scanSignal, setScanSignal] = useState(0)
   const [subtitlesEnabled, setSubtitlesEnabled] = useState(true)
-  const dialogue = useDialogue({ paused: suspended })
+  const controls = useStationControls({
+    suspended,
+    onTabletOpened: () => {
+      finishMission('tablet')
+      if (protocol.guidance !== 'skipped') enqueue('tablet')
+    },
+    onModeChange: () =>
+      setIdentity(completed.includes('crew') ? 'verified' : 'idle'),
+  })
+  const dialogue = useDialogue({
+    paused: suspended || controls.showMouseHint,
+  })
   const { enqueue } = dialogue
   const finishMission = (id: MissionId) => {
     dispatch({ type: 'activity', id })
@@ -51,15 +62,6 @@ export function Game({
       enqueue('archives')
     if (id === 'dossier') enqueue('dossier')
   }
-  const controls = useStationControls({
-    suspended,
-    onTabletOpened: () => {
-      finishMission('tablet')
-      if (protocol.guidance !== 'skipped') enqueue('tablet')
-    },
-    onModeChange: () =>
-      setIdentity(completed.includes('crew') ? 'verified' : 'idle'),
-  })
   useEffect(() => {
     if (controls.ready) enqueue('arrival')
   }, [controls.ready, enqueue])

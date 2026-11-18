@@ -1,7 +1,6 @@
 import { useLayoutEffect, useMemo, type ReactNode } from 'react'
 import { useThree } from '@react-three/fiber'
 import { createArrivalReflection } from './arrivalReflections'
-import { createArrivalFloorTextures } from './arrivalFloorTextures'
 import {
   ArrivalEnvironmentContext,
   createArrivalEnvironmentChannel,
@@ -22,12 +21,10 @@ export function ArrivalSurfaceEnvironment({
   )
   useLayoutEffect(() => {
     const target = createArrivalReflection(renderer)
-    const floor = createArrivalFloorTextures()
-    channel.publish({ reflection: target.texture, floor })
+    channel.publish({ reflection: target.texture })
     return () => {
       channel.publish(null)
       target.dispose()
-      floor.dispose()
     }
   }, [renderer, channel])
   return (

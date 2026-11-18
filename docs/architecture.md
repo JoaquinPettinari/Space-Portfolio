@@ -1,5 +1,45 @@
 # Arquitectura
 
+## Integración del maestro de cabina — 2026-11-18
+
+La escena caminable utiliza `cabin-master-static.glb` en coordenadas mundiales
+y `cabin-master-sliding-leaves.glb` con los pivotes locales de las hojas. El
+exportador `scripts/assets/export-cabin-master.py` lee el maestro sin guardarlo,
+excluye archivos, cámaras, luces y pantallas de previsualización, agrupa por
+material y convierte acabados procedurales a mapas PBR reutilizables.
+
+`ArrivalCabinModel` conserva los mapas exportados y gestiona copias de materiales
+para reflejos locales y alimentación. `EntryAirlock` conserva la física separada:
+el antiguo sofá y la mesita dejan de bloquear el recorrido, mientras repisa,
+vitrina y pared técnica usan colisiones simples. La envolvente física recta se
+mantiene. Docking continúa fijo; la esclusa se ve a través del visor, sin abrir
+una nueva ruta jugable.
+
+El casco visual y los detalles compartidos filtran únicamente los lotes antiguos
+de llegada. La puerta móvil conserva su estado, recorrido y cuerpos cinemáticos;
+el terminal de acreditación y su gesto permanecen en código. Los visores de
+navegación y táctico componen también los nuevos recursos. La iluminación del
+renderer se adapta con luces prácticas; no importa las 28 luces del estudio.
+
+Los materiales conservan sus mapas PBR en `MeshStandardMaterial`; los sólidos
+descartan caras posteriores y vidrio y vegetación mantienen ambas caras.
+La esclusa utiliza una luz práctica. Las cargas individuales de GLB comparten
+la caché entre casco, cabina y visores para evitar descargas duplicadas.
+
+Contrato y exportación: [maestro](assets/cabin-master/README.md).
+Evidencia de integración: [auditoría](audits/cabin-master-integration/README.md).
+
+La pared técnica cierra también sus dos extremos: `cabinMasterLayout.ts` comparte
+el frente y los límites de la envolvente entre la colisión continua y los dos
+remates visuales de `EntryAirlock`. Así no queda un pasillo accesible detrás de
+los armarios. Estos remates son piezas del runtime, separadas del maestro.
+
+`fit-vestibule-envelope.mjs` deriva `cruz-del-sur-vestibule-envelope.glb` del
+casco recto original. Recorta únicamente la geometría del casco que invadía la
+esclusa; conserva la fuente y los materiales. `UNIFIED_ENVELOPE_ASSET` comparte
+este derivado con los visores. La prueba `vestibuleEnvelopeAsset.test.ts`
+comprueba el suelo despejado y puntos de control exteriores sin cambios.
+
 ## Maestro artístico de la cabina
 
 `docs/assets/cabin-master/cabin-master.blend` reúne la cabina de llegada, entre
@@ -8,11 +48,11 @@ y las coordenadas del runtime, incorpora la pared técnica refinada y permite
 revisar la iluminación y los materiales en conjunto. Las fuentes originales se
 conservan. Inventario y contrato de las puertas: [maestro](assets/cabin-master/README.md).
 
-El maestro no es una nueva escena ejecutable del juego. La integración posterior
-debe sustituir los recursos visuales correspondientes, sin duplicarlos, y conservar
-el control de acreditación, las hojas móviles, las colisiones y las interfaces
-dinámicas en código. Las luces de render y los materiales procedurales necesitan
-adaptación y validación antes de publicarse.
+El maestro sigue siendo el documento de autoría. Su exportación para el juego
+se describe arriba; el archivo `.blend` no se carga directamente en el navegador.
+La acreditación, las hojas móviles, las colisiones y las interfaces dinámicas
+permanecen en código. Las futuras revisiones requieren volver a exportar y validar
+los recursos, en lugar de superponer una segunda cabina.
 
 ## Estudio de arte de la pared técnica
 

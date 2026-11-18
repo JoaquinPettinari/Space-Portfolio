@@ -26,6 +26,7 @@ export const regressionSpecs = [
 
 /** Historical visual/asset reviews, timing captures and profiling, not gameplay regression. */
 export const auditSpecs = [
+  'cabin-master.spec.ts',
   'service-wall-review.spec.ts',
   'cabin-lighting-review.spec.ts',
   'arrival-layout-review.spec.ts',

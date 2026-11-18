@@ -11,6 +11,11 @@ import { BackSide, SRGBColorSpace } from 'three'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
+import {
+  CABIN_MASTER_ASSET,
+  CABIN_MASTER_LEAVES_ASSET,
+  assembleCurrentShip,
+} from './cabinMaster'
 import { GALACTIC_SKY } from './spaceScenery'
 import { trapDialogFocus } from '../ui/dialogFocus'
 import {
@@ -30,8 +35,16 @@ function focusReturnButton(element: HTMLButtonElement | null) {
 }
 
 function ExteriorScene({ orbit }: { orbit: RefObject<OrbitHandle | null> }) {
-  const { scene } = useGLTF(UNIFIED_ENVELOPE_ASSET)
-  const ship = useMemo(() => createNavigationShip(scene), [scene])
+  const envelope = useGLTF(UNIFIED_ENVELOPE_ASSET)
+  const cabin = useGLTF(CABIN_MASTER_ASSET)
+  const leaves = useGLTF(CABIN_MASTER_LEAVES_ASSET)
+  const ship = useMemo(
+    () =>
+      createNavigationShip(
+        assembleCurrentShip(envelope.scene, cabin.scene, leaves.scene),
+      ),
+    [envelope.scene, cabin.scene, leaves.scene],
+  )
   const sky = useTexture(GALACTIC_SKY, (loaded) => {
     if (!Array.isArray(loaded)) loaded.colorSpace = SRGBColorSpace
   })

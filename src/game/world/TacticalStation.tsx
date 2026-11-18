@@ -8,6 +8,11 @@ import {
   skipTacticalVisualRaycast,
 } from './tacticalShipModel'
 import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
+import {
+  CABIN_MASTER_ASSET,
+  CABIN_MASTER_LEAVES_ASSET,
+  assembleCurrentShip,
+} from './cabinMaster'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TerminalPanel } from '../ui/TerminalPanel'
 import { TacticalPanel } from '../ui/TacticalPanel'
@@ -38,8 +43,16 @@ export function TacticalStation({
   onClose: () => void
 }) {
   const model = useRef<Group>(null)
-  const { scene } = useGLTF(UNIFIED_ENVELOPE_ASSET)
-  const hologram = useMemo(() => createTacticalShipModel(scene), [scene])
+  const envelope = useGLTF(UNIFIED_ENVELOPE_ASSET)
+  const cabin = useGLTF(CABIN_MASTER_ASSET)
+  const leaves = useGLTF(CABIN_MASTER_LEAVES_ASSET)
+  const hologram = useMemo(
+    () =>
+      createTacticalShipModel(
+        assembleCurrentShip(envelope.scene, cabin.scene, leaves.scene),
+      ),
+    [envelope.scene, cabin.scene, leaves.scene],
+  )
   useEffect(() => () => hologram.dispose(), [hologram])
   const [zoom, setZoom] = useState(TACTICAL_DEFAULT_ZOOM)
   const [rotating, setRotating] = useState(true)

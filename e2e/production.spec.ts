@@ -11,7 +11,7 @@ test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 
 test('starts directly in the production station and keeps portfolio access secondary', async ({
   page,
-}) => {
+}, info) => {
   const errors: string[] = []
   const violations: string[] = []
   await page.exposeFunction('reportCspViolation', (directive: string) => {
@@ -83,6 +83,24 @@ test('starts directly in the production station and keeps portfolio access secon
   expect(await page.evaluate(() => '__GAME_DEBUG__' in window)).toBe(false)
   expect(errors).toEqual([])
   expect(violations).toEqual([])
+  await info.attach('production-model-resources', {
+    body: JSON.stringify(
+      await page.evaluate(() =>
+        performance
+          .getEntriesByType('resource')
+          .filter((entry) => new URL(entry.name).pathname.endsWith('.glb'))
+          .map((entry) => {
+            const resource = entry as PerformanceResourceTiming
+            return {
+              path: new URL(resource.name).pathname,
+              transferBytes: resource.transferSize,
+              durationMs: resource.duration,
+            }
+          }),
+      ),
+    ),
+    contentType: 'application/json',
+  })
 
   // Playwright evaluate itself bypasses CSP; a DOM-inserted script does not.
   // Deliberately exercise enforcement only after checking normal app behavior.

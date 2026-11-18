@@ -1,5 +1,5 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useEffect, useMemo, useRef } from 'react'
+import { useContext, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import {
   CuboidCollider,
@@ -15,6 +15,8 @@ import {
   type BulkheadPhase,
 } from './bulkhead'
 import { prepareBulkhead } from './bulkheadAsset'
+import { CABIN_MASTER_LEAVES_ASSET, prepareCabinMaster } from './cabinMaster'
+import { ArrivalEnvironmentContext } from './arrivalEnvironment'
 
 const interaction = { interaction: 'bulkhead' }
 
@@ -27,22 +29,28 @@ export function Bulkhead({
   powered: boolean
   onPhaseChange: (phase: BulkheadPhase) => void
 }) {
-  const { scene } = useGLTF('/models/cruz-del-sur-sliding-bulkhead.glb')
-  const model = useMemo(() => prepareBulkhead(scene), [scene])
+  const { scene } = useGLTF(CABIN_MASTER_LEAVES_ASSET)
+  const environment = useContext(ArrivalEnvironmentContext)
+  const finishes = useMemo(() => prepareCabinMaster(scene), [scene])
+  const model = useMemo(() => prepareBulkhead(finishes.root), [finishes])
+  useEffect(() => () => finishes.dispose(), [finishes])
+  useLayoutEffect(
+    () =>
+      environment?.channel.subscribe((resources) =>
+        finishes.setReflection(resources?.reflection ?? null),
+      ),
+    [environment?.channel, finishes],
+  )
+  useLayoutEffect(
+    () => finishes.setPower(powered ? 1 : 0.12),
+    [powered, finishes],
+  )
   const left = useRef<RapierRigidBody>(null)
   const right = useRef<RapierRigidBody>(null)
   const reduced = useReducedMotionRef()
   const motion = useRef({ lastPhase: phase, elapsed: 0, notified: false })
   const leftPosition = useRef({ x: 0, y: -0.18, z: BULKHEAD_DEPTH })
   const rightPosition = useRef({ x: 0, y: -0.18, z: BULKHEAD_DEPTH })
-  useEffect(() => {
-    for (const material of model.indicators) {
-      material.color.set(
-        !powered ? '#d53c32' : phase === 'closed' ? '#e8ad70' : '#32e68b',
-      )
-      material.emissive.copy(material.color)
-    }
-  }, [model, powered, phase])
   useEffect(
     () => () => {
       model.indicators.forEach((material) => material.dispose())
@@ -125,6 +133,12 @@ export function Bulkhead({
             position={[0, 1.43, 0.06]}
           />
           <primitive object={visual} dispose={null} />
+          {/* The 6 mm decorative seam must not let interaction rays through.
+              This follows each physical leaf and never draws a surface. */}
+          <mesh visible={false} position={[0, 1.43, 0.06]}>
+            <boxGeometry args={[1.38, 2.5, 0.36]} />
+            <meshBasicMaterial />
+          </mesh>
         </RigidBody>
       ))}
     </group>

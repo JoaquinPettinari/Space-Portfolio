@@ -1,0 +1,287 @@
+{
+  "source": "docs\\assets\\cabin-master\\cabin-master.blend",
+  "sourceSha256": "5e2e45a62015c0dced349f90c402f35530f34d0f842160e6c3c6ed9970843c13",
+  "sourceSaved": false,
+  "staticCoordinateSpace": "World Y-up, no placement offset",
+  "slidingPlacementRuntime": [0, -0.18, 11.65],
+  "slidingTravel": {
+    "LEAF_LEFT_SLIDE": -1.37,
+    "LEAF_RIGHT_SLIDE": 1.37
+  },
+  "excludedCollections": [
+    "09 Credential terminal",
+    "10 Lighting and cameras",
+    "11 Packed references",
+    "12 Space backdrop",
+    "13 Preview displays - not for export",
+    "90 Archive / Superseded layout - excluded"
+  ],
+  "studioLightsExported": false,
+  "collidersExported": false,
+  "proceduralAdaptation": "Reusable 512px color/ORM/tangent-normal tiles baked without lighting; local planar UV projection. Source image UVs retained.",
+  "bakedMaterials": [
+    {
+      "material": "CABIN / REFERENCE / Padded ceiling",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\d80fd0d3c0718941-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\d80fd0d3c0718941-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\d80fd0d3c0718941-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "MASTER / Graphite alloy deck",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\f64d2f2d0d5db151-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\f64d2f2d0d5db151-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\f64d2f2d0d5db151-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Black instrument glass",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\b19b88c2c54a2f59-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\b19b88c2c54a2f59-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\b19b88c2c54a2f59-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Brushed copper coolant",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\df6972c2077fd9cd-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\df6972c2077fd9cd-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\df6972c2077fd9cd-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Carbon rubber",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc9c498e548604c6-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc9c498e548604c6-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc9c498e548604c6-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Dark saddle leather",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\78a8aaddf2bd5bd4-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\78a8aaddf2bd5bd4-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\78a8aaddf2bd5bd4-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Leather stitching",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\bba19673303e7226-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\bba19673303e7226-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\bba19673303e7226-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Living vine",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\59a7bccc446cc085-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\59a7bccc446cc085-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\59a7bccc446cc085-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Oxide red emergency enamel",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\caae5dbac5a5470e-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\caae5dbac5a5470e-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\caae5dbac5a5470e-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Powder coated structural rails",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\3d557d6c7b043d10-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\3d557d6c7b043d10-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\3d557d6c7b043d10-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Warm graphite enamel",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\ba83adf62c596508-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\ba83adf62c596508-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\ba83adf62c596508-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Warm stencil ink",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\3ae56f81207fb55a-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\3ae56f81207fb55a-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\3ae56f81207fb55a-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "STUDIO / Worn machined bronze steel",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc98823819dfbac1-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc98823819dfbac1-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\fc98823819dfbac1-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "VESTIBULE / Balanced Brushed edge alloy",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\14d7389bcb100695-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\14d7389bcb100695-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\14d7389bcb100695-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "VESTIBULE / Balanced Powder coated structural rails",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\5465543463e2c533-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\5465543463e2c533-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\5465543463e2c533-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "VESTIBULE / Balanced Pressure leaf enamel",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\49fe47b486c12b41-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\49fe47b486c12b41-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\49fe47b486c12b41-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "VESTIBULE / Satin deck alloy",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\f82049cc49ba36d6-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\f82049cc49ba36d6-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\f82049cc49ba36d6-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "WINDOW / Brushed edge alloy",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\55d0e16f7ca5b549-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\55d0e16f7ca5b549-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\55d0e16f7ca5b549-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "WINDOW / Lower wall protective enamel",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\9fe76f06e5dde63f-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\9fe76f06e5dde63f-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\9fe76f06e5dde63f-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "WINDOW / Mineral specimen",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\2aae0716097b3885-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\2aae0716097b3885-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\2aae0716097b3885-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "WINDOW / Perimeter deck satin",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\4eeb05d21f75d6e4-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\4eeb05d21f75d6e4-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\4eeb05d21f75d6e4-normal.png"
+      },
+      "resolution": 512
+    },
+    {
+      "material": "WINDOW / Satin graphite finish",
+      "maps": {
+        "base": "docs\\assets\\cabin-master\\runtime-export\\textures\\7f3f3bd5157bbf7b-base.png",
+        "orm": "docs\\assets\\cabin-master\\runtime-export\\textures\\7f3f3bd5157bbf7b-orm.png",
+        "normal": "docs\\assets\\cabin-master\\runtime-export\\textures\\7f3f3bd5157bbf7b-normal.png"
+      },
+      "resolution": 512
+    }
+  ],
+  "assets": [
+    {
+      "file": "cabin-master-static.glb",
+      "sourceObjects": 1665,
+      "meshBatches": 76,
+      "materials": 71,
+      "nodes": 76,
+      "images": 74,
+      "triangles": 374331,
+      "bytes": 20835364,
+      "boundsRuntime": {
+        "min": [-5.172361850738525, -0.24000000953674316, 10.820000648498535],
+        "max": [4.949999809265137, 3.299999952316284, 21.135000228881836]
+      },
+      "glassMaterials": [
+        {
+          "name": "CABIN_GLASS_MASTER_Clear_pressure_glazing",
+          "alphaMode": "BLEND",
+          "alpha": 0.054999999701976776
+        },
+        {
+          "name": "CABIN_GLASS_REV_EVA_display_clear_glass",
+          "alphaMode": "BLEND",
+          "alpha": 0.054999999701976776
+        },
+        {
+          "name": "CABIN_GLASS_VESTIBULE_Clear_inspection_glass",
+          "alphaMode": "BLEND",
+          "alpha": 0.03500000014901161
+        },
+        {
+          "name": "CABIN_GLASS_WINDOW_Keepsake_protective_glass",
+          "alphaMode": "BLEND",
+          "alpha": 0.054999999701976776
+        }
+      ]
+    },
+    {
+      "file": "cabin-master-sliding-leaves.glb",
+      "sourceObjects": 60,
+      "meshBatches": 12,
+      "materials": 6,
+      "nodes": 14,
+      "images": 15,
+      "triangles": 14078,
+      "bytes": 986168,
+      "boundsRuntime": {
+        "min": [-1.3550000190734863, 0.0, -0.049999237060546875],
+        "max": [1.3550000190734863, 2.8600001335144043, 0.14600077271461487]
+      },
+      "glassMaterials": [],
+      "pivots": [
+        {
+          "name": "LEAF_LEFT_SLIDE",
+          "translation": [-0.6850000023841858, 0, 0],
+          "rotation": [0, 0, 0, 1]
+        },
+        {
+          "name": "LEAF_RIGHT_SLIDE",
+          "translation": [0.6850000023841858, 0, 0],
+          "rotation": [0, 0, 0, 1]
+        }
+      ]
+    }
+  ]
+}

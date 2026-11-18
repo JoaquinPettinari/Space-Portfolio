@@ -45,7 +45,10 @@ it('uses the actual unified ship silhouette, keeps every triangle and never disp
   const materialDisposals = [...materials].map((m) => vi.spyOn(m, 'dispose'))
   const model = createTacticalShipModel(scene)
   const sourceTriangles = originals.reduce(
-    (sum, o) => sum + o.geometry.index!.count / 3,
+    (sum, o) =>
+      sum +
+      (o.geometry.index?.count ?? o.geometry.getAttribute('position').count) /
+        3,
     0,
   )
   try {
