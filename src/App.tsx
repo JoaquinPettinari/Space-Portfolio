@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { Loading } from './game/ui/Loading'
+import { useDockingIntro } from './game/intro/useDockingIntro'
+import { DockingOverlay } from './game/intro/DockingOverlay'
 import { PortfolioContent } from './portfolio/PortfolioContent'
 import { StationBoundary } from './StationBoundary'
 import '@fontsource/rajdhani/600.css'
@@ -27,8 +28,13 @@ function supportsWebGL() {
 
 export default function App() {
   const [view, setView] = useState<View>('station')
+  const intro = useDockingIntro(view !== 'station')
   const [available] = useState(supportsWebGL)
   const [stationFailed, setStationFailed] = useState(false)
+  const interiorVisibility =
+    stationFailed || intro.complete || intro.phase === 'revealing'
+      ? 'visible'
+      : 'hidden'
   const quickButton = useRef<HTMLButtonElement>(null)
   const portfolioTitle = useRef<HTMLHeadingElement>(null)
   const restoreFocus = useRef(false)
@@ -66,18 +72,42 @@ export default function App() {
           hidden={view !== 'station'}
           inert={view !== 'station'}
         >
-          <StationBoundary
-            onUnavailable={() => {
-              setStationFailed(true)
+          {/* Visibility is a second, independent barrier: warmup draws must never
+              expose the interior before the opaque intro opens. Layout stays sized. */}
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              visibility: interiorVisibility,
             }}
+            data-interior-visibility={interiorVisibility}
           >
-            <Suspense fallback={<Loading />}>
-              <Game
-                suspended={view !== 'station'}
-                onAccessiblePortfolio={openPortfolio}
-              />
-            </Suspense>
-          </StationBoundary>
+            <StationBoundary
+              onUnavailable={() => {
+                setStationFailed(true)
+              }}
+            >
+              <Suspense fallback={null}>
+                {intro.shouldLoadGame && (
+                  <Game
+                    suspended={view !== 'station'}
+                    onAccessiblePortfolio={openPortfolio}
+                    introComplete={intro.complete}
+                    introRevealing={intro.phase === 'revealing'}
+                    prepareInterior={
+                      intro.reducedMotion ||
+                      (intro.phase !== 'loading-exterior' &&
+                        intro.phase !== 'cinematic' &&
+                        intro.phase !== 'fading' &&
+                        intro.phase !== 'failed')
+                    }
+                    onInteriorReady={intro.setInteriorReady}
+                  />
+                )}
+              </Suspense>
+            </StationBoundary>
+          </div>
+          {!stationFailed && <DockingOverlay intro={intro} />}
         </div>
       )}
       {view === 'station' && (!available || stationFailed) && (

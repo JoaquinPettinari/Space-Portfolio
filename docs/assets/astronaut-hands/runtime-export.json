@@ -1,0 +1,67 @@
+{
+  "sourceHashes": {
+    "docs\\assets\\astronaut-hands\\hand-gestures.blend": "7e3eb76e1d295eff066d0bd8d13bb6d9020fc67629724ef88cbb48ad624c54c5",
+    "docs\\assets\\astronaut-hands\\astronaut-hands.blend": "e0be4ff28297e33a01c17da6c1bed46f3dc85c394015d11bd15d0993d2440264",
+    "docs\\assets\\mission-tablet\\mission-tablet.blend": "1b4ea07738cfab705ec518bf0426310e96caa01c27668ae496bd42060f25b347"
+  },
+  "timing": {
+    "tablet": {
+      "raise": 0.8,
+      "lower": 0.6
+    },
+    "card": {
+      "contact": 0.5,
+      "action": 0.58,
+      "holdUntil": 0.9,
+      "duration": 1.25
+    },
+    "radio": {
+      "contact": 0.5,
+      "action": 0.58,
+      "release": 0.72,
+      "duration": 1.0
+    }
+  },
+  "atlasResolution": 1024,
+  "skinMethod": "LINEAR",
+  "sourcesUnchanged": true,
+  "before": {
+    "meshObjects": 153,
+    "vertices": 121850
+  },
+  "radioSleeve": {
+    "bone": "RADIO_SLEEVE_END",
+    "parent": "forearm",
+    "restHeadBlender": [0, 0, -0.225],
+    "restTailBlender": [0, 0, -0.255],
+    "blendStartBlenderZ": -0.045,
+    "blendEndBlenderZ": -0.225,
+    "weightedVertices": 3589,
+    "sourceRigUnchanged": true
+  },
+  "radioLinearContactErrorBeforeCorrection": [
+    0.0, 2.2351741790771484e-8, -3.711754903434894e-9
+  ],
+  "beforeBufferDeduplicationBytes": 19757672,
+  "sheenWeights": {
+    "HAND / Graphite woven glove.001": 0.06499999761581421,
+    "HAND / Reinforced finger pads.001": 0.04500000178813934,
+    "HAND / Dark cuff rubber.001": 0.03999999910593033,
+    "HAND / Safety orange.001": 0.07999999821186066,
+    "HAND / Ivory pressure fabric.001": 0.18000000715255737,
+    "HAND / Seam thread.001": 0.07999999821186066,
+    "HAND / Graphite woven glove": 0.06499999761581421,
+    "HAND / Reinforced finger pads": 0.04500000178813934,
+    "HAND / Dark cuff rubber": 0.03999999910593033,
+    "HAND / Safety orange": 0.07999999821186066,
+    "HAND / Ivory pressure fabric": 0.18000000715255737,
+    "HAND / Seam thread": 0.07999999821186066
+  },
+  "meshPrimitives": 72,
+  "exportedMeshTriangles": 360412,
+  "instancedTriangles": 363072,
+  "bytes": 16624272,
+  "roots": ["TABLET_ASSEMBLY", "CARD_GESTURE", "RADIO_GESTURE"],
+  "clips": ["tablet_raise", "tablet_lower", "card_present", "radio_press"],
+  "coordinateSystem": "glTF Y up, +Z toward user; card/radio contact origin [0,0,0]"
+}

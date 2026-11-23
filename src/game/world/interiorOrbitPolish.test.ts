@@ -6,7 +6,6 @@ import { expect, it } from 'vitest'
 import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
 import { BRIDGE_OFFSET_Z } from './bridgePlacement'
 import { roofHalfWidth } from './bridgeLayout'
-import { DISTANT_PLANETS } from './spaceScenery'
 import { PASSAGE_RECESS_PANELS } from './passageRecessPanels'
 import { TRANSITION_START, TRANSITION_END } from './bridgePlacement'
 
@@ -122,15 +121,5 @@ it('puts the exported expedition book stack on the mounted shelf', async () => {
     expect(bounds.max.z).toBeLessThan(1.01)
   } finally {
     dispose(root)
-  }
-})
-
-it('keeps every added celestial body outside the ship and within the camera range', () => {
-  for (const body of DISTANT_PLANETS) {
-    const position = new Vector3(...body.position)
-    expect(position.length() - body.radius * 2.1).toBeGreaterThan(50)
-    expect(
-      position.distanceTo(new Vector3(0, 1.7, 18.265)) + body.radius * 2.1,
-    ).toBeLessThan(120)
   }
 })

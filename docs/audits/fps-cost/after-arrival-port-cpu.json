@@ -1,0 +1,1219 @@
+{
+  "durationMs": 5375.218,
+  "functions": [
+    {
+      "function": "(idle)",
+      "file": "",
+      "line": 0,
+      "selfMs": 4168.546
+    },
+    {
+      "function": "(program)",
+      "file": "",
+      "line": 0,
+      "selfMs": 477.317
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 23.492
+    },
+    {
+      "function": "setProgram",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52774,
+      "selfMs": 22.906
+    },
+    {
+      "function": "forEach",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 3319,
+      "selfMs": 22.624
+    },
+    {
+      "function": "acceleratedRaycast",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 75669,
+      "selfMs": 18.743
+    },
+    {
+      "function": "refreshUniformsCommon",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 50529,
+      "selfMs": 18.061
+    },
+    {
+      "function": "projectObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52526,
+      "selfMs": 17.913
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 228,
+      "selfMs": 17.63
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 17.043
+    },
+    {
+      "function": "bindVertexArray",
+      "file": "",
+      "line": 0,
+      "selfMs": 16.828
+    },
+    {
+      "function": "intersectsObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18786,
+      "selfMs": 14.648
+    },
+    {
+      "function": "WebGLRenderer.renderBufferDirect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52232,
+      "selfMs": 12.91
+    },
+    {
+      "function": "markUniformsLightsNeedsUpdate",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52937,
+      "selfMs": 12.666
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 12.132
+    },
+    {
+      "function": "raycast",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 75498,
+      "selfMs": 11.69
+    },
+    {
+      "function": "rotation",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 3008,
+      "selfMs": 11.253
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 10.711
+    },
+    {
+      "function": "bindTexture",
+      "file": "",
+      "line": 0,
+      "selfMs": 10.603
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 10.384
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6259,
+      "selfMs": 10.373
+    },
+    {
+      "function": "setValue",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45803,
+      "selfMs": 9.669
+    },
+    {
+      "function": "loop",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 9375,
+      "selfMs": 9.657
+    },
+    {
+      "function": "setValue",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45803,
+      "selfMs": 8.958
+    },
+    {
+      "function": "setMaterial",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48265,
+      "selfMs": 7.989
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 42546,
+      "selfMs": 7.936
+    },
+    {
+      "function": "clear",
+      "file": "",
+      "line": 0,
+      "selfMs": 7.867
+    },
+    {
+      "function": "wasm-function[339]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 7.537
+    },
+    {
+      "function": "wasm-function[37]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 7.42
+    },
+    {
+      "function": "multiplyMatrices",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 8253,
+      "selfMs": 7.179
+    },
+    {
+      "function": "projectObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52526,
+      "selfMs": 7.122
+    },
+    {
+      "function": "upload",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45860,
+      "selfMs": 6.551
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 44824,
+      "selfMs": 6.415
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 6.387
+    },
+    {
+      "function": "multiplyMatrices",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 8253,
+      "selfMs": 6.209
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6222,
+      "selfMs": 6.084
+    },
+    {
+      "function": "(garbage collector)",
+      "file": "",
+      "line": 0,
+      "selfMs": 5.619
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/src/game/world/SlidingBulkhead.tsx",
+      "line": 44,
+      "selfMs": 5.357
+    },
+    {
+      "function": "intersectsObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18786,
+      "selfMs": 5.321
+    },
+    {
+      "function": "translation",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 3004,
+      "selfMs": 5.094
+    },
+    {
+      "function": "raycast",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 17700,
+      "selfMs": 5.021
+    },
+    {
+      "function": "setTexture2D",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48833,
+      "selfMs": 4.843
+    },
+    {
+      "function": "intersectsObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18786,
+      "selfMs": 4.792
+    },
+    {
+      "function": "refreshMaterialUniforms",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 50494,
+      "selfMs": 4.774
+    },
+    {
+      "function": "getBindingState",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 43358,
+      "selfMs": 4.654
+    },
+    {
+      "function": "projectObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52526,
+      "selfMs": 4.566
+    },
+    {
+      "function": "uniform3f",
+      "file": "",
+      "line": 0,
+      "selfMs": 4.506
+    },
+    {
+      "function": "copy",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 13543,
+      "selfMs": 4.473
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 4.39
+    },
+    {
+      "function": "intersectRay",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 74617,
+      "selfMs": 4.084
+    },
+    {
+      "function": "raycast",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 17700,
+      "selfMs": 3.968
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 3.663
+    },
+    {
+      "function": "stepWorld",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6230,
+      "selfMs": 3.641
+    },
+    {
+      "function": "useProgram",
+      "file": "",
+      "line": 0,
+      "selfMs": 3.495
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 3.48
+    },
+    {
+      "function": "wasm-function[37]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 3.354
+    },
+    {
+      "function": "setup",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 43333,
+      "selfMs": 3.25
+    },
+    {
+      "function": "needsUpdate",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 43404,
+      "selfMs": 3.248
+    },
+    {
+      "function": "uniformMatrix4fv",
+      "file": "",
+      "line": 0,
+      "selfMs": 3.195
+    },
+    {
+      "function": "uniform1f",
+      "file": "",
+      "line": 0,
+      "selfMs": 3.107
+    },
+    {
+      "function": "bindTexture",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48331,
+      "selfMs": 3.073
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 3.017
+    },
+    {
+      "function": "setValueV1f",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45363,
+      "selfMs": 2.992
+    },
+    {
+      "function": "wasm-function[1013]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 2.917
+    },
+    {
+      "function": "get",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6077,
+      "selfMs": 2.885
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 9354,
+      "selfMs": 2.845
+    },
+    {
+      "function": "refreshTransformUniform",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 50483,
+      "selfMs": 2.737
+    },
+    {
+      "function": "getDelta",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39193,
+      "selfMs": 2.73
+    },
+    {
+      "function": "wasm-function[184]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 2.709
+    },
+    {
+      "function": "setupView",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 47414,
+      "selfMs": 2.651
+    },
+    {
+      "function": "setValueV3f",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45383,
+      "selfMs": 2.635
+    },
+    {
+      "function": "run",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.981
+    },
+    {
+      "function": "updateWorldMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10069,
+      "selfMs": 1.954
+    },
+    {
+      "function": "Jo",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 3273,
+      "selfMs": 1.867
+    },
+    {
+      "function": "intersectsFrustum",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 17691,
+      "selfMs": 1.815
+    },
+    {
+      "function": "wasm-function[398]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.804
+    },
+    {
+      "function": "run",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.774
+    },
+    {
+      "function": "stepWithEvents",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 1885,
+      "selfMs": 1.769
+    },
+    {
+      "function": "setFromQuaternion",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 9013,
+      "selfMs": 1.716
+    },
+    {
+      "function": "useImperativeInstance",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6437,
+      "selfMs": 1.715
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.693
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.688
+    },
+    {
+      "function": "bindVertexArrayObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 43352,
+      "selfMs": 1.684
+    },
+    {
+      "function": "js-to-wasm:i:i",
+      "file": "/9bb51b96",
+      "line": 1,
+      "selfMs": 1.678
+    },
+    {
+      "function": "updateMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10024,
+      "selfMs": 1.676
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.675
+    },
+    {
+      "function": "js-to-wasm:ii:",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.67
+    },
+    {
+      "function": "now",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.668
+    },
+    {
+      "function": "get",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 47054,
+      "selfMs": 1.659
+    },
+    {
+      "function": "arraysEqual",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45346,
+      "selfMs": 1.658
+    },
+    {
+      "function": "react_stack_bottom_frame",
+      "file": "/node_modules/.vite/deps/client-CzO9AiJq.js",
+      "line": 12615,
+      "selfMs": 1.655
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.655
+    },
+    {
+      "function": "useUpdateColliderOptions",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 5754,
+      "selfMs": 1.654
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 32856,
+      "selfMs": 1.652
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.65
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45044,
+      "selfMs": 1.648
+    },
+    {
+      "function": "RoundedBox",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 78701,
+      "selfMs": 1.647
+    },
+    {
+      "function": "enable",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48107,
+      "selfMs": 1.646
+    },
+    {
+      "function": "copyArray",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45351,
+      "selfMs": 1.645
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.645
+    },
+    {
+      "function": "wasm-function[788]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.644
+    },
+    {
+      "function": "get",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6077,
+      "selfMs": 1.642
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.637
+    },
+    {
+      "function": "renderObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52656,
+      "selfMs": 1.636
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 44824,
+      "selfMs": 1.634
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.634
+    },
+    {
+      "function": "sort",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 47025,
+      "selfMs": 1.633
+    },
+    {
+      "function": "po",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 1908,
+      "selfMs": 1.633
+    },
+    {
+      "function": "uniform3f",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.628
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.628
+    },
+    {
+      "function": "diffProps",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 558,
+      "selfMs": 1.628
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 1.625
+    },
+    {
+      "function": "buildLidFaces",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 25065,
+      "selfMs": 1.625
+    },
+    {
+      "function": "disable",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.624
+    },
+    {
+      "function": "drawElements",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.615
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.613
+    },
+    {
+      "function": "ReactElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 132,
+      "selfMs": 1.61
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.609
+    },
+    {
+      "function": "invalidate",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 9398,
+      "selfMs": 1.604
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.604
+    },
+    {
+      "function": "B",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 2514,
+      "selfMs": 1.601
+    },
+    {
+      "function": "now",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.6
+    },
+    {
+      "function": "arraysEqual",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45346,
+      "selfMs": 1.597
+    },
+    {
+      "function": "getDFGLUT",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 51464,
+      "selfMs": 1.596
+    },
+    {
+      "function": "jm",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 5632,
+      "selfMs": 1.595
+    },
+    {
+      "function": "ca",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 5392,
+      "selfMs": 1.59
+    },
+    {
+      "function": "updateMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10024,
+      "selfMs": 1.577
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.576
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 1.574
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 6231,
+      "selfMs": 1.571
+    },
+    {
+      "function": "projectObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52526,
+      "selfMs": 1.562
+    },
+    {
+      "function": "acceleratedRaycast",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 75669,
+      "selfMs": 1.556
+    },
+    {
+      "function": "setValueV1i",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45463,
+      "selfMs": 1.551
+    },
+    {
+      "function": "invert",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 8403,
+      "selfMs": 1.546
+    },
+    {
+      "function": "useUpdateColliderOptions",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 5754,
+      "selfMs": 1.546
+    },
+    {
+      "function": "k",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 147,
+      "selfMs": 1.544
+    },
+    {
+      "function": "raycast",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18596,
+      "selfMs": 1.543
+    },
+    {
+      "function": "allocateTextureUnit",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48809,
+      "selfMs": 1.537
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.535
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.533
+    },
+    {
+      "function": "ReactElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 132,
+      "selfMs": 1.532
+    },
+    {
+      "function": "react_stack_bottom_frame",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 7541,
+      "selfMs": 1.531
+    },
+    {
+      "function": "intersectRay",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 74617,
+      "selfMs": 1.53
+    },
+    {
+      "function": "update",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 42546,
+      "selfMs": 1.527
+    },
+    {
+      "function": "get",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 47076,
+      "selfMs": 1.526
+    },
+    {
+      "function": "makeRotationFromEuler",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 8100,
+      "selfMs": 1.522
+    },
+    {
+      "function": "createTask",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.52
+    },
+    {
+      "function": "get",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 44817,
+      "selfMs": 1.518
+    },
+    {
+      "function": "B",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 2514,
+      "selfMs": 1.518
+    },
+    {
+      "function": "getComponentNameFromType",
+      "file": "/node_modules/.vite/deps/jsx-runtime-CTl822gQ.js",
+      "line": 15,
+      "selfMs": 1.516
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.513
+    },
+    {
+      "function": "exports.createElement",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 591,
+      "selfMs": 1.507
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.5
+    },
+    {
+      "function": "Jo",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 3273,
+      "selfMs": 1.498
+    },
+    {
+      "function": "setValueM4",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45449,
+      "selfMs": 1.497
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.497
+    },
+    {
+      "function": "setPolygonOffset",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 48309,
+      "selfMs": 1.492
+    },
+    {
+      "function": "transformDirection",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4410,
+      "selfMs": 1.488
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 1.482
+    },
+    {
+      "function": "raycast",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 9969,
+      "selfMs": 1.467
+    },
+    {
+      "function": "enable",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.463
+    },
+    {
+      "function": "setFromProjectionMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18756,
+      "selfMs": 1.456
+    },
+    {
+      "function": "_objectSpread2",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 5498,
+      "selfMs": 1.454
+    },
+    {
+      "function": "decompose",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 8602,
+      "selfMs": 1.448
+    },
+    {
+      "function": "set",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4078,
+      "selfMs": 1.448
+    },
+    {
+      "function": "wasm-function[339]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.447
+    },
+    {
+      "function": "intersect",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 39098,
+      "selfMs": 1.439
+    },
+    {
+      "function": "rotation",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 3008,
+      "selfMs": 1.433
+    },
+    {
+      "function": "updateWorldMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10069,
+      "selfMs": 1.395
+    },
+    {
+      "function": "wasm-function[259]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.378
+    },
+    {
+      "function": "run",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 9341,
+      "selfMs": 1.373
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.369
+    },
+    {
+      "function": "updateMatrix",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10024,
+      "selfMs": 1.359
+    },
+    {
+      "function": "copy",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 3576,
+      "selfMs": 1.348
+    },
+    {
+      "function": "js-to-wasm:id:i",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.347
+    },
+    {
+      "function": "setValueV1f",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 45363,
+      "selfMs": 1.344
+    },
+    {
+      "function": "projectObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 52526,
+      "selfMs": 1.312
+    },
+    {
+      "function": "translation",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 3004,
+      "selfMs": 1.311
+    },
+    {
+      "function": "updateMatrixWorld",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 10047,
+      "selfMs": 1.253
+    },
+    {
+      "function": "setFromQuaternion",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 9013,
+      "selfMs": 1.242
+    },
+    {
+      "function": "applyMatrix4",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4357,
+      "selfMs": 1.227
+    },
+    {
+      "function": "js-to-wasm:iiiiiiiiiiiiiii:",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.223
+    },
+    {
+      "function": "set timestep",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 4579,
+      "selfMs": 1.217
+    },
+    {
+      "function": "wasm-function[58]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.215
+    },
+    {
+      "function": "step",
+      "file": "/node_modules/.vite/deps/@react-three_rapier.js",
+      "line": 4205,
+      "selfMs": 1.207
+    },
+    {
+      "function": "intersectsObject",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 18786,
+      "selfMs": 1.204
+    },
+    {
+      "function": "setFromMatrixScale",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4819,
+      "selfMs": 1.203
+    },
+    {
+      "function": "requestAnimationFrame",
+      "file": "",
+      "line": 0,
+      "selfMs": 1.199
+    },
+    {
+      "function": "setFromMatrixScale",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4819,
+      "selfMs": 1.195
+    },
+    {
+      "function": "wasm-function[1563]",
+      "file": "/005fc9d6",
+      "line": 1,
+      "selfMs": 1.191
+    },
+    {
+      "function": "getTaskName",
+      "file": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+      "line": 92,
+      "selfMs": 1.19
+    },
+    {
+      "function": "(anonymous)",
+      "file": "/node_modules/.vite/deps/@react-three_drei.js",
+      "line": 78,
+      "selfMs": 1.181
+    },
+    {
+      "function": "exports.jsxDEV",
+      "file": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+      "line": 191,
+      "selfMs": 1.181
+    },
+    {
+      "function": "B",
+      "file": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+      "line": 2514,
+      "selfMs": 1.173
+    },
+    {
+      "function": "angleTo",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 4715,
+      "selfMs": 1.166
+    },
+    {
+      "function": "copy",
+      "file": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+      "line": 13543,
+      "selfMs": 1.159
+    }
+  ],
+  "metricDeltas": {
+    "Timestamp": 5.398753000074066,
+    "AudioHandlers": 0,
+    "AudioWorkletProcessors": 0,
+    "Documents": 0,
+    "Frames": 0,
+    "JSEventListeners": 8,
+    "LayoutObjects": 0,
+    "MediaKeySessions": 0,
+    "MediaKeys": 0,
+    "Nodes": 0,
+    "Resources": 0,
+    "ContextLifecycleStateObservers": 0,
+    "V8PerContextDatas": 0,
+    "WorkerGlobalScopes": 0,
+    "UACSSResources": 0,
+    "RTCPeerConnections": 0,
+    "ResourceFetchers": 0,
+    "AdSubframes": 0,
+    "DetachedScriptStates": 0,
+    "ArrayBufferContents": -3,
+    "LayoutCount": 1,
+    "RecalcStyleCount": 9,
+    "LayoutDuration": 0.00007600000000000662,
+    "RecalcStyleDuration": 0.0006420000000000002,
+    "DevToolsCommandDuration": 0.38551299999999994,
+    "ScriptDuration": 0.7399680000000011,
+    "V8CompileDuration": 0,
+    "TaskDuration": 1.222566999999998,
+    "TaskOtherDuration": 0.09636800000000001,
+    "ThreadTime": 1.2594330000000014,
+    "ProcessTime": 1.8918530000000011,
+    "JSHeapUsedSize": 5093468,
+    "JSHeapTotalSize": 1310720,
+    "FirstMeaningfulPaint": 0,
+    "DomContentLoaded": 0,
+    "NavigationStart": 0
+  }
+}

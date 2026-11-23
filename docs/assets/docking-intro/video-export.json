@@ -1,0 +1,13 @@
+{
+  "file": "/video/docking-intro.mp4",
+  "frames": 240,
+  "fps": 30,
+  "duration": 8,
+  "resolution": [1280, 720],
+  "codec": "H264",
+  "audio": false,
+  "faststart": true,
+  "renderSeconds": 95.05969209992327,
+  "bytes": 1331062,
+  "sha256": "f9d040d26020690d236424856ffa83b1be06907569eb16c81aee52ad01649ee9"
+}

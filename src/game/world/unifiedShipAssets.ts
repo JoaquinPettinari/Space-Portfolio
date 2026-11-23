@@ -2,6 +2,9 @@ import { Mesh, Object3D, Vector3 } from 'three'
 
 export const UNIFIED_ENVELOPE_ASSET =
   '/models/cruz-del-sur-vestibule-envelope.glb'
+/** Shared by the walkable world and the docking exterior, including shelf cutouts. */
+export const WALKABLE_ENVELOPE_ASSET =
+  '/models/cruz-del-sur-vestibule-envelope-transition-ready.glb'
 export const UNIFIED_ARRIVAL_ASSET = '/models/cruz-del-sur-unified-arrival.glb'
 export const UNIFIED_COLLISION_ASSET =
   '/models/cruz-del-sur-straight-collision.glb'

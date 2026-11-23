@@ -8,9 +8,11 @@ import {
 
 export function ArrivalSurfaceEnvironment({
   emergency,
+  active = true,
   children,
 }: {
   emergency: boolean
+  active?: boolean
   children: ReactNode
 }) {
   const renderer = useThree((state) => state.gl)
@@ -20,13 +22,15 @@ export function ArrivalSurfaceEnvironment({
     [channel, emergency],
   )
   useLayoutEffect(() => {
+    // PMREM renders to the GPU even when Fiber's frameloop is stopped.
+    if (!active) return
     const target = createArrivalReflection(renderer)
     channel.publish({ reflection: target.texture })
     return () => {
       channel.publish(null)
       target.dispose()
     }
-  }, [renderer, channel])
+  }, [renderer, channel, active])
   return (
     <ArrivalEnvironmentContext value={value}>
       {children}

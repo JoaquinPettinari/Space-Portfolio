@@ -1,22 +1,25 @@
-/** Seconds from starting a reach until the fingertip/card touches its target. */
-export const PHYSICAL_CONTACT_DELAY = 0.5
-export const RADIO_PRESS_DURATION = PHYSICAL_CONTACT_DELAY + 0.35
+import gestureTiming from './gestureTiming.json'
 
-const smoothstep = (value: number) => value * value * (3 - 2 * value)
+/** Shared with the Blender gesture authoring script; all times are seconds. */
+export const PHYSICAL_CONTACT_DELAY = gestureTiming.radio.contact
+export const RADIO_ACTUATION_TIME = gestureTiming.radio.action
+export const RADIO_RELEASE_TIME = gestureTiming.radio.release
+export const RADIO_PRESS_DURATION = gestureTiming.radio.duration
+export const RADIO_BUTTON_DEPTH = 0.045
 
-export function radioHandReach(elapsed: number) {
-  if (elapsed < PHYSICAL_CONTACT_DELAY)
-    return smoothstep(Math.max(0, elapsed / PHYSICAL_CONTACT_DELAY))
-  return (
-    1 -
-    smoothstep(
-      Math.max(0, Math.min(1, (elapsed - PHYSICAL_CONTACT_DELAY - 0.2) / 0.15)),
-    )
-  )
+export const smoothGesture = (value: number) => {
+  const t = Math.max(0, Math.min(1, value))
+  return Math.max(0, Math.min(1, t * t * t * (t * (t * 6 - 15) + 10)))
 }
 
-export function radioButtonTravel(elapsed: number) {
-  const time = elapsed - PHYSICAL_CONTACT_DELAY
-  if (time <= 0 || time >= 0.2) return 0
-  return Math.sin((Math.PI * time) / 0.2)
+/** A stalled frame must display the contact pose before an action can fire. */
+export function advanceContactGesture(
+  elapsed: number,
+  delta: number,
+  timing: { contact: number; action: number; duration: number },
+) {
+  const next = Math.min(timing.duration, elapsed + Math.max(0, delta))
+  if (elapsed < timing.contact && next >= timing.contact) return timing.contact
+  if (elapsed < timing.action && next >= timing.action) return timing.action
+  return next
 }

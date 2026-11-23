@@ -3,16 +3,23 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Vector3, type Group } from 'three'
 import { sampleShuttleRoute } from './shuttleRoute'
+import { advanceExteriorTime } from './asterionMotion'
 
 /** A distant maintenance shuttle: geometry and emissive engines, no extra lights. */
-export function DistantShip() {
+export function DistantShip({ paused }: { paused: boolean }) {
   const ship = useRef<Group>(null)
   const elapsed = useRef(0)
   const tangent = useRef(new Vector3())
   const reducedMotion = useReducedMotionRef()
   useFrame((_, delta) => {
-    if (!ship.current || reducedMotion.current || document.hidden) return
-    elapsed.current += Math.min(delta, 0.05)
+    if (!ship.current) return
+    const next = advanceExteriorTime(
+      elapsed.current,
+      delta,
+      paused || reducedMotion.current || document.hidden,
+    )
+    if (next === elapsed.current) return
+    elapsed.current = next
     sampleShuttleRoute(
       elapsed.current * 0.025,
       ship.current.position,

@@ -17,17 +17,20 @@ test('keeps the sky fixed while independent scenery respects reduced motion', as
   await expect(page.getByLabel('Game controls')).toBeVisible({
     timeout: 90_000,
   })
+  await enter(page)
   const before = (await snapshot(page)).spaceMotion
-  expect(before.planet).not.toBeNull()
+  expect(before.worlds).not.toBeNull()
+  expect(before.shuttle).not.toBeNull()
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.orbit)
-    .toBe(before.orbit)
+    .poll(async () => (await snapshot(page)).spaceMotion.shuttle)
+    .not.toBe(before.shuttle)
+  expect(before.debris).not.toBeNull()
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.stars)
-    .toBeGreaterThan(before.stars!)
+    .poll(async () => (await snapshot(page)).spaceMotion.worlds)
+    .not.toEqual(before.worlds)
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.planet)
-    .toBeGreaterThan(before.planet!)
+    .poll(async () => (await snapshot(page)).spaceMotion.debris)
+    .not.toEqual(before.debris)
   expect((await snapshot(page)).spaceMotion.orbit).toBe(before.orbit)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.waitForTimeout(200)

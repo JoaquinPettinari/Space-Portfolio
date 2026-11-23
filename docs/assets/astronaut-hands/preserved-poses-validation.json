@@ -1,0 +1,8 @@
+{
+  "posesCompared": ["neutral", "card_pinch", "radio_press"],
+  "hands": 2,
+  "bonesPerHand": 17,
+  "framesCompared": [1, 15, 30],
+  "identicalBoneRotations": true,
+  "runtimeChanged": false
+}

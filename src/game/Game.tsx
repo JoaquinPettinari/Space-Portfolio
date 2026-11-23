@@ -1,9 +1,9 @@
+import { EXTERIOR_CAMERA_FAR } from './world/asterionModel'
 import { crewDossier } from '../data/documents'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { GameWorld } from './GameWorld'
 import { opaqueDepthOrder } from './rendering/opaqueDepthOrder'
-import { ZeroContributionLights } from './rendering/WarmLightFastPath'
 import { GameHud } from './ui/GameHud'
 import { useStationControls } from './useStationControls'
 import { useProtocol } from './useProtocol'
@@ -11,10 +11,11 @@ import { useCoffee } from './useCoffee'
 import { PLAYER_SPAWN_POSITION, PLAYER_EYE_OFFSET } from './player/jump'
 import type { MissionId } from './missions'
 import { useDialogue } from './useDialogue'
-import { missions } from './missions'
+import { PassageDialogueCheckpoint } from './world/PassageDialogueCheckpoint'
 import { StationAssistant } from './ui/StationAssistant'
 import { requestBridgeAccess, type BulkheadPhase } from './world/bulkhead'
 import type { IdentityPhase } from './world/identification'
+import { claimArrivalWelcome } from './intro/useDockingIntro'
 const Diagnostics = import.meta.env.DEV
   ? lazy(() =>
       import('./debug/GameDiagnostics').then(({ GameDiagnostics }) => ({
@@ -26,22 +27,32 @@ const Diagnostics = import.meta.env.DEV
 export function Game({
   suspended = false,
   onAccessiblePortfolio,
+  introComplete = true,
+  introRevealing = false,
+  prepareInterior = true,
+  onInteriorReady,
 }: {
   suspended?: boolean
   onAccessiblePortfolio?: () => void
+  introComplete?: boolean
+  introRevealing?: boolean
+  prepareInterior?: boolean
+  onInteriorReady?: (ready: boolean) => void
 }) {
+  const gameplaySuspended = suspended || !introComplete
   const protocolModel = useProtocol()
   const { state: protocol, dispatch } = protocolModel
   const { completed } = protocol
   const lightsOn = completed.includes('lighting')
   const [bulkheadPhase, setBulkheadPhase] = useState<BulkheadPhase>('closed')
   const bulkheadOpen = bulkheadPhase === 'open'
-  const coffee = useCoffee(suspended)
+  const coffee = useCoffee(gameplaySuspended)
   const [identity, setIdentity] = useState<IdentityPhase>('idle')
   const [scanSignal, setScanSignal] = useState(0)
   const [subtitlesEnabled, setSubtitlesEnabled] = useState(true)
+  const [soundEnabled, setSoundEnabled] = useState(false)
   const controls = useStationControls({
-    suspended,
+    suspended: gameplaySuspended,
     onTabletOpened: () => {
       finishMission('tablet')
       if (protocol.guidance !== 'skipped') enqueue('tablet')
@@ -50,7 +61,8 @@ export function Game({
       setIdentity(completed.includes('crew') ? 'verified' : 'idle'),
   })
   const dialogue = useDialogue({
-    paused: suspended || controls.showMouseHint,
+    paused: gameplaySuspended || controls.showMouseHint,
+    soundEnabled,
   })
   const { enqueue } = dialogue
   const finishMission = (id: MissionId) => {
@@ -63,10 +75,13 @@ export function Game({
     if (id === 'dossier') enqueue('dossier')
   }
   useEffect(() => {
-    if (controls.ready) enqueue('arrival')
-  }, [controls.ready, enqueue])
+    onInteriorReady?.(controls.ready)
+  }, [controls.ready, onInteriorReady])
   useEffect(() => {
-    if (bulkheadPhase !== 'closed') enqueue(bulkheadPhase)
+    if (introComplete && controls.ready && claimArrivalWelcome())
+      enqueue('arrival')
+  }, [introComplete, controls.ready, enqueue])
+  useEffect(() => {
     if (
       bulkheadPhase === 'open' &&
       !completed.includes('tablet') &&
@@ -78,13 +93,20 @@ export function Game({
     if (controls.mode === 'communications' && !controls.transitioning)
       enqueue('communications')
   }, [controls.mode, controls.transitioning, enqueue])
-  useEffect(() => {
-    if (missions.every(({ id }) => completed.includes(id))) enqueue('complete')
-  }, [completed, enqueue])
+  // Completion voice remains disabled until the actual relay-repair story exists.
+  // The current optional four-objective tracker is not proof of restored comms.
   const { mode, tabletOpen, transitioning } = controls
   let frameLoop: 'never' | 'demand' | 'always' = 'always'
-  if (suspended) frameLoop = 'never'
+  // Scene mounting/downloads continue without frames. Reserve the GPU for the
+  // movie until its fade completes, then prepare behind opaque black.
+  if (
+    !prepareInterior ||
+    suspended ||
+    (!introComplete && !introRevealing && controls.ready)
+  )
+    frameLoop = 'never'
   else if (
+    (introComplete && controls.showMouseHint && !transitioning) ||
     tabletOpen ||
     (mode !== 'walking' && mode !== 'crew' && !transitioning)
   )
@@ -98,9 +120,14 @@ export function Game({
     dialogue.dismiss()
   }
   const subtitle =
-    dialogue.message && controls.ready && !suspended && subtitlesEnabled ? (
+    dialogue.message &&
+    controls.ready &&
+    !gameplaySuspended &&
+    subtitlesEnabled ? (
       <StationAssistant
         event={dialogue.message}
+        speaking={dialogue.speaking}
+        caption={dialogue.caption}
         onDismiss={dismissMessage}
         dismissible={mode === 'walking' && !tabletOpen}
       />
@@ -130,38 +157,38 @@ export function Game({
           ],
           fov: 65,
           near: 0.1,
-          far: 120,
+          far: EXTERIOR_CAMERA_FAR,
         }}
         dpr={[1, 1.5]}
         fallback={<p className="fallback">This experience requires WebGL.</p>}
       >
         <color attach="background" args={['#030815']} />
-        <ZeroContributionLights ready={controls.ready} />
+        {/* Neutral indirect fill preserves photo/metal colors; local practicals
+            provide the warmth instead of tinting every surface amber. */}
         <ambientLight
           name="cabin-ambient"
-          intensity={lightsOn ? 0.5 : 0.2}
-          color="#dfbf94"
+          intensity={lightsOn ? 0.38 : 0.2}
+          color="#c7d5e0"
         />
-        <hemisphereLight
-          args={['#ffe0b0', '#251b16', lightsOn ? 0.85 : 0.35]}
-        />
+        <hemisphereLight args={['#d4ddec', '#30271f', lightsOn ? 0.7 : 0.35]} />
         <directionalLight
           position={[4, 8, -6]}
-          color="#ffd099"
-          intensity={lightsOn ? 2 : 0.7}
+          color="#ffe0ba"
+          intensity={lightsOn ? 1.6 : 0.7}
         />
         <directionalLight
           position={[-3, 4, 5]}
-          color="#84afcd"
-          intensity={lightsOn ? 0.45 : 0.2}
+          color="#9cc9e8"
+          intensity={lightsOn ? 0.65 : 0.2}
         />
 
         <GameWorld
+          prepareInterior={prepareInterior}
           subtitle={null}
           controls={controls}
           protocolModel={protocolModel}
           coffee={coffee}
-          suspended={suspended}
+          suspended={gameplaySuspended}
           lightsOn={lightsOn}
           bulkheadPhase={bulkheadPhase}
           onBulkheadPhaseChange={setBulkheadPhase}
@@ -175,7 +202,7 @@ export function Game({
             setBulkheadPhase((phase) => requestBridgeAccess(phase, true))
             setIdentity('verified')
             finishMission('crew')
-            enqueue('identity')
+            enqueue('crewVerified')
           }}
           onCameraRest={() => {
             controls.setTransitioning(false)
@@ -198,6 +225,15 @@ export function Game({
           }}
           onDossier={downloadDossier}
         />
+        <PassageDialogueCheckpoint
+          active={
+            controls.playing &&
+            mode === 'walking' &&
+            !transitioning &&
+            !suspended
+          }
+          onCross={() => enqueue('bridgeIntroduction')}
+        />
         {Diagnostics && (
           <Suspense fallback={null}>
             <Diagnostics
@@ -212,20 +248,23 @@ export function Game({
           </Suspense>
         )}
       </Canvas>
-      <GameHud
-        onAccessiblePortfolio={onAccessiblePortfolio}
-        subtitlesEnabled={subtitlesEnabled}
-        onToggleSubtitles={() => setSubtitlesEnabled((value) => !value)}
-        controls={controls}
-        protocolModel={protocolModel}
-        coffee={coffee}
-        suspended={suspended}
-        lightsOn={lightsOn}
-        bulkheadPhase={bulkheadPhase}
-        identity={identity}
-        scanSignal={scanSignal}
-        subtitle={subtitle}
-      />
+      <div hidden={!introComplete} inert={!introComplete}>
+        <GameHud
+          onAccessiblePortfolio={onAccessiblePortfolio}
+          subtitlesEnabled={subtitlesEnabled}
+          onToggleSubtitles={() => setSubtitlesEnabled((value) => !value)}
+          onSoundChange={setSoundEnabled}
+          controls={controls}
+          protocolModel={protocolModel}
+          coffee={coffee}
+          suspended={gameplaySuspended}
+          lightsOn={lightsOn}
+          bulkheadPhase={bulkheadPhase}
+          identity={identity}
+          scanSignal={scanSignal}
+          subtitle={subtitle}
+        />
+      </div>
     </div>
   )
 }

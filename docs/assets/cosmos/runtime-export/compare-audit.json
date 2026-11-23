@@ -1,0 +1,10 @@
+{
+  "sourceBefore": "170bcf42c6b753fc96508e47c76cba4d9c4324766f98de2ff80e76c4baae7387",
+  "sourceAfter": "170bcf42c6b753fc96508e47c76cba4d9c4324766f98de2ff80e76c4baae7387",
+  "views": [
+    ["front", "VIEW 01 / Bridge / Vesper and Nacre"],
+    ["rear", "VIEW 02 / Aft / Ithaca and Orison"],
+    ["rings", "DETAIL / Nacre ring transmission and shadow"]
+  ],
+  "note": "Atmosphere omitted in both pairs; runtime uses a separate view-dependent rim. Source AgX .35, baked runtime Standard 0."
+}

@@ -1,0 +1,232 @@
+{
+  "source": "transition-shelves-personal.blend",
+  "sourceSHA256": "79055cf26b569a96f80180d9eae28a7f5785eb3c8346492d1b4b475f03ec3570",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "themes": {
+    "portForward": "sports",
+    "portAft": "plants",
+    "starboardForward": "books",
+    "starboardAft": "illustrative landscape placeholders"
+  },
+  "imagesAreNotUserPhotos": true,
+  "racketAngleDegrees": 20,
+  "clearanceRays": [
+    {
+      "x": -1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 2.0,
+      "clear": true
+    }
+  ],
+  "headroomClear": true,
+  "evaluatedTriangles": 246852,
+  "renderEngine": "BLENDER_EEVEE",
+  "samples": 32,
+  "resolution": [1280, 800],
+  "threads": 2,
+  "gpuTimingMeasured": false,
+  "evaluatedGroupBounds": {
+    "DISPLAY / Running medal": {
+      "minimumRuntimeXYZ": [
+        -1.8300000429153442, 1.0554999113082886, 3.130000114440918
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6299999952316284, 1.4860000610351562, 3.369999885559082
+      ]
+    },
+    "DISPLAY / Triathlon emblem": {
+      "minimumRuntimeXYZ": [
+        -1.7950000762939453, 1.8049999475479126, 2.5350000858306885
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6449999809265137, 2.1100001335144043, 2.825000047683716
+      ]
+    },
+    "DISPLAY / Diagonal tennis racket": {
+      "minimumRuntimeXYZ": [
+        -1.7039875984191895, 1.8455537557601929, 3.0977840423583984
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6759999990463257, 2.344899892807007, 3.3474628925323486
+      ]
+    },
+    "DISPLAY / Compact plant": {
+      "minimumRuntimeXYZ": [
+        -1.9273240566253662, 1.0460000038146973, 3.821277618408203
+      ],
+      "maximumRuntimeXYZ": [
+        -1.5303438901901245, 1.5143356323242188, 4.201588153839111
+      ]
+    },
+    "DISPLAY / Trailing plant": {
+      "minimumRuntimeXYZ": [
+        -1.8392000198364258, 1.2717962265014648, 4.165106773376465
+      ],
+      "maximumRuntimeXYZ": [
+        -1.4860312938690186, 2.078155040740967, 4.660700798034668
+      ]
+    },
+    "DISPLAY / Anatomical running shoe": {
+      "minimumRuntimeXYZ": [
+        -1.779549479484558, 1.0844999551773071, 2.684999942779541
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6604505777359009, 1.2123892307281494, 2.994999885559082
+      ]
+    }
+  },
+  "groupBoundsPassed": true,
+  "oldShoeCollarRemoved": true,
+  "shoeMaterial": {
+    "localCrossedWaveScale": 220,
+    "bumpDistanceMetres": 0.00065,
+    "upperRoughness": [0.78, 0.95],
+    "soleRoughness": 0.92,
+    "geometryUnchanged": true
+  }
+}

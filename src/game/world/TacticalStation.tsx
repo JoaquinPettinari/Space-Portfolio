@@ -1,18 +1,13 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useMemo, useRef, useState } from 'react'
+import { useFrame, useLoader, useThree } from '@react-three/fiber'
+import { GzipGLTFLoader } from '../rendering/GzipGLTFLoader'
 import type { Group } from 'three'
 import {
-  createTacticalShipModel,
+  readTacticalShipModel,
+  TACTICAL_DISPLAY_ASSET,
   skipTacticalVisualRaycast,
 } from './tacticalShipModel'
-import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
-import {
-  CABIN_MASTER_ASSET,
-  CABIN_MASTER_LEAVES_ASSET,
-  assembleCurrentShip,
-} from './cabinMaster'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TerminalPanel } from '../ui/TerminalPanel'
 import { TacticalPanel } from '../ui/TacticalPanel'
@@ -26,7 +21,7 @@ import {
   TACTICAL_MODEL_TILT,
 } from './tacticalDisplayLayout'
 
-/** A shared-asset ship miniature; the projector owns only its merged display geometry. */
+/** The lossless offline miniature shares cached geometry and owns its materials. */
 export function TacticalStation({
   active,
   paused,
@@ -43,17 +38,11 @@ export function TacticalStation({
   onClose: () => void
 }) {
   const model = useRef<Group>(null)
-  const envelope = useGLTF(UNIFIED_ENVELOPE_ASSET)
-  const cabin = useGLTF(CABIN_MASTER_ASSET)
-  const leaves = useGLTF(CABIN_MASTER_LEAVES_ASSET)
+  const asset = useLoader(GzipGLTFLoader, TACTICAL_DISPLAY_ASSET)
   const hologram = useMemo(
-    () =>
-      createTacticalShipModel(
-        assembleCurrentShip(envelope.scene, cabin.scene, leaves.scene),
-      ),
-    [envelope.scene, cabin.scene, leaves.scene],
+    () => readTacticalShipModel(asset.scene),
+    [asset.scene],
   )
-  useEffect(() => () => hologram.dispose(), [hologram])
   const [zoom, setZoom] = useState(TACTICAL_DEFAULT_ZOOM)
   const [rotating, setRotating] = useState(true)
 
@@ -90,7 +79,8 @@ export function TacticalStation({
               raycast={skipTacticalVisualRaycast}
               name="tactical-ship-visual"
             >
-              <mesh geometry={hologram.surface}>
+              <mesh>
+                <primitive object={hologram.surface} attach="geometry" />
                 <meshBasicMaterial
                   color="#07527c"
                   transparent
@@ -99,7 +89,8 @@ export function TacticalStation({
                   toneMapped={false}
                 />
               </mesh>
-              <lineSegments geometry={hologram.edges}>
+              <lineSegments>
+                <primitive object={hologram.edges} attach="geometry" />
                 <lineBasicMaterial
                   color="#63d9ff"
                   transparent

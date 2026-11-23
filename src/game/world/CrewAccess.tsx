@@ -5,19 +5,21 @@ import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import type { Group } from 'three'
 import { CrewStandbyScreen } from './CrewStandbyScreen'
-import { AstronautGlove } from './AstronautGlove'
+import { useHandInteraction } from './useHandInteraction'
 import {
   advanceIdentification,
   identificationReach,
   IDENTIFICATION_DURATION,
+  IDENTIFICATION_SCAN_TIME,
   IDENTIFICATION_CONTACT_TIME,
+  CARD_GESTURE_DURATION,
+  CARD_READER_SURFACE_Z,
 } from './identification'
 
 import {
   CREW_ACCESS_POSITION,
   CREW_ACCESS_ROTATION,
 } from '../interaction/station'
-const ignoreRaycast = () => {}
 
 /** Reader and animation share this terminal's local coordinate system. */
 export function CrewAccess({
@@ -48,7 +50,10 @@ export function CrewAccess({
         <group userData={{ interaction: 'crew' }}>
           <primitive object={model} dispose={null} />
           <CrewStandbyScreen verified={verified} scanning={scanning} />
-          <mesh position={[0, -0.48, 0.157]}>
+          <mesh
+            name="crew-reader-contact-surface"
+            position={[0, -0.48, CARD_READER_SURFACE_Z]}
+          >
             <planeGeometry args={[0.3, 0.045]} />
             <meshBasicMaterial color={verified ? '#83e5b4' : '#e4ba74'} />
           </mesh>
@@ -75,54 +80,55 @@ function ReaderGesture({
   onContact: () => void
 }) {
   const hand = useRef<Group>(null)
+  const model = useHandInteraction('card')
   const elapsed = useRef(0)
   const complete = useRef(false)
   const contacted = useRef(false)
   const reduced = useReducedMotionRef()
   useFrame((_, delta) => {
-    if (!hand.current || complete.current || paused || document.hidden) return
-    elapsed.current = advanceIdentification(
-      elapsed.current,
-      delta,
-      false,
-      reduced.current,
+    if (
+      !hand.current ||
+      complete.current ||
+      paused ||
+      document.hidden ||
+      !document.hasFocus()
     )
-    const reach = identificationReach(elapsed.current)
-    if (!contacted.current && elapsed.current >= IDENTIFICATION_CONTACT_TIME) {
-      contacted.current = true
-      onContact()
-    }
+      return
+    elapsed.current = advanceIdentification(elapsed.current, delta, false)
+    const reach = reduced.current ? 1 : identificationReach(elapsed.current)
     if (import.meta.env.DEV) {
       hand.current.userData.identificationElapsed = elapsed.current
       hand.current.userData.identificationReach = reach
+      hand.current.userData.identificationActionCommitted = contacted.current
     }
-    hand.current.position.set(
-      -0.22 * (1 - reach),
-      -0.7 + 0.22 * reach,
-      0.75 - 0.57 * reach,
+    model.sample(
+      'card_present',
+      reduced.current
+        ? Math.max(
+            IDENTIFICATION_CONTACT_TIME,
+            Math.min(CARD_GESTURE_DURATION, elapsed.current),
+          )
+        : elapsed.current,
     )
+    // The card is already flush with the reader before scanning changes the UI.
+    if (!contacted.current && elapsed.current >= IDENTIFICATION_SCAN_TIME) {
+      contacted.current = true
+      if (import.meta.env.DEV)
+        hand.current.userData.identificationActionCommitted = true
+      onContact()
+    }
     if (elapsed.current >= IDENTIFICATION_DURATION) {
       complete.current = true
       onComplete()
     }
   })
   return (
-    <group ref={hand} name="crew-reader-gesture" position={[-0.22, -0.7, 0.75]}>
-      <group
-        position={[0.13, -0.07, 0.045]}
-        rotation={[-0.22, 0, -0.18]}
-        scale={0.83}
-      >
-        <AstronautGlove />
-      </group>
-      <mesh raycast={ignoreRaycast}>
-        <boxGeometry args={[0.23, 0.14, 0.012]} />
-        <meshStandardMaterial color="#eee7d7" />
-      </mesh>
-      <mesh position={[0, 0, 0.008]} raycast={ignoreRaycast}>
-        <planeGeometry args={[0.16, 0.025]} />
-        <meshBasicMaterial color="#226b86" />
-      </mesh>
+    <group
+      ref={hand}
+      name="crew-reader-gesture"
+      position={[0, -0.48, CARD_READER_SURFACE_Z]}
+    >
+      <primitive object={model.scene} dispose={null} />
     </group>
   )
 }

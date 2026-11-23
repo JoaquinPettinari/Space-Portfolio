@@ -1,0 +1,23 @@
+{
+  "master": "cruz-del-sur-hangar-intro.blend",
+  "fps": 30,
+  "frames": 240,
+  "duration": 8,
+  "openingWidth": 5.4,
+  "openingHeight": 4.3,
+  "bayDepth": 10.399999999999999,
+  "parkedAtSeconds": 5.5,
+  "doorClosureSeconds": [6, 7.5],
+  "minimumShipDoorClearance": 2.1000007629394517,
+  "parkedShipBounds": [
+    [-1.1833651065826416, -28.799999237060547, 1.5500000715255737],
+    [1.1833651065826416, -22.799999237060547, 3.6793336868286133]
+  ],
+  "doorChecks": 60,
+  "trajectoryChecks": 240,
+  "minimumCameraMargin": 0.10199684649705887,
+  "sourceMasterUnchanged": true,
+  "sourceMasterSha256Before": "db5e1136037e1f4b5d2ac66d79b678000a22f8b7337dd96e27be13ed09c1a608",
+  "sourceMasterSha256After": "db5e1136037e1f4b5d2ac66d79b678000a22f8b7337dd96e27be13ed09c1a608",
+  "pampaHiddenByGeometryOnly": true
+}

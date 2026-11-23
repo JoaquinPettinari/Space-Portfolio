@@ -25,6 +25,7 @@ type Props = {
   scanSignal: number
   subtitlesEnabled: boolean
   onToggleSubtitles: () => void
+  onSoundChange?: (enabled: boolean) => void
   onAccessiblePortfolio?: () => void
   subtitle: ReactNode
 }
@@ -40,6 +41,7 @@ export function GameHud({
   subtitle,
   subtitlesEnabled,
   onToggleSubtitles,
+  onSoundChange,
   onAccessiblePortfolio,
 }: Props) {
   const { state: protocol, currentObjective } = protocolModel
@@ -143,6 +145,7 @@ export function GameHud({
         error={error}
       >
         <AmbientAudio
+          onEnabledChange={onSoundChange}
           coffeeSignal={coffee.state.cups}
           suspended={suspended}
           scanSignal={scanSignal}

@@ -1,0 +1,178 @@
+{
+  "sourceSnapshot": "transition-shelves-personal-input.blend",
+  "sourceSHA256": "816eca06c4c520eab0b52d3ce81422f0f0412b556c5be7b1bc9bf452eaac37a5",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "personalObjects": [
+    "running shoe",
+    "unlabelled medal",
+    "mountain relief",
+    "strung tennis racket",
+    "decorative triathlon emblem"
+  ],
+  "noClaimedResultsOrEvents": true,
+  "plantsPreserved": true,
+  "clearanceRays": [
+    {
+      "x": -1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.75,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 2.0,
+      "clear": true
+    }
+  ],
+  "headroomClear": true,
+  "columnFootNominalHalfWidth": 1.355,
+  "kneeDiagonalHeight": [0.7, 0.94],
+  "evaluatedTriangles": 229336,
+  "renderEngine": "BLENDER_EEVEE",
+  "samples": 32,
+  "resolution": [1280, 800],
+  "threads": 2,
+  "gpuTimingMeasured": false,
+  "measuredColumnMinimumHalfWidth": 1.3459999561309814,
+  "measuredColumnBodyHalfWidth": 1.3549998998641968
+}

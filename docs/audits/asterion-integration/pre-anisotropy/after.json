@@ -1,0 +1,5053 @@
+{
+  "phase": "after",
+  "startup": {
+    "firstVideoFrameMs": 2769.9000000953674,
+    "controlsVisibleMs": 27618.600000023842,
+    "videoFrames": 240,
+    "videoDropped": 0
+  },
+  "views": [
+    {
+      "name": "arrival-port",
+      "measurement": {
+        "medianMs": 21.5,
+        "p95Ms": 26.399999976158142,
+        "samples": [
+          21.600000023841858, 22.399999976158142, 21.600000023841858,
+          22.399999976158142, 21.100000023841858, 34, 24, 22,
+          21.899999976158142, 21.700000047683716, 22.799999952316284,
+          22.200000047683716, 20.799999952316284, 22.300000071525574,
+          23.59999990463257, 21.90000009536743, 23.09999990463257,
+          20.90000009536743, 21.899999976158142, 22.5, 21.299999952316284, 24,
+          21.300000071525574, 22.09999990463257, 22.90000009536743, 22,
+          20.699999928474426, 22.800000071525574, 20.899999976158142,
+          21.600000023841858, 23, 22.899999976158142, 24.299999952316284, 22,
+          22, 22.200000047683716, 22.899999976158142, 21.600000023841858,
+          22.299999952316284, 23.600000023841858, 19.399999976158142,
+          24.800000071525574, 21.699999928474426, 22.800000071525574,
+          22.399999976158142, 24.299999952316284, 22.899999976158142,
+          22.300000071525574, 22.699999928474426, 60.800000071525574, 18,
+          114.19999992847443, 13.900000095367432, 16, 8.299999952316284,
+          7.299999952316284, 6, 7, 6.300000071525574, 34.799999952316284,
+          26.399999976158142, 21.200000047683716, 24, 22.299999952316284, 21,
+          22.700000047683716, 22.899999976158142, 20.600000023841858, 21.5,
+          22.299999952316284, 19.90000009536743, 21.199999928474426,
+          22.600000023841858, 20.799999952316284, 24.700000047683716,
+          21.600000023841858, 22, 20.600000023841858, 21.09999990463257,
+          20.90000009536743, 20.5, 21.5, 20.799999952316284, 23.399999976158142,
+          15.200000047683716, 5.699999928474426, 14.5, 22.300000071525574,
+          21.600000023841858, 34.59999990463257, 7.400000095367432,
+          20.59999990463257, 21.40000009536743, 20.5, 21.199999928474426,
+          31.100000023841858, 20.899999976158142, 18.700000047683716,
+          21.199999928474426, 20.100000023841858, 21.399999976158142,
+          24.700000047683716, 21.700000047683716, 23, 22.699999928474426, 19,
+          22.700000047683716, 20.799999952316284, 18.800000071525574,
+          21.199999928474426, 20.200000047683716, 20.899999976158142,
+          23.100000023841858, 18.199999928474426, 21.40000009536743,
+          20.899999976158142, 19.899999976158142, 21.899999976158142,
+          19.800000071525574, 21, 21.199999928474426, 20.200000047683716,
+          21.600000023841858, 20.899999976158142, 19.899999976158142,
+          20.799999952316284, 24, 19.300000071525574, 22.5, 21.5,
+          20.699999928474426, 21.5, 20.40000009536743, 22.199999928474426,
+          20.600000023841858, 20.899999976158142, 21.800000071525574,
+          20.799999952316284, 20.899999976158142, 21.800000071525574,
+          20.399999976158142, 21.5, 21.299999952316284, 30.800000071525574, 20,
+          21.5, 20.59999990463257, 20.700000047683716, 21.299999952316284,
+          20.300000071525574
+        ],
+        "cameraPosition": {
+          "x": -7.558548491111179e-7,
+          "y": 1.6988619565963745,
+          "z": 15.264946937561035
+        },
+        "cameraRotation": {
+          "x": 0.0007123185553665973,
+          "y": 0.7018558355858365,
+          "z": -0.0007018560695378754,
+          "w": 0.712318317927063
+        },
+        "drawCalls": 64,
+        "triangles": 423134,
+        "resources": {
+          "geometries": 340,
+          "textures": 170,
+          "programs": 39
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__LUMEN__pale_distant_satellite",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__ORISON__fractured_ocean_ice",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__VESPER__tidally_scarred_mineral_world",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 616
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 2376
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 1728
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 864
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_GLASS_MASTER_Clear_pressure_glazing",
+            "draws": 1,
+            "triangles": 6
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_GLASS_REV_EVA_display_clear_glass",
+            "draws": 1,
+            "triangles": 6
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_GLASS_WINDOW_Keepsake_protective_glass",
+            "draws": 1,
+            "triangles": 4
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Gaskets",
+            "draws": 1,
+            "triangles": 4379
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Graphite_frame",
+            "draws": 1,
+            "triangles": 460
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Ivory_cabinets",
+            "draws": 1,
+            "triangles": 5312
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V6_Medical_red",
+            "draws": 1,
+            "triangles": 108
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Brushed_titanium",
+            "draws": 1,
+            "triangles": 12784
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Cyan_status",
+            "draws": 1,
+            "triangles": 5882
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Padded_ceiling",
+            "draws": 1,
+            "triangles": 1880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Warm_diffuser",
+            "draws": 1,
+            "triangles": 5664
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_DETAIL_Dark_anti_slip_insert",
+            "draws": 1,
+            "triangles": 8944
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_EVA_closed_gold_visor",
+            "draws": 1,
+            "triangles": 9154
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_EVA_metal_fittings",
+            "draws": 1,
+            "triangles": 844
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_EVA_ochre_safety_bands",
+            "draws": 1,
+            "triangles": 2251
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_EVA_reinforced_gray_seams",
+            "draws": 1,
+            "triangles": 2206
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_EVA_woven_pressure_fabric",
+            "draws": 1,
+            "triangles": 41751
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_MASTER_Graphite_alloy_deck",
+            "draws": 1,
+            "triangles": 7336
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 31952
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 30744
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 13680
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 4692
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 82628
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_UNIFIED_Warm_practical_cores",
+            "draws": 1,
+            "triangles": 540
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Brushed_edge_alloy",
+            "draws": 1,
+            "triangles": 6884
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Leaf_veins",
+            "draws": 1,
+            "triangles": 6656
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Living_foliage_0",
+            "draws": 1,
+            "triangles": 1152
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Living_foliage_1",
+            "draws": 1,
+            "triangles": 1088
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Living_foliage_2",
+            "draws": 1,
+            "triangles": 1088
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Living_stems",
+            "draws": 1,
+            "triangles": 992
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Lower_wall_protective_enamel",
+            "draws": 1,
+            "triangles": 1520
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Mineral_specimen",
+            "draws": 1,
+            "triangles": 528
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Perimeter_deck_satin",
+            "draws": 1,
+            "triangles": 880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Photographic_print_1",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Photographic_print_2",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Recessed_amber_diffuser",
+            "draws": 1,
+            "triangles": 1880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Satin_graphite_finish",
+            "draws": 1,
+            "triangles": 2164
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Sighting_instrument_brass",
+            "draws": 1,
+            "triangles": 1552
+          },
+          {
+            "name": "entry-airlock/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-passage/passage-end-adapter/Mesh",
+            "draws": 1,
+            "triangles": 20
+          }
+        ]
+      }
+    },
+    {
+      "name": "bow-forward",
+      "measurement": {
+        "medianMs": 14.200000047683716,
+        "p95Ms": 16,
+        "samples": [
+          13.899999976158142, 14.299999952316284, 13.300000071525574,
+          14.699999928474426, 13.600000023841858, 14.200000047683716, 14.5,
+          13.5, 15.099999904632568, 13.900000095367432, 14, 16,
+          16.299999952316284, 13.899999976158142, 13.899999976158142,
+          14.700000047683716, 13.399999976158142, 14.600000023841858, 14,
+          14.200000047683716, 14.599999904632568, 14, 15, 14.400000095367432,
+          14.799999952316284, 13.899999976158142, 14.5, 15.399999976158142, 12,
+          15.90000009536743, 13.799999952316284, 14, 14.799999952316284,
+          14.700000047683716, 15.5, 14.200000047683716, 14.599999904632568,
+          13.5, 14.800000071525574, 23.600000023841858, 14.599999904632568,
+          13.900000095367432, 15.5, 14.099999904632568, 13.900000095367432,
+          14.199999928474426, 14.899999976158142, 16.200000047683716,
+          14.299999952316284, 14.600000023841858, 13.800000071525574,
+          15.399999976158142, 13.799999952316284, 14.700000047683716, 14.5,
+          14.399999976158142, 14.899999976158142, 15.5, 13.899999976158142,
+          13.700000047683716, 14.600000023841858, 13.299999952316284, 14,
+          14.399999976158142, 13.400000095367432, 14.599999904632568, 13.5,
+          14.100000023841858, 14.600000023841858, 14.600000023841858,
+          14.399999976158142, 13.899999976158142, 13.800000071525574,
+          14.799999952316284, 13.899999976158142, 14.200000047683716, 14,
+          14.600000023841858, 13.199999928474426, 14.399999976158142,
+          13.700000047683716, 14.600000023841858, 13.299999952316284,
+          13.800000071525574, 14.799999952316284, 15.600000023841858,
+          14.899999976158142, 14.600000023841858, 14.399999976158142,
+          14.600000023841858, 13.699999928474426, 15, 14.100000023841858, 15,
+          13.5, 14.300000071525574, 13.299999952316284, 13.799999952316284,
+          14.900000095367432, 13.399999976158142, 15.799999952316284,
+          12.300000071525574, 13.599999904632568, 16.200000047683716, 14,
+          14.200000047683716, 13.799999952316284, 14.700000047683716, 13.5,
+          13.599999904632568, 44.700000047683716, 12.100000023841858,
+          78.29999995231628, 15.200000047683716, 5.699999928474426,
+          5.200000047683716, 4.5, 7.399999976158142, 6.600000023841858,
+          7.899999976158142, 6, 9.600000023841858, 14.899999976158142,
+          14.100000023841858, 14.700000047683716, 13.799999952316284,
+          14.700000047683716, 13.299999952316284, 14.5, 13.299999952316284,
+          13.600000023841858, 14.600000023841858, 13.399999976158142,
+          16.100000023841858, 12, 14.200000047683716, 15.399999976158142,
+          13.899999976158142, 14.399999976158142, 14, 14.700000047683716, 13.5,
+          14.199999928474426, 15.200000047683716, 14.299999952316284,
+          14.600000023841858, 14, 15.100000023841858, 13.399999976158142,
+          14.300000071525574
+        ],
+        "cameraPosition": {
+          "x": -2.4018425941467285,
+          "y": 1.6987240314483643,
+          "z": -4.162017345428467
+        },
+        "cameraRotation": {
+          "x": 0.00989051492076388,
+          "y": -0.14745291980672656,
+          "z": 0.0014745783510066502,
+          "w": 0.9890185234735293
+        },
+        "drawCalls": 99,
+        "triangles": 369946,
+        "resources": {
+          "geometries": 350,
+          "textures": 174,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/exploration-bow-deck",
+            "draws": 4,
+            "triangles": 1268
+          },
+          {
+            "name": "station-highlight-computer/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "station-highlight-computer/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__NACRE__copper_and_pearl_gas_giant",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__Nacre_rings",
+            "draws": 1,
+            "triangles": 34304
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__SELENE__Vesper_moon",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__VESPER__tidally_scarred_mineral_world",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "orbital-drift/Mesh",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/Mesh",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/orbital-shuttle/Mesh",
+            "draws": 1,
+            "triangles": 8
+          },
+          {
+            "name": "orbital-drift/orbital-shuttle/Mesh",
+            "draws": 1,
+            "triangles": 8
+          },
+          {
+            "name": "orbital-drift/orbital-shuttle/Mesh",
+            "draws": 1,
+            "triangles": 8
+          },
+          {
+            "name": "orbital-drift/orbital-shuttle/Mesh",
+            "draws": 1,
+            "triangles": 32
+          },
+          {
+            "name": "orbital-drift/orbital-shuttle/Mesh",
+            "draws": 1,
+            "triangles": 32
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Printed_keycaps_shared_atlas",
+            "draws": 1,
+            "triangles": 456
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Satin_keycap_sides",
+            "draws": 1,
+            "triangles": 1824
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Brushed_steel_rebates",
+            "draws": 1,
+            "triangles": 728
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets",
+            "draws": 1,
+            "triangles": 290
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_control_inset",
+            "draws": 1,
+            "triangles": 176
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_encoder_satin_metal",
+            "draws": 1,
+            "triangles": 1056
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_instrument_engraving",
+            "draws": 1,
+            "triangles": 823
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Subtle_sewn_leather_piping",
+            "draws": 1,
+            "triangles": 2496
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2948
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 174
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 3268
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2948
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 174
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 3268
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Central_navigation001",
+            "draws": 1,
+            "triangles": 8
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 34
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 7456
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Cyan001",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Gasket001",
+            "draws": 1,
+            "triangles": 17968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 48868
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 13492
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 58400
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Brushed_graphite_desktop",
+            "draws": 1,
+            "triangles": 1316
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 3448
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf001",
+            "draws": 1,
+            "triangles": 8224
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Ivory001",
+            "draws": 1,
+            "triangles": 4464
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+            "draws": 1,
+            "triangles": 1968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Blue_charcoal_performance_leather",
+            "draws": 1,
+            "triangles": 5616
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Amber005",
+            "draws": 1,
+            "triangles": 1776
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Graphite005",
+            "draws": 1,
+            "triangles": 936
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "forward-command-console/navigation-screen-target",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/Mesh",
+            "draws": 1,
+            "triangles": 12
+          }
+        ]
+      }
+    },
+    {
+      "name": "bow-port",
+      "measurement": {
+        "medianMs": 11.899999976158142,
+        "p95Ms": 13.899999976158142,
+        "samples": [
+          10.300000071525574, 11.5, 12, 12.399999976158142, 12.100000023841858,
+          12.5, 12.5, 20.799999952316284, 10.899999976158142, 12.5,
+          12.400000095367432, 12, 12.699999928474426, 10.800000071525574,
+          12.599999904632568, 11, 12.5, 11.400000095367432, 14,
+          12.099999904632568, 11.600000023841858, 12.200000047683716,
+          10.399999976158142, 12.600000023841858, 13, 12, 11.399999976158142,
+          11.299999952316284, 12, 11.100000023841858, 11.700000047683716,
+          13.100000023841858, 12.599999904632568, 14.5, 12.100000023841858,
+          11.800000071525574, 11.399999976158142, 13, 10.600000023841858, 12,
+          12, 11, 11.799999952316284, 11.799999952316284, 10.900000095367432,
+          12, 11.699999928474426, 10.700000047683716, 11.5, 12.100000023841858,
+          10.299999952316284, 11.5, 12.600000023841858, 10.600000023841858,
+          12.699999928474426, 11, 10.899999976158142, 12.100000023841858,
+          10.700000047683716, 11.199999928474426, 12.600000023841858,
+          10.600000023841858, 11.100000023841858, 12.100000023841858,
+          10.799999952316284, 11, 11.600000023841858, 10.799999952316284,
+          11.399999976158142, 11.800000071525574, 11.199999928474426,
+          11.100000023841858, 11.200000047683716, 11.100000023841858,
+          12.299999952316284, 13.899999976158142, 13.899999976158142,
+          10.700000047683716, 12.5, 11.600000023841858, 11.899999976158142,
+          11.700000047683716, 12.399999976158142, 13, 11.699999928474426,
+          12.300000071525574, 12.600000023841858, 11.899999976158142, 10.5,
+          18.899999976158142, 14.299999952316284, 32.200000047683716,
+          10.600000023841858, 11.899999976158142, 12.100000023841858, 11.5, 11,
+          12.199999928474426, 12.300000071525574, 12.100000023841858,
+          12.099999904632568, 13.5, 12.900000095367432, 13.5,
+          11.099999904632568, 11.300000071525574, 12.299999952316284,
+          11.300000071525574, 13.199999928474426, 13.399999976158142,
+          12.100000023841858, 13.399999976158142, 11.5, 11.200000047683716,
+          12.100000023841858, 11, 11.199999928474426, 12.700000047683716,
+          10.799999952316284, 11.200000047683716, 12.299999952316284,
+          11.100000023841858, 11.700000047683716, 11.899999976158142, 13.5,
+          9.799999952316284, 12, 11.200000047683716, 12.200000047683716,
+          11.799999952316284, 10.700000047683716, 12, 11.799999952316284,
+          10.799999952316284, 11.900000095367432, 12.299999952316284,
+          12.200000047683716, 11.799999952316284, 11, 12.399999976158142,
+          13.300000071525574, 9.799999952316284, 11.899999976158142, 13, 10, 12,
+          12.100000023841858, 11.299999952316284, 12.400000095367432,
+          13.099999904632568
+        ],
+        "cameraPosition": {
+          "x": -2.4018425941467285,
+          "y": 1.6987240314483643,
+          "z": -4.162017345428467
+        },
+        "cameraRotation": {
+          "x": 0.007192895150407086,
+          "y": 0.6946632913634935,
+          "z": -0.006946864477327928,
+          "w": 0.7192655385636983
+        },
+        "drawCalls": 67,
+        "triangles": 319290,
+        "resources": {
+          "geometries": 350,
+          "textures": 174,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__LUMEN__pale_distant_satellite",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__VESPER__tidally_scarred_mineral_world",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "orbital-drift/Mesh",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Printed_keycaps_shared_atlas",
+            "draws": 1,
+            "triangles": 456
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Satin_keycap_sides",
+            "draws": 1,
+            "triangles": 1824
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets",
+            "draws": 1,
+            "triangles": 290
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_control_inset",
+            "draws": 1,
+            "triangles": 176
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_encoder_satin_metal",
+            "draws": 1,
+            "triangles": 1056
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_instrument_engraving",
+            "draws": 1,
+            "triangles": 823
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Subtle_sewn_leather_piping",
+            "draws": 1,
+            "triangles": 2496
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2624
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 2944
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2948
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_computer_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 3268
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 34
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 7456
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Cyan001",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Gasket001",
+            "draws": 1,
+            "triangles": 17968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 48868
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 13492
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 58400
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Brushed_graphite_desktop",
+            "draws": 1,
+            "triangles": 1316
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 3448
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf001",
+            "draws": 1,
+            "triangles": 8224
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Ivory001",
+            "draws": 1,
+            "triangles": 4464
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+            "draws": 1,
+            "triangles": 1968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Blue_charcoal_performance_leather",
+            "draws": 1,
+            "triangles": 5616
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Amber005",
+            "draws": 1,
+            "triangles": 1776
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Graphite005",
+            "draws": 1,
+            "triangles": 936
+          },
+          {
+            "name": "Mesh",
+            "draws": 1,
+            "triangles": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "bow-overhead",
+      "measurement": {
+        "medianMs": 9.100000023841858,
+        "p95Ms": 12.100000023841858,
+        "samples": [
+          11.299999952316284, 7.700000047683716, 8.899999976158142,
+          9.299999952316284, 9, 13.100000023841858, 9.300000071525574, 11,
+          16.699999928474426, 7.5, 10.899999976158142, 10.200000047683716,
+          9.600000023841858, 9.100000023841858, 10.099999904632568,
+          10.600000023841858, 10.100000023841858, 9.100000023841858,
+          10.799999952316284, 10.899999976158142, 9.600000023841858,
+          9.899999976158142, 8.400000095367432, 11.799999952316284, 8,
+          9.100000023841858, 11.199999928474426, 8, 8.700000047683716,
+          13.399999976158142, 7.800000071525574, 10.199999928474426,
+          9.399999976158142, 10.800000071525574, 8.600000023841858,
+          10.699999928474426, 9.800000071525574, 9.599999904632568,
+          11.300000071525574, 9, 12, 9.699999928474426, 9.900000095367432,
+          10.299999952316284, 11.799999952316284, 9.5, 8.800000071525574,
+          9.899999976158142, 11, 6.899999976158142, 10.100000023841858, 9.5,
+          12.100000023841858, 8.299999952316284, 9.100000023841858,
+          10.299999952316284, 9.700000047683716, 7.899999976158142, 10.5,
+          8.100000023841858, 9.700000047683716, 10.199999928474426,
+          7.600000023841858, 10.5, 8.600000023841858, 9.299999952316284,
+          9.200000047683716, 9.299999952316284, 8.5, 8.200000047683716,
+          12.100000023841858, 7.699999928474426, 10.5, 7.700000047683716,
+          9.600000023841858, 6.5, 8.699999928474426, 7.800000071525574,
+          10.099999904632568, 7.600000023841858, 8.399999976158142,
+          8.700000047683716, 9.399999976158142, 9.600000023841858,
+          8.799999952316284, 7.700000047683716, 8.799999952316284,
+          8.800000071525574, 10.799999952316284, 4.399999976158142,
+          7.200000047683716, 10.5, 9.799999952316284, 10.600000023841858,
+          13.700000047683716, 10.399999976158142, 12.100000023841858,
+          12.199999928474426, 7.5, 8.600000023841858, 8, 9.300000071525574,
+          8.199999928474426, 8.600000023841858, 7.799999952316284,
+          8.400000095367432, 9.299999952316284, 8.200000047683716,
+          7.399999976158142, 8.899999976158142, 9.299999952316284,
+          7.100000023841858, 8.399999976158142, 8.400000095367432,
+          7.799999952316284, 9.200000047683716, 7.099999904632568,
+          8.200000047683716, 8.799999952316284, 7.300000071525574,
+          9.699999928474426, 8.5, 8.700000047683716, 8.700000047683716,
+          9.299999952316284, 10, 7.399999976158142, 8.800000071525574,
+          7.299999952316284, 9.799999952316284, 9.700000047683716,
+          7.799999952316284, 8.100000023841858, 8.200000047683716,
+          9.100000023841858, 8, 9.099999904632568, 7.400000095367432,
+          9.099999904632568, 8.800000071525574, 8, 8.699999928474426,
+          8.100000023841858, 9.200000047683716, 8.299999952316284,
+          8.200000047683716, 8.899999976158142, 10.5, 7.799999952316284,
+          7.100000023841858
+        ],
+        "cameraPosition": {
+          "x": -2.4018425941467285,
+          "y": 1.6987240314483643,
+          "z": -4.162017345428467
+        },
+        "cameraRotation": {
+          "x": 0.48575093095125343,
+          "y": -0.5027501121297521,
+          "z": 0.4243207285414874,
+          "w": 0.5755347749385209
+        },
+        "drawCalls": 79,
+        "triangles": 323948,
+        "resources": {
+          "geometries": 351,
+          "textures": 175,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__HALO__high_inclination_companion",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 312
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Printed_keycaps_shared_atlas",
+            "draws": 1,
+            "triangles": 456
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Satin_keycap_sides",
+            "draws": 1,
+            "triangles": 1824
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Brushed_steel_rebates",
+            "draws": 1,
+            "triangles": 728
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets",
+            "draws": 1,
+            "triangles": 290
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_control_inset",
+            "draws": 1,
+            "triangles": 176
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_encoder_satin_metal",
+            "draws": 1,
+            "triangles": 1056
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_instrument_engraving",
+            "draws": 1,
+            "triangles": 823
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+            "draws": 1,
+            "triangles": 2364
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Subtle_sewn_leather_piping",
+            "draws": 1,
+            "triangles": 2496
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2624
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_arcade_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 2944
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 34
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 7456
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Cyan001",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Gasket001",
+            "draws": 1,
+            "triangles": 17968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 48868
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 13492
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 58400
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Brushed_graphite_desktop",
+            "draws": 1,
+            "triangles": 1316
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 3448
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf_light005",
+            "draws": 1,
+            "triangles": 2816
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf001",
+            "draws": 1,
+            "triangles": 8224
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Ivory001",
+            "draws": 1,
+            "triangles": 4464
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+            "draws": 1,
+            "triangles": 1968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Blue_charcoal_performance_leather",
+            "draws": 1,
+            "triangles": 5616
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Amber005",
+            "draws": 1,
+            "triangles": 1776
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Graphite005",
+            "draws": 1,
+            "triangles": 936
+          },
+          {
+            "name": "reference-side-cassettes/TEMP__Side_cassette_export/CDS_NICHE__Batch__Brushed_titanium001",
+            "draws": 1,
+            "triangles": 5300
+          },
+          {
+            "name": "reference-side-cassettes/TEMP__Side_cassette_export/CDS_NICHE__Batch__Deep_rubber_and_cavities001",
+            "draws": 1,
+            "triangles": 5716
+          },
+          {
+            "name": "reference-side-cassettes/TEMP__Side_cassette_export/CDS_NICHE__Batch__Graphite_ceramic_armor001",
+            "draws": 1,
+            "triangles": 1976
+          },
+          {
+            "name": "reference-side-cassettes/TEMP__Side_cassette_export/CDS_NICHE__Batch__Ivory_lettering001",
+            "draws": 1,
+            "triangles": 2592
+          },
+          {
+            "name": "reference-side-cassettes/TEMP__Side_cassette_export/CDS_NICHE__Batch__Warm_protected_LED_diffuser001",
+            "draws": 1,
+            "triangles": 1836
+          }
+        ]
+      }
+    },
+    {
+      "name": "bow-starboard",
+      "measurement": {
+        "medianMs": 10.5,
+        "p95Ms": 12.200000047683716,
+        "samples": [
+          10.299999952316284, 10, 10.5, 10.700000047683716, 10.600000023841858,
+          10.399999976158142, 11, 10.699999928474426, 10.100000023841858,
+          10.899999976158142, 10.5, 10.800000071525574, 10.100000023841858,
+          10.899999976158142, 11.199999928474426, 10.800000071525574,
+          10.399999976158142, 10.299999952316284, 9.5, 11.700000047683716,
+          10.600000023841858, 9.299999952316284, 11.200000047683716,
+          9.299999952316284, 9.300000071525574, 9.899999976158142,
+          10.100000023841858, 10.699999928474426, 10.100000023841858,
+          11.899999976158142, 12.399999976158142, 10.800000071525574,
+          10.600000023841858, 10.399999976158142, 9.799999952316284,
+          13.100000023841858, 8.899999976158142, 9.399999976158142,
+          11.200000047683716, 12.100000023841858, 9.600000023841858,
+          11.199999928474426, 10.700000047683716, 10.899999976158142,
+          10.299999952316284, 9.800000071525574, 9, 11.899999976158142,
+          8.200000047683716, 9, 10.399999976158142, 9.299999952316284,
+          10.100000023841858, 9.299999952316284, 10.600000023841858,
+          10.300000071525574, 9.199999928474426, 9.5, 10.200000047683716,
+          10.600000023841858, 10.099999904632568, 10.300000071525574,
+          9.899999976158142, 9.799999952316284, 10.900000095367432,
+          9.399999976158142, 10.299999952316284, 9.800000071525574, 11, 9.5,
+          9.599999904632568, 11.800000071525574, 11.299999952316284,
+          9.700000047683716, 13.5, 11.799999952316284, 10.600000023841858,
+          10.799999952316284, 9.700000047683716, 10.799999952316284,
+          9.600000023841858, 11.600000023841858, 11.299999952316284, 11, 11,
+          11.100000023841858, 21, 9.700000047683716, 10.299999952316284,
+          10.700000047683716, 9.600000023841858, 11.299999952316284,
+          11.100000023841858, 10.100000023841858, 11.599999904632568,
+          10.600000023841858, 11.899999976158142, 9.100000023841858,
+          11.800000071525574, 9.799999952316284, 10.799999952316284,
+          9.900000095367432, 11.299999952316284, 10.100000023841858,
+          11.199999928474426, 10.600000023841858, 10.399999976158142,
+          8.900000095367432, 12.299999952316284, 11.299999952316284,
+          10.300000071525574, 10.100000023841858, 10, 10.099999904632568,
+          10.300000071525574, 10.299999952316284, 10.100000023841858,
+          10.299999952316284, 10.600000023841858, 10.200000047683716,
+          10.899999976158142, 10.5, 10.700000047683716, 12.899999976158142,
+          8.399999976158142, 13.5, 8.5, 11.200000047683716, 9.399999976158142,
+          11.899999976158142, 11.200000047683716, 10.299999952316284,
+          8.899999976158142, 12, 9.200000047683716, 10.299999952316284, 10,
+          11.700000047683716, 10.5, 11.299999952316284, 10.800000071525574,
+          11.299999952316284, 12.200000047683716, 9.899999976158142,
+          10.299999952316284, 10.399999976158142, 11, 10.700000047683716,
+          11.700000047683716, 11.699999928474426
+        ],
+        "cameraPosition": {
+          "x": 2.395657539367676,
+          "y": 1.6987239122390747,
+          "z": -4.248481273651123
+        },
+        "cameraRotation": {
+          "x": 0.0071370906559688006,
+          "y": -0.700395125188106,
+          "z": 0.007004184726262572,
+          "w": 0.7136852751360548
+        },
+        "drawCalls": 63,
+        "triangles": 303432,
+        "resources": {
+          "geometries": 371,
+          "textures": 201,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__CINDER__iron_moon",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Printed_keycaps_shared_atlas",
+            "draws": 1,
+            "triangles": 456
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Satin_keycap_sides",
+            "draws": 1,
+            "triangles": 1824
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Brushed_steel_rebates",
+            "draws": 1,
+            "triangles": 728
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Recesses_and_gaskets",
+            "draws": 1,
+            "triangles": 290
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_control_inset",
+            "draws": 1,
+            "triangles": 176
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_encoder_satin_metal",
+            "draws": 1,
+            "triangles": 1056
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_POLISH_Console_instrument_engraving",
+            "draws": 1,
+            "triangles": 823
+          },
+          {
+            "name": "TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Subtle_sewn_leather_piping",
+            "draws": 1,
+            "triangles": 2496
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/Mesh",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 16
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_communications_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2948
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 2624
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_personal_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 2944
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_Safety_paint001",
+            "draws": 1,
+            "triangles": 34
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Amber001",
+            "draws": 1,
+            "triangles": 7456
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Cyan001",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Gasket001",
+            "draws": 1,
+            "triangles": 17968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Graphite001",
+            "draws": 1,
+            "triangles": 48868
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Ivory001",
+            "draws": 1,
+            "triangles": 13492
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_BRIDGE_V15_Metal001",
+            "draws": 1,
+            "triangles": 58400
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_CONSOLE_Brushed_graphite_desktop",
+            "draws": 1,
+            "triangles": 1316
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_DETAIL_Graphite_deck_-_restrained_foot_traffic",
+            "draws": 1,
+            "triangles": 3448
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_ORGANIC_CDS_REFINE_FURNISH_Leaf001",
+            "draws": 1,
+            "triangles": 8224
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Ivory001",
+            "draws": 1,
+            "triangles": 4464
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_REFINE_FURNISH_Metal005",
+            "draws": 1,
+            "triangles": 1968
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_CDS_TAILORED_Blue_charcoal_performance_leather",
+            "draws": 1,
+            "triangles": 5616
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Amber005",
+            "draws": 1,
+            "triangles": 1776
+          },
+          {
+            "name": "forward-command-console/TEMP__Refined_runtime_export/REFINED_bridge_static_FURNISH_Graphite005",
+            "draws": 1,
+            "triangles": 936
+          }
+        ]
+      }
+    },
+    {
+      "name": "passage-port",
+      "measurement": {
+        "medianMs": 10.799999952316284,
+        "p95Ms": 12.299999952316284,
+        "samples": [
+          10.900000095367432, 10.399999976158142, 11.5, 10.399999976158142,
+          10.399999976158142, 11, 10.100000023841858, 11.799999952316284,
+          11.100000023841858, 10.899999976158142, 10.300000071525574, 10,
+          11.899999976158142, 11.899999976158142, 11.200000047683716,
+          11.899999976158142, 11.100000023841858, 10.799999952316284,
+          10.899999976158142, 11.100000023841858, 11.600000023841858, 10,
+          10.299999952316284, 9.5, 10.5, 10.100000023841858, 11,
+          10.399999976158142, 12.100000023841858, 10.200000047683716,
+          9.399999976158142, 9.799999952316284, 11.100000023841858, 10.5,
+          10.399999976158142, 10.200000047683716, 10.399999976158142,
+          11.200000047683716, 10.399999976158142, 11.5, 10.700000047683716,
+          11.299999952316284, 11, 12.299999952316284, 10.800000071525574,
+          10.399999976158142, 10.600000023841858, 11, 10.600000023841858,
+          9.299999952316284, 10.100000023841858, 10.299999952316284,
+          10.800000071525574, 12.5, 10.5, 10.699999928474426,
+          10.200000047683716, 10.699999928474426, 10.600000023841858,
+          10.899999976158142, 12.300000071525574, 10.699999928474426, 10.5,
+          10.900000095367432, 13.799999952316284, 11.899999976158142,
+          9.700000047683716, 12.299999952316284, 11.600000023841858, 10,
+          10.799999952316284, 10.200000047683716, 12.700000047683716, 11,
+          10.899999976158142, 11, 10.5, 18, 10.199999928474426, 11.5,
+          12.100000023841858, 11.100000023841858, 11.5, 11.600000023841858,
+          11.199999928474426, 10.600000023841858, 9.700000047683716, 10.5,
+          10.600000023841858, 11.799999952316284, 10.399999976158142,
+          10.899999976158142, 11.100000023841858, 10.600000023841858,
+          10.399999976158142, 11, 10.5, 10.300000071525574, 11.599999904632568,
+          12.200000047683716, 10.100000023841858, 11.899999976158142,
+          11.200000047683716, 9.699999928474426, 10.300000071525574,
+          11.199999928474426, 9.399999976158142, 10.400000095367432,
+          10.299999952316284, 10.5, 12.200000047683716, 9.699999928474426,
+          11.399999976158142, 11.400000095367432, 11, 14.399999976158142,
+          9.899999976158142, 10.799999952316284, 10, 10.900000095367432,
+          11.799999952316284, 10.700000047683716, 10.5, 10.399999976158142,
+          11.399999976158142, 11.600000023841858, 11.199999928474426, 11,
+          10.800000071525574, 11.100000023841858, 11, 11.299999952316284,
+          10.399999976158142, 10, 11.5, 11.700000047683716, 11.199999928474426,
+          9.800000071525574, 11.600000023841858, 9.299999952316284,
+          12.200000047683716, 9.399999976158142, 10, 10.699999928474426,
+          10.100000023841858, 10, 10.5, 10, 10, 10.700000047683716
+        ],
+        "cameraPosition": {
+          "x": 0.007250386755913496,
+          "y": 1.6988622546195984,
+          "z": 8.013056755065918
+        },
+        "cameraRotation": {
+          "x": 0.00767150617572593,
+          "y": 0.716615668194417,
+          "z": -0.007883090304012727,
+          "w": 0.6973815232557597
+        },
+        "drawCalls": 91,
+        "triangles": 556367,
+        "resources": {
+          "geometries": 374,
+          "textures": 201,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__LUMEN__pale_distant_satellite",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__ORISON__fractured_ocean_ice",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__VESPER__tidally_scarred_mineral_world",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 312
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 616
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Cyan_navigation_markings_closed_solids",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 2376
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 432
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 1728
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 864
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_GLASS_MASTER_Clear_pressure_glazing",
+            "draws": 1,
+            "triangles": 6
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_GLASS_WINDOW_Keepsake_protective_glass",
+            "draws": 1,
+            "triangles": 4
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Gaskets",
+            "draws": 1,
+            "triangles": 4379
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Graphite_frame",
+            "draws": 1,
+            "triangles": 460
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Ivory_cabinets",
+            "draws": 1,
+            "triangles": 5312
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_Material_0",
+            "draws": 1,
+            "triangles": 48
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_Material_3",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 31952
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 30744
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 13680
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 4692
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 82628
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Brushed_edge_alloy",
+            "draws": 1,
+            "triangles": 6884
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Lower_wall_protective_enamel",
+            "draws": 1,
+            "triangles": 1520
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Perimeter_deck_satin",
+            "draws": 1,
+            "triangles": 880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Photographic_print_1",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Recessed_amber_diffuser",
+            "draws": 1,
+            "triangles": 1880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_WINDOW_Satin_graphite_finish",
+            "draws": 1,
+            "triangles": 2164
+          },
+          {
+            "name": "entry-airlock/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 1296
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 7128
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Cyan floor guidance / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 9396
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 2448
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Safety ochre / closed solids.001",
+            "draws": 1,
+            "triangles": 144
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Blue-grey glazing V2 / retained surfaces.001",
+            "draws": 1,
+            "triangles": 288
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Amber diffuser / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Off-white ceramic housings / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/passage-end-adapter/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Anodized_warm_edge",
+            "draws": 1,
+            "triangles": 16252
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Brushed_titanium",
+            "draws": 1,
+            "triangles": 29832
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Graphite_painted_alloy",
+            "draws": 1,
+            "triangles": 109344
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Recessed_pressure_seals",
+            "draws": 1,
+            "triangles": 33728
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Warm_amber_diffuser",
+            "draws": 1,
+            "triangles": 10528
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/CABIN_MASTER_LEAF_LEFT_SLIDE_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 948
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/CABIN_MASTER_LEAF_LEFT_SLIDE_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 1900
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/CABIN_MASTER_LEAF_LEFT_SLIDE_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 380
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/CABIN_MASTER_LEAF_LEFT_SLIDE_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 427
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-left-leaf/LEAF_LEFT_SLIDE/CABIN_MASTER_LEAF_LEFT_SLIDE_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 3004
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          }
+        ]
+      }
+    },
+    {
+      "name": "passage-starboard",
+      "measurement": {
+        "medianMs": 11.800000071525574,
+        "p95Ms": 15.799999952316284,
+        "samples": [
+          13.5, 12.899999976158142, 15.5, 13.200000047683716,
+          13.799999952316284, 11.899999976158142, 10.800000071525574,
+          10.799999952316284, 13.399999976158142, 12.400000095367432, 11.5,
+          14.599999904632568, 10.100000023841858, 11.700000047683716,
+          11.199999928474426, 11.700000047683716, 13.600000023841858, 13.5,
+          15.100000023841858, 14.199999928474426, 15.600000023841858, 13.5,
+          16.399999976158142, 13.399999976158142, 15.200000047683716,
+          15.799999952316284, 13.700000047683716, 15, 19.299999952316284,
+          15.600000023841858, 15.399999976158142, 13.700000047683716,
+          13.399999976158142, 13.600000023841858, 11.399999976158142,
+          12.399999976158142, 11.800000071525574, 11.799999952316284,
+          12.300000071525574, 9.699999928474426, 12.399999976158142,
+          8.900000095367432, 8.099999904632568, 8.900000095367432,
+          9.199999928474426, 10.5, 10.5, 12, 10.300000071525574,
+          10.399999976158142, 9.899999976158142, 10.200000047683716,
+          11.099999904632568, 10.200000047683716, 10.399999976158142,
+          10.200000047683716, 10.899999976158142, 12, 11.5, 9.899999976158142,
+          9.600000023841858, 11, 12.700000047683716, 11.5, 16.09999990463257,
+          9.900000095367432, 9, 9, 10.799999952316284, 14, 14.600000023841858,
+          21, 11.399999976158142, 14.200000047683716, 12.5, 11.199999928474426,
+          12.5, 12.800000071525574, 11, 10.799999952316284, 11.299999952316284,
+          10.5, 13.200000047683716, 11.600000023841858, 11.299999952316284,
+          13.899999976158142, 11.700000047683716, 11.200000047683716, 13,
+          13.599999904632568, 19.700000047683716, 14.600000023841858,
+          11.100000023841858, 13.399999976158142, 12.600000023841858,
+          11.899999976158142, 12.699999928474426, 11.200000047683716,
+          14.899999976158142, 11.5, 11.899999976158142, 16.90000009536743,
+          14.699999928474426, 12.899999976158142, 14.900000095367432,
+          13.899999976158142, 13.100000023841858, 13.099999904632568,
+          13.700000047683716, 12.399999976158142, 11.800000071525574,
+          9.799999952316284, 13.299999952316284, 9.900000095367432,
+          15.299999952316284, 10.700000047683716, 11.399999976158142,
+          9.799999952316284, 9.700000047683716, 10.100000023841858,
+          8.799999952316284, 11.100000023841858, 11.299999952316284,
+          10.800000071525574, 12.399999976158142, 15.100000023841858,
+          15.899999976158142, 11.600000023841858, 10.199999928474426,
+          10.600000023841858, 9.200000047683716, 11.699999928474426,
+          13.100000023841858, 10.799999952316284, 12, 9.800000071525574,
+          11.399999976158142, 10.899999976158142, 11.100000023841858,
+          13.700000047683716, 14.599999904632568, 14.800000071525574, 12.5,
+          12.5, 8.299999952316284, 8.700000047683716, 9.100000023841858,
+          10.099999904632568, 10.200000047683716, 9.5
+        ],
+        "cameraPosition": {
+          "x": 0.007250386755913496,
+          "y": 1.6988622546195984,
+          "z": 8.013056755065918
+        },
+        "cameraRotation": {
+          "x": 0.007671506175725451,
+          "y": -0.7166156681944179,
+          "z": 0.007883090304013195,
+          "w": 0.6973815232557589
+        },
+        "drawCalls": 90,
+        "triangles": 570343,
+        "resources": {
+          "geometries": 374,
+          "textures": 201,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__CINDER__iron_moon",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__ITHACA__violet_storm_giant",
+            "draws": 1,
+            "triangles": 9024
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 312
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 616
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Cyan_navigation_markings_closed_solids",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 2376
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 432
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 1728
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 864
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_ARRIVAL_V4_Graphite_frame",
+            "draws": 1,
+            "triangles": 460
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Aged_brass_001",
+            "draws": 1,
+            "triangles": 3524
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Cyan_status",
+            "draws": 1,
+            "triangles": 5882
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Warm_diffuser",
+            "draws": 1,
+            "triangles": 5664
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Woven_cream_001",
+            "draws": 1,
+            "triangles": 1303
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_MASTER_Graphite_alloy_deck",
+            "draws": 1,
+            "triangles": 7336
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_Material_0",
+            "draws": 1,
+            "triangles": 48
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_Material_3",
+            "draws": 1,
+            "triangles": 24
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 31952
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Dark_saddle_leather",
+            "draws": 1,
+            "triangles": 4304
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Leather_stitching",
+            "draws": 1,
+            "triangles": 3456
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Living_vine",
+            "draws": 1,
+            "triangles": 12736
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 30744
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 13680
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 4692
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 82628
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_UNIFIED_Deep_pressure_seals",
+            "draws": 1,
+            "triangles": 2
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_UNIFIED_Machined_seam_edges",
+            "draws": 1,
+            "triangles": 1404
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_UNIFIED_Warm_practical_cores",
+            "draws": 1,
+            "triangles": 540
+          },
+          {
+            "name": "entry-airlock/technical-wall-end-panel",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "entry-airlock/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 1296
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 7128
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Cyan floor guidance / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 9396
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 2448
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Safety ochre / closed solids.001",
+            "draws": 1,
+            "triangles": 144
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Blue-grey glazing V2 / retained surfaces.001",
+            "draws": 1,
+            "triangles": 288
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Amber diffuser / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Off-white ceramic housings / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/passage-end-adapter/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Anodized_warm_edge",
+            "draws": 1,
+            "triangles": 16252
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Brushed_titanium",
+            "draws": 1,
+            "triangles": 29832
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Graphite_painted_alloy",
+            "draws": 1,
+            "triangles": 109344
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Recessed_pressure_seals",
+            "draws": 1,
+            "triangles": 33728
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Warm_amber_diffuser",
+            "draws": 1,
+            "triangles": 10528
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/CABIN_MASTER_LEAF_RIGHT_SLIDE_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 948
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/CABIN_MASTER_LEAF_RIGHT_SLIDE_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 1900
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/CABIN_MASTER_LEAF_RIGHT_SLIDE_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 380
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/CABIN_MASTER_LEAF_RIGHT_SLIDE_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 427
+          },
+          {
+            "name": "animated-bulkhead/bulkhead-right-leaf/LEAF_RIGHT_SLIDE/CABIN_MASTER_LEAF_RIGHT_SLIDE_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 3004
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          }
+        ]
+      }
+    },
+    {
+      "name": "passage-overhead",
+      "measurement": {
+        "medianMs": 9.200000047683716,
+        "p95Ms": 11.5,
+        "samples": [
+          9, 10, 8.600000023841858, 9.5, 9.899999976158142, 8.5,
+          9.699999928474426, 8.5, 10.100000023841858, 10.200000047683716,
+          9.199999928474426, 9.600000023841858, 9.300000071525574, 10, 8.5,
+          9.699999928474426, 8.600000023841858, 9.200000047683716, 8,
+          9.699999928474426, 8.5, 8.200000047683716, 9.899999976158142,
+          9.799999952316284, 11.200000047683716, 9.5, 11.399999976158142,
+          9.800000071525574, 8.899999976158142, 10, 7.600000023841858, 12.5, 10,
+          7.699999928474426, 11, 9.800000071525574, 9.599999904632568,
+          8.300000071525574, 7.5, 8.100000023841858, 9.299999952316284,
+          10.799999952316284, 9.400000095367432, 10.199999928474426,
+          8.600000023841858, 11.200000047683716, 9.699999928474426,
+          11.100000023841858, 8.100000023841858, 8.899999976158142,
+          10.700000047683716, 9.899999976158142, 11.699999928474426,
+          10.400000095367432, 10.299999952316284, 9.600000023841858, 8,
+          11.199999928474426, 9.400000095367432, 7.699999928474426,
+          9.100000023841858, 8.200000047683716, 8.799999952316284, 8.5,
+          9.299999952316284, 9.200000047683716, 9.299999952316284,
+          9.900000095367432, 9.099999904632568, 8.300000071525574, 9, 9, 9,
+          8.100000023841858, 7.799999952316284, 8.200000047683716,
+          8.399999976158142, 8.600000023841858, 8.299999952316284,
+          9.200000047683716, 8.299999952316284, 9.200000047683716,
+          10.099999904632568, 10.600000023841858, 8.300000071525574, 7.5,
+          9.699999928474426, 8.399999976158142, 8.5, 7.700000047683716, 10,
+          8.399999976158142, 7.800000071525574, 7.899999976158142,
+          8.399999976158142, 9, 8.299999952316284, 9.100000023841858,
+          10.600000023841858, 9.100000023841858, 7.899999976158142,
+          10.200000047683716, 12.799999952316284, 6.200000047683716,
+          9.799999952316284, 15.100000023841858, 10.199999928474426,
+          8.700000047683716, 9.100000023841858, 7.5, 8.699999928474426,
+          8.900000095367432, 7.899999976158142, 8.199999928474426,
+          8.600000023841858, 7.700000047683716, 9.799999952316284,
+          11.399999976158142, 11.300000071525574, 7.699999928474426, 8.5,
+          12.700000047683716, 11.5, 10.100000023841858, 9.100000023841858,
+          12.199999928474426, 10.800000071525574, 7.799999952316284, 10, 10,
+          9.799999952316284, 9.700000047683716, 10.100000023841858, 8.5, 11,
+          7.199999928474426, 10.5, 11.5, 9.700000047683716, 10.200000047683716,
+          6.799999952316284, 8.799999952316284, 9.300000071525574,
+          8.199999928474426, 9.100000023841858, 8, 8.200000047683716,
+          8.799999952316284, 10.5, 8.399999976158142
+        ],
+        "cameraPosition": {
+          "x": 0.007250386755913496,
+          "y": 1.6988622546195984,
+          "z": 8.013056755065918
+        },
+        "cameraRotation": {
+          "x": 0.43337556970954655,
+          "y": -0.5659838101951549,
+          "z": 0.47768992366274055,
+          "w": 0.5134786061823667
+        },
+        "drawCalls": 68,
+        "triangles": 494721,
+        "resources": {
+          "geometries": 374,
+          "textures": 201,
+          "programs": 40
+        },
+        "renderDpr": 1,
+        "inventory": [
+          {
+            "name": "orbital-drift/fixed-galactic-sky",
+            "draws": 1,
+            "triangles": 2208
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__debris_field",
+            "draws": 1,
+            "triangles": 17360
+          },
+          {
+            "name": "orbital-drift/asterion-worlds/ASTERION__HALO__high_inclination_companion",
+            "draws": 1,
+            "triangles": 3968
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 2080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 4080
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 3462
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 2052
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_bridge_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 312
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Blue_titanium_closed_solids",
+            "draws": 1,
+            "triangles": 616
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Cyan_navigation_markings_closed_solids",
+            "draws": 1,
+            "triangles": 216
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Deep_pressure_seals_closed_solids",
+            "draws": 1,
+            "triangles": 2376
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Graphite_ceramic_closed_solids",
+            "draws": 1,
+            "triangles": 432
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Machined_seam_edges_closed_solids",
+            "draws": 1,
+            "triangles": 1728
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_connector_UNIFIED_Warm_practical_cores_closed_solids",
+            "draws": 1,
+            "triangles": 864
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Amber_navigation002",
+            "draws": 1,
+            "triangles": 136
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Black_elastomer_seals002",
+            "draws": 1,
+            "triangles": 1298
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic_graphite002",
+            "draws": 1,
+            "triangles": 9362
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Dark_armor002",
+            "draws": 1,
+            "triangles": 3845
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep_recess002",
+            "draws": 1,
+            "triangles": 8096
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion_cyan002",
+            "draws": 1,
+            "triangles": 2378
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ivory_markings002",
+            "draws": 1,
+            "triangles": 10633
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined_edges002",
+            "draws": 1,
+            "triangles": 29551
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Muted_safety_ochre002",
+            "draws": 1,
+            "triangles": 1498
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Petrol_livery002",
+            "draws": 1,
+            "triangles": 191
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Smoked_sapphire_glazing002",
+            "draws": 1,
+            "triangles": 537
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Technical_stencil002",
+            "draws": 1,
+            "triangles": 3623
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium_armor002",
+            "draws": 1,
+            "triangles": 1757
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_interior_light002",
+            "draws": 1,
+            "triangles": 2016
+          },
+          {
+            "name": "cruz-del-sur-player-hull/TEMP__Unified_runtime_cruz-del-sur-straight-envelopeglb/UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Warm_white_strip002",
+            "draws": 1,
+            "triangles": 1418
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "panoramic-industrial-bridge/sloped-panoramic-roof/Mesh",
+            "draws": 1,
+            "triangles": 20
+          },
+          {
+            "name": "panoramic-industrial-bridge/exploration-exterior-hull/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_CABIN_REFERENCE_Padded_ceiling",
+            "draws": 1,
+            "triangles": 1880
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_Material_0",
+            "draws": 1,
+            "triangles": 48
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Carbon_rubber",
+            "draws": 1,
+            "triangles": 31952
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Powder_coated_structural_rails",
+            "draws": 1,
+            "triangles": 30744
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_graphite_enamel",
+            "draws": 1,
+            "triangles": 13680
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Warm_stencil_ink",
+            "draws": 1,
+            "triangles": 4692
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_STUDIO_Worn_machined_bronze_steel",
+            "draws": 1,
+            "triangles": 82628
+          },
+          {
+            "name": "entry-airlock/TEMP__cabin-master-staticglb/CABIN_MASTER_cabin_CABIN_PBR_UNIFIED_Machined_seam_edges",
+            "draws": 1,
+            "triangles": 1404
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 1296
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Black glazing gaskets / retained surfaces.001",
+            "draws": 1,
+            "triangles": 7128
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Cyan floor guidance / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 324
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Graphite structural alloy / closed solids.001",
+            "draws": 1,
+            "triangles": 9396
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 2448
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Machined edge steel / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Safety ochre / closed solids.001",
+            "draws": 1,
+            "triangles": 144
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Warm grey removable panels / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Blue-grey glazing V2 / retained surfaces.001",
+            "draws": 1,
+            "triangles": 288
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Amber diffuser / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/panoramic-bay-batches/panoramic-Off-white ceramic housings / closed solids.001",
+            "draws": 1,
+            "triangles": 648
+          },
+          {
+            "name": "panoramic-passage/passage-end-adapter/Mesh",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Brushed_titanium",
+            "draws": 1,
+            "triangles": 29832
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Graphite_painted_alloy",
+            "draws": 1,
+            "triangles": 109344
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Recessed_pressure_seals",
+            "draws": 1,
+            "triangles": 33728
+          },
+          {
+            "name": "transition-shelves-master/TEMP__Static_transition_export/TRANSITION_STATIC_TRANSITION_PBR_TRANSITION_Warm_amber_diffuser",
+            "draws": 1,
+            "triangles": 10528
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          },
+          {
+            "name": "forward-command-console/static-pressure-panels",
+            "draws": 1,
+            "triangles": 12
+          }
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [1280, 720],
+    "canvas": [1280, 720],
+    "resources": [
+      {
+        "path": "/@vite/client",
+        "encodedBytes": 224020,
+        "transferBytes": 224320,
+        "durationMs": 1603.6000000238419
+      },
+      {
+        "path": "/src/main.tsx",
+        "encodedBytes": 3016,
+        "transferBytes": 3316,
+        "durationMs": 94.39999997615814
+      },
+      {
+        "path": "/@react-refresh",
+        "encodedBytes": 111894,
+        "transferBytes": 112194,
+        "durationMs": 1361.2999999523163
+      },
+      {
+        "path": "/node_modules/.vite/deps/react.js",
+        "encodedBytes": 755,
+        "transferBytes": 1055,
+        "durationMs": 1205.3999999761581
+      },
+      {
+        "path": "/node_modules/.vite/deps/react-dom_client.js",
+        "encodedBytes": 774,
+        "transferBytes": 1074,
+        "durationMs": 1206.5
+      },
+      {
+        "path": "/src/index.css",
+        "encodedBytes": 17669,
+        "transferBytes": 17969,
+        "durationMs": 1450.3999999761581
+      },
+      {
+        "path": "/src/App.tsx",
+        "encodedBytes": 19473,
+        "transferBytes": 19773,
+        "durationMs": 1236.4000000953674
+      },
+      {
+        "path": "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+        "encodedBytes": 34682,
+        "transferBytes": 34982,
+        "durationMs": 1214
+      },
+      {
+        "path": "/node_modules/.vite/deps/react-B4o9JctQ.js",
+        "encodedBytes": 130023,
+        "transferBytes": 130323,
+        "durationMs": 77.60000002384186
+      },
+      {
+        "path": "/node_modules/.vite/deps/client-CzO9AiJq.js",
+        "encodedBytes": 2785669,
+        "transferBytes": 2785969,
+        "durationMs": 135.59999990463257
+      },
+      {
+        "path": "/node_modules/.vite/deps/rolldown-runtime-SbdDWaPq.js",
+        "encodedBytes": 7801,
+        "transferBytes": 8101,
+        "durationMs": 42.5
+      },
+      {
+        "path": "/src/game/intro/useDockingIntro.ts",
+        "encodedBytes": 17441,
+        "transferBytes": 17741,
+        "durationMs": 200.30000007152557
+      },
+      {
+        "path": "/src/game/intro/DockingOverlay.tsx",
+        "encodedBytes": 13342,
+        "transferBytes": 13642,
+        "durationMs": 202.5
+      },
+      {
+        "path": "/src/portfolio/PortfolioContent.tsx",
+        "encodedBytes": 35979,
+        "transferBytes": 36279,
+        "durationMs": 205.20000004768372
+      },
+      {
+        "path": "/src/StationBoundary.tsx",
+        "encodedBytes": 4484,
+        "transferBytes": 4784,
+        "durationMs": 201.29999995231628
+      },
+      {
+        "path": "/node_modules/@fontsource/rajdhani/600.css",
+        "encodedBytes": 2067,
+        "transferBytes": 2367,
+        "durationMs": 222.90000009536743
+      },
+      {
+        "path": "/node_modules/@fontsource/rajdhani/700.css",
+        "encodedBytes": 2067,
+        "transferBytes": 2367,
+        "durationMs": 219.20000004768372
+      },
+      {
+        "path": "/node_modules/@fontsource/inter/400.css",
+        "encodedBytes": 3660,
+        "transferBytes": 3960,
+        "durationMs": 218.79999995231628
+      },
+      {
+        "path": "/node_modules/@fontsource/inter/500.css",
+        "encodedBytes": 3660,
+        "transferBytes": 3960,
+        "durationMs": 220.70000004768372
+      },
+      {
+        "path": "/node_modules/@fontsource/share-tech-mono/400.css",
+        "encodedBytes": 1091,
+        "transferBytes": 1391,
+        "durationMs": 216.60000002384186
+      },
+      {
+        "path": "/node_modules/.vite/deps/scheduler-DgymjHxv.js",
+        "encodedBytes": 34400,
+        "transferBytes": 34700,
+        "durationMs": 86.40000009536743
+      },
+      {
+        "path": "/node_modules/.vite/deps/react-dom-DCOgAQUj.js",
+        "encodedBytes": 48771,
+        "transferBytes": 49071,
+        "durationMs": 88.70000004768372
+      },
+      {
+        "path": "/src/game/intro/introSequence.ts",
+        "encodedBytes": 3623,
+        "transferBytes": 3923,
+        "durationMs": 68.5
+      },
+      {
+        "path": "/src/game/intro/DockingOverlay.css",
+        "encodedBytes": 3285,
+        "transferBytes": 3585,
+        "durationMs": 71.70000004768372
+      },
+      {
+        "path": "/src/data/documents.ts",
+        "encodedBytes": 699,
+        "transferBytes": 999,
+        "durationMs": 69.30000007152557
+      },
+      {
+        "path": "/src/data/portfolio.ts",
+        "encodedBytes": 12950,
+        "transferBytes": 13250,
+        "durationMs": 67.60000002384186
+      },
+      {
+        "path": "/src/data/projectImages.ts",
+        "encodedBytes": 3160,
+        "transferBytes": 3460,
+        "durationMs": 69.59999990463257
+      },
+      {
+        "path": "/node_modules/.vite/deps/lucide-react.js",
+        "encodedBytes": 5547598,
+        "transferBytes": 5547898,
+        "durationMs": 214.5
+      },
+      {
+        "path": "/src/portfolio/EducationRecords.tsx",
+        "encodedBytes": 6399,
+        "transferBytes": 6699,
+        "durationMs": 113.39999997615814
+      },
+      {
+        "path": "/src/portfolio/ServiceRecord.tsx",
+        "encodedBytes": 10568,
+        "transferBytes": 10868,
+        "durationMs": 110.69999992847443
+      },
+      {
+        "path": "/src/portfolio/ProjectDetail.tsx",
+        "encodedBytes": 14829,
+        "transferBytes": 15129,
+        "durationMs": 115.89999997615814
+      },
+      {
+        "path": "/src/portfolio/ArchiveOverview.tsx",
+        "encodedBytes": 11186,
+        "transferBytes": 11486,
+        "durationMs": 113
+      },
+      {
+        "path": "/src/contact/ContactForm.tsx",
+        "encodedBytes": 24655,
+        "transferBytes": 24955,
+        "durationMs": 169
+      },
+      {
+        "path": "/node_modules/vite/dist/client/env.mjs",
+        "encodedBytes": 3566,
+        "transferBytes": 3866,
+        "durationMs": 108.69999992847443
+      },
+      {
+        "path": "/src/portfolio/ProjectDetail.css",
+        "encodedBytes": 1036,
+        "transferBytes": 1336,
+        "durationMs": 54.299999952316284
+      },
+      {
+        "path": "/shared/contact.ts",
+        "encodedBytes": 6006,
+        "transferBytes": 6306,
+        "durationMs": 7.600000023841858
+      },
+      {
+        "path": "/src/contact/ContactForm.css",
+        "encodedBytes": 5765,
+        "transferBytes": 6065,
+        "durationMs": 7.899999976158142
+      },
+      {
+        "path": "/video/circular-arrival-poster.jpg",
+        "encodedBytes": 60724,
+        "transferBytes": 61024,
+        "durationMs": 7.100000023841858
+      },
+      {
+        "path": "/node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2",
+        "encodedBytes": 24272,
+        "transferBytes": 24572,
+        "durationMs": 3.5
+      },
+      {
+        "path": "/video/circular-arrival-intro.mp4",
+        "encodedBytes": 1366252,
+        "transferBytes": 1366552,
+        "durationMs": 9.899999976158142
+      },
+      {
+        "path": "/favicon.svg",
+        "encodedBytes": 9522,
+        "transferBytes": 9822,
+        "durationMs": 5.5
+      },
+      {
+        "path": "/src/game/Game.tsx",
+        "encodedBytes": 29671,
+        "transferBytes": 29971,
+        "durationMs": 14.200000047683716
+      },
+      {
+        "path": "/src/game/world/asterionModel.ts",
+        "encodedBytes": 4436,
+        "transferBytes": 4736,
+        "durationMs": 37
+      },
+      {
+        "path": "/node_modules/.vite/deps/@react-three_fiber.js",
+        "encodedBytes": 3128,
+        "transferBytes": 3428,
+        "durationMs": 9.900000095367432
+      },
+      {
+        "path": "/src/game/GameWorld.tsx",
+        "encodedBytes": 25072,
+        "transferBytes": 25372,
+        "durationMs": 50.199999928474426
+      },
+      {
+        "path": "/src/game/rendering/opaqueDepthOrder.ts",
+        "encodedBytes": 1454,
+        "transferBytes": 1754,
+        "durationMs": 14.5
+      },
+      {
+        "path": "/src/game/ui/GameHud.tsx",
+        "encodedBytes": 20199,
+        "transferBytes": 20499,
+        "durationMs": 63.300000071525574
+      },
+      {
+        "path": "/src/game/useStationControls.ts",
+        "encodedBytes": 22486,
+        "transferBytes": 22786,
+        "durationMs": 38.699999928474426
+      },
+      {
+        "path": "/src/game/useProtocol.ts",
+        "encodedBytes": 2076,
+        "transferBytes": 2376,
+        "durationMs": 36.39999997615814
+      },
+      {
+        "path": "/src/game/useCoffee.ts",
+        "encodedBytes": 2501,
+        "transferBytes": 2801,
+        "durationMs": 36.89999997615814
+      },
+      {
+        "path": "/src/game/player/jump.ts",
+        "encodedBytes": 2673,
+        "transferBytes": 2973,
+        "durationMs": 50.5
+      },
+      {
+        "path": "/src/game/useDialogue.ts",
+        "encodedBytes": 7692,
+        "transferBytes": 7992,
+        "durationMs": 50.60000002384186
+      },
+      {
+        "path": "/src/game/world/PassageDialogueCheckpoint.tsx",
+        "encodedBytes": 4432,
+        "transferBytes": 4732,
+        "durationMs": 51.39999997615814
+      },
+      {
+        "path": "/src/game/ui/StationAssistant.tsx",
+        "encodedBytes": 12666,
+        "transferBytes": 12966,
+        "durationMs": 63.200000047683716
+      },
+      {
+        "path": "/src/game/world/bulkhead.ts",
+        "encodedBytes": 6589,
+        "transferBytes": 6889,
+        "durationMs": 60.5
+      },
+      {
+        "path": "/node_modules/.vite/deps/react-three-fiber.esm-Cr5zvz_K.js",
+        "encodedBytes": 1741128,
+        "transferBytes": 1741428,
+        "durationMs": 89.60000002384186
+      },
+      {
+        "path": "/node_modules/.vite/deps/three.js",
+        "encodedBytes": 45490,
+        "transferBytes": 45790,
+        "durationMs": 99.5
+      },
+      {
+        "path": "/src/game/world/asterionManifest.json",
+        "encodedBytes": 12870,
+        "transferBytes": 13170,
+        "durationMs": 141.39999997615814
+      },
+      {
+        "path": "/src/game/protocol.ts",
+        "encodedBytes": 4632,
+        "transferBytes": 4932,
+        "durationMs": 287.10000002384186
+      },
+      {
+        "path": "/src/game/coffee.ts",
+        "encodedBytes": 2168,
+        "transferBytes": 2468,
+        "durationMs": 140.60000002384186
+      },
+      {
+        "path": "/src/config/development.ts",
+        "encodedBytes": 865,
+        "transferBytes": 1165,
+        "durationMs": 140.5
+      },
+      {
+        "path": "/src/game/tablet.ts",
+        "encodedBytes": 2904,
+        "transferBytes": 3204,
+        "durationMs": 287.5
+      },
+      {
+        "path": "/src/game/intro/InteriorReady.tsx",
+        "encodedBytes": 6872,
+        "transferBytes": 7172,
+        "durationMs": 296.8000000715256
+      },
+      {
+        "path": "/node_modules/.vite/deps/@react-three_rapier.js",
+        "encodedBytes": 5648549,
+        "transferBytes": 5648849,
+        "durationMs": 238.20000004768372
+      },
+      {
+        "path": "/src/game/world/Greybox.tsx",
+        "encodedBytes": 17776,
+        "transferBytes": 18076,
+        "durationMs": 292.10000002384186
+      },
+      {
+        "path": "/src/game/world/DockingHatch.tsx",
+        "encodedBytes": 3832,
+        "transferBytes": 4132,
+        "durationMs": 293.8000000715256
+      },
+      {
+        "path": "/src/game/player/Player.tsx",
+        "encodedBytes": 23829,
+        "transferBytes": 24129,
+        "durationMs": 295.2000000476837
+      },
+      {
+        "path": "/src/game/player/MouseLook.tsx",
+        "encodedBytes": 11502,
+        "transferBytes": 11802,
+        "durationMs": 314.5
+      },
+      {
+        "path": "/src/game/world/Workstation.tsx",
+        "encodedBytes": 18415,
+        "transferBytes": 18715,
+        "durationMs": 314.89999997615814
+      },
+      {
+        "path": "/src/game/world/StationHighlights.tsx",
+        "encodedBytes": 13082,
+        "transferBytes": 13382,
+        "durationMs": 316
+      },
+      {
+        "path": "/src/game/interaction/Interaction.tsx",
+        "encodedBytes": 11015,
+        "transferBytes": 11315,
+        "durationMs": 316.89999997615814
+      },
+      {
+        "path": "/src/game/world/ArchiveScreen.tsx",
+        "encodedBytes": 4462,
+        "transferBytes": 4762,
+        "durationMs": 318.2999999523163
+      },
+      {
+        "path": "/src/game/world/TacticalStation.tsx",
+        "encodedBytes": 17485,
+        "transferBytes": 17785,
+        "durationMs": 319.89999997615814
+      },
+      {
+        "path": "/src/game/world/PhysicalTerminal.tsx",
+        "encodedBytes": 5948,
+        "transferBytes": 6248,
+        "durationMs": 333.40000009536743
+      },
+      {
+        "path": "/src/game/world/HandheldTablet.tsx",
+        "encodedBytes": 18112,
+        "transferBytes": 18412,
+        "durationMs": 334.7000000476837
+      },
+      {
+        "path": "/src/game/world/CrewAccess.tsx",
+        "encodedBytes": 15825,
+        "transferBytes": 16125,
+        "durationMs": 335.5
+      },
+      {
+        "path": "/src/game/ui/CrewIdentity.tsx",
+        "encodedBytes": 16322,
+        "transferBytes": 16622,
+        "durationMs": 336.5
+      },
+      {
+        "path": "/src/game/world/RearWorkstation.tsx",
+        "encodedBytes": 4136,
+        "transferBytes": 4436,
+        "durationMs": 336.5
+      },
+      {
+        "path": "/src/workstation/PersonalDesktop.tsx",
+        "encodedBytes": 36367,
+        "transferBytes": 36667,
+        "durationMs": 337.7000000476837
+      },
+      {
+        "path": "/src/workstation/RecreationDesktop.tsx",
+        "encodedBytes": 11981,
+        "transferBytes": 12281,
+        "durationMs": 362.7999999523163
+      },
+      {
+        "path": "/src/game/world/CoffeeMachine.tsx",
+        "encodedBytes": 15166,
+        "transferBytes": 15466,
+        "durationMs": 363.5
+      },
+      {
+        "path": "/src/game/world/ShipRadio.tsx",
+        "encodedBytes": 40285,
+        "transferBytes": 40585,
+        "durationMs": 364.10000002384186
+      },
+      {
+        "path": "/src/game/world/ReferenceCassettes.tsx",
+        "encodedBytes": 4108,
+        "transferBytes": 4408,
+        "durationMs": 365.7999999523163
+      },
+      {
+        "path": "/src/game/world/NavigationConsole.tsx",
+        "encodedBytes": 24367,
+        "transferBytes": 24667,
+        "durationMs": 366.8000000715256
+      },
+      {
+        "path": "/src/game/rendering/WarmLightFastPath.tsx",
+        "encodedBytes": 3476,
+        "transferBytes": 3776,
+        "durationMs": 367.39999997615814
+      },
+      {
+        "path": "/src/game/world/entryLayout.ts",
+        "encodedBytes": 8404,
+        "transferBytes": 8704,
+        "durationMs": 370.39999997615814
+      },
+      {
+        "path": "/src/game/dialogueCaptions.ts",
+        "encodedBytes": 3990,
+        "transferBytes": 4290,
+        "durationMs": 371.10000002384186
+      },
+      {
+        "path": "/src/game/dialogue.ts",
+        "encodedBytes": 6542,
+        "transferBytes": 6842,
+        "durationMs": 372.89999997615814
+      },
+      {
+        "path": "/src/game/dialogueManifest.ts",
+        "encodedBytes": 13224,
+        "transferBytes": 13524,
+        "durationMs": 373.59999990463257
+      },
+      {
+        "path": "/src/game/dialoguePlayback.ts",
+        "encodedBytes": 18499,
+        "transferBytes": 18799,
+        "durationMs": 374.60000002384186
+      },
+      {
+        "path": "/src/game/passageDialogue.ts",
+        "encodedBytes": 2241,
+        "transferBytes": 2541,
+        "durationMs": 375.1999999284744
+      },
+      {
+        "path": "/src/game/world/bridgeLayout.ts",
+        "encodedBytes": 9103,
+        "transferBytes": 9403,
+        "durationMs": 389.39999997615814
+      },
+      {
+        "path": "/src/game/missions.ts",
+        "encodedBytes": 4511,
+        "transferBytes": 4811,
+        "durationMs": 388.7000000476837
+      },
+      {
+        "path": "/src/game/interaction/hints.ts",
+        "encodedBytes": 4330,
+        "transferBytes": 4630,
+        "durationMs": 389.1999999284744
+      },
+      {
+        "path": "/src/game/ui/PauseMenu.tsx",
+        "encodedBytes": 12686,
+        "transferBytes": 12986,
+        "durationMs": 389.89999997615814
+      },
+      {
+        "path": "/src/game/ui/MissionChecklist.tsx",
+        "encodedBytes": 5562,
+        "transferBytes": 5862,
+        "durationMs": 390
+      },
+      {
+        "path": "/src/game/ui/AmbientAudio.tsx",
+        "encodedBytes": 18462,
+        "transferBytes": 18762,
+        "durationMs": 390.6999999284744
+      },
+      {
+        "path": "/src/game/ui/Loading.tsx",
+        "encodedBytes": 2914,
+        "transferBytes": 3214,
+        "durationMs": 398.5
+      },
+      {
+        "path": "/src/game/ui/GameHud.css",
+        "encodedBytes": 11585,
+        "transferBytes": 11885,
+        "durationMs": 399.3000000715256
+      },
+      {
+        "path": "/src/game/ui/HudControls.tsx",
+        "encodedBytes": 9630,
+        "transferBytes": 9930,
+        "durationMs": 399.89999997615814
+      },
+      {
+        "path": "/node_modules/.vite/deps/three.module-CVnfGTZf.js",
+        "encodedBytes": 5983266,
+        "transferBytes": 5983566,
+        "durationMs": 464.6999999284744
+      },
+      {
+        "path": "/node_modules/.vite/deps/jsx-runtime-CTl822gQ.js",
+        "encodedBytes": 35718,
+        "transferBytes": 36018,
+        "durationMs": 405.90000009536743
+      },
+      {
+        "path": "/node_modules/.vite/deps/BufferGeometryUtils-C66rrozM.js",
+        "encodedBytes": 45606,
+        "transferBytes": 45906,
+        "durationMs": 242.29999995231628
+      },
+      {
+        "path": "/src/game/world/gestureTiming.json",
+        "encodedBytes": 1682,
+        "transferBytes": 1982,
+        "durationMs": 279.60000002384186
+      },
+      {
+        "path": "/src/game/world/SpaceExterior.tsx",
+        "encodedBytes": 3593,
+        "transferBytes": 3893,
+        "durationMs": 380.39999997615814
+      },
+      {
+        "path": "/src/game/world/RefinedInteriorDetails.tsx",
+        "encodedBytes": 4232,
+        "transferBytes": 4532,
+        "durationMs": 377.6999999284744
+      },
+      {
+        "path": "/src/game/world/TacticalSurface.tsx",
+        "encodedBytes": 4440,
+        "transferBytes": 4740,
+        "durationMs": 376.5
+      },
+      {
+        "path": "/src/game/world/PlayerShipHull.tsx",
+        "encodedBytes": 6802,
+        "transferBytes": 7102,
+        "durationMs": 379.5
+      },
+      {
+        "path": "/src/game/world/bridgePlacement.ts",
+        "encodedBytes": 1381,
+        "transferBytes": 1681,
+        "durationMs": 267.10000002384186
+      },
+      {
+        "path": "/src/game/world/ShipHull.tsx",
+        "encodedBytes": 8934,
+        "transferBytes": 9234,
+        "durationMs": 381.90000009536743
+      },
+      {
+        "path": "/src/game/world/BridgeFloor.tsx",
+        "encodedBytes": 2918,
+        "transferBytes": 3218,
+        "durationMs": 388.2000000476837
+      },
+      {
+        "path": "/src/game/world/CabinLighting.tsx",
+        "encodedBytes": 14603,
+        "transferBytes": 14903,
+        "durationMs": 406.2999999523163
+      },
+      {
+        "path": "/src/game/world/EntryAirlock.tsx",
+        "encodedBytes": 15810,
+        "transferBytes": 16110,
+        "durationMs": 407.10000002384186
+      },
+      {
+        "path": "/src/game/world/ArrivalSurfaceEnvironment.tsx",
+        "encodedBytes": 5704,
+        "transferBytes": 6004,
+        "durationMs": 408.10000002384186
+      },
+      {
+        "path": "/src/game/world/PanoramicPassage.tsx",
+        "encodedBytes": 11760,
+        "transferBytes": 12060,
+        "durationMs": 408.6999999284744
+      },
+      {
+        "path": "/src/game/world/TransitionShelves.tsx",
+        "encodedBytes": 6976,
+        "transferBytes": 7276,
+        "durationMs": 408.90000009536743
+      },
+      {
+        "path": "/src/game/interaction/station.ts",
+        "encodedBytes": 18444,
+        "transferBytes": 18744,
+        "durationMs": 409.89999997615814
+      },
+      {
+        "path": "/src/game/world/SlidingBulkhead.tsx",
+        "encodedBytes": 18265,
+        "transferBytes": 18565,
+        "durationMs": 426.89999997615814
+      },
+      {
+        "path": "/src/game/useReducedMotionRef.ts",
+        "encodedBytes": 2010,
+        "transferBytes": 2310,
+        "durationMs": 423.8000000715256
+      },
+      {
+        "path": "/src/game/player/movement.ts",
+        "encodedBytes": 2450,
+        "transferBytes": 2750,
+        "durationMs": 424.39999997615814
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_addons_controls_PointerLockControls__js.js",
+        "encodedBytes": 17123,
+        "transferBytes": 17423,
+        "durationMs": 408.2999999523163
+      },
+      {
+        "path": "/src/game/world/ConsoleDisplay.tsx",
+        "encodedBytes": 5593,
+        "transferBytes": 5893,
+        "durationMs": 409.1999999284744
+      },
+      {
+        "path": "/src/game/world/BridgeInterior.tsx",
+        "encodedBytes": 8830,
+        "transferBytes": 9130,
+        "durationMs": 410.10000002384186
+      },
+      {
+        "path": "/src/game/world/commandLayout.ts",
+        "encodedBytes": 9557,
+        "transferBytes": 9857,
+        "durationMs": 426.5
+      },
+      {
+        "path": "/src/game/interaction/stationHighlight.ts",
+        "encodedBytes": 1757,
+        "transferBytes": 2057,
+        "durationMs": 426.10000002384186
+      },
+      {
+        "path": "/src/game/radioControls.ts",
+        "encodedBytes": 2979,
+        "transferBytes": 3279,
+        "durationMs": 423.39999997615814
+      },
+      {
+        "path": "/src/game/world/PhysicalScreen.tsx",
+        "encodedBytes": 7589,
+        "transferBytes": 7889,
+        "durationMs": 426.89999997615814
+      },
+      {
+        "path": "/src/game/ui/Computer.tsx",
+        "encodedBytes": 9808,
+        "transferBytes": 10108,
+        "durationMs": 428.2999999523163
+      },
+      {
+        "path": "/src/game/rendering/GzipGLTFLoader.ts",
+        "encodedBytes": 6246,
+        "transferBytes": 6546,
+        "durationMs": 428.2000000476837
+      },
+      {
+        "path": "/src/game/world/tacticalShipModel.ts",
+        "encodedBytes": 3025,
+        "transferBytes": 3325,
+        "durationMs": 473.89999997615814
+      },
+      {
+        "path": "/src/game/ui/TerminalPanel.tsx",
+        "encodedBytes": 11346,
+        "transferBytes": 11646,
+        "durationMs": 474.60000002384186
+      },
+      {
+        "path": "/src/game/ui/TacticalPanel.tsx",
+        "encodedBytes": 20128,
+        "transferBytes": 20428,
+        "durationMs": 482.39999997615814
+      },
+      {
+        "path": "/src/game/world/tacticalDisplayLayout.ts",
+        "encodedBytes": 3737,
+        "transferBytes": 4037,
+        "durationMs": 487.2999999523163
+      },
+      {
+        "path": "/node_modules/.vite/deps/@react-three_drei.js",
+        "encodedBytes": 11068767,
+        "transferBytes": 11069067,
+        "durationMs": 843.3999999761581
+      },
+      {
+        "path": "/src/game/world/physicalPress.ts",
+        "encodedBytes": 3382,
+        "transferBytes": 3682,
+        "durationMs": 473.5
+      },
+      {
+        "path": "/src/game/world/useHandInteraction.ts",
+        "encodedBytes": 2466,
+        "transferBytes": 2766,
+        "durationMs": 474.5
+      },
+      {
+        "path": "/src/game/ui/HeldTabletDisplay.tsx",
+        "encodedBytes": 16158,
+        "transferBytes": 16458,
+        "durationMs": 475.8000000715256
+      },
+      {
+        "path": "/src/game/ui/HandheldTablet.css",
+        "encodedBytes": 4771,
+        "transferBytes": 5071,
+        "durationMs": 480.2999999523163
+      },
+      {
+        "path": "/src/game/world/CrewStandbyScreen.tsx",
+        "encodedBytes": 11201,
+        "transferBytes": 11501,
+        "durationMs": 478.10000002384186
+      },
+      {
+        "path": "/src/game/world/identification.ts",
+        "encodedBytes": 3667,
+        "transferBytes": 3967,
+        "durationMs": 626.7999999523163
+      },
+      {
+        "path": "/src/game/ui/CrewIdentity.css",
+        "encodedBytes": 5075,
+        "transferBytes": 5375,
+        "durationMs": 627.2000000476837
+      },
+      {
+        "path": "/src/game/world/WallTerminal.tsx",
+        "encodedBytes": 4906,
+        "transferBytes": 5206,
+        "durationMs": 631.1000000238419
+      },
+      {
+        "path": "/src/workstation/CommandTerminal.tsx",
+        "encodedBytes": 13439,
+        "transferBytes": 13739,
+        "durationMs": 631.1999999284744
+      },
+      {
+        "path": "/src/workstation/PersonalDesktop.css",
+        "encodedBytes": 9254,
+        "transferBytes": 9554,
+        "durationMs": 631.3999999761581
+      },
+      {
+        "path": "/src/game/world/coffeeGeometry.ts",
+        "encodedBytes": 13591,
+        "transferBytes": 13891,
+        "durationMs": 610.6000000238419
+      },
+      {
+        "path": "/src/game/radioTracks.ts",
+        "encodedBytes": 5128,
+        "transferBytes": 5428,
+        "durationMs": 610.8999999761581
+      },
+      {
+        "path": "/src/game/useShipRadio.ts",
+        "encodedBytes": 14205,
+        "transferBytes": 14505,
+        "durationMs": 611.8999999761581
+      },
+      {
+        "path": "/src/game/world/handSleeve.ts",
+        "encodedBytes": 1827,
+        "transferBytes": 2127,
+        "durationMs": 612.3000000715256
+      },
+      {
+        "path": "/src/game/world/StaticPanels.tsx",
+        "encodedBytes": 9949,
+        "transferBytes": 10249,
+        "durationMs": 613
+      },
+      {
+        "path": "/src/game/rendering/zeroContributionLights.ts",
+        "encodedBytes": 6389,
+        "transferBytes": 6689,
+        "durationMs": 623.5
+      },
+      {
+        "path": "/src/game/world/unifiedShipAssets.ts",
+        "encodedBytes": 4701,
+        "transferBytes": 5001,
+        "durationMs": 628
+      },
+      {
+        "path": "/src/game/world/cabinMaster.ts",
+        "encodedBytes": 10324,
+        "transferBytes": 10624,
+        "durationMs": 629
+      },
+      {
+        "path": "/src/game/world/AsterionExterior.tsx",
+        "encodedBytes": 14015,
+        "transferBytes": 14315,
+        "durationMs": 633.3999999761581
+      },
+      {
+        "path": "/src/game/ui/dialogFocus.ts",
+        "encodedBytes": 4934,
+        "transferBytes": 5234,
+        "durationMs": 634
+      },
+      {
+        "path": "/src/game/world/navigationView.ts",
+        "encodedBytes": 5902,
+        "transferBytes": 6202,
+        "durationMs": 635.8999999761581
+      },
+      {
+        "path": "/src/game/world/NavigationConsole.css",
+        "encodedBytes": 2637,
+        "transferBytes": 2937,
+        "durationMs": 636.6000000238419
+      },
+      {
+        "path": "/src/game/world/arrivalRoomLayout.ts",
+        "encodedBytes": 19147,
+        "transferBytes": 19447,
+        "durationMs": 630
+      },
+      {
+        "path": "/src/game/world/passageLayout.ts",
+        "encodedBytes": 5620,
+        "transferBytes": 5920,
+        "durationMs": 629.1000000238419
+      },
+      {
+        "path": "/src/game/ui/PauseMenu.css",
+        "encodedBytes": 4176,
+        "transferBytes": 4476,
+        "durationMs": 610.3000000715256
+      },
+      {
+        "path": "/src/game/ui/scannerAudio.ts",
+        "encodedBytes": 2894,
+        "transferBytes": 3194,
+        "durationMs": 616.3999999761581
+      },
+      {
+        "path": "/src/game/ui/HudControls.css",
+        "encodedBytes": 2522,
+        "transferBytes": 2822,
+        "durationMs": 609.7000000476837
+      },
+      {
+        "path": "/src/game/world/refinedArtAssets.ts",
+        "encodedBytes": 3350,
+        "transferBytes": 3650,
+        "durationMs": 358.5
+      },
+      {
+        "path": "/src/game/world/prepareShipModel.ts",
+        "encodedBytes": 3307,
+        "transferBytes": 3607,
+        "durationMs": 353.60000002384186
+      },
+      {
+        "path": "/src/game/world/DistantShip.tsx",
+        "encodedBytes": 10113,
+        "transferBytes": 10413,
+        "durationMs": 369
+      },
+      {
+        "path": "/src/game/world/spaceScenery.ts",
+        "encodedBytes": 739,
+        "transferBytes": 1039,
+        "durationMs": 350.1999999284744
+      },
+      {
+        "path": "/src/game/world/BridgeDesignation.tsx",
+        "encodedBytes": 8247,
+        "transferBytes": 8547,
+        "durationMs": 372
+      },
+      {
+        "path": "/src/game/world/BridgeRoof.tsx",
+        "encodedBytes": 5801,
+        "transferBytes": 6101,
+        "durationMs": 370.2999999523163
+      },
+      {
+        "path": "/src/game/world/ExteriorHull.tsx",
+        "encodedBytes": 8303,
+        "transferBytes": 8603,
+        "durationMs": 369.10000002384186
+      },
+      {
+        "path": "/src/game/world/HullPanel.tsx",
+        "encodedBytes": 8118,
+        "transferBytes": 8418,
+        "durationMs": 372.5
+      },
+      {
+        "path": "/src/game/world/bridgeWallPanels.ts",
+        "encodedBytes": 9360,
+        "transferBytes": 9660,
+        "durationMs": 380.39999997615814
+      },
+      {
+        "path": "/src/game/world/lighting.ts",
+        "encodedBytes": 1102,
+        "transferBytes": 1402,
+        "durationMs": 356.8000000715256
+      },
+      {
+        "path": "/src/game/world/arrivalReflections.ts",
+        "encodedBytes": 17874,
+        "transferBytes": 18174,
+        "durationMs": 355.5
+      },
+      {
+        "path": "/src/game/world/arrivalEnvironment.ts",
+        "encodedBytes": 2485,
+        "transferBytes": 2785,
+        "durationMs": 355.09999990463257
+      },
+      {
+        "path": "/src/game/world/transitionModel.ts",
+        "encodedBytes": 5372,
+        "transferBytes": 5672,
+        "durationMs": 356.2000000476837
+      },
+      {
+        "path": "/src/game/world/arrivalShellLayout.json",
+        "encodedBytes": 1863,
+        "transferBytes": 2163,
+        "durationMs": 357.7000000476837
+      },
+      {
+        "path": "/src/game/world/ArrivalCabinModel.tsx",
+        "encodedBytes": 6194,
+        "transferBytes": 6494,
+        "durationMs": 363.39999997615814
+      },
+      {
+        "path": "/src/game/world/ParkedPampa.tsx",
+        "encodedBytes": 3401,
+        "transferBytes": 3701,
+        "durationMs": 362.5
+      },
+      {
+        "path": "/src/game/world/cabinMasterLayout.ts",
+        "encodedBytes": 4777,
+        "transferBytes": 5077,
+        "durationMs": 364.2000000476837
+      },
+      {
+        "path": "/src/game/world/batchPanoramicPassage.ts",
+        "encodedBytes": 7964,
+        "transferBytes": 8264,
+        "durationMs": 364.7000000476837
+      },
+      {
+        "path": "/src/game/world/bulkheadAsset.ts",
+        "encodedBytes": 4993,
+        "transferBytes": 5293,
+        "durationMs": 349.5
+      },
+      {
+        "path": "/src/game/world/interiorShelfPanels.ts",
+        "encodedBytes": 7138,
+        "transferBytes": 7438,
+        "durationMs": 350.40000009536743
+      },
+      {
+        "path": "/src/game/world/transitionLayout.ts",
+        "encodedBytes": 3827,
+        "transferBytes": 4127,
+        "durationMs": 352.2999999523163
+      },
+      {
+        "path": "/src/game/world/physicalScroll.ts",
+        "encodedBytes": 4718,
+        "transferBytes": 5018,
+        "durationMs": 328.8000000715256
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_examples_jsm_loaders_GLTFLoader__js.js",
+        "encodedBytes": 1376,
+        "transferBytes": 1676,
+        "durationMs": 329
+      },
+      {
+        "path": "/src/game/ui/Computer.css",
+        "encodedBytes": 4383,
+        "transferBytes": 4683,
+        "durationMs": 330
+      },
+      {
+        "path": "/src/portfolio/ArchiveOverview.css",
+        "encodedBytes": 14674,
+        "transferBytes": 14974,
+        "durationMs": 329.39999997615814
+      },
+      {
+        "path": "/src/game/ui/TacticalPanel.css",
+        "encodedBytes": 4953,
+        "transferBytes": 5253,
+        "durationMs": 281.10000002384186
+      },
+      {
+        "path": "/src/game/world/handInteractionModel.ts",
+        "encodedBytes": 8386,
+        "transferBytes": 8686,
+        "durationMs": 275.90000009536743
+      },
+      {
+        "path": "/src/game/ui/DeckMap.tsx",
+        "encodedBytes": 23081,
+        "transferBytes": 23381,
+        "durationMs": 275.5
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_examples_jsm_geometries_RoundedBoxGeometry__js.js",
+        "encodedBytes": 18959,
+        "transferBytes": 19259,
+        "durationMs": 99.39999997615814
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_examples_jsm_utils_BufferGeometryUtils__js.js",
+        "encodedBytes": 1531,
+        "transferBytes": 1831,
+        "durationMs": 100.20000004768372
+      },
+      {
+        "path": "/src/game/radioMusic.ts",
+        "encodedBytes": 10261,
+        "transferBytes": 10561,
+        "durationMs": 101.19999992847443
+      },
+      {
+        "path": "/src/game/world/arrivalCabinLayout.json",
+        "encodedBytes": 2772,
+        "transferBytes": 3072,
+        "durationMs": 83
+      },
+      {
+        "path": "/src/game/world/roofVisuals.ts",
+        "encodedBytes": 5035,
+        "transferBytes": 5335,
+        "durationMs": 47.10000002384186
+      },
+      {
+        "path": "/src/game/world/shuttleRoute.ts",
+        "encodedBytes": 1197,
+        "transferBytes": 1497,
+        "durationMs": 41.200000047683716
+      },
+      {
+        "path": "/src/game/world/exteriorDeck.ts",
+        "encodedBytes": 20645,
+        "transferBytes": 20945,
+        "durationMs": 44.60000002384186
+      },
+      {
+        "path": "/src/game/world/exteriorPanels.ts",
+        "encodedBytes": 3770,
+        "transferBytes": 4070,
+        "durationMs": 47.60000002384186
+      },
+      {
+        "path": "/src/game/world/arrivalFloorMapping.ts",
+        "encodedBytes": 9214,
+        "transferBytes": 9514,
+        "durationMs": 2.899999976158142
+      },
+      {
+        "path": "/src/game/world/batchBulkhead.ts",
+        "encodedBytes": 6660,
+        "transferBytes": 6960,
+        "durationMs": 3.100000023841858
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_addons_utils_BufferGeometryUtils__js.js",
+        "encodedBytes": 111492,
+        "transferBytes": 111792,
+        "durationMs": 6.600000023841858
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_examples_jsm_utils_SkeletonUtils__js.js",
+        "encodedBytes": 33461,
+        "transferBytes": 33761,
+        "durationMs": 7.299999952316284
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_addons_loaders_GLTFLoader__js.js",
+        "encodedBytes": 344100,
+        "transferBytes": 344400,
+        "durationMs": 13.600000023841858
+      },
+      {
+        "path": "/src/game/world/evaEquipmentLayout.ts",
+        "encodedBytes": 2395,
+        "transferBytes": 2695,
+        "durationMs": 11.399999976158142
+      },
+      {
+        "path": "/src/game/debug/GameDiagnostics.tsx",
+        "encodedBytes": 40278,
+        "transferBytes": 40578,
+        "durationMs": 11.100000023841858
+      },
+      {
+        "path": "/models/tactical-ship-display.glb.gz",
+        "encodedBytes": 5155534,
+        "transferBytes": 5155834,
+        "durationMs": 194.19999992847443
+      },
+      {
+        "path": "/models/cruz-del-sur-hand-interactions.glb",
+        "encodedBytes": 16624272,
+        "transferBytes": 16624572,
+        "durationMs": 234.59999990463257
+      },
+      {
+        "path": "/textures/asterion/sky.webp",
+        "encodedBytes": 319366,
+        "transferBytes": 319666,
+        "durationMs": 16.899999976158142
+      },
+      {
+        "path": "/models/asterion-worlds.glb.gz",
+        "encodedBytes": 2552364,
+        "transferBytes": 2552664,
+        "durationMs": 81.89999997615814
+      },
+      {
+        "path": "/models/cruz-del-sur-vestibule-envelope-transition-ready.glb",
+        "encodedBytes": 7107272,
+        "transferBytes": 7107572,
+        "durationMs": 110.90000009536743
+      },
+      {
+        "path": "/models/cruz-del-sur-reference-details.glb",
+        "encodedBytes": 690096,
+        "transferBytes": 690396,
+        "durationMs": 10.199999928474426
+      },
+      {
+        "path": "/models/cabin-master-static.glb",
+        "encodedBytes": 20835364,
+        "transferBytes": 20835664,
+        "durationMs": 126.10000002384186
+      },
+      {
+        "path": "/models/cruz-del-sur-straight-collision.glb",
+        "encodedBytes": 85296,
+        "transferBytes": 85596,
+        "durationMs": 3
+      },
+      {
+        "path": "/models/pampa-interior-nose.glb",
+        "encodedBytes": 3521952,
+        "transferBytes": 3522252,
+        "durationMs": 22.899999976158142
+      },
+      {
+        "path": "/models/cruz-del-sur-panoramic-bay.glb",
+        "encodedBytes": 488176,
+        "transferBytes": 488476,
+        "durationMs": 8.699999928474426
+      },
+      {
+        "path": "/models/cruz-del-sur-transition.glb",
+        "encodedBytes": 23636444,
+        "transferBytes": 23636744,
+        "durationMs": 264.60000002384186
+      },
+      {
+        "path": "/models/cabin-master-sliding-leaves.glb",
+        "encodedBytes": 986168,
+        "transferBytes": 986468,
+        "durationMs": 10.199999928474426
+      },
+      {
+        "path": "/textures/cruz-del-sur/tactical-surface.webp",
+        "encodedBytes": 28060,
+        "transferBytes": 28360,
+        "durationMs": 11.899999976158142
+      },
+      {
+        "path": "/models/cruz-del-sur-clean-bridge-transition-ready.glb",
+        "encodedBytes": 22451856,
+        "transferBytes": 22452156,
+        "durationMs": 374
+      },
+      {
+        "path": "/textures/cruz-del-sur/console-display-atlas.png",
+        "encodedBytes": 147966,
+        "transferBytes": 148266,
+        "durationMs": 7.899999976158142
+      },
+      {
+        "path": "/models/cruz-del-sur-crew-access.glb",
+        "encodedBytes": 339508,
+        "transferBytes": 339808,
+        "durationMs": 4.200000047683716
+      },
+      {
+        "path": "/models/cruz-del-sur-reference-cassettes.glb",
+        "encodedBytes": 3113116,
+        "transferBytes": 3113416,
+        "durationMs": 20.5
+      },
+      {
+        "path": "/node_modules/@fontsource/rajdhani/files/rajdhani-latin-700-normal.woff2",
+        "encodedBytes": 15688,
+        "transferBytes": 15988,
+        "durationMs": 6.899999976158142
+      },
+      {
+        "path": "/node_modules/@fontsource/share-tech-mono/files/share-tech-mono-latin-400-normal.woff2",
+        "encodedBytes": 13500,
+        "transferBytes": 13800,
+        "durationMs": 7.899999976158142
+      },
+      {
+        "path": "/node_modules/@fontsource/rajdhani/files/rajdhani-latin-600-normal.woff2",
+        "encodedBytes": 15732,
+        "transferBytes": 16032,
+        "durationMs": 8
+      },
+      {
+        "path": "/node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2",
+        "encodedBytes": 23664,
+        "transferBytes": 23964,
+        "durationMs": 13.300000071525574
+      },
+      {
+        "path": "/images/crew-portrait.webp",
+        "encodedBytes": 6828,
+        "transferBytes": 7128,
+        "durationMs": 7.100000023841858
+      }
+    ]
+  },
+  "exterior": [
+    {
+      "path": "/textures/asterion/sky.webp",
+      "encodedBytes": 319366,
+      "transferBytes": 319666,
+      "durationMs": 16.899999976158142
+    },
+    {
+      "path": "/models/asterion-worlds.glb.gz",
+      "encodedBytes": 2552364,
+      "transferBytes": 2552664,
+      "durationMs": 81.89999997615814
+    }
+  ],
+  "exteriorEncodedBytes": 2871730,
+  "errors": [],
+  "warnings": [
+    "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.",
+    "using deprecated parameters for the initialization function; pass a single object instead",
+    "THREE.WebGLProgram: Program Info Log: (210,86-138): warning X4122: sum of 0.996094 and -2.98545e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.49272e-017 cannot be represented accurately in double precision\n(209,39-65): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision\n(210,87-113): warning X4122: sum of 1 and -1.66644e-018 cannot be represented accurately in double precision"
+  ]
+}

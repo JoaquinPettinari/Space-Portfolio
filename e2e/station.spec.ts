@@ -117,6 +117,48 @@ test('walking while turning keeps small mouse inputs bounded', async ({
   expect(Math.hypot(end.x - start.x, end.z - start.z)).toBeGreaterThan(0.1)
 })
 
+test('native aim stays settled across large turns and pointer recapture', async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  await capture(page)
+  for (let captureCycle = 0; captureCycle < 2; captureCycle++) {
+    const p = (await snapshot(page)).cameraPosition
+    for (const [dx, dy, dz] of [
+      [0, 0, -4],
+      [4, 1, 0],
+      [0, -1, 4],
+      [-4, 0, 0],
+      [0, 0, -4],
+    ]) {
+      await lookAt(page, { x: p.x + dx, y: p.y + dy, z: p.z + dz })
+      const aimed = (await snapshot(page)).cameraRotation
+      // No more input: a late native delta must not rotate a supposedly settled view.
+      await page.waitForTimeout(200)
+      const current = await snapshot(page)
+      const q = current.cameraRotation
+      const dot = Math.abs(
+        aimed.x * q.x + aimed.y * q.y + aimed.z * q.z + aimed.w * q.w,
+      )
+      expect(
+        2 * Math.acos(Math.min(1, dot)),
+        JSON.stringify(current),
+      ).toBeLessThan(0.008)
+    }
+    if (captureCycle === 0) {
+      await page.keyboard.press('Escape')
+      await expect
+        .poll(async () => (await snapshot(page)).pointerLocked)
+        .toBe(false)
+      await expect(
+        page.getByRole('button', { name: 'Resume mission' }),
+      ).toBeVisible()
+      await page.waitForTimeout(1200)
+      await capture(page)
+    }
+  }
+})
+
 test('loads the scene and records a rendering baseline', async ({
   page,
 }, info) => {
@@ -406,29 +448,34 @@ test('side wall blocks the player and Escape clears a held movement key', async 
 test('animates the exterior, respects reduced motion, and blocks the rear airlock wall', async ({
   page,
 }) => {
+  await capture(page)
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.stars)
+    .poll(async () => (await snapshot(page)).spaceMotion.worlds)
     .not.toBeNull()
   const before = (await snapshot(page)).spaceMotion
   expect(before.orbit).not.toBeNull()
-  await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.orbit)
-    .toBe(before.orbit)
-  expect(before.asteroid).not.toBeNull()
   expect(before.shuttle).not.toBeNull()
-  await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.asteroid)
-    .not.toBe(before.asteroid)
+  expect(before.debris).not.toBeNull()
   await expect
     .poll(async () => (await snapshot(page)).spaceMotion.shuttle)
     .not.toBe(before.shuttle)
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.stars)
-    .toBeGreaterThan(before.stars!)
+    .poll(async () => (await snapshot(page)).spaceMotion.worlds)
+    .not.toEqual(before.worlds)
   await expect
-    .poll(async () => (await snapshot(page)).spaceMotion.planet)
-    .toBeGreaterThan(before.planet!)
+    .poll(async () => (await snapshot(page)).spaceMotion.debris)
+    .not.toEqual(before.debris)
   expect((await snapshot(page)).spaceMotion.orbit).toBe(before.orbit)
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog', { name: 'Game paused' })).toBeVisible()
+  const paused = (await snapshot(page)).spaceMotion
+  await page.waitForTimeout(400)
+  expect((await snapshot(page)).spaceMotion).toEqual(paused)
+  await page.getByRole('button', { name: 'Resume mission' }).click()
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect
+    .poll(async () => (await snapshot(page)).spaceMotion.worlds)
+    .not.toEqual(paused.worlds)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.waitForTimeout(150)
   const still = (await snapshot(page)).spaceMotion

@@ -1,0 +1,14 @@
+{
+  "file": "/video/circular-arrival-intro.mp4",
+  "source": "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\docking-intro\\circular-arrival-draft.blend",
+  "frames": 240,
+  "fps": 30,
+  "duration": 8,
+  "resolution": [1280, 720],
+  "codec": "H264",
+  "audio": false,
+  "faststart": true,
+  "renderSeconds": 215.9333564999979,
+  "bytes": 1366252,
+  "sha256": "9d5edc03d34e98a92c2e4cfcd1cd2e12afab8b037dc3a9b0a604b6702418e02e"
+}

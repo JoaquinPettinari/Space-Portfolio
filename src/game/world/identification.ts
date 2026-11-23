@@ -1,27 +1,26 @@
-import { PHYSICAL_CONTACT_DELAY } from './physicalPress'
+import { advanceContactGesture, smoothGesture } from './physicalPress'
+import gestureTiming from './gestureTiming.json'
 
 export type IdentityPhase = 'idle' | 'presenting' | 'scanning' | 'verified'
-export const IDENTIFICATION_CONTACT_TIME = PHYSICAL_CONTACT_DELAY
+export const IDENTIFICATION_CONTACT_TIME = gestureTiming.card.contact
+export const IDENTIFICATION_SCAN_TIME = gestureTiming.card.action
 
-export const CARD_GESTURE_DURATION = 0.75
-export const VERIFICATION_DURATION = 0.25
-export const IDENTIFICATION_DURATION =
-  CARD_GESTURE_DURATION + VERIFICATION_DURATION
+export const CARD_GESTURE_DURATION = gestureTiming.card.holdUntil
+export const IDENTIFICATION_DURATION = gestureTiming.card.duration
+export const VERIFICATION_DURATION =
+  IDENTIFICATION_DURATION - CARD_GESTURE_DURATION
+export const CARD_READER_SURFACE_Z = 0.157
 
 export function advanceIdentification(
   elapsed: number,
   delta: number,
   paused: boolean,
-  reducedMotion: boolean,
 ) {
   if (paused) return elapsed
-  const start = reducedMotion
-    ? Math.max(elapsed, CARD_GESTURE_DURATION)
-    : elapsed
-  return Math.min(IDENTIFICATION_DURATION, start + Math.max(0, delta))
+  return advanceContactGesture(elapsed, delta, gestureTiming.card)
 }
 
-/** Reach, hold against the reader, withdraw. Returns a scalar without allocating. */
+/** Semantic phase progress for diagnostics; the imported clip owns the pose. */
 export function identificationReach(elapsed: number) {
   const linear =
     elapsed < IDENTIFICATION_CONTACT_TIME
@@ -32,5 +31,5 @@ export function identificationReach(elapsed: number) {
             0,
             1 - (elapsed - CARD_GESTURE_DURATION) / VERIFICATION_DURATION,
           )
-  return linear * linear * (3 - 2 * linear)
+  return smoothGesture(linear)
 }

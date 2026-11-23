@@ -1,0 +1,9 @@
+{
+  "handsSource": "../astronaut-hands/astronaut-hands.blend",
+  "handsSha256AtAssembly": "e0be4ff28297e33a01c17da6c1bed46f3dc85c394015d11bd15d0993d2440264",
+  "linkedCollections": ["HAND / Left", "HAND / Right"],
+  "localMeshCopies": 0,
+  "screenAnchor": "SCREEN_UI",
+  "gripAnchors": ["GRIP_LEFT", "GRIP_RIGHT"],
+  "runtimeChanged": false
+}

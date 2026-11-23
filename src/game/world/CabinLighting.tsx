@@ -54,17 +54,19 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
         ref={windowSpill}
         target={spillTarget}
         position={[0, 3.15, 0.5]}
-        color="#ffc279"
+        color="#ffd1a0"
         intensity={emergency ? 65 * 0.28 : 65}
         angle={1.05}
         penumbra={0.7}
         distance={14}
         decay={2}
       />
+      {/* Reuse the lateral fill as a cool window bounce, above the consoles. */}
       <pointLight
+        name="bridge-window-bounce"
         ref={sideSpill}
-        position={[0, 1.1, 1.8]}
-        color="#ffb65e"
+        position={[-2.8, 2.2, -2.5]}
+        color="#9bc9e5"
         intensity={emergency ? 5.04 : 18}
         distance={9}
         decay={2}

@@ -1,0 +1,189 @@
+{
+  "sources_sha256": {
+    "docs\\assets\\cosmos\\asterion-expanse-v2.blend": "170bcf42c6b753fc96508e47c76cba4d9c4324766f98de2ff80e76c4baae7387",
+    "docs\\assets\\bow-master\\bow-master.blend": "eaae6b843a226906d82f0d2d7edf9f1d5687468099641ccd1679ce483e916e38",
+    "docs\\assets\\cabin-master\\cabin-master.blend": "5e2e45a62015c0dced349f90c402f35530f34d0f842160e6c3c6ed9970843c13",
+    "public\\models\\cruz-del-sur-panoramic-bay.glb": "c77f0465fa5a575cb33b7865c418eb480c36562c2610bb7d573ef0a1e20906b0"
+  },
+  "scope": "Authoring shells; proposed eye poses, not runtime collision or glass validation",
+  "cameras": [
+    {
+      "name": "WINDOW 01 / Arrival port panorama",
+      "eye": [0.0, -15.149999618530273, 1.7000000476837158],
+      "target": [-6, -15.15, 1.7]
+    },
+    {
+      "name": "WINDOW 02 / Passage port",
+      "eye": [0.0, -8.149999618530273, 1.7000000476837158],
+      "target": [-4, -8.15, 1.8]
+    },
+    {
+      "name": "WINDOW 03 / Passage starboard",
+      "eye": [0.0, -8.149999618530273, 1.7000000476837158],
+      "target": [4, -8.15, 1.8]
+    },
+    {
+      "name": "WINDOW 04 / Bow forward",
+      "eye": [0.0, 3.4000000953674316, 1.7000000476837158],
+      "target": [0, 10, 1.85]
+    },
+    {
+      "name": "WINDOW 05 / Bow diagonal port",
+      "eye": [-1.5, 4.0, 1.7000000476837158],
+      "target": [-5, 8, 1.9]
+    },
+    {
+      "name": "WINDOW 06 / Bow diagonal starboard",
+      "eye": [1.5, 4.0, 1.7000000476837158],
+      "target": [5, 8, 1.9]
+    },
+    {
+      "name": "WINDOW 07 / Bridge port",
+      "eye": [-1.399999976158142, 3.5999999046325684, 1.7000000476837158],
+      "target": [-5.6, 4, 1.8]
+    },
+    {
+      "name": "WINDOW 08 / Bridge starboard",
+      "eye": [1.399999976158142, 3.5999999046325684, 1.7000000476837158],
+      "target": [5.6, 4, 1.8]
+    },
+    {
+      "name": "WINDOW 09 / Bow overhead",
+      "eye": [0.800000011920929, 4.5, 1.7000000476837158],
+      "target": [0.8, 4.5, 4.5]
+    },
+    {
+      "name": "WINDOW 10 / Passage overhead",
+      "eye": [0.6000000238418579, -8.149999618530273, 1.7000000476837158],
+      "target": [1.3, -8.15, 4.5]
+    }
+  ],
+  "context_objects": 470,
+  "neutral_glass_slots": [
+    [
+      "WINDOW STUDY / passage 1 / V2_ROOF_GLASS__Blue-grey_glazing_V2.003",
+      "Blue-grey glazing V2 / retained surfaces.001"
+    ],
+    [
+      "WINDOW STUDY / passage 1 / V2_STRUCTURE__Black_glazing_gaskets.003",
+      "Black glazing gaskets / retained surfaces.001"
+    ],
+    [
+      "WINDOW STUDY / passage 1 / V2_GLASS__Blue-grey_glazing_V2.003",
+      "Blue-grey glazing V2 / retained surfaces.001"
+    ],
+    [
+      "WINDOW STUDY / passage 1 / V2_FLOOR__Black_glazing_gaskets.003",
+      "Black glazing gaskets / retained surfaces.001"
+    ],
+    [
+      "WINDOW STUDY / passage 1 / V2_ROOF__Black_glazing_gaskets.003",
+      "Black glazing gaskets / retained surfaces.001"
+    ],
+    [
+      "WINDOW STUDY / passage 2 / V2_ROOF_GLASS__Blue-grey_glazing_V2.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 2 / V2_STRUCTURE__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 2 / V2_GLASS__Blue-grey_glazing_V2.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 2 / V2_FLOOR__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 2 / V2_ROOF__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 3 / V2_ROOF_GLASS__Blue-grey_glazing_V2.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 3 / V2_STRUCTURE__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 3 / V2_GLASS__Blue-grey_glazing_V2.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 3 / V2_FLOOR__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "WINDOW STUDY / passage 3 / V2_ROOF__Black_glazing_gaskets.003",
+      "REVIEW ONLY / neutral transparent glazing"
+    ],
+    [
+      "CDS U / Command panoramic facet 00.001",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command panoramic facet 01.001",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command panoramic facet 02.001",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command panoramic facet 03.001",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command panoramic facet 04.001",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.008",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.009",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.010",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.011",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.012",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.013",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.014",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "CDS U / Command roof aperture.015",
+      "CDS POLISH / Clear thin UNIFIED / Panoramic smoked glass.001"
+    ],
+    [
+      "REV / Single panoramic pressure glass",
+      "MASTER / Clear pressure glazing"
+    ],
+    [
+      "DETAIL / Keepsake protective glazing",
+      "WINDOW / Keepsake protective glass"
+    ],
+    [
+      "DETAIL / Keepsake protective glazing.001",
+      "WINDOW / Keepsake protective glass"
+    ]
+  ],
+  "new_runtime_assets": false
+}

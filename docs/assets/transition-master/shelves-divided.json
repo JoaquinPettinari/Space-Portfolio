@@ -1,0 +1,144 @@
+{
+  "source": "transition-portal-refined.blend",
+  "sourceSHA256": "33351c5fa3763d3487b56846f8a52e8a607fad0c6fa3e8880e61e49e486e968a",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "modules": [
+    {
+      "name": "PORT / 1",
+      "side": -1,
+      "zRange": [2.48, 3.44],
+      "shelfHeights": [1.03, 1.78]
+    },
+    {
+      "name": "PORT / 2",
+      "side": -1,
+      "zRange": [3.76, 4.72],
+      "shelfHeights": [1.03, 1.78]
+    },
+    {
+      "name": "STARBOARD / 1",
+      "side": 1,
+      "zRange": [2.48, 3.44],
+      "shelfHeights": [1.03, 1.78]
+    },
+    {
+      "name": "STARBOARD / 2",
+      "side": 1,
+      "zRange": [3.76, 4.72],
+      "shelfHeights": [1.03, 1.78]
+    }
+  ],
+  "centralColumnZ": 3.6,
+  "columnSolidZRange": [3.477, 3.723],
+  "shelvesLightsAndLipsSplit": true,
+  "clearanceRays": [
+    {
+      "x": -1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 2.0,
+      "clear": true
+    }
+  ],
+  "centralHeadroomClear": true,
+  "evaluatedTriangles": 194636,
+  "renderEngine": "BLENDER_EEVEE",
+  "samples": 16,
+  "resolution": [1280, 800],
+  "threads": 2,
+  "gpuTimingMeasured": false
+}

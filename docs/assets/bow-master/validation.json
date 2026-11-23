@@ -1,0 +1,80 @@
+{
+  "runtimeChanged": false,
+  "anchors": [
+    {
+      "name": "Navigation",
+      "position": [0, 1.62, -7.974],
+      "yaw": 0
+    },
+    {
+      "name": "Computer",
+      "position": [-2.3792893219, 1.65, -6.8792893219],
+      "yaw": 0.7853981633974483
+    },
+    {
+      "name": "Communications",
+      "position": [2.3792893219, 1.65, -6.8792893219],
+      "yaw": -0.7853981633974483
+    },
+    {
+      "name": "Personal",
+      "position": [4.205, 1.68, -1.05],
+      "yaw": -1.5707963267948966
+    },
+    {
+      "name": "Arcade",
+      "position": [-4.205, 1.68, -2.75],
+      "yaw": 1.5707963267948966
+    },
+    {
+      "name": "Tactical",
+      "position": [0, 0, -2.65],
+      "yaw": 0
+    },
+    {
+      "name": "Radio",
+      "position": [-3.9, 1.27, -1.15],
+      "yaw": 1.5707963267948966
+    },
+    {
+      "name": "Coffee",
+      "position": [-4.25, 0, 0.5],
+      "yaw": 1.5707963267948966
+    }
+  ],
+  "collections": {
+    "01 Pressure shell and glazing": 106,
+    "02 Deck and ceiling": 2,
+    "03 Console hardware": 27,
+    "04 Seats and equipment": 15,
+    "05 Interior details": 34,
+    "06 Glass connector reference - no export": 51,
+    "07 First detail pass": 108,
+    "08 Interaction anchors - no export": 8,
+    "09 Studio lights and cameras - no export": 6,
+    "10 Preview displays - no export": 6
+  },
+  "trianglesIncludingReferenceAndPreview": 338033,
+  "removedEmptySourceMeshes": [
+    "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Soft_warm_ceiling.001",
+    "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_brushed_trim.001",
+    "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_graphite.001",
+    "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Honey_amber_light_core.001",
+    "BRIDGE_AMBER_DETAIL_STATION_/_Deep_gasket.001",
+    "CDS POLISH / Recess expedition board.001",
+    "CDS POLISH / Expedition board hardware / Brushed steel rebates.001",
+    "CDS POLISH / Living specimen shelf / Brushed steel rebates.001",
+    "CDS POLISH / Living specimen shelf / Recesses and gaskets.001",
+    "CDS POLISH / Living specimen shelf / Living specimen stems.001",
+    "CDS POLISH / Living specimen shelf / Leaf light.001",
+    "CDS POLISH / Living specimen shelf / Leaf.002",
+    "CDS POLISH / Cordillera postcard.001",
+    "CDS POLISH / Valle Sur postcard.001",
+    "CDS POLISH / Personal postcard clips / Recesses and gaskets.001",
+    "CDS POLISH / Personal postcard clips / Brushed steel rebates.001",
+    "CDS POLISH / Board photographic inserts.001"
+  ],
+  "emptyMeshes": [],
+  "sourceFilesPreserved": true,
+  "previewDisplaysInteractive": false
+}

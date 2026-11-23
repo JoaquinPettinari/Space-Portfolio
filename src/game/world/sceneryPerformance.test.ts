@@ -6,11 +6,6 @@ import { expect, it } from 'vitest'
 import { batchPanoramicPassage } from './batchPanoramicPassage'
 import { BAY_CENTERS, PANORAMIC_BAY_ASSET } from './passageLayout'
 import { createCoffeeGeometry } from './coffeeGeometry'
-import {
-  createIndependentStars,
-  EARTH_POSITION,
-  EARTH_RADIUS,
-} from './spaceScenery'
 
 it('batches the real panoramic bays without losing triangles, placement or sight boundaries', async () => {
   const bytes = readFileSync(
@@ -97,21 +92,4 @@ it('fits the detailed coffee machine and cup within the existing interaction col
   } finally {
     model.dispose()
   }
-})
-
-it('keeps the complete globe inside the camera range and gives stars independent phases', () => {
-  const stars = createIndependentStars()
-  expect(stars.positions).toEqual(createIndependentStars().positions)
-  expect(new Set(stars.phases).size).toBeGreaterThan(1500)
-  for (let i = 0; i < stars.positions.length; i += 3) {
-    const radius = new Vector3().fromArray(stars.positions, i).length()
-    expect(radius).toBeCloseTo(92, 3)
-  }
-  expect(
-    new Vector3(...EARTH_POSITION).distanceTo(new Vector3(0, 1.7, 18.265)) +
-      EARTH_RADIUS,
-  ).toBeLessThan(120)
-  expect(
-    new Vector3(...EARTH_POSITION).length() - EARTH_RADIUS,
-  ).toBeGreaterThan(35)
 })

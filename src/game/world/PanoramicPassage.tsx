@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Bvh, useGLTF } from '@react-three/drei'
 import {
   ConvexHullCollider,
   CuboidCollider,
@@ -17,6 +17,7 @@ import {
   PASSAGE_WALLS,
   PANORAMIC_BAY_ASSET,
 } from './passageLayout'
+import { TRANSITION_END } from './bridgePlacement'
 
 const collars = COLLAR_POLYGONS.map((points) => {
   const shape = new Shape()
@@ -45,7 +46,9 @@ export function PanoramicPassage() {
 
   return (
     <RigidBody type="fixed" colliders={false} name="panoramic-passage">
-      <primitive object={model.root} dispose={null} />
+      <Bvh indirect>
+        <primitive object={model.root} dispose={null} />
+      </Bvh>
       <CuboidCollider
         args={[1.7, 0.115, PASSAGE_DEPTH / 2]}
         position={[0, -0.115, PASSAGE_CENTER]}
@@ -67,16 +70,18 @@ export function PanoramicPassage() {
           {collars.map(({ shape, hull }, i) => (
             <group key={i}>
               <ConvexHullCollider args={[hull]} />
-              <mesh position={[0, 0, -COLLAR_DEPTH / 2]}>
-                <extrudeGeometry
-                  args={[shape, { depth: COLLAR_DEPTH, bevelEnabled: false }]}
-                />
-                <meshStandardMaterial
-                  color="#292f34"
-                  roughness={0.65}
-                  metalness={0.25}
-                />
-              </mesh>
+              {z > TRANSITION_END + COLLAR_DEPTH && (
+                <mesh position={[0, 0, -COLLAR_DEPTH / 2]}>
+                  <extrudeGeometry
+                    args={[shape, { depth: COLLAR_DEPTH, bevelEnabled: false }]}
+                  />
+                  <meshStandardMaterial
+                    color="#292f34"
+                    roughness={0.65}
+                    metalness={0.25}
+                  />
+                </mesh>
+              )}
             </group>
           ))}
         </group>

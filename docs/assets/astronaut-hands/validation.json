@@ -1,0 +1,39 @@
+{
+  "units": "metres",
+  "front": "-Y",
+  "fingers": "+Z",
+  "forearm": "-Z",
+  "hands": [
+    {
+      "side": "Left",
+      "collection": "HAND / Left",
+      "rig": "HAND_RIG.L",
+      "bones": 17,
+      "surfaceVertices": 2242,
+      "unweightedVertices": 0,
+      "actions": [
+        "neutral.L",
+        "tablet_hold.L",
+        "card_pinch.L",
+        "radio_press.L"
+      ],
+      "defaultPose": "tablet_hold"
+    },
+    {
+      "side": "Right",
+      "collection": "HAND / Right",
+      "rig": "HAND_RIG.R",
+      "bones": 17,
+      "surfaceVertices": 2242,
+      "unweightedVertices": 0,
+      "actions": [
+        "neutral.R",
+        "tablet_hold.R",
+        "card_pinch.R",
+        "radio_press.R"
+      ],
+      "defaultPose": "tablet_hold"
+    }
+  ],
+  "runtimeChanged": false
+}

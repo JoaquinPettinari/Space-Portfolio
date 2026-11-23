@@ -3,14 +3,11 @@ import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
   Frustum,
-  InstancedMesh,
   Light,
   Matrix4,
   Mesh,
   MeshStandardMaterial,
   MeshPhysicalMaterial,
-  Points,
-  ShaderMaterial,
   Raycaster,
   Vector3,
 } from 'three'
@@ -36,6 +33,9 @@ export type GameSnapshot = {
     duration: number
     volume: number
     pressing: string | null
+    gestureElapsed: number | null
+    actionCommitted: boolean
+    fingerButtonGap: number | null
   } | null
   developmentCapture: boolean
   tacticalModelHeading: number | null
@@ -44,6 +44,8 @@ export type GameSnapshot = {
     elapsedSeconds: number | null
     reach: number | null
     visible: boolean
+    cardReaderGap: number | null
+    actionCommitted: boolean
     localPosition: { x: number; y: number; z: number }
     worldPosition: { x: number; y: number; z: number }
     projectedPosition: { x: number; y: number; z: number }
@@ -62,6 +64,7 @@ export type GameSnapshot = {
   drawCalls: number
   triangles: number
   frameMs: number
+  renderedFrames: number
   renderDpr: number
   maxEyeHeight: number
   mouseDelta: { x: number; y: number }
@@ -72,9 +75,8 @@ export type GameSnapshot = {
   }
   spaceMotion: {
     orbit: number | null
-    stars: number | null
-    planet: number | null
-    asteroid: number | null
+    worlds: { x: number; y: number; z: number } | null
+    debris: { x: number; y: number; z: number } | null
     shuttle: number | null
   }
 }
@@ -106,9 +108,11 @@ declare global {
 export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
   const { camera, gl, scene } = useThree()
   const frameMs = useRef(0)
+  const renderedFrames = useRef(0)
   const maxEyeHeight = useRef(0)
   const mouse = useRef({ x: 0, y: 0 })
   useFrame((_, delta) => {
+    renderedFrames.current += 1
     frameMs.current = delta * 1000
     maxEyeHeight.current = Math.max(maxEyeHeight.current, camera.position.y)
   })
@@ -163,6 +167,30 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
     }
     const gestureWorld = new Vector3()
     const gestureProjected = new Vector3()
+    const contactPoint = new Vector3()
+    const targetPoint = new Vector3()
+    const cardReaderGap = () => {
+      const card = scene.getObjectByName('CARD_CONTACT')
+      const reader = scene.getObjectByName('crew-reader-contact-surface')
+      if (!card || !reader) return null
+      card.getWorldPosition(contactPoint)
+      reader.getWorldPosition(targetPoint)
+      return contactPoint.distanceTo(targetPoint)
+    }
+    const fingerButtonGap = (action: unknown) => {
+      const hand = scene.getObjectByName('RADIO_FINGERTIP')
+      const button =
+        typeof action === 'string' ? scene.getObjectByName(action) : null
+      if (!hand || !button) return null
+      const key = button.children.find((child) => child instanceof Mesh)
+      if (!(key instanceof Mesh)) return null
+      if (!key.geometry.boundingBox) key.geometry.computeBoundingBox()
+      const bounds = key.geometry.boundingBox
+      if (!bounds) return null
+      hand.getWorldPosition(contactPoint)
+      key.localToWorld(targetPoint.set(0, 0, bounds.max.z))
+      return contactPoint.distanceTo(targetPoint)
+    }
     const crewGesture = (): GameSnapshot['crewGesture'] => {
       const gesture = scene.getObjectByName('crew-reader-gesture')
       if (!gesture) return null
@@ -181,6 +209,9 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         reach:
           typeof identificationReach === 'number' ? identificationReach : null,
         visible,
+        cardReaderGap: cardReaderGap(),
+        actionCommitted:
+          gesture.userData.identificationActionCommitted === true,
         localPosition: {
           x: gesture.position.x,
           y: gesture.position.y,
@@ -276,6 +307,7 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         },
       }),
       snapshot: (): GameSnapshot => ({
+        renderedFrames: renderedFrames.current,
         radio: (() => {
           const object = scene.getObjectByName('cds-desk-radio')
           const data: unknown = object?.userData.radioPlayback
@@ -303,6 +335,12 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
             elapsed: data.elapsed,
             duration: data.duration,
             volume: data.volume,
+            gestureElapsed:
+              typeof object?.userData.radioGestureElapsed === 'number'
+                ? object.userData.radioGestureElapsed
+                : null,
+            actionCommitted: object?.userData.radioActionCommitted === true,
+            fingerButtonGap: fingerButtonGap(object?.userData.radioPress),
             pressing:
               typeof object?.userData.radioPress === 'string'
                 ? object.userData.radioPress
@@ -364,21 +402,21 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         },
         spaceMotion: {
           orbit: scene.getObjectByName('orbital-drift')?.rotation.y ?? null,
-          asteroid: (() => {
-            const rocks = scene.getObjectByName('orbital-asteroids')
-            return rocks instanceof InstancedMesh
-              ? rocks.instanceMatrix.array[0]
+          worlds: (() => {
+            const position = scene.getObjectByName(
+              'asterion-worlds-motion',
+            )?.position
+            return position
+              ? { x: position.x, y: position.y, z: position.z }
+              : null
+          })(),
+          debris: (() => {
+            const position = scene.getObjectByName('asterion-debris')?.position
+            return position
+              ? { x: position.x, y: position.y, z: position.z }
               : null
           })(),
           shuttle: scene.getObjectByName('orbital-shuttle')?.position.x ?? null,
-          stars: (() => {
-            const stars = scene.getObjectByName('orbital-stars')
-            return stars instanceof Points &&
-              stars.material instanceof ShaderMaterial
-              ? Number(stars.material.uniforms.time.value)
-              : null
-          })(),
-          planet: scene.getObjectByName('orbital-planet')?.rotation.y ?? null,
         },
       }),
     })

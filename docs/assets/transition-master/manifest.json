@@ -1,0 +1,75 @@
+{
+  "source": "docs\\assets\\unified-ship\\cruz-del-sur-interior-panels.blend",
+  "sourceSHA256": "ab2315bc94ab19685fc64fe7ff240707757101d5aadddf19c0749e81b1e014e4",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "runtimeBounds": {
+    "z": [2.1, 5.1],
+    "clearWidth": 3,
+    "ceilingUnderside": 3.04,
+    "mouthWidth": 2.68
+  },
+  "editableMeshes": 355,
+  "evaluatedTriangles": 160220,
+  "referenceFaces": 20530,
+  "previewRenderer": "Workbench",
+  "previewResolution": [1100, 760],
+  "threads": 2,
+  "gpuFrameTimeMeasured": false,
+  "pending": "Runtime integration; authoring material previews complete",
+  "clearanceRays": [
+    {
+      "x": -0.7,
+      "height": 0.2,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.35,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.2,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.35,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.2,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.35,
+      "clear": true
+    }
+  ],
+  "continuousMitredFrames": true,
+  "contextSource": "public/models/cruz-del-sur-panoramic-bay.glb (3 instances, no export)",
+  "materialPreview": {
+    "resolution": [1280, 720],
+    "threads": 2,
+    "samplesRequested": 16,
+    "renderer": "BLENDER_EEVEE"
+  }
+}

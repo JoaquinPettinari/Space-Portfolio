@@ -2,11 +2,12 @@ import { useLayoutEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import { optimizeZeroContributionLights } from './zeroContributionLights'
 
-export function ZeroContributionLights({ ready }: { ready: boolean }) {
+/** Mount inside the world's Suspense boundary: all materials exist at this
+ * commit, and their final shader hooks are installed before the first frame. */
+export function ZeroContributionLights() {
   const scene = useThree((state) => state.scene)
   useLayoutEffect(() => {
-    if (!ready) return
     return optimizeZeroContributionLights(scene)
-  }, [scene, ready])
+  }, [scene])
   return null
 }

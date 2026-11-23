@@ -435,16 +435,13 @@
 /* Static chrome: no blur or continuously animated filters over the WebGL view. */
 .station-assistant {
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) 32px;
+  grid-template-columns: 60px minmax(0, 1fr) 32px 24px;
   align-items: center;
   column-gap: 12px;
 }
-.station-assistant--dismissible {
-  grid-template-columns: 42px minmax(0, 1fr) 32px 24px;
-}
 .station-assistant .subtitle-speaker {
   color: var(--hud-cyan);
-  font: 700 18px var(--hud-font-display);
+  font: 700 14px var(--hud-font-display);
   letter-spacing: 0.04em;
   align-self: stretch;
   display: grid;
@@ -456,9 +453,16 @@
   margin: 0;
   color: #f0f6fa;
   font: 400 15px/1.45 var(--hud-font-body);
+  min-height: 2.9em;
+  display: flex;
+  align-items: center;
 }
 .station-assistant .subtitle-waveform {
   color: #4cb3c4;
+  opacity: 0.35;
+}
+.station-assistant[data-speaking='true'] .subtitle-waveform {
+  opacity: 1;
 }
 .station-assistant > .subtitle-dismiss {
   grid-column: 4;
@@ -519,15 +523,6 @@
 }
 .subtitle-overlay--terminal {
   bottom: 8px;
-}
-.subtitle-overlay--terminal .station-assistant {
-  width: min(680px, 100%);
-  min-height: 48px;
-  padding: 8px 12px;
-}
-.subtitle-overlay--terminal .station-assistant .subtitle-message {
-  font-size: 12px;
-  line-height: 1.4;
 }
 .interaction-hint {
   bottom: 160px;

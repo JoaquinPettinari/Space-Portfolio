@@ -1,0 +1,1310 @@
+{
+  "source": "docs\\assets\\unified-ship\\cruz-del-sur-interior-panels.blend",
+  "sourceSha256": "ab2315bc94ab19685fc64fe7ff240707757101d5aadddf19c0749e81b1e014e4",
+  "runtimeChanged": false,
+  "coordinateMapping": "runtime(x,y,z) -> Blender(x,-z,y)",
+  "objects": [
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Deck_finish_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Deck_finish_",
+      "collection": "02 Deck and ceiling"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_communications.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_communications",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_personal.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_personal",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_computer.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_computer",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_arcade.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_arcade",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Upholstery_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Upholstery_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_arcade.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_arcade",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_communications.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_communications",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_personal.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_personal",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_computer.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_computer",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_communications.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_communications",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_arcade.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_arcade",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_computer.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_computer",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Cyan_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Cyan_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_arcade.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_arcade",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_computer.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_computer",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Counter_finish_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Counter_finish_",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_arcade.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_arcade",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_computer.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_computer",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Central_navigation_.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Central_navigation_",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_communications.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_communications",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_personal.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_personal",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_communications.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_communications",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_personal.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_personal",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_personal.001",
+      "source": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_personal",
+      "collection": "03 Console hardware"
+    },
+    {
+      "name": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_brushed_trim.001",
+      "source": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_brushed_trim",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_graphite.001",
+      "source": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Warm_graphite",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Soft_warm_ceiling.001",
+      "source": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Soft_warm_ceiling",
+      "collection": "02 Deck and ceiling"
+    },
+    {
+      "name": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Honey_amber_light_core.001",
+      "source": "BRIDGE_AMBER_DETAIL_STATION_AMBER_/_Honey_amber_light_core",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "BRIDGE_AMBER_DETAIL_STATION_/_Deep_gasket.001",
+      "source": "BRIDGE_AMBER_DETAIL_STATION_/_Deep_gasket",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Ivory.001",
+      "source": "FURNISH_Ivory.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Leaf.001",
+      "source": "FURNISH_Leaf.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Metal.001",
+      "source": "FURNISH_Metal.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Leaf light.001",
+      "source": "FURNISH_Leaf light.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Amber.001",
+      "source": "FURNISH_Amber.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "FURNISH_Graphite.001",
+      "source": "FURNISH_Graphite.004",
+      "collection": "04 Seats and equipment"
+    },
+    {
+      "name": "V2_GLASS__Blue-grey_glazing_V2.003",
+      "source": "V2_GLASS__Blue-grey_glazing_V2",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Graphite_structural_alloy.003",
+      "source": "V2_ROOF__Graphite_structural_alloy",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Black_glazing_gaskets.003",
+      "source": "V2_FLOOR__Black_glazing_gaskets",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF_GLASS__Blue-grey_glazing_V2.003",
+      "source": "V2_ROOF_GLASS__Blue-grey_glazing_V2",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Graphite_structural_alloy.003",
+      "source": "V2_STRUCTURE__Graphite_structural_alloy",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Graphite_structural_alloy.003",
+      "source": "V2_FLOOR__Graphite_structural_alloy",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Graphite_structural_alloy.003",
+      "source": "V2_OUTER_HULL__Graphite_structural_alloy",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Amber_diffuser.003",
+      "source": "V2_ROOF__Amber_diffuser",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Machined_edge_steel.003",
+      "source": "V2_FLOOR__Machined_edge_steel",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Safety_ochre.003",
+      "source": "V2_FLOOR__Safety_ochre",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Black_glazing_gaskets.003",
+      "source": "V2_STRUCTURE__Black_glazing_gaskets",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Warm_grey_removable_panels.003",
+      "source": "V2_OUTER_HULL__Warm_grey_removable_panels",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Black_glazing_gaskets.003",
+      "source": "V2_ROOF__Black_glazing_gaskets",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Warm_grey_removable_panels.003",
+      "source": "V2_FLOOR__Warm_grey_removable_panels",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Machined_edge_steel.003",
+      "source": "V2_OUTER_HULL__Machined_edge_steel",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Cyan_floor_guidance.003",
+      "source": "V2_FLOOR__Cyan_floor_guidance",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Off-white_ceramic_housings.003",
+      "source": "V2_ROOF__Off-white_ceramic_housings",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Cyan_floor_guidance.004",
+      "source": "V2_FLOOR__Cyan_floor_guidance.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF_GLASS__Blue-grey_glazing_V2.004",
+      "source": "V2_ROOF_GLASS__Blue-grey_glazing_V2.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Black_glazing_gaskets.004",
+      "source": "V2_ROOF__Black_glazing_gaskets.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Black_glazing_gaskets.004",
+      "source": "V2_STRUCTURE__Black_glazing_gaskets.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Graphite_structural_alloy.004",
+      "source": "V2_ROOF__Graphite_structural_alloy.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Off-white_ceramic_housings.004",
+      "source": "V2_ROOF__Off-white_ceramic_housings.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Warm_grey_removable_panels.004",
+      "source": "V2_FLOOR__Warm_grey_removable_panels.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Graphite_structural_alloy.004",
+      "source": "V2_OUTER_HULL__Graphite_structural_alloy.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Graphite_structural_alloy.004",
+      "source": "V2_FLOOR__Graphite_structural_alloy.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Warm_grey_removable_panels.004",
+      "source": "V2_OUTER_HULL__Warm_grey_removable_panels.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Graphite_structural_alloy.004",
+      "source": "V2_STRUCTURE__Graphite_structural_alloy.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Black_glazing_gaskets.004",
+      "source": "V2_FLOOR__Black_glazing_gaskets.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_GLASS__Blue-grey_glazing_V2.004",
+      "source": "V2_GLASS__Blue-grey_glazing_V2.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Machined_edge_steel.004",
+      "source": "V2_OUTER_HULL__Machined_edge_steel.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Amber_diffuser.004",
+      "source": "V2_ROOF__Amber_diffuser.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Machined_edge_steel.004",
+      "source": "V2_FLOOR__Machined_edge_steel.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Safety_ochre.004",
+      "source": "V2_FLOOR__Safety_ochre.001",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Warm_grey_removable_panels.005",
+      "source": "V2_OUTER_HULL__Warm_grey_removable_panels.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_GLASS__Blue-grey_glazing_V2.005",
+      "source": "V2_GLASS__Blue-grey_glazing_V2.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Machined_edge_steel.005",
+      "source": "V2_FLOOR__Machined_edge_steel.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Amber_diffuser.005",
+      "source": "V2_ROOF__Amber_diffuser.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Machined_edge_steel.005",
+      "source": "V2_OUTER_HULL__Machined_edge_steel.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_OUTER_HULL__Graphite_structural_alloy.005",
+      "source": "V2_OUTER_HULL__Graphite_structural_alloy.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF_GLASS__Blue-grey_glazing_V2.005",
+      "source": "V2_ROOF_GLASS__Blue-grey_glazing_V2.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Graphite_structural_alloy.005",
+      "source": "V2_ROOF__Graphite_structural_alloy.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Black_glazing_gaskets.005",
+      "source": "V2_ROOF__Black_glazing_gaskets.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Black_glazing_gaskets.005",
+      "source": "V2_FLOOR__Black_glazing_gaskets.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Safety_ochre.005",
+      "source": "V2_FLOOR__Safety_ochre.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Warm_grey_removable_panels.005",
+      "source": "V2_FLOOR__Warm_grey_removable_panels.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_ROOF__Off-white_ceramic_housings.005",
+      "source": "V2_ROOF__Off-white_ceramic_housings.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Black_glazing_gaskets.005",
+      "source": "V2_STRUCTURE__Black_glazing_gaskets.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Graphite_structural_alloy.005",
+      "source": "V2_FLOOR__Graphite_structural_alloy.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_STRUCTURE__Graphite_structural_alloy.005",
+      "source": "V2_STRUCTURE__Graphite_structural_alloy.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "V2_FLOOR__Cyan_floor_guidance.005",
+      "source": "V2_FLOOR__Cyan_floor_guidance.002",
+      "collection": "06 Glass connector reference - no export"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 00.001",
+      "source": "CDS U / Continuous shoulder -1 00",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 01.001",
+      "source": "CDS U / Continuous shoulder -1 01",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 02.001",
+      "source": "CDS U / Continuous shoulder -1 02",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 03.001",
+      "source": "CDS U / Continuous shoulder -1 03",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 04.001",
+      "source": "CDS U / Continuous shoulder -1 04",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder -1 05.001",
+      "source": "CDS U / Continuous shoulder -1 05",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 00.001",
+      "source": "CDS U / Continuous shoulder 1 00",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 01.001",
+      "source": "CDS U / Continuous shoulder 1 01",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 02.001",
+      "source": "CDS U / Continuous shoulder 1 02",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 03.001",
+      "source": "CDS U / Continuous shoulder 1 03",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 04.001",
+      "source": "CDS U / Continuous shoulder 1 04",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Continuous shoulder 1 05.001",
+      "source": "CDS U / Continuous shoulder 1 05",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Lower swept bridge sill 00.001",
+      "source": "CDS U / Lower swept bridge sill 00",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Lower swept bridge sill 01.001",
+      "source": "CDS U / Lower swept bridge sill 01",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Lower swept bridge sill 02.001",
+      "source": "CDS U / Lower swept bridge sill 02",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Lower swept bridge sill 03.001",
+      "source": "CDS U / Lower swept bridge sill 03",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Lower swept bridge sill 04.001",
+      "source": "CDS U / Lower swept bridge sill 04",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command raked pressure cheek -1.001",
+      "source": "CDS U / Command raked pressure cheek -1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Converging command buttress -1.001",
+      "source": "CDS U / Converging command buttress -1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command raked pressure cheek 1.001",
+      "source": "CDS U / Command raked pressure cheek 1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Converging command buttress 1.001",
+      "source": "CDS U / Converging command buttress 1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command panoramic facet 00.001",
+      "source": "CDS U / Command panoramic facet 00",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge outer pressure mullion.005",
+      "source": "CDS U / Bridge outer pressure mullion",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge forward visor edge.005",
+      "source": "CDS U / Bridge forward visor edge",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command panoramic facet 01.001",
+      "source": "CDS U / Command panoramic facet 01",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge outer pressure mullion.006",
+      "source": "CDS U / Bridge outer pressure mullion.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge forward visor edge.006",
+      "source": "CDS U / Bridge forward visor edge.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command panoramic facet 02.001",
+      "source": "CDS U / Command panoramic facet 02",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge outer pressure mullion.007",
+      "source": "CDS U / Bridge outer pressure mullion.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge forward visor edge.007",
+      "source": "CDS U / Bridge forward visor edge.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command panoramic facet 03.001",
+      "source": "CDS U / Command panoramic facet 03",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge outer pressure mullion.008",
+      "source": "CDS U / Bridge outer pressure mullion.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge forward visor edge.008",
+      "source": "CDS U / Bridge forward visor edge.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command panoramic facet 04.001",
+      "source": "CDS U / Command panoramic facet 04",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge outer pressure mullion.009",
+      "source": "CDS U / Bridge outer pressure mullion.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Bridge forward visor edge.009",
+      "source": "CDS U / Bridge forward visor edge.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.010",
+      "source": "CDS U / Dorsal canopy spine",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.011",
+      "source": "CDS U / Dorsal canopy spine.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.012",
+      "source": "CDS U / Dorsal canopy spine.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.013",
+      "source": "CDS U / Dorsal canopy spine.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.014",
+      "source": "CDS U / Dorsal canopy spine.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.015",
+      "source": "CDS U / Dorsal canopy spine.005",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.008",
+      "source": "CDS U / Command roof aperture",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.016",
+      "source": "CDS U / Dorsal canopy spine.006",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.009",
+      "source": "CDS U / Command roof aperture.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.010",
+      "source": "CDS U / Command roof aperture.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.017",
+      "source": "CDS U / Dorsal canopy spine.007",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.011",
+      "source": "CDS U / Command roof aperture.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.012",
+      "source": "CDS U / Command roof aperture.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.018",
+      "source": "CDS U / Dorsal canopy spine.008",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.013",
+      "source": "CDS U / Command roof aperture.005",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.014",
+      "source": "CDS U / Command roof aperture.006",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Dorsal canopy spine.019",
+      "source": "CDS U / Dorsal canopy spine.009",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof aperture.015",
+      "source": "CDS U / Command roof aperture.007",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof chamfer -1.001",
+      "source": "CDS U / Command roof chamfer -1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Command roof chamfer 1.001",
+      "source": "CDS U / Command roof chamfer 1",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.028",
+      "source": "CDS U / Shoulder perimeter rail",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.028",
+      "source": "CDS U / Pressure collar recessed seam",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.029",
+      "source": "CDS U / Shoulder perimeter rail.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.029",
+      "source": "CDS U / Pressure collar recessed seam.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.030",
+      "source": "CDS U / Shoulder perimeter rail.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.030",
+      "source": "CDS U / Pressure collar recessed seam.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.048",
+      "source": "CDS U / Shoulder diagonal cooling fin",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.049",
+      "source": "CDS U / Shoulder diagonal cooling fin.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.050",
+      "source": "CDS U / Shoulder diagonal cooling fin.002",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.051",
+      "source": "CDS U / Shoulder diagonal cooling fin.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.031",
+      "source": "CDS U / Shoulder perimeter rail.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.031",
+      "source": "CDS U / Pressure collar recessed seam.003",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.052",
+      "source": "CDS U / Shoulder diagonal cooling fin.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.053",
+      "source": "CDS U / Shoulder diagonal cooling fin.005",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.054",
+      "source": "CDS U / Shoulder diagonal cooling fin.006",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.055",
+      "source": "CDS U / Shoulder diagonal cooling fin.007",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.032",
+      "source": "CDS U / Shoulder perimeter rail.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.032",
+      "source": "CDS U / Pressure collar recessed seam.004",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.056",
+      "source": "CDS U / Shoulder diagonal cooling fin.008",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.057",
+      "source": "CDS U / Shoulder diagonal cooling fin.009",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.058",
+      "source": "CDS U / Shoulder diagonal cooling fin.010",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.059",
+      "source": "CDS U / Shoulder diagonal cooling fin.011",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.033",
+      "source": "CDS U / Shoulder perimeter rail.005",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.033",
+      "source": "CDS U / Pressure collar recessed seam.005",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.034",
+      "source": "CDS U / Shoulder perimeter rail.014",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.034",
+      "source": "CDS U / Pressure collar recessed seam.014",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.035",
+      "source": "CDS U / Shoulder perimeter rail.015",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.035",
+      "source": "CDS U / Pressure collar recessed seam.015",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.036",
+      "source": "CDS U / Shoulder perimeter rail.016",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.036",
+      "source": "CDS U / Pressure collar recessed seam.016",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.060",
+      "source": "CDS U / Shoulder diagonal cooling fin.024",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.061",
+      "source": "CDS U / Shoulder diagonal cooling fin.025",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.062",
+      "source": "CDS U / Shoulder diagonal cooling fin.026",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.063",
+      "source": "CDS U / Shoulder diagonal cooling fin.027",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.037",
+      "source": "CDS U / Shoulder perimeter rail.017",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.037",
+      "source": "CDS U / Pressure collar recessed seam.017",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.064",
+      "source": "CDS U / Shoulder diagonal cooling fin.028",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.065",
+      "source": "CDS U / Shoulder diagonal cooling fin.029",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.066",
+      "source": "CDS U / Shoulder diagonal cooling fin.030",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.067",
+      "source": "CDS U / Shoulder diagonal cooling fin.031",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.038",
+      "source": "CDS U / Shoulder perimeter rail.018",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.038",
+      "source": "CDS U / Pressure collar recessed seam.018",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.068",
+      "source": "CDS U / Shoulder diagonal cooling fin.032",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.069",
+      "source": "CDS U / Shoulder diagonal cooling fin.033",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.070",
+      "source": "CDS U / Shoulder diagonal cooling fin.034",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder diagonal cooling fin.071",
+      "source": "CDS U / Shoulder diagonal cooling fin.035",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Shoulder perimeter rail.039",
+      "source": "CDS U / Shoulder perimeter rail.019",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Pressure collar recessed seam.039",
+      "source": "CDS U / Pressure collar recessed seam.019",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Buttress warm navigation slash.002",
+      "source": "CDS U / Buttress warm navigation slash",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS U / Buttress warm navigation slash.003",
+      "source": "CDS U / Buttress warm navigation slash.001",
+      "collection": "01 Pressure shell and glazing"
+    },
+    {
+      "name": "CDS DETAIL / bridge / Recesses and gaskets.001",
+      "source": "CDS DETAIL / bridge / Recesses and gaskets",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS DETAIL / bridge / Graphite deck - restrained foot traffic.001",
+      "source": "CDS DETAIL / bridge / Graphite deck - restrained foot traffic",
+      "collection": "02 Deck and ceiling"
+    },
+    {
+      "name": "CDS DETAIL / bridge / Brushed steel rebates.001",
+      "source": "CDS DETAIL / bridge / Brushed steel rebates",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Static preview display personal.001",
+      "source": "CDS REFINE / Static preview display personal",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS REFINE / Static preview display arcade.001",
+      "source": "CDS REFINE / Static preview display arcade",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS REFINE / Static preview display computer.001",
+      "source": "CDS REFINE / Static preview display computer",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS REFINE / Static preview display communications.001",
+      "source": "CDS REFINE / Static preview display communications",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS REFINE / Props / Expedition blue binding.001",
+      "source": "CDS REFINE / Props / Expedition blue binding",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Ivory paper edges.001",
+      "source": "CDS REFINE / Props / Ivory paper edges",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Muted safety ochre.001",
+      "source": "CDS REFINE / Props / Muted safety ochre",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Recesses and gaskets.001",
+      "source": "CDS REFINE / Props / Recesses and gaskets",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Oxide field journal.001",
+      "source": "CDS REFINE / Props / Oxide field journal",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Sage survey binding.001",
+      "source": "CDS REFINE / Props / Sage survey binding",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Service stencils.001",
+      "source": "CDS REFINE / Props / Service stencils",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Brushed steel rebates.001",
+      "source": "CDS REFINE / Props / Brushed steel rebates",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Props / Coffee surface.001",
+      "source": "CDS REFINE / Props / Coffee surface",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS REFINE / Static tactical surface - Blender preview.001",
+      "source": "CDS REFINE / Static tactical surface - Blender preview",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS REFINE / Static navigation globe - no animation.001",
+      "source": "CDS REFINE / Static navigation globe - no animation",
+      "collection": "10 Preview displays - no export"
+    },
+    {
+      "name": "CDS POLISH / Recess expedition board.001",
+      "source": "CDS POLISH / Recess expedition board",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Expedition board hardware / Brushed steel rebates.001",
+      "source": "CDS POLISH / Expedition board hardware / Brushed steel rebates",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Living specimen shelf / Brushed steel rebates.001",
+      "source": "CDS POLISH / Living specimen shelf / Brushed steel rebates",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Living specimen shelf / Recesses and gaskets.001",
+      "source": "CDS POLISH / Living specimen shelf / Recesses and gaskets",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Living specimen shelf / Living specimen stems.001",
+      "source": "CDS POLISH / Living specimen shelf / Living specimen stems",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Living specimen shelf / Leaf light.001",
+      "source": "CDS POLISH / Living specimen shelf / Leaf light.005",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Living specimen shelf / Leaf.002",
+      "source": "CDS POLISH / Living specimen shelf / Leaf.001",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Cordillera postcard.001",
+      "source": "CDS POLISH / Cordillera postcard",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Valle Sur postcard.001",
+      "source": "CDS POLISH / Valle Sur postcard",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Personal postcard clips / Recesses and gaskets.001",
+      "source": "CDS POLISH / Personal postcard clips / Recesses and gaskets",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Personal postcard clips / Brushed steel rebates.001",
+      "source": "CDS POLISH / Personal postcard clips / Brushed steel rebates",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Bridge pressure-spine designation / Service stencils.001",
+      "source": "CDS POLISH / Bridge pressure-spine designation / Service stencils",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Bridge pressure-spine designation / Muted safety ochre.001",
+      "source": "CDS POLISH / Bridge pressure-spine designation / Muted safety ochre",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Board photographic inserts.001",
+      "source": "CDS POLISH / Board photographic inserts",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS TAILORED / Batched seat piping.001",
+      "source": "CDS TAILORED / Batched seat piping",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS ORGANIC / Continuous rolled steel planters.001",
+      "source": "CDS ORGANIC / Continuous rolled steel planters",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS CONSOLE / Four detailed low cost keyboards.001",
+      "source": "CDS CONSOLE / Four detailed low cost keyboards",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Inset rotary controls and service marks / Console control inset.001",
+      "source": "CDS POLISH / Inset rotary controls and service marks / Console control inset",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Inset rotary controls and service marks / Console encoder satin metal.001",
+      "source": "CDS POLISH / Inset rotary controls and service marks / Console encoder satin metal",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS POLISH / Inset rotary controls and service marks / Console instrument engraving.001",
+      "source": "CDS POLISH / Inset rotary controls and service marks / Console instrument engraving",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Graphite ceramic armor.001",
+      "source": "CDS NICHE / Batch / Graphite ceramic armor",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Deep rubber and cavities.001",
+      "source": "CDS NICHE / Batch / Deep rubber and cavities",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Brushed titanium.001",
+      "source": "CDS NICHE / Batch / Brushed titanium",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Warm protected LED diffuser.001",
+      "source": "CDS NICHE / Batch / Warm protected LED diffuser",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Ivory lettering.001",
+      "source": "CDS NICHE / Batch / Ivory lettering",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Muted safety ochre.001",
+      "source": "CDS NICHE / Batch / Muted safety ochre",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Diagnostics screen.001",
+      "source": "CDS NICHE / Batch / Diagnostics screen",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Instrument status cyan.001",
+      "source": "CDS NICHE / Batch / Instrument status cyan",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / expedition route and printed notes.001",
+      "source": "CDS NICHE / expedition route and printed notes",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Journal page edges.001",
+      "source": "CDS NICHE / Batch / Journal page edges",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Field journal cloth.001",
+      "source": "CDS NICHE / Batch / Field journal cloth",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / CDS POLISH / Matte expedition photographs.001",
+      "source": "CDS NICHE / Batch / CDS POLISH / Matte expedition photographs",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Soil inside planter.001",
+      "source": "CDS NICHE / Soil inside planter",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Specimen jade leaves.001",
+      "source": "CDS NICHE / Batch / Specimen jade leaves",
+      "collection": "05 Interior details"
+    },
+    {
+      "name": "CDS NICHE / Batch / Specimen young leaves.001",
+      "source": "CDS NICHE / Batch / Specimen young leaves",
+      "collection": "05 Interior details"
+    }
+  ],
+  "collections": {
+    "01 Pressure shell and glazing": 106,
+    "02 Deck and ceiling": 3,
+    "03 Console hardware": 27,
+    "04 Seats and equipment": 19,
+    "05 Interior details": 46,
+    "06 Glass connector reference - no export": 51,
+    "07 First detail pass": 108,
+    "08 Interaction anchors - no export": 0,
+    "09 Studio lights and cameras - no export": 6,
+    "10 Preview displays - no export": 6
+  }
+}

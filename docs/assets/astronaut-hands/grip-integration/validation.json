@@ -1,0 +1,10 @@
+{
+  "cardRadioPoseMaxDifference": 0.0,
+  "protectedHashes": {
+    "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\astronaut-hands\\astronaut-hands.blend": "e0be4ff28297e33a01c17da6c1bed46f3dc85c394015d11bd15d0993d2440264",
+    "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\mission-tablet\\mission-tablet.blend": "1b4ea07738cfab705ec518bf0426310e96caa01c27668ae496bd42060f25b347"
+  },
+  "mastersUnchanged": true,
+  "sourceBackup": "hand-gestures-before-tablet-grip.blend",
+  "gripSource": "tablet-grip.json"
+}

@@ -4,6 +4,7 @@ import {
   tabletAllowsMovement,
   tabletTransition,
 } from './tablet'
+import gestureTiming from './world/gestureTiming.json'
 
 it('raises a read-only tablet while retaining movement', () => {
   const held = tabletTransition('lowered', 'toggle')
@@ -11,6 +12,15 @@ it('raises a read-only tablet while retaining movement', () => {
   expect(tabletAllowsMovement(held)).toBe(true)
   expect(tabletTransition(held, 'resume')).toBe('held')
   expect(tabletAllowsMovement('lowered')).toBe(true)
+})
+
+it('uses the authored raise/lower durations and reverses without a position jump', () => {
+  expect(advanceTabletPose(0, 1, gestureTiming.tablet.raise, false)).toBe(1)
+  expect(advanceTabletPose(1, 0, gestureTiming.tablet.lower, false)).toBe(0)
+  const halfway = advanceTabletPose(0, 1, gestureTiming.tablet.raise / 2, false)
+  expect(halfway).toBeCloseTo(0.5)
+  expect(advanceTabletPose(halfway, 0, 0, false)).toBe(halfway)
+  expect(advanceTabletPose(halfway, 0, 0.1, false)).toBeLessThan(halfway)
 })
 
 it('lowers the reader and dismisses for other station interactions', () => {

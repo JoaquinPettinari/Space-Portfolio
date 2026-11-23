@@ -3,6 +3,7 @@ import { BULKHEAD_POCKET_PANELS, type BulkheadPhase } from './bulkhead'
 import { ENTRY_OFFSET } from './bridgeLayout'
 import shellLayout from './arrivalShellLayout.json'
 import { ArrivalCabinModel } from './ArrivalCabinModel'
+import { ParkedPampa } from './ParkedPampa'
 import {
   CABIN_MASTER_COLLIDERS,
   CABIN_MASTER_FLOOR,
@@ -20,6 +21,7 @@ export function EntryAirlock({
   return (
     <group name="entry-airlock">
       <ArrivalCabinModel phase={phase} powered={!emergency} />
+      <ParkedPampa />
       {CABIN_TECHNICAL_END_PANELS.map(({ position, size }) => (
         <mesh
           key={position[2]}
@@ -90,7 +92,7 @@ export function EntryAirlock({
       <pointLight
         name="arrival-observation-wash"
         position={[-2.7, 2.5, 16.65]}
-        color="#ffc184"
+        color="#ffce9e"
         intensity={emergency ? 2.16 : 18}
         distance={5.2}
         decay={2}
@@ -98,7 +100,7 @@ export function EntryAirlock({
       <pointLight
         name="arrival-service-wash"
         position={[-3.7, 1.4, 14.4]}
-        color="#ffc184"
+        color="#ffce9e"
         intensity={emergency ? 1.2 : 10}
         distance={4.2}
         decay={2}
@@ -106,7 +108,7 @@ export function EntryAirlock({
       <pointLight
         name="arrival-technical-wall-wash"
         position={[2.75, 2.4, 15.5]}
-        color="#ffc184"
+        color="#ffce9e"
         intensity={emergency ? 1.44 : 12}
         distance={4.5}
         decay={2}

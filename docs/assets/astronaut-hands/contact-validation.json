@@ -1,0 +1,12 @@
+[
+  {
+    "hand": "Left",
+    "pinchTipDistanceMetres": 0.01279852549999974,
+    "cardPinchContactVerified": true
+  },
+  {
+    "hand": "Right",
+    "pinchTipDistanceMetres": 0.01279852549999974,
+    "cardPinchContactVerified": true
+  }
+]

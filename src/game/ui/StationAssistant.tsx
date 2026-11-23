@@ -1,16 +1,22 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import { dialogueMessages, type AssistantEvent } from '../dialogue'
+import { type AssistantEvent } from '../dialogue'
+import { getDialogueCues } from '../dialogueCaptions'
+import { dialogueManifest } from '../dialogueManifest'
 export type { AssistantEvent } from '../dialogue'
 
 export function StationAssistant({
   event,
   onDismiss,
   dismissible = true,
+  speaking = false,
+  caption,
 }: {
   event: AssistantEvent
   onDismiss: () => void
   dismissible?: boolean
+  speaking?: boolean
+  caption?: string
 }) {
   const dismiss = useRef<HTMLButtonElement>(null)
   useLayoutEffect(() => {
@@ -32,11 +38,14 @@ export function StationAssistant({
       aria-label="Station assistant"
       role="status"
       data-dialogue-event={event}
+      data-speaking={speaking}
     >
       <span className="subtitle-speaker" aria-label="Station AI">
-        IA
+        CDS-01
       </span>
-      <p className="subtitle-message">{dialogueMessages[event]}</p>
+      <p className="subtitle-message">
+        {caption ?? getDialogueCues(dialogueManifest[event])[0].text}
+      </p>
       <svg
         className="subtitle-waveform"
         width="32"

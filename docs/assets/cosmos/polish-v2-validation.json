@@ -1,0 +1,17 @@
+{
+  "source_sha256": "dd6600e62f58e25ebc986fafd1af56133289aa58ba1fc1a42c60c7c3e98502f3",
+  "source_unchanged": true,
+  "output": "asterion-expanse-v2.blend",
+  "world_preserved": "ASTERION / reviewed artwork and continuous stars",
+  "sun_count": 1,
+  "sun_energy": 3.200000047683716,
+  "impact_map": [2048, 1024],
+  "ring_translucent_fraction": 0.62,
+  "runtime_changed": false,
+  "lumen_window_adjustment": {
+    "position_blender": [-90.0, 4.0, 3.5],
+    "scale": [1.440000057220459, 1.440000057220459, 1.440000057220459],
+    "reason": "Clear the arrival upper frame and the bridge port rear mullion."
+  },
+  "output_sha256": "170bcf42c6b753fc96508e47c76cba4d9c4324766f98de2ff80e76c4baae7387"
+}

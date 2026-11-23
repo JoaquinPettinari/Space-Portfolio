@@ -6,8 +6,7 @@ import {
   type RefObject,
 } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
-import { BackSide, SRGBColorSpace } from 'three'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import { PhysicalScreen } from './PhysicalScreen'
 import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
@@ -16,7 +15,7 @@ import {
   CABIN_MASTER_LEAVES_ASSET,
   assembleCurrentShip,
 } from './cabinMaster'
-import { GALACTIC_SKY } from './spaceScenery'
+import { AsterionSky } from './AsterionExterior'
 import { trapDialogFocus } from '../ui/dialogFocus'
 import {
   createNavigationShip,
@@ -45,9 +44,6 @@ function ExteriorScene({ orbit }: { orbit: RefObject<OrbitHandle | null> }) {
       ),
     [envelope.scene, cabin.scene, leaves.scene],
   )
-  const sky = useTexture(GALACTIC_SKY, (loaded) => {
-    if (!Array.isArray(loaded)) loaded.colorSpace = SRGBColorSpace
-  })
   return (
     <>
       <primitive object={ship} dispose={null} />
@@ -58,15 +54,7 @@ function ExteriorScene({ orbit }: { orbit: RefObject<OrbitHandle | null> }) {
         intensity={1.5}
         color="#79b3d9"
       />
-      <mesh>
-        <sphereGeometry args={[40, 32, 16]} />
-        <meshBasicMaterial
-          map={sky}
-          side={BackSide}
-          color="#778496"
-          toneMapped={false}
-        />
-      </mesh>
+      <AsterionSky radius={40} />
       <OrbitControls
         ref={orbit}
         target={[0, 0, 0]}

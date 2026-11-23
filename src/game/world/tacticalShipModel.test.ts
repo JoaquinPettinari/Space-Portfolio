@@ -14,8 +14,8 @@ import { expect, it, vi } from 'vitest'
 import {
   createTacticalShipModel,
   TACTICAL_SHIP_LENGTH,
-  skipTacticalVisualRaycast,
-} from './tacticalShipModel'
+} from '../../../scripts/assets/tacticalShipGeometry'
+import { skipTacticalVisualRaycast } from './tacticalShipModel'
 import { UNIFIED_ENVELOPE_ASSET } from './unifiedShipAssets'
 
 it('uses the actual unified ship silhouette, keeps every triangle and never disposes cached resources', async () => {

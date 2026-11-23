@@ -1,0 +1,40 @@
+{
+  "source": "transition-shelves-personal-photos.blend",
+  "sourceSHA256": "e11c83724ca79b0f14fed4f4b6ffc597ab4fb9c5f60133867d3fe8930eb0966e",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "clearanceRaysPassed": 33,
+  "photosPreserved": [
+    {
+      "index": 1,
+      "packedPixels": [1440, 1080],
+      "uvUnchanged": true
+    },
+    {
+      "index": 2,
+      "packedPixels": [1600, 1600],
+      "uvUnchanged": true
+    },
+    {
+      "index": 3,
+      "packedPixels": [1440, 1440],
+      "uvUnchanged": true
+    },
+    {
+      "index": 4,
+      "packedPixels": [1440, 1440],
+      "uvUnchanged": true
+    }
+  ],
+  "displayPropsUnchanged": true,
+  "evaluatedTriangles": 316069,
+  "newPreviewOnlyAreaLights": 2,
+  "previewLightWattsEach": 3,
+  "render": {
+    "engine": "BLENDER_EEVEE",
+    "resolution": [1280, 800],
+    "samples": 32,
+    "threads": 2
+  },
+  "browserPerformanceMeasured": false
+}

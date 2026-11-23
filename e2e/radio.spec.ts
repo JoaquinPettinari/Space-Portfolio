@@ -3,6 +3,11 @@ import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
 import { RADIO_POSITION } from '../src/game/interaction/station'
 import { RADIO_BUTTONS, type RadioAction } from '../src/game/radioControls'
 import { RADIO_TRACKS } from '../src/game/radioTracks'
+import gestureTiming from '../src/game/world/gestureTiming.json' with { type: 'json' }
+
+// Native Pointer Lock routes capture explicit contact evidence below; tracing
+// every WebGL frame adds enough load to disrupt mouse delivery in software GPU runs.
+test.use({ screenshot: 'only-on-failure', video: 'off', trace: 'off' })
 
 test('gaze selects physical radio keys; E presses without camera or cursor handoff', async ({
   page,
@@ -22,7 +27,9 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
       recordings.push(decodeURIComponent(request.url().split('/').pop()!))
   })
   await page.goto('/')
-  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 120_000,
+  })
   await enterObservationRoom(page)
   await walkTo(page, -2.65, RADIO_POSITION[2])
   const aim = async (action: RadioAction) => {
@@ -38,10 +45,13 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
   const press = async (action: RadioAction) => {
     await aim(action)
     await page.keyboard.press('e')
-    await page.waitForTimeout(650)
+    await expect
+      .poll(async () => (await snapshot(page)).radio?.pressing)
+      .toBe(action)
     await expect
       .poll(async () => (await snapshot(page)).radio?.pressing)
       .toBeNull()
+    expect((await snapshot(page)).radio?.actionCommitted).toBe(true)
   }
   await lookAt(page, {
     x: RADIO_POSITION[0] + 0.15,
@@ -52,33 +62,101 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
   expect(recordings).toEqual([])
   await aim('radio-play')
   const before = await snapshot(page)
+  let measurementReady = () => {}
+  const ready = new Promise<void>((resolve) => {
+    measurementReady = resolve
+  })
+  await page.exposeFunction('radioMeasurementReady', () => measurementReady())
   const playbackDelay = page.evaluate(
     () =>
-      new Promise<number>((resolve, reject) => {
+      new Promise<{
+        delay: number
+        samples: {
+          elapsed: number
+          gap: number | null
+          committed: boolean
+          playing: boolean
+        }[]
+      }>((resolve, reject) => {
+        let keyReceived = false
+        const samples: {
+          elapsed: number
+          gap: number | null
+          committed: boolean
+          playing: boolean
+        }[] = []
         const timeout = window.setTimeout(
-          () => reject(new Error('Radio never started')),
+          () =>
+            reject(
+              new Error(
+                'Radio never started: ' +
+                  JSON.stringify({
+                    keyReceived,
+                    samples,
+                    state: window.__GAME_DEBUG__?.snapshot().radio,
+                    focused: document.hasFocus(),
+                    hidden: document.hidden,
+                  }),
+              ),
+            ),
           10000,
         )
         document.addEventListener(
           'keydown',
           function measure(event) {
             if (event.key.toLowerCase() !== 'e') return
+            keyReceived = true
             document.removeEventListener('keydown', measure, true)
             const started = performance.now()
             const sample = () => {
-              if (window.__GAME_DEBUG__?.snapshot().radio?.playing) {
+              const radio = window.__GAME_DEBUG__?.snapshot().radio
+              if (radio?.gestureElapsed != null)
+                samples.push({
+                  elapsed: radio.gestureElapsed,
+                  gap: radio.fingerButtonGap,
+                  committed: radio.actionCommitted,
+                  playing: radio.playing,
+                })
+              if (radio?.playing) {
                 clearTimeout(timeout)
-                resolve(performance.now() - started)
+                resolve({ delay: performance.now() - started, samples })
               } else requestAnimationFrame(sample)
             }
             requestAnimationFrame(sample)
           },
           true,
         )
+        void (
+          window as typeof window & {
+            radioMeasurementReady: () => Promise<void>
+          }
+        ).radioMeasurementReady()
       }),
   )
+  await ready
   await page.keyboard.press('e')
-  expect(await playbackDelay).toBeGreaterThanOrEqual(490)
+  const playback = await playbackDelay
+  expect(playback.delay).toBeGreaterThanOrEqual(
+    gestureTiming.radio.action * 1000 - 10,
+  )
+  expect(
+    playback.samples.some(
+      (s) =>
+        s.elapsed >= gestureTiming.radio.contact &&
+        s.elapsed < gestureTiming.radio.action &&
+        s.gap !== null &&
+        s.gap < 0.002 &&
+        !s.committed &&
+        !s.playing,
+    ),
+  ).toBe(true)
+  const actionFrame = playback.samples.find((s) => s.committed)
+  expect(actionFrame).toBeDefined()
+  expect(actionFrame!.elapsed).toBeGreaterThanOrEqual(
+    gestureTiming.radio.action,
+  )
+  expect(actionFrame!.gap).not.toBeNull()
+  expect(actionFrame!.gap!).toBeLessThan(0.002)
   await expect
     .poll(async () => (await snapshot(page)).radio?.playing)
     .toBe(true)
@@ -109,7 +187,9 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
   await press('radio-quieter')
   expect((await snapshot(page)).radio?.volume).toBeCloseTo(0.35)
   await press('radio-play')
-  expect((await snapshot(page)).radio?.playing).toBe(false)
+  await expect
+    .poll(async () => (await snapshot(page)).radio?.playing)
+    .toBe(false)
   const count = recordings.length
   await press('radio-next')
   expect(recordings).toHaveLength(count)

@@ -1,0 +1,85 @@
+{
+  "fps": 100,
+  "timeZeroFrame": 1,
+  "timingSource": "../../../src/game/world/gestureTiming.json",
+  "timing": {
+    "tablet": {
+      "raise": 0.8,
+      "lower": 0.6
+    },
+    "card": {
+      "contact": 0.5,
+      "action": 0.58,
+      "holdUntil": 0.9,
+      "duration": 1.25
+    },
+    "radio": {
+      "contact": 0.5,
+      "action": 0.58,
+      "release": 0.72,
+      "duration": 1.0
+    }
+  },
+  "sourceMasterSha256": "e0be4ff28297e33a01c17da6c1bed46f3dc85c394015d11bd15d0993d2440264",
+  "handMeshDataLinked": true,
+  "runtimeModelsReplaced": false,
+  "gestures": [
+    {
+      "gesture": "tablet_raise",
+      "duration": 0.8,
+      "clip": "tablet_raise.assembly",
+      "deviceAndHandsShareRoot": true,
+      "actionEvent": null
+    },
+    {
+      "gesture": "tablet_lower",
+      "duration": 0.6,
+      "clip": "tablet_lower.assembly",
+      "deviceAndHandsShareRoot": true,
+      "actionEvent": null
+    },
+    {
+      "gesture": "card_present",
+      "clip": "card_present.rig",
+      "contact": 0.5,
+      "action": 0.58,
+      "holdUntil": 0.9,
+      "duration": 1.25,
+      "cardFixtureSize": [0.086, 0.0015, 0.054],
+      "pinchSurfaceDistance": 0.0014935736407284536,
+      "pinchThicknessError": 6.426359271546455e-6,
+      "pinchCorrectionRadians": {
+        "index.2.0": 0.1396263837814331,
+        "thumb.1.2": -0.13962633907794952,
+        "thumb.2.0": 0.13962633907794952,
+        "thumb.3.0": -0.10471975058317184
+      },
+      "readerContactGap": 0,
+      "masterPoseChanged": false,
+      "runtimeLegacyPropUnchanged": true
+    },
+    {
+      "gesture": "radio_press",
+      "clip": "radio_press.rig",
+      "contact": 0.5,
+      "action": 0.58,
+      "release": 0.72,
+      "duration": 1.0,
+      "buttonFixtureSize": [0.075, 0.045, 0.058],
+      "buttonTravel": 0.018,
+      "surfaceContactCalibrated": true,
+      "skinContactReference": [
+        -0.02663789689540863, 0.16681066155433655, 0.000454821769380942
+      ]
+    }
+  ],
+  "renderViews": [
+    ["01 Tablet raise", 0.8, "tablet-raise-ready"],
+    ["01 Tablet lower", 0, "tablet-lower-ready"],
+    ["02 Credential present", 0.22, "card-approach"],
+    ["02 Credential present", 0.5, "card-contact"],
+    ["03 Radio press", 0.23, "radio-approach"],
+    ["03 Radio press", 0.5, "radio-contact"],
+    ["03 Radio press", 0.58, "radio-pressed"]
+  ]
+}

@@ -1,5 +1,9 @@
 # Diálogos de la IA de CRUZ DEL SUR
 
+> **Inventario histórico del 17-11-2026.** La integración Stage A del 21-11-2026
+> sustituye estos disparadores y textos. Consultar [estado actual CDS-01](audio/cds01-stage-a.md)
+> y `src/game/dialogueManifest.ts`; las cantidades y el rótulo descritos abajo ya no son vigentes.
+
 Inventario del código actual, revisado el 17 de noviembre de 2026. Documento
 de trabajo para reescribir los textos y decidir sus nuevos disparadores.
 No modifica el comportamiento de la app.

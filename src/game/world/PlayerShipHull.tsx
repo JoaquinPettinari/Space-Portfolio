@@ -4,14 +4,14 @@ import { RigidBody, TrimeshCollider } from '@react-three/rapier'
 import { prepareShipModel } from './prepareShipModel'
 import { removeLegacyArrival } from './cabinMaster'
 import {
-  UNIFIED_ENVELOPE_ASSET,
   UNIFIED_COLLISION_ASSET,
+  WALKABLE_ENVELOPE_ASSET,
   readUnifiedCollision,
 } from './unifiedShipAssets'
 
 /** Unified exterior/interior skin; only structural geometry participates in physics. */
 export function PlayerShipHull() {
-  const envelope = useGLTF(UNIFIED_ENVELOPE_ASSET)
+  const envelope = useGLTF(WALKABLE_ENVELOPE_ASSET)
   const collision = useGLTF(UNIFIED_COLLISION_ASSET)
   const shape = useMemo(
     () => readUnifiedCollision(collision.scene),

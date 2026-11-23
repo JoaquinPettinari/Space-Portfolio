@@ -140,10 +140,11 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     ]),
   )
   const subtitle = page.getByRole('status', { name: 'Station assistant' })
-  await expect(subtitle).toHaveAttribute('data-dialogue-event', 'complete', {
-    timeout: 30000,
-  })
-  await expect(subtitle).not.toBeVisible({ timeout: 15000 })
+  // Optional portfolio objectives do not prove the future relay repair happened.
+  await expect(
+    page.locator('[data-dialogue-event="missionComplete"]'),
+  ).toHaveCount(0)
+  await expect(subtitle).not.toBeVisible({ timeout: 30000 })
   await page.keyboard.press('t')
   await expect(
     page.getByRole('region', { name: 'Held mission tablet' }),

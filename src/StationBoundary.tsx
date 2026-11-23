@@ -18,10 +18,15 @@ export class StationBoundary extends Component<
   render() {
     if (this.state.failed)
       return (
-        <p className="fallback" role="status">
-          The station could not load. You can still use Quick Portfolio Access
-          to view projects, experience, training and the CV.
-        </p>
+        <div className="fallback" role="status">
+          <p>
+            The station could not load. You can still use Quick Portfolio Access
+            to view projects, experience, training and the CV.
+          </p>
+          <button type="button" onClick={() => window.location.reload()}>
+            Reload station
+          </button>
+        </div>
       )
     return this.props.children
   }

@@ -1,10 +1,12 @@
-import { Suspense, useEffect, useRef, type ReactNode } from 'react'
+import { Suspense, useRef, type ReactNode } from 'react'
+import { InteriorReady } from './intro/InteriorReady'
 import { Physics } from '@react-three/rapier'
 import { Greybox } from './world/Greybox'
 import { DockingHatch } from './world/DockingHatch'
 import { Player } from './player/Player'
 import { MouseLook } from './player/MouseLook'
 import { Workstation } from './world/Workstation'
+import { StationHighlights } from './world/StationHighlights'
 import { Interaction } from './interaction/Interaction'
 import { ArchiveScreen } from './world/ArchiveScreen'
 import { TacticalStation } from './world/TacticalStation'
@@ -22,19 +24,14 @@ import { CoffeeMachine } from './world/CoffeeMachine'
 import { ShipRadio, type ShipRadioHandle } from './world/ShipRadio'
 import { ReferenceCassettes } from './world/ReferenceCassettes'
 import { NavigationConsole } from './world/NavigationConsole'
+import { ZeroContributionLights } from './rendering/WarmLightFastPath'
 import type { StationControls } from './useStationControls'
 import type { MissionId } from './missions'
 import type { BulkheadPhase } from './world/bulkhead'
 import type { IdentityPhase } from './world/identification'
 
-function Ready({ onReady }: { onReady: (ready: boolean) => void }) {
-  useEffect(() => {
-    onReady(true)
-    return () => onReady(false)
-  }, [onReady])
-  return null
-}
 type Props = {
+  prepareInterior: boolean
   subtitle: ReactNode
   controls: StationControls
   protocolModel: ReturnType<typeof useProtocol>
@@ -53,6 +50,7 @@ type Props = {
   onTransmission: (outcome: 'accepted' | 'skipped') => void
 }
 export function GameWorld({
+  prepareInterior,
   subtitle,
   controls,
   protocolModel,
@@ -89,6 +87,13 @@ export function GameWorld({
   } = controls
   return (
     <Suspense fallback={null}>
+      {playing &&
+        !suspended &&
+        mode === 'walking' &&
+        !transitioning &&
+        !tabletRaised && (
+          <StationHighlights target={target} objective={currentObjective?.id} />
+        )}
       <Physics
         timeStep={1 / 60}
         paused={
@@ -103,6 +108,8 @@ export function GameWorld({
         updatePriority={-1}
       >
         <Greybox
+          exteriorPaused={suspended || controls.showMouseHint}
+          prepareInterior={prepareInterior}
           emergency={!lightsOn}
           bulkheadPhase={bulkheadPhase}
           onBulkheadPhaseChange={onBulkheadPhaseChange}
@@ -125,6 +132,7 @@ export function GameWorld({
           transitioning={transitioning}
           onRest={onCameraRest}
         />
+        <InteriorReady active={prepareInterior} onReady={setReady} />
       </Physics>
       {mode === 'crew' && !transitioning && (
         <PhysicalTerminal
@@ -216,7 +224,7 @@ export function GameWorld({
         onLock={controls.onLock}
         onUnlock={controls.onUnlock}
       />
-      <Ready onReady={setReady} />
+      <ZeroContributionLights />
     </Suspense>
   )
 }

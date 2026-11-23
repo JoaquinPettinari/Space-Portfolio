@@ -10,7 +10,7 @@ import { CabinLighting } from './CabinLighting'
 import { EntryAirlock } from './EntryAirlock'
 import { ArrivalSurfaceEnvironment } from './ArrivalSurfaceEnvironment'
 import { PanoramicPassage } from './PanoramicPassage'
-import { BridgeThroatFrame } from './BridgeThroatFrame'
+import { TransitionShelves } from './TransitionShelves'
 import { TABLE_POSITION } from '../interaction/station'
 import { Bulkhead } from './SlidingBulkhead'
 import type { BulkheadPhase } from './bulkhead'
@@ -80,17 +80,21 @@ function CentralTable() {
 
 export function Greybox({
   emergency = true,
+  prepareInterior = true,
+  exteriorPaused,
   bulkheadPhase,
   onBulkheadPhaseChange,
 }: {
   emergency?: boolean
+  prepareInterior?: boolean
+  exteriorPaused: boolean
   bulkheadPhase: BulkheadPhase
   onBulkheadPhaseChange: (phase: BulkheadPhase) => void
 }) {
   return (
-    <ArrivalSurfaceEnvironment emergency={emergency}>
+    <ArrivalSurfaceEnvironment emergency={emergency} active={prepareInterior}>
       <group>
-        <SpaceExterior />
+        <SpaceExterior paused={exteriorPaused} />
         <PlayerShipHull />
         <RefinedInteriorDetails />
         <group position={[0, 0, BRIDGE_OFFSET_Z]}>
@@ -116,7 +120,7 @@ export function Greybox({
         </RigidBody>
         <EntryAirlock emergency={emergency} phase={bulkheadPhase} />
         <PanoramicPassage />
-        <BridgeThroatFrame />
+        <TransitionShelves />
         <RigidBody type="fixed" colliders={false}>
           <CuboidCollider
             position={[0, -0.1, TRANSITION_CENTER - 0.075]}

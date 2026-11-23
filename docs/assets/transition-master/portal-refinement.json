@@ -1,0 +1,135 @@
+{
+  "source": "transition-master.blend",
+  "sourceSHA256": "12e140336fc1e245278a8ff1d894a60de5c8284ca25037a3430852dc16811973",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "minimumClearWidthMetres": 2.68,
+  "centralHeadroomMetres": 2.5,
+  "outerFrontHalfWidthMetres": 2.8999998569488525,
+  "kneeHeightMetres": 0.65,
+  "evaluatedTriangles": 168620,
+  "clearanceRays": [
+    {
+      "x": -1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 2.0,
+      "clear": true
+    }
+  ],
+  "renderEngine": "BLENDER_EEVEE",
+  "resolution": [1280, 800],
+  "threads": 2,
+  "samples": 16,
+  "gpuTimingMeasured": false,
+  "headroomRays": [
+    {
+      "x": -0.7,
+      "height": 2.5,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.5,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.5,
+      "clear": true
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+.docking-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  pointer-events: auto;
+  background: #000;
+  --intro-fade-duration: 0.6s;
+  --intro-reveal-duration: 1.4s;
+}
+.docking-intro__video,
+.docking-intro__poster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.docking-intro__fade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+}
+.docking-intro[data-intro-phase='waiting-interior'] .docking-intro__fade,
+.docking-intro[data-intro-phase='failed'] .docking-intro__fade {
+  opacity: 1;
+}
+.docking-intro[data-intro-phase='fading'] .docking-intro__fade {
+  animation: docking-fade var(--intro-fade-duration) linear both;
+}
+.docking-intro__panel {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.1%;
+  background: #000;
+}
+.docking-intro[data-intro-phase='revealing'] {
+  background: transparent;
+}
+.docking-intro[data-intro-phase='revealing'] .docking-intro__panel {
+  display: block;
+}
+.docking-intro__panel--left {
+  left: 0;
+  animation: docking-open-left var(--intro-reveal-duration) ease-in-out both;
+}
+.docking-intro__panel--right {
+  right: 0;
+  animation: docking-open-right var(--intro-reveal-duration) ease-in-out both;
+}
+.docking-intro[data-reduced-motion='true'] {
+  --intro-fade-duration: 0.15s;
+  --intro-reveal-duration: 0.15s;
+}
+.docking-intro[data-reduced-motion='true'][data-intro-phase='loading-exterior']
+  .docking-intro__poster,
+.docking-intro[data-reduced-motion='true'][data-intro-phase='cinematic']
+  .docking-intro__poster {
+  animation: docking-still 0.6s linear both;
+}
+.docking-intro[data-paused='true'] * {
+  animation-play-state: paused !important;
+}
+.docking-intro__status,
+.docking-intro__caption,
+.docking-intro__actions {
+  position: absolute;
+  bottom: 9%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #c4dce4;
+  font:
+    500 13px/1.7 Inter,
+    sans-serif;
+  letter-spacing: 0.2em;
+}
+.docking-intro__caption span {
+  font-size: 10px;
+  opacity: 0.7;
+}
+.docking-intro__actions {
+  bottom: 35%;
+  letter-spacing: normal;
+}
+.docking-intro__actions button {
+  margin: 0.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #8bdce6;
+  background: #102b34;
+  color: #fff;
+  cursor: pointer;
+}
+@keyframes docking-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes docking-open-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes docking-open-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes docking-still {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}

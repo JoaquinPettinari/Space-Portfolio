@@ -1,6 +1,11 @@
 import { openPausePortfolio } from './helpers/portfolio'
 import { expect, test, type Page } from '@playwright/test'
-import { enter, enterObservationRoom, snapshot } from './helpers/game'
+import {
+  approachCrew,
+  enter,
+  enterObservationRoom,
+  snapshot,
+} from './helpers/game'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
 test.setTimeout(180_000)
@@ -22,6 +27,41 @@ test.afterEach(({ page }) => {
   expect(errors.get(page)).toEqual([])
 })
 
+test('caption phrases advance without resizing at Crew Access', async ({
+  page,
+}) => {
+  await enter(page)
+  const subtitle = page.getByRole('status', { name: 'Station assistant' })
+  const message = subtitle.locator('.subtitle-message')
+  const dimensions = () =>
+    subtitle.evaluate((element) => {
+      const box = element.getBoundingClientRect()
+      const text = element.querySelector('.subtitle-message')!
+      return {
+        width: box.width,
+        height: box.height,
+        font: getComputedStyle(text).fontSize,
+        textWidth: text.getBoundingClientRect().width,
+      }
+    })
+  const before = await dimensions()
+  const first = await message.textContent()
+  await expect(message).not.toHaveText(first!, { timeout: 6000 })
+  expect(await dimensions()).toEqual(before)
+  await approachCrew(page)
+  await expect(subtitle).toBeVisible()
+  expect(await dimensions()).toEqual(before)
+  await page.keyboard.press('e')
+  await expect(page.getByRole('dialog', { name: 'Crew Access' })).toBeVisible()
+  await expect(subtitle).toBeVisible()
+  expect(await dimensions()).toEqual(before)
+  await page.keyboard.press('Escape')
+  await expect(
+    page.getByRole('dialog', { name: 'Crew Access' }),
+  ).not.toBeVisible()
+  expect(await dimensions()).toEqual(before)
+})
+
 test('Escape pause preserves the current subtitle until exploration resumes', async ({
   page,
 }) => {
@@ -32,12 +72,12 @@ test('Escape pause preserves the current subtitle until exploration resumes', as
   await expect(page.getByRole('dialog', { name: 'Game paused' })).toBeVisible()
   await expect(subtitle).not.toBeVisible()
   // Longer than the full arrival duration; real time and native Pointer Lock.
-  await page.waitForTimeout(11000)
+  await page.waitForTimeout(21000)
   await page.getByRole('button', { name: 'Resume mission' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
   await expect(subtitle).toBeVisible()
-  await expect(subtitle).not.toBeVisible({ timeout: 12000 })
+  await expect(subtitle).not.toBeVisible({ timeout: 22000 })
 })
 
 test('arrival expires and reopening the held tablet does not repeat its subtitle', async ({
@@ -45,7 +85,7 @@ test('arrival expires and reopening the held tablet does not repeat its subtitle
 }) => {
   const subtitle = page.getByRole('status', { name: 'Station assistant' })
   await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
-  await expect(subtitle).not.toBeVisible({ timeout: 20000 })
+  await expect(subtitle).not.toBeVisible({ timeout: 25000 })
   await enter(page)
   await page.keyboard.press('t')
   await expect(
@@ -73,18 +113,17 @@ test('arrival expires and reopening the held tablet does not repeat its subtitle
   ])
 })
 
-test('real power and bulkhead interactions advance entry dialogue without stacked subtitles', async ({
+test('verification and the forward passage crossing advance dialogue without door narration', async ({
   page,
 }) => {
   const subtitle = page.getByRole('status', { name: 'Station assistant' })
   await expect(subtitle).toHaveAttribute('data-dialogue-event', 'arrival')
   await enterObservationRoom(page)
   expect((await snapshot(page)).session.bulkheadPhase).toBe('open')
-  // The completed entry flow now ends with the useful tablet hint. Short door
-  // messages may finish while the helper walks across the passage.
+  // Door opening itself does not narrate the bridge; the real walk crosses its midpoint.
   await expect(subtitle).toHaveAttribute(
     'data-dialogue-event',
-    'tabletPrompt',
+    'bridgeIntroduction',
     {
       timeout: 20000,
     },

@@ -1,0 +1,106 @@
+{
+  "source": "transition-shelves-polished.blend",
+  "sourceSHA256": "bdd5b10b7b03ba87b245b9a9a0d8b5f6aba32075d420787e96ba27b60d5e45eb",
+  "sourceUnchanged": true,
+  "photos": [
+    {
+      "file": "public\\photos\\personal\\1.jpg",
+      "SHA256": "32b25791d07ca8854af3a15ee2cc7ab291889dbbe4fea8bc82c9b94bee7fbdde",
+      "originalPixels": [1440, 1080],
+      "packedPixels": [1440, 1080],
+      "physicalWidth": 0.3,
+      "physicalHeight": 0.225,
+      "cropped": false
+    },
+    {
+      "file": "public\\photos\\personal\\2.jpg",
+      "SHA256": "86e3fe945ce7db3bbf202e8b53e21865f5d3342e4bcf47d40f60bbf2c734d6c2",
+      "originalPixels": [2448, 2448],
+      "packedPixels": [1600, 1600],
+      "physicalWidth": 0.3,
+      "physicalHeight": 0.3,
+      "cropped": false
+    },
+    {
+      "file": "public\\photos\\personal\\3.jpg",
+      "SHA256": "d4aac29128bf718eacb09e081bbe2a211f15b853c45b714d7a1af7486cc51642",
+      "originalPixels": [1440, 1440],
+      "packedPixels": [1440, 1440],
+      "physicalWidth": 0.3,
+      "physicalHeight": 0.3,
+      "cropped": false
+    },
+    {
+      "file": "public\\photos\\personal\\4.jpg",
+      "SHA256": "4143bf97e148cf92721f313465236b51f56c494f729855763dc6290c5a5b309e",
+      "originalPixels": [1440, 1440],
+      "packedPixels": [1440, 1440],
+      "physicalWidth": 0.3,
+      "physicalHeight": 0.3,
+      "cropped": false
+    }
+  ],
+  "photosOriginalsUnchanged": true,
+  "clearanceRaysPassed": 33,
+  "evaluatedTriangles": 295577,
+  "runtimeChanged": false,
+  "render": {
+    "engine": "BLENDER_EEVEE",
+    "resolution": [1280, 800],
+    "samples": 32,
+    "threads": 2
+  },
+  "browserPerformanceMeasured": false,
+  "evaluatedGroupBounds": {
+    "DISPLAY / Running medal": {
+      "minimumRuntimeXYZ": [
+        -1.8300000429153442, 1.0554999113082886, 3.130000114440918
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6299999952316284, 1.4860000610351562, 3.369999885559082
+      ]
+    },
+    "DISPLAY / Triathlon emblem": {
+      "minimumRuntimeXYZ": [
+        -1.7950000762939453, 1.8049999475479126, 2.5350000858306885
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6449999809265137, 2.1100001335144043, 2.825000047683716
+      ]
+    },
+    "DISPLAY / Diagonal tennis racket": {
+      "minimumRuntimeXYZ": [
+        -1.700299859046936, 1.8469218015670776, 3.1015427112579346
+      ],
+      "maximumRuntimeXYZ": [
+        -1.679700255393982, 2.3345205783843994, 3.339223623275757
+      ]
+    },
+    "DISPLAY / Compact plant": {
+      "minimumRuntimeXYZ": [
+        -1.8825695514678955, 1.0460000038146973, 3.7542150020599365
+      ],
+      "maximumRuntimeXYZ": [
+        -1.5376687049865723, 1.42044198513031, 4.211593151092529
+      ]
+    },
+    "DISPLAY / Trailing plant": {
+      "minimumRuntimeXYZ": [
+        -1.8392000198364258, 1.3096611499786377, 4.224825382232666
+      ],
+      "maximumRuntimeXYZ": [
+        -1.4361183643341064, 2.08646821975708, 4.629997253417969
+      ]
+    },
+    "DISPLAY / Anatomical running shoe": {
+      "minimumRuntimeXYZ": [
+        -1.7739768028259277, 1.0729999542236328, 2.679999828338623
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6660232543945312, 1.1910810470581055, 2.990000009536743
+      ]
+    }
+  },
+  "groupBoundsPassed": true,
+  "oldShoeCollarRemoved": true
+}

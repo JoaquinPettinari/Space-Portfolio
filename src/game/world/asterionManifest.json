@@ -1,0 +1,100 @@
+{
+  "model": "/models/asterion-worlds.glb",
+  "sky": "/textures/asterion/sky.webp",
+  "skyRotationY": 1.5707963267948966,
+  "sunDirection": [
+    0.8951347470283508, 0.27848637104034424, -0.3481079638004303
+  ],
+  "ringMaterial": "ASTERION / Nacre prelit rings",
+  "boundsMin": [-191.34047302232204, -81.45290403030972, -188.98448749783435],
+  "boundsMax": [191.11125792881685, 128.960004963875, 192.64051240639105],
+  "bodies": [
+    {
+      "name": "HALO / high inclination companion",
+      "position": [15.0, 125.0, -8.0],
+      "radius": 3.9600051013960984
+    },
+    {
+      "name": "VESPER / tidally scarred mineral world",
+      "position": [-38, -12, -82],
+      "radius": 29.000007037457895
+    },
+    {
+      "name": "SELENE / Vesper moon",
+      "position": [-17.0, 16.0, -95.0],
+      "radius": 5.500006866721722
+    },
+    {
+      "name": "NACRE / copper and pearl gas giant",
+      "position": [48, 28, -165],
+      "radius": 9.000012802571886
+    },
+    {
+      "name": "ITHACA / violet storm giant",
+      "position": [32.0, 17.0, 115.0],
+      "radius": 29.000007037457895
+    },
+    {
+      "name": "ORISON / fractured ocean ice",
+      "position": [-53.0, -22.0, 100.0],
+      "radius": 17.00000200552087
+    },
+    {
+      "name": "ORISON / distant companion",
+      "position": [-80.0, 23.0, 145.0],
+      "radius": 4.000000705942449
+    },
+    {
+      "name": "CINDER / iron moon",
+      "position": [102.0, 14.0, 4.0],
+      "radius": 12.980015628489582
+    },
+    {
+      "name": "LUMEN / pale distant satellite",
+      "position": [-90.0, 3.5, -4.0],
+      "radius": 12.96001895068838
+    }
+  ],
+  "atmosphere": [
+    {
+      "name": "VESPER / tidally scarred mineral world / atmosphere",
+      "position": [-38, -12, -82],
+      "radius": 29.072326725319172,
+      "color": [0.17000000178813934, 0.47999998927116394, 1.0],
+      "strength": 0.28
+    },
+    {
+      "name": "NACRE / copper and pearl gas giant / atmosphere",
+      "position": [48, 28, -165],
+      "radius": 9.02244375476284,
+      "color": [0.699999988079071, 0.46000000834465027, 0.23999999463558197],
+      "strength": 0.28
+    },
+    {
+      "name": "ITHACA / violet storm giant / atmosphere",
+      "position": [32.0, 17.0, 115.0],
+      "radius": 29.072326725319172,
+      "color": [0.3499999940395355, 0.27000001072883606, 0.800000011920929],
+      "strength": 0.28
+    },
+    {
+      "name": "ORISON / fractured ocean ice / atmosphere",
+      "position": [-53.0, -22.0, 100.0],
+      "radius": 17.04239675353159,
+      "color": [0.12999999523162842, 0.6700000166893005, 0.7799999713897705],
+      "strength": 0.28
+    }
+  ],
+  "layoutAdjustments": [
+    {
+      "body": "VESPER",
+      "sourcePosition": [-38, -29, -82],
+      "runtimePosition": [-38, -12, -82]
+    },
+    {
+      "body": "NACRE",
+      "sourcePosition": [48, -17, -165],
+      "runtimePosition": [48, 28, -165]
+    }
+  ]
+}

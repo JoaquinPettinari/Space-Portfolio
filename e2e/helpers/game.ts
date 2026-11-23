@@ -15,24 +15,76 @@ export async function snapshot(page: Page): Promise<GameSnapshot> {
 }
 
 /** Real input only: diagnostics observe the pose, never alter it. */
+async function moveMouseAndObserve(page: Page, x: number, y: number) {
+  // Arm before sending input. CDP accepting a move does not mean the page has
+  // consumed its Pointer Lock delta, especially during software WebGL rendering.
+  const observer = await page.evaluateHandle(() => {
+    let dispose = () => {}
+    const delivered = new Promise<{ x: number; y: number } | null>(
+      (resolve) => {
+        let firstFrame = 0
+        let secondFrame = 0
+        let settled = 0
+        const delta = { x: 0, y: 0 }
+        const timeout = window.setTimeout(() => {
+          dispose()
+          resolve(null)
+        }, 3000)
+        const moved = (event: MouseEvent) => {
+          if (!event.isTrusted || !document.pointerLockElement) return
+          delta.x += event.movementX
+          delta.y += event.movementY
+          cancelAnimationFrame(firstFrame)
+          cancelAnimationFrame(secondFrame)
+          clearTimeout(settled)
+          // Raw-input bursts can continue after two render frames. Wait for a
+          // quiet interval measured from the last delivered event, not the send.
+          settled = window.setTimeout(() => {
+            firstFrame = requestAnimationFrame(() => {
+              secondFrame = requestAnimationFrame(() => {
+                dispose()
+                resolve(delta)
+              })
+            })
+          }, 150)
+        }
+        dispose = () => {
+          clearTimeout(timeout)
+          clearTimeout(settled)
+          cancelAnimationFrame(firstFrame)
+          cancelAnimationFrame(secondFrame)
+          document.removeEventListener('mousemove', moved)
+        }
+        document.addEventListener('mousemove', moved)
+      },
+    )
+    return { delivered, dispose: () => dispose() }
+  })
+  try {
+    await page.mouse.move(x, y)
+    const delta = await observer.evaluate(async (value) => value.delivered)
+    if (!delta)
+      throw new Error(`Native mouse move was not delivered: ${x}, ${y}`)
+    return delta
+  } finally {
+    await observer.evaluate((value) => value.dispose())
+    await observer.dispose()
+  }
+}
+
 export async function lookAt(
   page: Page,
   target: { x: number; y: number; z: number },
 ) {
-  let mouseX = 640
-  let mouseY = 360
-  await page.mouse.move(mouseX, mouseY)
+  // Pointer Lock returns before the station camera's return transition ends.
+  // The crosshair only appears once walking/mouse controls are actually enabled.
+  await expect(page.locator('.crosshair')).toBeVisible()
+  const viewport = page.viewportSize()
+  let mouseX = (viewport?.width ?? 1280) / 2
+  let mouseY = (viewport?.height ?? 720) / 2
+  let delivered = await moveMouseAndObserve(page, mouseX, mouseY)
+  const movements = []
   for (let attempt = 0; attempt < 12; attempt++) {
-    // Native input delivery can lag the render frames under GPU load. Keep the
-    // same angular tolerance, but allow bounded convergence before failing.
-    await page.waitForTimeout(80)
-    // Observe delivered raw input before calculating the next native mouse move.
-    await page.evaluate(
-      () =>
-        new Promise<void>((resolve) => {
-          requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-        }),
-    )
     const { cameraPosition: p, cameraRotation: q } = await snapshot(page)
     const yaw = Math.atan2(
       2 * (q.x * q.z + q.y * q.w),
@@ -51,16 +103,17 @@ export async function lookAt(
       Math.cos(desiredYaw - yaw),
     )
     const pitchDelta = desiredPitch - pitch
+    movements.push({ mouseX, mouseY, delivered, yawDelta, pitchDelta })
     if (Math.abs(yawDelta) < 0.008 && Math.abs(pitchDelta) < 0.008) return
     if (attempt === 11)
       throw new Error(
-        `Native mouse did not settle: ${JSON.stringify({ target, p, yawDelta, pitchDelta })}`,
+        `Native mouse did not settle: ${JSON.stringify({ target, p, movements })}`,
       )
     mouseX -= yawDelta / 0.002
     mouseY -= pitchDelta / 0.002
     // One native delta per correction avoids queued interpolation events being
     // coalesced under load while Pointer Lock is consuming relative movement.
-    await page.mouse.move(mouseX, mouseY)
+    delivered = await moveMouseAndObserve(page, mouseX, mouseY)
   }
 }
 
@@ -131,6 +184,13 @@ export async function enterObservationRoom(page: Page) {
         )
       })
       .toBeLessThan(0.01)
+    // The dialog click moves the native cursor before Pointer Lock resumes.
+    // Re-aim with real mouse input before checking the gaze-dependent hint.
+    await lookAt(page, {
+      x: CREW_ACCESS_POSITION[0],
+      y: CREW_ACCESS_POSITION[1],
+      z: CREW_ACCESS_POSITION[2],
+    })
     await expect(page.locator('.interaction-hint')).toContainText('Crew Access')
   }
   await walkTo(page, 0, 13.3)

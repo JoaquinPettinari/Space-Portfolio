@@ -2,46 +2,49 @@ import { Bvh, useGLTF } from '@react-three/drei'
 import { CuboidCollider } from '@react-three/rapier'
 import { TRANSITION_CENTER } from './bridgePlacement'
 import { useMemo } from 'react'
-import { REFINED_BRIDGE_ASSET } from './refinedArtAssets'
 import { StaticPanels } from './StaticPanels'
 import { SPINE_BACK_PANELS } from './bridgeWallPanels'
 import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
-import { PASSAGE_RECESS_PANELS } from './passageRecessPanels'
+import { trimTransitionBackPanels } from './transitionLayout'
 
-const shelfPanels = [...INTERIOR_SHELF_PANELS, ...PASSAGE_RECESS_PANELS]
+const backPanels = trimTransitionBackPanels([
+  ...SPINE_BACK_PANELS,
+  ...[-1, 1].map((side) => ({
+    at: [side * 3.07, 1.65, 2.13] as const,
+    size: [3.46, 3.3, 0.06] as const,
+    color: '#272b2f',
+    metalness: 0.35,
+    roughness: 0.65,
+  })),
+])
 
 /** Static Blender architecture. Screen hit targets and physics remain independent. */
 export function BridgeInterior() {
-  const { scene } = useGLTF(REFINED_BRIDGE_ASSET)
+  const { scene } = useGLTF(
+    '/models/cruz-del-sur-clean-bridge-transition-ready.glb',
+  )
   const root = useMemo(() => scene.clone(true), [scene])
   return (
     <>
-      <StaticPanels panels={SPINE_BACK_PANELS} />
-      <StaticPanels panels={shelfPanels} />
+      <StaticPanels panels={backPanels} />
+      <StaticPanels panels={INTERIOR_SHELF_PANELS} />
       {/* Spatial index accelerates exact triangle hits without changing the mesh. */}
       <Bvh indirect>
         <primitive object={root} dispose={null} />
       </Bvh>
-      {/* Opaque exterior backs close the niches when seen from the glass passage. */}
-      {[-1, 1].map((side) => (
-        <mesh
-          key={'niche-back-' + side}
-          name="rear-niche-opaque-exterior-back"
-          position={[side * 3.07, 1.65, 2.13]}
-        >
-          <boxGeometry args={[3.46, 3.3, 0.06]} />
-          <meshStandardMaterial
-            color="#272b2f"
-            metalness={0.35}
-            roughness={0.65}
-          />
-        </mesh>
-      ))}
       {[-1, 1].map((side) => (
         <CuboidCollider
           key={side}
           position={[side * 1.7, 1.65, TRANSITION_CENTER]}
           args={[0.2, 1.65, 1.5]}
+        />
+      ))}
+      {/* The new central pilasters project beyond the recessed shelf collider. */}
+      {[-1, 1].map((side) => (
+        <CuboidCollider
+          key={`pilaster-${side}`}
+          position={[side * 1.57, 1.25, TRANSITION_CENTER]}
+          args={[0.23, 1.25, 0.125]}
         />
       ))}
       <CuboidCollider

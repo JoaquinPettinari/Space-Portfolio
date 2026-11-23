@@ -1,0 +1,1056 @@
+{
+  "sourceMasterUnchanged": true,
+  "timing": {
+    "tablet": {
+      "raise": 0.8,
+      "lower": 0.6
+    },
+    "card": {
+      "contact": 0.5,
+      "action": 0.58,
+      "holdUntil": 0.9,
+      "duration": 1.25
+    },
+    "radio": {
+      "contact": 0.5,
+      "action": 0.58,
+      "release": 0.72,
+      "duration": 1.0
+    }
+  },
+  "reports": [
+    {
+      "gesture": "radio_press",
+      "samples": [
+        {
+          "seconds": 0.0,
+          "surfaceGap": 0.24096027106046677,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.01,
+          "surfaceGap": 0.240614832341671,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.02,
+          "surfaceGap": 0.23960180670022965,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.03,
+          "surfaceGap": 0.23795874506235123,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.04,
+          "surfaceGap": 0.23572273641824723,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.05,
+          "surfaceGap": 0.2329311975836754,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.06,
+          "surfaceGap": 0.22962139636278153,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.07,
+          "surfaceGap": 0.22583063036203385,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.08,
+          "surfaceGap": 0.22159636110067368,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.09,
+          "surfaceGap": 0.21695585638284684,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.1,
+          "surfaceGap": 0.21194638401269913,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.11,
+          "surfaceGap": 0.20660525649785996,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.12,
+          "surfaceGap": 0.20096948832273484,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.13,
+          "surfaceGap": 0.1950760790705681,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.14,
+          "surfaceGap": 0.18896204322576524,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.15,
+          "surfaceGap": 0.18266402274370194,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.16,
+          "surfaceGap": 0.17621871918439866,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.17,
+          "surfaceGap": 0.16966255098581315,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.18,
+          "surfaceGap": 0.16303196638822556,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.19,
+          "surfaceGap": 0.15636311560869218,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.2,
+          "surfaceGap": 0.14969210416078568,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.21,
+          "surfaceGap": 0.14305476933717728,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.22,
+          "surfaceGap": 0.13648708254098893,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.23,
+          "surfaceGap": 0.1300246724486351,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.24,
+          "surfaceGap": 0.12357106894254685,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.25,
+          "surfaceGap": 0.117023483812809,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.26,
+          "surfaceGap": 0.11040811330080033,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.27,
+          "surfaceGap": 0.10375097483396531,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.28,
+          "surfaceGap": 0.09707817524671555,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.29,
+          "surfaceGap": 0.09041592568159104,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.3,
+          "surfaceGap": 0.0837903180718422,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.31,
+          "surfaceGap": 0.07722766786813737,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.32,
+          "surfaceGap": 0.07075437992811204,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.33,
+          "surfaceGap": 0.06439726144075394,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.34,
+          "surfaceGap": 0.05818317919969559,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.35,
+          "surfaceGap": 0.05213885098695755,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.36,
+          "surfaceGap": 0.046290949881076814,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.37,
+          "surfaceGap": 0.04066620856523514,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.38,
+          "surfaceGap": 0.0352913299202919,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.39,
+          "surfaceGap": 0.03019298702478409,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.4,
+          "surfaceGap": 0.02539789766073227,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.41,
+          "surfaceGap": 0.020932749807834626,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.42,
+          "surfaceGap": 0.016824261248111726,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.43,
+          "surfaceGap": 0.013099134862422944,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.44,
+          "surfaceGap": 0.009784058630466462,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.45,
+          "surfaceGap": 0.006905735433101655,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.46,
+          "surfaceGap": 0.004490883052349091,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.47,
+          "surfaceGap": 0.002566174566745759,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.48,
+          "surfaceGap": 0.0011583277583122262,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.49,
+          "surfaceGap": 0.00029403057764284396,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.5,
+          "surfaceGap": 8.741884646723541e-10,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.51,
+          "surfaceGap": 8.344650269387355e-9,
+          "buttonTravel": 0.0007734382152557381
+        },
+        {
+          "seconds": 0.52,
+          "surfaceGap": 1.0207295418618312e-8,
+          "buttonTravel": 0.002812500074505807
+        },
+        {
+          "seconds": 0.53,
+          "surfaceGap": -9.685754767674304e-10,
+          "buttonTravel": 0.0056953122466802605
+        },
+        {
+          "seconds": 0.54,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.008999996781349183
+        },
+        {
+          "seconds": 0.55,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.012304686903953553
+        },
+        {
+          "seconds": 0.56,
+          "surfaceGap": 8.940696724635266e-10,
+          "buttonTravel": 0.015187502801418305
+        },
+        {
+          "seconds": 0.57,
+          "surfaceGap": -1.400709152138413e-8,
+          "buttonTravel": 0.017226562798023225
+        },
+        {
+          "seconds": 0.58,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.59,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.6,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.61,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.62,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.63,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.64,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.65,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.66,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.67,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.68,
+          "surfaceGap": -6.5565109244603015e-9,
+          "buttonTravel": 0.01800000011920929
+        },
+        {
+          "seconds": 0.69,
+          "surfaceGap": -1.0281801222922216e-8,
+          "buttonTravel": 0.015187506526708604
+        },
+        {
+          "seconds": 0.7,
+          "surfaceGap": -2.8312206259983874e-9,
+          "buttonTravel": 0.009000000506639481
+        },
+        {
+          "seconds": 0.71,
+          "surfaceGap": 6.482005120156398e-9,
+          "buttonTravel": 0.0028124963492155083
+        },
+        {
+          "seconds": 0.72,
+          "surfaceGap": 8.741884646723541e-10,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.73,
+          "surfaceGap": 0.0008962759375572213,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.74,
+          "surfaceGap": 0.003497720658779145,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.75,
+          "surfaceGap": 0.0076736965775489815,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.76,
+          "surfaceGap": 0.013293669521808625,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.77,
+          "surfaceGap": 0.02022725433111191,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.78,
+          "surfaceGap": 0.028344170153141023,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.79,
+          "surfaceGap": 0.037514091432094575,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.8,
+          "surfaceGap": 0.0476066330075264,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.81,
+          "surfaceGap": 0.058491439521312714,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.82,
+          "surfaceGap": 0.07003790229558945,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.83,
+          "surfaceGap": 0.08211526364088059,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.84,
+          "surfaceGap": 0.09459266155958176,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.85,
+          "surfaceGap": 0.10733889132738114,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.86,
+          "surfaceGap": 0.12022265881299973,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.87,
+          "surfaceGap": 0.1331122824549675,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.88,
+          "surfaceGap": 0.14587602108716965,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.89,
+          "surfaceGap": 0.15838171631097794,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.9,
+          "surfaceGap": 0.170497045814991,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.91,
+          "surfaceGap": 0.18208953827619553,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.92,
+          "surfaceGap": 0.19302639454603196,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.93,
+          "surfaceGap": 0.2031748601794243,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.94,
+          "surfaceGap": 0.21240191251039506,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.95,
+          "surfaceGap": 0.22057439476251603,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.96,
+          "surfaceGap": 0.22755915015935899,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.97,
+          "surfaceGap": 0.23322314113378526,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.98,
+          "surfaceGap": 0.23743338972330094,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 0.99,
+          "surfaceGap": 0.24005675405263902,
+          "buttonTravel": 8.940696724635266e-10
+        },
+        {
+          "seconds": 1.0,
+          "surfaceGap": 0.24096027106046677,
+          "buttonTravel": 8.940696724635266e-10
+        }
+      ],
+      "contactBeforeAction": true,
+      "allPressureFramesMaintainContact": true
+    },
+    {
+      "gesture": "card_present",
+      "samples": [
+        {
+          "seconds": 0.0,
+          "readerGap": 0.2190693486481905
+        },
+        {
+          "seconds": 0.01,
+          "readerGap": 0.21841936185956
+        },
+        {
+          "seconds": 0.02,
+          "readerGap": 0.21655065938830376
+        },
+        {
+          "seconds": 0.03,
+          "readerGap": 0.21358508802950382
+        },
+        {
+          "seconds": 0.04,
+          "readerGap": 0.20964455232024193
+        },
+        {
+          "seconds": 0.05,
+          "readerGap": 0.20485089719295502
+        },
+        {
+          "seconds": 0.06,
+          "readerGap": 0.19932602159678936
+        },
+        {
+          "seconds": 0.07,
+          "readerGap": 0.19319176487624645
+        },
+        {
+          "seconds": 0.08,
+          "readerGap": 0.1865700390189886
+        },
+        {
+          "seconds": 0.09,
+          "readerGap": 0.17958267405629158
+        },
+        {
+          "seconds": 0.1,
+          "readerGap": 0.17235159873962402
+        },
+        {
+          "seconds": 0.11,
+          "readerGap": 0.16499860398471355
+        },
+        {
+          "seconds": 0.12,
+          "readerGap": 0.15764564089477062
+        },
+        {
+          "seconds": 0.13,
+          "readerGap": 0.15041454136371613
+        },
+        {
+          "seconds": 0.14,
+          "readerGap": 0.14342718757689
+        },
+        {
+          "seconds": 0.15,
+          "readerGap": 0.13680545799434185
+        },
+        {
+          "seconds": 0.16,
+          "readerGap": 0.13067122362554073
+        },
+        {
+          "seconds": 0.17,
+          "readerGap": 0.12514632940292358
+        },
+        {
+          "seconds": 0.18,
+          "readerGap": 0.12035268545150757
+        },
+        {
+          "seconds": 0.19,
+          "readerGap": 0.11641214601695538
+        },
+        {
+          "seconds": 0.2,
+          "readerGap": 0.11344659142196178
+        },
+        {
+          "seconds": 0.21,
+          "readerGap": 0.11157786473631859
+        },
+        {
+          "seconds": 0.22,
+          "readerGap": 0.1109278704971075
+        },
+        {
+          "seconds": 0.23,
+          "readerGap": 0.11051351204514503
+        },
+        {
+          "seconds": 0.24,
+          "readerGap": 0.10931084677577019
+        },
+        {
+          "seconds": 0.25,
+          "readerGap": 0.10738052614033222
+        },
+        {
+          "seconds": 0.26,
+          "readerGap": 0.1047831792384386
+        },
+        {
+          "seconds": 0.27,
+          "readerGap": 0.1015794426202774
+        },
+        {
+          "seconds": 0.28,
+          "readerGap": 0.09782996959984303
+        },
+        {
+          "seconds": 0.29,
+          "readerGap": 0.09359538927674294
+        },
+        {
+          "seconds": 0.3,
+          "readerGap": 0.08893634285777807
+        },
+        {
+          "seconds": 0.31,
+          "readerGap": 0.08391345851123333
+        },
+        {
+          "seconds": 0.32,
+          "readerGap": 0.07858738489449024
+        },
+        {
+          "seconds": 0.33,
+          "readerGap": 0.07301875855773687
+        },
+        {
+          "seconds": 0.34,
+          "readerGap": 0.06726821046322584
+        },
+        {
+          "seconds": 0.35,
+          "readerGap": 0.06139638926833868
+        },
+        {
+          "seconds": 0.36,
+          "readerGap": 0.055463939905166626
+        },
+        {
+          "seconds": 0.37,
+          "readerGap": 0.04953148029744625
+        },
+        {
+          "seconds": 0.38,
+          "readerGap": 0.0436596586368978
+        },
+        {
+          "seconds": 0.39,
+          "readerGap": 0.03790911613032222
+        },
+        {
+          "seconds": 0.4,
+          "readerGap": 0.032340488862246275
+        },
+        {
+          "seconds": 0.41,
+          "readerGap": 0.02701441803947091
+        },
+        {
+          "seconds": 0.42,
+          "readerGap": 0.02199153951369226
+        },
+        {
+          "seconds": 0.43,
+          "readerGap": 0.017332473769783974
+        },
+        {
+          "seconds": 0.44,
+          "readerGap": 0.013097899500280619
+        },
+        {
+          "seconds": 0.45,
+          "readerGap": 0.009348422405309975
+        },
+        {
+          "seconds": 0.46,
+          "readerGap": 0.006144695216789842
+        },
+        {
+          "seconds": 0.47,
+          "readerGap": 0.003547343017999083
+        },
+        {
+          "seconds": 0.48,
+          "readerGap": 0.0016170279413927346
+        },
+        {
+          "seconds": 0.49,
+          "readerGap": 0.0004143723053857684
+        },
+        {
+          "seconds": 0.5,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.51,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.52,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.53,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.54,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.55,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.56,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.57,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.58,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.59,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.6,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.61,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.62,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.63,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.64,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.65,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.66,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.67,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.68,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.69,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.7,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.71,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.72,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.73,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.74,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.75,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.76,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.77,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.78,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.79,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.8,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.81,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.82,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.83,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.84,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.85,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.86,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.87,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.88,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.89,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.9,
+          "readerGap": -1.132868021613831e-9
+        },
+        {
+          "seconds": 0.91,
+          "readerGap": 0.0005262814665911719
+        },
+        {
+          "seconds": 0.92,
+          "readerGap": 0.002064238564344123
+        },
+        {
+          "seconds": 0.93,
+          "readerGap": 0.004552557657007128
+        },
+        {
+          "seconds": 0.94,
+          "readerGap": 0.007929932209663093
+        },
+        {
+          "seconds": 0.95,
+          "readerGap": 0.012135042692534626
+        },
+        {
+          "seconds": 0.96,
+          "readerGap": 0.01710657449439168
+        },
+        {
+          "seconds": 0.97,
+          "readerGap": 0.022783217951655388
+        },
+        {
+          "seconds": 0.98,
+          "readerGap": 0.0291036581620574
+        },
+        {
+          "seconds": 0.99,
+          "readerGap": 0.03600657731294632
+        },
+        {
+          "seconds": 1.0,
+          "readerGap": 0.04343066504225135
+        },
+        {
+          "seconds": 1.01,
+          "readerGap": 0.051314601209014654
+        },
+        {
+          "seconds": 1.02,
+          "readerGap": 0.059597089886665344
+        },
+        {
+          "seconds": 1.03,
+          "readerGap": 0.06821679044514894
+        },
+        {
+          "seconds": 1.04,
+          "readerGap": 0.0771124241873622
+        },
+        {
+          "seconds": 1.05,
+          "readerGap": 0.08622263930737972
+        },
+        {
+          "seconds": 1.06,
+          "readerGap": 0.09548613522201777
+        },
+        {
+          "seconds": 1.07,
+          "readerGap": 0.1048416094854474
+        },
+        {
+          "seconds": 1.08,
+          "readerGap": 0.1142277354374528
+        },
+        {
+          "seconds": 1.09,
+          "readerGap": 0.12358320318162441
+        },
+        {
+          "seconds": 1.1,
+          "readerGap": 0.13284671306610107
+        },
+        {
+          "seconds": 1.11,
+          "readerGap": 0.14195692352950573
+        },
+        {
+          "seconds": 1.12,
+          "readerGap": 0.15085254423320293
+        },
+        {
+          "seconds": 1.13,
+          "readerGap": 0.15947226993739605
+        },
+        {
+          "seconds": 1.14,
+          "readerGap": 0.16775473207235336
+        },
+        {
+          "seconds": 1.15,
+          "readerGap": 0.17563869431614876
+        },
+        {
+          "seconds": 1.16,
+          "readerGap": 0.18306278064846992
+        },
+        {
+          "seconds": 1.17,
+          "readerGap": 0.18996569514274597
+        },
+        {
+          "seconds": 1.18,
+          "readerGap": 0.19628611952066422
+        },
+        {
+          "seconds": 1.19,
+          "readerGap": 0.2019627746194601
+        },
+        {
+          "seconds": 1.2,
+          "readerGap": 0.20693431608378887
+        },
+        {
+          "seconds": 1.21,
+          "readerGap": 0.21113945171236992
+        },
+        {
+          "seconds": 1.22,
+          "readerGap": 0.21451679058372974
+        },
+        {
+          "seconds": 1.23,
+          "readerGap": 0.21700512990355492
+        },
+        {
+          "seconds": 1.24,
+          "readerGap": 0.2185430694371462
+        },
+        {
+          "seconds": 1.25,
+          "readerGap": 0.2190693486481905
+        }
+      ],
+      "contactBeforeAction": true,
+      "heldDuringScan": true,
+      "pinchSurfaceGap": 0.0014935736407284536,
+      "fixtureThickness": 0.0015
+    },
+    {
+      "gesture": "tablet_raise",
+      "handsAndTabletKeepRelativeTransforms": true
+    },
+    {
+      "gesture": "tablet_lower",
+      "handsAndTabletKeepRelativeTransforms": true
+    }
+  ]
+}

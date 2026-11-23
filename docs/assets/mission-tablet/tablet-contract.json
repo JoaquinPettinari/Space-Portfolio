@@ -1,0 +1,16 @@
+{
+  "bodyMetres": [0.39, 0.256, 0.03],
+  "coordinateSystem": "Blender X right, Z up, front -Y; glTF X right,Y up,front +Z",
+  "screenMetres": [0.335, 0.199],
+  "screenOrigin": [0, -0.0158, 0],
+  "handGripOrigins": {
+    "left": [-0.23499999940395355, 0.009999999776482582, -0.11999999731779099],
+    "right": [0.23499999940395355, 0.009999999776482582, -0.11999999731779099]
+  },
+  "runtimeChanged": false,
+  "staticUIPreviewExcluded": true,
+  "handGripRotationYDegrees": {
+    "left": 12,
+    "right": -12
+  }
+}

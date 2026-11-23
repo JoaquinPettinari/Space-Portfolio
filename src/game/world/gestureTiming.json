@@ -1,0 +1,10 @@
+{
+  "tablet": { "raise": 0.8, "lower": 0.6 },
+  "card": {
+    "contact": 0.5,
+    "action": 0.58,
+    "holdUntil": 0.9,
+    "duration": 1.25
+  },
+  "radio": { "contact": 0.5, "action": 0.58, "release": 0.72, "duration": 1.0 }
+}

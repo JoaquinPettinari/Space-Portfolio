@@ -1,0 +1,25 @@
+{
+  "review_only": true,
+  "orientation": "Blender +Y = bridge forward (Three -Z); +Z = up.",
+  "world_texture": [1774, 887],
+  "cameras": [
+    "VIEW 01 / Bridge / Vesper and Nacre",
+    "VIEW 02 / Aft / Ithaca and Orison",
+    "VIEW 03 / Port / Lumen and nebular arc",
+    "VIEW 04 / Starboard / Cinder and debris",
+    "VIEW 05 / 360 equirectangular",
+    "VIEW 06 / Artwork seam inspection"
+  ],
+  "objects": 175,
+  "worlds": "Vesper / Nacre / Ithaca / Orison / Cinder / Lumen; fictional, not Solar System replicas.",
+  "limitations": [
+    "Procedural planet shaders require baking before glTF export.",
+    "No browser performance measurement yet; preview is authoring quality."
+  ],
+  "sky_source": "docs\\assets\\cosmos\\asterion-galaxy-art.png",
+  "sky_color_space": "sRGB",
+  "sky_packed": true,
+  "procedural_fallback_texture": [4096, 2048],
+  "seam_and_pole_blend": true,
+  "sky_projection_degrees": 100
+}

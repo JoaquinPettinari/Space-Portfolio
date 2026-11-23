@@ -1,0 +1,155 @@
+{
+  "source": "docs\\assets\\transition-master\\transition-shelves-finished.blend",
+  "sourceSHA256": "eb5bfab2100f79b2710ea533a396bb615e4745c8dfbe1601fd53a99d5b30e401",
+  "sourceUnchanged": true,
+  "coordinateSpace": "World Y-up; no offset",
+  "excludedCollectionPrefixes": ["90", "98", "99"],
+  "lightsExported": false,
+  "sourceObjects": 1213,
+  "sourceMaterials": 45,
+  "bakedMaterials": [
+    {
+      "material": "Racing perforated black overlays",
+      "key": "4cac7133bb2aa13d556cd155fd7554507419e835bcf8551142907be0152dbc6d",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Botanical leaf 0",
+      "key": "e23bb92f1f3331cf2dffae4e23a71e4d2a4549b364c9838394beefa97fe39d10",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Botanical leaf 1",
+      "key": "3f980113cf8d13303ff7ae73fd59811936ce2d8271f93888c2811c942bb3aa35",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Botanical leaf 2",
+      "key": "c7810f0e8176b57ebfa6a41d0ae4e378c4b50dc37e1e0e58d0011ad9ac7705e9",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Botanical leaf 3",
+      "key": "fe94403512d4ed7ba02eeed1581747c9d55d9c7c779be2840ac7d38a20b9a783",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Curated cloth binding",
+      "key": "ad47b5c9891e225750fffe4af65ce991863201f8ad3b60e636ef629546e1f12b",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Curated textile coral",
+      "key": "6f02c71f2fe21eb203da5ee96fbed1496e6004e77020c8aa51f6ff411d0c2710",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Curated woven midnight",
+      "key": "1c5970964decb3cf9321aad14c2ed103fec6054efdf67a28dfce2cb86ed72ddc",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Medal satin brass.001",
+      "key": "ce70e90e52150716001fd496fa129b978bde74c9d12387cba258fccf95bf5d92",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Racing expanded white foam",
+      "key": "ccb3e5226384fad5166ace44b5f349567eea2cb5c70f1e8270b5e10f5838cf4b",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Racing white woven upper",
+      "key": "c7d80608393e8544b2c844fad47e8af7ca422eef7a8fd8c09036e6c127c0c8ff",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Shelf satin machined end caps",
+      "key": "180b346a14f0bfc64f2fa6818b36dd39e2ae1968124bb5a133cf6c8475321480",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "SHELVES / Sport textile ivory",
+      "key": "a8fd9a16b9288b2db32330b97058a765ba3808aa4d7fe2c478cfd288b53721ac",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Anodized warm edge",
+      "key": "036619f37914b49a087e2c32d33fcc0fcf3291100c914ba11e0aecaa75bc3acd",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Brushed titanium",
+      "key": "e6c0916a5e4dd4978eda714e6d3489dc39a2348770b7b51a7b9114707e08f483",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Dark manganese tread",
+      "key": "5793329a10ab1e38702688c36ad270b3a5977c2be713bf6f744187e33ef0e5a9",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Graphite painted alloy",
+      "key": "a0af420dab92cc4d4654837c915ccb17173af4cfe7e6670e02f345d4982178e7",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Recessed pressure seals",
+      "key": "a0ac35c1ba22d0373611335f0b5d00b69a0e94e3a214a329804a0a45480eaa34",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Technical folio blue",
+      "key": "b42eb12f69f9f9535b35f098b2ac313fa2f6516b8d98634be11e513733fdbd25",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "TRANSITION / Warm ceramic panels",
+      "key": "39f04ad89ce2b13af15fad2bd09bb0f46971f705ecab784063488e0336bc892f",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    }
+  ],
+  "file": "public\\models\\cruz-del-sur-transition.glb",
+  "bytes": 23636444,
+  "sha256": "794e41b614952d9345624404d28020ef9b0952a9fbbf6180d2f3f025a6db42cb",
+  "meshBatches": 45,
+  "gltfPrimitives": 45,
+  "materials": 45,
+  "images": 64,
+  "textures": 64,
+  "triangles": 316069,
+  "boundsRuntime": {
+    "min": [-2.8999998569488525, -0.1599999964237213, 1.9600000381469727],
+    "max": [2.8999998569488525, 3.200000047683716, 5.28000020980835]
+  },
+  "photoMaterials": [
+    "TRANSITION_PBR_SHELVES_Personal_photograph_1",
+    "TRANSITION_PBR_SHELVES_Personal_photograph_2",
+    "TRANSITION_PBR_SHELVES_Personal_photograph_3",
+    "TRANSITION_PBR_SHELVES_Personal_photograph_4"
+  ],
+  "photoUvPreserved": true,
+  "proceduralAdaptation": "Reusable 512px unlit color/ORM/tangent-normal tiles with per-object local planar UVs; authored photo UVs unchanged",
+  "browserPerformanceMeasured": false,
+  "losslessNormalTextures": 20
+}

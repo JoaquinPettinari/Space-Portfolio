@@ -1,5 +1,70 @@
 # Arquitectura
 
+## Cinemática de llegada y carga
+
+La intro se reproduce con un video H.264 prerenderizado desde el maestro Blender,
+fuera de React Three Fiber. El bootstrap no importa Three ni espera los GLB.
+La variante actual muestra la entrada completa de PAMPA al acceso circular corto
+y el cierre de sus dos hojas redondas; este espacio es cinematográfico, no una
+zona jugable adicional. La punta estacionada se carga como un GLB independiente
+detrás del visor de la esclusa, dentro del mismo límite de carga del interior.
+No incorpora luces ni animación: [contrato PAMPA](assets/docking-intro/pampa-interior-runtime.md).
+Después del primer cuadro presentado y de almacenar el video completo en buffer,
+`App` importa `Game` para descargar y montar los recursos durante la reproducción.
+El frameloop, la generación de reflejos PMREM y la compilación de shaders esperan
+al fundido negro completo: preparar GPU simultáneamente causaba pérdida de cuadros.
+
+El evento nativo `ended` inicia el fundido; los eventos de animación CSS controlan
+la apertura central. No hay un segundo reloj RAF que pueda atrasar la película.
+`InteriorReady` exige cuerpos/colliders, shaders compilados y un dibujo real.
+Además del video opaco, el contenedor de `Game` conserva `visibility: hidden`
+hasta la apertura: ningún render de preparación puede filtrar el interior.
+Cuando está listo, se detiene su frameloop hasta la apertura para liberar GPU.
+
+`Game` suspende controles/diálogos hasta finalizar y encola bienvenida una vez.
+Movimiento reducido usa el poster estático; ocultar la pestaña pausa reproducción
+y transiciones. Los errores de video permiten reintentar o continuar; los del
+interior usan `StationBoundary`, recarga y portfolio accesible.
+Contrato, recursos y límites en [docking intro](assets/docking-intro/README.md).
+
+## Preparación de la carga inicial
+
+El holograma táctico utiliza geometría preparada offline con
+`node scripts/assets/prepare-tactical-display.ts`. El exportador reutiliza la
+composición de cabina y conserva exactamente posiciones, índices y aristas;
+regenerarlo cuando cambien sus fuentes. Las pruebas verifican sus hashes y la
+igualdad binaria de la geometría. `GzipGLTFLoader` descarga el derivado comprimido
+sin pérdidas y conserva el GLB original como alternativa para navegadores sin
+descompresión nativa. La caché del loader posee las geometrías compartidas.
+
+`ZeroContributionLights` se instala dentro del Suspense del mundo, en el efecto
+de layout anterior al primer frame y a `Ready`. Así los materiales reciben la
+optimización existente antes de compilarse, manteniendo el mismo resultado
+visual. No se reducen texturas, fotos, geometría ni luces de los estantes.
+Mediciones y límites: [carga inicial](audits/startup-loading/README.md).
+
+## Estantes de transición — integración Blender
+
+`TransitionShelves` reemplaza los antiguos nichos del pasillo con el maestro
+personalizado, incluyendo las cuatro fotografías. El puente y la envolvente
+caminable usan derivados preparados offline; el navegador no recorta triángulos.
+`transitionLayout.ts` comparte los límites con el exportador. Los colliders se
+mantienen separados y las nuevas columnas reciben colisiones sencillas.
+Materiales PBR conservan mapas y UV; una luz cálida sin sombras y los reflejos
+compartidos de la cabina iluminan los objetos. Contrato y reproducción en
+[integración de estantes](assets/transition-master/integration.md).
+
+## Resaltado de estaciones
+
+`StationHighlights` comparte las posiciones y dimensiones de `TERMINAL_SCREENS`.
+El siguiente objetivo del protocolo activa un contorno cian con pulso suave de
+dos segundos; el destino apuntado usa un contorno fijo. Se oculta fuera del modo
+de caminar activo y con la tablet levantada. Movimiento reducido elimina el pulso.
+El borde mide 3 cm, con halo de 7,5 cm, y crece hacia afuera para no tapar el
+contenido de la pantalla. La geometría decorativa no participa del raycast, conserva la oclusión por paredes
+y no incorpora luces, sombras ni posprocesado. `stationHighlight.ts` concentra la
+correspondencia entre objetivos y estaciones, comprobada con el reducer real.
+
 ## Integración del maestro de cabina — 2026-11-18
 
 La escena caminable utiliza `cabin-master-static.glb` en coordenadas mundiales
@@ -517,6 +582,16 @@ potencia/tablet no forman parte del contador. Evidencia y límites en
 
 ## Suites E2E y profiling observacional
 
+`lookAt` espera la mira visible antes de enviar movimiento nativo: recuperar
+Pointer Lock no implica que la transición de cámara haya terminado. La mira
+confirma el modo caminable activo y evita perder movimientos durante el regreso
+de un terminal. El punto inicial del mouse usa el tamaño real del viewport.
+Cada movimiento arma primero un observador de `mousemove` confiable con captura
+activa y espera 150 ms sin nuevos eventos, seguidos de dos cuadros, antes de leer
+la orientación. Ese intervalo vuelve a empezar con cada evento de la ráfaga. Se
+limpian listener, temporizador y handle en cada paso. Un fallo conserva los
+deltas recibidos; no se simulan eventos ni se modifica la cámara para aprobarlo.
+
 `e2e/suites.ts` clasifica cada spec en regresión, auditoría o producción.
 `playwright.shared.config.ts` comparte el navegador y sus límites; cada entrada
 elige specs, puerto, artefactos e informe HTML. Una prueba exige inventario
@@ -642,3 +717,88 @@ pausa, también con botón táctil de menú. La acreditación tarda un segundo y
 reserva las mismas filas antes y después de conceder acceso. El traje colgado
 usa un GLB derivado con brazos y guantes caídos y soporte de hombros; la fuente
 original se preserva y sus colliders mantienen libre la escotilla.
+
+## Gestos con contacto — 2026-11-20
+
+`world/gestureTiming.json` comparte los tiempos en segundos entre la app y el
+archivo de animación de Blender. Tarjeta y radio llegan al contacto a los 0,5 s;
+la lectura o pulsación se ejecuta a los 0,58 s, después de actualizar la pose.
+Un cuadro largo se detiene primero en el contacto para no saltarse esa fase.
+Pausa, documento oculto y pérdida de foco congelan ambos gestos. Movimiento
+reducido conserva el tiempo de acción con una pose de contacto estática.
+
+La tablet sube en 0,8 s y baja en 0,6 s, con interpolación suave y las manos
+ancladas al marco. La tarjeta termina su retirada a los 1,25 s; la radio libera
+el botón a los 0,72 s y termina a 1 s. Los observadores exclusivos de desarrollo
+miden distancia tarjeta/lector y dedo/botón; las pruebas con entrada nativa
+comprueban contacto antes de la acción. Las nuevas manos de Blender siguen
+siendo el recurso de autoría; la integración descrita abajo sustituye las mallas
+procedurales que se usaban durante la preparación de los clips.
+
+## Manos y tablet exportadas — 2026-11-20
+
+`handInteractionModel` clona únicamente la raíz necesaria del GLB compartido
+(`TABLET_ASSEMBLY`, `CARD_GESTURE` o `RADIO_GESTURE`) con esqueletos privados y
+geometría/materiales/texturas de caché. Un `AnimationMixer` por instancia evalúa
+el clip en el tiempo controlado por las reglas existentes; Blender no ejecuta
+acciones de React. Se eliminan las antiguas mallas y curvas de movimiento de los
+guantes procedurales. La limpieza libera mixers y texturas de huesos privadas,
+nunca geometría ni mapas compartidos, y soporta el replay de StrictMode.
+
+`CARD_CONTACT` se alinea al lector; `RADIO_FINGERTIP` y
+`RADIO_BUTTON_CONTACT` provienen del clip y se comprueban contra la piel exportada.
+El botón físico sigue ese anclaje animado en vez de reproducir una curva distinta.
+Los callbacks ocurren después de muestrear la pose. Movimiento reducido conserva
+la pose de contacto y el recorrido del botón, omitiendo acercamiento y retirada.
+
+La tablet conserva sus dos clips, con una transición breve al invertir T a mitad
+de recorrido. `SCREEN_UI` aloja la interfaz DOM real. Un pase de primer plano
+limpia sólo profundidad después de la nave y conserva profundidad entre dedos y
+carcasa; las estadísticas del renderer suman ambos pases. Sólo se renderiza ese
+pase adicional cuando la tablet está visible. La escala en pantallas verticales
+no modifica su distancia a la cámara ni acerca la malla al plano de recorte.
+
+## Exterior Asterion — 2026-11-23
+
+`AsterionExterior` sustituye el antiguo Sistema Solar. El cielo usa una única
+imagen equirectangular que sigue la posición de la cámara; los planetas, anillos
+y fragmentos permanecen en coordenadas mundiales y conservan paralaje al caminar.
+La consola de inspección reutiliza el cielo, sin cargar otra copia de los mundos.
+
+El GLB deriva del archivo aprobado `docs/assets/cosmos/asterion-expanse-v2.blend`.
+Los materiales procedurales y su iluminación se hornean para conservar el aspecto
+de Blender sin agregar luces ni sombras dinámicas. La exportación aplica AgX una
+vez; los materiales de la app desactivan el tone mapping para evitar aplicarlo
+de nuevo. Los bordes atmosféricos dependen de la mirada y se calculan con un shader
+ligero; la dirección solar proviene del mismo manifiesto que sus posiciones.
+
+`GzipGLTFLoader` mantiene la compresión de transporte sin pérdidas y la caché de
+recursos. Cada instancia posee sólo sus materiales; no libera mapas ni geometría
+compartida. El modelo y el cielo participan del Suspense existente, de modo que
+la apertura de la intro espera su disponibilidad junto al interior. Los mundos
+no giran porque su iluminación está horneada; la nave distante conserva su
+movimiento y respeta movimiento reducido. Las mediciones y vistas reales quedan
+en `docs/audits/asterion-integration/`.
+
+### Deriva exterior y reposo en pausa
+
+`asterionMotion.ts` define dos trayectorias cerradas suaves: deriva aparente del
+conjunto planetas/anillos/atmósferas en 480 s y desplazamiento relativo del campo
+de fragmentos en 240 s. Ambas parten de la composición aprobada y avanzan en la
+misma dirección inicial. Son una aproximación visual al movimiento orbital de
+la nave, no una simulación astronómica. Se trasladan los cuerpos sin girar sus
+materiales ni los terminadores horneados. El cielo remoto permanece fijo.
+
+Un tiempo de simulación local avanza con delta completo entre 15 y 144 FPS;
+descarta cuadros de más de 250 ms para evitar saltos después de una suspensión.
+Pausa, pestaña oculta y movimiento reducido congelan ese tiempo y el de la nave
+auxiliar. Los cambios por cuadro reutilizan vectores y grupos; no agregan luces,
+texturas, mallas ni actualizaciones de estado React.
+
+Con la intro completada, Escape lleva el Canvas a renderizado bajo demanda.
+La imagen se conserva y una actualización legítima todavía puede invalidarla;
+al retomar el recorrido vuelve el renderizado continuo. Los modos de preparación
+y revelado de la intro mantienen sus condiciones previas. El contador de cuadros
+de diagnóstico es de sólo lectura y exclusivo de desarrollo, para comprobar el
+reposo y la reanudación con entrada nativa. Evidencia y límites de las mediciones:
+`docs/audits/asterion-motion/`.

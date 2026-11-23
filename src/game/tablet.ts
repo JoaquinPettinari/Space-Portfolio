@@ -1,3 +1,5 @@
+import gestureTiming from './world/gestureTiming.json'
+
 /** Mission/map reader stays held while FPS controls retain mouse ownership. */
 export type TabletMode = 'lowered' | 'held'
 export type TabletEvent = 'toggle' | 'resume' | 'dismiss'
@@ -23,7 +25,10 @@ export function advanceTabletPose(
   reducedMotion: boolean,
 ) {
   if (reducedMotion) return target
-  const next =
-    value + (target - value) * (1 - Math.exp(-12 * Math.max(0, delta)))
-  return Math.abs(target - next) < 0.001 ? target : next
+  const duration =
+    target > value ? gestureTiming.tablet.raise : gestureTiming.tablet.lower
+  const step = Math.max(0, delta) / duration
+  return target > value
+    ? Math.min(target, value + step)
+    : Math.max(target, value - step)
 }

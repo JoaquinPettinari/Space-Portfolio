@@ -1,0 +1,15 @@
+{
+  "geometryWeightsAndPoseUnchanged": true,
+  "signature": "f32b81cd7b175be9e68cc4b01e47d6a6514ab6a92ebb1b76e911363880f5f4b2",
+  "materials": [
+    "Graphite woven glove",
+    "Reinforced finger pads",
+    "Ivory pressure fabric",
+    "Dark cuff rubber",
+    "Safety orange",
+    "Seam thread"
+  ],
+  "metallic": 0,
+  "proceduralBakeRequiredForGLTF": true,
+  "runtimeChanged": false
+}

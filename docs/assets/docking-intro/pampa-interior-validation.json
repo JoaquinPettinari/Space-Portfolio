@@ -1,0 +1,18 @@
+{
+  "source_sha256": {
+    "docs\\assets\\cabin-master\\cabin-master.blend": "5e2e45a62015c0dced349f90c402f35530f34d0f842160e6c3c6ed9970843c13",
+    "docs\\assets\\docking-intro\\circular-arrival-draft.blend": "35e11cb76cf3feb25b8d65f43c37a399c618d3fa2dc638ad8e447ab1391567ed"
+  },
+  "full_triangles": 258560,
+  "cropped_triangles": 55311,
+  "cropped_objects": 1,
+  "bounds": {
+    "min": [-0.7626165151596069, -20.630001068115234, 0.3906642198562622],
+    "max": [0.7796165943145752, -19.350000381469727, 1.9148342609405518]
+  },
+  "glass_y": -18.265,
+  "nose_tip_y": -19.35,
+  "nose_glass_gap_m": 1.085,
+  "review_only": true,
+  "cameras": ["CAM / PAMPA inspection glass", "CAM / PAMPA inspection oblique"]
+}

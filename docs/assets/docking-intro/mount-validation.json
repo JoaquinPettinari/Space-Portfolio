@@ -1,0 +1,39 @@
+{
+  "hull_contacts": [
+    {
+      "mesh": "UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Deep recess.001",
+      "intersections": 57
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ion cyan.001",
+      "intersections": 44
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Ceramic graphite.001",
+      "intersections": 90
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Machined edges.001",
+      "intersections": 48
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_arrival_UNIFIED_Deep pressure seals_closed solids.001",
+      "intersections": 48
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_arrival_UNIFIED_Blue titanium_closed solids.001",
+      "intersections": 100
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_arrival_UNIFIED_Graphite ceramic_closed solids.001",
+      "intersections": 70
+    },
+    {
+      "mesh": "UNIFIED_RUNTIME_lower-hull_SHIP_GAME_CDS_Titanium armor.001",
+      "intersections": 26
+    }
+  ],
+  "central_bore_clear": true,
+  "added_meshes": 16,
+  "animation_changed": false
+}

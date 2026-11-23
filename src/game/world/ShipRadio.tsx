@@ -7,20 +7,23 @@ import {
 } from 'react'
 import { RoundedBox } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { CanvasTexture, SRGBColorSpace, type Group } from 'three'
+import { Bone, CanvasTexture, SRGBColorSpace, Vector3, type Group } from 'three'
 import { RADIO_TRACKS } from '../radioTracks'
 import { RADIO_BUTTONS, type RadioAction } from '../radioControls'
 import { RADIO_POSITION, type StationTarget } from '../interaction/station'
 import { useShipRadio } from '../useShipRadio'
-import { AstronautGlove } from './AstronautGlove'
-import { GLOVE_POINT_FINGERTIP } from './astronautGloveGeometry'
+import { useHandInteraction } from './useHandInteraction'
+import { positionRadioSleeveEnd } from './handSleeve'
 import { StaticPanels, type StaticPanel } from './StaticPanels'
 import {
-  PHYSICAL_CONTACT_DELAY,
+  RADIO_ACTUATION_TIME,
+  RADIO_BUTTON_DEPTH,
   RADIO_PRESS_DURATION,
-  radioHandReach,
-  radioButtonTravel,
+  PHYSICAL_CONTACT_DELAY,
+  RADIO_RELEASE_TIME,
+  advanceContactGesture,
 } from './physicalPress'
+import gestureTiming from './gestureTiming.json'
 import { useReducedMotionRef } from '../useReducedMotionRef'
 
 const ignoreRaycast = () => {}
@@ -78,11 +81,21 @@ export function ShipRadio({
   const radio = useShipRadio(paused)
   const root = useRef<Group>(null)
   const hand = useRef<Group>(null)
+  const handModel = useHandInteraction('radio')
+  const buttonContact = useRef(new Vector3())
+  const sleeveTarget = useRef(new Vector3())
+  const sleeveEnd = useMemo(() => {
+    const bone = handModel.scene.getObjectByName('RADIO_SLEEVE_END')
+    if (!(bone instanceof Bone))
+      throw new Error('Missing radio sleeve end bone')
+    return bone
+  }, [handModel])
   const keys = useRef(new Map<RadioAction, Group>())
   const gesture = useRef({
     elapsed: 1,
     action: 'radio-play' as RadioAction,
     startedAt: null as number | null,
+    actionCommitted: false,
   })
   const reduced = useReducedMotionRef()
   const face = useMemo(() => {
@@ -123,6 +136,17 @@ export function ShipRadio({
   )
   const seconds = Math.floor(radio.elapsed)
   const duration = Math.floor(radio.duration)
+  useEffect(() => {
+    if (!import.meta.env.DEV || !root.current) return
+    // Update only playback data; replacing userData would erase the active gesture.
+    root.current.userData.radioPlayback = {
+      track: radio.track,
+      playing: radio.playing,
+      elapsed: radio.elapsed,
+      duration: radio.duration,
+      volume: radio.volume,
+    }
+  }, [radio.track, radio.playing, radio.elapsed, radio.duration, radio.volume])
   useEffect(() => {
     const ctx = face.canvas.getContext('2d')
     if (!ctx) return
@@ -185,34 +209,67 @@ export function ShipRadio({
   ])
   useImperativeHandle(ref, () => ({
     press(action) {
-      if (paused || gesture.current.elapsed < RADIO_PRESS_DURATION) return
+      if (
+        paused ||
+        document.hidden ||
+        gesture.current.elapsed < RADIO_PRESS_DURATION
+      )
+        return
       gesture.current.action = action
       gesture.current.elapsed = 0
       gesture.current.startedAt = performance.now()
+      gesture.current.actionCommitted = false
     },
   }))
-  useFrame((_, delta) => {
+  useFrame(({ camera }, delta) => {
     const pose = gesture.current
     if (pose.elapsed >= RADIO_PRESS_DURATION) {
       if (hand.current) hand.current.visible = false
       return
     }
-    if (paused || document.hidden) return
-    const previous = pose.elapsed
+    if (paused || document.hidden || !document.hasFocus()) return
     // The first frame's delta also includes time before the E key was pressed.
     const step =
       pose.startedAt === null
         ? delta
         : Math.min(delta, (performance.now() - pose.startedAt) / 1000)
     pose.startedAt = null
-    pose.elapsed = Math.min(
-      RADIO_PRESS_DURATION,
-      pose.elapsed + Math.max(0, step),
+    pose.elapsed = advanceContactGesture(
+      pose.elapsed,
+      step,
+      gestureTiming.radio,
     )
-    if (
-      previous < PHYSICAL_CONTACT_DELAY &&
-      pose.elapsed >= PHYSICAL_CONTACT_DELAY
-    ) {
+    const button = RADIO_BUTTONS.find((entry) => entry.action === pose.action)
+    if (!button) return
+    if (hand.current) {
+      hand.current.visible = pose.elapsed < RADIO_PRESS_DURATION
+      hand.current.position.set(
+        button.position[0],
+        button.position[1],
+        button.position[2] + RADIO_BUTTON_DEPTH / 2,
+      )
+    }
+    handModel.sample(
+      'radio_press',
+      reduced.current
+        ? Math.max(
+            PHYSICAL_CONTACT_DELAY,
+            Math.min(RADIO_RELEASE_TIME, pose.elapsed),
+          )
+        : pose.elapsed,
+    )
+    positionRadioSleeveEnd(sleeveEnd, camera, sleeveTarget.current)
+    // The key follows the exported button track, so skin and key share a curve.
+    const key = keys.current.get(pose.action)
+    const anchor = handModel.anchors.button
+    if (key && anchor && hand.current) {
+      anchor.getWorldPosition(buttonContact.current)
+      hand.current.worldToLocal(buttonContact.current)
+      key.position.z = button.position[2] + buttonContact.current.z
+    }
+    // Set the contact/depression pose before committing the requested action.
+    if (!pose.actionCommitted && pose.elapsed >= RADIO_ACTUATION_TIME) {
+      pose.actionCommitted = true
       switch (pose.action) {
         case 'radio-play':
           void radio.toggle()
@@ -231,28 +288,12 @@ export function ShipRadio({
           break
       }
     }
-    const reach = radioHandReach(pose.elapsed)
-    const press = radioButtonTravel(pose.elapsed)
-    const button = RADIO_BUTTONS.find((entry) => entry.action === pose.action)
-    if (!button) return
-    const key = keys.current.get(pose.action)
-    if (key) key.position.z = button.position[2] - 0.018 * press
-    if (hand.current) {
-      hand.current.visible =
-        !reduced.current && pose.elapsed < RADIO_PRESS_DURATION
-      hand.current.position.set(
-        button.position[0] - GLOVE_POINT_FINGERTIP[0] + 0.16 * (1 - reach),
-        button.position[1] - GLOVE_POINT_FINGERTIP[2] - 0.16 * (1 - reach),
-        button.position[2] +
-          GLOVE_POINT_FINGERTIP[1] +
-          0.0225 -
-          0.018 * press +
-          0.32 * (1 - reach),
-      )
-    }
-    if (root.current)
+    if (root.current && import.meta.env.DEV) {
       root.current.userData.radioPress =
         pose.elapsed < RADIO_PRESS_DURATION ? pose.action : null
+      root.current.userData.radioGestureElapsed = pose.elapsed
+      root.current.userData.radioActionCommitted = pose.actionCommitted
+    }
   })
   return (
     <group
@@ -260,15 +301,6 @@ export function ShipRadio({
       name="cds-desk-radio"
       position={RADIO_POSITION}
       rotation={[0, Math.PI / 2, 0]}
-      userData={{
-        radioPlayback: {
-          track: radio.track,
-          playing: radio.playing,
-          elapsed: radio.elapsed,
-          duration: radio.duration,
-          volume: radio.volume,
-        },
-      }}
     >
       <RoundedBox args={[0.8, 0.4, 0.25]} radius={0.025} smoothness={2}>
         <meshStandardMaterial
@@ -306,7 +338,7 @@ export function ShipRadio({
           userData={{ interaction: button.action }}
         >
           <RoundedBox
-            args={[0.075, 0.058, 0.045]}
+            args={[0.075, 0.058, RADIO_BUTTON_DEPTH]}
             radius={0.007}
             smoothness={2}
           >
@@ -328,8 +360,8 @@ export function ShipRadio({
           </mesh>
         </group>
       ))}
-      <group ref={hand} visible={false} rotation={[-Math.PI / 2, 0, 0]}>
-        <AstronautGlove pose="point" />
+      <group name="radio-press-hand" ref={hand} visible={false}>
+        <primitive object={handModel.scene} dispose={null} />
       </group>
     </group>
   )

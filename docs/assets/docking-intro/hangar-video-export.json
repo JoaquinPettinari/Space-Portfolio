@@ -1,0 +1,14 @@
+{
+  "file": "/video/hangar-intro.mp4",
+  "source": "C:\\Users\\joaqu\\Desktop\\Space-Portfolio\\docs\\assets\\docking-intro\\cruz-del-sur-hangar-intro.blend",
+  "frames": 240,
+  "fps": 30,
+  "duration": 8,
+  "resolution": [1280, 720],
+  "codec": "H264",
+  "audio": false,
+  "faststart": true,
+  "renderSeconds": 112.08597280003596,
+  "bytes": 1524897,
+  "sha256": "dcd99d283a92d9f7d0fdf9071db97d9aa24d6bef222a1cdd2bf01f375739077a"
+}

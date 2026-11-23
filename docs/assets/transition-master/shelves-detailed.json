@@ -1,0 +1,159 @@
+{
+  "source": "transition-shelves-divided.blend",
+  "sourceSHA256": "ff2cf50ce937abd7723505171d757147dcf4d230f8f06d4648f9d2ff8a1d0f69",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "manualsRemaining": 0,
+  "plantTypes": ["compact lance leaf", "trailing vine"],
+  "individualLeafMeshes": 27,
+  "columnsFrontMetres": {
+    "foot": 1.46,
+    "middle": 1.5,
+    "upper": 1.72
+  },
+  "clearanceRays": [
+    {
+      "x": -1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -1.33,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": -0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 0.7,
+      "height": 2.0,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.1,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 0.45,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.25,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 1.7,
+      "clear": true
+    },
+    {
+      "x": 1.33,
+      "height": 2.0,
+      "clear": true
+    }
+  ],
+  "headroomClear": true,
+  "evaluatedTriangles": 218576,
+  "renderEngine": "BLENDER_EEVEE",
+  "samples": 32,
+  "resolution": [1280, 800],
+  "threads": 2,
+  "gpuTimingMeasured": false,
+  "vineSurfaceAudit": {
+    "segments": 40,
+    "targets": [
+      "PORT / 2 shelf",
+      "PORT / 2 retention lip",
+      "PORT / 2 shelf.001",
+      "PORT / 2 retention lip.001",
+      "TRAILING ceramic pot"
+    ],
+    "crossings": 0
+  }
+}

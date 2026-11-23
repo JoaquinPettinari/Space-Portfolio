@@ -43,12 +43,14 @@ export function AmbientAudio({
   scanSignal = 0,
   scanning = false,
   coffeeSignal = 0,
+  onEnabledChange,
 }: {
   hidden?: boolean
   suspended?: boolean
   scanSignal?: number
   scanning?: boolean
   coffeeSignal?: number
+  onEnabledChange?: (enabled: boolean) => void
 }) {
   const contextRef = useRef<AudioContext | null>(null)
   const heardCoffee = useRef(0)
@@ -70,6 +72,7 @@ export function AmbientAudio({
       if (!mountedRef.current) return
       enabledRef.current = false
       setEnabled(false)
+      onEnabledChange?.(false)
       setError('Audio paused. Try turning sound on again.')
     })
   })
@@ -131,11 +134,15 @@ export function AmbientAudio({
       enabledRef.current = next
       if (next && !document.hidden && !suspended) await context.resume()
       else await context.suspend()
-      if (mountedRef.current) setEnabled(next)
+      if (mountedRef.current) {
+        setEnabled(next)
+        onEnabledChange?.(next)
+      }
     } catch {
       enabledRef.current = false
       if (mountedRef.current) {
         setEnabled(false)
+        onEnabledChange?.(false)
         setError('Audio is unavailable. You can keep exploring without sound.')
       }
     } finally {

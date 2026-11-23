@@ -1,0 +1,28 @@
+{
+  "status": "approval draft only",
+  "innerDiameter": 3.4,
+  "mouthRetraction": 2.5,
+  "centerHeight": 1.95,
+  "tubeDepth": 6.199999999999999,
+  "framesChecked": 240,
+  "minimumConservativeRadialClearance": 0.10796419770452093,
+  "minimumDoorSweepClearance": 0.15000152587890625,
+  "minimumCameraMargin": 0.06524215638637543,
+  "sourceShaBefore": "db5e1136037e1f4b5d2ac66d79b678000a22f8b7337dd96e27be13ed09c1a608",
+  "sourceShaAfter": "db5e1136037e1f4b5d2ac66d79b678000a22f8b7337dd96e27be13ed09c1a608",
+  "originalHullSweptBoxIntersections": 14,
+  "internalParkingIsFictional": true,
+  "intersectedSourceObjects": [
+    "UNIFIED_RUNTIME_arrival_UNIFIED_Graphite ceramic_closed solids.001"
+  ],
+  "measuredSweptBounds": [
+    [-1.1933651065826416, 1.1933651065826416],
+    [-46.51, -18.949999084472655],
+    [0.8749999904632568, 3.0243334865570066]
+  ],
+  "engineAftPlane": -25.65239906311035,
+  "closedPortAftPlane": -25.25,
+  "closedPortInsetFromEngines": 0.40239906311035156,
+  "publicAssetsChanged": false,
+  "doorType": "two outward-folding semicircular leaves"
+}

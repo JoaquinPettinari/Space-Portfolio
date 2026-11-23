@@ -1,0 +1,12 @@
+{
+  "collection": "11 Deck consoles and window detailing",
+  "objectsAdded": 302,
+  "removedSupersededFloorHardware": 24,
+  "evaluatedTrianglesAdded": 50728,
+  "floorMaxHeight": 0.020499998703598976,
+  "anchorsPreserved": 8,
+  "windowFacets": 5,
+  "newStudioLights": 2,
+  "runtimeChanged": false,
+  "previewCameras": ["Deck inspection", "Console and window"]
+}

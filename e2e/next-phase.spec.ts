@@ -80,7 +80,7 @@ test('Crew Access scans once into a compact physical identity and resets crew pr
   expect((await protocol(page)).completed).toContain('crew')
   await expect(
     page.getByRole('status', { name: 'Station assistant' }),
-  ).toHaveAttribute('data-dialogue-event', 'identity', { timeout: 30000 })
+  ).toHaveAttribute('data-dialogue-event', 'crewVerified', { timeout: 30000 })
   await dialog.getByRole('button', { name: 'Leave terminal' }).click()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()

@@ -1,0 +1,68 @@
+[
+  {
+    "hand": "Left",
+    "bones": 17,
+    "skinVertices": 18634,
+    "totalBaseVertices": 30240,
+    "meshObjects": 24,
+    "allMeshWeightsNormalized": true,
+    "closedGloveSurface": true,
+    "separateFingerShaftsAboveWebbing": 4,
+    "neutralCardRadioPosesUnchanged": true,
+    "tabletGrasp": {
+      "index": {
+        "anglesDegrees": [0, 114, 90],
+        "tipDepthLocal": 0.015717516743904765,
+        "tipHeightAboveRoot": 0.0039201163583459375
+      },
+      "middle": {
+        "anglesDegrees": [0, 116, 90],
+        "tipDepthLocal": 0.015544117151537484,
+        "tipHeightAboveRoot": 0.004716181615663274
+      },
+      "ring": {
+        "anglesDegrees": [0, 114, 90],
+        "tipDepthLocal": 0.015717523637005258,
+        "tipHeightAboveRoot": 0.004920107764882303
+      },
+      "pinky": {
+        "anglesDegrees": [0, 108, 88],
+        "tipDepthLocal": 0.015410497081719272,
+        "tipHeightAboveRoot": 0.0019763934840635157
+      }
+    }
+  },
+  {
+    "hand": "Right",
+    "bones": 17,
+    "skinVertices": 18636,
+    "totalBaseVertices": 30242,
+    "meshObjects": 24,
+    "allMeshWeightsNormalized": true,
+    "closedGloveSurface": true,
+    "separateFingerShaftsAboveWebbing": 4,
+    "neutralCardRadioPosesUnchanged": true,
+    "tabletGrasp": {
+      "index": {
+        "anglesDegrees": [0, 114, 90],
+        "tipDepthLocal": 0.015717516743904765,
+        "tipHeightAboveRoot": 0.0039201163583459375
+      },
+      "middle": {
+        "anglesDegrees": [0, 116, 90],
+        "tipDepthLocal": 0.015544117151537484,
+        "tipHeightAboveRoot": 0.004716181615663274
+      },
+      "ring": {
+        "anglesDegrees": [0, 114, 90],
+        "tipDepthLocal": 0.015717523637005258,
+        "tipHeightAboveRoot": 0.004920107764882303
+      },
+      "pinky": {
+        "anglesDegrees": [0, 108, 88],
+        "tipDepthLocal": 0.015410497081719272,
+        "tipHeightAboveRoot": 0.0019763934840635157
+      }
+    }
+  }
+]

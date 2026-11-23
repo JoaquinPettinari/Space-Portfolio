@@ -1,0 +1,22 @@
+[
+  {
+    "file": "pampa-07-docking.glb",
+    "bytes": 9920292,
+    "gzipBytes": 5720266,
+    "sha256": "4e63dcbe9aa065911f80668dc86630d6ced3f51c85e53092463cd54322a3f98f",
+    "triangles": 262008,
+    "meshes": 5,
+    "materials": 3,
+    "images": 3
+  },
+  {
+    "file": "docking-adapter.glb",
+    "bytes": 923572,
+    "gzipBytes": 172931,
+    "sha256": "cdb1e9a6946ed8a0e2bf6d79df898852e855672efb1a6199e2632d5b64050789",
+    "triangles": 16776,
+    "meshes": 39,
+    "materials": 4,
+    "images": 0
+  }
+]

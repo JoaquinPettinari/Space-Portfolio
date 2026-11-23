@@ -1,0 +1,75 @@
+{
+  "source": "transition-shelves-curated.blend",
+  "sourceSHA256": "bc7536113f30c7ab6e4bf7c50517edeb7cf03c49803052d320cbc70709f91003",
+  "sourceUnchanged": true,
+  "runtimeChanged": false,
+  "passageRaysClear": 33,
+  "evaluatedTriangles": 288875,
+  "foliageLeaves": 32,
+  "bookTitles": [
+    "Clean Code",
+    "The Pragmatic Programmer",
+    "Design Patterns",
+    "Refactoring"
+  ],
+  "illustrationsAreNotPersonalPhotos": true,
+  "render": {
+    "engine": "BLENDER_EEVEE",
+    "resolution": [1280, 800],
+    "samples": 32,
+    "threads": 2
+  },
+  "browserPerformanceMeasured": false,
+  "evaluatedGroupBounds": {
+    "DISPLAY / Running medal": {
+      "minimumRuntimeXYZ": [
+        -1.8300000429153442, 1.0554999113082886, 3.130000114440918
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6299999952316284, 1.4860000610351562, 3.369999885559082
+      ]
+    },
+    "DISPLAY / Triathlon emblem": {
+      "minimumRuntimeXYZ": [
+        -1.7950000762939453, 1.8049999475479126, 2.5350000858306885
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6449999809265137, 2.1100001335144043, 2.825000047683716
+      ]
+    },
+    "DISPLAY / Diagonal tennis racket": {
+      "minimumRuntimeXYZ": [
+        -1.700299859046936, 1.8469218015670776, 3.1015427112579346
+      ],
+      "maximumRuntimeXYZ": [
+        -1.679700255393982, 2.3345205783843994, 3.339223623275757
+      ]
+    },
+    "DISPLAY / Compact plant": {
+      "minimumRuntimeXYZ": [
+        -1.8825695514678955, 1.0460000038146973, 3.7542150020599365
+      ],
+      "maximumRuntimeXYZ": [
+        -1.5376687049865723, 1.42044198513031, 4.211593151092529
+      ]
+    },
+    "DISPLAY / Trailing plant": {
+      "minimumRuntimeXYZ": [
+        -1.8392000198364258, 1.3096611499786377, 4.224825382232666
+      ],
+      "maximumRuntimeXYZ": [
+        -1.4361183643341064, 2.08646821975708, 4.629997253417969
+      ]
+    },
+    "DISPLAY / Anatomical running shoe": {
+      "minimumRuntimeXYZ": [
+        -1.7786450386047363, 1.0845065116882324, 2.684999942779541
+      ],
+      "maximumRuntimeXYZ": [
+        -1.6613550186157227, 1.1829109191894531, 2.994999885559082
+      ]
+    }
+  },
+  "groupBoundsPassed": true,
+  "oldShoeCollarRemoved": true
+}

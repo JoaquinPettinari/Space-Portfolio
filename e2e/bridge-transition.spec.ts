@@ -22,19 +22,24 @@ test('crosses the clear transition both ways, collides with its side and uses th
   await enterObservationRoom(page)
   await walkTo(page, 0, 3.6)
   await lookAt(page, {
-    x: 5,
+    x: 1.34,
     y: (await snapshot(page)).cameraPosition.y,
     z: 3.6,
   })
   await page.keyboard.down('w')
   try {
-    await page.waitForTimeout(1000)
+    await expect
+      .poll(async () => (await snapshot(page)).cameraPosition.x)
+      .toBeGreaterThan(0.9)
+    // Observe contact before a diagonal hold can slide past the narrow pilaster.
+    await page.waitForTimeout(100)
   } finally {
     await page.keyboard.up('w')
   }
   const blocked = (await snapshot(page)).cameraPosition
   expect(blocked.x).toBeGreaterThan(0.8)
-  expect(blocked.x).toBeLessThan(1.3)
+  // New projecting pilaster stops the capsule before its face at X=1.34.
+  expect(blocked.x).toBeLessThan(1.12)
   expect(blocked.y).toBeGreaterThan(1.5)
   await walkTo(page, 0, 3.6)
   await walkTo(page, 0, 6)
