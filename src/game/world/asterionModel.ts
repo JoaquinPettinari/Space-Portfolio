@@ -7,11 +7,21 @@ export const ASTERION_SKY = manifest.sky
 export const EXTERIOR_CAMERA_FAR = 320
 export const ASTERION_SKY_RADIUS = 240
 
+/** Runtime art direction also applies to the atmospheric shells. */
+export function isVisibleAsterionBody(name: string) {
+  return !manifest.hiddenBodies.some((body) => name.includes(body))
+}
+
 /** Baked Blender lighting is already display-referred. Own only material
  * instances; geometry and embedded images remain owned by the loader cache. */
 export function prepareAsterionModel(source: Object3D) {
   const root = source.clone(true)
   root.name = 'asterion-worlds'
+  const removed: Object3D[] = []
+  root.traverse((node) => {
+    if (!isVisibleAsterionBody(node.name)) removed.push(node)
+  })
+  removed.forEach((node) => node.removeFromParent())
   let debris: Mesh | null = null
   const materials = new Map<Material, Material>()
   const prepare = (original: Material) => {

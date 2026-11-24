@@ -1,0 +1,19 @@
+{
+  "source": "bridge-floor-walls.blend",
+  "sourceSha256": "4821ee5d39d121f0314dbc72010d18683a86e38c23746aecf2d5d9035b8c2600",
+  "sourceUnchanged": true,
+  "revision": "bridge-consoles-seats.blend",
+  "protectedObjectsUnchanged": 1380,
+  "replacedSeatCushionVertices": 2632,
+  "originalCushionsArchived": true,
+  "newSeatObjects": 72,
+  "modifiedConsoleMaterialBatches": 6,
+  "newFittedConsoleCasings": 32,
+  "consoleGeometryAndTransformsPreserved": true,
+  "newGeometryMinimumY": 0.6460000276565552,
+  "maximumSeatHeight": 1.2860000133514404,
+  "roofFloorWallsGlassShelvesPreserved": true,
+  "originalLightingPreserved": true,
+  "missingImages": [],
+  "runtimeExported": false
+}

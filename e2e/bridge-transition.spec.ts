@@ -10,7 +10,7 @@ import { TABLE_POSITION } from '../src/game/interaction/station'
 
 test('crosses the clear transition both ways, collides with its side and uses the relocated table', async ({
   page,
-}) => {
+}, info) => {
   test.setTimeout(150000)
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
@@ -50,6 +50,7 @@ test('crosses the clear transition both ways, collides with its side and uses th
     { x: TABLE_POSITION[0], y: 1.04, z: TABLE_POSITION[2] + 1.15 },
     'E · Tactical Table',
   )
+  await page.screenshot({ path: info.outputPath('tabletop-hover.png') })
   await page.keyboard.press('e')
   const table = page.getByRole('dialog', { name: 'Tactical Table' })
   await expect(table).toBeVisible()

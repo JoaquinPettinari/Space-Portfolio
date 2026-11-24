@@ -1,0 +1,47 @@
+{
+  "source": "docs\\assets\\unified-ship\\cruz-del-sur-interior-panels.blend",
+  "sourceSha256": "ab2315bc94ab19685fc64fe7ff240707757101d5aadddf19c0749e81b1e014e4",
+  "sourceUnchanged": true,
+  "revision": "bridge-ceiling-study.blend",
+  "runtimeExported": false,
+  "protectedBlenderYMaximum": -1.0,
+  "newGeometryMinimumY": -0.38499999046325684,
+  "minimumNewHeadroom": 2.65987491607666,
+  "unchangedOriginalObjects": 970,
+  "modifiedBatches": [
+    {
+      "batch": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_",
+      "archivedVertices": 1296,
+      "protectedFacesUnchanged": true
+    },
+    {
+      "batch": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_",
+      "archivedVertices": 9072,
+      "protectedFacesUnchanged": true
+    },
+    {
+      "batch": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_",
+      "archivedVertices": 1848,
+      "protectedFacesUnchanged": true
+    },
+    {
+      "batch": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_",
+      "archivedVertices": 2520,
+      "protectedFacesUnchanged": true
+    }
+  ],
+  "geometryProtectionEvidence": "All original-object and protected-face signatures asserted in study-bridge-ceiling.py before save",
+  "glassAndSkylightsUnchanged": true,
+  "glassOcclusionPolicy": "front additions remain within existing opaque spine/frame footprints",
+  "editableNewMeshes": 183,
+  "evaluatedNewTriangles": 34404,
+  "previewLights": 4,
+  "missingImages": [],
+  "savedFileReopenedSuccessfully": true,
+  "previewOnly": true,
+  "cameras": [
+    "CEILING REVIEW / Forward overview",
+    "CEILING REVIEW / Ceiling diagonal",
+    "CEILING REVIEW / Ceiling detail"
+  ]
+}

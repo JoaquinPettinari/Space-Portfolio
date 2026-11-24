@@ -1,0 +1,35 @@
+{
+  "source": "bridge-consoles-seats.blend",
+  "sourceSha256": "1c38cae4ddc208e3ac35dbbc96d7ecd6deb2276a468534aba5f0ec7b0e165715",
+  "sourceUnchanged": true,
+  "revision": "bridge-central-table.blend",
+  "protectedObjectsUnchanged": 1489,
+  "archivedVerticesByBatch": {
+    "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical": 40,
+    "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical": 432,
+    "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical": 864,
+    "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical": 7456,
+    "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical": 819,
+    "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical": 6912
+  },
+  "retainedUpperFacesIdentical": [
+    "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical"
+  ],
+  "newTableMeshes": 65,
+  "newGeometryBounds": {
+    "absoluteX": 1.034999966621399,
+    "y": [1.315000057220459, 3.984999895095825],
+    "maximumZ": 1.0740000009536743
+  },
+  "screenHologramAnchorsUnchanged": true,
+  "restOfCabinAndShelvesUnchanged": true,
+  "existingLightsUnchanged": true,
+  "additionalLights": 0,
+  "missingImages": [],
+  "runtimeExported": false
+}

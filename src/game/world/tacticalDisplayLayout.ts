@@ -1,5 +1,12 @@
 import { bridgePoint } from './bridgePlacement'
 
+/** Physical tabletop, independent from the upright tactical interface. */
+export const TACTICAL_TABLE_SURFACE = {
+  position: bridgePoint([0, 1.074, 0.5]),
+  size: [1.78, 2.38] as const,
+  pitch: -Math.PI / 2,
+}
+
 /** Pixel contract shared with TacticalPanel.css. */
 export const TACTICAL_MODEL_BAY = {
   left: 224,

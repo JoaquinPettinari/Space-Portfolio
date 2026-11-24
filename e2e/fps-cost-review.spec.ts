@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises'
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+import { measureFrames } from './helpers/performance'
 import { enter, enterObservationRoom, lookAt, walkTo } from './helpers/game'
 
 test.use({
@@ -10,34 +11,6 @@ test.use({
   trace: 'off',
 })
 test.setTimeout(420_000)
-
-async function measure(page: Page) {
-  return page.evaluate(async () => {
-    const frame = () =>
-      new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
-    for (let index = 0; index < 30; index++) await frame()
-    const samples = []
-    for (let index = 0; index < 150; index++) {
-      await frame()
-      if (!window.__GAME_DEBUG__)
-        throw new Error('Missing development diagnostics')
-      samples.push(window.__GAME_DEBUG__.performance().frameMs)
-    }
-    const sorted = [...samples].sort((a, b) => a - b)
-    const state = window.__GAME_DEBUG__!.snapshot()
-    return {
-      samples,
-      medianMs: sorted[75],
-      p95Ms: sorted[142],
-      drawCalls: state.drawCalls,
-      triangles: state.triangles,
-      resources: state.resources,
-      dpr: state.renderDpr,
-      cameraPosition: state.cameraPosition,
-      cameraRotation: state.cameraRotation,
-    }
-  })
-}
 
 test('profiles frame cost at fixed native arrival, bridge and passage poses', async ({
   page,
@@ -73,7 +46,8 @@ test('profiles frame cost at fixed native arrival, bridge and passage poses', as
   ) => {
     await lookAt(page, target)
     const trials = []
-    for (let trial = 0; trial < 3; trial++) trials.push(await measure(page))
+    for (let trial = 0; trial < 3; trial++)
+      trials.push(await measureFrames(page))
     const inventory = await page.evaluate(() => ({
       render: window.__GAME_DEBUG__!.renderInventory(),
       materials: window.__GAME_DEBUG__!.materialInventory(),

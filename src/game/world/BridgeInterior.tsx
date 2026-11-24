@@ -6,6 +6,7 @@ import { StaticPanels } from './StaticPanels'
 import { SPINE_BACK_PANELS } from './bridgeWallPanels'
 import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
 import { trimTransitionBackPanels } from './transitionLayout'
+import { BridgeEnclosure } from './BridgeEnclosure'
 
 const backPanels = trimTransitionBackPanels([
   ...SPINE_BACK_PANELS,
@@ -26,6 +27,7 @@ export function BridgeInterior() {
   const root = useMemo(() => scene.clone(true), [scene])
   return (
     <>
+      <BridgeEnclosure />
       <StaticPanels panels={backPanels} />
       <StaticPanels panels={INTERIOR_SHELF_PANELS} />
       {/* Spatial index accelerates exact triangle hits without changing the mesh. */}

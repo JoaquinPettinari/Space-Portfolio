@@ -270,6 +270,15 @@ world Y-up, sin offset. Los límites evaluados son X ±2,90 m, Y −0,16…3,20 
 Z 1,96…5,28 m. Se debe retirar la geometría procedural anterior del tramo y
 conservar/adaptar sus colisiones; no superponer ambas versiones.
 
+El recorte de sustitución frontal empieza en Z 1,79 m: el marco anterior tenía
+su cara delantera en Z 1,80 m. Cortar sólo desde 1,96 dejaba esa cara aislada,
+visible desde la cabina pero no desde el pasillo. Los derivados `transition-ready`
+se regeneran con `scripts/assets/prepare-transition-runtime.ts`; los GLB fuente
+se conservan. La aplicación ya no monta los viejos `ReferenceCassettes` ni el
+cartel procedural `BridgeDesignation`, sustituidos por los estantes personales
+y la señalización del nuevo modelo. Sus fuentes Blender y assets históricos
+permanecen disponibles.
+
 Se reutilizan los helpers de exportación de cabina mediante AST, sin ejecutar
 su entry point. Los acabados procedurales se capturan como tiles PBR de 512 px
 sin iluminación y se asignan mediante proyección UV local. Las fotos mantienen
@@ -292,3 +301,17 @@ Estas cifras no son FPS, draw calls observados ni memoria GPU.
 La fuente conserva su hash y el GLB no incluye animaciones ni luces. La prueba
 funcional/visual y los tiempos de carga del navegador pertenecen a la integración
 de la app, no a este exportador.
+
+### Verificación del recorte y duplicados (2026-11-24)
+
+Typecheck, lint, build y las siete pruebas unitarias de transición pasaron.
+También pasaron `e2e/bridge-transition.spec.ts` (recorrido, colisiones e interacción)
+y `e2e/transition-shelves-review.spec.ts` (vistas de ambos lados, fotos y ausencia
+de solicitudes al modelo de nichos antiguo), sin errores de consola.
+La primera repetición visual superó los 60 segundos de carga con Blender trabajando;
+la repetición sin ese proceso pasó manteniendo el mismo límite de carga.
+Las capturas finales del arco y ambos laterales se revisaron visualmente.
+El formato de los archivos de esta corrección pasó; el chequeo global conserva
+avisos ajenos en `cabin-master/assembly.json`,
+`unified-ship/chairs-plants-refinement/audit.json` y
+`unified-ship/consoles-orbit-refinement/audit.json`.

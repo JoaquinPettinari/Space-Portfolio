@@ -1,0 +1,23 @@
+{
+  "source": "bridge-ceiling-study.blend",
+  "sourceSha256": "4d9c563d92cf3d471a5699d799d7863838dc24c2588fc79a9dfb4095252a9ae4",
+  "sourceUnchanged": true,
+  "revision": "bridge-ceiling-polished.blend",
+  "protectedObjectsUnchanged": 985,
+  "protectedZoneBlenderYMaximum": -1.0,
+  "newGeometryMinimumY": -0.3970000147819519,
+  "minimumHeadroom": 2.65987491607666,
+  "earlierRibObjectsArchived": 30,
+  "activeCeilingMeshes": 213,
+  "evaluatedCeilingTriangles": 43788,
+  "allGlassAndSkylightsUnchanged": true,
+  "frontDetailsWithinExistingOpaqueFrameFootprints": true,
+  "missingImages": [],
+  "additionalPreviewLights": 2,
+  "runtimeExported": false,
+  "pendingFinalRename": false,
+  "cameras": [
+    "CEILING REVIEW / Forward overview",
+    "CEILING REVIEW / Ceiling detail"
+  ]
+}

@@ -17,12 +17,13 @@ import {
   type Material,
 } from 'three'
 import { optimizeZeroContributionLights } from '../../src/game/rendering/zeroContributionLights'
+import { installOpaqueDepthProxy } from '../../src/game/rendering/opaqueDepthProxy'
 
 const width = 256
 const height = 192
 
 /** Test-only scene: no game state, assets, frame loop or application diagnostics. */
-export function comparePointLightPixels() {
+export function comparePointLightPixels(mode: 'lights' | 'depth' = 'lights') {
   const renderer = new WebGLRenderer({ antialias: false })
   renderer.setSize(width, height)
   renderer.setPixelRatio(1)
@@ -143,7 +144,19 @@ export function comparePointLightPixels() {
       restore()
       const before = capture()
       restore()
-      cleanup = optimizeZeroContributionLights(scene)
+      if (mode === 'depth') {
+        const disposers = [sphere, box, floor].map(installOpaqueDepthProxy)
+        cleanup = () => disposers.forEach((dispose) => dispose())
+        if (
+          [sphere, box, floor].some(
+            (mesh) =>
+              !mesh.children.some((child) =>
+                child.name.endsWith(':opaque-depth-proxy'),
+              ),
+          )
+        )
+          throw new Error('Depth parity must exercise all three proxies')
+      } else cleanup = optimizeZeroContributionLights(scene)
       const after = capture()
       cleanup()
       cleanup = undefined

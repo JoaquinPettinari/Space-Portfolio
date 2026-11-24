@@ -1,9 +1,10 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Vector3, type Group } from 'three'
 import { sampleShuttleRoute } from './shuttleRoute'
 import { advanceExteriorTime } from './asterionMotion'
+import { createCourierModel } from './courierModel'
 
 /** A distant maintenance shuttle: geometry and emissive engines, no extra lights. */
 export function DistantShip({ paused }: { paused: boolean }) {
@@ -11,6 +12,9 @@ export function DistantShip({ paused }: { paused: boolean }) {
   const elapsed = useRef(0)
   const tangent = useRef(new Vector3())
   const reducedMotion = useReducedMotionRef()
+  const model = useMemo(() => createCourierModel(), [])
+  const forward = useMemo(() => new Vector3(1, 0, 0), [])
+  useEffect(() => () => model.dispose(), [model])
   useFrame((_, delta) => {
     if (!ship.current) return
     const next = advanceExteriorTime(
@@ -25,40 +29,15 @@ export function DistantShip({ paused }: { paused: boolean }) {
       ship.current.position,
       tangent.current,
     )
-    ship.current.rotation.set(
-      0,
-      Math.atan2(-tangent.current.z, tangent.current.x),
-      0,
+    ship.current.quaternion.setFromUnitVectors(
+      forward,
+      tangent.current.normalize(),
     )
+    ship.current.rotateX(0.08 * Math.sin(next * 0.025))
   })
   return (
     <group ref={ship} name="orbital-shuttle" position={[0, 7, -26]}>
-      <mesh scale={[1.8, 0.32, 0.55]}>
-        <octahedronGeometry />
-        <meshStandardMaterial
-          color="#a5b5c8"
-          metalness={0.5}
-          roughness={0.45}
-        />
-      </mesh>
-      <mesh position={[-0.35, 0, 0]} scale={[0.65, 0.09, 2]}>
-        <octahedronGeometry />
-        <meshStandardMaterial color="#657b94" metalness={0.5} roughness={0.5} />
-      </mesh>
-      <mesh position={[0.6, 0.2, 0]} scale={[0.55, 0.2, 0.3]}>
-        <octahedronGeometry />
-        <meshStandardMaterial
-          color="#142d48"
-          emissive="#3278b4"
-          emissiveIntensity={0.5}
-        />
-      </mesh>
-      {[-0.33, 0.33].map((z) => (
-        <mesh key={z} position={[-1.05, 0, z]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.1, 0.15, 0.4, 8]} />
-          <meshBasicMaterial color="#7bdbff" />
-        </mesh>
-      ))}
+      <primitive object={model.root} dispose={null} />
     </group>
   )
 }

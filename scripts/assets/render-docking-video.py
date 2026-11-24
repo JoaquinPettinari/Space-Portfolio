@@ -19,6 +19,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 parser = argparse.ArgumentParser()
 parser.add_argument('--benchmark', action='store_true')
 parser.add_argument('--output-name', default='docking')
+parser.add_argument('--samples', type=int, choices=(8,16,32,64), default=8)
 args = parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
 if not args.output_name.replace('-', '').isalnum():
     raise ValueError('Output name must contain only letters, digits and hyphens')
@@ -27,7 +28,7 @@ scene.render.resolution_x, scene.render.resolution_y = 1280, 720
 scene.render.resolution_percentage = 100
 scene.render.fps, scene.render.fps_base = 30, 1
 scene.frame_start, scene.frame_end = 1, 240
-scene.eevee.taa_render_samples = 8
+scene.eevee.taa_render_samples = args.samples
 scene.eevee.use_raytracing = False
 scene.eevee.use_shadows = True
 scene.eevee.shadow_ray_count = 1
@@ -125,7 +126,7 @@ else:
         candidates[-1].replace(path)
     faststart(path)
     result = {'file':f'/video/{args.output_name}-intro.mp4','source':bpy.data.filepath,'frames':240,'fps':30,'duration':8,
-              'resolution':[1280,720],'codec':'H264','audio':False,'faststart':True,
+              'resolution':[1280,720],'codec':'H264','audio':False,'faststart':True,'renderSamples':args.samples,
               'renderSeconds':time.perf_counter()-started,'bytes':path.stat().st_size,
               'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
     metadata = 'video-export.json' if args.output_name == 'docking' else f'{args.output_name}-video-export.json'

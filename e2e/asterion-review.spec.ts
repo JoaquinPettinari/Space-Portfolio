@@ -31,7 +31,7 @@ test.setTimeout(420_000)
 
 function auditDirectory() {
   const collection = process.env.ASTERION_AUDIT ?? 'integration'
-  if (!['integration', 'motion'].includes(collection))
+  if (!['integration', 'motion', 'traffic'].includes(collection))
     throw new Error('Invalid ASTERION_AUDIT')
   return `docs/audits/asterion-${collection}`
 }
@@ -211,6 +211,17 @@ test('reviews exterior loading and all principal window directions with native c
   const activeFramesBefore = (await snapshot(page)).renderedFrames
   await page.waitForTimeout(500)
   const movingAfter = (await snapshot(page)).spaceMotion
+  if (process.env.ASTERION_AUDIT === 'traffic') {
+    expect(movingAfter.relay).not.toBeNull()
+    expect(movingAfter.meteor).not.toBeNull()
+    expect(movingAfter.relay).not.toBe(movingBefore.relay)
+    expect(movingAfter.meteor).not.toBe(movingBefore.meteor)
+    expect(movingAfter.shuttle).not.toBe(movingBefore.shuttle)
+    const names = await page.evaluate(() =>
+      window.__GAME_DEBUG__!.renderInventory().map((item) => item.name),
+    )
+    expect(names.some((name) => name.includes('VESPER'))).toBe(false)
+  }
   const activeFramesAfter = (await snapshot(page)).renderedFrames
   if (phase === 'after')
     expect(activeFramesAfter - activeFramesBefore).toBeGreaterThan(3)

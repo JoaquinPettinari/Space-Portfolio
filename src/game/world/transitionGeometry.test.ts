@@ -1,5 +1,6 @@
 // @vitest-environment node
 import {
+  BoxGeometry,
   DoubleSide,
   Group,
   Mesh,
@@ -11,6 +12,29 @@ import {
 import { expect, it, vi } from 'vitest'
 import { prepareTransitionReplacement } from '../../../scripts/assets/transitionGeometry.ts'
 import { trimTransitionBackPanels } from './transitionLayout'
+
+it('removes the whole previous entrance frame, including its front face', () => {
+  const geometry = new BoxGeometry(0.12, 2.7, 0.4)
+  const material = new MeshStandardMaterial()
+  const source = new Group()
+  for (const side of [-1, 1]) {
+    const post = new Mesh(geometry, material)
+    post.name = 'REFINED_bridge_static_previous_frame'
+    post.position.set(side * 1.4, 1.35, 2)
+    source.add(post)
+  }
+  const prepared = prepareTransitionReplacement(source)
+  try {
+    prepared.root.traverse((node) => {
+      if (node instanceof Mesh)
+        expect(node.geometry.getAttribute('position').count).toBe(0)
+    })
+  } finally {
+    prepared.dispose()
+    geometry.dispose()
+    material.dispose()
+  }
+})
 
 it('cuts the transition out of mixed batches without removing adjacent bridge surfaces', () => {
   const source = new Group()

@@ -1,6 +1,7 @@
 import { AsterionSky, AsterionWorlds } from './AsterionExterior'
 import { DistantShip } from './DistantShip'
 import { skipExteriorRaycast } from './spaceScenery'
+import { MeteorTrails } from './MeteorTrails'
 
 export function SpaceExterior({ paused }: { paused: boolean }) {
   return (
@@ -8,6 +9,7 @@ export function SpaceExterior({ paused }: { paused: boolean }) {
       <AsterionSky />
       <AsterionWorlds paused={paused} />
       <DistantShip paused={paused} />
+      <MeteorTrails paused={paused} />
     </group>
   )
 }

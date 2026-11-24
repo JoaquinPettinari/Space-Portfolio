@@ -12,6 +12,7 @@ import {
 } from '../interaction/stationHighlight'
 import type { ObjectiveId } from '../missions'
 import { useReducedMotionRef } from '../useReducedMotionRef'
+import { TACTICAL_TABLE_SURFACE } from './tacticalDisplayLayout'
 
 const ignoreRaycast = () => {}
 const terminals = Object.keys(TERMINAL_SCREENS) as TerminalKind[]
@@ -50,14 +51,15 @@ function Highlight({
   hovered: boolean
 }) {
   const screen = TERMINAL_SCREENS[kind]
+  const tabletop = kind === 'tactical' ? TACTICAL_TABLE_SURFACE : null
   const reduced = useReducedMotionRef()
   const edge = useRef<MeshBasicMaterial>(null)
   const halo = useRef<MeshBasicMaterial>(null)
   const elapsed = useRef(0)
   // Use the display rim: the crew framing contract also includes its hand gesture.
   // Grow outward so the thicker highlight stays clear of the screen content.
-  const width = screen.display[0] + 0.16
-  const height = screen.display[1] + 0.16
+  const width = (tabletop?.size[0] ?? screen.display[0]) + 0.16
+  const height = (tabletop?.size[1] ?? screen.display[1]) + 0.16
   const geometries = useMemo(
     () => [
       contour(width, height, EDGE_THICKNESS),
@@ -75,8 +77,8 @@ function Highlight({
   return (
     <group
       name={`station-highlight-${kind}`}
-      position={[...screen.position]}
-      rotation={[0, screen.rotation, 0]}
+      position={[...(tabletop?.position ?? screen.position)]}
+      rotation={tabletop ? [tabletop.pitch, 0, 0] : [0, screen.rotation, 0]}
     >
       {geometries.map((geometry, i) => (
         <mesh

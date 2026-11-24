@@ -17,9 +17,12 @@ import {
   ASTERION_SKY,
   ASTERION_SKY_RADIUS,
   prepareAsterionModel,
+  isVisibleAsterionBody,
 } from './asterionModel'
 import manifest from './asterionManifest.json'
 import { skipExteriorRaycast } from './spaceScenery'
+import { SKY_RENDER_ORDER, skyAtFarDepth } from '../rendering/skyDepth'
+import { OrbitalRelay } from './OrbitalRelay'
 
 /** One cached equirectangular image, without an extra GPU cubemap conversion.
  * Following the eye removes sky parallax while the actual planets stay in place. */
@@ -49,7 +52,7 @@ export function AsterionSky({
       ref={mesh}
       name="fixed-galactic-sky"
       rotation={[0, manifest.skyRotationY, 0]}
-      renderOrder={-100}
+      renderOrder={SKY_RENDER_ORDER}
       raycast={skipExteriorRaycast}
     >
       <sphereGeometry args={[radius, 48, 24]} />
@@ -57,7 +60,8 @@ export function AsterionSky({
         map={sky}
         side={BackSide}
         depthWrite={false}
-        depthTest={false}
+        depthTest
+        onBeforeCompile={skyAtFarDepth}
         toneMapped={false}
       />
     </mesh>
@@ -138,9 +142,12 @@ export function AsterionWorlds({ paused }: { paused: boolean }) {
   return (
     <group ref={worlds} name="asterion-worlds-motion">
       <primitive object={model.root} dispose={null} />
-      {manifest.atmosphere.map((body) => (
-        <Atmosphere key={body.name} body={body} />
-      ))}
+      <OrbitalRelay paused={paused} />
+      {manifest.atmosphere
+        .filter((body) => isVisibleAsterionBody(body.name))
+        .map((body) => (
+          <Atmosphere key={body.name} body={body} />
+        ))}
     </group>
   )
 }

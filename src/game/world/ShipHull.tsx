@@ -1,7 +1,6 @@
 import { CuboidCollider } from '@react-three/rapier'
 import { FrontSide } from 'three'
 import { BOW_EDGES, segmentPose, roofHeight } from './bridgeLayout'
-import { BridgeDesignation } from './BridgeDesignation'
 import { BridgeRoof } from './BridgeRoof'
 import { ExteriorHull } from './ExteriorHull'
 import { HullPanel } from './HullPanel'
@@ -48,7 +47,6 @@ export function ShipHull() {
           position={[side * 4.8, 1.65, 2.75]}
         />
       ))}
-      <BridgeDesignation />
       <BridgeRoof />
       <ExteriorHull />
     </group>

@@ -5,7 +5,7 @@
       "max": [2.11, 3.4, 5.105]
     },
     {
-      "min": [-2.9, -0.3, 1.96],
+      "min": [-2.9, -0.3, 1.79],
       "max": [2.9, 3.4, 2.5]
     },
     {
@@ -19,17 +19,17 @@
       "sourceSha256": "c8e123a80cf382c42c03cf14af92d504f34f38ebd750a0f422348b1235a89731",
       "output": "cruz-del-sur-clean-bridge-transition-ready.glb",
       "originalBytes": 20585060,
-      "outputBytes": 22451856,
-      "elapsedMs": 2519.5573999999997,
-      "changedMeshes": 5
+      "outputBytes": 22314728,
+      "elapsedMs": 9385.2369,
+      "changedMeshes": 6
     },
     {
       "source": "cruz-del-sur-vestibule-envelope.glb",
       "sourceSha256": "c81f06881d2eaf813518f4c85d32138af7b3c13bc8d81c9ea77213c025881258",
       "output": "cruz-del-sur-vestibule-envelope-transition-ready.glb",
       "originalBytes": 6917488,
-      "outputBytes": 7107272,
-      "elapsedMs": 181.05690000000004,
+      "outputBytes": 7105544,
+      "elapsedMs": 703.9032000000007,
       "changedMeshes": 4
     }
   ]

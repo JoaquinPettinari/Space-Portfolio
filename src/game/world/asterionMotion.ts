@@ -21,8 +21,8 @@ export function sampleAsterionDrift(
   worlds: Vector3,
   debris: Vector3,
 ) {
-  const theta = elapsed * ((Math.PI * 2) / 480)
-  const phi = elapsed * ((Math.PI * 2) / 240)
+  const theta = elapsed * ((Math.PI * 2) / 240)
+  const phi = elapsed * ((Math.PI * 2) / 120)
   worlds.set(
     3.6 * Math.sin(theta),
     0.2 * Math.sin(theta),

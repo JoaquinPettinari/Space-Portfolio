@@ -6,6 +6,14 @@ export function sampleShuttleRoute(
   position: Vector3,
   tangent: Vector3,
 ) {
-  position.set(Math.sin(phase) * 24, 7, -43 + Math.cos(phase) * 17)
-  tangent.set(Math.cos(phase) * 24, 0, -Math.sin(phase) * 17)
+  position.set(
+    Math.sin(phase) * 24,
+    7 + 1.8 * Math.sin(phase * 2),
+    -43 + Math.cos(phase) * 17,
+  )
+  tangent.set(
+    Math.cos(phase) * 24,
+    3.6 * Math.cos(phase * 2),
+    -Math.sin(phase) * 17,
+  )
 }

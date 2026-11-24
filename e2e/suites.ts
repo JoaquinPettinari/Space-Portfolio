@@ -29,6 +29,9 @@ export const regressionSpecs = [
 
 /** Historical visual/asset reviews, timing captures and profiling, not gameplay regression. */
 export const auditSpecs = [
+  'courier-review.spec.ts',
+  'sky-depth-parity.spec.ts',
+  'gpu-cost-review.spec.ts',
   'point-light-parity.spec.ts',
   'fps-cost-review.spec.ts',
   'asterion-review.spec.ts',

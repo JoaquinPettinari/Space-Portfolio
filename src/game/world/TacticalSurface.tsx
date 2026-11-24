@@ -1,6 +1,7 @@
 import { useTexture } from '@react-three/drei'
 import { SRGBColorSpace } from 'three'
 import { TACTICAL_SURFACE } from './refinedArtAssets'
+import { TACTICAL_TABLE_SURFACE } from './tacticalDisplayLayout'
 
 /** Blender's instrument chart under the existing live tactical projector. */
 export function TacticalSurface() {
@@ -8,8 +9,11 @@ export function TacticalSurface() {
     if (!Array.isArray(loaded)) loaded.colorSpace = SRGBColorSpace
   })
   return (
-    <mesh position={[0, 1.074, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[1.78, 2.38]} />
+    <mesh
+      position={[0, TACTICAL_TABLE_SURFACE.position[1], 0]}
+      rotation={[TACTICAL_TABLE_SURFACE.pitch, 0, 0]}
+    >
+      <planeGeometry args={[...TACTICAL_TABLE_SURFACE.size]} />
       <meshBasicMaterial map={texture} toneMapped={false} />
     </mesh>
   )

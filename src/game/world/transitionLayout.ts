@@ -8,7 +8,8 @@ export type Clearance = {
 /** World-space replacement volume; the wider collars do not widen the corridor. */
 export const TRANSITION_CLEARANCES: readonly Clearance[] = [
   { min: [-2.11, -0.3, 2.095], max: [2.11, 3.4, 5.105] },
-  { min: [-2.9, -0.3, 1.96], max: [2.9, 3.4, 2.5] },
+  // Include the old frame's front face at Z=1.8, not only its rear half.
+  { min: [-2.9, -0.3, 1.79], max: [2.9, 3.4, 2.5] },
   { min: [-2.03, -0.3, 4.87], max: [2.03, 3.4, 5.28] },
 ]
 

@@ -8,6 +8,7 @@ import {
   type Texture,
 } from 'three'
 import { BULKHEAD_DEPTH, type BulkheadPhase } from './bulkhead'
+import { installOpaqueDepthProxy } from '../rendering/opaqueDepthProxy'
 
 export const CABIN_MASTER_ASSET = '/models/cabin-master-static.glb'
 export const CABIN_MASTER_LEAVES_ASSET =
@@ -33,6 +34,7 @@ export function prepareCabinMaster(source: Object3D) {
   const materials = new Map<Material, MeshStandardMaterial>()
   const indicators = new Map<Material, MeshStandardMaterial>()
   const emission = new Map<MeshStandardMaterial, number>()
+  const depthBatches: Mesh[] = []
   const prepare = (sourceMaterial: Material, indicator = false) => {
     if (!(sourceMaterial instanceof MeshStandardMaterial)) return sourceMaterial
     const pool = indicator ? indicators : materials
@@ -62,10 +64,19 @@ export function prepareCabinMaster(source: Object3D) {
       node.material = Array.isArray(node.material)
         ? node.material.map((material) => prepare(material, indicator))
         : prepare(node.material, indicator)
+      if (
+        !Array.isArray(node.material) &&
+        node.material.name === 'CABIN_PBR_STUDIO_Powder_coated_structural_rails'
+      )
+        depthBatches.push(node)
     }
   })
   return {
     root,
+    attachDepth() {
+      const disposers = depthBatches.map(installOpaqueDepthProxy)
+      return () => disposers.forEach((dispose) => dispose())
+    },
     setReflection(texture: Texture | null) {
       emission.forEach((_, material) => {
         material.envMap = texture

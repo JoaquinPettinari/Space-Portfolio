@@ -15,6 +15,7 @@ export function ArrivalCabinModel({
   const { scene } = useGLTF(CABIN_MASTER_ASSET)
   const environment = useContext(ArrivalEnvironmentContext)
   const model = useMemo(() => prepareCabinMaster(scene), [scene])
+  useLayoutEffect(() => model.attachDepth(), [model])
   useEffect(() => () => model.dispose(), [model])
   useLayoutEffect(
     () =>

@@ -2,6 +2,7 @@
   "model": "/models/asterion-worlds.glb",
   "sky": "/textures/asterion/sky.webp",
   "skyRotationY": 1.5707963267948966,
+  "hiddenBodies": ["VESPER"],
   "sunDirection": [
     0.8951347470283508, 0.27848637104034424, -0.3481079638004303
   ],

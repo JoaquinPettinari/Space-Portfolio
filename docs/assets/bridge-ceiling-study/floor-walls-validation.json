@@ -1,0 +1,23 @@
+{
+  "source": "bridge-ceiling-polished.blend",
+  "sourceSha256": "ed59f755b16e6e333dbc1cb07791f1e7c5ee1706d72bc4bd2acc4c350e080828",
+  "sourceUnchanged": true,
+  "revision": "bridge-floor-walls.blend",
+  "protectedObjectsUnchanged": 1229,
+  "existingMaterialDatablocksPreserved": 222,
+  "floorGeometryUnchanged": true,
+  "floorFacesReskinned": 3208,
+  "protectedFloorFacesUnchanged": 240,
+  "protectedZoneBlenderYMaximum": -1,
+  "newMeshes": 156,
+  "floorReliefMaximumMetres": 0.009,
+  "wallDetailBounds": {
+    "absoluteX": [4.7, 4.8],
+    "y": [-0.57, 1.95],
+    "z": [1.09, 2.63]
+  },
+  "ceilingShelvesFurnitureGlassUnchanged": true,
+  "additionalLights": 0,
+  "missingImages": [],
+  "runtimeExported": false
+}

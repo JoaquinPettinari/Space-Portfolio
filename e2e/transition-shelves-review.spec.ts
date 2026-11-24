@@ -6,7 +6,13 @@ import { profileBridge } from './helpers/profileBridge'
 test('reviews transition materials, photographs and passage at native scale', async ({
   page,
 }, info) => {
+  test.setTimeout(240000)
   const errors: string[] = []
+  const obsoleteShelfRequests: string[] = []
+  page.on('request', (request) => {
+    if (request.url().includes('cruz-del-sur-reference-cassettes.glb'))
+      obsoleteShelfRequests.push(request.url())
+  })
   page.on('pageerror', (error) => errors.push(error.message))
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text())
@@ -30,6 +36,18 @@ test('reviews transition materials, photographs and passage at native scale', as
   await walkTo(page, 0, 1.3)
   await lookAt(page, { x: 0, y: 1.4, z: 4 })
   await page.screenshot({ path: info.outputPath('overview.png') })
+  for (const side of [-1, 1]) {
+    await lookAt(page, { x: side * 2.05, y: 1.6, z: 1.75 })
+    await page.screenshot({ path: info.outputPath(`cabin-side-${side}.png`) })
+  }
+  await lookAt(page, { x: 0, y: 2.55, z: 2.1 })
+  await page.screenshot({ path: info.outputPath('arch-from-cabin.png') })
+  for (const side of [-1, 0, 1]) {
+    await lookAt(page, { x: side * 2.65, y: 3.15, z: 2.2 })
+    await page.screenshot({
+      path: info.outputPath(`ceiling-junction-${side}.png`),
+    })
+  }
   const metrics = await profileBridge(page)
   await writeFile(info.outputPath('profile.json'), JSON.stringify(metrics))
   await writeFile(
@@ -56,7 +74,10 @@ test('reviews transition materials, photographs and passage at native scale', as
     await page.screenshot({ path: info.outputPath(`shelves-${side}.png`) })
   }
   await walkTo(page, 0, 6)
+  await lookAt(page, { x: 0, y: 2.55, z: 4.9 })
+  await page.screenshot({ path: info.outputPath('arch-from-passage.png') })
   await walkTo(page, 0, 1.3)
   expect((await snapshot(page)).pointerLocked).toBe(true)
   expect(errors).toEqual([])
+  expect(obsoleteShelfRequests).toEqual([])
 })

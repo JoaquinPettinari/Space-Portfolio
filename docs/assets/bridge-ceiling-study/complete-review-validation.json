@@ -1,0 +1,211 @@
+{
+  "sourcesSha256": {
+    "docs\\assets\\bridge-ceiling-study\\bridge-before-shelf-assembly-live.blend": "0f0d3d040a5805975fba53d63cfec4bf7897b4752dab9c766b31d0292ac196bc",
+    "docs\\assets\\transition-master\\transition-shelves-finished.blend": "eb5bfab2100f79b2710ea533a396bb615e4745c8dfbe1601fd53a99d5b30e401"
+  },
+  "sourcesUnchanged": true,
+  "revision": "bridge-complete-review.blend",
+  "coordinateTransform": "Identity; Blender Z-up world coordinates",
+  "importedEditableObjects": 1213,
+  "retainedHierarchyObjects": 6,
+  "importedCollections": {
+    "01 Pressure walls and portal frames": 36,
+    "02 Removable non-slip deck": 103,
+    "03 Ceiling cassettes and ventilation": 44,
+    "04 Recessed shelves and equipment": 88,
+    "05 Fasteners seals and labels": 215,
+    "06 Practical light housings": 74,
+    "07 Botanical specimens": 38,
+    "08 Personal sport objects": 621
+  },
+  "importedObjectsSignaturesUnchanged": true,
+  "fourPhotographsUvUnchanged": [
+    "PHOTO / Personal image 1",
+    "PHOTO / Personal image 2",
+    "PHOTO / Personal image 3",
+    "PHOTO / Personal image 4"
+  ],
+  "archivedOldNicheObjects": [
+    "CDS POLISH / Bridge pressure-spine designation / Service stencils",
+    "CDS POLISH / Bridge pressure-spine designation / Muted safety ochre",
+    "CDS NICHE / Batch / Graphite ceramic armor",
+    "CDS NICHE / Batch / Deep rubber and cavities",
+    "CDS NICHE / Batch / Brushed titanium",
+    "CDS NICHE / Batch / Warm protected LED diffuser",
+    "CDS NICHE / Batch / Ivory lettering",
+    "CDS NICHE / Batch / Muted safety ochre",
+    "CDS NICHE / Batch / Diagnostics screen",
+    "CDS NICHE / Batch / Instrument status cyan",
+    "CDS NICHE / expedition route and printed notes",
+    "CDS NICHE / Batch / Journal page edges",
+    "CDS NICHE / Batch / Field journal cloth",
+    "CDS NICHE / Batch / CDS POLISH / Matte expedition photographs",
+    "CDS NICHE / Soil inside planter",
+    "CDS NICHE / Batch / Specimen jade leaves",
+    "CDS NICHE / Batch / Specimen young leaves"
+  ],
+  "clippedArchitecturalObjects": {
+    "BRIDGE_RUNTIME_BRIDGE_Deck_finish_": {
+      "originalTriangles": 3448,
+      "retainedTriangles": 3446
+    },
+    "BRIDGE_RUNTIME_BRIDGE_V15_Amber_": {
+      "originalTriangles": 9628,
+      "retainedTriangles": 6808
+    },
+    "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_": {
+      "originalTriangles": 23644,
+      "retainedTriangles": 17812
+    },
+    "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_": {
+      "originalTriangles": 10468,
+      "retainedTriangles": 8956
+    },
+    "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_": {
+      "originalTriangles": 48334,
+      "retainedTriangles": 44158
+    },
+    "BRIDGE_RUNTIME_BRIDGE_V15_Metal_": {
+      "originalTriangles": 58604,
+      "retainedTriangles": 53280
+    },
+    "V2_GLASS__Blue-grey_glazing_V2": {
+      "originalTriangles": 72,
+      "retainedTriangles": 98
+    },
+    "V2_ROOF__Graphite_structural_alloy": {
+      "originalTriangles": 324,
+      "retainedTriangles": 186
+    },
+    "V2_FLOOR__Black_glazing_gaskets": {
+      "originalTriangles": 432,
+      "retainedTriangles": 372
+    },
+    "V2_ROOF_GLASS__Blue-grey_glazing_V2": {
+      "originalTriangles": 24,
+      "retainedTriangles": 28
+    },
+    "V2_STRUCTURE__Graphite_structural_alloy": {
+      "originalTriangles": 2160,
+      "retainedTriangles": 1676
+    },
+    "V2_FLOOR__Graphite_structural_alloy": {
+      "originalTriangles": 108,
+      "retainedTriangles": 78
+    },
+    "V2_FLOOR__Machined_edge_steel": {
+      "originalTriangles": 816,
+      "retainedTriangles": 744
+    },
+    "V2_FLOOR__Safety_ochre": {
+      "originalTriangles": 48,
+      "retainedTriangles": 52
+    },
+    "V2_STRUCTURE__Black_glazing_gaskets": {
+      "originalTriangles": 2160,
+      "retainedTriangles": 1816
+    },
+    "V2_OUTER_HULL__Warm_grey_removable_panels": {
+      "originalTriangles": 216,
+      "retainedTriangles": 248
+    },
+    "V2_FLOOR__Warm_grey_removable_panels": {
+      "originalTriangles": 216,
+      "retainedTriangles": 186
+    },
+    "V2_FLOOR__Cyan_floor_guidance": {
+      "originalTriangles": 216,
+      "retainedTriangles": 156
+    },
+    "V2_ROOF__Off-white_ceramic_housings": {
+      "originalTriangles": 216,
+      "retainedTriangles": 156
+    },
+    "CDS U / Continuous shoulder -1 05": {
+      "originalTriangles": 12,
+      "retainedTriangles": 27
+    },
+    "CDS U / Continuous shoulder -1 06": {
+      "originalTriangles": 12,
+      "retainedTriangles": 17
+    },
+    "CDS U / Continuous shoulder 1 05": {
+      "originalTriangles": 12,
+      "retainedTriangles": 27
+    },
+    "CDS U / Continuous shoulder 1 06": {
+      "originalTriangles": 12,
+      "retainedTriangles": 17
+    },
+    "CDS U / Converging command buttress -1": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    },
+    "CDS U / Converging command buttress 1": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    },
+    "CDS U / Dorsal canopy spine": {
+      "originalTriangles": 12,
+      "retainedTriangles": 23
+    },
+    "CDS U / Dorsal canopy spine.001": {
+      "originalTriangles": 12,
+      "retainedTriangles": 14
+    },
+    "CDS U / Dorsal canopy spine.002": {
+      "originalTriangles": 12,
+      "retainedTriangles": 23
+    },
+    "CDS U / Command to connector upper yoke -1": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    },
+    "CDS U / Command to connector upper yoke 1": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    },
+    "CDS U / Pressure collar recessed seam.005": {
+      "originalTriangles": 12,
+      "retainedTriangles": 30
+    },
+    "CDS U / Pressure collar recessed seam.006": {
+      "originalTriangles": 12,
+      "retainedTriangles": 14
+    },
+    "CDS U / Pressure collar recessed seam.019": {
+      "originalTriangles": 12,
+      "retainedTriangles": 30
+    },
+    "CDS U / Pressure collar recessed seam.020": {
+      "originalTriangles": 12,
+      "retainedTriangles": 14
+    },
+    "CDS U / Buttress warm navigation slash": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    },
+    "CDS U / Buttress warm navigation slash.001": {
+      "originalTriangles": 12,
+      "retainedTriangles": 28
+    }
+  },
+  "clearancesBlender": [
+    [
+      [-2.11, -5.105, -0.3],
+      [2.11, -2.095, 3.4]
+    ],
+    [
+      [-2.9, -2.5, -0.3],
+      [2.9, -1.79, 3.4]
+    ],
+    [
+      [-2.03, -5.28, -0.3],
+      [2.03, -4.87, 3.4]
+    ]
+  ],
+  "otherOriginalObjectsUnchanged": 1515,
+  "sourceLightsCamerasContextImported": false,
+  "missingImages": [],
+  "runtimeExported": false
+}

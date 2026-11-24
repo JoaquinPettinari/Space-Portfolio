@@ -1,0 +1,11 @@
+{
+  "source": "bridge-junctions-polished.blend",
+  "sourceSha256": "5508c809c7bbbd2ec58ed2c087e76e828e45618adad8f8a3747e1a9bb06315e2",
+  "sourceUnchanged": true,
+  "originalObjectsRetained": 2897,
+  "addedMeshes": 73,
+  "scope": "Opaque ceiling extends over former skylights; front and side windows unchanged",
+  "newLights": 0,
+  "newMaterials": 0,
+  "runtimeExported": false
+}

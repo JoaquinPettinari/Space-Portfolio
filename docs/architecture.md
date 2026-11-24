@@ -1,5 +1,24 @@
 # Arquitectura
 
+## Coste GPU de superficies ocultas
+
+El panorama Asterion se dibuja al final de los opacos, con profundidad en el
+plano lejano y sin escribirla. Así no sombrea píxeles ya tapados por la nave o
+los planetas; las transparencias siguen su pase normal. El mismo comportamiento
+se usa en el inspector exterior, sin cambiar UVs ni textura.
+
+El lote estático de perfiles estructurales de la cabina, identificado mediante
+medición GPU, incorpora un pase exacto sin color antes de los materiales PBR.
+Comparte geometría, no participa en raycast y se monta/limpia en un efecto de
+layout antes de los hooks de iluminación. No aplicar este pase indiscriminadamente:
+agrega vértices y un draw, y sólo se admite geometría opaca sin deformación.
+
+En desarrollo, `?gpuProfile` habilita consultas GPU pasivas y acotadas desde
+`GameDiagnostics`; la API sólo devuelve copias de las mediciones. Está ausente
+del build de producción. Para medir FPS normales se omite el parámetro, porque
+las consultas alteran el pipeline. Método, resultados y límites en el
+[audit GPU](audits/gpu-cost/README.md).
+
 ## Cinemática de llegada y carga
 
 La intro se reproduce con un video H.264 prerenderizado desde el maestro Blender,
@@ -57,6 +76,8 @@ compartidos de la cabina iluminan los objetos. Contrato y reproducción en
 ## Resaltado de estaciones
 
 `StationHighlights` comparte las posiciones y dimensiones de `TERMINAL_SCREENS`.
+La mesa usa `TACTICAL_TABLE_SURFACE`, compartida con su superficie física:
+su borde es horizontal y no sigue la interfaz táctica vertical flotante.
 El siguiente objetivo del protocolo activa un contorno cian con pulso suave de
 dos segundos; el destino apuntado usa un contorno fijo. Se oculta fuera del modo
 de caminar activo y con la tablet levantada. Movimiento reducido elimina el pulso.
@@ -783,8 +804,8 @@ en `docs/audits/asterion-integration/`.
 ### Deriva exterior y reposo en pausa
 
 `asterionMotion.ts` define dos trayectorias cerradas suaves: deriva aparente del
-conjunto planetas/anillos/atmósferas en 480 s y desplazamiento relativo del campo
-de fragmentos en 240 s. Ambas parten de la composición aprobada y avanzan en la
+conjunto planetas/anillos/atmósferas en 240 s y desplazamiento relativo del campo
+de fragmentos en 120 s. Ambas parten de la composición aprobada y avanzan en la
 misma dirección inicial. Son una aproximación visual al movimiento orbital de
 la nave, no una simulación astronómica. Se trasladan los cuerpos sin girar sus
 materiales ni los terminadores horneados. El cielo remoto permanece fijo.
@@ -792,8 +813,16 @@ materiales ni los terminadores horneados. El cielo remoto permanece fijo.
 Un tiempo de simulación local avanza con delta completo entre 15 y 144 FPS;
 descarta cuadros de más de 250 ms para evitar saltos después de una suspensión.
 Pausa, pestaña oculta y movimiento reducido congelan ese tiempo y el de la nave
-auxiliar. Los cambios por cuadro reutilizan vectores y grupos; no agregan luces,
-texturas, mallas ni actualizaciones de estado React.
+auxiliar. Los cambios por cuadro reutilizan vectores y grupos, sin crear recursos
+ni actualizar estado React.
+
+`hiddenBodies` en el manifiesto excluye Vesper y su halo de los clones de ejecución;
+la luna Selene permanece y el GLB original se conserva. `courierModel` sustituye la
+nave de octaedros por seis lotes opacos preiluminados. `OrbitalRelay` añade arcos
+artificiales a Ítaca, y `MeteorTrails` agrupa las estelas en un dibujo instanciado
+con una textura procedural mínima. Todos comparten la política de tiempo,
+pausa y movimiento reducido; las estelas se ocultan con esta preferencia.
+Detalles, fuente Blender derivada y evidencia en `docs/audits/asterion-traffic/`.
 
 Con la intro completada, Escape lleva el Canvas a renderizado bajo demanda.
 La imagen se conserva y una actualización legítima todavía puede invalidarla;

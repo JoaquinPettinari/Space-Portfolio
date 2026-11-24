@@ -1,7 +1,29 @@
 // @vitest-environment node
 import { BoxGeometry, Group, Mesh, MeshBasicMaterial, Texture } from 'three'
 import { expect, it, vi } from 'vitest'
-import { prepareAsterionModel } from './asterionModel'
+import { isVisibleAsterionBody, prepareAsterionModel } from './asterionModel'
+
+it('removes Vesper from the owned scene and its halo while retaining Selene and cached resources', () => {
+  const source = new Group()
+  const geometry = new BoxGeometry()
+  const material = new MeshBasicMaterial()
+  const planet = new Mesh(geometry, material)
+  planet.name = 'ASTERION__VESPER__tidally_scarred_mineral_world'
+  const moon = new Mesh(geometry, material)
+  moon.name = 'ASTERION__SELENE__Vesper_moon'
+  source.add(planet, moon)
+  const prepared = prepareAsterionModel(source)
+  expect(prepared.root.children.map((node) => node.name)).toEqual([moon.name])
+  expect(source.children).toHaveLength(2)
+  expect(
+    isVisibleAsterionBody(
+      'VESPER / tidally scarred mineral world / atmosphere',
+    ),
+  ).toBe(false)
+  prepared.dispose()
+  geometry.dispose()
+  material.dispose()
+})
 
 it('preserves authored placement and cached geometry while owning display-ready materials', () => {
   const source = new Group()

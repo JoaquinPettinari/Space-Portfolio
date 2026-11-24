@@ -22,7 +22,6 @@ import { RecreationDesktop } from '../workstation/RecreationDesktop'
 import type { useCoffee } from './useCoffee'
 import { CoffeeMachine } from './world/CoffeeMachine'
 import { ShipRadio, type ShipRadioHandle } from './world/ShipRadio'
-import { ReferenceCassettes } from './world/ReferenceCassettes'
 import { NavigationConsole } from './world/NavigationConsole'
 import { ZeroContributionLights } from './rendering/WarmLightFastPath'
 import type { StationControls } from './useStationControls'
@@ -159,7 +158,6 @@ export function GameWorld({
         target={target}
         paused={suspended || controls.showMouseHint}
       />
-      <ReferenceCassettes />
       {mode === 'navigation' && !transitioning && (
         <NavigationConsole onClose={resumeWalking} />
       )}

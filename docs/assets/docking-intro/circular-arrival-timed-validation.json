@@ -1,0 +1,23 @@
+{
+  "source": "circular-arrival-draft.blend",
+  "revision": "circular-arrival-timed-doors.blend",
+  "sourceSha256": "35e11cb76cf3feb25b8d65f43c37a399c618d3fa2dc638ad8e447ab1391567ed",
+  "sourceUnchanged": true,
+  "frames": 240,
+  "fps": 30,
+  "opening": [30, 66],
+  "closing": [187, 225],
+  "crossingFrames": [92, 161],
+  "tailClearanceBeforeClosing": 0.32999961853027315,
+  "movingMeshesChecked": ["PAMPA_07 / source hull"],
+  "openDoorLateralClearance": 0.5066348934173583,
+  "minimumMouthCameraMargin": 0.3585853576660156,
+  "leafRadius": 1.79,
+  "mouthRadius": 1.7,
+  "radialOverlap": 0.09,
+  "centerSealOverlap": 0.075,
+  "cameraStart": [34, -61, 19],
+  "cameraEnd": [17, -45, 10.5],
+  "mechanism": "hinged leaves, no visibility/scale animation",
+  "internalParkingIsFictional": true
+}

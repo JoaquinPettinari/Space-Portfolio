@@ -1,4 +1,5 @@
 import { developmentCaptureMode } from '../../config/development'
+import { observeGpu, type GpuSample } from './gpuTiming'
 import { useEffect, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import {
@@ -6,6 +7,7 @@ import {
   Light,
   Matrix4,
   Mesh,
+  InstancedMesh,
   MeshStandardMaterial,
   MeshPhysicalMaterial,
   Raycaster,
@@ -74,6 +76,8 @@ export type GameSnapshot = {
     alarmIntensity: number | null
   }
   spaceMotion: {
+    relay: number | null
+    meteor: number | null
     orbit: number | null
     worlds: { x: number; y: number; z: number } | null
     debris: { x: number; y: number; z: number } | null
@@ -84,6 +88,11 @@ export type GameSnapshot = {
 declare global {
   interface Window {
     __GAME_DEBUG__?: Readonly<{
+      gpu: () => {
+        supported: boolean
+        discarded: number
+        samples: GpuSample[]
+      } | null
       snapshot: () => GameSnapshot
       performance: () => Pick<
         GameSnapshot,
@@ -107,6 +116,15 @@ declare global {
 
 export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
   const { camera, gl, scene } = useThree()
+  const gpu = useRef<ReturnType<typeof observeGpu> | null>(null)
+  useEffect(() => {
+    if (!new URLSearchParams(location.search).has('gpuProfile')) return
+    gpu.current = observeGpu(gl)
+    return () => {
+      gpu.current?.dispose()
+      gpu.current = null
+    }
+  }, [gl])
   const frameMs = useRef(0)
   const renderedFrames = useRef(0)
   const maxEyeHeight = useRef(0)
@@ -234,6 +252,7 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
         mouse.current = { x: event.movementX, y: event.movementY }
     }
     const api = Object.freeze({
+      gpu: () => gpu.current?.snapshot() ?? null,
       materialInventory: () => {
         const seen = new Set<MeshStandardMaterial>()
         scene.traverseVisible((object) => {
@@ -401,6 +420,14 @@ export function GameDiagnostics({ session }: { session: SessionSnapshot }) {
           alarmIntensity: intensity('cabin-alarm'),
         },
         spaceMotion: {
+          relay:
+            scene.getObjectByName('ithaca-orbital-relay')?.rotation.z ?? null,
+          meteor: (() => {
+            const trails = scene.getObjectByName('orbital-meteor-trails')
+            return trails instanceof InstancedMesh
+              ? trails.instanceMatrix.array[12]
+              : null
+          })(),
           orbit: scene.getObjectByName('orbital-drift')?.rotation.y ?? null,
           worlds: (() => {
             const position = scene.getObjectByName(

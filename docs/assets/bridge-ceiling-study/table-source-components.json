@@ -1,0 +1,1298 @@
+[
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.295, -0.23],
+      [3.658, 3.658],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.355, -0.29],
+      [3.658, 3.658],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.415, -0.35],
+      [3.658, 3.658],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.475, -0.41],
+      [3.658, 3.658],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.535, -0.47],
+      [3.658, 3.658],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.23, 0.295],
+      [1.642, 1.642],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.29, 0.355],
+      [1.642, 1.642],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.35, 0.415],
+      [1.642, 1.642],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.41, 0.475],
+      [1.642, 1.642],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_Safety_paint_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.47, 0.535],
+      [1.642, 1.642],
+      [0.375, 0.425]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.35, 0.35],
+      [3.768, 3.782],
+      [0.089, 0.121]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.705, -0.495],
+      [3.995, 3.999],
+      [1.001, 1.023]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.495, 0.705],
+      [3.995, 3.999],
+      [1.001, 1.023]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.35, 0.35],
+      [1.518, 1.532],
+      [0.089, 0.121]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.705, -0.495],
+      [1.301, 1.305],
+      [1.001, 1.023]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Amber_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.495, 0.705],
+      [1.301, 1.305],
+      [1.001, 1.023]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-1.0075, -0.9625],
+      [3.04, 3.14],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-1.0075, -0.9625],
+      [2.82, 2.92],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-1.0075, -0.9625],
+      [2.6, 2.7],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-1.0075, -0.9625],
+      [2.38, 2.48],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-1.0075, -0.9625],
+      [2.16, 2.26],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.9625, 1.0075],
+      [3.04, 3.14],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.9625, 1.0075],
+      [2.82, 2.92],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.9625, 1.0075],
+      [2.6, 2.7],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.9625, 1.0075],
+      [2.38, 2.48],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.9625, 1.0075],
+      [2.16, 2.26],
+      [1.065, 1.071]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.3375, 0.4225],
+      [3.656, 3.674],
+      [0.609, 0.651]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.4225, -0.3375],
+      [3.656, 3.674],
+      [0.609, 0.651]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.4225, -0.3375],
+      [1.626, 1.644],
+      [0.609, 0.651]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Gasket_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.3375, 0.4225],
+      [1.626, 1.644],
+      [0.609, 0.651]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 432,
+    "bounds": [
+      [-0.8055, 0.8055],
+      [1.5745, 3.7255],
+      [0.14, 0.22]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 112,
+    "bounds": [
+      [-0.9054, 0.9054],
+      [1.4547, 3.8453],
+      [0.82, 0.91]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 1536,
+    "bounds": [
+      [-1.04, 1.04],
+      [1.31, 3.99],
+      [0.98, 1.065]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.655, -0.105],
+      [3.622, 3.646],
+      [0.295, 0.745]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6025, -0.5775],
+      [3.655, 3.667],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6025, -0.5775],
+      [3.655, 3.667],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.1825, -0.1575],
+      [3.655, 3.667],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.1825, -0.1575],
+      [3.655, 3.667],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.105, 0.655],
+      [3.622, 3.646],
+      [0.295, 0.745]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.1575, 0.1825],
+      [3.655, 3.667],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.1575, 0.1825],
+      [3.655, 3.667],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.5775, 0.6025],
+      [3.655, 3.667],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.5775, 0.6025],
+      [3.655, 3.667],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.734, -0.712],
+      [2.89, 3.51],
+      [0.29, 0.71]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.734, -0.712],
+      [1.79, 2.41],
+      [0.29, 0.71]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.8, -0.72],
+      [3.4075, 3.4925],
+      [0.19, 0.67]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.8, -0.72],
+      [1.8075, 1.8925],
+      [0.19, 0.67]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.655, -0.105],
+      [1.654, 1.678],
+      [0.295, 0.745]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6025, -0.5775],
+      [1.633, 1.645],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6025, -0.5775],
+      [1.633, 1.645],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.1825, -0.1575],
+      [1.633, 1.645],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.1825, -0.1575],
+      [1.633, 1.645],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.105, 0.655],
+      [1.654, 1.678],
+      [0.295, 0.745]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.1575, 0.1825],
+      [1.633, 1.645],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.1575, 0.1825],
+      [1.633, 1.645],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.5775, 0.6025],
+      [1.633, 1.645],
+      [0.3475, 0.3725]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.5775, 0.6025],
+      [1.633, 1.645],
+      [0.6675, 0.6925]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.712, 0.734],
+      [2.89, 3.51],
+      [0.29, 0.71]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.712, 0.734],
+      [1.79, 2.41],
+      [0.29, 0.71]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.72, 0.8],
+      [3.4075, 3.4925],
+      [0.19, 0.67]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.72, 0.8],
+      [1.8075, 1.8925],
+      [0.19, 0.67]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.354, 0.406],
+      [3.673, 3.685],
+      [0.623, 0.637]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.406, -0.354],
+      [3.673, 3.685],
+      [0.623, 0.637]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.406, -0.354],
+      [1.615, 1.627],
+      [0.623, 0.637]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Metal_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.354, 0.406],
+      [1.615, 1.627],
+      [0.623, 0.637]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 40,
+    "bounds": [
+      [0.2264, 0.2399],
+      [3.658, 3.658],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 18,
+    "bounds": [
+      [0.2439, 0.2661],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 15,
+    "bounds": [
+      [0.2697, 0.2836],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 11,
+    "bounds": [
+      [0.2868, 0.3067],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 46,
+    "bounds": [
+      [0.3084, 0.322],
+      [3.658, 3.658],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 15,
+    "bounds": [
+      [0.3234, 0.3445],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 35,
+    "bounds": [
+      [0.3456, 0.3591],
+      [3.658, 3.658],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 9,
+    "bounds": [
+      [0.3706, 0.3848],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 19,
+    "bounds": [
+      [0.3874, 0.4107],
+      [3.658, 3.658],
+      [0.55, 0.574]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 30,
+    "bounds": [
+      [0.4123, 0.4338],
+      [3.658, 3.658],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.4382, 0.4416],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 11,
+    "bounds": [
+      [0.4449, 0.4648],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 30,
+    "bounds": [
+      [0.467, 0.4885],
+      [3.658, 3.658],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 26,
+    "bounds": [
+      [0.4902, 0.5135],
+      [3.658, 3.658],
+      [0.55, 0.574]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 11,
+    "bounds": [
+      [0.5141, 0.5341],
+      [3.658, 3.658],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.4155, -0.413],
+      [3.658, 3.658],
+      [0.55, 0.5671]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 36,
+    "bounds": [
+      [-0.4072, -0.3962],
+      [3.658, 3.658],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.3945, -0.3884],
+      [3.658, 3.658],
+      [0.5544, 0.5567]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 34,
+    "bounds": [
+      [-0.3866, -0.377],
+      [3.658, 3.658],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 23,
+    "bounds": [
+      [-0.3748, -0.3591],
+      [3.658, 3.658],
+      [0.55, 0.5671]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 27,
+    "bounds": [
+      [-0.3561, -0.3407],
+      [3.658, 3.658],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 31,
+    "bounds": [
+      [-0.2399, -0.2264],
+      [1.642, 1.642],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 18,
+    "bounds": [
+      [-0.2661, -0.2439],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 12,
+    "bounds": [
+      [-0.2836, -0.2697],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 8,
+    "bounds": [
+      [-0.3067, -0.2868],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 40,
+    "bounds": [
+      [-0.322, -0.3084],
+      [1.642, 1.642],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 9,
+    "bounds": [
+      [-0.3445, -0.3234],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 41,
+    "bounds": [
+      [-0.3591, -0.3456],
+      [1.642, 1.642],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 6,
+    "bounds": [
+      [-0.3848, -0.3706],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 14,
+    "bounds": [
+      [-0.4107, -0.3874],
+      [1.642, 1.642],
+      [0.55, 0.574]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 21,
+    "bounds": [
+      [-0.4338, -0.4123],
+      [1.642, 1.642],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [-0.4416, -0.4382],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 11,
+    "bounds": [
+      [-0.4648, -0.4449],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 18,
+    "bounds": [
+      [-0.4885, -0.467],
+      [1.642, 1.642],
+      [0.5497, 0.5742]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 17,
+    "bounds": [
+      [-0.5135, -0.4902],
+      [1.642, 1.642],
+      [0.55, 0.574]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 8,
+    "bounds": [
+      [-0.5341, -0.5141],
+      [1.642, 1.642],
+      [0.55, 0.5739]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.413, 0.4155],
+      [1.642, 1.642],
+      [0.55, 0.5671]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 25,
+    "bounds": [
+      [0.3962, 0.4072],
+      [1.642, 1.642],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 4,
+    "bounds": [
+      [0.3884, 0.3945],
+      [1.642, 1.642],
+      [0.5544, 0.5567]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 34,
+    "bounds": [
+      [0.377, 0.3866],
+      [1.642, 1.642],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 25,
+    "bounds": [
+      [0.3591, 0.3748],
+      [1.642, 1.642],
+      [0.55, 0.5671]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Ivory_tactical",
+    "vertices": 21,
+    "bounds": [
+      [0.3407, 0.3561],
+      [1.642, 1.642],
+      [0.5498, 0.5673]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 432,
+    "bounds": [
+      [-0.85, 0.85],
+      [1.53, 3.77],
+      [0.025, 0.14]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 432,
+    "bounds": [
+      [-0.729, 0.729],
+      [1.6509, 3.6491],
+      [0.22, 0.85]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 864,
+    "bounds": [
+      [-1.04, 1.04],
+      [1.31, 3.99],
+      [0.9, 0.98]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6, -0.16],
+      [3.644, 3.656],
+      [0.36, 0.68]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.16, 0.6],
+      [3.644, 3.656],
+      [0.36, 0.68]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.75, -0.45],
+      [3.988, 3.996],
+      [0.9895, 1.0345]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.45, 0.75],
+      [3.988, 3.996],
+      [0.9895, 1.0345]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [2.98, 3.42],
+      [0.371, 0.389]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [2.98, 3.42],
+      [0.421, 0.439]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [2.98, 3.42],
+      [0.471, 0.489]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [2.98, 3.42],
+      [0.521, 0.539]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [2.98, 3.42],
+      [0.571, 0.589]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [1.88, 2.32],
+      [0.371, 0.389]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [1.88, 2.32],
+      [0.421, 0.439]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [1.88, 2.32],
+      [0.471, 0.489]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [1.88, 2.32],
+      [0.521, 0.539]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.744, -0.732],
+      [1.88, 2.32],
+      [0.571, 0.589]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.992, -0.966],
+      [3.487, 3.513],
+      [1.065, 1.073]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.992, -0.966],
+      [2.637, 2.663],
+      [1.065, 1.073]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.992, -0.966],
+      [1.787, 1.813],
+      [1.065, 1.073]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.6, -0.16],
+      [1.644, 1.656],
+      [0.36, 0.68]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.16, 0.6],
+      [1.644, 1.656],
+      [0.36, 0.68]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [-0.75, -0.45],
+      [1.304, 1.312],
+      [0.9895, 1.0345]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.45, 0.75],
+      [1.304, 1.312],
+      [0.9895, 1.0345]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [2.98, 3.42],
+      [0.371, 0.389]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [2.98, 3.42],
+      [0.421, 0.439]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [2.98, 3.42],
+      [0.471, 0.489]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [2.98, 3.42],
+      [0.521, 0.539]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [2.98, 3.42],
+      [0.571, 0.589]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [1.88, 2.32],
+      [0.371, 0.389]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [1.88, 2.32],
+      [0.421, 0.439]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [1.88, 2.32],
+      [0.471, 0.489]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [1.88, 2.32],
+      [0.521, 0.539]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.732, 0.744],
+      [1.88, 2.32],
+      [0.571, 0.589]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.966, 0.992],
+      [3.487, 3.513],
+      [1.065, 1.073]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.966, 0.992],
+      [2.637, 2.663],
+      [1.065, 1.073]
+    ]
+  },
+  {
+    "name": "BRIDGE_RUNTIME_BRIDGE_V15_Graphite_tactical",
+    "vertices": 216,
+    "bounds": [
+      [0.966, 0.992],
+      [1.787, 1.813],
+      [1.065, 1.073]
+    ]
+  }
+]

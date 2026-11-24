@@ -1,0 +1,63 @@
+{
+  "source": "circular-arrival-polished.blend",
+  "revision": "circular-arrival-detailed.blend",
+  "sourceSha256": "9dbe1b91f7c30574b918b79bccfdb36f56846726fb51adbe0966383647822efb",
+  "sourceUnchanged": true,
+  "framesChecked": 240,
+  "fps": 30,
+  "duration": 8,
+  "cameraCraftAndDoorMotionUnchanged": true,
+  "crossingFrames": [91, 161],
+  "minimumActuatorClearance": 0.40663483142852774,
+  "tailClearanceBeforeClosing": 0.32999961853027315,
+  "minimumActuatorHullClearanceAcrossAllFrames": 0.14014317989349356,
+  "hydraulicExposedLengthRange": [0.4443879229796681, 0.9754134603746547],
+  "groundedGussets": [
+    {
+      "side": -1,
+      "y": -23.2,
+      "hullHeight": -0.6542226076126099,
+      "wallX": -1.8830517292022706,
+      "top": 1.55
+    },
+    {
+      "side": -1,
+      "y": -21.9,
+      "hullHeight": -0.1919996738433838,
+      "wallX": -1.9489603996276856,
+      "top": 1.55
+    },
+    {
+      "side": -1,
+      "y": -20.7,
+      "hullHeight": 0.6726283431053162,
+      "wallX": -2.1009522438049317,
+      "top": 1.55
+    },
+    {
+      "side": 1,
+      "y": -23.2,
+      "hullHeight": -0.6542226076126099,
+      "wallX": 1.8830519676208497,
+      "top": 1.55
+    },
+    {
+      "side": 1,
+      "y": -21.9,
+      "hullHeight": -0.1919996738433838,
+      "wallX": 1.9489601612091065,
+      "top": 1.55
+    },
+    {
+      "side": 1,
+      "y": -20.7,
+      "hullHeight": 0.6731221675872803,
+      "wallX": 2.1009520053863526,
+      "top": 1.55
+    }
+  ],
+  "minimumCameraMargin": 0.3585853576660156,
+  "status": "green sealed, amber maneuver, cyan open; smooth transitions without flashing",
+  "renderSamples": 32,
+  "internalParkingIsFictional": true
+}

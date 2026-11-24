@@ -1,0 +1,14 @@
+{
+  "source": "bridge-complete-review.blend",
+  "sourceSha256": "3b5d933623f479ee1ecb88dc186c756172922f06fa5f6a7fbe09d2cdd83331a8",
+  "originalObjectTransformsPreserved": 2826,
+  "addedClosedMeshes": [
+    "STRUCTURE / Chamfered pressure header",
+    "STRUCTURE / Continuous roof to portal closure",
+    "STRUCTURE / Port roof perimeter return",
+    "STRUCTURE / Starboard roof perimeter return"
+  ],
+  "coordinateTransform": "(x,y,z) -> (x,-z,y)",
+  "sourceUnchanged": true,
+  "runtimeGeometryShared": true
+}

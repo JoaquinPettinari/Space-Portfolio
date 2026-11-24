@@ -1,0 +1,17 @@
+{
+  "source": "bridge-structure-review.blend",
+  "sourceSha256": "356d688a77b6d813e7d21db9f9b5a283bac12de4ef4aed1905d6e58c1952bb3b",
+  "sourceUnchanged": true,
+  "protectedObjectsUnchanged": 2830,
+  "photographsPreserved": [
+    "PHOTO / Personal image 1",
+    "PHOTO / Personal image 2",
+    "PHOTO / Personal image 3",
+    "PHOTO / Personal image 4"
+  ],
+  "addedMeshes": 66,
+  "newLights": 0,
+  "newMaterials": 0,
+  "runtimeExported": false,
+  "revision": "bridge-junctions-polished.blend"
+}

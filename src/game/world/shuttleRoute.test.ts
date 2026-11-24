@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { Euler, Vector3 } from 'three'
+import { Quaternion, Vector3 } from 'three'
 import { sampleShuttleRoute } from './shuttleRoute'
 
 it('keeps the nose aligned with forward travel around the entire closed route', () => {
@@ -8,8 +8,11 @@ it('keeps the nose aligned with forward travel around the entire closed route', 
     tangent = new Vector3()
   for (let phase = 0; phase <= Math.PI * 2; phase += 0.1) {
     sampleShuttleRoute(phase, position, tangent)
-    const nose = new Vector3(1, 0, 0).applyEuler(
-      new Euler(0, Math.atan2(-tangent.z, tangent.x), 0),
+    const nose = new Vector3(1, 0, 0).applyQuaternion(
+      new Quaternion().setFromUnitVectors(
+        new Vector3(1, 0, 0),
+        tangent.clone().normalize(),
+      ),
     )
     sampleShuttleRoute(phase + 0.001, next, tangent)
     expect(nose.dot(next.sub(position).normalize())).toBeGreaterThan(0.999)
