@@ -7,8 +7,8 @@ plano lejano y sin escribirla. Así no sombrea píxeles ya tapados por la nave o
 los planetas; las transparencias siguen su pase normal. El mismo comportamiento
 se usa en el inspector exterior, sin cambiar UVs ni textura.
 
-El lote estático de perfiles estructurales de la cabina, identificado mediante
-medición GPU, incorpora un pase exacto sin color antes de los materiales PBR.
+La cabina estática opaca y los lotes estáticos medidos de la proa incorporan
+un pase exacto sin color antes de los materiales PBR.
 Comparte geometría, no participa en raycast y se monta/limpia en un efecto de
 layout antes de los hooks de iluminación. No aplicar este pase indiscriminadamente:
 agrega vértices y un draw, y sólo se admite geometría opaca sin deformación.
@@ -18,6 +18,14 @@ En desarrollo, `?gpuProfile` habilita consultas GPU pasivas y acotadas desde
 del build de producción. Para medir FPS normales se omite el parámetro, porque
 las consultas alteran el pipeline. Método, resultados y límites en el
 [audit GPU](audits/gpu-cost/README.md).
+La ampliación del 25 de noviembre y su comparación sin instrumentación están en
+[FPS general](audits/fps-general-nov25/README.md).
+El [seguimiento de la entrada](audits/fps-light-rejection/README.md) amplía la
+cobertura a los lotes estáticos `CABIN_MASTER_cabin_`, respetando las exclusiones
+de transparencia, recortes alfa y deformaciones del instalador.
+El [seguimiento de proa](audits/fps-followup/README.md) extiende la selección a
+`REFINED_bridge_static_`; conserva los filtros del instalador y deja fuera las
+consolas móviles. Incluye el experimento de luces descartado por no mejorar FPS.
 
 ## Cinemática de llegada y carga
 

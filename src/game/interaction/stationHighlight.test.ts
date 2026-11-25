@@ -11,6 +11,8 @@ describe('station guidance', () => {
     let state = initialProtocol()
     expect(objectiveStation(getCurrentObjective(state)?.id)).toBe('crew')
     state = protocolReducer(state, { type: 'activity', id: 'crew' })
+    expect(objectiveStation(getCurrentObjective(state)?.id)).toBe('tactical')
+    state = protocolReducer(state, { type: 'activity', id: 'tactical' })
     expect(objectiveStation(getCurrentObjective(state)?.id)).toBe('computer')
     state = protocolReducer(state, { type: 'activity', id: 'archives' })
     expect(objectiveStation(getCurrentObjective(state)?.id)).toBe(

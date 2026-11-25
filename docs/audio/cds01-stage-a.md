@@ -6,15 +6,15 @@ Fuente aprobada: [documento original](../CRUZ_DEL_SUR_CDS01_AUDIO_INTEGRATION_v1
 
 Los siete archivos suministrados existen en `public/audio/cds01/`. Se verificaron los frames MP3: MPEG-1 Layer III, mono, 44.100 Hz, 128 kbps, sin bytes residuales. Duraciones obtenidas de los frames; el navegador utiliza la duración real de sus metadatos cuando está disponible.
 
-| Evento                   | Archivo real                            | Duración | Activación actual                                                                                                                  |
-| ------------------------ | --------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `arrival`                | `IA_dialog_welcome_access.mp3`          | 19,409 s | Llegada con controles preparados; una vez por sesión.                                                                              |
-| `crewVerified`           | `IA_dialog_access_granted.mp3`          | 3,318 s  | Callback de verificación de credenciales completada; la puerta conserva su apertura existente.                                     |
-| `bridgeIntroduction`     | `IA_dialog_welcome_bridge.mp3`          | 9,796 s  | Cruce hacia la proa del punto medio del pasillo panorámico, caminando y dentro de sus límites; una vez.                            |
-| `tacticalDiagnostics`    | `IA_dialog_table_result.mp3`            | 12,513 s | Desactivado: falta el resultado diagnóstico narrativo real de la mesa.                                                             |
-| `recoveryProcedureFound` | `IA_dialog_confirmation_files.mp3`      | 10,998 s | Desactivado: falta la lectura concreta de Recovery Procedures. Abrir el archivo profesional no equivale a este evento.             |
-| `relayRestored`          | `IA_dialog_communications_restored.mp3` | 10,266 s | Desactivado: falta la reparación real del relé. Enviar/omitir el formulario no lo repara.                                          |
-| `missionComplete`        | `IA_dialog_missions_completed.mp3`      | 12,042 s | Desactivado: falta la finalización narrativa y el relé restaurado. Completar las cuatro tareas actuales no dispara esta grabación. |
+| Evento                   | Archivo real                            | Duración | Activación actual                                                                                                                 |
+| ------------------------ | --------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `arrival`                | `IA_dialog_welcome_access.mp3`          | 19,409 s | Llegada con controles preparados; una vez por sesión.                                                                             |
+| `crewVerified`           | `IA_dialog_access_granted.mp3`          | 3,318 s  | Callback de verificación de credenciales completada; la puerta conserva su apertura existente.                                    |
+| `bridgeIntroduction`     | `IA_dialog_welcome_bridge.mp3`          | 9,796 s  | Cruce hacia la proa del punto medio del pasillo panorámico, caminando y dentro de sus límites; una vez.                           |
+| `tacticalDiagnostics`    | `IA_dialog_table_result.mp3`            | 12,513 s | Entrar a la vista de la mesa táctica; muestra el informe y completa el objetivo, una vez por sesión.                              |
+| `recoveryProcedureFound` | `IA_dialog_confirmation_files.mp3`      | 10,998 s | Desactivado: falta la lectura concreta de Recovery Procedures. Abrir el archivo profesional no equivale a este evento.            |
+| `relayRestored`          | `IA_dialog_communications_restored.mp3` | 10,266 s | Desactivado: falta la reparación real del relé. Enviar/omitir el formulario no lo repara.                                         |
+| `missionComplete`        | `IA_dialog_missions_completed.mp3`      | 12,042 s | Desactivado: falta la finalización narrativa y el relé restaurado. Completar las cinco tareas actuales no dispara esta grabación. |
 
 El documento escribe `access_granated`; el archivo recibido se llama `access_granted`. Se conserva el nombre real, sin duplicarlo ni inventar una URL alternativa.
 
@@ -26,7 +26,7 @@ Un controlador posee el audio y el reloj del subtítulo activo. El sonido comien
 
 Pausa, suspensión y pestaña oculta congelan voz y reloj. Los eventos de buffering también detienen el reloj una vez iniciada la reproducción. Si el navegador rechaza `play()` o falla el archivo, el subtítulo sigue disponible; un clic real posterior permite reintentar un bloqueo de autoplay. Cambiar de frase, descartarla o desmontar limpia el audio, los listeners y los temporizadores.
 
-Los eventos de mayor prioridad interrumpen; los restantes se encolan. Una frase ya vista no se vuelve a encolar durante esa sesión. Los cuatro eventos futuros se rechazan incluso si alguien intenta encolarlos directamente. La regla comprobable de finalización requiere ambos estados: historia completa y relé restaurado; no se crearon esos sistemas futuros.
+Los eventos de mayor prioridad interrumpen; los restantes se encolan. Una frase ya vista no se vuelve a encolar durante esa sesión. Los tres eventos futuros se rechazan incluso si alguien intenta encolarlos directamente. La regla comprobable de finalización requiere ambos estados: historia completa y relé restaurado; no se crearon esos sistemas futuros.
 
 La interfaz mínima identifica al asistente como CDS-01 y muestra actividad de voz a partir de reproducción real. No se rediseñó el HUD ni se añadieron requisitos al contacto, al CV o al contenido profesional.
 

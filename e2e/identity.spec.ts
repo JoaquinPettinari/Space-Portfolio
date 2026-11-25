@@ -57,7 +57,7 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   await expect(
     tablet.getByRole('listitem').filter({ hasText: 'Verify crew identity' }),
   ).toHaveAttribute('data-complete', 'false')
-  await expect(tablet).toContainText('0 / 4')
+  await expect(tablet).toContainText('0 / 5')
   await expect(
     tablet.getByRole('img', {
       name: /Crew Access in the docking arrival room/,
@@ -245,5 +245,5 @@ test('tablet locates Crew Access and one scan reveals the compact identity recor
   await enterObservationRoom(page)
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('1 / 4 complete')
+  ).toContainText('1 / 5 complete')
 })

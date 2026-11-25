@@ -36,9 +36,9 @@ describe('recovery protocol', () => {
     })
     expect(state.completed).toEqual(['lighting', 'crew'])
     state = protocolReducer(state, { type: 'activity', id: 'lighting' })
-    expect(getCurrentObjective(state)?.id).toBe('archives')
+    expect(getCurrentObjective(state)?.id).toBe('tactical')
     state = protocolReducer(state, { type: 'activity', id: 'tablet' })
-    expect(getCurrentObjective(state)?.id).toBe('archives')
+    expect(getCurrentObjective(state)?.id).toBe('tactical')
     expect(state.guidance).toBe('pending')
   })
   it('skips guidance without erasing progress and records activities while skipped', () => {
@@ -85,6 +85,7 @@ describe('recovery protocol', () => {
           'lighting',
           'tablet',
           'crew',
+          'tactical',
           'archives',
           'uplink',
           'dossier',
@@ -104,6 +105,7 @@ describe('session-only progress', () => {
           'lighting',
           'tablet',
           'crew',
+          'tactical',
           'archives',
           'uplink',
           'dossier',
@@ -127,6 +129,7 @@ describe('session-only progress', () => {
         'lighting',
         'tablet',
         'crew',
+        'tactical',
         'archives',
         'dossier',
       ] as const) {
@@ -138,7 +141,7 @@ describe('session-only progress', () => {
       })
       first.result.current.dispatch({ type: 'skip' })
     })
-    expect(first.result.current.state.completed).toHaveLength(6)
+    expect(first.result.current.state.completed).toHaveLength(7)
     expect(first.result.current.state.guidance).toBe('skipped')
     first.unmount()
     const second = renderHook(() => useProtocol())

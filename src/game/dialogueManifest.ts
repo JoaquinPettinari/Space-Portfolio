@@ -47,10 +47,16 @@ export const dialogueManifest = {
       "Welcome to the heart of CRUZ DEL SUR: the command bridge. Our latest diagnostics are available at the central tactical table. Let's find out what happened.",
   },
   tacticalDiagnostics: {
+    captionPhrases: [
+      'The diagnostics confirm that our long-range communications relay is offline.',
+      'The cause is still unclear.',
+      "The Central Archive contains the vessel's recovery procedures.",
+      'We should review them before attempting a repair.',
+    ],
     audioUrl: '/audio/cds01/IA_dialog_table_result.mp3',
     durationMs: 12513,
     priority: 30,
-    enabled: false,
+    enabled: true,
     caption:
       "The diagnostics confirm that our long-range communications relay is offline. The cause is still unclear. The Central Archive contains the vessel's recovery procedures. We should review them before attempting a repair.",
   },

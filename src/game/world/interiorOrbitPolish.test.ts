@@ -3,9 +3,7 @@ import { readFileSync } from 'node:fs'
 import { Box3, Mesh, Raycaster, Vector3, type Object3D } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { expect, it } from 'vitest'
-import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
 import { BRIDGE_OFFSET_Z } from './bridgePlacement'
-import { roofHalfWidth } from './bridgeLayout'
 import { PASSAGE_RECESS_PANELS } from './passageRecessPanels'
 import { TRANSITION_START, TRANSITION_END } from './bridgePlacement'
 
@@ -50,17 +48,18 @@ function dispose(root: Object3D) {
   })
 }
 
-it('keeps every shelf and prop inside the bridge rather than outside the glass passage', () => {
-  for (const p of INTERIOR_SHELF_PANELS) {
-    const [x, y, z] = p.at
-    expect(z + p.size[2] / 2).toBeLessThan(5.1 + BRIDGE_OFFSET_Z)
-    expect(Math.abs(x) + p.size[0] / 2).toBeLessThan(
-      roofHalfWidth(z - BRIDGE_OFFSET_Z),
-    )
-    expect(Math.abs(x) - p.size[0] / 2).toBeGreaterThan(1.95)
-    expect(y - p.size[1] / 2).toBeGreaterThan(0)
-    if (x > 0 && z > 1.4 && y - p.size[1] / 2 > 1.45)
-      expect(x - p.size[0] / 2).toBeGreaterThan(3.505)
+it('keeps the port display within the recessed wall footprint', async () => {
+  const root = await geometryOnlyAsset('cruz-del-sur-port-display.glb')
+  try {
+    const bounds = new Box3().setFromObject(root)
+    expect(bounds.min.x).toBeGreaterThan(-4.65)
+    expect(bounds.max.x).toBeLessThan(-3.3)
+    expect(bounds.min.z).toBeGreaterThan(1.29)
+    expect(bounds.max.z).toBeLessThan(1.85)
+    expect(bounds.min.y).toBeGreaterThan(0)
+    expect(bounds.max.y).toBeLessThan(2.8)
+  } finally {
+    dispose(root)
   }
 })
 

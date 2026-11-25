@@ -180,7 +180,7 @@ test('pause keeps resume and portfolio routes, and HUD tracks tablet progress', 
     page
       .getByRole('complementary', { name: 'Recovery objectives' })
       .getByRole('listitem'),
-  ).toHaveCount(4)
+  ).toHaveCount(5)
   await page.keyboard.press('Escape')
   await expect(pause).toBeVisible()
   await openPausePortfolio(page, 'Quick Portfolio Access')

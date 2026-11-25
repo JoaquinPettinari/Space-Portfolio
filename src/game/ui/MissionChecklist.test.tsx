@@ -6,7 +6,7 @@ test('shows playable objectives while omitting internal power and tablet activit
   const { rerender } = render(
     <MissionChecklist completed={['lighting', 'tablet']} current="crew" />,
   )
-  expect(screen.getAllByRole('listitem')).toHaveLength(4)
+  expect(screen.getAllByRole('listitem')).toHaveLength(5)
   expect(screen.queryByText('Arrival systems online')).not.toBeInTheDocument()
   expect(screen.queryByText('Open mission tablet')).not.toBeInTheDocument()
   expect(

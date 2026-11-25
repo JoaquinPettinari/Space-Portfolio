@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { enterObservationRoom, lookAt, snapshot, walkTo } from './helpers/game'
-import { RADIO_POSITION } from '../src/game/interaction/station'
+import { radioButtonWorldPosition } from '../src/game/world/galleyLayout'
 import { RADIO_BUTTONS, type RadioAction } from '../src/game/radioControls'
 import { RADIO_TRACKS } from '../src/game/radioTracks'
 import gestureTiming from '../src/game/world/gestureTiming.json' with { type: 'json' }
@@ -31,14 +31,15 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
     timeout: 120_000,
   })
   await enterObservationRoom(page)
-  await walkTo(page, -2.65, RADIO_POSITION[2])
+  await walkTo(page, 3.0, 0.35)
   const aim = async (action: RadioAction) => {
     const button = RADIO_BUTTONS.find((entry) => entry.action === action)!
-    const [x, y, z] = button.position
+    const [localX, localY, localZ] = button.position
+    const [x, y, z] = radioButtonWorldPosition([localX, localY, localZ + 0.024])
     await lookAt(page, {
-      x: RADIO_POSITION[0] + z + 0.024,
-      y: RADIO_POSITION[1] + y,
-      z: RADIO_POSITION[2] - x,
+      x,
+      y,
+      z,
     })
     await expect(page.locator('.interaction-hint')).toContainText(button.label)
   }
@@ -53,11 +54,10 @@ test('gaze selects physical radio keys; E presses without camera or cursor hando
       .toBeNull()
     expect((await snapshot(page)).radio?.actionCommitted).toBe(true)
   }
-  await lookAt(page, {
-    x: RADIO_POSITION[0] + 0.15,
-    y: RADIO_POSITION[1] + 0.09,
-    z: RADIO_POSITION[2] - 0.055,
-  })
+  const [screenX, screenY, screenZ] = radioButtonWorldPosition([
+    0.055, 0.09, 0.15,
+  ])
+  await lookAt(page, { x: screenX, y: screenY, z: screenZ })
   await expect(page.locator('.interaction-hint')).not.toBeVisible()
   expect(recordings).toEqual([])
   await aim('radio-play')

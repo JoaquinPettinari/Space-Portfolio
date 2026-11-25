@@ -1,5 +1,5 @@
 import { useReducedMotionRef } from '../useReducedMotionRef'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { GzipGLTFLoader } from '../rendering/GzipGLTFLoader'
 import type { Group } from 'three'
@@ -13,9 +13,7 @@ import { TerminalPanel } from '../ui/TerminalPanel'
 import { TacticalPanel } from '../ui/TacticalPanel'
 import { TERMINAL_SCREENS, terminalHtmlScale } from '../interaction/station'
 import type { ProtocolState } from '../protocol'
-import type { BulkheadPhase } from './bulkhead'
 import {
-  TACTICAL_DEFAULT_ZOOM,
   TACTICAL_MODEL_ANCHOR,
   TACTICAL_MODEL_SCALE,
   TACTICAL_MODEL_TILT,
@@ -26,16 +24,14 @@ export function TacticalStation({
   active,
   paused,
   protocol,
-  bulkhead,
-  lightsOn,
   onClose,
+  onDiagnostics,
 }: {
   active: boolean
   paused: boolean
   protocol: ProtocolState
-  bulkhead: BulkheadPhase
-  lightsOn: boolean
   onClose: () => void
+  onDiagnostics: () => void
 }) {
   const model = useRef<Group>(null)
   const asset = useLoader(GzipGLTFLoader, TACTICAL_DISPLAY_ASSET)
@@ -43,20 +39,10 @@ export function TacticalStation({
     () => readTacticalShipModel(asset.scene),
     [asset.scene],
   )
-  const [zoom, setZoom] = useState(TACTICAL_DEFAULT_ZOOM)
-  const [rotating, setRotating] = useState(true)
-
   const invalidate = useThree((state) => state.invalidate)
   const reduced = useReducedMotionRef(invalidate)
   useFrame((_, delta) => {
-    if (
-      !model.current ||
-      paused ||
-      document.hidden ||
-      reduced.current ||
-      !rotating
-    )
-      return
+    if (!model.current || paused || document.hidden || reduced.current) return
     model.current.rotation.y += Math.min(delta, 0.05) * 0.18
     if (active) invalidate()
   })
@@ -72,7 +58,7 @@ export function TacticalStation({
           ref={model}
           name="tactical-ship-model"
           rotation={[0, Math.PI / 2, 0]}
-          scale={(zoom / TACTICAL_DEFAULT_ZOOM) * TACTICAL_MODEL_SCALE}
+          scale={TACTICAL_MODEL_SCALE}
         >
           <group position={[0, -hologram.size.y / 2, 0]}>
             <group
@@ -82,9 +68,9 @@ export function TacticalStation({
               <mesh>
                 <primitive object={hologram.surface} attach="geometry" />
                 <meshBasicMaterial
-                  color="#07527c"
+                  color="#087480"
                   transparent
-                  opacity={0.4}
+                  opacity={0.52}
                   depthWrite
                   toneMapped={false}
                 />
@@ -92,9 +78,9 @@ export function TacticalStation({
               <lineSegments>
                 <primitive object={hologram.edges} attach="geometry" />
                 <lineBasicMaterial
-                  color="#63d9ff"
+                  color="#59edf5"
                   transparent
-                  opacity={0.55}
+                  opacity={0.72}
                   depthWrite={false}
                   toneMapped={false}
                 />
@@ -121,24 +107,8 @@ export function TacticalStation({
           <div className="tactical-terminal">
             <TerminalPanel physical title="Tactical Table" onClose={onClose}>
               <TacticalPanel
+                onDiagnostics={onDiagnostics}
                 protocol={protocol}
-                bulkhead={bulkhead}
-                lightsOn={lightsOn}
-                zoom={zoom}
-                rotating={rotating}
-                onZoom={(value) => {
-                  setZoom(value)
-                  invalidate()
-                }}
-                onRotate={(direction) => {
-                  if (model.current)
-                    model.current.rotation.y += (direction * Math.PI) / 8
-                  invalidate()
-                }}
-                onToggleRotation={() => {
-                  setRotating((value) => !value)
-                  invalidate()
-                }}
               />
             </TerminalPanel>
           </div>

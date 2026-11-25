@@ -67,6 +67,8 @@ export function Game({
   const { enqueue } = dialogue
   const finishMission = (id: MissionId) => {
     dispatch({ type: 'activity', id })
+    if (id === 'tactical' && !completed.includes('tactical'))
+      enqueue('tacticalDiagnostics')
     if (
       (id === 'archives' || id === 'diagnostics') &&
       !completed.includes('archives')
@@ -94,7 +96,7 @@ export function Game({
       enqueue('communications')
   }, [controls.mode, controls.transitioning, enqueue])
   // Completion voice remains disabled until the actual relay-repair story exists.
-  // The current optional four-objective tracker is not proof of restored comms.
+  // The optional objective tracker is not proof of restored comms.
   const { mode, tabletOpen, transitioning } = controls
   let frameLoop: 'never' | 'demand' | 'always' = 'always'
   // Scene mounting/downloads continue without frames. Reserve the GPU for the

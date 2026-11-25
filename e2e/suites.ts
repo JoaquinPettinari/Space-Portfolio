@@ -11,6 +11,7 @@ export const regressionSpecs = [
   'dialogue.spec.ts',
   'docking-intro.spec.ts',
   'extras.spec.ts',
+  'galley.spec.ts',
   'identity.spec.ts',
   'journey.spec.ts',
   'navigation.spec.ts',

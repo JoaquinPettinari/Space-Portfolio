@@ -146,11 +146,10 @@ export function GameWorld({
         </PhysicalTerminal>
       )}
       <TacticalStation
+        onDiagnostics={() => finishMission('tactical')}
         active={mode === 'tactical' && !transitioning}
         paused={suspended || (mode !== 'walking' && mode !== 'tactical')}
         protocol={protocol}
-        bulkhead={bulkheadPhase}
-        lightsOn={lightsOn}
         onClose={resumeWalking}
       />
       <ShipRadio

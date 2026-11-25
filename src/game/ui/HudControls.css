@@ -1,14 +1,14 @@
 .hud-controls {
   position: fixed;
-  left: 28px;
-  bottom: 28px;
+  left: var(--hud-edge);
+  bottom: clamp(0.75rem, 2.6vh, 1.75rem);
   z-index: 25;
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(0.375rem, 1.1vh, 0.75rem);
 
-  padding: 18px 20px;
+  padding: clamp(0.625rem, 1.67vh, 1.125rem) clamp(0.75rem, 1.04vw, 1.25rem);
 
   border-left: 2px solid rgba(66, 232, 245, 0.4);
 
@@ -24,13 +24,13 @@
 .hud-control-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  min-height: 34px;
+  gap: clamp(0.625rem, 0.84vw, 1rem);
+  min-height: clamp(1.625rem, 3.15vh, 2.125rem);
 }
 
 .hud-control-label {
   color: #e9f5fa;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 0.73vw, 0.875rem);
   font-weight: 500;
   line-height: 1.2;
 
@@ -48,8 +48,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 32px;
-  height: 32px;
+  width: clamp(1.625rem, 1.67vw, 2rem);
+  height: clamp(1.625rem, 1.67vw, 2rem);
   padding: 0 4px;
 
   border: 1.5px solid #e9f5fa;
@@ -59,7 +59,7 @@
   color: #ffffff;
 
   font-family: 'Rajdhani', sans-serif;
-  font-size: 18px;
+  font-size: clamp(0.9375rem, 0.94vw, 1.125rem);
   font-weight: 700;
   line-height: 1;
 
@@ -70,14 +70,14 @@
 }
 
 .hud-key--wide {
-  width: 48px;
+  width: clamp(2.5rem, 2.5vw, 3rem);
   font-size: 15px;
 }
 
 /* WASD keyboard arrangement */
 
 .hud-wasd {
-  width: 128px;
+  width: auto;
   display: flex;
   gap: 4px;
 }
@@ -87,7 +87,7 @@
   align-items: center;
 
   width: 32px;
-  height: 34px;
+  height: clamp(1.625rem, 3.15vh, 2.125rem);
   color: #e9f5fa;
 
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
@@ -118,10 +118,15 @@
   }
 
   .hud-wasd {
-    width: 92px;
+    width: auto;
   }
 
   .hud-control-row {
     gap: 10px;
   }
+}
+
+.hud-control-icon svg {
+  width: 100%;
+  height: 100%;
 }

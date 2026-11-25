@@ -1,138 +1,78 @@
-import { useState } from 'react'
-import { completedObjectiveCount, missions } from '../missions'
+import { useEffect } from 'react'
+import { TriangleAlert, RadioTower, Radar } from 'lucide-react'
+import { missions } from '../missions'
 import type { ProtocolState } from '../protocol'
-import type { BulkheadPhase } from '../world/bulkhead'
 import './TacticalPanel.css'
+
+const inspectionMissions = missions.filter((mission) => mission.id !== 'crew')
+const issues = [
+  { label: 'Hull stress', Icon: TriangleAlert, severity: 'critical' },
+  { label: 'Comms offline', Icon: RadioTower, severity: 'critical' },
+  { label: 'Sensor relay', Icon: Radar, severity: 'warning' },
+] as const
 
 export function TacticalPanel({
   protocol,
-  bulkhead,
-  lightsOn,
-  onRotate,
-  zoom,
-  onZoom,
-  rotating,
-  onToggleRotation,
+  onDiagnostics,
 }: {
   protocol: ProtocolState
-  bulkhead: BulkheadPhase
-  lightsOn: boolean
-  onRotate: (direction: number) => void
-  zoom: number
-  onZoom: (value: number) => void
-  rotating: boolean
-  onToggleRotation: () => void
+  onDiagnostics: () => void
 }) {
-  const [section, setSection] = useState('Station Overview')
+  const inspected = protocol.completed.includes('tactical')
+  useEffect(() => {
+    if (!inspected) onDiagnostics()
+  }, [inspected, onDiagnostics])
   return (
     <div className="tactical-console">
-      <aside className="tactical-sidebar">
-        <nav aria-label="Tactical sections">
-          {['Station Overview', 'Docking Bay', 'Systems', 'Mission Log'].map(
-            (item) => (
-              <button
-                key={item}
-                aria-pressed={section === item}
-                onClick={() => setSection(item)}
-              >
-                {item}
-              </button>
-            ),
-          )}
-        </nav>
-        <section className="tactical-card">
-          <h2>{section}</h2>
-          {section === 'Station Overview' && (
-            <>
-              <h3>CRUZ DEL SUR</h3>
-              <p>Observation bridge & entry airlock.</p>
-              <p>
-                Optional station inspection. Explore freely after crew
-                verification.
-              </p>
-            </>
-          )}
-          {section === 'Docking Bay' && (
-            <>
-              <h3>PAMPA-07</h3>
-              <p>Docking status unavailable.</p>
-              <p>External berthing telemetry offline.</p>
-            </>
-          )}
-          {section === 'Systems' && (
-            <>
-              <dl>
-                <dt>Auxiliary power</dt>
-                <dd>{lightsOn ? 'Online' : 'Offline'}</dd>
-                <dt>Bridge bulkhead</dt>
-                <dd>{bulkhead}</dd>
-                <dt>Crew identity</dt>
-                <dd>
-                  {protocol.completed.includes('crew')
-                    ? 'Verified'
-                    : 'Not verified'}
-                </dd>
-              </dl>
-              <p className="tactical-note">
-                Objective completion may include Skip. This display does not
-                confirm email delivery.
-              </p>
-            </>
-          )}
-          {section === 'Mission Log' && (
-            <>
-              <p>
-                Session objectives ·{' '}
-                {completedObjectiveCount(protocol.completed)} /{' '}
-                {missions.length}
-              </p>
-              <ul>
-                {missions.map((mission) => (
-                  <li key={mission.id}>
-                    {protocol.completed.includes(mission.id) ? '✓' : '○'}{' '}
-                    {mission.title}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </section>
-        <section className="tactical-card tactical-status">
-          <h2>Station status</h2>
-          <dl>
-            <dt>Power</dt>
-            <dd>{lightsOn ? 'Restored' : 'Emergency lighting'}</dd>
-            <dt>Bulkhead</dt>
-            <dd>{bulkhead}</dd>
-          </dl>
-        </section>
-      </aside>
-      <div className="tactical-model-caption">
-        <span>CDS-01 · CRUZ DEL SUR</span>
-        <small>Vessel hologram · Rotate to inspect</small>
-      </div>
-      <div
-        className="tactical-model-controls"
-        role="group"
-        aria-label="Hologram controls"
+      <aside
+        className="tactical-card tactical-findings"
+        aria-label="Detected issues"
       >
-        <button onClick={() => onRotate(-1)}>Rotate left</button>
-        <button onClick={() => onRotate(1)}>Rotate right</button>
-        <button aria-pressed={rotating} onClick={onToggleRotation}>
-          Auto rotate
-        </button>
-        <label>
-          Zoom{' '}
-          <input
-            type="range"
-            min="0.65"
-            max="1"
-            step="0.05"
-            value={zoom}
-            onChange={(event) => onZoom(Number(event.target.value))}
-          />
-        </label>
+        <h2>Detected issues</h2>
+        <ul className="tactical-issues">
+          {issues.map(({ label, Icon, severity }) => (
+            <li className={`tactical-issue ${severity}`} key={label}>
+              <Icon aria-hidden="true" />
+              <span>{label}</span>
+              <span className="tactical-status-mark" aria-hidden="true" />
+            </li>
+          ))}
+        </ul>
+      </aside>
+      <div className="tactical-model-caption" aria-label="Vessel hologram">
+        <span>
+          TACTICAL INSPECTION <small>Ship status review</small>
+        </span>
+        <div className="tactical-projection" aria-hidden="true" />
       </div>
+      <aside
+        className="tactical-card tactical-progress"
+        aria-label="Inspection progress"
+      >
+        <h2>Inspection progress</h2>
+        <ol>
+          {inspectionMissions.map((mission, index) => {
+            const done = protocol.completed.includes(mission.id)
+            const current =
+              !done &&
+              inspectionMissions.find(
+                (item) => !protocol.completed.includes(item.id),
+              )?.id === mission.id
+            return (
+              <li
+                key={mission.id}
+                className={done ? 'is-complete' : current ? 'is-current' : ''}
+                aria-current={current ? 'step' : undefined}
+              >
+                <span className="tactical-step" aria-hidden="true">
+                  {done ? '✓' : index + 1}
+                </span>
+                <span>{mission.title}</span>
+              </li>
+            )
+          })}
+        </ol>
+      </aside>
     </div>
   )
 }

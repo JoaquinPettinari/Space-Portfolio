@@ -14,7 +14,7 @@ import { prepareTransitionModel } from './transitionModel'
 it('ships the four photographs and textured finishes without Blender preview content', () => {
   const bytes = readFileSync(
     new URL(
-      '../../../public/models/cruz-del-sur-transition.glb',
+      '../../../public/models/cruz-del-sur-transition-galley-ready.glb',
       import.meta.url,
     ),
   )
@@ -66,7 +66,7 @@ it('ships the four photographs and textured finishes without Blender preview con
 it('keeps the exported portal reveals solid from both directions with runtime culling', () => {
   const bytes = readFileSync(
     new URL(
-      '../../../public/models/cruz-del-sur-transition.glb',
+      '../../../public/models/cruz-del-sur-transition-galley-ready.glb',
       import.meta.url,
     ),
   )

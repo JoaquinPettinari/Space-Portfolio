@@ -1,0 +1,59 @@
+{
+  "source": "bridge-ceiling-complete.blend",
+  "sourceSha256": "1b9ffe884c0d7a0dfc54afc246e0277e6214047190291c5e59a0b1d2b11feba5",
+  "sourceUnchanged": true,
+  "originalObjectSignaturesPreserved": 2971,
+  "archivedMeshes": [
+    "CEILING BOW / Recessed ceiling cartridge 0 -1 0",
+    "CEILING BOW / Recessed ceiling cartridge 0 -1 1",
+    "CEILING BOW / Recessed ceiling cartridge 0 1 0",
+    "CEILING BOW / Recessed ceiling cartridge 0 1 1",
+    "CEILING BOW / Recessed ceiling cartridge 1 -1 0",
+    "CEILING BOW / Recessed ceiling cartridge 1 -1 1",
+    "CEILING BOW / Recessed ceiling cartridge 1 1 0",
+    "CEILING BOW / Recessed ceiling cartridge 1 1 1",
+    "CEILING BOW / Recessed ceiling cartridge 2 -1 0",
+    "CEILING BOW / Recessed ceiling cartridge 2 -1 1",
+    "CEILING BOW / Recessed ceiling cartridge 2 1 0",
+    "CEILING BOW / Recessed ceiling cartridge 2 1 1",
+    "CEILING BOW / Recessed ceiling cartridge 3 -1 0",
+    "CEILING BOW / Recessed ceiling cartridge 3 -1 1",
+    "CEILING BOW / Recessed ceiling cartridge 3 1 0",
+    "CEILING BOW / Recessed ceiling cartridge 3 1 1",
+    "CEILING BOW / Transverse rib 0",
+    "CEILING BOW / Rib machined flange 0 -1",
+    "CEILING BOW / Recessed cyan socket 0 -1",
+    "CEILING BOW / Cyan rib marker 0 -1",
+    "CEILING BOW / Rib machined flange 0 1",
+    "CEILING BOW / Recessed cyan socket 0 1",
+    "CEILING BOW / Cyan rib marker 0 1",
+    "CEILING BOW / Transverse rib 1",
+    "CEILING BOW / Rib machined flange 1 -1",
+    "CEILING BOW / Recessed cyan socket 1 -1",
+    "CEILING BOW / Cyan rib marker 1 -1",
+    "CEILING BOW / Rib machined flange 1 1",
+    "CEILING BOW / Recessed cyan socket 1 1",
+    "CEILING BOW / Cyan rib marker 1 1",
+    "CEILING BOW / Transverse rib 2",
+    "CEILING BOW / Rib machined flange 2 -1",
+    "CEILING BOW / Recessed cyan socket 2 -1",
+    "CEILING BOW / Cyan rib marker 2 -1",
+    "CEILING BOW / Rib machined flange 2 1",
+    "CEILING BOW / Recessed cyan socket 2 1",
+    "CEILING BOW / Cyan rib marker 2 1"
+  ],
+  "newMeshes": 122,
+  "previewLights": 13,
+  "rebalancedLights": {
+    "UNIFIED / Warm interior fill -4": {
+      "before": 360.0,
+      "after": 85
+    },
+    "UNIFIED / Warm interior fill 0": {
+      "before": 240.0,
+      "after": 80
+    }
+  },
+  "runtimeExported": false,
+  "minimumWebUnderside": 2.5
+}

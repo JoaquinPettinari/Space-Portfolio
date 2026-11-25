@@ -1,0 +1,78 @@
+{
+  "source": "docs\\assets\\bridge-ceiling-study\\bridge-galley-balanced-finish.blend",
+  "sourceSHA256": "4a85ef2782e6d051a611bda85b2ec2d7a571d920fb3331e9b02855c16f10bdf7",
+  "sourceUnchanged": true,
+  "coordinateSpace": "World Y-up; no offset",
+  "excludedCollectionPrefixes": ["90", "98", "99"],
+  "lightsExported": false,
+  "sourceObjects": 306,
+  "sourceMaterials": 17,
+  "bakedMaterials": [
+    {
+      "material": "CEILING FINISH / Brushed edge alloy",
+      "key": "6ead44bb4d6055a290586e4f6e14bce54939064d1ca6c37384f6e93ec66b68c1",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "CEILING FINISH / Satin charcoal titanium",
+      "key": "bc0dd04b638fa8bb7e514b00008f6a16aea88f5add58227367aa9508f6fb3b63",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY POLISH / Graphite ceramic coated wall",
+      "key": "e055bd7024bbfdf34257946ca630caad95c349ad682bd6236f9069e7b202ccdc",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY POLISH / Leaf 0",
+      "key": "3ba8b3aecfc13419e7637eec32b5b99515fda00b9de8e40cdee82eaea973f810",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY POLISH / Leaf 1",
+      "key": "f63d16354a03ec9503e31b056a9ef757c7a84388d4c60d0e9348187bc1d73f1d",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY POLISH / Leaf 2",
+      "key": "21fab2fe414686b978ccb38600b1cbd69bb33d0a00b4e5e5678373b724b4d433",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY WALL / Pale brushed composite",
+      "key": "045b1466642e02193dc631426a170a831b602735f5ccae0e60e0c8e3426105f3",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY WALL FINISH / Fine graphite ceramic",
+      "key": "389c04697e3d7bc8de4e274cbe2130b1e380817bc37ce842ed190aec5c8ea479",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    }
+  ],
+  "file": "public\\models\\cruz-del-sur-galley.glb",
+  "bytes": 2994164,
+  "sha256": "b0a4921fc2a9245c113e31e2dc511e3e3cfc8ec85273403dee504c1096c88fdd",
+  "meshBatches": 19,
+  "gltfPrimitives": 19,
+  "materials": 17,
+  "images": 24,
+  "textures": 24,
+  "triangles": 44772,
+  "boundsRuntime": {
+    "min": [1.9824999570846558, 0.0, 0.37028369307518005],
+    "max": [4.889999866485596, 3.3399999141693115, 1.959999918937683]
+  },
+  "photoMaterials": [],
+  "photoUvPreserved": true,
+  "proceduralAdaptation": "Reusable 512px unlit color/ORM/tangent-normal tiles with per-object local planar UVs; authored photo UVs unchanged",
+  "browserPerformanceMeasured": false,
+  "losslessNormalTextures": 8
+}

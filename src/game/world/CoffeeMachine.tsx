@@ -1,16 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import { CanvasTexture, SRGBColorSpace } from 'three'
-import { COFFEE_POSITION, type StationTarget } from '../interaction/station'
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import type { StationTarget } from '../interaction/station'
 import type { CoffeeState } from '../coffee'
-import { COFFEE_FINISHES, createCoffeeGeometry } from './coffeeGeometry'
 
-const finishes = {
-  body: { color: '#26323a', metalness: 0.45, roughness: 0.42 },
-  steel: { color: '#9ba2a3', metalness: 0.8, roughness: 0.29 },
-  rubber: { color: '#10191e', metalness: 0, roughness: 0.72 },
-  trim: { color: '#b99b64', metalness: 0.45, roughness: 0.5 },
-}
 export function CoffeeMachine({
   state,
   target,
@@ -18,8 +10,6 @@ export function CoffeeMachine({
   state: CoffeeState
   target: StationTarget
 }) {
-  const model = useMemo(() => createCoffeeGeometry(), [])
-  useEffect(() => () => model.dispose(), [model])
   const display = useMemo(() => {
     const canvas = document.createElement('canvas')
     canvas.width = 256
@@ -56,45 +46,21 @@ export function CoffeeMachine({
   useEffect(() => () => display.dispose(), [display])
 
   return (
-    <RigidBody
-      type="fixed"
-      colliders={false}
-      position={[...COFFEE_POSITION]}
-      rotation={[0, Math.PI / 2, 0]}
-    >
-      <CuboidCollider args={[0.4, 0.75, 0.36]} position={[0, 0.75, 0]} />
-      <group userData={{ interaction: 'coffee' }}>
-        {COFFEE_FINISHES.map((finish) => (
-          <mesh key={finish} geometry={model.geometries[finish]}>
-            <meshStandardMaterial {...finishes[finish]} />
-          </mesh>
-        ))}
-        <mesh position={[-0.035, 1.41, 0.175]}>
-          <planeGeometry args={[0.3, 0.11]} />
-          <meshBasicMaterial
-            map={display}
-            color={target === 'coffee' ? '#ffffff' : '#c5dddd'}
-            toneMapped={false}
-          />
+    <group name="galley-coffee-status" userData={{ interaction: 'coffee' }}>
+      <mesh position={[2.804, 1.621, 1.0568]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[0.132, 0.0408]} />
+        <meshBasicMaterial
+          map={display}
+          color={target === 'coffee' ? '#ffffff' : '#c5dddd'}
+          toneMapped={false}
+        />
+      </mesh>
+      {state.phase === 'brewing' && (
+        <mesh position={[2.75, 1.369, 1.22]}>
+          <cylinderGeometry args={[0.002, 0.002, 0.132, 8]} />
+          <meshBasicMaterial color="#754227" />
         </mesh>
-        {(state.phase === 'ready' || state.phase === 'brewing') && (
-          <group position={[0, 1.018, 0.18]}>
-            <mesh geometry={model.cup}>
-              <meshStandardMaterial color="#e5e7dd" roughness={0.3} />
-            </mesh>
-            <mesh position={[0, 0.071, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-              <circleGeometry args={[0.072, 24]} />
-              <meshStandardMaterial color="#382019" roughness={0.24} />
-            </mesh>
-          </group>
-        )}
-        {state.phase === 'brewing' && (
-          <mesh position={[0, 1.1, 0.17]}>
-            <cylinderGeometry args={[0.004, 0.004, 0.025, 8]} />
-            <meshBasicMaterial color="#754227" />
-          </mesh>
-        )}
-      </group>
-    </RigidBody>
+      )}
+    </group>
   )
 }

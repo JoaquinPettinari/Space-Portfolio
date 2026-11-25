@@ -2,9 +2,14 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { Mesh } from 'three'
+import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { prepareTransitionReplacement } from './transitionGeometry.ts'
-import { TRANSITION_CLEARANCES } from '../../src/game/world/transitionLayout.ts'
+import { pathToFileURL } from 'node:url'
+import {
+  TRANSITION_CLEARANCES,
+  type Clearance,
+} from '../../src/game/world/transitionLayout.ts'
 
 type Primitive = {
   attributes: Record<string, number>
@@ -51,11 +56,13 @@ function glb(asset: Asset, binary: Buffer) {
   binary.copy(output, 28 + jsonSize)
   return output
 }
-const reports = []
-for (const name of [
-  'cruz-del-sur-clean-bridge',
-  'cruz-del-sur-vestibule-envelope',
-]) {
+export async function prepareStaticAsset(
+  name: string,
+  outputName: string,
+  clearances: readonly Clearance[] = TRANSITION_CLEARANCES,
+  include?: (mesh: Mesh) => boolean,
+  wholeComponents = false,
+) {
   const source = new URL(`../../public/models/${name}.glb`, import.meta.url)
   const bytes = readFileSync(source)
   const digest = createHash('sha256').update(bytes).digest('hex')
@@ -81,7 +88,12 @@ for (const name of [
       sourceMeshes.set(Number(node.userData.sourceIndex), node)
   })
   const started = performance.now()
-  const prepared = prepareTransitionReplacement(scene)
+  const prepared = prepareTransitionReplacement(
+    scene,
+    clearances,
+    include,
+    wholeComponents,
+  )
   const elapsedMs = performance.now() - started
   const chunks: Buffer[] = [originalBinary]
   let size = originalBinary.length
@@ -95,6 +107,15 @@ for (const name of [
     const primitives = asset.meshes[meshIndex].primitives
     if (primitives.length !== 1)
       throw new Error('Expected one primitive per spatial/material batch')
+    if (node.geometry.getAttribute('position').count === 0) {
+      delete asset.nodes[sourceIndex].mesh
+      changedMeshes++
+      return
+    }
+    const indexed = wholeComponents
+      ? mergeVertices(node.geometry, 1e-7)
+      : undefined
+    const geometry = indexed ?? node.geometry
     const primitive = primitives[0]
     primitive.attributes = {}
     delete primitive.indices
@@ -108,7 +129,7 @@ for (const name of [
       color: 'COLOR_0',
       tangent: 'TANGENT',
     }
-    for (const [name, attribute] of Object.entries(node.geometry.attributes)) {
+    for (const [name, attribute] of Object.entries(geometry.attributes)) {
       const semantic = semantics[name]
       if (!semantic) throw new Error(`Unsupported attribute ${name}`)
       const data = Buffer.from(
@@ -137,6 +158,27 @@ for (const name of [
       }
       primitive.attributes[semantic] = asset.accessors.push(accessor) - 1
     }
+    if (geometry.index) {
+      const indices = new Uint32Array(geometry.index.array)
+      const data = Buffer.from(indices.buffer)
+      const bufferView =
+        asset.bufferViews.push({
+          buffer: 0,
+          byteOffset: size,
+          byteLength: data.length,
+          target: 34963,
+        }) - 1
+      chunks.push(data)
+      size += data.length
+      primitive.indices =
+        asset.accessors.push({
+          bufferView,
+          componentType: 5125,
+          count: indices.length,
+          type: 'SCALAR',
+        }) - 1
+    }
+    indexed?.dispose()
     changedMeshes++
   })
   // Remove superseded geometry bytes; retain every embedded image and untouched view.
@@ -195,33 +237,41 @@ for (const name of [
   asset.buffers[0].byteLength = compactSize
   const output = glb(asset, Buffer.concat(compact))
   writeFileSync(
-    new URL(
-      `../../public/models/${name}-transition-ready.glb`,
-      import.meta.url,
-    ),
+    new URL(`../../public/models/${outputName}.glb`, import.meta.url),
     output,
   )
   if (
     createHash('sha256').update(readFileSync(source)).digest('hex') !== digest
   )
     throw new Error('Source changed')
-  reports.push({
+  const report = {
     source: `${name}.glb`,
     sourceSha256: digest,
-    output: `${name}-transition-ready.glb`,
+    output: `${outputName}.glb`,
     originalBytes: bytes.length,
     outputBytes: output.length,
     elapsedMs,
     changedMeshes,
-  })
+  }
   prepared.dispose()
-  console.log(JSON.stringify(reports.at(-1)))
+  return report
 }
-writeFileSync(
-  new URL(
-    '../../docs/assets/transition-master/runtime-clearance.json',
-    import.meta.url,
-  ),
-  JSON.stringify({ clearances: TRANSITION_CLEARANCES, reports }, null, 2) +
-    '\n',
-)
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  const reports = []
+  for (const name of [
+    'cruz-del-sur-clean-bridge',
+    'cruz-del-sur-vestibule-envelope',
+  ])
+    reports.push(await prepareStaticAsset(name, name + '-transition-ready'))
+  writeFileSync(
+    new URL(
+      '../../docs/assets/transition-master/runtime-clearance.json',
+      import.meta.url,
+    ),
+    JSON.stringify({ clearances: TRANSITION_CLEARANCES, reports }, null, 2) +
+      '\n',
+  )
+}

@@ -6,6 +6,23 @@ import {
   canNarrateMissionComplete,
 } from './dialogue'
 import { dialogueManifest } from './dialogueManifest'
+it('narrates the actual tactical report once and supersedes the bridge introduction', () => {
+  const introduction = dialogueReducer(initialDialogue(), {
+    type: 'enqueue',
+    event: 'bridgeIntroduction',
+  })
+  const report = dialogueReducer(introduction, {
+    type: 'enqueue',
+    event: 'tacticalDiagnostics',
+  })
+  expect(report.current).toBe('tacticalDiagnostics')
+  expect(
+    dialogueReducer(report, { type: 'enqueue', event: 'tacticalDiagnostics' }),
+  ).toBe(report)
+  expect(dialogueManifest.tacticalDiagnostics.audioUrl).toContain(
+    'IA_dialog_table_result.mp3',
+  )
+})
 it('plays actual events once and lets a verification result supersede arrival', () => {
   let state = dialogueReducer(initialDialogue(), {
     type: 'enqueue',
@@ -28,10 +45,9 @@ it('plays actual events once and lets a verification result supersede arrival', 
     dialogueReducer(state, { type: 'enqueue', event: 'crewVerified' }),
   ).toBe(state)
 })
-it('never narrates future diagnostics, recovery or restoration from generic events', () => {
+it('never narrates future recovery or restoration from generic events', () => {
   const state = initialDialogue()
   for (const event of [
-    'tacticalDiagnostics',
     'recoveryProcedureFound',
     'relayRestored',
     'missionComplete',

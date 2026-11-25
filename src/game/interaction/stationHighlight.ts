@@ -5,6 +5,7 @@ const destinations: Record<ObjectiveId, TerminalKind | null> = {
   lighting: null,
   tablet: null,
   crew: 'crew',
+  tactical: 'tactical',
   archives: 'computer',
   uplink: 'communications',
   dossier: 'personal',

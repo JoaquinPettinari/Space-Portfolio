@@ -24,7 +24,7 @@ test('arrival starts powered, identification opens access, and refresh starts a 
     expect(state.cabinLighting.ambientIntensity).toBeGreaterThan(0)
     await expect(
       page.getByRole('complementary', { name: 'Recovery objectives' }),
-    ).toContainText('0 / 4 complete')
+    ).toContainText('0 / 5 complete')
     await expect(
       page.locator('.interaction-hint').filter({ hasText: 'Restore lighting' }),
     ).toHaveCount(0)

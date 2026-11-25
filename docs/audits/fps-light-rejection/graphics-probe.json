@@ -1,0 +1,16 @@
+{
+  "vendor": "Google Inc. (Intel)",
+  "renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009BC4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "attributes": {
+    "alpha": true,
+    "antialias": true,
+    "depth": true,
+    "desynchronized": false,
+    "failIfMajorPerformanceCaveat": false,
+    "powerPreference": "high-performance",
+    "premultipliedAlpha": true,
+    "preserveDrawingBuffer": false,
+    "stencil": false,
+    "xrCompatible": false
+  }
+}

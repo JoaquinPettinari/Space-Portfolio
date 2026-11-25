@@ -1,0 +1,54 @@
+{
+  "source": "docs\\assets\\bridge-ceiling-study\\bridge-port-display-polished.blend",
+  "sourceSHA256": "6f55d2d190886d76c171ba5a562adb0e0941abdc465eb25eba9230997d535841",
+  "sourceUnchanged": true,
+  "coordinateSpace": "World Y-up; no offset",
+  "excludedCollectionPrefixes": ["90", "98", "99"],
+  "lightsExported": false,
+  "sourceObjects": 93,
+  "sourceMaterials": 10,
+  "bakedMaterials": [
+    {
+      "material": "CEILING FINISH / Brushed edge alloy",
+      "key": "6ead44bb4d6055a290586e4f6e14bce54939064d1ca6c37384f6e93ec66b68c1",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "CEILING FINISH / Satin charcoal titanium",
+      "key": "bc0dd04b638fa8bb7e514b00008f6a16aea88f5add58227367aa9508f6fb3b63",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "GALLEY POLISH / Graphite ceramic coated wall",
+      "key": "e055bd7024bbfdf34257946ca630caad95c349ad682bd6236f9069e7b202ccdc",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    },
+    {
+      "material": "PORT FINISH / Satin graphite panels",
+      "key": "4738e429201cc483567070b981663294b8b31be96521050c7a0a09c2ddcd2896",
+      "resolution": 512,
+      "channels": ["base", "orm", "normal"]
+    }
+  ],
+  "file": "public\\models\\cruz-del-sur-port-display.glb",
+  "bytes": 2466256,
+  "sha256": "83fbc46efdb7adac421fd995934594ae878de4f4bd8fe19977f0e0915ddbec00",
+  "meshBatches": 10,
+  "gltfPrimitives": 10,
+  "materials": 10,
+  "images": 13,
+  "textures": 13,
+  "triangles": 30898,
+  "boundsRuntime": {
+    "min": [-4.577500343322754, 0.04999999701976776, 1.2960000038146973],
+    "max": [-3.382499933242798, 2.747499942779541, 1.815000057220459]
+  },
+  "photoMaterials": ["TRANSITION_PBR_SHELVES_Personal_photograph_1"],
+  "photoUvPreserved": true,
+  "proceduralAdaptation": "Reusable 512px unlit color/ORM/tangent-normal tiles with per-object local planar UVs; authored photo UVs unchanged",
+  "browserPerformanceMeasured": false,
+  "losslessNormalTextures": 4
+}

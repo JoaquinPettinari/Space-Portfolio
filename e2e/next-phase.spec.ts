@@ -309,18 +309,11 @@ test('optional tactical table reads session state, supports inspection and retur
   expect(opened.tacticalModelPosition).toEqual(before.tacticalModelPosition)
   await page.screenshot({ path: info.outputPath('tactical-open.png') })
   await expect(
-    dialog.getByRole('heading', { name: 'Station Overview' }),
+    dialog.getByRole('heading', { name: 'Detected issues' }),
   ).toBeVisible()
-  await dialog.getByRole('button', { name: 'Docking Bay' }).click()
-  await expect(dialog.getByText('Docking status unavailable.')).toBeVisible()
-  await dialog.getByRole('button', { name: 'Systems', exact: true }).click()
-  await expect(dialog.getByText('Online', { exact: true })).toBeVisible()
-  await dialog.getByRole('button', { name: 'Mission Log' }).click()
-  await expect(dialog.getByRole('listitem')).toHaveCount(4)
-  await dialog.getByRole('button', { name: 'Rotate right' }).click()
-  await dialog.getByRole('slider', { name: 'Zoom' }).focus()
-  await page.keyboard.press('ArrowRight')
-  await expect(dialog.getByRole('slider')).toHaveValue('0.85')
+  await expect(dialog.getByText('Comms offline')).toBeVisible()
+  await expect(dialog.getByRole('listitem')).toHaveCount(7)
+  await expect(dialog.getByRole('slider')).toHaveCount(0)
   const focused = await snapshot(page)
   expect(focused.cameraPosition.x).toBeLessThan(-1.05)
   expect(focused.cameraPosition.z).toBeCloseTo(

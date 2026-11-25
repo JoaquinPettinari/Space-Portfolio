@@ -50,9 +50,16 @@ for (const side of [-1, 1]) {
     add([side * 4.663, 2.86, z], [0.016, 0.018, 0.75], '#111c24')
     add([side * 4.66, 1.02, z], [0.02, 0.018, 0.74], '#111c24')
   }
-  for (let i = 0; i < 7; i++)
-    add([side * 4.65, 1.25 + i * 0.052, 4.68], [0.025, 0.019, 0.58], '#111c24')
-  add([side * 4.652, 2.48, 4.68], [0.025, 0.026, 0.42], '#e8ad70', true)
+  // The port expedition display replaces these old side-wall accents.
+  if (side > 0) {
+    for (let i = 0; i < 7; i++)
+      add(
+        [side * 4.65, 1.25 + i * 0.052, 4.68],
+        [0.025, 0.019, 0.58],
+        '#111c24',
+      )
+    add([side * 4.652, 2.48, 4.68], [0.025, 0.026, 0.42], '#e8ad70', true)
+  }
 }
 export const SPINE_BACK_PANELS: StaticPanel[] = []
 for (const side of [-1, 1]) {

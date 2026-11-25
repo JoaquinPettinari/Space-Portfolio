@@ -1,0 +1,15 @@
+{
+  "sourceUnchanged": true,
+  "sourceSha256": "4b5335d81024557a3c121d6ab138a4b8d2b6b65cd049a63e5d13b3b47b903aaa",
+  "originalTransformsPreserved": 3490,
+  "wallMeshesRefined": [
+    "GALLEY WALL / Graphite wall panel",
+    "GALLEY WALL / Graphite wall panel.001",
+    "GALLEY WALL / Vertical wall frame",
+    "GALLEY WALL / Vertical wall frame.001",
+    "GALLEY WALL / Angled upper profile",
+    "GALLEY WALL / Header profile",
+    "GALLEY WALL / Diagonal technical rib"
+  ],
+  "runtimeExported": false
+}

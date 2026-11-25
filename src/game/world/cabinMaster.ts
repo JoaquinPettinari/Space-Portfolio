@@ -1,3 +1,4 @@
+import { isWarmPractical, warmPractical } from './warmPracticals'
 import {
   Group,
   FrontSide,
@@ -13,6 +14,13 @@ import { installOpaqueDepthProxy } from '../rendering/opaqueDepthProxy'
 export const CABIN_MASTER_ASSET = '/models/cabin-master-static.glb'
 export const CABIN_MASTER_LEAVES_ASSET =
   '/models/cabin-master-sliding-leaves.glb'
+
+// GPU audit: these fixed opaque batches spend most of their time on hidden PBR fragments.
+const depthMaterials = new Set([
+  'CABIN_PBR_STUDIO_Powder_coated_structural_rails',
+  'CABIN_PBR_STUDIO_Carbon_rubber',
+  'CABIN_PBR_STUDIO_Warm_graphite_enamel',
+])
 
 /** Remove superseded arrival batches only from an owned hierarchy. */
 export function removeLegacyArrival(root: Object3D) {
@@ -43,6 +51,7 @@ export function prepareCabinMaster(source: Object3D) {
       // Retain baked colour/normal/roughness/metalness; the realtime cabin
       // uses one PBR layer rather than Blender's extra clearcoat lobe.
       material = new MeshStandardMaterial().copy(sourceMaterial)
+      if (isWarmPractical(material)) warmPractical(material)
       if (
         !material.transparent &&
         !/Living_(foliage|vine)|Leaf_veins/.test(material.name)
@@ -66,7 +75,10 @@ export function prepareCabinMaster(source: Object3D) {
         : prepare(node.material, indicator)
       if (
         !Array.isArray(node.material) &&
-        node.material.name === 'CABIN_PBR_STUDIO_Powder_coated_structural_rails'
+        // The exported static cabin benefits from complete opaque depth coverage.
+        // installOpaqueDepthProxy still rejects glass, cutouts and unsafe materials.
+        (depthMaterials.has(node.material.name) ||
+          node.name.startsWith('CABIN_MASTER_cabin_'))
       )
         depthBatches.push(node)
     }

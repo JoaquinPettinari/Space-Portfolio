@@ -147,66 +147,100 @@ it('retains both sides of thin foliage while culling the backs of solid panels',
   geometry.dispose()
 })
 
-it('adds a depth proxy only to the exact structural rail material and retains shared geometry ownership', () => {
+it.each([
+  'CABIN_PBR_STUDIO_Powder_coated_structural_rails',
+  'CABIN_PBR_STUDIO_Carbon_rubber',
+  'CABIN_PBR_STUDIO_Warm_graphite_enamel',
+])(
+  'adds a depth proxy only to measured material %s and retains shared geometry ownership',
+  (name) => {
+    const source = new Group()
+    const geometry = new BoxGeometry()
+    const rails = new MeshStandardMaterial()
+    rails.name = name
+    const neighbor = new MeshStandardMaterial()
+    neighbor.name = `${rails.name}_neighbor`
+    const target = new Mesh(geometry, rails)
+    target.name = 'static-rail-batch'
+    const other = new Mesh(geometry, neighbor)
+    // A similar object name must not opt a different material into the prepass.
+    other.name = rails.name
+    source.add(target, other)
+    const cloneGeometry = vi.spyOn(geometry, 'clone')
+    const disposeGeometry = vi.spyOn(geometry, 'dispose')
+    const disposeRails = vi.spyOn(rails, 'dispose')
+    const disposeNeighbor = vi.spyOn(neighbor, 'dispose')
+    const model = prepareCabinMaster(source)
+    const copy = model.root.children[0] as Mesh
+    const neighborCopy = model.root.children[1] as Mesh
+    expect(copy.children).toHaveLength(0)
+    const detachDepth = model.attachDepth()
+    expect(copy.children).toHaveLength(1)
+    expect(neighborCopy.children).toHaveLength(0)
+    expect(target.children).toHaveLength(0)
+    expect(other.children).toHaveLength(0)
+    const proxy = copy.children[0] as Mesh<BoxGeometry, MeshBasicMaterial>
+    expect(proxy.material).toBeInstanceOf(MeshBasicMaterial)
+    expect(proxy.material.colorWrite).toBe(false)
+    expect(proxy.geometry).toBe(geometry)
+    expect(copy.geometry).toBe(geometry)
+    expect(neighborCopy.geometry).toBe(geometry)
+    expect(cloneGeometry).not.toHaveBeenCalled()
+    const disposeProxy = vi.spyOn(proxy.material, 'dispose')
+    const restoreLights = optimizeZeroContributionLights(model.root)
+    detachDepth()
+    restoreLights()
+    expect(copy.children).toHaveLength(0)
+    expect(disposeProxy).toHaveBeenCalledOnce()
+    // A layout-effect teardown/setup must create a fresh proxy after shader hooks
+    // are restored, rather than losing the prepass after the first cleanup.
+    const detachReplay = model.attachDepth()
+    expect(copy.children).toHaveLength(1)
+    const replayProxy = copy.children[0] as Mesh<BoxGeometry, MeshBasicMaterial>
+    expect(replayProxy).not.toBe(proxy)
+    expect(replayProxy.geometry).toBe(geometry)
+    expect(neighborCopy.children).toHaveLength(0)
+    const disposeReplayProxy = vi.spyOn(replayProxy.material, 'dispose')
+    const restoreReplayLights = optimizeZeroContributionLights(model.root)
+    detachReplay()
+    restoreReplayLights()
+    model.dispose()
+    expect(copy.children).toHaveLength(0)
+    expect(disposeReplayProxy).toHaveBeenCalledOnce()
+    expect(disposeGeometry).not.toHaveBeenCalled()
+    expect(disposeRails).not.toHaveBeenCalled()
+    expect(disposeNeighbor).not.toHaveBeenCalled()
+    geometry.dispose()
+    rails.dispose()
+    neighbor.dispose()
+  },
+)
+
+it('covers static cabin walls but excludes glass and unrelated meshes from depth', () => {
   const source = new Group()
   const geometry = new BoxGeometry()
-  const rails = new MeshStandardMaterial()
-  rails.name = 'CABIN_PBR_STUDIO_Powder_coated_structural_rails'
-  const neighbor = new MeshStandardMaterial()
-  neighbor.name = `${rails.name}_neighbor`
-  const target = new Mesh(geometry, rails)
-  target.name = 'static-rail-batch'
-  const other = new Mesh(geometry, neighbor)
-  // A similar object name must not opt a different material into the prepass.
-  other.name = rails.name
-  source.add(target, other)
-  const cloneGeometry = vi.spyOn(geometry, 'clone')
-  const disposeGeometry = vi.spyOn(geometry, 'dispose')
-  const disposeRails = vi.spyOn(rails, 'dispose')
-  const disposeNeighbor = vi.spyOn(neighbor, 'dispose')
+  const wall = new MeshStandardMaterial()
+  const glass = new MeshStandardMaterial({ transparent: true, opacity: 0.1 })
+  for (const [name, material] of [
+    ['CABIN_MASTER_cabin_wall', wall],
+    ['CABIN_MASTER_cabin_glass', glass],
+    ['CABIN_MASTER_access_status_panel', wall],
+  ] as const) {
+    const mesh = new Mesh(geometry, material)
+    mesh.name = name
+    source.add(mesh)
+  }
   const model = prepareCabinMaster(source)
-  const copy = model.root.children[0] as Mesh
-  const neighborCopy = model.root.children[1] as Mesh
-  expect(copy.children).toHaveLength(0)
-  const detachDepth = model.attachDepth()
-  expect(copy.children).toHaveLength(1)
-  expect(neighborCopy.children).toHaveLength(0)
-  expect(target.children).toHaveLength(0)
-  expect(other.children).toHaveLength(0)
-  const proxy = copy.children[0] as Mesh<BoxGeometry, MeshBasicMaterial>
-  expect(proxy.material).toBeInstanceOf(MeshBasicMaterial)
-  expect(proxy.material.colorWrite).toBe(false)
-  expect(proxy.geometry).toBe(geometry)
-  expect(copy.geometry).toBe(geometry)
-  expect(neighborCopy.geometry).toBe(geometry)
-  expect(cloneGeometry).not.toHaveBeenCalled()
-  const disposeProxy = vi.spyOn(proxy.material, 'dispose')
-  const restoreLights = optimizeZeroContributionLights(model.root)
-  detachDepth()
-  restoreLights()
-  expect(copy.children).toHaveLength(0)
-  expect(disposeProxy).toHaveBeenCalledOnce()
-  // A layout-effect teardown/setup must create a fresh proxy after shader hooks
-  // are restored, rather than losing the prepass after the first cleanup.
-  const detachReplay = model.attachDepth()
-  expect(copy.children).toHaveLength(1)
-  const replayProxy = copy.children[0] as Mesh<BoxGeometry, MeshBasicMaterial>
-  expect(replayProxy).not.toBe(proxy)
-  expect(replayProxy.geometry).toBe(geometry)
-  expect(neighborCopy.children).toHaveLength(0)
-  const disposeReplayProxy = vi.spyOn(replayProxy.material, 'dispose')
-  const restoreReplayLights = optimizeZeroContributionLights(model.root)
-  detachReplay()
-  restoreReplayLights()
+  const cleanup = model.attachDepth()
+  expect(model.root.children.map((mesh) => mesh.children.length)).toEqual([
+    1, 0, 0,
+  ])
+  expect(source.children.every((mesh) => mesh.children.length === 0)).toBe(true)
+  cleanup()
   model.dispose()
-  expect(copy.children).toHaveLength(0)
-  expect(disposeReplayProxy).toHaveBeenCalledOnce()
-  expect(disposeGeometry).not.toHaveBeenCalled()
-  expect(disposeRails).not.toHaveBeenCalled()
-  expect(disposeNeighbor).not.toHaveBeenCalled()
+  wall.dispose()
+  glass.dispose()
   geometry.dispose()
-  rails.dispose()
-  neighbor.dispose()
 })
 
 it('clears the former sofa and table but blocks the new ledge, EVA and technical bank', () => {

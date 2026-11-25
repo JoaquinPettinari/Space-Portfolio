@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
+import { COFFEE_POSITION } from '../src/game/interaction/station'
 import {
   approach,
   enter,
@@ -93,8 +94,9 @@ test('profiles the frame and reviews the complete globe, walls and working espre
   await page.screenshot({ path: `${out}/complete-earth.png` })
   await lookAt(page, { x: 3.8, y: 2.1, z: 0.5 })
   await page.screenshot({ path: `${out}/pressure-wall.png` })
-  await walkTo(page, -2.4, -0.05)
-  await approach(page, { x: -4.25, y: 1.2, z: 0.5 }, 'E · Brew coffee')
+  await walkTo(page, 3.0, 0.35)
+  const [x, y, z] = COFFEE_POSITION
+  await approach(page, { x, y, z }, 'E · Brew coffee')
   await page.screenshot({ path: `${out}/espresso-idle.png` })
   await page.keyboard.press('e')
   await expect

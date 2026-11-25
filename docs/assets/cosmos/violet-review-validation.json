@@ -1,0 +1,13 @@
+{
+  "source": "asterion-expanse-v3-traffic.blend",
+  "sourceSha256": "3065bb38c27bdc9c6b00f54f9522789758d2df9ec91e2e05389c7b88b750f076",
+  "sourceUnchanged": true,
+  "revision": "asterion-violet-review.blend",
+  "palette": "indigo, violet, lavender, pearl",
+  "ringedPlanetLocation": [20.0, 140.0, -6.0],
+  "ringedPlanetScale": [
+    2.6500000953674316, 2.6500000953674316, 2.6500000953674316
+  ],
+  "runtimeExported": false,
+  "originalSkyTexturesPreserved": true
+}

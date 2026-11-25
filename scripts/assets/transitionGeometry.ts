@@ -49,7 +49,11 @@ function subtract(polygon: Vertex[], box: Clearance) {
 }
 
 /** Cut triangles rather than whole material batches, retaining neighboring art. */
-function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
+function cutGeometry(
+  mesh: Mesh,
+  clearances: readonly Clearance[],
+  wholeComponents = false,
+): BufferGeometry | undefined {
   const source = mesh.geometry
   const position = source.getAttribute('position')
   const index = source.index
@@ -58,7 +62,7 @@ function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
   for (let i = 0; i < position.count; i++)
     bounds.expandByPoint(point.fromBufferAttribute(position, i))
   bounds.applyMatrix4(mesh.matrixWorld)
-  const boxes = TRANSITION_CLEARANCES.filter((box) =>
+  const boxes = clearances.filter((box) =>
     bounds.intersectsBox(
       new Box3(new Vector3(...box.min), new Vector3(...box.max)),
     ),
@@ -70,6 +74,56 @@ function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
       .applyMatrix4(mesh.matrixWorld)
       .toArray(),
   )
+  // Weld position seams so an entire authored solid is removed or preserved.
+  const rejected = new Set<number>()
+  if (wholeComponents) {
+    const parent = Array.from({ length: position.count }, (_, i) => i)
+    const find = (i: number): number => {
+      while (parent[i] !== i) {
+        parent[i] = parent[parent[i]]
+        i = parent[i]
+      }
+      return i
+    }
+    const join = (a: number, b: number) => {
+      parent[find(a)] = find(b)
+    }
+    const positions = new Map<string, number>()
+    for (let i = 0; i < world.length; i++) {
+      const key = world[i].map((v) => Math.round(v * 1e6)).join(',')
+      const previous = positions.get(key)
+      if (previous !== undefined) join(i, previous)
+      else positions.set(key, i)
+    }
+    for (let i = 0; i < (index?.count ?? position.count); i += 3) {
+      const a = index ? index.getX(i) : i
+      join(a, index ? index.getX(i + 1) : i + 1)
+      join(a, index ? index.getX(i + 2) : i + 2)
+    }
+    const componentBounds = new Map<number, Box3>()
+    world.forEach((p, i) => {
+      const root = find(i)
+      let bound = componentBounds.get(root)
+      if (!bound) {
+        bound = new Box3()
+        componentBounds.set(root, bound)
+      }
+      bound.expandByPoint(point.fromArray(p))
+    })
+    const removedRoots = new Set<number>()
+    for (const [root, bound] of componentBounds)
+      if (
+        boxes.some((box) =>
+          new Box3(
+            new Vector3(...box.min),
+            new Vector3(...box.max),
+          ).containsBox(bound),
+        )
+      )
+        removedRoots.add(root)
+    for (let i = 0; i < parent.length; i++)
+      if (removedRoots.has(find(i))) rejected.add(i)
+  }
   const attributes = Object.entries(source.attributes)
   const output = attributes.map(() => [] as number[])
   const result = new BufferGeometry()
@@ -78,6 +132,10 @@ function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
   const edgeA = new Vector3()
   const edgeB = new Vector3()
   for (let i = 0; i < (index?.count ?? position.count); i += 3) {
+    if (wholeComponents && rejected.has(index ? index.getX(i) : i)) {
+      changed = true
+      continue
+    }
     const triangle = [0, 1, 2].map((corner) => {
       const id = index ? index.getX(i + corner) : i + corner
       return [
@@ -90,7 +148,7 @@ function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
       ]
     })
     let polygons = [triangle]
-    for (const box of boxes) {
+    for (const box of wholeComponents ? [] : boxes) {
       // Do not split adjacent triangles lying wholly outside the replacement.
       polygons = polygons.flatMap((polygon) => {
         if (
@@ -160,19 +218,21 @@ function cutGeometry(mesh: Mesh): BufferGeometry | undefined {
 }
 
 /** Owns only replacement geometry. Cached materials, textures and source stay intact. */
-export function prepareTransitionReplacement(source: Object3D) {
+export function prepareTransitionReplacement(
+  source: Object3D,
+  clearances: readonly Clearance[] = TRANSITION_CLEARANCES,
+  include: (mesh: Mesh) => boolean = (mesh) =>
+    /^(REFINED_bridge_static_|UNIFIED_RUNTIME_(bridge|connector)_)/.test(
+      mesh.name,
+    ),
+  wholeComponents = false,
+) {
   const root = source.clone(true)
   root.updateMatrixWorld(true)
   const geometries: BufferGeometry[] = []
   root.traverse((node) => {
-    if (
-      !(node instanceof Mesh) ||
-      !/^(REFINED_bridge_static_|UNIFIED_RUNTIME_(bridge|connector)_)/.test(
-        node.name,
-      )
-    )
-      return
-    const geometry = cutGeometry(node)
+    if (!(node instanceof Mesh) || !include(node)) return
+    const geometry = cutGeometry(node, clearances, wholeComponents)
     if (geometry) {
       node.geometry = geometry
       geometries.push(geometry)

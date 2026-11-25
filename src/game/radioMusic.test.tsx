@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from '@testing-library/react'
 import { createRadioMusic, radioTrackUrl, RADIO_TRACKS } from './radioMusic'
 import { useShipRadio } from './useShipRadio'
 import { interactionMode, RADIO_POSITION } from './interaction/station'
+import { GALLEY_RADIO } from './world/galleyLayout'
 
 class TestAudio extends EventTarget {
   preload = ''
@@ -62,7 +63,7 @@ it('keeps all five file names intact in encoded radio URLs and frames the statio
     expect(track.file).toMatch(/\.mp3$/i)
   })
   expect(interactionMode('walking', 'radio-play')).toBe('walking')
-  expect(RADIO_POSITION[0]).toBeLessThan(-2)
+  expect(RADIO_POSITION).toEqual(GALLEY_RADIO.position)
 })
 
 it('creates no media before Play, plays the selected track and preserves playback time through suspension', async () => {

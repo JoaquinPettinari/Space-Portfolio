@@ -1,0 +1,62 @@
+{
+  "source": "bridge-ceiling-sculpted.blend",
+  "sourceSha256": "d9077475c67bc9c55ba0fdfa7e045330aa23ff3a9f2df120c8b6121aa2119c73",
+  "sourceUnchanged": true,
+  "protectedMeshCount": 2294,
+  "protectedMeshesUnchanged": true,
+  "refinedCeilingMeshes": 149,
+  "newMeshes": 192,
+  "nonManifoldNewMeshes": [],
+  "rebalancedLights": {
+    "Warm ceiling grazing 0 -1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 0 -1": [
+      28.0,
+      34
+    ],
+    "Warm ceiling grazing 0 1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 0 1": [
+      28.0,
+      34
+    ],
+    "Warm ceiling grazing 1 -1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 1 -1": [
+      28.0,
+      34
+    ],
+    "Warm ceiling grazing 1 1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 1 1": [
+      28.0,
+      34
+    ],
+    "Warm ceiling grazing 2 -1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 2 -1": [
+      28.0,
+      34
+    ],
+    "Warm ceiling grazing 2 1": [
+      24.0,
+      14
+    ],
+    "Fixture soft downlight 2 1": [
+      28.0,
+      34
+    ]
+  },
+  "runtimeExported": false,
+  "proceduralMaterialsNeedBaking": true
+}

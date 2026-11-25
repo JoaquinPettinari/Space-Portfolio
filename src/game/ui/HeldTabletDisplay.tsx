@@ -10,6 +10,7 @@ import { DeckMap } from './DeckMap'
 
 const objectiveLocations: Partial<Record<ObjectiveId, string>> = {
   crew: 'Arrival deck · Crew Access',
+  tactical: 'Bridge · Central tactical table',
   archives: 'Bridge · Port archive console',
   uplink: 'Bridge · Starboard communications',
   dossier: 'Bridge · Personal workstation',

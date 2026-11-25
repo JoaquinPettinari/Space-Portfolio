@@ -118,3 +118,26 @@ it('trims only the inner rear wall flanks covered by the wider front niches', ()
   expect(panels[1].at[0] - panels[1].size[0] / 2).toBeCloseTo(-4.8)
   expect(source.size).toEqual([3.46, 3.3, 0.06])
 })
+
+it('removes a complete prop but preserves an arch crossing the replacement bounds', () => {
+  const source = new Group()
+  const material = new MeshStandardMaterial()
+  const prop = new Mesh(new BoxGeometry(0.2, 0.2, 0.2), material)
+  const arch = new Mesh(new BoxGeometry(4, 0.2, 0.2), material)
+  source.add(prop, arch)
+  const prepared = prepareTransitionReplacement(
+    source,
+    [{ min: [-1, -1, -1], max: [1, 1, 1] }],
+    () => true,
+    true,
+  )
+  expect(
+    (prepared.root.children[0] as Mesh).geometry.getAttribute('position').count,
+  ).toBe(0)
+  expect((prepared.root.children[1] as Mesh).geometry).toBe(arch.geometry)
+  expect(prop.geometry.getAttribute('position').count).toBeGreaterThan(0)
+  prepared.dispose()
+  prop.geometry.dispose()
+  arch.geometry.dispose()
+  material.dispose()
+})

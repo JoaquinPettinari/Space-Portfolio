@@ -19,7 +19,7 @@ test('measures GPU draw costs at native arrival, bridge and passage poses', asyn
   if (!['before', 'after', 'depth', 'fps-before', 'fps-after'].includes(phase))
     throw new Error('Invalid GPU_COST_PHASE')
   const timing = !phase.startsWith('fps-')
-  const directory = 'docs/audits/gpu-cost'
+  const directory = process.env.GPU_COST_DIRECTORY ?? 'docs/audits/gpu-cost'
   await mkdir(directory, { recursive: true })
   const errors: string[] = []
   const warnings: string[] = []
@@ -31,6 +31,20 @@ test('measures GPU draw costs at native arrival, bridge and passage poses', asyn
   await page.goto(timing ? '/?gpuProfile' : '/')
   await expect(page.getByLabel('Game controls')).toBeVisible({
     timeout: 120_000,
+  })
+  const graphics = await page.evaluate(() => {
+    const gl = document.querySelector('canvas')?.getContext('webgl2')
+    if (!gl) throw new Error('Missing WebGL renderer during performance audit')
+    const info = gl.getExtension('WEBGL_debug_renderer_info')
+    return {
+      vendor: gl.getParameter(
+        info?.UNMASKED_VENDOR_WEBGL ?? gl.VENDOR,
+      ) as string,
+      renderer: gl.getParameter(
+        info?.UNMASKED_RENDERER_WEBGL ?? gl.RENDERER,
+      ) as string,
+      attributes: gl.getContextAttributes(),
+    }
   })
   await enter(page)
   const views: object[] = []
@@ -70,7 +84,7 @@ test('measures GPU draw costs at native arrival, bridge and passage poses', asyn
     views.push({ name, trials, gpu })
     await writeFile(
       directory + '/' + phase + '-partial.json',
-      JSON.stringify({ phase, views, errors, warnings }, null, 2),
+      JSON.stringify({ phase, graphics, views, errors, warnings }, null, 2),
     )
     console.log(
       'GPU_VIEW',
@@ -90,7 +104,7 @@ test('measures GPU draw costs at native arrival, bridge and passage poses', asyn
   await capture('passage-port', { x: -5, y: 1.8, z: 8.15 })
   await writeFile(
     directory + '/' + phase + '.json',
-    JSON.stringify({ phase, views, errors, warnings }, null, 2),
+    JSON.stringify({ phase, graphics, views, errors, warnings }, null, 2),
   )
   expect(errors).toEqual([])
 })

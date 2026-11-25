@@ -1,16 +1,18 @@
+import { isWarmPractical, warmPractical } from './warmPracticals'
 import { Material, Mesh, type Object3D } from 'three'
 
-/** Clone only transparent materials that need local render flags. Geometry,
- * opaque materials and textures remain owned by the GLTF cache. */
+/** Own transparent render flags and warm architectural lamp finishes. Geometry,
+ * other opaque materials and textures remain owned by the GLTF cache. */
 export function prepareShipModel(scene: Object3D, singlePassGlass = false) {
   const root = scene.clone(true)
   const materials = new Map<Material, Material>()
   const prepare = (material: Material) => {
-    if (!material.transparent) return material
+    if (!material.transparent && !isWarmPractical(material)) return material
     let local = materials.get(material)
     if (!local) {
       local = material.clone()
-      local.depthWrite = false
+      if (isWarmPractical(local)) warmPractical(local)
+      if (local.transparent) local.depthWrite = false
       if (singlePassGlass && /glass|glazing/i.test(local.name))
         local.forceSinglePass = true
       materials.set(material, local)

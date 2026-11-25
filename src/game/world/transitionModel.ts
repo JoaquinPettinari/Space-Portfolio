@@ -1,3 +1,4 @@
+import { isWarmPractical, warmPractical } from './warmPracticals'
 import {
   FrontSide,
   Mesh,
@@ -7,7 +8,8 @@ import {
   type Texture,
 } from 'three'
 
-export const TRANSITION_ASSET = '/models/cruz-del-sur-transition.glb'
+export const TRANSITION_ASSET =
+  '/models/cruz-del-sur-transition-galley-ready.glb'
 
 /** Own material instances, but retain the GLTF cache's geometry, images and UVs. */
 export function prepareTransitionModel(source: Object3D) {
@@ -19,6 +21,7 @@ export function prepareTransitionModel(source: Object3D) {
     let material = materials.get(sourceMaterial)
     if (!material) {
       material = new MeshStandardMaterial().copy(sourceMaterial)
+      if (isWarmPractical(material)) warmPractical(material)
       if (!material.transparent && material.name.includes('_TRANSITION_'))
         material.side = FrontSide
       material.envMapIntensity = 0.45

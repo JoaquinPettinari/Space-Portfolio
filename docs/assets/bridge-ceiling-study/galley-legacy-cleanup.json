@@ -1,0 +1,30 @@
+[
+  {
+    "source": "cruz-del-sur-transition.glb",
+    "sourceSha256": "794e41b614952d9345624404d28020ef9b0952a9fbbf6180d2f3f025a6db42cb",
+    "output": "cruz-del-sur-transition-galley-ready.glb",
+    "originalBytes": 23636444,
+    "outputBytes": 23672924,
+    "elapsedMs": 2477.9509,
+    "changedMeshes": 8,
+    "volume": {
+      "min": [1.815, -0.05, 1.9],
+      "max": [2.91, 2.8, 2.5]
+    },
+    "removal": "whole connected components only"
+  },
+  {
+    "source": "cruz-del-sur-reference-details.glb",
+    "sourceSha256": "7a3f0834476baef62135b9bcf81a4447b057189450010a6fb5733c7165227390",
+    "output": "cruz-del-sur-reference-details-galley-ready.glb",
+    "originalBytes": 690096,
+    "outputBytes": 625264,
+    "elapsedMs": 18.278099999999995,
+    "changedMeshes": 9,
+    "volume": {
+      "min": [3.8, 1.02, 0.05],
+      "max": [4.6, 1.4, 1.02]
+    },
+    "removal": "whole connected components only"
+  }
+]

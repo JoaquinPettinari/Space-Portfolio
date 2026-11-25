@@ -11,14 +11,44 @@ import { TABLE_POSITION } from '../src/game/interaction/station'
 test('crosses the clear transition both ways, collides with its side and uses the relocated table', async ({
   page,
 }, info) => {
-  test.setTimeout(150000)
+  test.setTimeout(210000)
   const errors: string[] = []
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => {
     if (m.type() === 'error') errors.push(m.text())
   })
   await page.goto('/')
-  await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 60000 })
+  await expect(page.getByLabel('Game controls')).toBeVisible({
+    timeout: 120000,
+  })
+  const hudBounds = async () =>
+    page.evaluate(() => {
+      const rect = (selector: string) => {
+        const box = document.querySelector(selector)!.getBoundingClientRect()
+        return {
+          width: box.width,
+          top: box.top,
+          bottom: box.bottom,
+          right: box.right,
+        }
+      }
+      return {
+        brand: rect('.hud-brand'),
+        missions: rect('.mission-hud'),
+        controls: rect('.hud-controls'),
+      }
+    })
+  await page.setViewportSize({ width: 1920, height: 1080 })
+  const desktopHud = await hudBounds()
+  await page.setViewportSize({ width: 1366, height: 768 })
+  const notebookHud = await hudBounds()
+  expect(notebookHud.missions.width).toBeLessThan(
+    desktopHud.missions.width * 0.85,
+  )
+  expect(notebookHud.brand.bottom).toBeLessThan(notebookHud.missions.top)
+  expect(notebookHud.missions.bottom).toBeLessThan(notebookHud.controls.top)
+  await page.screenshot({ path: info.outputPath('warm-notebook-hud.png') })
+  await page.setViewportSize({ width: 1280, height: 720 })
   await enterObservationRoom(page)
   await walkTo(page, 0, 3.6)
   await lookAt(page, {
@@ -54,6 +84,33 @@ test('crosses the clear transition both ways, collides with its side and uses th
   await page.keyboard.press('e')
   const table = page.getByRole('dialog', { name: 'Tactical Table' })
   await expect(table).toBeVisible()
+  await expect
+    .poll(async () => (await snapshot(page)).session.protocol.completed)
+    .toContain('tactical')
+  await expect(
+    page.locator('[data-dialogue-event="tacticalDiagnostics"]'),
+  ).toBeVisible()
+  await expect(
+    table.getByRole('button', { name: /diagnostics|rotate/i }),
+  ).toHaveCount(0)
+  await expect(table.getByRole('slider')).toHaveCount(0)
+  await expect(table.getByText('Verify crew identity')).toHaveCount(0)
+  await expect(table.getByText('Hull stress')).toBeVisible()
+  const shellShadow = await table
+    .locator('.desktop')
+    .evaluate((node) => getComputedStyle(node).boxShadow)
+  expect(shellShadow).toBe('none')
+  await expect(
+    table
+      .getByRole('complementary', { name: 'Inspection progress' })
+      .getByRole('listitem'),
+  ).toHaveCount(4)
+  await page.screenshot({ path: info.outputPath('tactical-diagnostics.png') })
+  expect(
+    (await snapshot(page)).session.protocol.completed.filter(
+      (id) => id === 'tactical',
+    ),
+  ).toHaveLength(1)
   await page.keyboard.press('Escape')
   await expect(table).not.toBeVisible()
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)

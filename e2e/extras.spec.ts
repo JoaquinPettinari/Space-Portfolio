@@ -1,4 +1,5 @@
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
+import { COFFEE_POSITION } from '../src/game/interaction/station'
 import { expect, test, type Page } from '@playwright/test'
 import {
   approach,
@@ -9,6 +10,8 @@ import {
 } from './helpers/game'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
+
+const [coffeeX, coffeeY, coffeeZ] = COFFEE_POSITION
 
 const errors = new WeakMap<Page, string[]>()
 // Include the real power/airlock walkthrough in the hook's time budget.
@@ -43,10 +46,10 @@ test('coffee remains available without opening a mission menu', async ({
 }) => {
   test.setTimeout(120_000)
   const before = await protocol(page)
-  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 3.0, 0.35)
   await approach(
     page,
-    { x: -4.25, y: 1.2, z: 3.65 + BRIDGE_OFFSET_Z },
+    { x: coffeeX, y: coffeeY, z: coffeeZ },
     'E · Brew coffee',
   )
   await page.keyboard.press('e')
@@ -109,10 +112,10 @@ test('fictional command input preserves E and T and brews through the shared dis
       .locator('.interaction-hint')
       .filter({ hasText: 'Personal Workstation' }),
   ).toBeVisible()
-  await walkTo(page, -2.4, 3.1 + BRIDGE_OFFSET_Z)
+  await walkTo(page, 3.0, 0.35)
   await approach(
     page,
-    { x: -4.25, y: 1.2, z: 3.65 + BRIDGE_OFFSET_Z },
+    { x: coffeeX, y: coffeeY, z: coffeeZ },
     'E · Drink coffee',
   )
   await page.keyboard.press('e')

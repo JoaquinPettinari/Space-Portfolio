@@ -40,6 +40,7 @@ const locations: Record<ObjectiveId, readonly [number, number]> = {
   lighting: [0, 14.2],
   tablet: [PLAYER_SPAWN_POSITION[0], PLAYER_SPAWN_POSITION[2]],
   crew: [CREW_ACCESS_POSITION[0], CREW_ACCESS_POSITION[2]],
+  tactical: [TABLE_POSITION[0], TABLE_POSITION[2]],
   archives: [SCREEN_POSITION[0], SCREEN_POSITION[2]],
   uplink: [COMMUNICATIONS_POSITION[0], COMMUNICATIONS_POSITION[2]],
   dossier: [PERSONAL_POSITION[0], PERSONAL_POSITION[2]],

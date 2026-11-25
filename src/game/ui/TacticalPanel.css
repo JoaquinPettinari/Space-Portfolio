@@ -10,186 +10,257 @@
 .tactical-terminal .desktop .desktop-bar {
   flex: 0 0 66px;
   height: 66px;
-  background: #051923f2;
-  border: 1px solid var(--terminal-border);
-  border-radius: 12px 3px;
+  background: linear-gradient(110deg, #04151fef, #07323bbd);
+  border: 1px solid #61e5edb0;
+  border-radius: 16px 3px;
+  box-shadow: inset 0 -1px 14px #32dce014;
 }
 .tactical-terminal .desktop .desktop-bar h1 {
-  color: var(--terminal-accent);
+  color: #77f3f5;
   text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 .tactical-terminal .desktop-content {
-  padding: 12px 0;
+  padding: 28px 0 12px;
   overflow: hidden;
 }
-/* Keep these bay dimensions in sync with tacticalDisplayLayout.ts. */
+/* Clear central bay matches tacticalDisplayLayout.ts; the model stays behind it. */
 .tactical-console {
   display: grid;
-  grid-template-columns: 210px minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) 54px;
-  column-gap: 14px;
-  row-gap: 12px;
+  grid-template-columns: 230px minmax(0, 1fr) 230px;
+  gap: 14px;
   height: 100%;
-}
-.tactical-sidebar {
-  grid-row: 1 / -1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.tactical-console nav {
-  display: grid;
-  gap: 5px;
-}
-.tactical-console button {
-  color: var(--terminal-text);
-  background: #061b27ef;
-  border: 1px solid var(--terminal-border);
-  border-radius: 6px 2px;
-  font-size: 13px;
-  padding: 8px 12px;
-}
-.tactical-console nav button {
-  min-height: 30px;
-  text-align: left;
-  padding: 6px 12px;
-}
-.tactical-console button[aria-pressed='true'] {
-  border-color: var(--terminal-accent);
-  background: linear-gradient(100deg, #116379d9, #092a38ed);
+  align-items: center;
 }
 .tactical-card {
-  background: linear-gradient(145deg, #0a2b38f5, #06141df5);
-  border: 1px solid var(--terminal-border);
-  border-radius: 10px 3px;
-  padding: 10px;
-  overflow: auto;
   min-height: 0;
-}
-.tactical-sidebar > .tactical-card:not(.tactical-status) {
-  flex: 1;
+  max-height: 100%;
+  overflow: auto;
+  padding: 18px 14px;
+  border: 1px solid #61d9e799;
+  position: relative;
+  border-radius: 16px 3px;
+  background: linear-gradient(135deg, #082732ed, #04131be6);
+  box-shadow:
+    inset 0 1px 18px #32dce00a,
+    0 8px 24px #0005;
 }
 .tactical-terminal .tactical-card h2 {
-  color: var(--terminal-accent);
+  font-size: 14px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #4bcbd66b;
+  color: #e7fbff;
+}
+.tactical-issue {
+  min-height: 58px;
   font-size: 15px;
-  margin: 0 0 8px;
+  color: #e7f3f5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px;
+  border: 1px solid #43838f77;
+  border-radius: 9px;
+  background: linear-gradient(110deg, #17424f8c, #0a202b91);
+  box-shadow:
+    inset 0 1px 0 #a4eef511,
+    0 3px 9px #0002;
 }
-.tactical-terminal .tactical-card h3 {
-  font-size: 15px;
-  margin: 8px 0;
-}
-.tactical-terminal .tactical-card p {
-  font-size: 12px;
-  line-height: 1.35;
-  color: var(--terminal-muted);
-  margin: 6px 0;
-}
-.tactical-card dl {
-  font-size: 12px;
-  margin: 0;
-}
-.tactical-card dt {
-  color: var(--terminal-muted);
-  margin-top: 6px;
-}
-.tactical-card dd {
-  color: var(--terminal-accent);
-  margin: 2px 0 0;
-  text-transform: capitalize;
-}
-.tactical-status {
+.tactical-status-mark {
+  width: 18px;
+  height: 3px;
+  background: #58d5df;
+  margin-left: auto;
   flex-shrink: 0;
-}
-.tactical-status dl {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px 8px;
-}
-.tactical-status dt {
-  margin: 0;
-}
-.tactical-status dd {
-  margin: 0;
-  text-align: right;
-}
-.tactical-terminal .tactical-card .tactical-note {
-  font-size: 10px;
-  margin-top: 10px;
-}
-.tactical-card ul {
-  padding: 0;
-  margin: 6px 0;
-  list-style: none;
-  font-size: 12px;
-}
-.tactical-card li {
-  padding: 5px 0;
-  border-bottom: 1px solid #1a4553;
+  border-radius: 2px;
 }
 .tactical-model-caption {
-  grid-column: 2;
+  position: relative;
+  height: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  min-height: 0;
+  justify-content: space-between;
   pointer-events: none;
-  color: var(--terminal-accent);
-  border: 1px solid #2b82934f;
-  border-radius: 20px 3px;
-  padding: 7px;
-  box-shadow: inset 0 0 24px #05344322;
+  color: #70edf3;
 }
-.tactical-model-caption span {
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  background: #061b24df;
-  padding: 5px 12px;
-}
-.tactical-model-caption small {
+.tactical-model-caption > span {
   text-align: center;
   font-size: 11px;
-  background: #061b24df;
-  padding: 5px 12px;
-  color: var(--terminal-muted);
+  letter-spacing: 0.2em;
 }
-.tactical-model-controls {
-  grid-column: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  background: #061b27f2;
-  padding: 7px;
-  border: 1px solid var(--terminal-border);
-  border-radius: 8px 2px;
+.tactical-model-caption > span small {
+  display: block;
+  color: #95bac5;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-top: 5px;
 }
-.tactical-model-controls label {
+.tactical-projection {
+  position: absolute;
+  bottom: 46px;
+  width: 94%;
+  height: 65px;
+  border: 1px solid #28e8ed99;
+  border-radius: 50%;
+  box-shadow:
+    0 0 25px #18e4e723,
+    inset 0 0 25px #18e4e723;
+  background: radial-gradient(ellipse, #36e2e622, transparent 65%);
+}
+.tactical-projection::after {
+  content: '';
+  position: absolute;
+  inset: 13px 20%;
+  border: 1px solid #37e1e75e;
+  border-radius: 50%;
+}
+.tactical-progress ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tactical-progress li {
   display: flex;
+  gap: 10px;
+  position: relative;
   align-items: center;
-  gap: 7px;
+  padding: 18px 7px;
+  color: #9cb7bf;
   font-size: 12px;
 }
-.tactical-model-controls input {
-  width: 120px;
-  accent-color: var(--terminal-accent);
+.tactical-progress li + li::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: -18px;
+  height: 36px;
+  border-left: 1px solid #46838f;
+}
+.tactical-step {
+  display: grid;
+  place-items: center;
+  flex: 0 0 27px;
+  height: 27px;
+  border: 1px solid #568d97;
+  border-radius: 50%;
+  color: #a4c9d2;
+}
+.tactical-progress .is-current {
+  color: #d6ffff;
+  background: linear-gradient(90deg, #16afbb2b, #16afbb05);
+  border-radius: 7px 2px;
+  box-shadow: inset 0 0 0 1px #55dae859;
+}
+.tactical-progress .is-current .tactical-step {
+  border-color: #6cf5f6;
+  box-shadow: 0 0 12px #35e5ee50;
+  color: #adffff;
+  background: #1ca2ab33;
+}
+.tactical-progress .is-complete .tactical-step {
+  color: #58dacb;
+  border-color: #45a99e;
 }
 .tactical-terminal .desktop-footer {
   flex: 0 0 42px;
-  padding: 5px 18px;
   height: 42px;
-  background: #051923f2;
-  border-color: var(--terminal-border);
-  color: var(--terminal-muted);
+  padding: 5px 18px;
+  background: #041b25ed;
+  border: 1px solid #5fc7d78c;
+  border-radius: 8px;
+  color: #c4e7ec;
+  letter-spacing: 0.1em;
 }
 .tactical-terminal .desktop-footer button {
-  background: var(--terminal-surface);
-  color: var(--terminal-text);
-  border: 1px solid var(--terminal-accent);
+  background: #092a36;
+  color: #baf6fc;
+  border: 1px solid #5fbcca;
   padding: 6px 12px;
 }
 .tactical-terminal :focus-visible {
-  outline: 2px solid var(--terminal-warm);
-  outline-offset: 2px;
+  outline: 2px solid #ffd591;
+  outline-offset: 3px;
+}
+
+.tactical-terminal .physical-terminal .desktop {
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+}
+.tactical-issues {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 8px;
+  display: grid;
+  gap: 12px;
+}
+.tactical-issue > svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.tactical-issue.critical > svg {
+  color: #ff7467;
+}
+.tactical-issue.warning > svg {
+  color: #f6d257;
+}
+.tactical-issue.critical .tactical-status-mark {
+  background: #ff7467;
+}
+.tactical-issue.warning .tactical-status-mark {
+  background: #f6d257;
+}
+.tactical-card h2 {
+  position: relative;
+}
+.tactical-card h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 18px;
+  height: 4px;
+  transform: skewX(-35deg);
+  background: #54edf0;
+}
+
+/* Small manufactured corner accents, not a surrounding screen frame. */
+.tactical-card::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  width: 19px;
+  height: 2px;
+  transform: rotate(-45deg);
+  background: #82fbff;
+  box-shadow: 0 0 8px #5be4ed70;
+  pointer-events: none;
+}
+.tactical-issue.critical {
+  --issue-color: #ff7467;
+}
+.tactical-issue.warning {
+  --issue-color: #f6d257;
+}
+.tactical-issue > svg {
+  filter: drop-shadow(
+    0 0 4px color-mix(in srgb, var(--issue-color) 25%, transparent)
+  );
+}
+.tactical-issue .tactical-status-mark {
+  box-shadow: 0 0 8px color-mix(in srgb, var(--issue-color) 30%, transparent);
+}
+.tactical-projection::before {
+  content: '';
+  position: absolute;
+  inset: -8px -5%;
+  border: 1px dashed #42dbe039;
+  border-radius: 50%;
 }

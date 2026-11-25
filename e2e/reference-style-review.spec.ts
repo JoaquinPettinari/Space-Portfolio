@@ -1,10 +1,8 @@
 import { RADIO_BUTTONS, type RadioAction } from '../src/game/radioControls'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { expect, test } from '@playwright/test'
-import {
-  PERSONAL_POSITION,
-  RADIO_POSITION,
-} from '../src/game/interaction/station'
+import { PERSONAL_POSITION } from '../src/game/interaction/station'
+import { radioButtonWorldPosition } from '../src/game/world/galleyLayout'
 import {
   approach,
   approachCrew,
@@ -135,14 +133,15 @@ test('reviews reference styling, shared gloves, arrival outfitting and radio thr
   await lookAt(page, { x: 0, y: 1.65, z: -2.65 })
   await page.screenshot({ path: out + '/tactical.png' })
   await measure('tactical')
-  await walkTo(page, -2.4, -0.05)
+  await walkTo(page, 3.0, 0.35)
   const pressRadio = async (action: RadioAction) => {
     const button = RADIO_BUTTONS.find((entry) => entry.action === action)!
-    const [x, y, z] = button.position
+    const [localX, localY, localZ] = button.position
+    const [x, y, z] = radioButtonWorldPosition([localX, localY, localZ + 0.024])
     await lookAt(page, {
-      x: RADIO_POSITION[0] + z + 0.024,
-      y: RADIO_POSITION[1] + y,
-      z: RADIO_POSITION[2] - x,
+      x,
+      y,
+      z,
     })
     await expect(page.locator('.interaction-hint')).toContainText(button.label)
     await page.keyboard.press('e')

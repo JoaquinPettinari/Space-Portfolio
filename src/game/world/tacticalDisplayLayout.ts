@@ -9,14 +9,13 @@ export const TACTICAL_TABLE_SURFACE = {
 
 /** Pixel contract shared with TacticalPanel.css. */
 export const TACTICAL_MODEL_BAY = {
-  left: 224,
-  right: 960,
-  top: 78,
-  bottom: 420,
+  left: 244,
+  right: 716,
+  top: 94,
+  bottom: 440,
 } as const
 export const TACTICAL_MODEL_ANCHOR = bridgePoint([0, 1.62, 0.5])
 export const TACTICAL_MODEL_TILT = 0.16
-export const TACTICAL_DEFAULT_ZOOM = 0.8
 export const TACTICAL_MODEL_SCALE = 0.65
 const display = [2.7, 1.51875] as const
 const pixels = [960, 540] as const

@@ -1,5 +1,11 @@
 export type ObjectiveId =
-  'lighting' | 'tablet' | 'crew' | 'archives' | 'uplink' | 'dossier'
+  | 'lighting'
+  | 'tablet'
+  | 'crew'
+  | 'tactical'
+  | 'archives'
+  | 'uplink'
+  | 'dossier'
 // The existing computer reports its Experience tab as diagnostics.
 export type MissionId = ObjectiveId | 'diagnostics'
 
@@ -9,6 +15,12 @@ export const missions: { id: ObjectiveId; title: string; action: string }[] = [
     title: 'Verify crew identity',
     action:
       'Arrival room → Aim at Crew Access beside the secured bulkhead and press E once. Your full record remains available in the Central Archive.',
+  },
+  {
+    id: 'tactical',
+    title: 'Review tactical diagnostics',
+    action:
+      'Central tactical table → Press E to inspect the communications relay report.',
   },
   {
     id: 'archives',

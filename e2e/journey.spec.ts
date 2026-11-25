@@ -1,4 +1,5 @@
 import { BRIDGE_OFFSET_Z } from '../src/game/world/bridgePlacement'
+import { TABLE_POSITION } from '../src/game/interaction/station'
 import { expect, test } from '@playwright/test'
 import {
   approach,
@@ -7,6 +8,7 @@ import {
   approachCrew,
   enterObservationRoom,
   protocol,
+  snapshot,
 } from './helpers/game'
 
 test.use({ screenshot: 'off', video: 'off', trace: 'off' })
@@ -49,6 +51,19 @@ test('completes the recovery journey with contact skipped and the real CV, then 
     page.locator('.interaction-hint').filter({ hasText: 'Crew Access' }),
   ).toBeVisible()
   await enterObservationRoom(page)
+  await walkTo(page, 0, -0.2)
+  await approach(
+    page,
+    { x: TABLE_POSITION[0], y: 1.04, z: TABLE_POSITION[2] + 1.15 },
+    'E · Tactical Table',
+  )
+  await page.keyboard.press('e')
+  await expect
+    .poll(async () => (await protocol(page)).completed)
+    .toContain('tactical')
+  await page.keyboard.press('Escape')
+  await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
+  await expect(page.locator('.crosshair')).toBeVisible()
   await page.keyboard.press('t')
   await expect(
     page.getByRole('region', { name: 'Held mission tablet' }),
@@ -126,14 +141,15 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   ).toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('4 / 4 complete')
+  ).toContainText('5 / 5 complete')
   const completed = (await protocol(page)).completed
-  expect(completed).toHaveLength(6)
+  expect(completed).toHaveLength(7)
   expect(completed).toEqual(
     expect.arrayContaining([
       'lighting',
       'tablet',
       'crew',
+      'tactical',
       'archives',
       'uplink',
       'dossier',
@@ -154,7 +170,7 @@ test('completes the recovery journey with contact skipped and the real CV, then 
   await page.reload()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('0 / 4 complete', { timeout: 45_000 })
+  ).toContainText('0 / 5 complete', { timeout: 45_000 })
   expect((await protocol(page)).completed).toEqual(['lighting'])
   expect(transmissions).toBe(0)
   expect(errors).toEqual([])

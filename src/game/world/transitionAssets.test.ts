@@ -254,4 +254,6 @@ it('exports a clear transition without changing neighboring floor and wall ray h
       ready.dispose()
     }
   }
-})
+  // Full-resolution GLBs and exact raycasts compete with the parallel suite.
+  // Keep a local budget for this asset integration check, not all unit tests.
+}, 15_000)

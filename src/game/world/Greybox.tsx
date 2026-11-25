@@ -7,6 +7,8 @@ import { BRIDGE_OFFSET_Z, TRANSITION_CENTER } from './bridgePlacement'
 import { ShipHull } from './ShipHull'
 import { BridgeFloor } from './BridgeFloor'
 import { CabinLighting } from './CabinLighting'
+import { Galley } from './Galley'
+import { PortDisplay } from './PortDisplay'
 import { EntryAirlock } from './EntryAirlock'
 import { ArrivalSurfaceEnvironment } from './ArrivalSurfaceEnvironment'
 import { PanoramicPassage } from './PanoramicPassage'
@@ -97,6 +99,8 @@ export function Greybox({
         <SpaceExterior paused={exteriorPaused} />
         <PlayerShipHull />
         <RefinedInteriorDetails />
+        <Galley />
+        <PortDisplay />
         <group position={[0, 0, BRIDGE_OFFSET_Z]}>
           <CabinLighting emergency={emergency} />
         </group>

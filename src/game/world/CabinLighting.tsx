@@ -1,3 +1,4 @@
+import { WARM_PRACTICAL_COLOR } from './warmPracticals'
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import type { MeshStandardMaterial, PointLight, SpotLight } from 'three'
@@ -54,7 +55,7 @@ export function CabinLighting({ emergency }: { emergency: boolean }) {
         ref={windowSpill}
         target={spillTarget}
         position={[0, 3.15, 0.5]}
-        color="#ffd1a0"
+        color={WARM_PRACTICAL_COLOR}
         intensity={emergency ? 65 * 0.28 : 65}
         angle={1.05}
         penumbra={0.7}

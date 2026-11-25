@@ -7,6 +7,7 @@ import {
 import { COMMAND_POSES } from '../world/commandLayout'
 import { bridgePoint } from '../world/bridgePlacement'
 import { TACTICAL_SCREEN } from '../world/tacticalDisplayLayout'
+import { GALLEY_RADIO } from '../world/galleyLayout'
 const BRIDGE_MONITORS = {
   computer: {
     ...COMMAND_POSES.computer,
@@ -55,12 +56,12 @@ export const SCREEN_POSITION = BRIDGE_MONITORS.computer.position
 export const COMMUNICATIONS_POSITION = BRIDGE_MONITORS.communications.position
 export const PERSONAL_POSITION = bridgePoint([4.35, 1.65, 2.1])
 export const ARCADE_POSITION = bridgePoint([-4.35, 1.65, 0.4])
-export const COFFEE_POSITION = bridgePoint([-4.25, 0, 3.65])
+export const COFFEE_POSITION = [2.75, 1.4, 1.25] as const
 export const POWER_POSITION = ENTRY_POWER_POSITION
 export const CREW_ACCESS_POSITION = ENTRY_CREW_POSITION
 export const CREW_ACCESS_ROTATION = 0
 export const TABLE_POSITION = bridgePoint([0, 0, 0.5])
-export const RADIO_POSITION = bridgePoint([-3.9, 1.27, 2])
+export const RADIO_POSITION = GALLEY_RADIO.position
 /** Fit the whole physical bezel while leaving readable margins. */
 export function monitorDistance(
   aspect: number,

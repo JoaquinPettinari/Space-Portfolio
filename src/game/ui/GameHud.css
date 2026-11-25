@@ -1,4 +1,7 @@
 :root {
+  --hud-edge: clamp(0.75rem, 1.25vw, 1.5rem);
+  --hud-panel-width: clamp(17rem, 18vw, 21.75rem);
+  --hud-brand-height: clamp(3.75rem, 7.6vh, 4.875rem);
   --hud-cyan: #42e8f5;
   --hud-cyan-light: #83f6ff;
   --hud-border: rgba(66, 232, 245, 0.32);
@@ -59,15 +62,16 @@
 .hud-brand {
   position: fixed;
   top: 8px;
-  left: 22px;
+  left: var(--hud-edge);
   z-index: 25;
 
   display: flex;
   align-items: center;
-  gap: 18px;
-
-  min-width: 300px;
-  padding: 12px 24px;
+  gap: clamp(0.625rem, 0.94vw, 1.125rem);
+  box-sizing: border-box;
+  width: min(var(--hud-panel-width), calc(100vw - 2 * var(--hud-edge)));
+  height: var(--hud-brand-height);
+  padding: clamp(0.5rem, 1.1vh, 0.75rem) clamp(0.875rem, 1.25vw, 1.5rem);
 
   border: 1px solid rgba(66, 232, 245, 0.25);
   border-radius: 16px;
@@ -89,8 +93,9 @@
   align-items: center;
   justify-content: center;
 
-  width: 52px;
-  height: 52px;
+  flex-shrink: 0;
+  width: clamp(2rem, 2.7vw, 3.25rem);
+  height: clamp(2rem, 2.7vw, 3.25rem);
   color: #e9f5fa;
 
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
@@ -98,7 +103,7 @@
 
 .hud-brand__divider {
   width: 2px;
-  height: 52px;
+  height: clamp(2rem, 2.7vw, 3.25rem);
 
   background: linear-gradient(
     to bottom,
@@ -117,7 +122,7 @@
 .hud-brand__title {
   color: #f1f7fb;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 32px;
+  font-size: clamp(1.5rem, 1.67vw, 2rem);
   font-weight: 700;
   letter-spacing: 0.055em;
   line-height: 1.05;
@@ -128,7 +133,7 @@
 .hud-brand__subtitle {
   color: #a7b9c6;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 20px;
+  font-size: clamp(0.875rem, 1.04vw, 1.25rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 1.1;
@@ -164,12 +169,13 @@
 /* Mission objective panel */
 .mission-hud {
   position: fixed;
-  top: 100px;
-  left: 24px;
+  top: calc(8px + var(--hud-brand-height) + clamp(0.5rem, 1vh, 0.875rem));
+  left: var(--hud-edge);
   z-index: 25;
 
-  width: 300px;
-  padding: 12px 22px 12px 25px;
+  box-sizing: border-box;
+  width: min(var(--hud-panel-width), calc(100vw - 2 * var(--hud-edge)));
+  padding: clamp(0.625rem, 1.1vh, 0.75rem) clamp(0.875rem, 1.15vw, 1.375rem);
 
   overflow: hidden;
 
@@ -211,7 +217,7 @@
 
   color: var(--hud-cyan);
   font-family: var(--hud-font-display);
-  font-size: 24px;
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.1;
@@ -329,31 +335,6 @@
   gap: 4px;
 }
 
-.hud-key {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 28px;
-  height: 28px;
-  padding: 0 5px;
-
-  border: 1.5px solid #e4edf3;
-  border-radius: 5px;
-
-  background: rgba(5, 12, 20, 0.8);
-  color: #ffffff;
-
-  font:
-    700 15px 'Rajdhani',
-    sans-serif;
-
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-    0 2px 0 rgba(0, 0, 0, 0.8),
-    0 0 6px rgba(255, 255, 255, 0.12);
-}
-
 @media (max-width: 768px) {
   .hud {
     top: 12px;
@@ -389,7 +370,7 @@
   padding: 0;
   margin: 12px 0 0;
   display: grid;
-  gap: 10px;
+  gap: clamp(0.375rem, 0.92vh, 0.625rem);
 }
 .mission-checklist li {
   display: flex;
@@ -406,8 +387,8 @@
   color: var(--hud-cyan-light);
 }
 .mission-checklist__box {
-  flex: 0 0 20px;
-  height: 20px;
+  flex: 0 0 clamp(1rem, 1.04vw, 1.25rem);
+  height: clamp(1rem, 1.04vw, 1.25rem);
   border: 1px solid currentColor;
   border-radius: 3px;
   text-align: center;
@@ -576,4 +557,9 @@
     min-height: 44px;
     margin-top: 12px;
   }
+}
+
+.hud-brand__icon svg {
+  width: 85%;
+  height: 85%;
 }

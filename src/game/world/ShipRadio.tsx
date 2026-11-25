@@ -25,6 +25,7 @@ import {
 } from './physicalPress'
 import gestureTiming from './gestureTiming.json'
 import { useReducedMotionRef } from '../useReducedMotionRef'
+import { GALLEY_RADIO } from './galleyLayout'
 
 const ignoreRaycast = () => {}
 const details: StaticPanel[] = [
@@ -265,7 +266,8 @@ export function ShipRadio({
     if (key && anchor && hand.current) {
       anchor.getWorldPosition(buttonContact.current)
       hand.current.worldToLocal(buttonContact.current)
-      key.position.z = button.position[2] + buttonContact.current.z
+      key.position.z =
+        button.position[2] + buttonContact.current.z / GALLEY_RADIO.scale
     }
     // Set the contact/depression pose before committing the requested action.
     if (!pose.actionCommitted && pose.elapsed >= RADIO_ACTUATION_TIME) {
@@ -300,7 +302,8 @@ export function ShipRadio({
       ref={root}
       name="cds-desk-radio"
       position={RADIO_POSITION}
-      rotation={[0, Math.PI / 2, 0]}
+      rotation={[0, GALLEY_RADIO.rotation, 0]}
+      scale={GALLEY_RADIO.scale}
     >
       <RoundedBox args={[0.8, 0.4, 0.25]} radius={0.025} smoothness={2}>
         <meshStandardMaterial
@@ -360,7 +363,12 @@ export function ShipRadio({
           </mesh>
         </group>
       ))}
-      <group name="radio-press-hand" ref={hand} visible={false}>
+      <group
+        name="radio-press-hand"
+        ref={hand}
+        scale={1 / GALLEY_RADIO.scale}
+        visible={false}
+      >
         <primitive object={handModel.scene} dispose={null} />
       </group>
     </group>

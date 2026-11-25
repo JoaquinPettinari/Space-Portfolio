@@ -34,10 +34,11 @@ test('starts directly in the production station and keeps portfolio access secon
   for (const [name, value] of Object.entries(readSecurityHeaders())) {
     expect(await response!.headerValue(name)).toBe(value)
   }
-  await expect(page.locator('canvas')).toBeVisible()
+  // The cinematic intentionally hides the interior until preparation completes.
   await expect(page.getByLabel('Game controls')).toBeVisible({
     timeout: 60_000,
   })
+  await expect(page.locator('canvas')).toBeVisible()
   await expect(
     page.getByRole('button', { name: 'Enter station', exact: true }),
   ).toHaveCount(0)

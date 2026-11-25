@@ -15,7 +15,7 @@ it('shows real objectives, completed state and current room map without stealing
       currentObjective={getCurrentObjective(state)}
     />,
   )
-  expect(screen.getByText('0 / 4')).toBeVisible()
+  expect(screen.getByText('0 / 5')).toBeVisible()
   expect(screen.getByText(/Objective: Verify crew identity/)).toBeVisible()
   expect(
     screen.getByRole('img', { name: /CRUZ DEL SUR current deck map/ }),
@@ -40,5 +40,5 @@ it('keeps completed objectives visible when guidance is skipped', () => {
   expect(screen.getByText('Free exploration · Guidance paused')).toBeVisible()
   expect(
     screen.getByRole('list', { name: 'Mission progress' }).children,
-  ).toHaveLength(4)
+  ).toHaveLength(5)
 })

@@ -240,7 +240,7 @@ test('opens the accessible HTML alternative from pause and returns without losin
   await page.keyboard.up('w')
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('0 / 4 complete')
+  ).toContainText('0 / 5 complete')
   await enterGame(page)
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await page.waitForTimeout(200)

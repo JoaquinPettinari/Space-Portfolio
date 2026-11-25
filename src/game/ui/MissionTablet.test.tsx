@@ -49,7 +49,7 @@ it('offers optional guidance, retains progress when skipped and resumes the next
   expect(
     screen.getByText('Guidance paused. All facilities remain available.'),
   ).toBeVisible()
-  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 5 objectives complete')).toBeVisible()
   fireEvent.click(screen.getByRole('button', { name: 'Resume Protocol' }))
   expect(
     screen.getByText('Current objective: Verify crew identity'),
@@ -91,7 +91,7 @@ it('locates objectives by pointer and keyboard without completing them', () => {
     ),
   ).toBeVisible()
   expect(archives).toHaveAttribute('data-complete', 'false')
-  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 5 objectives complete')).toBeVisible()
 })
 
 it('focuses the close button, wraps Tab at dialog boundaries and supports closing', () => {
@@ -141,5 +141,5 @@ it('offers physical and HTML portfolio access without requiring any mission', ()
   fireEvent.click(screen.getByRole('button', { name: 'Read without 3D' }))
   expect(accessible).toHaveBeenCalledOnce()
   expect(complete).not.toHaveBeenCalled()
-  expect(screen.getByText('0 / 4 objectives complete')).toBeVisible()
+  expect(screen.getByText('0 / 5 objectives complete')).toBeVisible()
 })

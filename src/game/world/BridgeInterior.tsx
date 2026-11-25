@@ -1,13 +1,16 @@
+import { isWarmPractical, warmPractical } from './warmPracticals'
 import { Bvh, useGLTF } from '@react-three/drei'
 import { CuboidCollider } from '@react-three/rapier'
 import { TRANSITION_CENTER } from './bridgePlacement'
-import { useMemo } from 'react'
+import { useEffect, useLayoutEffect, useMemo } from 'react'
+import { Mesh, MeshStandardMaterial } from 'three'
 import { StaticPanels } from './StaticPanels'
 import { SPINE_BACK_PANELS } from './bridgeWallPanels'
-import { INTERIOR_SHELF_PANELS } from './interiorShelfPanels'
 import { trimTransitionBackPanels } from './transitionLayout'
 import { BridgeEnclosure } from './BridgeEnclosure'
+import { installOpaqueDepthProxy } from '../rendering/opaqueDepthProxy'
 
+// Measured static architecture benefits from depth coverage before PBR shading.
 const backPanels = trimTransitionBackPanels([
   ...SPINE_BACK_PANELS,
   ...[-1, 1].map((side) => ({
@@ -24,12 +27,48 @@ export function BridgeInterior() {
   const { scene } = useGLTF(
     '/models/cruz-del-sur-clean-bridge-transition-ready.glb',
   )
-  const root = useMemo(() => scene.clone(true), [scene])
+  const { root, warmMaterials } = useMemo(() => {
+    const root = scene.clone(true)
+    const warmMaterials = new Map<MeshStandardMaterial, MeshStandardMaterial>()
+    root.traverse((object) => {
+      if (!(object instanceof Mesh)) return
+      const originals = Array.isArray(object.material)
+        ? object.material
+        : [object.material]
+      const updated = originals.map((material) => {
+        if (!isWarmPractical(material)) return material
+        let warm = warmMaterials.get(material)
+        if (!warm) {
+          warm = material.clone()
+          warmPractical(warm)
+          warmMaterials.set(material, warm)
+        }
+        return warm
+      })
+      object.material = Array.isArray(object.material) ? updated : updated[0]
+    })
+    return { root, warmMaterials }
+  }, [scene])
+  useLayoutEffect(() => {
+    const meshes: Mesh[] = []
+    root.traverse((object) => {
+      if (
+        object instanceof Mesh &&
+        object.name.startsWith('REFINED_bridge_static_')
+      )
+        meshes.push(object)
+    })
+    const dispose = meshes.map(installOpaqueDepthProxy)
+    return () => dispose.forEach((cleanup) => cleanup())
+  }, [root])
+  useEffect(
+    () => () => warmMaterials.forEach((material) => material.dispose()),
+    [warmMaterials],
+  )
   return (
     <>
       <BridgeEnclosure />
       <StaticPanels panels={backPanels} />
-      <StaticPanels panels={INTERIOR_SHELF_PANELS} />
       {/* Spatial index accelerates exact triangle hits without changing the mesh. */}
       <Bvh indirect>
         <primitive object={root} dispose={null} />

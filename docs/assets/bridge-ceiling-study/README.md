@@ -259,3 +259,27 @@ fuente intacta y la conservación de objetos y transformaciones. Se revisó
 visualmente desde la cámara `CEILING BOW REVIEW / Whole ceiling`.
 Es una revisión Blender; la app todavía no incorpora este techo y requiere
 exportación y comprobaciones de rendimiento y navegación propias.
+
+## Relieve del techo e iluminación localizada
+
+`bridge-ceiling-sculpted.blend` reemplaza los cassettes planos delanteros por
+bandejas plegadas con 12,5 cm de profundidad, insertos cerámicos y ventilación.
+Las vigas transversales tienen hombros inclinados, uniones centrales escalonadas
+y alas inferiores. Las piezas sustituidas quedan archivadas en una colección
+oculta; la fuente `bridge-ceiling-complete.blend` permanece intacta.
+
+Se rebalancearon dos luces de relleno de la sala (360 a 85 W y 240 a 80 W).
+Trece luces de revisión distribuyen iluminación rasante cálida, luz suave desde
+las luminarias y un relleno frío desde el ventanal. Son luces de autoría Cycles,
+marcadas para excluir de la exportación: no se deben trasladar directamente al
+runtime ni inferir rendimiento de estas vistas.
+
+Script: `scripts/assets/sculpt-bridge-ceiling.py`. Validación:
+`ceiling-sculpted-validation.json`. Se conservaron firmas de geometría,
+materiales, UV y transformaciones de los objetos originales. El cambio de
+visibilidad de las piezas archivadas es intencional; los estantes personales,
+ventanas, consolas y mesa mantienen sus modelos.
+
+Revisión visual en Cycles a 16 muestras: `sculpted-ceiling-preview.png` y
+`sculpted-room-preview.png`. Esta versión todavía no modifica la app; no se
+ejecutaron pruebas de navegador para esta pasada exclusivamente de Blender.

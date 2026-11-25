@@ -630,8 +630,8 @@ test('starts powered, shows read-only objective locations on narrow screens and 
   ])
   await capture(page)
   const tablet = await raiseTablet(page)
-  await expect(tablet).toContainText('0 / 4')
-  await expect(tablet.getByRole('listitem')).toHaveCount(4)
+  await expect(tablet).toContainText('0 / 5')
+  await expect(tablet.getByRole('listitem')).toHaveCount(5)
   await expect(tablet.getByRole('button')).toHaveCount(0)
   await expect(tablet.locator('[data-complete="true"]')).toHaveCount(0)
   await expect(tablet).toContainText('Arrival deck · Crew Access')
@@ -644,7 +644,7 @@ test('starts powered, shows read-only objective locations on narrow screens and 
   expect((await snapshot(page)).pointerLocked).toBe(true)
   await page.reload()
   await expect(page.getByLabel('Game controls')).toBeVisible({ timeout: 45000 })
-  await expect(hud).toContainText('0 / 4 complete')
+  await expect(hud).toContainText('0 / 5 complete')
   await expect(hud).toContainText('Verify crew identity')
   expect((await snapshot(page)).session.protocol.guidance).toBe('pending')
 })
@@ -668,7 +668,7 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await expect(identity).not.toBeVisible()
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('0 / 4 complete')
+  ).toContainText('0 / 5 complete')
   await expect
     .poll(async () => (await snapshot(page)).cameraPosition.x)
     .toBeCloseTo(standing.cameraPosition.x, 1)
@@ -697,7 +697,7 @@ test('cancels Crew Access before completion and retries with reduced motion', as
   await page.keyboard.press('Escape')
   await expect(
     page.getByRole('complementary', { name: 'Recovery objectives' }),
-  ).toContainText('1 / 4 complete')
+  ).toContainText('1 / 5 complete')
   await expect.poll(async () => (await snapshot(page)).pointerLocked).toBe(true)
   await expect(page.locator('.crosshair')).toBeVisible()
   await page.keyboard.press('Escape')
